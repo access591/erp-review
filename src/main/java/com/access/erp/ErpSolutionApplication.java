@@ -3,6 +3,8 @@ package com.access.erp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.access.erp.model.master.Company;
+
 @SpringBootApplication
 public class ErpSolutionApplication {
 
@@ -10,6 +12,13 @@ public class ErpSolutionApplication {
 		SpringApplication.run(ErpSolutionApplication.class, args);
 		
 		System.out.println(" Running...");
+		
+		
+		
+		
+	
+		
+		
 	}
 
 }
