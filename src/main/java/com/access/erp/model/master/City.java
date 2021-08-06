@@ -3,6 +3,8 @@ package com.access.erp.model.master;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +18,6 @@ public class City {
 	@Column(name = "CITY_NAME", length = 50)
 	private String cityName;
 	
-	@Column(name = "STATE_CODE", length = 50)
-	private String stateCode;
 	
 	@Column(name = "REGION_CODE", length = 50)
 	private String regionCode;
@@ -27,6 +27,10 @@ public class City {
 	
 	@Column(name = "CITY_TYPE", length = 4)
 	private String cityType;
+	
+	@ManyToOne
+	@JoinColumn(name="STATE_CODE")
+	private State state;
 
 	public City() {
 		super();
@@ -47,14 +51,6 @@ public class City {
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
-	}
-
-	public String getStateCode() {
-		return stateCode;
-	}
-
-	public void setStateCode(String stateCode) {
-		this.stateCode = stateCode;
 	}
 
 	public String getRegionCode() {
@@ -80,9 +76,15 @@ public class City {
 	public void setCityType(String cityType) {
 		this.cityType = cityType;
 	}
-	
-	
-	
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
 	
 
 }

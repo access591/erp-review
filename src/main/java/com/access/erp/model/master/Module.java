@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "MODULE_MASTER")
+/*@Entity
+@Table(name = "MODULE_MASTER")*/
 public class Module {
 	
 	@Id

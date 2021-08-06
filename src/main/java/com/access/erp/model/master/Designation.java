@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "DESIGNATION_MASTER")
+/*@Entity
+@Table(name = "DESIGNATION_MASTER")*/
 public class Designation {
 	
 	@Id
