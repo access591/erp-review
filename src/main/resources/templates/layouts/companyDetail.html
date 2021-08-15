@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">Header of Home Page</div>
+
+	<div id="home-nav"
+		th:replace="~{/fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+
+
+	<div id="home-main-content">
+
+		<div class="container-fluid">
+			<ul class="nav nav-pills">
+				<li class="active"><a data-toggle="tab" href="#companydetail">Company
+						Detail</a></li>
+				<li><a data-toggle="tab" href="#tdsinfo">TDS Information</a></li>
+				<li><a data-toggle="tab" href="#taxreg">Tax Registration No</a></li>
+				<li><a data-toggle="tab" href="#importdetail">Import Detail</a></li>
+				<li><a data-toggle="tab" href="#insurancedetail">Insurance
+						Detail</a></li>
+				<li><a data-toggle="tab" href="#siteoffices">Site Offices</a></li>
+
+
+			</ul>
+
+
+			<!-- div content -->
+			<div class="tab-content">
+
+				<!-- company detail tab -->
+				<div id="companydetail" class="tab-pane fade in active">
+					<p></p>
+
+					<div class="form-border">
+
+						<h5>COMPANY DETAILS</h5>
+						<div class="row">
+							<div class="col-md-8">
+								<div class="form-row">
+									<div class="form-group col-md-4">
+										<label for="inputEmail4">Company Code</label> <input
+											type="email" class="form-control" id="inputEmail4"
+											placeholder="text">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Company Name</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="text">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Company Type</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="inputAddress">Director Name</label> <input
+											type="text" class="form-control" id="inputAddress"
+											placeholder="1234 Main St">
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">PF Number</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Parent Code</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputEmail4">Calculate ESI</label> <input
+											type="email" class="form-control" id="inputEmail4"
+											placeholder="Email">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Deduction Form
+											Employee(y/n)</label> <input type="password" class="form-control"
+											id="inputPassword4" placeholder="Password">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">ESI Number</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="inputAddress">Import Data</label> <input
+											type="text" class="form-control" id="inputAddress"
+											placeholder="1234 Main St">
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Tax Account(Sale)</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Tax Account(Purchase)</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+
+
+
+
+								</div>
+							</div>
+							<div class="col-md-2"
+								style="text-align: center; height: parent; width: parent;">
+								<img alt="" src="/img/contact.png"
+									style="height: parent; width: parent; border-radius: 50%">
+							</div>
+						</div>
+
+
+
+
+					</div>
+
+					<p></p>
+					<p></p>
+
+					<div class="form-border">
+						<h5>Company Address and Bank Details</h5>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="inputEmail4">Email</label> <input type="email"
+									class="form-control" id="inputEmail4" placeholder="Email">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputPassword4">Password</label> <input
+									type="password" class="form-control" id="inputPassword4"
+									placeholder="Password">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputPassword4">Password</label> <input
+									type="password" class="form-control" id="inputPassword4"
+									placeholder="Password">
+							</div>
+
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Address</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+				<!-- end company detail tab -->
+
+
+
+
+
+				<!-- tds information detail -->
+				<div id="tdsinfo" class="tab-pane fade">
+					<h5>TDS Responsibility</h5>
+
+					<div class="form-border">
+						<h5>Particular of the Person Responsible for deduction of tax</h5>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="inputAddress">Name</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputEmail4">Type of Deductor</label> <input
+									type="email" class="form-control" id="inputEmail4"
+									placeholder="Email">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputPassword4">Branch</label> <input
+									type="password" class="form-control" id="inputPassword4"
+									placeholder="Password">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputPassword4">Excise Devison</label> <input
+									type="password" class="form-control" id="inputPassword4"
+									placeholder="Password">
+							</div>
+
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Designation</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Flat Number</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Building</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-12">
+								<label for="inputAddress">Road/street/lane</label> <input
+									type="text" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Town/City/District</label> <input
+									type="text" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">State</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Area/Location</label> <input
+									type="text" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Pin</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Telephone Number</label> <input
+									type="text" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputAddress">Email</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end tds information detail -->
+
+
+
+				<!-- tax registration detail -->
+				<div id="taxreg" class="tab-pane fade">
+					<div style="height: 20px"></div>
+					<div class="form-border">
+						<h5>Tax Details</h5>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Pan Number</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputEmail4">GST Number</label> <input type="email"
+									class="form-control" id="inputEmail4" placeholder="Email">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputPassword4">Taxpayer Legal Number</label> <input
+									type="password" class="form-control" id="inputPassword4"
+									placeholder="Password">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputPassword4">Taxpayer Trade Number</label> <input
+									type="password" class="form-control" id="inputPassword4"
+									placeholder="Password">
+							</div>
+
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Date of Filling</label> <input
+									type="text" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Tan Number</label> <input type="text"
+									class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- end tax registration detail -->
+
+
+
+				<!-- import detail -->
+				<div id="importdetail" class="tab-pane fade">
+					<div style="height: 20px"></div>
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<div class="form-border">
+								<h5>Tax Details</h5>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="inputAddress">Pan Number</label> <input
+											type="text" class="form-control" id="inputAddress"
+											placeholder="1234 Main St">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputEmail4">GST Number</label> <input
+											type="email" class="form-control" id="inputEmail4"
+											placeholder="Email">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputPassword4">Taxpayer Legal Number</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputPassword4">Taxpayer Trade Number</label> <input
+											type="password" class="form-control" id="inputPassword4"
+											placeholder="Password">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="inputAddress">Date of Filling</label> <input
+											type="text" class="form-control" id="inputAddress"
+											placeholder="1234 Main St">
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2"></div>
+					</div>
+
+				</div>
+				<!-- end import detail -->
+
+
+
+				<!-- insurance detail -->
+				<div id="insurancedetail" class="tab-pane fade">
+					<div class="form-border">
+						<h5>Insurance Details</h5>
+
+						<table class="table table-sm">
+							<thead>
+								<tr>
+									<th scope="col">Site Code</th>
+									<th scope="col">Site Location</th>
+									<th scope="col">Site Incharge</th>
+									<th scope="col">Site Address</th>
+									<th scope="col">Approved Budget</th>
+									<th scope="col">Site Address</th>
+									<th scope="col">Approved Budget</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row"><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></th>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+								</tr>
+								<tr>
+									<th scope="row"><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></th>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+								</tr>
+								<tr>
+									<th scope="row"><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></th>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+				<!-- end insurance detail -->
+
+
+
+
+				<!-- site offices detail -->
+				<div id="siteoffices" class="tab-pane fade">
+					<div class="form-border">
+						<h5>Site Offices</h5>
+
+						<table class="table table-sm">
+							<thead>
+								<tr>
+									<th scope="col">Site Code</th>
+									<th scope="col">Site Location</th>
+									<th scope="col">Site Incharge</th>
+									<th scope="col">Site Address</th>
+									<th scope="col">Approved Budget</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row"><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></th>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+								</tr>
+								<tr>
+									<th scope="row"><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></th>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+								</tr>
+								<tr>
+									<th scope="row"><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></th>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+									<td><fieldset>
+											<input type="text" class="form-control" placeholder="">
+										</fieldset></td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+				<!-- end site offices detail -->
+
+
+
+			</div>
+
+
+			<!-- end div content -->
+		</div>
+
+	</div>
+
+
+
+	
+
+
+</body>
+</html>
