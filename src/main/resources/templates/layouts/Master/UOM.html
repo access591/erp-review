@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>ERP WhareHouse</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">Header of Home Page</div>
+
+	<div id="home-nav"
+		th:replace="~{/fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+	<div id="home-main-content">
+
+
+
+		<div>
+			<div class="from-border">
+				<h6>Search Criteria for Uom Code</h6>
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label">Search</label>
+					<div class="col-sm-10">
+						<input type="text" readonly class="form-control-plaintext"
+							id="staticEmail" placeholder="uom code">
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-border">
+			<h5>Unit of Measurement Master</h5>
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th scope="col">Uom Code</th>
+						<th scope="col">Unit</th>
+						<th scope="col">Measurement System</th>
+						<th scope="col">Tungsten UOM Code</th>
+						<th scope="col">Tungsten Description</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row"><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></th>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						
+
+
+					</tr>
+					<tr>
+						<th scope="row"><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></th>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						
+
+					</tr>
+					<tr>
+						<th scope="row"><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></th>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+
+						<td><fieldset>
+								<input type="text" class="form-control form-control-sm"
+									placeholder="">
+							</fieldset></td>
+						
+
+					</tr>
+
+				</tbody>
+			</table>
+
+			<a href="#">Add Another</a>
+
+		</div>
+	</div>
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>

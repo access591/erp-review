@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{/fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+	<div id="home-main-content">
+
+
+		 <div class="form-inline text-center">
+                <div class="col-md-12 form-group">
+                    <label class="col-sm-6 col-form-label" for="name">Search For Items</label>
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
+            </div>
+            <p></p>
+            <p></p>
+		<br>
+
+		<div class="container-fluid">
+			<ul class="nav nav-pills">
+				<li class="active"><a data-toggle="tab" href="#itemdetail">Item
+						Detail</a></li>
+
+				<li><a data-toggle="tab" href="#taxdetail">Tax Detail</a></li>
+				<li><a data-toggle="tab" href="#packing">Packing</a></li>
+
+
+
+			</ul>
+
+			<div class="tab-content">
+				<p></p>
+
+				<!-- item detail div  -->
+				<div id="itemdetail" class="tab-pane fade in active">
+					<div class="form-border">
+
+
+						<div class="row">
+							<div class="col-md-8">
+
+								<div class="form-group col-md-4">
+									<label for="#">Item Code</label> <input type="text"
+										class="form-control form-control-sm" id="#"
+										placeholder="item code">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="inputPassword4">Description</label> <input
+										type="text" class="form-control form-control-sm"
+										id="inputPassword4" placeholder="decription">
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="inputEmail4">UOM Code</label> <input type="email"
+										class="form-control form-control-sm" id="inputEmail4"
+										placeholder="uom code">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="inputPassword4">UOM Name</label> <input type="text"
+										class="form-control form-control-sm" id="inputPassword4"
+										placeholder="uom name">
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="inputEmail4">Work Center Code</label> <input
+										type="email" class="form-control form-control-sm"
+										id="inputEmail4" placeholder="work center code">
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<img alt="" src="/img/contact.png"
+									style="border-radius: 50%; width: 100px;">
+							</div>
+						</div>
+
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Work Center Name</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="work center name">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Issueable</label> <input type="text"
+								class="form-control form-control-sm" id="inputPassword4"
+								placeholder="issueable">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Tariff Item</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="tariff item">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Store Info</label> <input type="text"
+								class="form-control form-control-sm" id="inputPassword4"
+								placeholder="store info">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">GST</label> <input type="text"
+								class="form-control form-control-sm" id="inputPassword4"
+								placeholder="gst">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">DOL</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="dol">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Category Code</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="category code">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Critical Item</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="critical item">
+						</div>
+
+					</div>
+
+					<p></p>
+					<p></p>
+
+					<div class="form-border">
+						<h5>Stock Level</h5>
+						<div class="form-group col-md-4">
+							<label for="inputEmail4">Min. Level</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="min level">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputPassword4">Max. Stock</label> <input type="text"
+								class="form-control form-control-sm" id="inputPassword4"
+								placeholder="max stock">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Recorder level</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="recorder level">
+						</div>
+					</div>
+
+
+					<p></p>
+					<p></p>
+
+					<div class="form-border">
+						<h5>Location</h5>
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Store Code</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="store code">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Store Name</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="store name">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Bin Number</label> <input type="text"
+								class="form-control form-control-sm" id="inputPassword4"
+								placeholder="bin number">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Bin Location</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="bin location">
+						</div>
+					</div>
+
+					<p></p>
+					<p></p>
+
+					<div class="form-border">
+						<h5>Account Information</h5>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">Account Code</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="account code">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputPassword4">Acount Number</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="account number">
+						</div>
+
+
+					</div>
+
+					<p></p>
+					<p></p>
+
+					<div class="form-border">
+						<h5>Product Information</h5>
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Product Code</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="product code">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Product Name</label> <input type="email"
+								class="form-control form-control-sm" id="inputEmail4"
+								placeholder="product name">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Design Code</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="design code">
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="inputPassword4">Design Name</label> <input
+								type="text" class="form-control form-control-sm"
+								id="inputPassword4" placeholder="design name">
+						</div>
+					</div>
+				</div>
+				<!-- end item detail div -->
+
+
+				<div id="taxdetail" class="tab-pane fade">
+					<div>
+						<p>item detail</p>
+					</div>
+				</div>
+
+				<div id="packing" class="tab-pane fade">
+					<div>
+						<p>item detail</p>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+</body>
+</html>
