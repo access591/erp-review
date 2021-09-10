@@ -38,5 +38,7 @@ public class SubModule {
 	@Column(name = "SEQ_NO",length = 50)
 	private int seqNoSubModule;
 	
+	
+	
 
 }
