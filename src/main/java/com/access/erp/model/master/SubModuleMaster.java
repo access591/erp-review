@@ -1,12 +1,16 @@
 package com.access.erp.model.master;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -43,6 +47,9 @@ public class SubModuleMaster {
 	@ManyToOne
 	@JoinColumn(name="MODULE_CODE")
 	private ModuleMaster moduleMaster;
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "subModuleMaster",cascade = CascadeType.ALL)
+	private Set<Program> program;
 
 	public String getSubModuleCode() {
 		return subModuleCode;
@@ -114,6 +121,14 @@ public class SubModuleMaster {
 
 	public void setModuleMaster(ModuleMaster moduleMaster) {
 		this.moduleMaster = moduleMaster;
+	}
+
+	public Set<Program> getProgram() {
+		return program;
+	}
+
+	public void setProgram(Set<Program> program) {
+		this.program = program;
 	}
 	
 	
