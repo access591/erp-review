@@ -64,6 +64,13 @@ label {
 	height: 25px;
 }
 
+.form-group select {
+	align : center;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	height: 25px;
+}
+
 .middle-form {
 	position: relative;
 }

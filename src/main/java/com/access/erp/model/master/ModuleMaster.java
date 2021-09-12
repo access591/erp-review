@@ -1,10 +1,14 @@
 package com.access.erp.model.master;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +39,9 @@ public class ModuleMaster {
 	
 	@Column(name = "SEQ_NO")
 	private int seqNo;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "moduleMaster",cascade = CascadeType.ALL)
+	private Set<SubModuleMaster> subModule;
 
 	public ModuleMaster() {
 		super();
@@ -105,6 +112,14 @@ public class ModuleMaster {
 
 	public void setSeqNo(int seqNo) {
 		this.seqNo = seqNo;
+	}
+
+	public Set<SubModuleMaster> getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(Set<SubModuleMaster> subModule) {
+		this.subModule = subModule;
 	}
 
 	
