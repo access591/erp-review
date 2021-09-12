@@ -13,58 +13,61 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.master.ModuleMaster;
-import com.access.erp.model.master.SubModule;
+import com.access.erp.model.master.SubModuleMaster;
 import com.access.erp.service.ModuleMasterService;
+import com.access.erp.service.SubModuleMasterService;
 
 @Controller
-@RequestMapping("submodule")
+@RequestMapping("/sub-module")
 public class SubModuleController {
-	
-@Autowired ModuleMasterService moduleMasterService;
-	
+
+	@Autowired
+	SubModuleMasterService subModuleMasterService;
+	@Autowired ModuleMasterService moduleService;
+
 	@GetMapping("/")
 	public String subModule(Model model) {
-		
 
-		model.addAttribute("subModule", new SubModule());
+		List<ModuleMaster> moduleList = moduleService.getAllModule();
+		model.addAttribute("moduleList", moduleList);
+		model.addAttribute("subModule", new SubModuleMaster());
 		return "layouts/Master/subModule";
 	}
-	
-	
+
 	@PostMapping("/")
-	public String addSubModule(@ModelAttribute("subModule") SubModule subModule) {
-		
-		//moduleMasterService.addModule(moduleMaster);
-		
-		return "redirect:/submodule/";
+	public String addSubModule(@ModelAttribute("subModule") SubModuleMaster subModule) {
+
+		 subModuleMasterService.addSubModule(subModule);
+
+		return "redirect:/sub-module/";
 	}
-	
+
 	@GetMapping("/list")
-	public String viewModuleList(Model model) {
-		
-		//List<ModuleMaster> listModule = moduleMasterService.getAllModule();
-		
-//		if(listModule != null) {
-//			model.addAttribute("listModule", listModule);
-//		}
-		return "layouts/listview/listofmodulemaster";
+	public String viewSubModuleList(Model model) {
+
+		 List<SubModuleMaster> listSubModule = subModuleMasterService.getAllSubModule();
+
+		if(listSubModule != null) {
+			model.addAttribute("listSubModule", listSubModule);
+		}
+		return "layouts/listview/listofsubmodule";
 	}
-	
+
 	@GetMapping("/edit/{id}")
-	public String editModule(@PathVariable("id") String moduleCode,Model model) {
-		
-		
-		System.out.println("module code is : "+ moduleCode);
-		Optional<ModuleMaster> module = moduleMasterService.editModule(moduleCode);
-		model.addAttribute("module", module);
-		return "layouts/editview/editModule";
+	public String editSubModule(@PathVariable("id") String subModuleCode, Model model) {
+
+		System.out.println("module code is : " + subModuleCode);
+		List<ModuleMaster> moduleList = moduleService.getAllModule();
+		model.addAttribute("moduleList", moduleList);
+		Optional<SubModuleMaster> subModule = subModuleMasterService.editSubModule(subModuleCode);
+		model.addAttribute("subModule", subModule);
+		return "layouts/editview/editSubModule";
 	}
-	
+
 	@GetMapping("/delete/{id}")
-	public String deleteModule(@PathVariable("id") String moduleCode,Model model) {
-		moduleMasterService.deleteModuleMaster(moduleCode);
-		return "redirect:/module/list";
+	public String deleteSubModule(@PathVariable("id") String subModuleCode, Model model) {
+		subModuleMasterService.deleteSubModuleMaster(subModuleCode);
+		return "redirect:/sub-module/list";
 	}
 
 }
-

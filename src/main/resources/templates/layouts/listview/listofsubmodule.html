@@ -33,7 +33,7 @@
 	</div>
 
 	<div id="home-main-content">
-		<h2>All Module</h2>
+		<h2>All Sub-Module</h2>
 
 
 
@@ -65,7 +65,8 @@
 										<thead>
 											<tr>
 												<th scope="col">#</th>
-												<th scope="col">Module Code</th>
+												<th scope="col">Sub-Module Code</th>
+												<th scope="col">Sub-Module Name</th>
 												<th scope="col">Module Name</th>
 												<th scope="col">Inserted By</th>
 												<th scope="col">Status</th>
@@ -73,17 +74,18 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="module,iter  : ${listModule}">
+											<tr th:each="subModule,iter  : ${listSubModule}">
 												<td th:text="${iter.index}">1</td>
-												<td th:text="${module.moduleCode}">Garrett Winters</td>
-												<td th:text="${module.moduleName}">Garrett Winters</td>
-												<td th:text="${module.insertedBy}">Good Guys</td>
+												<td th:text="${subModule.subModuleCode}">Garrett Winters</td>
+												<td th:text="${subModule.subModuleName}">Garrett Winters</td>
+												<td th:text="${subModule.moduleMaster.moduleName}">Garrett Winters</td>
+												<td th:text="${subModule.insertedBySubModule}">Good Guys</td>
 
 												<td><span class="badge bg-success"
-													th:text="${module.active}">Active</span></td>
+													th:text="${subModule.acitveSubModule}">Active</span></td>
 
-												<td><span> <a th:href="@{/module/edit/{id}(id=${module.moduleCode})}">edit</a></span> <span> <a
-														th:href="@{/module/delete/{id}(id=${module.moduleCode})}">delete</a></span></td>
+												<td><span> <a th:href="@{/sub-module/edit/{id}(id=${subModule.subModuleCode})}">edit</a></span> <span> <a
+														th:href="@{/sub-module/delete/{id}(id=${subModule.subModuleCode})}">delete</a></span></td>
 											</tr>
 
 
