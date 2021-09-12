@@ -1,9 +1,12 @@
 package com.access.erp.model.master;
 
+import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,7 +20,7 @@ public class State {
 	
 	@Id
 	@Column(name = "STATE_CODE", length = 50)
-	private int stateCode;
+	private String stateCode;
 	
 	@Column(name = "STATE_NAME", length = 50)
 	private String stateName;
@@ -30,7 +33,23 @@ public class State {
 	@JoinColumn(name="COUNTRY_CODE")
 	private Country country;
 	
-	@OneToMany(mappedBy = "state")
+	@Column(name = "INS_BY",length = 50)
+	private String insertedBy;
+
+	@Column(name = "INS_DATE")
+	private Date insertedDate=new Date();
+	
+	@Column(name = "UPDATE_BY",length = 50)
+	private String updateBy;
+
+	@Column(name = "UPDATE_DATE")
+	private Date updatedDate=new Date();
+	
+	@Column(name = "ACTIVE_YN",length = 10)
+	private String activeYn;
+
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "state",cascade = CascadeType.ALL)
 	private Set<City> cities;
 
 	public State() {
@@ -38,11 +57,11 @@ public class State {
 		
 	}
 
-	public int getStateCode() {
+	public String getStateCode() {
 		return stateCode;
 	}
 
-	public void setStateCode(int stateCode) {
+	public void setStateCode(String stateCode) {
 		this.stateCode = stateCode;
 	}
 
@@ -76,6 +95,46 @@ public class State {
 
 	public void setCities(Set<City> cities) {
 		this.cities = cities;
+	}
+
+	public String getInsertedBy() {
+		return insertedBy;
+	}
+
+	public void setInsertedBy(String insertedBy) {
+		this.insertedBy = insertedBy;
+	}
+
+	public Date getInsertedDate() {
+		return insertedDate;
+	}
+
+	public void setInsertedDate(Date insertedDate) {
+		this.insertedDate = insertedDate;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public String getActiveYn() {
+		return activeYn;
+	}
+
+	public void setActiveYn(String activeYn) {
+		this.activeYn = activeYn;
 	}
 	
 	

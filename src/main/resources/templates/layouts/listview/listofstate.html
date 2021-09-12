@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{/fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+	<div id="home-main-content">
+		<h2>State List</h2>
+
+
+
+		<div class="container">
+			<div class="container-fluid p-0">
+				<h1 class="h3 mb-3">Clients</h1>
+				<div class="row">
+					<div class="col-xl-8">
+						<div class="card">
+							<div class="card-header pb-0">
+								<div class="card-actions float-right">
+									<div class="dropdown show">
+										<a href="#" data-toggle="dropdown" data-display="static">
+
+										</a>
+
+										<div class="dropdown-menu dropdown-menu-right">
+											<a class="dropdown-item" href="#">Action</a> <a
+												class="dropdown-item" href="#">Another action</a> <a
+												class="dropdown-item" href="#">Something else here</a>
+										</div>
+									</div>
+								</div>
+								<h5 class="card-title mb-0">Clients</h5>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive-sm">
+									<table class="table table-striped" style="width: 80%">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">State Code</th>
+												<th scope="col">State Name</th>
+												<th scope="col">State GST Code</th>
+												<th scope="col">Country Name</th>
+												<th scope="col">Inserted By</th>
+												<th scope="col">Status</th>
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="state,iter  : ${stateList}">
+												<td th:text="${iter.index}">1</td>
+												<td th:text="${state.stateCode}">Garrett Winters</td>
+												<td th:text="${state.stateName}">Garrett Winters</td>
+												<td th:text="${state.gstStateCode}">Garrett Winters</td>
+												<td th:text="${state.country.countryName}">Garrett Winters</td>
+												<td th:text="${state.insertedBy}">Good Guys</td>
+
+												<td><span class="badge bg-success"
+													th:text="${state.activeYn}">Active</span></td>
+
+												<td><span> <a th:href="@{/state/edit/{id}(id=${state.stateCode})}">edit</a></span> <span> <a
+														th:href="@{/state/delete/{id}(id=${state.stateCode})}">delete</a></span></td>
+											</tr>
+
+
+
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="row" style="margin: 10px">
+								<input type="submit" value="Back"  onclick='javascript:window.history.back()'
+									class="btn btn-link button" /> 
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>
