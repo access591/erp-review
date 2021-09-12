@@ -1,5 +1,7 @@
 package com.access.erp.model.master;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,13 +30,28 @@ public class City {
 	@Column(name = "CITY_TYPE", length = 4)
 	private String cityType;
 	
+	@Column(name = "INS_BY",length = 50)
+	private String insertedBy;
+
+	@Column(name = "INS_DATE")
+	private Date insertedDate=new Date();
+	
+	@Column(name = "UPDATE_BY",length = 50)
+	private String updateBy;
+
+	@Column(name = "UPDATE_DATE")
+	private Date updatedDate=new Date();
+	
+	@Column(name = "ACTIVE_YN",length = 10)
+	private String activeYn;
+	
 	@ManyToOne
 	@JoinColumn(name="STATE_CODE")
 	private State state;
 
 	public City() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public int getCityCode() {
