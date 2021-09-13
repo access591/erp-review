@@ -15,7 +15,7 @@ public class City {
 	
 	@Id
 	@Column(name = "CITY_CODE", length = 50)
-	private int cityCode;
+	private String cityCode;
 	
 	@Column(name = "CITY_NAME", length = 50)
 	private String cityName;
@@ -54,11 +54,11 @@ public class City {
 		
 	}
 
-	public int getCityCode() {
+	public String getCityCode() {
 		return cityCode;
 	}
 
-	public void setCityCode(int cityCode) {
+	public void setCityCode(String cityCode) {
 		this.cityCode = cityCode;
 	}
 
@@ -100,6 +100,46 @@ public class City {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+	public String getInsertedBy() {
+		return insertedBy;
+	}
+
+	public void setInsertedBy(String insertedBy) {
+		this.insertedBy = insertedBy;
+	}
+
+	public Date getInsertedDate() {
+		return insertedDate;
+	}
+
+	public void setInsertedDate(Date insertedDate) {
+		this.insertedDate = insertedDate;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public String getActiveYn() {
+		return activeYn;
+	}
+
+	public void setActiveYn(String activeYn) {
+		this.activeYn = activeYn;
 	}
 
 	

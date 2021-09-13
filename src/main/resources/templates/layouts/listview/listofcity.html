@@ -33,7 +33,7 @@
 	</div>
 
 	<div id="home-main-content">
-		<h2>State List</h2>
+		<h2>City List</h2>
 
 
 
@@ -65,29 +65,33 @@
 										<thead>
 											<tr>
 												<th scope="col">#</th>
-												<th scope="col">State Code</th>
-												<th scope="col">State Name</th>
-												<th scope="col">State GST Code</th>
-												<th scope="col">Country Name</th>
+												<th scope="col">City Code</th>
+												<th scope="col">City Name</th>
+												<th scope="col">City Type</th>
+												<th scope="col">District</th>
+												<th scope="col">Region Code</th>
+												<th scope="col">State</th>
 												<th scope="col">Inserted By</th>
 												<th scope="col">Status</th>
 												<th scope="col">Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="state,iter  : ${stateList}">
+											<tr th:each="city,iter  : ${cityList}">
 												<td th:text="${iter.index}">1</td>
-												<td th:text="${state.stateCode}">Garrett Winters</td>
-												<td th:text="${state.stateName}">Garrett Winters</td>
-												<td th:text="${state.gstStateCode}">Garrett Winters</td>
-												<td th:text="${state.country.countryName}">Garrett Winters</td>
-												<td th:text="${state.insertedBy}">Good Guys</td>
+												<td th:text="${city.cityCode}">Garrett Winters</td>
+												<td th:text="${city.cityName}">Garrett Winters</td>
+												<td th:text="${city.cityType}">Garrett Winters</td>
+												<td th:text="${city.district}">Garrett Winters</td>
+												<td th:text="${city.regionCode}">Garrett Winters</td>
+												<td th:text="${city.state.stateName}">Garrett Winters</td>
+												<td th:text="${city.insertedBy}">Good Guys</td>
 
 												<td><span class="badge bg-success"
-													th:text="${state.activeYn}">Active</span></td>
+													th:text="${city.activeYn}">Active</span></td>
 
-												<td><span> <a th:href="@{/state/edit/{id}(id=${state.stateCode})}">edit</a></span> <span> <a
-														th:href="@{/state/delete/{id}(id=${state.stateCode})}">delete</a></span></td>
+												<td><span> <a th:href="@{/city/edit/{id}(id=${city.cityCode})}">edit</a></span> <span> <a
+														th:href="@{/city/delete/{id}(id=${city.cityCode})}">delete</a></span></td>
 											</tr>
 
 

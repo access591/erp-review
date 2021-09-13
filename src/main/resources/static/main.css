@@ -52,6 +52,11 @@ section:after {
 	padding: 10px;
 	overflow: auto;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+	
+}
+
+.form-border label{
+	label:red!importent;
 }
 
 label {

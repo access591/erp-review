@@ -1,9 +1,13 @@
 package com.access.erp.model.master;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -38,6 +42,10 @@ public class Program {
 	@ManyToOne
 	@JoinColumn(name = "SUB_MODUEL_CODE")
 	private SubModuleMaster subModuleMaster;
+	
+	
+	
+	
 
 
 	public Program() {
@@ -124,6 +132,9 @@ public class Program {
 	public void setInsertedBy(String insertedBy) {
 		this.insertedBy = insertedBy;
 	}
+
+
+	
 	
 
 	
