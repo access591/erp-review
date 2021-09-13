@@ -14,26 +14,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.master.City;
 import com.access.erp.model.master.ModuleMaster;
+import com.access.erp.model.master.State;
+import com.access.erp.service.CityService;
 import com.access.erp.service.ModuleMasterService;
+import com.access.erp.service.StateService;
 
 @Controller
 @RequestMapping("/city")
 public class CityController {
 	
-	@Autowired ModuleMasterService moduleMasterService;
+	@Autowired CityService cityService;
+	@Autowired StateService stateService;
 	
 	@GetMapping("/")
 	public String city(Model model) {
 		
-
+		List<State> stateList = stateService.getAllState();
+		model.addAttribute("stateList", stateList);
 		model.addAttribute("city", new City());
-		return "layouts/Master/cityMaster";
+		return "layouts/Master/city";
 	}
 	
 	@PostMapping("/")
 	public String addCity(@ModelAttribute("city") City city) {
 		
-//		moduleMasterService.addModule(moduleMaster);
+		cityService.addCity(city);
 		
 		return "redirect:/city/";
 	}
@@ -41,7 +46,7 @@ public class CityController {
 	@GetMapping("/list")
 	public String viewCityList(Model model) {
 		
-		List<ModuleMaster> cityList = moduleMasterService.getAllModule();
+		List<City> cityList = cityService.getAllCity();
 		
 		if(cityList != null) {
 			model.addAttribute("cityList", cityList);
@@ -52,16 +57,18 @@ public class CityController {
 	@GetMapping("/edit/{id}")
 	public String editCity(@PathVariable("id") String cityCode,Model model) {
 		
-		
 		System.out.println("module code is : "+ cityCode);
-		Optional<ModuleMaster> city = moduleMasterService.editModule(cityCode);
+		List<State> stateList = stateService.getAllState();
+		model.addAttribute("stateList", stateList);
+		
+		Optional<City> city = cityService.editCity(cityCode);
 		model.addAttribute("city", city);
 		return "layouts/editview/editCity";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteCity(@PathVariable("id") String cityCode,Model model) {
-//		moduleMasterService.deleteModuleMaster(moduleCode);
+		cityService.deleteCity(cityCode);
 		return "redirect:/city/list";
 	}
 

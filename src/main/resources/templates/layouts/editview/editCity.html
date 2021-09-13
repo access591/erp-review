@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{/fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+
+
+
+
+	<div id="home-main-content">
+
+		<h3>City Master</h3>
+
+
+		<form th:action="@{/city/}" method="POST" th:object="${city}">
+			<div class="form-border">
+
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">City Code</label> <input type="text"
+							class="form-control" placeholder="state code"
+							th:field="*{cityCode}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPassword4">City Name</label> <input type="text"
+							class="form-control" placeholder="state name"
+							th:field="*{cityName}">
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">Region Code</label> <input type="text"
+							class="form-control" placeholder="region code"
+							th:field="*{regionCode}">
+					</div>
+
+					<div class="form-group col-lg-6">
+						<label class="form-label">State</label> <label
+							style="color: red">*</label> <select class="form-control"
+							
+							title="state Name" required th:field="*{state}">
+							<option value="">Select State</option>
+							<option th:each="state :  ${stateList}"
+								th:text="${state.stateName}"
+								th:value=" ${state.stateCode}"></option>
+						</select>
+					</div>
+
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">District</label> <input type="text"
+							class="form-control" placeholder="district"
+							th:field="*{district}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">City Type</label> <input type="text"
+							class="form-control" placeholder="city type"
+							th:field="*{cityType}">
+					</div>
+
+					
+
+				</div>
+
+
+
+				<div class="form-group" style="margin: 10px;">
+
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="Y"> <label
+							class="form-check-label" for="inlineRadio1"
+							>Active</label>
+					</div>
+
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="N"> <label
+							class="form-check-label" for="inlineRadio1"
+							>In-Active</label>
+					</div>
+
+				</div>
+
+				<div class="row" style="margin: 10px">
+					<input type="submit" value="Update" class="btn btn-primary button" />
+					<input type="reset" value="Reset" class="btn btn-danger button" />
+				</div>
+
+			</div>
+		</form>
+
+		<div class="row text-right m-10">
+			<a th:href="@{/city/list}">view state list</a>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>
