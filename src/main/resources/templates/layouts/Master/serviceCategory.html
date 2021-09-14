@@ -38,50 +38,49 @@
 
 	<div id="home-main-content">
 
-		<h3>State Master</h3>
+		<h3>Service Category Master</h3>
 
-
-		<form th:action="@{/state/}" method="POST" th:object="${state}">
+		<form th:action="@{/servicecategory/}" method="POST" th:object="${serviceCategory}">
 			<div class="form-border">
 
-				<div class="row">
-					<div class="form-group col-md-6">
-						<label for="inputEmail4">State Code</label> <input type="text"
-							class="form-control" placeholder="state code"
-							th:field="*{stateCode}">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="inputPassword4">State Name</label> <input type="text"
-							class="form-control" placeholder="state name"
-							th:field="*{stateName}">
-					</div>
-
+				<div class="form-group col-md-6">
+					<label>Category Code</label> <input type="text" class="form-control"
+						placeholder="category code" th:field="*{categoryCode}">
 				</div>
 
-				<div class="row">
-					<div class="form-group col-md-6">
-						<label for="inputEmail4">Gst State Code</label> <input type="text"
-							class="form-control" placeholder="state gst code"
-							th:field="*{gstStateCode}">
-					</div>
-
-					<div class="form-group col-lg-6">
-						<label class="form-label">Country Name</label> <label
-							style="color: red">*</label> <select class="form-control"
-							
-							title="country Name" required th:field="*{country}">
-							<option value="">Select Department</option>
-							<option th:each="country :  ${countryList}"
-								th:text="${country.countryName}"
-								th:value=" ${country.countryCode}"></option>
-						</select>
-					</div>
-
+				<div class="form-group col-md-6">
+					<label>Account Code</label> <input type="text" class="form-control"
+						placeholder="account code" th:field="*{accountCode}">
 				</div>
 
+				<!-- <div class="form-group col-lg-6">
+					<label class="form-label">Sub Module Name</label> <label
+						style="color: red">*</label> <select class="form-control"
+						
+						title="Department Name" th:field="*{subModuleMaster}" required>
+						<option value="">Select Sub Module</option>
+						<option th:each="subModule :  ${listSubModule}"
+							th:text="${subModule.subModuleName}"
+							th:value=" ${subModule.subModuleCode}"></option>
+					</select>
+				</div> -->
+
+				<div class="form-group col-md-6">
+					<label for="inputPassword4">Category Type</label> <input
+						type="text" class="form-control" placeholder="category type"
+						th:field="*{categoryType}">
+				</div>
+
+				<div class="form-group col-md-6">
+					<label for="inputPassword4">Description</label> <input
+						type="text" class="form-control" placeholder="description"
+						th:field="*{description}">
+				</div>
+
+				
 
 
-				<div class="form-group" style="margin: 10px;">
+				<!-- <div class="form-group" style="margin: 10px;">
 
 					<div class="form-check form-check-inline">
 						<input class="form-check-input" type="radio"
@@ -97,18 +96,20 @@
 							th:field="*{activeYn}">In-Active</label>
 					</div>
 
-				</div>
+				</div> -->
 
 				<div class="row" style="margin: 10px">
 					<input type="submit" value="Submit" class="btn btn-primary" />
 					<input type="reset" value="Reset" class="btn btn-danger" />
 				</div>
 
+
 			</div>
+
 		</form>
 
 		<div class="row text-right m-10">
-			<a th:href="@{/state/list}">view state list</a>
+			<a th:href="@{/servicecategory/list}">view category list</a>
 		</div>
 	</div>
 

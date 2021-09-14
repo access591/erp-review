@@ -13,9 +13,11 @@
 	<artifactId>ERP-Solution</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ERP-Solution</name>
+	<packaging>war</packaging>
+	
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,12 +44,7 @@
 		<dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
 			<scope>runtime</scope> </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		
 
 
 		<dependency>

@@ -55,10 +55,15 @@ section:after {
 	
 }
 
-.form-border label{
-	label:red!importent;
-}
 
+
+
+.form-border .table-responsive .table th{
+	font-size:10.5px;
+}
+.form-border .table-responsive .table td{
+	font-size:10.5px;
+}
 label {
 	font-size: 11px;
 }

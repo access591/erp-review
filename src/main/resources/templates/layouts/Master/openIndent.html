@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+
+
+
+
+	<div id="home-main-content">
+
+		<h3>Open Indent</h3>
+
+
+		<form th:action="@{/module/}" method="POST" th:object="${module}">
+
+
+			<div class="form-border">
+				<h5>Indent Detail</h5>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="inputEmail4">Indent Number</label> <input type="email"
+							class="form-control" id="inputEmail4" placeholder="indent number">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputPassword4">Indent Date</label> <input
+							type="password" class="form-control" id="inputPassword4"
+							placeholder="indent date">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputPassword4">Employee Code</label> <input
+							type="password" class="form-control" id="inputPassword4"
+							placeholder="employee code">
+					</div>
+
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Employee</label> <input type="text"
+							class="form-control" id="inputAddress"
+							placeholder="employee name">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Department Code</label> <input
+							type="text" class="form-control" id="inputAddress"
+							placeholder="department code">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Department Name</label> <input
+							type="text" class="form-control" id="inputAddress"
+							placeholder="department name">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Urgency</label> <input type="text"
+							class="form-control" id="inputAddress" placeholder="urgency">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Indent Type</label> <input type="text"
+							class="form-control" id="inputAddress" placeholder="indent type">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Purchase Type</label> <input type="text"
+							class="form-control" id="inputAddress"
+							placeholder="purchase type">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Remarks</label> <input type="text"
+							class="form-control" id="inputAddress" placeholder="remarks">
+					</div>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="form-border">
+				<h5>Indent Status</h5>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="inputEmail4">Approval Status</label> <input
+							type="email" class="form-control" id="inputEmail4"
+							placeholder="approval status">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputPassword4">Date of Approval</label> <input
+							type="password" class="form-control" id="inputPassword4"
+							placeholder="date of approval">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputPassword4">Purchase Status</label> <input
+							type="password" class="form-control" id="inputPassword4"
+							placeholder="purchase status">
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<!-- detail view   -->
+
+
+			<div class="form-border">
+				<h5>Indent Item Detail</h5>
+
+				
+				<input id="_cr" name="_cr" type="hidden" value="1">
+
+
+
+				<div class="table-responsive">
+					<table id="example" aria-describedby="example"
+						class="table table-striped display">
+						<thead>
+							<tr>
+								<th scope="col" class="text-center" style="width: 90px;">Sr.No</th>
+								<th scope="col" class="text-center" style="width: 130px;">Item
+									Code</th>
+								<th scope="col" class="text-center" style="width: 100px;">Item
+									Description</th>
+								<th scope="col" class="text-center" style="width: 90px;">Qty.(In
+									Stock)</th>
+								<th scope="col" class="text-center" style="width: 90px;">Qty
+									to be Procured</th>
+								<th scope="col" class="text-center" style="width: 90px;">Pipeline
+									indent Qty</th>
+								<th scope="col" class="text-center" style="width: 10px;">Indented
+									Qty</th>
+								<th scope="col" class="text-center" style="width: 120px;">Approved
+									Indented Qty </th>
+								<th scope="col" class="text-center" style="width: 90px;">Status</th>
+								<th scope="col" class="text-center" style="width: 90px;">Currency
+									Code</th>
+								<th scope="col" class="text-center" style="width: 120px;">Conversion
+									Value</th>
+								<th scope="col" class="text-center" style="width: 90px;">Item
+									Rate</th>
+								<th scope="col" class="text-center" style="width: 90px;">Units</th>
+								<th scope="col" class="text-center" style="width: 90px;">Total
+									value</th>
+								<th scope="col" class="text-center" style="width: 120px;">Total
+									Value(INR)</th>
+
+								<th scope="col" class="text-center" style="width: 120px;">Requisition
+									Date</th>
+								<th scope="col" class="text-center" style="width: 120px;">Status</th>
+
+								<th scope="col" class="text-center" style="width: 120px;">Indent
+									Purpose</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="addr0">
+
+
+								<td><input type="text" style="width: 90px;" id="desigCode0"
+									readonly title="" required></td>
+
+								<td><input type="text" style="width: 90px;" id="desigCode0"
+									readonly title="" required></td>
+
+
+
+								<td><input type="text" style="width: 90px;" id="desigCode0"
+									readonly title="" required></td>
+
+								<td><input type="text" style="width: 90px;" id="desigCode0"
+									readonly title="" required></td>
+
+								<td><input type="number" style="width: 90px;" id="ageFrom"
+									min="18" title="Age from" required></td>
+
+								<td><input type="number" max="45" style="width: 90px;"
+									id="ageTo" required></td>
+
+								<td><input type="text" style="width: 120px;"
+									id="accademicQualificatio" required
+									title="Accademic qualification"></td>
+
+								<td><input type="text" style="width: 120px;"
+									id="technicalQualification" required
+									title="Technical Qualification"></td>
+
+								<td><input type="number" style="width: 90px;"
+									id="expMinMonth" required title="minimum experience"></td>
+
+								<td><input type="number" style="width: 90px;"
+									id="expMaxMonth" required title="max experience"></td>
+
+								<td><input type="number" style="width: 90px;"
+									id="expMaxMonth" required title="max experience"></td>
+
+								<td><input type="number" style="width: 90px;"
+									id="totalvacancy" required title="Total vacancy"></td>
+
+								<td><input type="text" style="width: 120px;"
+									id="salaryFrom" required title="Salary"></td>
+
+								<td><input type="text" style="width: 120px;" id="salaryTo"
+									required></td>
+
+								<td><input type="text" style="width: 120px;" id="detail"
+									required></td>
+
+								<td><input type="text" style="width: 120px;"
+									id="salaryFrom" required title="Salary"></td>
+
+								<td><input type="text" style="width: 120px;" id="salaryTo"
+									required></td>
+
+								<td><input type="text" style="width: 120px;" id="detail"
+									required></td>
+
+								<td></td>
+							</tr>
+							<tr id='addr1' />
+
+						</tbody>
+
+
+					</table>
+				</div>
+
+				<input type="hidden" id="hidden_field" th:value="${length}" />
+
+			</div>
+
+			<!-- end detail view -->
+
+
+
+		</form>
+
+		<div class="row text-right m-10">
+			<a th:href="@{/module/list}">view module list</a>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>
