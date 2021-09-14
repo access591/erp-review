@@ -3,10 +3,10 @@ package com.access.erp;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ErpSolutionApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
