@@ -35,7 +35,7 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 		for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
 			// openIndent.getOpeIndentDetail().add(indent);
 			indent.setOpenIndent(openIndent);
-			indentDetailRepo.save(indent);
+			//indentDetailRepo.save(indent);
 		}
 
 		openIndentRepo.save(openIndent);
