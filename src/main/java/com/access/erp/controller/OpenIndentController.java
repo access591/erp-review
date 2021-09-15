@@ -31,6 +31,8 @@ public class OpenIndentController {
 	@PostMapping("/")
 	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent) {
 		
+		System.out.println(" testing : "+
+		openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		openIndentService.addOpenIndent(openIndent);
 		
 		return "redirect:/openindent/";

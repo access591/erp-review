@@ -30,7 +30,7 @@ public class OpenIndentDetail {
 	private String indQty;
 	
 	@Column(name = "QTY_IN_STOCK", length = 50)
-	private int qtyInStock;
+	private String qtyInStock;
 	
 	@Column(name = "IN_REQ_DATE", length = 50)
 	private Date indReqDate;
@@ -42,25 +42,25 @@ public class OpenIndentDetail {
 	private String purStatusItemWise;
 	
 	@Column(name = "ITEM_RATE", length = 50)
-	private int itemRate;
+	private String itemRate;
 	
 	@Column(name = "TOTAL_VALUE", length = 50)
-	private int totalValue;
+	private String totalValue;
 	
 	@Column(name = "CURRENCY_CODE", length = 50)
 	private String currencyCode;
 	
 	@Column(name = "CONVERSION_VALUE", length = 50)
-	private int conversionvalue;
+	private String conversionvalue;
 	
 	@Column(name = "QTY_SO", length = 50)
-	private int qtySo;
+	private String qtySo;
 	
 	@Column(name = "QTY_PROCURED", length = 50)
-	private int qtyProcured;
+	private String qtyProcured;
 	
 	@Column(name = "AVAIL_QTY", length = 50)
-	private int availQty;
+	private String availQty;
 	
 	@Column(name = "IN_APP_STATUS", length = 50)
 	private String indAppStatus;
@@ -69,10 +69,10 @@ public class OpenIndentDetail {
 	private String status;
 	
 	@Column(name = "APPROVED_QTY", length = 50)
-	private int approvedQty;
+	private String approvedQty;
 	
 	@Column(name = "PIPELINE_QTY", length = 50)
-	private int pipelineQty;
+	private String pipelineQty;
 	
 	@ManyToOne
 	@JsonManagedReference
@@ -83,7 +83,7 @@ public class OpenIndentDetail {
 	private Date indentDate;
 	
 	@Column(name = "IND_SEQ", length = 50) 
-	private int indSeq;
+	private String indSeq;
 
 	public OpenIndentDetail() {
 		super();
@@ -106,11 +106,11 @@ public class OpenIndentDetail {
 		this.indQty = indQty;
 	}
 
-	public int getQtyInStock() {
+	public String getQtyInStock() {
 		return qtyInStock;
 	}
 
-	public void setQtyInStock(int qtyInStock) {
+	public void setQtyInStock(String qtyInStock) {
 		this.qtyInStock = qtyInStock;
 	}
 
@@ -138,19 +138,19 @@ public class OpenIndentDetail {
 		this.purStatusItemWise = purStatusItemWise;
 	}
 
-	public int getItemRate() {
+	public String getItemRate() {
 		return itemRate;
 	}
 
-	public void setItemRate(int itemRate) {
+	public void setItemRate(String itemRate) {
 		this.itemRate = itemRate;
 	}
 
-	public int getTotalValue() {
+	public String getTotalValue() {
 		return totalValue;
 	}
 
-	public void setTotalValue(int totalValue) {
+	public void setTotalValue(String totalValue) {
 		this.totalValue = totalValue;
 	}
 
@@ -162,35 +162,35 @@ public class OpenIndentDetail {
 		this.currencyCode = currencyCode;
 	}
 
-	public int getConversionvalue() {
+	public String getConversionvalue() {
 		return conversionvalue;
 	}
 
-	public void setConversionvalue(int conversionvalue) {
+	public void setConversionvalue(String conversionvalue) {
 		this.conversionvalue = conversionvalue;
 	}
 
-	public int getQtySo() {
+	public String getQtySo() {
 		return qtySo;
 	}
 
-	public void setQtySo(int qtySo) {
+	public void setQtySo(String qtySo) {
 		this.qtySo = qtySo;
 	}
 
-	public int getQtyProcured() {
+	public String getQtyProcured() {
 		return qtyProcured;
 	}
 
-	public void setQtyProcured(int qtyProcured) {
+	public void setQtyProcured(String qtyProcured) {
 		this.qtyProcured = qtyProcured;
 	}
 
-	public int getAvailQty() {
+	public String getAvailQty() {
 		return availQty;
 	}
 
-	public void setAvailQty(int availQty) {
+	public void setAvailQty(String availQty) {
 		this.availQty = availQty;
 	}
 
@@ -210,19 +210,19 @@ public class OpenIndentDetail {
 		this.status = status;
 	}
 
-	public int getApprovedQty() {
+	public String getApprovedQty() {
 		return approvedQty;
 	}
 
-	public void setApprovedQty(int approvedQty) {
+	public void setApprovedQty(String approvedQty) {
 		this.approvedQty = approvedQty;
 	}
 
-	public int getPipelineQty() {
+	public String getPipelineQty() {
 		return pipelineQty;
 	}
 
-	public void setPipelineQty(int pipelineQty) {
+	public void setPipelineQty(String pipelineQty) {
 		this.pipelineQty = pipelineQty;
 	}
 
@@ -242,11 +242,11 @@ public class OpenIndentDetail {
 		this.indentDate = indentDate;
 	}
 
-	public int getIndSeq() {
+	public String getIndSeq() {
 		return indSeq;
 	}
 
-	public void setIndSeq(int indSeq) {
+	public void setIndSeq(String indSeq) {
 		this.indSeq = indSeq;
 	}
 

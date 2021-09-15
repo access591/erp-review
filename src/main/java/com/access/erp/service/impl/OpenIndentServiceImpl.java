@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.access.erp.model.OpenIndent;
 import com.access.erp.model.OpenIndentDetail;
+import com.access.erp.repo.OpenIndentDetailRepo;
 import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.OpenIndentService;
@@ -20,6 +21,7 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 	OpenIndentRepo openIndentRepo;
 	@Autowired
 	SeqMainRepo seqMainRepo;
+	@Autowired OpenIndentDetailRepo indentDetailRepo;
 
 	@Override
 	public void addOpenIndent(OpenIndent openIndent) {
@@ -33,10 +35,11 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 		for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
 			// openIndent.getOpeIndentDetail().add(indent);
 			indent.setOpenIndent(openIndent);
+			indentDetailRepo.save(indent);
 		}
 
 		openIndentRepo.save(openIndent);
-
+		
 	}
 
 	@Override
