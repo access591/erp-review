@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.access.erp.model.OpenIndent;
+import com.access.erp.model.OpenIndentDetail;
 import com.access.erp.repo.OpenIndentRepo;
+import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.OpenIndentService;
 
 @Service
@@ -16,9 +18,24 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 
 	@Autowired
 	OpenIndentRepo openIndentRepo;
+	@Autowired
+	SeqMainRepo seqMainRepo;
 
 	@Override
 	public void addOpenIndent(OpenIndent openIndent) {
+
+		if (openIndent.getIndentNumber() == "" || openIndent.getIndentNumber() == null) {
+			System.out.println("country code is : " + openIndent.getIndentNumber());
+			String maxCode = seqMainRepo.findByTranType("IND");
+			openIndent.setIndentNumber(maxCode);
+		}
+
+		for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
+			// openIndent.getOpeIndentDetail().add(indent);
+			indent.setOpenIndent(openIndent);
+		}
+
+		openIndentRepo.save(openIndent);
 
 	}
 

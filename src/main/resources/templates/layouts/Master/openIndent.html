@@ -41,7 +41,8 @@
 		<h3>Open Indent</h3>
 
 
-		<form th:action="@{/module/}" method="POST" th:object="${module}">
+		<form th:action="@{/openindent/}" method="POST"
+			th:object="${openIndent}">
 
 
 			<div class="form-border">
@@ -49,41 +50,44 @@
 				<div class="form-row">
 					<div class="form-group col-md-4">
 						<label for="inputEmail4">Indent Number</label> <input type="email"
-							class="form-control" id="inputEmail4" placeholder="indent number">
+							class="form-control" id="inputEmail4" placeholder="indent number"
+							th:field="*{indentNumber}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputPassword4">Indent Date</label> <input
-							type="password" class="form-control" id="inputPassword4"
-							placeholder="indent date">
+							type="date" class="form-control" id="inputPassword4"
+							placeholder="indent date" th:field="*{indentDate}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputPassword4">Employee Code</label> <input
-							type="password" class="form-control" id="inputPassword4"
-							placeholder="employee code">
+							type="text" class="form-control" id="inputPassword4"
+							placeholder="employee code" th:field="*{employee}">
 					</div>
 
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Employee</label> <input type="text"
 							class="form-control" id="inputAddress"
-							placeholder="employee name">
+							placeholder="employee name" th:field="*{authEmpCode}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Department Code</label> <input
 							type="text" class="form-control" id="inputAddress"
-							placeholder="department code">
+							placeholder="department code" th:field="*{deptCode}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Department Name</label> <input
 							type="text" class="form-control" id="inputAddress"
-							placeholder="department name">
+							placeholder="department name" th:field="*{deptName}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Urgency</label> <input type="text"
-							class="form-control" id="inputAddress" placeholder="urgency">
+							class="form-control" id="inputAddress" placeholder="urgency"
+							th:field="*{urgency}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Indent Type</label> <input type="text"
-							class="form-control" id="inputAddress" placeholder="indent type">
+							class="form-control" id="inputAddress" placeholder="indent type"
+							th:field="*{indentType}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Purchase Type</label> <input type="text"
@@ -92,7 +96,8 @@
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputAddress">Remarks</label> <input type="text"
-							class="form-control" id="inputAddress" placeholder="remarks">
+							class="form-control" id="inputAddress" placeholder="remarks"
+							th:field="*{remarks}">
 					</div>
 
 
@@ -106,18 +111,18 @@
 				<div class="form-row">
 					<div class="form-group col-md-4">
 						<label for="inputEmail4">Approval Status</label> <input
-							type="email" class="form-control" id="inputEmail4"
-							placeholder="approval status">
+							type="text" class="form-control" id="inputEmail4"
+							placeholder="approval status" th:field="*{approvalStatus1}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputPassword4">Date of Approval</label> <input
-							type="password" class="form-control" id="inputPassword4"
-							placeholder="date of approval">
+							type="date" class="form-control" id="inputPassword4"
+							placeholder="date of approval" th:field="*{approvalDate1}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="inputPassword4">Purchase Status</label> <input
-							type="password" class="form-control" id="inputPassword4"
-							placeholder="purchase status">
+							type="text" class="form-control" id="inputPassword4"
+							placeholder="purchase status" th:field="*{indPurStatus}">
 					</div>
 
 				</div>
@@ -131,7 +136,7 @@
 			<div class="form-border">
 				<h5>Indent Item Detail</h5>
 
-				
+
 				<input id="_cr" name="_cr" type="hidden" value="1">
 
 
@@ -141,7 +146,7 @@
 						class="table table-striped display">
 						<thead>
 							<tr>
-								<th scope="col" class="text-center" style="width: 90px;">Sr.No</th>
+
 								<th scope="col" class="text-center" style="width: 130px;">Item
 									Code</th>
 								<th scope="col" class="text-center" style="width: 100px;">Item
@@ -155,7 +160,7 @@
 								<th scope="col" class="text-center" style="width: 10px;">Indented
 									Qty</th>
 								<th scope="col" class="text-center" style="width: 120px;">Approved
-									Indented Qty </th>
+									Indented Qty</th>
 								<th scope="col" class="text-center" style="width: 90px;">Status</th>
 								<th scope="col" class="text-center" style="width: 90px;">Currency
 									Code</th>
@@ -182,63 +187,80 @@
 							<tr id="addr0">
 
 
-								<td><input type="text" style="width: 90px;" id="desigCode0"
-									readonly title="" required></td>
+								<td><input type="text" style="width: 90px;"
+									id="indItemCode0" readonly title="" required
+									name="openIndent[0].opeIndentDetaill.indItemCode"></td>
+								<!-- item description -->
+								<td><input type="text" style="width: 120px;"
+									id="salaryFrom" required title="Salary"></td>
 
-								<td><input type="text" style="width: 90px;" id="desigCode0"
-									readonly title="" required></td>
+								<td><input type="text" style="width: 90px;"
+									id="qtyInStock0"  title="" required
+									name="openIndent[0].opeIndentDetaill.qtyInStock"></td>
 
 
 
-								<td><input type="text" style="width: 90px;" id="desigCode0"
-									readonly title="" required></td>
 
-								<td><input type="text" style="width: 90px;" id="desigCode0"
-									readonly title="" required></td>
 
-								<td><input type="number" style="width: 90px;" id="ageFrom"
-									min="18" title="Age from" required></td>
+								<td><input type="text" style="width: 90px;"
+									id="qtyProcured0" title="" required
+									name="openIndent[0].opeIndentDetaill.qtyProcured"></td>
+
+								<td><input type="text" style="width: 90px;"
+									id="qtyProcured0" title="" required
+									name="openIndent[0].opeIndentDetaill.pipelineQty"></td>
+
+
+								<td><input type="number" style="width: 90px;" id="indQty0"
+									min="18" title="Age from" required
+									name="openIndent[0].opeIndentDetaill.indQty"></td>
 
 								<td><input type="number" max="45" style="width: 90px;"
-									id="ageTo" required></td>
+									id="ageTo" required
+									name="openIndent[0].opeIndentDetaill.approvedQty"></td>
 
+								<!-- gor status -->
 								<td><input type="text" style="width: 120px;"
 									id="accademicQualificatio" required
 									title="Accademic qualification"></td>
 
+								<td><input type="text" style="width: 90px;"
+									id="expMaxMonth" required title="max experience"
+									name="openIndent[0].opeIndentDetaill.currencyCode"></td>
+
+								<td><input type="text" style="width: 90px;"
+									id="expMaxMonth" required title="max experience"
+									name="openIndent[0].opeIndentDetaill.conversionvalue"></td>
+
+
 								<td><input type="text" style="width: 120px;"
 									id="technicalQualification" required
-									title="Technical Qualification"></td>
+									title="Technical Qualification"
+									name="openIndent[0].opeIndentDetaill.itemRate"></td>
 
-								<td><input type="number" style="width: 90px;"
-									id="expMinMonth" required title="minimum experience"></td>
-
-								<td><input type="number" style="width: 90px;"
-									id="expMaxMonth" required title="max experience"></td>
-
-								<td><input type="number" style="width: 90px;"
-									id="expMaxMonth" required title="max experience"></td>
-
-								<td><input type="number" style="width: 90px;"
-									id="totalvacancy" required title="Total vacancy"></td>
-
-								<td><input type="text" style="width: 120px;"
-									id="salaryFrom" required title="Salary"></td>
-
+								<!--unit  -->
 								<td><input type="text" style="width: 120px;" id="salaryTo"
 									required></td>
 
-								<td><input type="text" style="width: 120px;" id="detail"
-									required></td>
+								<td><input type="text" style="width: 120px;" id="salaryTo"
+									required name="openIndent[0].opeIndentDetaill.totalValue"></td>
 
-								<td><input type="text" style="width: 120px;"
-									id="salaryFrom" required title="Salary"></td>
-
+								<!-- total value (INR)  -->
 								<td><input type="text" style="width: 120px;" id="salaryTo"
 									required></td>
 
-								<td><input type="text" style="width: 120px;" id="detail"
-									required></td>
+								<!-- for requisition date  -->
+								<td><input type="text" style="width: 120px;"
+									id="salaryFrom" required title="Salary"></td>
+
+								<td><input type="text" style="width: 90px;"
+									id="purStatusItemWise" required title="minimum experience"
+									name="openIndent[0].opeIndentDetaill.purStatusItemWise"></td>
+
+
+								<td><input type="text" style="width: 120px;"
+									id="indPurpose0" required
+									name="openIndent[0].opeIndentDetaill.indPurpose"></td>
 
 								<td></td>
 							</tr>
@@ -257,6 +279,10 @@
 			<!-- end detail view -->
 
 
+			<div class="row" style="margin: 10px">
+				<input type="submit" value="Submit" class="btn btn-primary" /> <input
+					type="reset" value="Reset" class="btn btn-danger" />
+			</div>
 
 		</form>
 
