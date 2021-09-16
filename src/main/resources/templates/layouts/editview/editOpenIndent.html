@@ -182,21 +182,22 @@
 									Purpose</th>
 							</tr>
 						</thead>
-
+<!-- th:field="*{employeRequisitionDetail[__${stat.index}__].designation.desgCode}" -->
 						<tbody>
-							<tr id="addr0">
+							<tr id="addr0" th:each="row, stat :${openIndent.opeIndentDetail}">
 
 
 								<td><input type="text" style="width: 90px;"
-									id="indItemCode0" readonly title="" required
-									name="opeIndentDetail[0].indItemCode"></td>
+									id="indItemCode0" readonly title=""
+									th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}"></td>
 								<!-- item description -->
 								<td><input type="text" style="width: 120px;"
-									id="salaryFrom" required title="Salary"></td>
+									id="salaryFrom" required title=""
+									th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}"></td>
 
 								<td><input type="text" style="width: 90px;"
 									id="qtyInStock0"  title="" required
-									name="opeIndentDetail[0].qtyInStock"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].qtyInStock}"></td>
 
 
 
@@ -204,63 +205,64 @@
 
 								<td><input type="text" style="width: 90px;"
 									id="qtyProcured0" title="" required
-									name="opeIndentDetail[0].qtyProcured"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].qtyProcured}"></td>
 
 								<td><input type="text" style="width: 90px;"
 									id="qtyProcured0" title="" required
-									name="opeIndentDetail[0].pipelineQty"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].pipelineQty}"></td>
 
 
 								<td><input type="text" style="width: 90px;" id="indQty0"
 									min="18" title="Age from" required
-									name="opeIndentDetail[0].indQty"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].indQty}"></td>
 
 								<td><input type="text" max="45" style="width: 90px;"
 									id="ageTo" required
-									name="opeIndentDetail[0].approvedQty"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].approvedQty}"></td>
 
 								<!-- gor status -->
 								<td><input type="text" style="width: 120px;"
 									id="accademicQualificatio" required
-									title="Accademic qualification"></td>
+									title=""
+									></td>
 
 								<td><input type="text" style="width: 90px;"
 									id="expMaxMonth" required title="max experience"
-									name="opeIndentDetail[0].currencyCode"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].currencyCode}"></td>
 
 								<td><input type="text" style="width: 90px;"
 									id="expMaxMonth" required title="max experience"
-									name="opeIndentDetail[0].conversionvalue"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].conversionvalue}"></td>
 
 
 								<td><input type="text" style="width: 120px;"
 									id="technicalQualification" required
 									title="Technical Qualification"
-									name="opeIndentDetail[0].itemRate"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].itemRate}"></td>
 
 								<!--unit  -->
 								<td><input type="text" style="width: 120px;" id="salaryTo"
-									required></td>
+									></td>
 
 								<td><input type="text" style="width: 120px;" id="salaryTo"
 									required name="opeIndentDetail[0].totalValue"></td>
 
 								<!-- total value (INR)  -->
 								<td><input type="text" style="width: 120px;" id="salaryTo"
-									required></td>
+									></td>
 
 								<!-- for requisition date  -->
 								<td><input type="text" style="width: 120px;"
-									id="salaryFrom" required title="Salary"></td>
+									id="salaryFrom" required title=""></td>
 
 								<td><input type="text" style="width: 90px;"
 									id="purStatusItemWise" required title="minimum experience"
-									name="opeIndentDetail[0].purStatusItemWise"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].purStatusItemWise}"></td>
 
 
 								<td><input type="text" style="width: 120px;"
 									id="indPurpose0" required
-									name="opeIndentDetail[0].indPurpose"></td>
+									th:field="*{opeIndentDetail[__${stat.index}__].indPurpose}"></td>
 
 								<td></td>
 							</tr>

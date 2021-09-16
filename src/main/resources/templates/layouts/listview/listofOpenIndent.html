@@ -65,33 +65,38 @@
 										<thead>
 											<tr>
 												<th scope="col">#</th>
-												<th scope="col">City Code</th>
-												<th scope="col">City Name</th>
-												<th scope="col">City Type</th>
-												<th scope="col">District</th>
-												<th scope="col">Region Code</th>
-												<th scope="col">State</th>
-												<th scope="col">Inserted By</th>
-												<th scope="col">Status</th>
+												<th scope="col">Indent Number</th>
+												<th scope="col">Indent Date</th>
+												<th scope="col">Employee Name</th>
+												<th scope="col">Department Name</th>
+												<th scope="col">Urgency</th>
+												<th scope="col">Indent Type</th>
+												<th scope="col">Purchase Type</th>
+												<th scope="col">Approval Status</th>
+												<th scope="col">Date of Approval</th>
+												<th scope="col">Purchase Status</th>
 												<th scope="col">Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="city,iter  : ${cityList}">
+											<tr th:each="indent,iter  : ${openIndentList}">
 												<td th:text="${iter.index}">1</td>
-												<td th:text="${city.cityCode}">Garrett Winters</td>
-												<td th:text="${city.cityName}">Garrett Winters</td>
-												<td th:text="${city.cityType}">Garrett Winters</td>
-												<td th:text="${city.district}">Garrett Winters</td>
-												<td th:text="${city.regionCode}">Garrett Winters</td>
-												<td th:text="${city.state.stateName}">Garrett Winters</td>
-												<td th:text="${city.insertedBy}">Good Guys</td>
+												<td th:text="${indent.indentNumber}">Garrett Winters</td>
+												<td th:text="${indent.indentDate}">Garrett Winters</td>
+												<td th:text="${indent.employee}">Garrett Winters</td>
+												<td th:text="${indent.deptName}">Garrett Winters</td>
+												<td th:text="${indent.urgency}">Garrett Winters</td>
+													<td th:text="${indent.indentType}">Good Guys</td>
+												<td>Purchase Type</td>	
+												<td th:text="${indent.approvalStatus1}">Garrett Winters</td>
+												<td th:text="${indent.approvalDate1}">Good Guys</td>
+												<td>Good Guys</td>
 
 												<td><span class="badge bg-success"
-													th:text="${city.activeYn}">Active</span></td>
+													>Active</span></td>
 
-												<td><span> <a th:href="@{/city/edit/{id}(id=${city.cityCode})}">edit</a></span> <span> <a
-														th:href="@{/city/delete/{id}(id=${city.cityCode})}">delete</a></span></td>
+												<td><span> <a th:href="@{/openindent/edit/{id}(id=${indent.indentNumber})}">edit</a></span> <span> <a
+														th:href="@{/openindent/delete/{id}(id=${indent.indentNumber})}">delete</a></span></td>
 											</tr>
 
 

@@ -46,14 +46,20 @@ public class OpenIndentController {
 		if(openIndentList != null) {
 			model.addAttribute("openIndentList", openIndentList);
 		}
-		return "layouts/listview/listofopenIndentList";
+		return "layouts/listview/listofopenIndent";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String editOpenIndent(@PathVariable("id") String indentCode,Model model) {
 		
 		Optional<OpenIndent> openIndent = openIndentService.editOpenIndent(indentCode);
-		model.addAttribute("openIndent", openIndent);
+		
+		openIndent.ifPresent(indent
+				->model.addAttribute("openIndent", indent));
+		
+		
+		
+		
 		return "layouts/editview/editOpenIndent";
 	}
 	

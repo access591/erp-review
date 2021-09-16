@@ -180,7 +180,7 @@ public class OpenIndent {
 	private String remarks4;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "openIndent")
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "openIndent")
 	private List<OpenIndentDetail> opeIndentDetail = new ArrayList<>();
 
 

@@ -2,6 +2,7 @@ package com.access.erp.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -74,7 +75,7 @@ public class OpenIndentDetail {
 	@Column(name = "PIPELINE_QTY", length = 50)
 	private String pipelineQty;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonManagedReference
 	@JoinColumn(name="INDENT_NUMBER")
 	private OpenIndent openIndent;
