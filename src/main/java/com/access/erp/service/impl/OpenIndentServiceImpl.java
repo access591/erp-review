@@ -60,4 +60,16 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 
 	}
 
+	@Override
+	public void updateOpenIndent(OpenIndent openIndent) {
+		
+		Optional<OpenIndent> open = openIndentRepo.findById(openIndent.getIndentNumber());
+		
+		openIndent.getOpeIndentDetail().addAll(openIndent.getOpeIndentDetail());
+		
+		
+		
+		
+	}
+
 }

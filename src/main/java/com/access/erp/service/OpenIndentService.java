@@ -15,5 +15,8 @@ public interface OpenIndentService {
 	public Optional<OpenIndent> editOpenIndent(String indentCode);
 
 	public void deleteOpenIndent(String indentCode);
+	
+	
+	public void updateOpenIndent(OpenIndent openIndent);
 
 }

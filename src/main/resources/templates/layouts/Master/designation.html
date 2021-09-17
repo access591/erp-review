@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+
+
+
+
+	<div id="home-main-content">
+
+		<h3>Designation Master</h3>
+
+
+		<form th:action="@{/designation/}" method="POST" th:object="${designation}">
+			<div class="form-border">
+
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">Designation Code</label> <input type="text"
+							class="form-control" placeholder="city code"
+							th:field="*{desigCode}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPassword4">Designation Name</label> <input type="text"
+							class="form-control" placeholder="city name"
+							th:field="*{desigName}">
+					</div>
+
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">Pay Scale Code</label> <input type="text"
+							class="form-control" placeholder="city code"
+							th:field="*{payScaleCode}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPassword4">Basic Slab-1</label> <input type="number"
+							class="form-control" placeholder="city name"
+							th:field="*{basicSlab1}">
+					</div>
+
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">Basic Slab-2</label> <input type="number"
+							class="form-control" placeholder="city code"
+							th:field="*{basicSlab2}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPassword4">Basic slab-3</label> <input type="number"
+							class="form-control" placeholder="city name"
+							th:field="*{basicSlab3}">
+					</div>
+
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">Increment-1</label> <input type="number"
+							class="form-control" placeholder="Increment-1"
+							th:field="*{increment1}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPassword4">Increment-2</label> <input type="number"
+							class="form-control" placeholder="Increment-2"
+							th:field="*{increment1}">
+					</div>
+
+				</div>
+				
+				
+
+				
+				
+			
+
+
+
+				<div class="form-group" style="margin: 10px;">
+
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="Y"> <label
+							class="form-check-label" for="inlineRadio1"
+							>Active</label>
+					</div>
+
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="N"> <label
+							class="form-check-label" for="inlineRadio1"
+							>In-Active</label>
+					</div>
+
+				</div>
+
+				<div class="row" style="margin: 10px">
+					<input type="submit" value="Submit" class="btn btn-primary" />
+					<input type="reset" value="Reset" class="btn btn-danger" />
+				</div>
+
+			</div>
+		</form>
+
+		<div class="row text-right m-10">
+			<a th:href="@{/designation/list}">view designation list</a>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>
