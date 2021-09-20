@@ -178,9 +178,8 @@
 
 
 			<div style="height: 10px"></div>
-			<div>
- <button type="button" onclick="fun">click</button>
-</div>
+		
+		
 			
 			<h5 style="color: #2e7ef2;">Supplier Information</h5>
 			<!-- supplier information detail -->
@@ -310,6 +309,9 @@
 			<!-- end supplier information detail -->
 		</form>
 
+
+
+<button onclick="fun()"> click me </button>
 		<div class="row text-right m-10">
 			<a th:href="@{/requestquotation/list}">view state list</a>
 		</div>
@@ -319,23 +321,7 @@
 
 
 
-<script>
 
-
-$( document ).ready(function() {
-
-	alert("testing..")
-    console.log( "ready!" );
-});
-
-
-
-function fun(){
-
-alert("testing")
-console.log("testing java script")
-}
-</script>
 
 
 
@@ -409,4 +395,18 @@ idIndex=0;
 
 
 </body>
+
+<script>
+
+
+
+
+
+
+
+function fun() {
+  alert("hello")
+}
+
+</script>
 </html>
