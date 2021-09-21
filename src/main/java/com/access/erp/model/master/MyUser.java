@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +26,15 @@ public class MyUser {
 	@Column(name = "USER_PASSWORD")
 	private String userPassword;
 	
-	@ManyToMany(mappedBy = "myUser")
-	private List<UserRights> UserRights = new ArrayList<>();
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Employee employee;
+	
+	/*
+	 * @ManyToMany(mappedBy = "myUser") private List<UserRights> UserRights = new
+	 * ArrayList<>();
+	 */
 	
 	@Column(name = "Ins_by",updatable = false,length = 50)
 	private String insBy;
@@ -100,13 +109,20 @@ public class MyUser {
 		this.updDate = updDate;
 	}
 
-	public List<UserRights> getUserRights() {
-		return UserRights;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setUserRights(List<UserRights> userRights) {
-		UserRights = userRights;
-	} 
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	/*
+	 * public List<UserRights> getUserRights() { return UserRights; }
+	 * 
+	 * public void setUserRights(List<UserRights> userRights) { UserRights =
+	 * userRights; }
+	 */
 	
 	
 	

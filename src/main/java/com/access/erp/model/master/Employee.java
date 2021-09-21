@@ -2,11 +2,13 @@ package com.access.erp.model.master;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -222,6 +224,9 @@ public class Employee {
 	
 	@Column(name = "OFFER_LEFT_NUMBER", length = 50)
 	private String offerLeftNumber;
+	
+	@OneToOne(mappedBy = "employee" ,cascade = CascadeType.ALL)
+	private MyUser myUser;
 
 	public Employee() {
 		super();

@@ -2,13 +2,14 @@
 	box-sizing: border-box;
 }
 
-header {
+/* header {
 	background-color: #658cf0;
-	padding: 5px;
+	padding: 5px; 
+	height:55px;
 	text-align: center;
 	font-size: 28px;
 	color: white;
-}
+} */
 
 nav {
 	float: left;
