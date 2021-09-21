@@ -4,19 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
-/*request for quotation*/
-
-
-
 @Controller
-@RequestMapping("/requestquotation")
-public class RfQuotationController {
-
+@RequestMapping("purchaseorder")
+public class PurchaseOrderController {
+	
 	@GetMapping("/")
-	public String requestQuotation() {
-		
-		return "layouts/Master/requestForQuotation";
+	public String purchaseOrder() {
+		return "layouts/Master/purchaseOrder";
 	}
+
 }

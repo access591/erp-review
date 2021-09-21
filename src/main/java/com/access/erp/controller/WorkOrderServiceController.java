@@ -6,17 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
-/*request for quotation*/
-
-
-
 @Controller
-@RequestMapping("/requestquotation")
-public class RfQuotationController {
-
+@RequestMapping("workorderservice")
+public class WorkOrderServiceController {
+	
 	@GetMapping("/")
-	public String requestQuotation() {
-		
-		return "layouts/Master/requestForQuotation";
+	public String workOrderService() {
+		return "layouts/Master/WorkOrderService";
 	}
+
 }

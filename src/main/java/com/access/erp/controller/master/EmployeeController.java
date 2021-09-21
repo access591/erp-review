@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.access.erp.model.master.Employee;
 import com.access.erp.service.EmployeeService;
@@ -63,6 +64,16 @@ public class EmployeeController {
 	public String deleteCity(@PathVariable("id") String empCode,Model model) {
 		employeeService.deleteEmployee(empCode);
 		return "redirect:/employee/list";
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/employeeinfo/{empCode}")
+	public Optional<Employee> getEmployeeInfo(@PathVariable(value = "empCode") String empCode, Model model) {
+		
+		System.out.println("employee iinfo : "+ empCode);
+		Optional<Employee> employee =  employeeService.editEmployee(empCode);
+		return employee;
 	}
 
 }

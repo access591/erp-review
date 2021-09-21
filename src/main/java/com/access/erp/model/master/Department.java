@@ -31,5 +31,46 @@ public class Department {
 		
 	}
 
+	public String getDeptCode() {
+		return deptCode;
+	}
+
+	public void setDeptCode(String deptCode) {
+		this.deptCode = deptCode;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getCompCode() {
+		return compCode;
+	}
+
+	public void setCompCode(String compCode) {
+		this.compCode = compCode;
+	}
+
+	public String getDepHead() {
+		return depHead;
+	}
+
+	public void setDepHead(String depHead) {
+		this.depHead = depHead;
+	}
+
+	public String getDeptSrCode() {
+		return deptSrCode;
+	}
+
+	public void setDeptSrCode(String deptSrCode) {
+		this.deptSrCode = deptSrCode;
+	}
+
+	
 	
 }

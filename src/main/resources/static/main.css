@@ -2,14 +2,14 @@
 	box-sizing: border-box;
 }
 
-/* header {
+header {
 	background-color: #658cf0;
 	padding: 5px; 
 	height:55px;
 	text-align: center;
 	font-size: 28px;
 	color: white;
-} */
+}
 
 nav {
 	float: left;
@@ -18,6 +18,12 @@ nav {
 	background: #ccc;
 	padding: 20px;
 	position: position-fixed;
+	overflow: scroll;
+   
+}
+nav::-webkit-scrollbar { /* WebKit */
+    width: 5px;
+    height: 0;
 }
 
 nav ul {
@@ -33,6 +39,7 @@ article {
 	height: 91vh;
 	display: flex;
 	overflow-y: auto;
+	
 }
 
 section:after {

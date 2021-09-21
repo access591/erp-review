@@ -5,11 +5,14 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "EMPLOYEE_MASTER")
@@ -20,13 +23,15 @@ public class Employee {
 	@Column(name = "EMP_CODE", length = 50)
 	private String empCode;
 	
-	@Column(name = "DEPT_CODE", length = 50)
-	private String deptCode;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="DEPT_CODE")
+	private Department department;
 	
 	@Column(name = "EMP_NAME", length = 100)
 	private String empName;
 	
-	@Column(name = "EMP_TYPE", length = 20)
+	@Column(name = "EMP_TYPE")
 	private char empType;
 	
 	@Column(name = "BIRTH_PLACE", length = 50)
@@ -35,8 +40,8 @@ public class Employee {
 	@Column(name = "SEC", length = 20)
 	private String sex;
 	
-	@Column(name = "MARITAL_STATUS", length = 20)
-	private char maritalStatus;
+	@Column(name = "MARITAL_STATUS")
+	private Character maritalStatus;
 	
 	@Column(name = "HEIGHT", length = 50)
 	private int height;
@@ -241,12 +246,12 @@ public class Employee {
 		this.empCode = empCode;
 	}
 
-	public String getDeptCode() {
-		return deptCode;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDeptCode(String deptCode) {
-		this.deptCode = deptCode;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public String getEmpName() {
@@ -281,11 +286,13 @@ public class Employee {
 		this.sex = sex;
 	}
 
-	public char getMaritalStatus() {
+	
+
+	public Character getMaritalStatus() {
 		return maritalStatus;
 	}
 
-	public void setMaritalStatus(char maritalStatus) {
+	public void setMaritalStatus(Character maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
 
@@ -784,9 +791,6 @@ public class Employee {
 	public void setOfferLeftNumber(String offerLeftNumber) {
 		this.offerLeftNumber = offerLeftNumber;
 	}
-	
-	
-	
-	
 
+	
 }
