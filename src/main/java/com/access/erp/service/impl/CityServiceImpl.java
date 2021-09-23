@@ -14,8 +14,7 @@ import com.access.erp.service.CityService;
 @Service
 public class CityServiceImpl implements CityService{
 
-	@Autowired
-	SeqMainRepo seqMainRepo;
+	@Autowired SeqMainRepo seqMainRepo;
 	@Autowired CityRepo cityRepo;
 	
 	@Override

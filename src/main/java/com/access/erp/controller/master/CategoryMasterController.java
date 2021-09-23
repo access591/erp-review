@@ -12,5 +12,8 @@ public class CategoryMasterController {
 	public String category() {
 		return "layouts/Master/categoryMaster";
 	}
+	
+	
+	
 
 }

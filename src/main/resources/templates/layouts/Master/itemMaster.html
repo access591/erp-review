@@ -35,17 +35,12 @@
 	<div id="home-main-content">
 
 
-		<div class="form-inline text-center">
-			<div class="col-md-12 form-group">
-				<label class="col-sm-6 col-form-label" for="name">Search For
-					Items</label> <input type="text" class="form-control" name="name" id="name">
-			</div>
-		</div>
-		<p></p>
-		<p></p>
+
 		<br>
 
+
 		<div class="container-fluid">
+		<form th:action="@{/item/}" method="post" th:object="${item}">
 			<ul class="nav nav-pills">
 				<li class="active"><a data-toggle="tab" href="#itemdetail">Item
 						Detail</a></li>
@@ -57,359 +52,431 @@
 
 			</ul>
 
-			<div class="tab-content">
-				<p></p>
+			
+				<div class="tab-content">
+					<p></p>
 
-				<!-- item detail div  -->
-				<div id="itemdetail" class="tab-pane fade in active">
-					<div class="form-border">
+					<!-- item detail div  -->
+					<div id="itemdetail" class="tab-pane fade in active">
+						<div class="form-border">
 
 
-						<div class="row">
-							<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-8">
 
-								<div class="form-group col-md-4">
-									<label for="#">Item Code</label> <input type="text"
-										class="form-control form-control-sm" id="#"
-										placeholder="item code">
+									<div class="form-group col-md-4">
+										<label for="#">Item Code</label> <input type="text"
+											class="form-control form-control-sm" id="#"
+											placeholder="item code" th:field="*{itemCode}">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputPassword4">Description</label> <input
+											type="text" class="form-control form-control-sm"
+											id="inputPassword4" placeholder="decription"
+											th:field="*{description}">
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="inputEmail4">UOM Code</label> <input type="email"
+											class="form-control form-control-sm" 
+											placeholder="uom code" th:field="*{uomCode}">
+									</div>
+									<div class="form-group col-md-4">
+										<label class="form-label">Uom Name</label> <label
+											style="color: red">*</label> <select class="form-control"
+											title="uom Name" required>
+											<option value="">Select</option>
+											<option value="demo1">uom-1</option>
+											<option value="demo2">uom-2</option>
+											<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+										</select>
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="inputEmail4">Work Center Code</label> <input
+											type="email" class="form-control form-control-sm"
+											 placeholder="work center code"
+											th:field="*{workCenterCode}">
+									</div>
+
+									<div class="form-group col-md-4">
+										<label class="form-label">Work Center Name</label> <label
+											style="color: red">*</label> <select class="form-control"
+											title="work center Name" required>
+											<option value="">Select</option>
+											<option value="demo1">demo-1</option>
+											<option value="demo2">demo-2</option>
+											<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+										</select>
+									</div>
 								</div>
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">Description</label> <input
-										type="text" class="form-control form-control-sm"
-										id="inputPassword4" placeholder="decription">
-								</div>
 
-								<div class="form-group col-md-4">
-									<label for="inputEmail4">UOM Code</label> <input type="email"
-										class="form-control form-control-sm" id="inputEmail4"
-										placeholder="uom code">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">UOM Name</label> <input type="text"
-										class="form-control form-control-sm" id="inputPassword4"
-										placeholder="uom name">
-								</div>
-
-								<div class="form-group col-md-4">
-									<label for="inputEmail4">Work Center Code</label> <input
-										type="email" class="form-control form-control-sm"
-										id="inputEmail4" placeholder="work center code">
+								<div class="col-md-4">
+									<img alt="" src="/img/contact.png"
+										style="border-radius: 50%; width: 100px;">
 								</div>
 							</div>
 
-							<div class="col-md-4">
-								<img alt="" src="/img/contact.png"
-									style="border-radius: 50%; width: 100px;">
+
+
+
+							<div class="form-group col-md-3">
+								<label class="form-label">Issueable</label> <label
+									style="color: red">*</label> <select class="form-control"
+									title="work center Name"
+									th:field="*{itemIssue}">
+									<option value="">Select</option>
+									<option value="yes">Yes</option>
+									<option value="no">No</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="inputEmail4">Tariff Item</label> <input
+									type="number" class="form-control form-control-sm"
+									placeholder="tariff item"
+									th:field="*{tariffItem}">
+							</div>
+							<div class="form-group col-md-3">
+								<label class="form-label">Store Info</label> <label
+									style="color: red">*</label> <select class="form-control"
+									title="store info"
+									th:field="*{storeCode}">
+									<option value="">Select</option>
+									<option value="store1">Store -1</option>
+									<option value="store2">Store-2</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+
+							<div class="form-group col-md-3">
+								<label class="form-label">Gst</label> <label style="color: red">*</label>
+								<select class="form-control" id="departmentDropdown"
+									title="store info" th:field="*{cgst}">
+									<option value="">Select</option>
+									<option value="gst">GST</option>
+									<option value="nongst">NON-GST</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+
+							<div class="form-group col-md-3">
+								<label class="form-label">DOL</label> <label style="color: red">*</label>
+								<select class="form-control" title="gst"
+									th:field="*{dol}">
+									<option value="">Select</option>
+									<option value="yes">Yes</option>
+									<option value="no">No</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+
+
+							<div class="form-group col-md-3">
+								<label class="form-label">Category</label> <label
+									style="color: red">*</label> <select class="form-control"
+									title="gst" th:field="*{category}">
+									<option value="">Select Category</option>
+									<option value="gst">Category 1</option>
+									<option value="nongst">Category 2</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+
+							<div class="form-group col-md-3">
+								<label class="form-label">Critical Item</label> <label
+									style="color: red">*</label> <select class="form-control"
+									title="gst" th:field="*{criticalItem}">
+									<option value="">Select</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+							<br />
+							<div class="row-12">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox"
+										value="option1"> <label
+										class="form-check-label" for="inlineCheckbox1"
+										th:field="*{bulkIssYn}">Bulk Issueable</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox"
+										value="option2"> <label
+										class="form-check-label" for="inlineCheckbox2"
+										th:field="*{pettyItem}">Petty Item</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox"
+										value="option3"> <label
+										class="form-check-label" for="inlineCheckbox3">Warranty
+										Item</label>
+								</div>
+							</div>
+						</div>
+
+						<p></p>
+						<p></p>
+
+						<div class="form-border">
+							<h5>Stock Level</h5>
+							<div class="form-group col-md-4">
+								<label for="inputEmail4">Min. Level</label> <input type="number"
+									class="form-control form-control-sm"
+									placeholder="min level" th:field="*{minLevel}">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputPassword4">Max. Stock</label> <input
+									type="number" class="form-control form-control-sm"
+									placeholder="max stock"
+									th:field="*{maxLavel}">
+							</div>
+
+							<div class="form-group col-md-4">
+								<label for="inputPassword4">Recorder level</label> <input
+									type="number" class="form-control form-control-sm"
+									placeholder="recorder level"
+									th:field="*{reOrderLevel}">
 							</div>
 						</div>
 
 
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Work Center Name</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="work center name">
+						<p></p>
+						<p></p>
+
+						<div class="form-border">
+							<h5>Location</h5>
+							<div class="form-group col-md-3">
+								<label for="inputEmail4">Store Code</label> <input type="email"
+									class="form-control form-control-sm"
+									placeholder="store code" th:field="*{storeCode}">
+							</div>
+							<div class="form-group col-md-3">
+								<label class="form-label">Store Name</label> <label
+									style="color: red">*</label> <select class="form-control"
+									title="gst">
+									<option value="">Select</option>
+									<option value="store-1">store-1</option>
+									<option value="store-2">store-2</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputPassword4">Bin Number</label> <input
+									type="text" class="form-control form-control-sm"
+									placeholder="bin number"
+									th:field="*{binNum}">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="inputPassword4">Bin Location</label> <input
+									type="text" class="form-control form-control-sm"
+									placeholder="bin location"
+									th:field="*{binLoc}">
+							</div>
 						</div>
 
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Issueable</label> <input type="text"
-								class="form-control form-control-sm" id="inputPassword4"
-								placeholder="issueable">
+						<p></p>
+						<p></p>
+
+						<div class="form-border">
+							<h5>Account Information</h5>
+							<div class="form-group col-md-6">
+								<label for="inputEmail4">Account Code</label> <input type="text"
+									class="form-control form-control-sm" id="inputEmail4"
+									placeholder="account code">
+							</div>
+							<div class="form-group col-md-6">
+								<label class="form-label">Account Name</label> <label
+									style="color: red">*</label> <select class="form-control"
+									id="departmentDropdown" title="gst">
+									<option value="">Select</option>
+									<option value="acc-1">acc-1</option>
+									<option value="acc-2">acc-2</option>
+									<!-- <option th:each="department :  ${departmentList}"
+												th:text="${department.deptName}"
+												th:value=" ${department.departmentCode}"></option> -->
+								</select>
+							</div>
+
+
 						</div>
 
-						<div class="form-group col-md-3">
-							<label for="inputEmail4">Tariff Item</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="tariff item">
+						<p></p>
+						<p></p>
+
+						<div class="form-border">
+							<h5>Product Information</h5>
+							<div class="form-group col-md-3">
+								<label for="inputEmail4">Product Code</label> <input type="text"
+									class="form-control form-control-sm"
+									placeholder="product code">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputEmail4">Product Name</label> <input type="text"
+									class="form-control form-control-sm" 
+									placeholder="product name">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputPassword4">Design Code</label> <input
+									type="text" class="form-control form-control-sm"
+									 placeholder="design code">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="inputPassword4">Design Name</label> <input
+									type="text" class="form-control form-control-sm"
+									placeholder="design name">
+							</div>
 						</div>
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Store Info</label> <input type="text"
-								class="form-control form-control-sm" id="inputPassword4"
-								placeholder="store info">
+					</div>
+					<!-- end item detail div -->
+
+
+					<div id="taxdetail" class="tab-pane fade">
+						<div class="form-border">
+							<div class="form-group row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">Product
+									Group</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" placeholder="product group"
+										th:field="*{productGroup}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">Purchase
+									HSN Code</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" placeholder="purchase hsn code"
+										th:field="*{hsnCode}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">Sales
+									HSN Code</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" placeholder="sales hsn code">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">CGST(%)</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" placeholder="" th:field="*{cgst}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">SGST(%)</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" placeholder="" th:field="*{sgst}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">IGST(%)</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" placeholder="" th:field="*{igst}">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="packing" class="tab-pane fade">
+						<div class="form-border">
+
+
+							<table class="table table-sm">
+								<thead>
+									<tr>
+										<th scope="col">Packing Code</th>
+										<th scope="col">Packing Name</th>
+										<th scope="col">Unit Name</th>
+										<th scope="col">Quantity</th>
+										<th scope="col">Barcode</th>
+
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row"><fieldset>
+												<input type="text" class="form-control form-control-sm"
+													placeholder="" name=packingDetails[0].packingCode />
+											</fieldset></th>
+										<td><fieldset>
+												<input type="text" class="form-control form-control-sm"
+													placeholder="" name=packingDetails[0].packingName />
+											</fieldset></td>
+										<td><fieldset>
+												<input type="text" class="form-control form-control-sm"
+													placeholder="" name=packingDetails[0].UnitName />
+											</fieldset></td>
+										<td><fieldset>
+												<input type="text" class="form-control form-control-sm"
+													placeholder="" name=packingDetails[0].qty />
+											</fieldset></td>
+										<td><fieldset>
+												<input type="text" class="form-control form-control-sm"
+													placeholder="" name=packingDetails[0].barCode />
+											</fieldset></td>
+
+									</tr>
+
+
+
+								</tbody>
+							</table>
+
+							<a href="#">Add Another</a>
+
 						</div>
 
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">GST</label> <input type="text"
-								class="form-control form-control-sm" id="inputPassword4"
-								placeholder="gst">
-						</div>
-
-						<div class="form-group col-md-3">
-							<label for="inputEmail4">DOL</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="dol">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Category Code</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="category code">
-						</div>
-
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Critical Item</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="critical item">
+						<div class="row" style="margin: 10px">
+							<input type="submit" value="Submit" class="btn btn-primary" /> <input
+								type="reset" value="Reset" class="btn btn-danger" />
 						</div>
 
 					</div>
 
-					<p></p>
-					<p></p>
 
-					<div class="form-border">
-						<h5>Stock Level</h5>
-						<div class="form-group col-md-4">
-							<label for="inputEmail4">Min. Level</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="min level">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="inputPassword4">Max. Stock</label> <input type="text"
-								class="form-control form-control-sm" id="inputPassword4"
-								placeholder="max stock">
-						</div>
-
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Recorder level</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="recorder level">
-						</div>
-					</div>
-
-
-					<p></p>
-					<p></p>
-
-					<div class="form-border">
-						<h5>Location</h5>
-						<div class="form-group col-md-3">
-							<label for="inputEmail4">Store Code</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="store code">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="inputEmail4">Store Name</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="store name">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Bin Number</label> <input type="text"
-								class="form-control form-control-sm" id="inputPassword4"
-								placeholder="bin number">
-						</div>
-
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Bin Location</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="bin location">
-						</div>
-					</div>
-
-					<p></p>
-					<p></p>
-
-					<div class="form-border">
-						<h5>Account Information</h5>
-						<div class="form-group col-md-6">
-							<label for="inputEmail4">Account Code</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="account code">
-						</div>
-						<div class="form-group col-md-6">
-							<label for="inputPassword4">Acount Number</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="account number">
-						</div>
-
-
-					</div>
-
-					<p></p>
-					<p></p>
-
-					<div class="form-border">
-						<h5>Product Information</h5>
-						<div class="form-group col-md-3">
-							<label for="inputEmail4">Product Code</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="product code">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="inputEmail4">Product Name</label> <input type="email"
-								class="form-control form-control-sm" id="inputEmail4"
-								placeholder="product name">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Design Code</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="design code">
-						</div>
-
-						<div class="form-group col-md-3">
-							<label for="inputPassword4">Design Name</label> <input
-								type="text" class="form-control form-control-sm"
-								id="inputPassword4" placeholder="design name">
-						</div>
-					</div>
 				</div>
-				<!-- end item detail div -->
 
 
-				<div id="taxdetail" class="tab-pane fade">
-					<div class="form-border">
-						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">Product Group</label>
-							<div class="col-sm-10">
-								<input type="text" readonly class="form-control-plaintext"
-									id="staticEmail" placeholder="product group">
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">Purchase HSN Code</label>
-							<div class="col-sm-10">
-								<input type="text" readonly class="form-control-plaintext"
-									id="staticEmail" placeholder="purchase hsn code">
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">Sales HSN Code</label>
-							<div class="col-sm-10">
-								<input type="text" readonly class="form-control-plaintext"
-									id="staticEmail" placeholder="sales hsn code">
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">CGST(%)</label>
-							<div class="col-sm-10">
-								<input type="text" readonly class="form-control-plaintext"
-									id="staticEmail" placeholder="">
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">SGST(%)</label>
-							<div class="col-sm-10">
-								<input type="text" readonly class="form-control-plaintext"
-									id="staticEmail" placeholder="">
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">IGST(%)</label>
-							<div class="col-sm-10">
-								<input type="text" readonly class="form-control-plaintext"
-									id="staticEmail" placeholder="">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div id="packing" class="tab-pane fade">
-					<div class="form-border">
 			
 
-			<table class="table table-sm">
-				<thead>
-					<tr>
-						<th scope="col">Packing Code</th>
-						<th scope="col">Packing Name</th>
-						<th scope="col">Unit Name</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Barcode</th>
-						
-
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row"><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></th>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						
-
-
-					</tr>
-					<tr>
-						<th scope="row"><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></th>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						
-
-					</tr>
-					<tr>
-						<th scope="row"><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></th>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-
-						<td><fieldset>
-								<input type="text" class="form-control form-control-sm"
-									placeholder="">
-							</fieldset></td>
-						
-
-					</tr>
-
-				</tbody>
-			</table>
-
-			<a href="#">Add Another</a>
-
-		</div>
-				</div>
-
-
+			<div class="row text-right m-10">
+				<a th:href="@{/item/list}">view item list</a>
 			</div>
-
+		</form>
 		</div>
 
 
