@@ -1,5 +1,6 @@
-package com.access.erp.model.master;
+                                package com.access.erp.model.master;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -121,7 +122,7 @@ public class Item {
 	private int vatRate;
 	
 	@Column(name="DESCRIPTION",length = 500)
-	private int description;
+	private String description;
 	
 	@Column(name="ST_RATE",length = 10)
 	private int stRate;
@@ -211,7 +212,7 @@ public class Item {
 	private String criticalItem;
 	
 	@Column(name="HSN_CODE",length = 10)
-	private int hsnCode;
+	private String hsnCode;
 	
 	@Column(name="CGST",length = 10)
 	private String cgst;
@@ -239,8 +240,8 @@ public class Item {
 	private String area;
 	
 	
-	@OneToMany(mappedBy = "", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<PackingDetail> packingDetails;
+	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<PackingDetail> packingDetails;
 
 	public Item() {
 		super();
@@ -443,11 +444,12 @@ public class Item {
 		return cenvat;
 	}
 
-	public Set<PackingDetail> getPackingDetails() {
+	
+	public List<PackingDetail> getPackingDetails() {
 		return packingDetails;
 	}
 
-	public void setPackingDetails(Set<PackingDetail> packingDetails) {
+	public void setPackingDetails(List<PackingDetail> packingDetails) {
 		this.packingDetails = packingDetails;
 	}
 
@@ -767,11 +769,13 @@ public class Item {
 		this.criticalItem = criticalItem;
 	}
 
-	public int getHsnCode() {
+	
+
+	public String getHsnCode() {
 		return hsnCode;
 	}
 
-	public void setHsnCode(int hsnCode) {
+	public void setHsnCode(String hsnCode) {
 		this.hsnCode = hsnCode;
 	}
 
@@ -839,13 +843,14 @@ public class Item {
 		this.area = area;
 	}
 
-	public int getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(int description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	
 
 	

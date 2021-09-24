@@ -26,15 +26,21 @@ public class ItemServiceImpl implements ItemService{
 			String maxCode = seqMainRepo.findByTranType("ITM");
 			item.setItemCode(maxCode);
 			
-			for(PackingDetail p : item.getPackingDetails()) {
+			
+		}
+
+		for(PackingDetail p : item.getPackingDetails()) {
+			
+			if(p.getPackingCode() == "" || p.getPackingCode() == null) {
 				
 				String maxCode1 = seqMainRepo.findByTranType("PAK");
 				p.setPackingCode(maxCode1);
-				//item.getPackingDetails().add(p);
+				
 			}
+			
+			//item.getPackingDetails().add(p);
+			p.setItem(item);
 		}
-
-		
 		
 		itemRepo.save(item);
 		

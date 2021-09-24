@@ -53,7 +53,9 @@ public class ItemController {
 		System.out.println("module code is : "+ itemCode);
 		
 		Optional<Item> item = itemService.editItem(itemCode);
-		model.addAttribute("item", item);
+		
+		item.ifPresent(i -> model.addAttribute("item", i));
+		
 		return "layouts/editview/editItem";
 	}
 	

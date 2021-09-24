@@ -427,26 +427,26 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr th:each="row, stat :${item.packingDetails}">
 										<th scope="row"><fieldset>
 												<input type="text" class="form-control form-control-sm"
-													placeholder="" name="packingDetails[0].packingCode" />
+													placeholder="" th:field="*{packingDetails[__${stat.index}__].packingCode}" />
 											</fieldset></th>
 										<td><fieldset>
 												<input type="text" class="form-control form-control-sm"
-													placeholder="" name="packingDetails[0].packingName" />
+													placeholder="" th:field="*{packingDetails[__${stat.index}__].packingName}" />
 											</fieldset></td>
 										<td><fieldset>
 												<input type="text" class="form-control form-control-sm"
-													placeholder="" name="packingDetails[0].UnitName" />
+													placeholder="" th:field="*{packingDetails[__${stat.index}__].UnitName}" />
 											</fieldset></td>
 										<td><fieldset>
 												<input type="text" class="form-control form-control-sm"
-													placeholder="" name="packingDetails[0].qty" />
+													placeholder="" th:field="*{packingDetails[__${stat.index}__].qty}" />
 											</fieldset></td>
 										<td><fieldset>
 												<input type="text" class="form-control form-control-sm"
-													placeholder="" name="packingDetails[0].barCode" />
+													placeholder="" th:field="*{packingDetails[__${stat.index}__].barCode}" />
 											</fieldset></td>
 
 									</tr>
@@ -456,7 +456,7 @@
 								</tbody>
 							</table>
 
-							<a href="#">Add Another</a>
+							
 
 						</div>
 

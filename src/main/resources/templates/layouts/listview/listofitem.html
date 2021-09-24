@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+	<div id="home-main-content">
+		<h2>Item List</h2>
+
+
+
+		<div class="container">
+			<div class="container-fluid p-0">
+				
+				<div class="row">
+					<div class="col-xl-8">
+						<div class="card">
+							<div class="card-header pb-0">
+								<div class="card-actions float-right">
+									<div class="dropdown show">
+										<a href="#" data-toggle="dropdown" data-display="static">
+
+										</a>
+
+										
+									</div>
+								</div>
+								
+							</div>
+							<div class="card-body">
+								<div class="table-responsive-sm">
+									<table class="table table-striped" style="width: 80%">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Item Code</th>
+												<th scope="col">Item Name</th>
+												<th scope="col">Category</th>
+												<th scope="col">Store</th>
+												<th scope="col">Uom Code</th>
+												<th scope="col">Company Code</th>
+												<th scope="col">Product Group</th>
+												
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="item,iter  : ${itemList}">
+												<td th:text="${iter.index}">1</td>
+												<td th:text="${item.itemCode}">Garrett Winters</td>
+												<td th:text="${item.itemName}">Garrett Winters</td>
+												<td th:text="${item.category}">Garrett Winters</td>
+												<td th:text="${item.storeCode}">Garrett Winters</td>
+												<td th:text="${item.uomCode}">Garrett Winters</td>
+												<td th:text="${item.ccode}">Garrett Winters</td>
+												<td th:text="${item.productGroup}">Good Guys</td>
+
+												
+												
+												<td><span> <a th:href="@{/item/edit/{id}(id=${item.itemCode})}">edit</a></span> <span> <a
+														th:href="@{/item/delete/{id}(id=${item.itemCode})}">delete</a></span></td>
+											</tr>
+
+
+
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="row" style="margin: 10px">
+								<input type="submit" value="Back"  onclick='javascript:window.history.back()'
+									class="btn btn-link" /> 
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>
