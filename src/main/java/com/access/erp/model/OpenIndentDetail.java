@@ -75,7 +75,7 @@ public class OpenIndentDetail {
 	@Column(name = "PIPELINE_QTY", length = 50)
 	private String pipelineQty;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JsonManagedReference
 	@JoinColumn(name="INDENT_NUMBER")
 	private OpenIndent openIndent;

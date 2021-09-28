@@ -186,8 +186,12 @@
 						<tbody>
 							<tr id="addr0" th:each="row, stat :${openIndent.opeIndentDetail}">
 
-
-								<td><input type="text" style="width: 90px;"
+								
+								
+								
+								<td>
+								<input type="hidden" th:field="*{opeIndentDetail[__${stat.index}__].id}" />
+								<input type="text" style="width: 90px;"
 									id="indItemCode0" readonly title=""
 									th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}"></td>
 								<!-- item description -->
