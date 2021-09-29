@@ -27,7 +27,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 			String maxCode = seqMainRepo.findByTranType("FIN");
 
 			System.out.println(" max code is : " + maxCode);
-			financialYear.setFinancialYearCode(maxCode);
+			financialYear.setFinancialYearCode(maxCode.toString());
 		}
 
 		financialYearRepo.save(financialYear);
@@ -41,15 +41,16 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 	}
 
 	@Override
-	public Optional<FinancialYear> editFinancialYear(String financialCode) {
+	public Optional<FinancialYear> editFinancialYear(Long id) {
 
-		return financialYearRepo.findById(financialCode);
+		return financialYearRepo.findById(id);
+		
 	}
 
 	@Override
-	public void deleteFinancialYear(String financialCode) {
+	public void deleteFinancialYear(Long id) {
 
-		financialYearRepo.deleteById(financialCode);
+		financialYearRepo.deleteById(id);
 
 	}
 
