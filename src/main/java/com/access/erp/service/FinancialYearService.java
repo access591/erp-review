@@ -12,8 +12,8 @@ public interface FinancialYearService {
 
 	public void addFinancialYear(FinancialYear financialYear);
 	public List<FinancialYear> getAllFinancialYear();
-	public Optional<FinancialYear> editFinancialYear(String financialCode);
-	public void deleteFinancialYear(String financialCode);
+	public Optional<FinancialYear> editFinancialYear(Long id);
+	public void deleteFinancialYear(Long id);
 	
 	
 }

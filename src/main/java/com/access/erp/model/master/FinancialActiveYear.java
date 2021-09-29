@@ -4,15 +4,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 
-
+@Entity
+@Table(name="M_FINANCIAL_ACTIVE_Y")
 public class FinancialActiveYear {
 	
-	//@Id
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	@Column(name="FINANCIAL_CODE")
 	private String financialYearCode;
 	
@@ -29,6 +34,19 @@ public class FinancialActiveYear {
 		super();
 		
 	}
+
+
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 
 	public String getFinancialYearCode() {

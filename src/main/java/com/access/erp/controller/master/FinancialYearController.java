@@ -49,18 +49,18 @@ public class FinancialYearController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String editFinancialYear(@PathVariable("id") String financialCode,Model model) {
+	public String editFinancialYear(@PathVariable("id") Long id,Model model) {
 		
 		
 		
-		Optional<FinancialYear> financialYear = financialYearService.editFinancialYear(financialCode);
+		Optional<FinancialYear> financialYear = financialYearService.editFinancialYear(id);
 		model.addAttribute("financialYear", financialYear);
 		return "layouts/editview/editfinancialyear";
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteFianncialYear(@PathVariable("id") String financialCode,Model model) {
-		financialYearService.deleteFinancialYear(financialCode);
+	public String deleteFianncialYear(@PathVariable("id") Long id,Model model) {
+		financialYearService.deleteFinancialYear(id);
 		return "redirect:/financialyear/list";
 	}
 

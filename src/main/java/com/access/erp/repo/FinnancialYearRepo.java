@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.access.erp.model.master.FinancialYear;
 
 @Repository
-public interface FinnancialYearRepo extends JpaRepository<FinancialYear, String>{
+public interface FinnancialYearRepo extends JpaRepository<FinancialYear, Long>{
 
 }
