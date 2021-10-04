@@ -24,10 +24,13 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 
 		if (financialYear.getId() == null) {
 			System.out.println("country code is : " + financialYear.getFinancialYearCode());
-			String maxCode = seqMainRepo.findByTranType("FIN");
-
-			System.out.println(" max code is : " + maxCode);
-			financialYear.setFinancialYearCode(maxCode.toString());
+			
+			if(financialYear.getFinancialYearCode().isEmpty()){
+				String maxCode = seqMainRepo.findByTranType("FIN");
+				System.out.println(" max code is : " + maxCode);
+				financialYear.setFinancialYearCode(maxCode);
+			}
+				
 		}
 
 		financialYearRepo.save(financialYear);

@@ -24,10 +24,16 @@ public class FinancialActiveYearServiceImpl implements FinancialActiveYearServic
 
 		if (financialActiveYear.getId() == null) {
 			System.out.println("country code is : " + financialActiveYear.getFinancialYearCode());
-			String maxCode = seqMainRepo.findByTranType("FIA");
+			
+			if(financialActiveYear.getFinancialYearCode().isEmpty()) {
+				
+				String maxCode = seqMainRepo.findByTranType("FIA");
 
-			System.out.println(" max code is : " + maxCode);
-			financialActiveYear.setFinancialYearCode(maxCode);
+				System.out.println(" max code is : " + maxCode);
+				financialActiveYear.setFinancialYearCode(maxCode);
+				
+			}
+			
 		}
 
 		financialActiveYearRepo.save(financialActiveYear);
