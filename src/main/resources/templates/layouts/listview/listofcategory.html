@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+
+<head>
+<title>Title of Home Page</title>
+
+<th:block id="home-static-resources">
+
+	<script type="text/javascript" src="../static/home.js"
+		th:src="@{/home.js}"></script>
+	<link rel="stylesheet" type="text/css" href="../static/home.css"
+		th:href="@{/home.css}" />
+
+</th:block>
+
+</head>
+<body>
+
+	<div id="home-header">ERP WhareHouse</div>
+
+	<div id="home-nav"
+		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	</div>
+
+	<div id="home-main-content">
+		<h2>City List</h2>
+
+
+
+		<div class="container">
+			<div class="container-fluid p-0">
+				<h1 class="h3 mb-3">Clients</h1>
+				<div class="row">
+					<div class="col-xl-8">
+						<div class="card">
+							<div class="card-header pb-0">
+								<div class="card-actions float-right">
+									<div class="dropdown show">
+										<a href="#" data-toggle="dropdown" data-display="static">
+
+										</a>
+
+										<div class="dropdown-menu dropdown-menu-right">
+											<a class="dropdown-item" href="#">Action</a> <a
+												class="dropdown-item" href="#">Another action</a> <a
+												class="dropdown-item" href="#">Something else here</a>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="card-body">
+								<div class="table-responsive-sm">
+									<table class="table table-striped" style="width: 80%">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Category Code</th>
+												<th scope="col">Acount Head</th>
+												<th scope="col">Parent Code</th>
+												<th scope="col">Parent Name</th>
+												<th scope="col">Description</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="category,iter  : ${categoryList}">
+												<td th:text="${iter.index}">1</td>
+												<td th:text="${category.categCode}">Garrett Winters</td>
+												<td th:text="${category.accountHead}">Garrett Winters</td>
+												<td th:text="${category.parentCode}">Garrett Winters</td>
+												<td th:text="${category.parentName}">Garrett Winters</td>
+												
+
+												<td><span> <a th:href="@{/category/edit/{id}(id=${category.categCode})}">edit</a></span> <span> <a
+														th:href="@{/category/delete/{id}(id=${category.categCode})}">delete</a></span></td>
+											</tr>
+
+
+
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="row" style="margin: 10px">
+								<input type="submit" value="Back"  onclick='javascript:window.history.back()'
+									class="btn btn-link" /> 
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div> -->
+
+
+</body>
+</html>
