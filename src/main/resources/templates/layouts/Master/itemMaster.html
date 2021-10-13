@@ -79,18 +79,16 @@
 									<div class="form-group col-md-4">
 										<label for="inputEmail4">UOM Code</label> <input type="email"
 											class="form-control form-control-sm" 
-											placeholder="uom code" th:field="*{uomCode}">
+											placeholder="uom code">
 									</div>
 									<div class="form-group col-md-4">
 										<label class="form-label">Uom Name</label> <label
 											style="color: red">*</label> <select class="form-control"
-											title="uom Name" required>
+											title="uom Name" required th:field="*{uom}">
 											<option value="">Select</option>
-											<option value="demo1">uom-1</option>
-											<option value="demo2">uom-2</option>
-											<!-- <option th:each="department :  ${departmentList}"
-												th:text="${department.deptName}"
-												th:value=" ${department.departmentCode}"></option> -->
+											<option th:each="uom :  ${listUom}"
+												th:text="${uom.uomCode}"
+												th:value=" ${uom.uomCode}"></option> 
 										</select>
 									</div>
 
@@ -148,13 +146,11 @@
 								<label class="form-label">Store Info</label> <label
 									style="color: red">*</label> <select class="form-control"
 									title="store info"
-									th:field="*{storeCode}">
+									th:field="*{store}">
 									<option value="">Select</option>
-									<option value="store1">Store -1</option>
-									<option value="store2">Store-2</option>
-									<!-- <option th:each="department :  ${departmentList}"
-												th:text="${department.deptName}"
-												th:value=" ${department.departmentCode}"></option> -->
+									<option th:each="store :  ${listStore}"
+												th:text="${store.storeCode}"
+												th:value=" ${store.storeCode}"></option>
 								</select>
 							</div>
 
@@ -190,11 +186,10 @@
 									style="color: red">*</label> <select class="form-control"
 									title="gst" th:field="*{category}">
 									<option value="">Select Category</option>
-									<option value="gst">Category 1</option>
-									<option value="nongst">Category 2</option>
-									<!-- <option th:each="department :  ${departmentList}"
-												th:text="${department.deptName}"
-												th:value=" ${department.departmentCode}"></option> -->
+									
+									<option th:each="category :  ${listCategory}"
+												th:text="${category.categCode}"
+												th:value=" ${category.categCode}"></option>
 								</select>
 							</div>
 
@@ -267,7 +262,7 @@
 							<div class="form-group col-md-3">
 								<label for="inputEmail4">Store Code</label> <input type="email"
 									class="form-control form-control-sm"
-									placeholder="store code" th:field="*{storeCode}">
+									placeholder="store code">
 							</div>
 							<div class="form-group col-md-3">
 								<label class="form-label">Store Name</label> <label

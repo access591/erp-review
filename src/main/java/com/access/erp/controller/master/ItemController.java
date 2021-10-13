@@ -12,17 +12,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.access.erp.model.master.Category;
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.Store;
+import com.access.erp.model.master.UOM;
+import com.access.erp.service.CategoryService;
 import com.access.erp.service.ItemService;
+import com.access.erp.service.StoreService;
+import com.access.erp.service.UOMService;
 
 @Controller
 @RequestMapping("/item")
 public class ItemController {
 
 	@Autowired ItemService itemService;
+	@Autowired UOMService uomService;
+	@Autowired StoreService storeService;
+	@Autowired CategoryService categoryService;
+	
 	
 	@GetMapping("/")
 	public String item(Model model) {
+		
+		List<UOM> listUom = uomService.getAllUOM();
+		model.addAttribute("listUom", listUom);
+		
+		List<Store> listStore = storeService.getAllStore();
+		model.addAttribute("listStore", listStore);
+		
+		List<Category> listcategory = categoryService.getAllCategory();
+		model.addAttribute("listCategory",listcategory);
 		
 		model.addAttribute("item", new Item());
 		return "layouts/Master/itemMaster";
@@ -41,6 +60,8 @@ public class ItemController {
 		
 		List<Item> itemList = itemService.getAllItem();
 		
+	
+		
 		if(itemList != null) {
 			model.addAttribute("itemList", itemList);
 		}
@@ -51,6 +72,15 @@ public class ItemController {
 	public String editItem(@PathVariable("id") String itemCode,Model model) {
 		
 		System.out.println("module code is : "+ itemCode);
+		
+		List<UOM> listUom = uomService.getAllUOM();
+		model.addAttribute("listUom", listUom);
+		
+		List<Store> listStore = storeService.getAllStore();
+		model.addAttribute("listStore", listStore);
+		
+		List<Category> listcategory = categoryService.getAllCategory();
+		model.addAttribute("listCategory",listcategory);
 		
 		Optional<Item> item = itemService.editItem(itemCode);
 		
