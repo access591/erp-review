@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,8 +24,11 @@ public class Item {
 	@Column(name="ITEM_NAME",length = 150)
 	private String itemName;
 	
-	@Column(name="CATEGORY_CODE",length = 50)
-	private String category;
+	
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name="CATEGORY_CODE")
+	private Category category;
 	
 	@Column(name="PART_NO",length = 20)
 	private String partNum;
@@ -31,8 +36,9 @@ public class Item {
 	@Column(name="PART_NAME",length = 150)
 	private String partName;
 	
-	@Column(name="STORE_CODE",length = 30)
-	private String storeCode;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="STORE_CODE")
+	private Store store;
 	
 	@Column(name="UNIT_COST",length = 14)
 	private int unitCode;
@@ -67,8 +73,9 @@ public class Item {
 	@Column(name="REQUISITION_METHOD",length = 30)
 	private String requisitionMethod;
 	
-	@Column(name="UOM_CODE",length = 30)
-	private String uomCode;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="UOM_CODE")
+	private UOM uom;
 	
 	@Column(name="ACC_LEDGER_CODE",length = 30)
 	private String accLedgerCode;
@@ -264,12 +271,23 @@ public class Item {
 		this.itemName = itemName;
 	}
 
-	public String getCategory() {
+	
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	
+
+	public UOM getUom() {
+		return uom;
+	}
+
+	public void setUom(UOM uom) {
+		this.uom = uom;
 	}
 
 	public String getPartNum() {
@@ -288,12 +306,13 @@ public class Item {
 		this.partName = partName;
 	}
 
-	public String getStoreCode() {
-		return storeCode;
+	
+	public Store getStore() {
+		return store;
 	}
 
-	public void setStoreCode(String storeCode) {
-		this.storeCode = storeCode;
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 	public int getUnitCode() {
@@ -384,13 +403,7 @@ public class Item {
 		this.requisitionMethod = requisitionMethod;
 	}
 
-	public String getUomCode() {
-		return uomCode;
-	}
-
-	public void setUomCode(String uomCode) {
-		this.uomCode = uomCode;
-	}
+	
 
 	public String getAccLedgerCode() {
 		return accLedgerCode;
