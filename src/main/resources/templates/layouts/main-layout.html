@@ -1,31 +1,30 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
 	th:fragment="main-fragment (title, otherStaticResources, header, nav, mainContent, footer)">
+
 <head>
-<meta charset="UTF-8" />
-<title th:replace="${title}">Page 1 Title</title>
+	<meta charset="UTF-8" />
+	<title th:replace="${title}">Page 1 Title</title>
 
 
-<link rel="stylesheet" type="text/css" th:href="@{/main.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/main.css}" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script type="text/javascript"
-	th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/main.css}">
 
 
 
-<script src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-7"></script>
+	<script src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-7"></script>
 
-<script type="text/javascript" th:src="@{/JS/myjs.js}"></script>
+	<script type="text/javascript" th:src="@{/JS/myjs.js}"></script>
 
 
 
@@ -38,18 +37,19 @@
 
 
 
-<!-- <link rel="stylesheet"
+	<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" /> -->
 
 
 
 
-<!-- end treeview -->
+	<!-- end treeview -->
 
-<!-- Other javascript, css source files -->
-<th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
+	<!-- Other javascript, css source files -->
+	<th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
 
 </head>
+
 <body>
 
 	<header th:insert="${header} ?: ~{}">
@@ -80,4 +80,5 @@
 
 
 </body>
+
 </html>

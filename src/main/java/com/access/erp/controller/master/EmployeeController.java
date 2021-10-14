@@ -69,11 +69,13 @@ public class EmployeeController {
 	
 	@ResponseBody
 	@GetMapping("/employeeinfo/{empCode}")
-	public Optional<Employee> getEmployeeInfo(@PathVariable(value = "empCode") String empCode, Model model) {
+	public Employee getEmployeeInfo(@PathVariable(value = "empCode") String empCode, Model model) {
 		
 		System.out.println("employee iinfo : "+ empCode);
-		Optional<Employee> employee =  employeeService.editEmployee(empCode);
+		Employee employee =  employeeService.findEmployeeById(empCode);
 		return employee;
+		
+		
 	}
 
 }

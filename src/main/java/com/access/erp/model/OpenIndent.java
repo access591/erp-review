@@ -9,10 +9,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.access.erp.model.master.Employee;
 
 
 
@@ -33,8 +37,10 @@ public class OpenIndent {
 	@Column(name = "COMP_NAME", length = 100)
 	private String indDept;
 
-	@Column(name = "EMP_CODE", length = 50)
-	private String employee;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="EMP_CODE")
+	private Employee employee;
 
 	@Column(name = "WORKER_CODE", length = 50)
 	private String workerCode;
@@ -53,6 +59,7 @@ public class OpenIndent {
 	
 	@Column(name = "DEPT_CODE", length = 50)
 	private String deptCode;
+	
 	
 	@Column(name = "DEPT_NAME", length = 50)
 	private String deptName;
@@ -126,15 +133,15 @@ public class OpenIndent {
 	@Column(name = "OP_IND_YN", length = 100)
 	private String opIndYn;
 	
-	@Column(name = "APPROVAL_STATUS_L1", length = 100)
-	private String approvalStatus1;
+	@Column(name = "APPROVAL_STATUS_L1", length = 10)
+	private String approvalStatus1 = "N";
 	
-	@Column(name = "APPROVAL_STATUS_L2", length = 100)
-	private String approvalStatus2;
+	@Column(name = "APPROVAL_STATUS_L2", length = 10)
+	private String approvalStatus2 = "N";
 
 	
-	@Column(name = "APPROVAL_STATUS_L3", length = 100)
-	private String approvalStatus3;
+	@Column(name = "APPROVAL_STATUS_L3", length = 10)
+	private String approvalStatus3 = "N";
 	
 	@Column(name = "APPROVAL_STATUS_L4", length = 100)
 	private String approvalStatus4;
@@ -220,12 +227,15 @@ public class OpenIndent {
 	}
 
 
-	public String getEmployee() {
+	
+
+
+	public Employee getEmployee() {
 		return employee;
 	}
 
 
-	public void setEmployee(String employee) {
+	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
 

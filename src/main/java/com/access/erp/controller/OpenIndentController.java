@@ -27,10 +27,12 @@ public class OpenIndentController {
 
 	@GetMapping("/")
 	public String openIndent(Model model) {
-
-		model.addAttribute("openIndent", new OpenIndent());
+		
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		model.addAttribute("employeeList", employeeList);
+		
+		model.addAttribute("openIndent", new OpenIndent());
+		
 		return "layouts/Master/openindent";
 	}
 
@@ -61,9 +63,28 @@ public class OpenIndentController {
 		Optional<OpenIndent> openIndent = openIndentService.editOpenIndent(indentCode);
 
 		openIndent.ifPresent(indent -> model.addAttribute("openIndent", indent));
+		
+		List<Employee> employeeList = employeeService.getAllEmployee();
+		model.addAttribute("employeeList", employeeList);
 
 		return "layouts/editview/editOpenIndent";
 	}
+	
+	@GetMapping("/view/{id}")
+	public String viewOpenIndent(@PathVariable("id") String indentCode, Model model) {
+
+		System.out.println("edit open indent form is running ");
+		Optional<OpenIndent> openIndent = openIndentService.editOpenIndent(indentCode);
+
+		openIndent.ifPresent(indent -> model.addAttribute("openIndent", indent));
+		
+		List<Employee> employeeList = employeeService.getAllEmployee();
+		model.addAttribute("employeeList", employeeList);
+
+		return "layouts/view/viewOpenIndent";
+	}
+
+	
 
 	@GetMapping("/delete/{id}")
 	public String deleteOpenIndent(@PathVariable("id") String openIndent, Model model) {
@@ -85,8 +106,17 @@ public class OpenIndentController {
 	
 	
 	
-	@GetMapping("/approve/{id}")
-	public String aprroveOpenIndent() {
+	@GetMapping("/approve/{id}/{status}/{level}")
+	public String aprroveOpenIndent(@PathVariable("id") String indentNumber,@PathVariable("level") String level
+			,@PathVariable("status") String approvalStatus) {
+		
+		
+		System.out.println(" approve id : " + indentNumber);
+		System.out.println(" approve level : " + level);
+		System.out.println(" approve status : " + approvalStatus);
+		
+		
+		openIndentService.approval(indentNumber, approvalStatus, level);
 		
 		return "redirect:/openindent/approve";
 	}
