@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layouts/main-layout :: main-fragment(  
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main-layout :: main-fragment(  
                                                 ~{::title},
                                                 ~{:: #home-static-resources},
                                                 ~{:: #home-header},
@@ -12,24 +11,22 @@
                                                )}">
 
 <head>
-<title>Title of Home Page</title>
+	<title>Title of Home Page</title>
 
-<th:block id="home-static-resources">
+	<th:block id="home-static-resources">
 
-	<script type="text/javascript" src="../static/home.js"
-		th:src="@{/home.js}"></script>
-	<link rel="stylesheet" type="text/css" href="../static/home.css"
-		th:href="@{/home.css}" />
+		<script type="text/javascript" src="../static/home.js" th:src="@{/home.js}"></script>
+		<link rel="stylesheet" type="text/css" href="../static/home.css" th:href="@{/home.css}" />
 
-</th:block>
+	</th:block>
 
 </head>
+
 <body>
 
 	<div id="home-header">ERP WhareHouse</div>
 
-	<div id="home-nav"
-		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	<div id="home-nav" th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
 	</div>
 
 	<div id="home-main-content">
@@ -51,9 +48,9 @@
 										</a>
 
 										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item" href="#">Action</a> <a
-												class="dropdown-item" href="#">Another action</a> <a
-												class="dropdown-item" href="#">Something else here</a>
+											<a class="dropdown-item" href="#">Action</a> <a class="dropdown-item"
+												href="#">Another action</a> <a class="dropdown-item" href="#">Something
+												else here</a>
 										</div>
 									</div>
 								</div>
@@ -68,10 +65,12 @@
 												<th scope="col">Indent Number</th>
 												<th scope="col">Indent Date</th>
 												<th scope="col">Indent Type</th>
-												<th scope="col">Req. No</th>
-												<th scope="col">Req Date</th>
+
+
 												<th scope="col">Approval Status</th>
-												<th scope="col">Remarks</th>
+
+
+
 												<th scope="col">Action</th>
 											</tr>
 										</thead>
@@ -80,22 +79,86 @@
 												<td th:text="${iter.index}">1</td>
 												<td th:text="${indent.indentNumber}">Garrett Winters</td>
 												<td th:text="${indent.indentDate}">Garrett Winters</td>
-
-
 												<td th:text="${indent.indentType}">Good Guys</td>
-												<td>Requisition Number</td>
 
-												<td>Requisition Date</td>
-												<td th:text="${indent.approvalStatus1}">Good Guys</td>
 
-												<td>remarks</td>
-												<!-- <td><span class="badge bg-success"
-													th:text="${indent.activeYn}">Active</span></td> -->
+
+												<td class="text-center"
+													th:if="${indent.approvalStatus1 == 'N' and indent.approvalStatus2 == 'N' and indent.approvalStatus3 == 'N'}">
+													<div class="dropdown show">
+														<a class="btn btn-primary dropdown-toggle" href="#"
+															role="button" id="dropdownMenuLink" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"> level-1 Pending
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+															<a class="dropdown-item"
+																th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'Y'},level=${'1'})}">Approved</a>
+															<a class="dropdown-item"
+																th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'N'},level=${'1'})}">Cancel</a>
+
+														</div>
+													</div>
+												</td>
+
+												<td class="text-center"
+													th:if="${indent.approvalStatus1 == 'Y' and indent.approvalStatus2 == 'N' and indent.approvalStatus3 == 'N'}">
+													<div class="dropdown show">
+														<a class="btn btn-primary dropdown-toggle" href="#"
+															role="button" id="dropdownMenuLink" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"> level-2 Pending
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+															<a class="dropdown-item"
+																th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'Y'},level=${'2'})}">Approved</a>
+															<a class="dropdown-item"
+																th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'N'},level=${'2'})}">Cancel</a>
+
+														</div>
+													</div>
+												</td>
+
+												<td class="text-center"
+													th:if="${indent.approvalStatus1 == 'Y' and indent.approvalStatus2 == 'Y' and indent.approvalStatus3 == 'N'}">
+													<div class="dropdown show">
+														<a class="btn btn-primary dropdown-toggle" href="#"
+															role="button" id="dropdownMenuLink" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"> level-3 Pending
+														</a>
+
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+															<a class="dropdown-item"
+																th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'Y'},level=${'3'})}">Approved</a>
+															<a class="dropdown-item"
+																th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'N'},level=${'3'})}">Cancel</a>
+
+														</div>
+													</div>
+												</td>
+												
+												<td class="text-center"
+													th:if="${indent.approvalStatus1 == 'Y' and indent.approvalStatus2 == 'Y' and indent.approvalStatus3 == 'Y'}">
+													<div class="dropdown show">
+														<a class="btn btn-primary dropdown-toggle" href="#"
+															role="button" id="dropdownMenuLink" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"> &nbsp&nbsp&nbsp&nbsp&nbspApproved&nbsp&nbsp&nbsp&nbsp&nbsp
+														</a>
+
+														
+													</div>
+												</td>
+
+
+												<!--<a
+														th:href="@{/openindent/approve/{id}(id=${indent.indentNumber})}">view</a>-->
+
 
 												<td><span> <a
-														th:href="@{/openindent/approve/{id}(id=${indent.indentNumber})}">edit</a></span>
-													<span> <a
-														th:href="@{/openindent/approve/{id}(id=${indent.indentNumber})}">delete</a></span></td>
+															th:href="@{/openindent/view/{id}(id=${indent.indentNumber})}">view</a></span>
+												</td>
+
+
 											</tr>
 
 
@@ -122,7 +185,7 @@
 
 							</div>
  -->
-							
+
 						</div>
 					</div>
 
@@ -143,4 +206,5 @@
 
 
 </body>
+
 </html>

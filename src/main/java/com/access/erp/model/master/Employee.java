@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -24,8 +25,9 @@ public class Employee {
 	private String empCode;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="DEPT_CODE")
+	//@JsonIgnore
 	private Department department;
 	
 	@Column(name = "EMP_NAME", length = 100)
@@ -51,6 +53,7 @@ public class Employee {
 	
 	@ManyToOne
 	@JoinColumn(name = "DESIG_CODE")
+	@JsonIgnore
 	private Designation designation;
 	
 	@Column(name = "CASTE", length = 50)
@@ -231,6 +234,7 @@ public class Employee {
 	private String offerLeftNumber;
 	
 	@OneToOne(mappedBy = "employee" ,cascade = CascadeType.ALL)
+	@JsonIgnore
 	private MyUser myUser;
 
 	public Employee() {

@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.access.erp.model.master.Department;
 import com.access.erp.repo.DepartmentRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.DepartmentService;
 
+
+@Service
 public class DepartmentServiceImpl implements DepartmentService{
 
 	@Autowired DepartmentRepo departmentRepo;

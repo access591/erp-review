@@ -8,4 +8,5 @@ import com.access.erp.model.master.Employee;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, String>{
 
+	public Employee findEmployeeByEmpCode(String empCode);
 }

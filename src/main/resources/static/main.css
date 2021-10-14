@@ -83,10 +83,17 @@ label {
 }
 
 .form-group select {
-	align : center;
+	
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	height: 25px;
+}
+
+.select{
+	
 	font-family: Arial, sans-serif;
 	font-size: 11px;
-	height: 25px;
+	height: 20px;
 }
 
 .middle-form {
@@ -109,3 +116,20 @@ label {
 	display: inline-flex;
 	align-items: center;
 } */
+
+
+.form-control-sm {
+  height: 25px;
+  padding: 3px;
+  font-size: 12px;
+  
+ 
+}
+
+
+
+
+
+
+
+

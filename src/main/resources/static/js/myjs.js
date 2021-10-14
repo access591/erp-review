@@ -15,7 +15,7 @@ function indentGetEmployee() {
 
 		success: function(data) {
 			//$("#resultarea").text(data);
-			console.log("response data : " + data.department.deptName);
+			console.log("response data : " + data);
 			$("#employeename").val(data.empName);
 			$("#departmentcode").val(data.department.deptCode)
 			$("#departmentname").val(data.department.deptName)
