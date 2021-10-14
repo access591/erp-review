@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layouts/main-layout :: main-fragment(  
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main-layout :: main-fragment(  
                                                 ~{::title},
                                                 ~{:: #home-static-resources},
                                                 ~{:: #home-header},
@@ -12,24 +11,35 @@
                                                )}">
 
 <head>
-<title>Title of Home Page</title>
+	<title>Title of Home Page</title>
 
-<th:block id="home-static-resources">
+	<th:block id="home-static-resources">
 
-	<script type="text/javascript" src="../static/home.js"
-		th:src="@{/home.js}"></script>
-	<link rel="stylesheet" type="text/css" href="../static/home.css"
-		th:href="@{/home.css}" />
+		<script type="text/javascript" src="../static/home.js" th:src="@{/home.js}"></script>
+		<link rel="stylesheet" type="text/css" href="../static/home.css" th:href="@{/home.css}" />
 
-</th:block>
+		<style>
+			.form-control-sm {
+				height: 30px;
+				width: 120px;
+
+			}
+
+			.select {
+				width: 130px;
+				font-size: 10px;
+			}
+		</style>
+
+	</th:block>
 
 </head>
+
 <body>
 
 	<div id="home-header">ERP WhareHouse</div>
 
-	<div id="home-nav"
-		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	<div id="home-nav" th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
 	</div>
 
 
@@ -41,56 +51,48 @@
 		<h3>Open Indent</h3>
 
 
-		<form th:action="@{/openindent/}" method="POST"
-			th:object="${openIndent}">
+		<form th:action="@{/openindent/}" method="POST" th:object="${openIndent}">
 
 
 			<div class="form-border">
 				<h5>Indent Detail</h5>
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<label for="inputEmail4">Indent Number</label> <input type="text"
-							class="form-control" id="inputEmail4" placeholder="indent number"
-							th:field="*{indentNumber}">
+						<label for="inputEmail4">Indent Number</label> <input type="text" class="form-control"
+							id="inputEmail4" placeholder="indent number" th:field="*{indentNumber}">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputPassword4">Indent Date</label> <input type="date"
-							class="form-control" id=""
+						<label for="inputPassword4">Indent Date</label> <input type="date" class="form-control" id=""
 							placeholder="indent date" th:field="*{indentDate}">
 					</div>
 
 					<div class="form-group col-md-4">
-						<label class="form-label">Employee Code</label> <label
-							style="color: red">*</label> <select class="form-control"
-							title="employee code" id="employee" required
+						<label class="form-label">Employee Code</label> <label style="color: red">*</label> <select
+							class="form-control" title="employee code" id="employee" required
 							onchange="indentGetEmployee()" th:field="*{employee}">
 							<option value="">Select Employee</option>
-							<option th:each="employee :  ${employeeList}"
-								th:text="${employee.empCode}" th:value=" ${employee.empCode}"></option>
+							<option th:each="employee :  ${employeeList}" th:text="${employee.empCode}"
+								th:value=" ${employee.empCode}"></option>
 						</select>
 					</div>
 
 
 					<div class="form-group col-md-4">
-						<label for="inputAddress">Employee Name</label> <input type="text"
-							class="form-control" id="employeename"
-							placeholder="employee name">
+						<label for="inputAddress">Employee Name</label> <input type="text" class="form-control"
+							id="employeename" placeholder="employee name">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputAddress">Department Code</label> <input
-							type="text" class="form-control" id="departmentcode"
-							placeholder="department code" th:field="*{deptCode}">
+						<label for="inputAddress">Department Code</label> <input type="text" class="form-control"
+							id="departmentcode" placeholder="department code" th:field="*{deptCode}">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputAddress">Department Name</label> <input
-							type="text" class="form-control" id="departmentname"
-							placeholder="department name" th:field="*{deptName}">
+						<label for="inputAddress">Department Name</label> <input type="text" class="form-control"
+							id="departmentname" placeholder="department name" th:field="*{deptName}">
 					</div>
 
 					<div class="form-group col-md-4">
-						<label class="form-label">Urgency</label> <label
-							style="color: red">*</label> <select class="form-control"
-							id="" title="urgency" required>
+						<label class="form-label">Urgency</label> <label style="color: red">*</label> <select
+							class="form-control" id="" title="urgency" required>
 							<option value="">Select</option>
 							<option value="Most">Most Urgent</option>
 							<option value="Normal">Normal</option>
@@ -100,9 +102,8 @@
 
 
 					<div class="form-group col-md-4">
-						<label class="form-label">Indent Type</label> <label
-							style="color: red">*</label> <select class="form-control"
-							id="" title="urgency" required>
+						<label class="form-label">Indent Type</label> <label style="color: red">*</label> <select
+							class="form-control" id="" title="urgency" required>
 							<option value="">Select</option>
 							<option value="Capex">Capex</option>
 							<option value="NonCapex">Non-Capex</option>
@@ -110,17 +111,15 @@
 							<option value="Trading">Trading</option>
 						</select>
 					</div>
-					
-					
+
+
 					<div class="form-group col-md-4">
-						<label for="inputAddress">Purchase Type</label> <input type="text"
-							class="form-control" id="inputAddress"
-							placeholder="purchase type">
+						<label for="inputAddress">Purchase Type</label> <input type="text" class="form-control"
+							id="inputAddress" placeholder="purchase type">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputAddress">Remarks</label> <input type="text"
-							class="form-control" id="inputAddress" placeholder="remarks"
-							th:field="*{remarks}">
+						<label for="inputAddress">Remarks</label> <input type="text" class="form-control"
+							id="inputAddress" placeholder="remarks" th:field="*{remarks}">
 					</div>
 
 
@@ -133,19 +132,16 @@
 				<h5>Indent Status</h5>
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<label for="inputEmail4">Approval Status</label> <input
-							type="text" class="form-control" id="inputEmail4"
-							placeholder="approval status" th:field="*{approvalStatus1}">
+						<label for="inputEmail4">Approval Status</label> <input type="text" class="form-control"
+							id="inputEmail4" placeholder="approval status" th:field="*{approvalStatus1}">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputPassword4">Date of Approval</label> <input
-							type="date" class="form-control" id="inputPassword4"
-							placeholder="date of approval" th:field="*{approvalDate1}">
+						<label for="inputPassword4">Date of Approval</label> <input type="date" class="form-control"
+							id="inputPassword4" placeholder="date of approval" th:field="*{approvalDate1}">
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputPassword4">Purchase Status</label> <input
-							type="text" class="form-control" id="inputPassword4"
-							placeholder="purchase status" th:field="*{indPurStatus}">
+						<label for="inputPassword4">Purchase Status</label> <input type="text" class="form-control"
+							id="inputPassword4" placeholder="purchase status" th:field="*{indPurStatus}">
 					</div>
 
 				</div>
@@ -165,125 +161,103 @@
 
 
 				<div class="table-responsive">
-					<table id="example" aria-describedby="example"
-						class="table table-striped display">
+					<table id="example" aria-describedby="example" class="table table-striped display">
 						<thead>
 							<tr>
 
-								<th scope="col" class="text-center" style="width: 130px;">Item
-									Code</th>
-								<th scope="col" class="text-center" style="width: 100px;">Item
-									Description</th>
-								<th scope="col" class="text-center" style="width: 90px;">Qty.(In
-									Stock)</th>
-								<th scope="col" class="text-center" style="width: 90px;">Qty
-									to be Procured</th>
-								<th scope="col" class="text-center" style="width: 90px;">Pipeline
-									indent Qty</th>
-								<th scope="col" class="text-center" style="width: 10px;">Indented
-									Qty</th>
-								<th scope="col" class="text-center" style="width: 120px;">Approved
-									Indented Qty</th>
-								<th scope="col" class="text-center" style="width: 90px;">Status</th>
-								<th scope="col" class="text-center" style="width: 90px;">Currency
-									Code</th>
-								<th scope="col" class="text-center" style="width: 120px;">Conversion
-									Value</th>
-								<th scope="col" class="text-center" style="width: 90px;">Item
-									Rate</th>
-								<th scope="col" class="text-center" style="width: 90px;">Units</th>
-								<th scope="col" class="text-center" style="width: 90px;">Total
-									value</th>
-								<th scope="col" class="text-center" style="width: 120px;">Total
-									Value(INR)</th>
+								<th scope="col" class="text-center">Item Code</th>
+								<th scope="col" class="text-center">Item Description</th>
+								<th scope="col" class="text-center">Qty.(In Stock)</th>
+								<th scope="col" class="text-center">Qty to be Procured</th>
+								<th scope="col" class="text-center">Pipeline indent Qty</th>
+								<th scope="col" class="text-center">Indented Qty</th>
+								<th scope="col" class="text-center">Approved Indented Qty</th>
+								<th scope="col" class="text-center">Status</th>
+								<th scope="col" class="text-center">Currency Code</th>
+								<th scope="col" class="text-center">Conversion Value</th>
+								<th scope="col" class="text-center">Item Rate</th>
+								<th scope="col" class="text-center">Units</th>
+								<th scope="col" class="text-center">Total value</th>
+								<th scope="col" class="text-center">Total Value(INR)</th>
 
-								<th scope="col" class="text-center" style="width: 120px;">Requisition
-									Date</th>
-								<th scope="col" class="text-center" style="width: 120px;">Status</th>
+								<th scope="col" class="text-center">Requisition Date</th>
+								<th scope="col" class="text-center">Status</th>
 
-								<th scope="col" class="text-center" style="width: 120px;">Indent
-									Purpose</th>
+								<th scope="col" class="text-center">Indent Purpose</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr id="addr0">
 
-
-								<td><input type="text" style="width: 90px;"
-									id="indItemCode0" readonly title="" required
-									name="opeIndentDetail[0].indItemCode"></td>
+								<td>
+									<select class="select form-control form-control-sm" id="departmentDropdown" title="item Name" required>
+										<option value="">Select Item </option>
+										<option th:each="item :  ${itemList}" th:text="${item.itemName}"
+											th:value=" ${item.itemCode}">
+										</option>
+									</select>
+								</td>
+								<td><input type="text" id="indItemCode0" title="" class="form-control form-control-sm" required
+										name="opeIndentDetail[0].indItemCode"></td>
 								<!-- item description -->
-								<td><input type="text" style="width: 120px;"
-									id="salaryFrom" required title="Salary"></td>
+								<td><input type="text" class="form-control form-control-sm" id="salaryFrom" title="Salary">
+								</td>
 
-								<td><input type="text" style="width: 90px;"
-									id="qtyInStock0" title="" required
-									name="opeIndentDetail[0].qtyInStock"></td>
-
+								<td><input type="text" class="form-control form-control-sm" id="qtyInStock0" title="" required
+										name="opeIndentDetail[0].qtyInStock"></td>
 
 
 
 
-								<td><input type="text" style="width: 90px;"
-									id="qtyProcured0" title="" required
-									name="opeIndentDetail[0].qtyProcured"></td>
 
-								<td><input type="text" style="width: 90px;"
-									id="qtyProcured0" title="" required
-									name="opeIndentDetail[0].pipelineQty"></td>
+								<td><input type="text" class="form-control form-control-sm" id="qtyProcured0" title="" 
+										name="opeIndentDetail[0].qtyProcured"></td>
+
+								<td><input type="text" class="form-control form-control-sm" id="qtyProcured0" title="" required
+										name="opeIndentDetail[0].pipelineQty"></td>
 
 
-								<td><input type="text" style="width: 90px;" id="indQty0"
-									min="18" title="Age from" required
-									name="opeIndentDetail[0].indQty"></td>
+								<td><input type="text" class="form-control form-control-sm" id="indQty0" min="18" title="Age from"
+										required name="opeIndentDetail[0].indQty"></td>
 
-								<td><input type="text" max="45" style="width: 90px;"
-									id="ageTo" required name="opeIndentDetail[0].approvedQty"></td>
+								<td><input type="text" class="form-control form-control-sm" id="ageTo" required
+										name="opeIndentDetail[0].approvedQty"></td>
 
 								<!-- gor status -->
-								<td><input type="text" style="width: 120px;"
-									id="accademicQualificatio" required
-									title="Accademic qualification"></td>
+								<td><input type="text" class="form-control form-control-sm" id="accademicQualificatio" required
+										title="Accademic qualification"></td>
 
-								<td><input type="text" style="width: 90px;"
-									id="expMaxMonth" required title="max experience"
-									name="opeIndentDetail[0].currencyCode"></td>
+								<td><input type="text" class="form-control form-control-sm" id="expMaxMonth" required
+										title="max experience" name="opeIndentDetail[0].currencyCode"></td>
 
-								<td><input type="text" style="width: 90px;"
-									id="expMaxMonth" required title="max experience"
-									name="opeIndentDetail[0].conversionvalue"></td>
+								<td><input type="text" class="form-control form-control-sm" id="expMaxMonth" required
+										title="max experience" name="opeIndentDetail[0].conversionvalue"></td>
 
 
-								<td><input type="text" style="width: 120px;"
-									id="technicalQualification" required
-									title="Technical Qualification"
-									name="opeIndentDetail[0].itemRate"></td>
+								<td><input type="text" class="form-control form-control-sm" id="technicalQualification" required
+										title="Technical Qualification" name="opeIndentDetail[0].itemRate"></td>
 
 								<!--unit  -->
-								<td><input type="text" style="width: 120px;" id="salaryTo"
-									required></td>
+								<td><input type="text" class="form-control form-control-sm" id="salaryTo" required></td>
 
-								<td><input type="text" style="width: 120px;" id="salaryTo"
-									required name="opeIndentDetail[0].totalValue"></td>
+								<td><input type="text" class="form-control form-control-sm" id="salaryTo" required
+										name="opeIndentDetail[0].totalValue"></td>
 
 								<!-- total value (INR)  -->
-								<td><input type="text" style="width: 120px;" id="salaryTo"
-									required></td>
+								<td><input type="text" class="form-control form-control-sm" id="salaryTo" required></td>
 
-								<!-- for requisition date  -->
-								<td><input type="text" style="width: 120px;"
-									id="salaryFrom" required title="Salary"></td>
+								
+							
 
-								<td><input type="text" style="width: 90px;"
-									id="purStatusItemWise" required title="minimum experience"
-									name="opeIndentDetail[0].purStatusItemWise"></td>
+								<td><input type="text" class="form-control form-control-sm" id="purStatusItemWise" required
+										title="minimum experience" name="opeIndentDetail[0].purStatusItemWise"></td>
 
 
-								<td><input type="text" style="width: 120px;"
-									id="indPurpose0" required name="opeIndentDetail[0].indPurpose"></td>
+								<td><input type="text" class="form-control form-control-sm" id="indPurpose0" required
+										name="opeIndentDetail[0].indPurpose"></td>
 
-								<td></td>
+								
 							</tr>
 							<tr id='addr1' />
 
@@ -301,8 +275,8 @@
 
 
 			<div class="row" style="margin: 10px">
-				<input type="submit" value="Submit" class="btn btn-primary" /> <input
-					type="reset" value="Reset" class="btn btn-danger" />
+				<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset"
+					class="btn btn-danger" />
 			</div>
 
 		</form>
@@ -327,12 +301,13 @@
     </div> -->
 
 
-<script>
-	let txt = $("#editDistName option:selected").text();
-	$("#employeename").val(data.empName);
-</script>
+	<script>
+		let txt = $("#editDistName option:selected").text();
+		$("#employeename").val(data.empName);
+	</script>
 
 
 
 </body>
+
 </html>

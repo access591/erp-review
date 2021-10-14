@@ -2,8 +2,7 @@
 
 
 <!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layouts/main-layout :: main-fragment(  
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main-layout :: main-fragment(  
                                                 ~{::title},
                                                 ~{:: #home-static-resources},
                                                 ~{:: #home-header},
@@ -17,22 +16,34 @@
 
 
 
-<title>Title of Home Page</title>
+	<title>Title of Home Page</title>
 
-<th:block id="home-static-resources">
+	<th:block id="home-static-resources">
+
+		<style>
+			.form-control-sm {
+				height: 30px;
+				width: 120px;
+
+			}
+
+			.select {
+				width: 130px;
+				font-size: 10px;
+			}
+		</style>
+	</th:block>
 
 
 
-
-</th:block>
 
 </head>
+
 <body>
 
 	<div id="home-header">ERP WhareHouse</div>
 
-	<div id="home-nav"
-		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
+	<div id="home-nav" th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
 	</div>
 
 
@@ -44,25 +55,30 @@
 		<h5 style="color: #2e7ef2;">Request for Quotation Master</h5>
 
 
-		<form th:action="@{/requestquotaion/}" method="POST">
+		<form th:action="@{/requestquotaion/}" method="POST" th:object="${rFQuotation}">
 			<div class="form-border">
 
 				<div class="row">
 					<div class="form-group col-md-6">
-						<label for="inputEmail4">Request for Quotation Num</label> <input
-							type="text" class="form-control" placeholder="quotation number">
+						<label for="inputEmail4">Request for Quotation Num</label> <input type="text"
+							class="form-control" placeholder="quotation number" th:field="*{rfqNo}">
 					</div>
 					<div class="form-group col-md-6">
-						<label for="inputPassword4">Request for Quotation Type</label> <input
-							type="text" class="form-control" placeholder="quotation type">
+						<label class="form-label">Request For Quotation Type</label> <label style="color: red">*</label>
+						<select class="form-control" id="" title="urgency" th:field="*{rfqType}" required>
+							<option value="">Select</option>
+							<option value="indent">Indent</option>
+							<option value="withoutIndent">without Indent</option>
+
+						</select>
 					</div>
 
 				</div>
 
 				<div class="row">
 					<div class="form-group col-md-6">
-						<label for="inputEmail4">Request for Quotation Date</label> <input
-							type="text" class="form-control" placeholder="quotation date">
+						<label for="inputEmail4">Request for Quotation Date</label> <input type="date"
+							class="form-control" placeholder="quotation date" th:field="*{rfqDate}">
 					</div>
 
 
@@ -95,31 +111,30 @@
 
 
 							<a id="add_row" class="fa fa-plus" aria-hidden="true"
-								style="font-size: 22px; color: #001080"></a> <a id='delete_row'
-								class="fa fa-trash" style="font-size: 22px; color: #399490fc"
-								aria-hidden="true"></a>
+								style="font-size: 22px; color: #001080"></a> <a id='delete_row' class="fa fa-trash"
+								style="font-size: 22px; color: #399490fc" aria-hidden="true"></a>
 						</div>
 
 						<div class="table-responsive">
-							<table id="example" aria-describedby="example"
-								class="table table-striped display" style="width: 100%">
+							<table id="example" aria-describedby="example" class="table table-striped display"
+								style="width: 100%">
 								<thead>
 									<tr>
-										<th scope="col" class="text-center" style="width: 90px;">Indent
+										<th scope="col" class="text-center">Indent
 											Number</th>
-										<th scope="col" class="text-center" style="width: 130px;">Indent
+										<th scope="col" class="text-center">Indent
 											Date</th>
-										<th scope="col" class="text-center" style="width: 100px;">Item
+										<th scope="col" class="text-center">Item
 											Name</th>
-										<th scope="col" class="text-center" style="width: 90px;">UOM</th>
-										<th scope="col" class="text-center" style="width: 90px;">City</th>
-										<th scope="col" class="text-center" style="width: 90px;">Required
+										<th scope="col" class="text-center">UOM</th>
+										<th scope="col" class="text-center">City</th>
+										<th scope="col" class="text-center">Required
 											Date</th>
-										<th scope="col" class="text-center" style="width: 10px;">Item
+										<th scope="col" class="text-center">Item
 											Specification</th>
-										<th scope="col" class="text-center" style="width: 120px;">Term
+										<th scope="col" class="text-center">Term
 											and Conditions</th>
-										<th scope="col" class="text-center" style="width: 90px;">Remarks</th>
+										<th scope="col" class="text-center">Remarks</th>
 
 
 
@@ -129,40 +144,45 @@
 									<tr id="addr0">
 
 
-										<td><input type="text" style="width: 90px;"
-											id="desigCode0" readonly title="Designation code" required></td>
+										<td><select class="select form-control form-control-sm" id="location"
+												title="Location" required>
+												<option value=" ">Select Indent Number</option>
+												<option th:each="indent :  ${aprovedOpenIndentList}"
+													th:text="${indent.indentNumber}"
+													th:value=" ${indent.indentNumber}"></option>
+											</select>
+											</select></td>
 
-										<td><input type="date" style="width: 90px;"
-											title="indent date" required></td>
+										<td><input type="date" style="font-size: 0.95rem" title="indent date"
+												class="form-control form-control-sm" required>
+										</td>
 
 
 
-										<td><select id="location" style="width: 100px;"
-											title="Location" required>
+										<td><select class="form-control form-control-sm select" id="location"
+												title="Location" required>
 												<option value=" ">Select Item Name</option>
 												<option value="Court">Court</option>
 												<option value="Department">Department</option>
-										</select></td>
+											</select></td>
 
-										<td><input type="text" style="width: 90px;" id="ageFrom"
-											title="uom" required></td>
+										<td><input type="text" title="uom" class="form-control form-control-sm">
+										</td>
 
-										<td><input type="text" style="width: 90px;" id="ageFrom"
-											title="Age from" required></td>
+										<td><input type="text" title="Age from" class="form-control form-control-sm">
+										</td>
 
-										<td><input type="date" max="45" style="width: 90px;"
-											id="ageTo" required></td>
+										<td><input type="date" style="font-size: 0.95rem"
+												class="form-control form-control-sm" required></td>
 
-										<td><input type="text" style="width: 120px;"
-											id="accademicQualificatio" required
-											title="Accademic qualification"></td>
+										<td><input type="text" class="form-control form-control-sm" required title="">
+										</td>
 
-										<td><input type="text" style="width: 120px;"
-											id="technicalQualification" required
-											title="Technical Qualification"></td>
+										<td><input type="text" class="form-control form-control-sm" required title="">
+										</td>
 
-										<td><input type="text" style="width: 90px;"
-											id="expMinMonth" required title="minimum experience"></td>
+										<td><input type="text" class="form-control form-control-sm" required title="">
+										</td>
 
 
 
@@ -206,36 +226,24 @@
 
 
 							<a id="add_row" class="fa fa-plus" aria-hidden="true"
-								style="font-size: 22px; color: #001080"></a> <a id='delete_row'
-								class="fa fa-trash" style="font-size: 22px; color: #399490fc"
-								aria-hidden="true"></a>
+								style="font-size: 22px; color: #001080"></a> <a id='delete_row' class="fa fa-trash"
+								style="font-size: 22px; color: #399490fc" aria-hidden="true"></a>
 						</div>
 
 						<div class="table-responsive">
-							<table id="example" aria-describedby="example"
-								class="table table-striped display" style="width: 100%">
+							<table id="example" aria-describedby="example" class="table table-striped display"
+								style="width: 100%">
 								<thead>
 									<tr>
-										<th scope="col" class="text-center" style="width: 90px;">Indent
-											Number</th>
-										<th scope="col" class="text-center" style="width: 130px;">Indent
-											Date</th>
-										<th scope="col" class="text-center" style="width: 100px;">Employee
-											Code</th>
-										<th scope="col" class="text-center" style="width: 90px;">Employee
-											Name</th>
-										<th scope="col" class="text-center" style="width: 90px;">Item
-											Code</th>
-										<th scope="col" class="text-center" style="width: 90px;">Description</th>
-										<th scope="col" class="text-center" style="width: 10px;">UOM</th>
-										<th scope="col" class="text-center" style="width: 120px;">Rate</th>
-										<th scope="col" class="text-center" style="width: 90px;">Negotiable
-											Cost</th>
-										<th scope="col" class="text-center" style="width: 90px;">Qty</th>
-										<th scope="col" class="text-center" style="width: 120px;">Total
-											INR Value</th>
-										<th scope="col" class="text-center" style="width: 90px;">Approval
-											Status</th>
+										<th scope="col" class="text-center">Supplier Name</th>
+										<th scope="col" class="text-center">Supplier Address</th>
+										<th scope="col" class="text-center">Supplier City</th>
+										<th scope="col" class="text-center">Supplier State</th>
+										<th scope="col" class="text-center">Contact Person</th>
+										<th scope="col" class="text-center">Email</th>
+										<th scope="col" class="text-center">Phone Number</th>
+										<th scope="col" class="text-center">fax Number</th>
+
 
 
 									</tr>
@@ -243,62 +251,37 @@
 								<tbody>
 									<tr id="addr0">
 
-
-										<td><input type="text" style="width: 90px;"
-											id="desigCode0" readonly title="Designation code" required></td>
-
-										<td><select id="designationName0" style="width: 130px;"
-											required onchange="selectDesignation()"
-											title="Designation name">
+										<td><select id="designationName0" class="form-control form-control-sm select"
+												required onchange="selectDesignation()" title="Designation name">
 												<option value=" ">Select</option>
 
 
-										</select></td>
+											</select></td>
+
+										<td><input type="text" class="form-control form-control-sm" id="desigCode0"
+												title="Designation code"></td>
+
+										<td><input type="text" class="form-control form-control-sm" id="desigCode0"
+												title="Designation code"></td>
+
+										<td><input type="text" class="form-control form-control-sm" id="desigCode0"
+												title="Designation code"></td>
+
+										<td><input type="text" class="form-control form-control-sm" id="ageFrom"
+												min="18" title="Age from"></td>
+
+										<td><input type="text" max="45" class="form-control form-control-sm" id="ageTo">
+										</td>
+
+										<td><input type="text" class="form-control form-control-sm"
+												id="accademicQualificatio" title="Accademic qualification">
+										</td>
+
+										<td><input type="text" class="form-control form-control-sm"
+												id="technicalQualification" title="Technical Qualification">
+										</td>
 
 
-
-										<td><select id="location" style="width: 100px;"
-											title="Location" required>
-												<option value=" ">Select</option>
-												<option value="Court">Court</option>
-												<option value="Department">Department</option>
-										</select></td>
-
-										<td><select id="sex" style="width: 90px;" required>
-												<option value=" ">Select</option>
-												<option value="Male">Male</option>
-												<option value="Female">Female</option>
-										</select></td>
-
-										<td><input type="number" style="width: 90px;"
-											id="ageFrom" min="18" title="Age from" required></td>
-
-										<td><input type="number" max="45" style="width: 90px;"
-											id="ageTo" required></td>
-
-										<td><input type="text" style="width: 120px;"
-											id="accademicQualificatio" required
-											title="Accademic qualification"></td>
-
-										<td><input type="text" style="width: 120px;"
-											id="technicalQualification" required
-											title="Technical Qualification"></td>
-
-										<td><input type="number" style="width: 90px;"
-											id="expMinMonth" required title="minimum experience"></td>
-
-										<td><input type="number" style="width: 90px;"
-											id="expMaxMonth" required title="max experience"></td>
-
-										<td><select id="vacancyType" style="width: 120px;"
-											required>
-												<option value=" ">Select</option>
-												<option value="Fresher">Fresher</option>
-												<option value="Experience">Experience</option>
-										</select></td>
-
-										<td><input type="number" style="width: 90px;"
-											id="totalvacancy" required title="Total vacancy"></td>
 
 
 									</tr>
@@ -319,9 +302,9 @@
 
 
 
-		<button id="button" onclick="fun()">click me</button>
+
 		<div class="row text-right m-10">
-			<a th:href="@{/requestquotation/list}">view state list</a>
+			<a th:href="@{/requestquotation/list}">view Request for Quotaion list</a>
 		</div>
 	</div>
 
@@ -337,16 +320,16 @@
 
 
 	<script>
-		$(function(){
-    		console.log( "ready!" );
+		$(function () {
+			console.log("ready!");
 		});
 
 
 
-function fun(){
+		function fun() {
 
-	console.log("my function running...")
-}
+			console.log("my function running...")
+		}
 
 
 	</script>

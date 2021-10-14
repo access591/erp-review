@@ -49,7 +49,7 @@ public class OpenIndent {
 	private String indentRemark;
 
 	@Column(name = "APPROVAL_STATUS", length = 20)
-	private String approvalStatus;
+	private String approvalStatus = "N";
 	
 	@Column(name = "DATE_OF_APPROVAL")
 	private Date dateOfApproval;

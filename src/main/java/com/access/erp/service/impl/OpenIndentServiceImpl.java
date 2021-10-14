@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -120,26 +122,25 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 	@Override
 	public void approval(String indentNumber, String approvalStatus, String level) {
 
-		
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		
+
 		try {
-			
+
 			tx = session.beginTransaction();
 			OpenIndent openIndent = session.find(OpenIndent.class, indentNumber);
-			
+
 			if (level.equals("1")) {
 
 				openIndent.setApprovalDate1(new Date());
 				openIndent.setApprovalStatus1(approvalStatus);
-		
+
 			}
 
 			else if (level.equals("2")) {
 				openIndent.setApprovalDate2(new Date());
 				openIndent.setApprovalStatus2(approvalStatus);
-				
+
 			}
 
 			else if (level.equals("3")) {
@@ -147,18 +148,39 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 				openIndent.setApprovalStatus3(approvalStatus);
 				openIndent.setApprovalStatus(approvalStatus);
 			}
-			
+
 			tx.commit();
-			
-		}catch(Exception e ) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
-		
-		
-		
 
+	}
+
+	@Override
+	public List<OpenIndent> approvedOpenIndent() {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		List<OpenIndent> result = null;
+
+		try {
+
+			tx = session.beginTransaction();
+			TypedQuery<OpenIndent> query = session
+					.createQuery("from OpenIndent o where o.approvalStatus=:approvalStatus", OpenIndent.class);
+			query.setParameter("approvalStatus", "Y");
+			result = query.getResultList();
+			tx.commit();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 }

@@ -14,16 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.OpenIndent;
 import com.access.erp.model.master.Employee;
+import com.access.erp.model.master.Item;
 import com.access.erp.service.EmployeeService;
+import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentService;
 
 @Controller
 @RequestMapping("/openindent")
 public class OpenIndentController {
 
-	@Autowired
-	OpenIndentService openIndentService;
+	@Autowired OpenIndentService openIndentService;
 	@Autowired EmployeeService employeeService;
+	@Autowired ItemService itemService;
+	
 
 	@GetMapping("/")
 	public String openIndent(Model model) {
@@ -32,6 +35,9 @@ public class OpenIndentController {
 		model.addAttribute("employeeList", employeeList);
 		
 		model.addAttribute("openIndent", new OpenIndent());
+		
+		List<Item> itemList = itemService.getAllItem();
+		model.addAttribute("itemList", itemList);
 		
 		return "layouts/Master/openindent";
 	}
