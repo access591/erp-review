@@ -191,15 +191,16 @@
 							<tr id="addr0">
 
 								<td>
-									<select class="select form-control form-control-sm" id="departmentDropdown" title="item Name" required>
+									<select class="select form-control form-control-sm" id="departmentDropdown" title="item Name" 
+											name="opeIndentDetail[0].indItemCode" required>
 										<option value="">Select Item </option>
-										<option th:each="item :  ${itemList}" th:text="${item.itemName}"
+										<option th:each="item :  ${itemList}" th:text="${item.description}"
 											th:value=" ${item.itemCode}">
 										</option>
 									</select>
 								</td>
 								<td><input type="text" id="indItemCode0" title="" class="form-control form-control-sm" required
-										name="opeIndentDetail[0].indItemCode"></td>
+										></td>
 								<!-- item description -->
 								<td><input type="text" class="form-control form-control-sm" id="salaryFrom" title="Salary">
 								</td>

@@ -10,7 +10,7 @@ import com.access.erp.model.OpenIndent;
 public interface OpenIndentRepo extends JpaRepository<OpenIndent, String>{
 
 	
-	
+	public OpenIndent findByIndentNumber(String indentNumber);
 	
 	
 }

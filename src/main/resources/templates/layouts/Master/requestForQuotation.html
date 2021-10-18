@@ -24,13 +24,17 @@
 			.form-control-sm {
 				height: 30px;
 				width: 120px;
+				font-size: 11px;
 
 			}
 
 			.select {
 				width: 130px;
-				font-size: 10px;
+				font-size: 11px;
 			}
+
+			
+
 		</style>
 	</th:block>
 
@@ -111,7 +115,7 @@
 
 
 							<a id="add_row" class="fa fa-plus" aria-hidden="true"
-								style="font-size: 22px; color: #001080"></a> <a id='delete_row' class="fa fa-trash"
+								style="font-size: 22px; color: #001080"></a> <a id="delete_row" class="fa fa-trash"
 								style="font-size: 22px; color: #399490fc" aria-hidden="true"></a>
 						</div>
 
@@ -144,29 +148,29 @@
 									<tr id="addr0">
 
 
-										<td><select class="select form-control form-control-sm" id="location"
-												title="Location" required>
+										<td><select class="select form-control form-control-sm" id="indentNumber"
+												title="Location" required onchange="getIndentList()">
 												<option value=" ">Select Indent Number</option>
 												<option th:each="indent :  ${aprovedOpenIndentList}"
-													th:text="${indent.indentNumber}"
-													th:value=" ${indent.indentNumber}"></option>
-											</select>
+													th:text="${indent.indentNumber}" th:value=" ${indent.indentNumber}">
+												</option>
+
 											</select></td>
 
 										<td><input type="date" style="font-size: 0.95rem" title="indent date"
-												class="form-control form-control-sm" required>
+												class="form-control form-control-sm" id="indentDate" required>
 										</td>
 
 
 
-										<td><select class="form-control form-control-sm select" id="location"
-												title="Location" required>
+										<td><select class="form-control form-control-sm select itemContainer"
+												onchange="getItemDetail()" title="Location" id="item" required>
 												<option value=" ">Select Item Name</option>
-												<option value="Court">Court</option>
-												<option value="Department">Department</option>
+
 											</select></td>
 
-										<td><input type="text" title="uom" class="form-control form-control-sm">
+										<td><input type="text" title="uom" class="form-control form-control-sm"
+												id="uom">
 										</td>
 
 										<td><input type="text" title="Age from" class="form-control form-control-sm">
@@ -226,7 +230,7 @@
 
 
 							<a id="add_row" class="fa fa-plus" aria-hidden="true"
-								style="font-size: 22px; color: #001080"></a> <a id='delete_row' class="fa fa-trash"
+								style="font-size: 22px; color: #001080"></a> <a id="delete_row" class="fa fa-trash"
 								style="font-size: 22px; color: #399490fc" aria-hidden="true"></a>
 						</div>
 
@@ -251,21 +255,24 @@
 								<tbody>
 									<tr id="addr0">
 
-										<td><select id="designationName0" class="form-control form-control-sm select"
-												required onchange="selectDesignation()" title="Designation name">
+										<td><select id="supplierId" class="form-control form-control-sm select"
+												required title="Designation name" onchange="supplierInfo()">
 												<option value=" ">Select</option>
+												<option th:each="supplier :  ${listSupplier}"
+													th:text="${supplier.supplierName}" th:value=" ${supplier.supplierId}">
+												</option>
 
 
 											</select></td>
 
-										<td><input type="text" class="form-control form-control-sm" id="desigCode0"
-												title="Designation code"></td>
+										<td><input type="text" class="form-control form-control-sm" id="supplierAdd"
+												title="supplier address"></td>
 
-										<td><input type="text" class="form-control form-control-sm" id="desigCode0"
-												title="Designation code"></td>
+										<td><input type="text" class="form-control form-control-sm" id="supplierCity"
+												title="supplier city"></td>
 
-										<td><input type="text" class="form-control form-control-sm" id="desigCode0"
-												title="Designation code"></td>
+										<td><input type="text" class="form-control form-control-sm" id="supplierState"
+												title="supplier State"></td>
 
 										<td><input type="text" class="form-control form-control-sm" id="ageFrom"
 												min="18" title="Age from"></td>

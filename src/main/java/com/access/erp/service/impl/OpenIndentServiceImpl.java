@@ -48,9 +48,11 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 			for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
 				// openIndent.getOpeIndentDetail().add(indent);
 
-				String maxCode1 = seqMainRepo.findByTranType("IDT");
-				indent.setIndItemCode(maxCode);
+//				String maxCode1 = seqMainRepo.findByTranType("IDT");
+//				indent.setIndItemCode(maxCode);
 
+				//System.out.println("indent item code : " + indent.getItem().getItemCode());
+				//indent.setItem(indent.getItem());
 				indent.setOpenIndent(openIndent);
 				// indentDetailRepo.save(indent);
 			}

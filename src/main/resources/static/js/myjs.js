@@ -13,13 +13,13 @@ function indentGetEmployee() {
 		type: "GET",
 		url: "/employee/employeeinfo/" + empCode,
 
-		success: function(data) {
+		success: function (data) {
 			//$("#resultarea").text(data);
 			console.log("response data : " + data);
 			$("#employeename").val(data.empName);
 			$("#departmentcode").val(data.department.deptCode)
 			$("#departmentname").val(data.department.deptName)
-		}, error: function() {
+		}, error: function () {
 			console.log("Error");
 		}
 	});
@@ -38,12 +38,91 @@ function indentGetEmployee() {
 
 //*********************************************RequestForQuotation***************************
 
+function getIndentList() {
+
+	console.log("get Item function calling");
+	var indentNumber = document.getElementById("indentNumber").value;
+	console.log("emp code : " + indentNumber);
+
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/itemdetail/" + indentNumber,
+
+		success: function (data) {
+			//$("#resultarea").text(data);
+			console.log("response data : " + $(this.data).addClass('show'));
+
+
+			$("#indentDate").val(data.indentDate);
+
+			var options = '<option value=""><strong>Select Item</strong></option>';
+			$(data.listItem).each(function (index, value) {
+
+				console.log("item info : " + value.description)
+				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
+
+			});
+
+			$('.itemContainer').html(options);
+			// $("#departmentcode").val(data.department.deptCode)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function () {
+			console.log("Error");
+		}
+	});
+
+}
+
+function getItemDetail() {
+
+	var item = document.getElementById("item").value;
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/itemdetail1/" + item,
+
+		success: function (data) {
+			console.log("ite data is : "+ data)
+
+			$("#uom").val(data.uom.uomCode)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function () {
+			console.log("Error");
+		}
+	});
+}
+
+
+function supplierInfo(){
+
+	var supplierId = document.getElementById("supplierId").value;
+	console.log("supplier id is : "+ supplierId)
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/supplierdetail/" + supplierId,
+
+		success: function (data) {
+			console.log("ite data is : "+ data)
+
+			$("#supplierAdd").val(data.supplierAdd)
+			$("#supplierCity").val(data.supplierCity)
+			$("#supplierState").val(data.supplierState)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function () {
+			console.log("Error");
+		}
+	});
+
+}
+
 
 function addRowInRfQuotation() {
 	idIndex = 0;
 	$(document)
 		.ready(
-			function() {
+			function () {
 				console.log("click function...");
 				var i = 1;
 
@@ -51,7 +130,7 @@ function addRowInRfQuotation() {
 					+ idIndex);
 				$("#add_row")
 					.click(
-						function() {
+						function () {
 							idIndex++;
 							$('#addr' + i)
 								.html(
@@ -90,7 +169,7 @@ function addRowInRfQuotation() {
 
 						});
 
-				$("#delete_row").click(function() {
+				$("#delete_row").click(function () {
 					if (i > 1) {
 						$("#addr" + (i - 1)).html('');
 						$('#_cr').val(i - 1);
