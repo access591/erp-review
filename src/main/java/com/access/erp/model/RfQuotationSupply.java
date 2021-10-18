@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.SupplierMaster;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -19,7 +21,15 @@ public class RfQuotationSupply {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long suppCode;
+	private Long rfQuoSupplyID;
+	
+	/*
+	 * @Column(name="SUPPLIER_CODE",length = 50) private Long suppCode;
+	 */
+	@ManyToOne(optional = false,fetch=FetchType.EAGER)
+	@JoinColumn(name = "SUPPLIER_CODE")
+	@JsonIgnore
+	private SupplierMaster suppCode;
 	
 	
 	@Column(name="SUPPLIER_NAME",length = 50)
@@ -42,9 +52,11 @@ public class RfQuotationSupply {
 	private String srNum;
 	
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "INDENT_NUMBER")
-	private OpenIndent openIndent;
+	/*
+	 * @ManyToOne(fetch=FetchType.LAZY)
+	 * 
+	 * @JoinColumn(name = "INDENT_NUMBER") private OpenIndent openIndent;
+	 */
 	
 	
 	@Column(name="CONTACT_PERSON",length = 50)
@@ -61,13 +73,15 @@ public class RfQuotationSupply {
 	
 	@ManyToOne(optional = false,fetch=FetchType.LAZY)
 	@JoinColumn(name = "RFQ_NUM")
+	@JsonIgnore
 	private RfQuotation rfQuotation;
 
-	public Long getSuppCode() {
+	
+	public SupplierMaster getSuppCode() {
 		return suppCode;
 	}
 
-	public void setSuppCode(Long suppCode) {
+	public void setSuppCode(SupplierMaster suppCode) {
 		this.suppCode = suppCode;
 	}
 
@@ -119,14 +133,12 @@ public class RfQuotationSupply {
 		this.srNum = srNum;
 	}
 
-	public OpenIndent getOpenIndent() {
-		return openIndent;
-	}
-
-	public void setOpenIndent(OpenIndent openIndent) {
-		this.openIndent = openIndent;
-	}
-
+	/*
+	 * public OpenIndent getOpenIndent() { return openIndent; }
+	 * 
+	 * public void setOpenIndent(OpenIndent openIndent) { this.openIndent =
+	 * openIndent; }
+	 */
 	public String getContactPerson() {
 		return contactPerson;
 	}
@@ -165,6 +177,14 @@ public class RfQuotationSupply {
 
 	public void setRfQuotation(RfQuotation rfQuotation) {
 		this.rfQuotation = rfQuotation;
+	}
+
+	public Long getRfQuoSupplyID() {
+		return rfQuoSupplyID;
+	}
+
+	public void setRfQuoSupplyID(Long rfQuoSupplyID) {
+		this.rfQuoSupplyID = rfQuoSupplyID;
 	}
 	
 	

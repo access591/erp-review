@@ -13,16 +13,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.QuotationDetail;
+import com.access.erp.model.RfQuotation;
 import com.access.erp.service.QuotationDetailService;
+import com.access.erp.service.RfQuotationService;
 
 @Controller
 @RequestMapping("/quotationdetail")
 public class QuotationDetailController {
 
 	@Autowired QuotationDetailService quotationService;
+	@Autowired RfQuotationService rfQuotationService;
+	
 	
 	@GetMapping("/")
 	public String quotationDetail(Model model) {
+		
+		List<RfQuotation> listRfQuotation = rfQuotationService.getAllRfQuotation();
+		model.addAttribute("listRfQuotation", listRfQuotation);
+		
 		
 		model.addAttribute("quotation", new QuotationDetail());
 		return "layouts/Master/quotationDetail";
