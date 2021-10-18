@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="RFQ_MASTER")
 public class RfQuotation {
@@ -41,10 +46,13 @@ public class RfQuotation {
 	@Column(name="RFQ_TERMCONDITION",length=1000)
 	private String rfqTermCondition;
 	
-	@OneToMany(mappedBy = "rfQuotations", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "rfQuotations", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<RfQuotationItem> listRFQuotation = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "rfQuotation", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "rfQuotation", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<RfQuotationSupply> listRFQuotationSupply = new ArrayList<>();
 
 	public RfQuotation() {

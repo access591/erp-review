@@ -142,12 +142,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr id="addr0">
+									<tr id="addr0" th:each="row, stat :${rFQuotation.listRFQuotation}">
 
 
 										<td><select class="select form-control form-control-sm" id="indentNumber"
 												title="Location" required onchange="getIndentList()"
-												name="listRFQuotation[0].openIndent">
+												th:field="*{listRFQuotation[__${stat.index}__].openIndent}">
 												<option value=" ">Select Indent Number</option>
 												<option th:each="indent :  ${aprovedOpenIndentList}"
 													th:text="${indent.indentNumber}" th:value=" ${indent.indentNumber}">
@@ -157,40 +157,50 @@
 
 										<td><input type="date" style="font-size: 0.95rem" title="indent date"
 												class="form-control form-control-sm" id="indentDate"
-												name="listRFQuotation[0].indentDate" required>
+												th:field="*{listRFQuotation[__${stat.index}__].rfqDate}" required>
 										</td>
 
 
 
-										<td><select class="form-control form-control-sm select itemContainer"
+										<!--<td><select class="form-control form-control-sm select itemContainer"
 												onchange="getItemDetail()" title="Location" id="item"
-												name="listRFQuotation[0].item" required>
+												th:field="*{listRFQuotation[__${stat.index}__].item}"
+												 required>
 												<option value=" ">Select Item Name</option>
 
 											</select></td>
+-->
 
+										<td><input type="text" style="font-size: 0.95rem" title="indent date"
+												class="form-control form-control-sm" id="indentDate"
+												th:field="*{listRFQuotation[__${stat.index}__].item}" required>
+										</td>
+										
 										<td><input type="text" title="uom" class="form-control form-control-sm" id="uom"
-												name="listRFQuotation[0].uom">
+												th:field="*{listRFQuotation[__${stat.index}__].uom}">
 										</td>
 
 										<td><input type="text" title="city" class="form-control form-control-sm"
-												name="listRFQuotation[0].city">
+												th:field="*{listRFQuotation[__${stat.index}__].city}">
 										</td>
 
 										<td><input type="date" style="font-size: 0.95rem"
-												class="form-control form-control-sm" name="listRFQuotation[0].rfqDate"
-												required></td>
+												class="form-control form-control-sm"
+												th:field="*{listRFQuotation[__${stat.index}__].rfqDate}" required></td>
 
 										<td><input type="text" class="form-control form-control-sm"
-												name="listRFQuotation[0].itemSpec" required title="">
+												th:field="*{listRFQuotation[__${stat.index}__].itemSpec}" required
+												title="">
 										</td>
 
 										<td><input type="text" class="form-control form-control-sm"
-												name="listRFQuotation[0].termCondition" required title="">
+												th:field="*{listRFQuotation[__${stat.index}__].termCondition}" required
+												title="">
 										</td>
 
 										<td><input type="text" class="form-control form-control-sm"
-												name="listRFQuotation[0].remarks" required title="">
+												th:field="*{listRFQuotation[__${stat.index}__].remarks}" required
+												title="">
 										</td>
 
 
@@ -258,11 +268,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr id="addr0">
+									<tr id="addr0" th:each="row, stat :${rFQuotation.listRFQuotationSupply}">
 
 										<td><select id="supplierId" class="form-control form-control-sm select" required
 												title="supplier code" onchange="supplierInfo()"
-												name="listRFQuotationSupply[0].suppCode">
+												name="listRFQuotationSupply[0].suppCode.supplierId">
 												<option value=" ">Select</option>
 												<option th:each="supplier :  ${listSupplier}"
 													th:text="${supplier.supplierName}"
@@ -271,31 +281,38 @@
 
 
 											</select></td>
+											
+											
 
 										<td><input type="text" class="form-control form-control-sm" id="supplierAdd"
-												title="supplier address" name="listRFQuotationSupply[0].suppAdd"></td>
+												title="supplier address"
+												th:field="*{listRFQuotationSupply[__${stat.index}__].suppAdd}"></td>
 
 										<td><input type="text" class="form-control form-control-sm" id="supplierCity"
-												title="supplier city" name="listRFQuotationSupply[0].suppCity"></td>
+												title="supplier city"
+												th:field="*{listRFQuotationSupply[__${stat.index}__].suppCity}"></td>
 
 										<td><input type="text" class="form-control form-control-sm" id="supplierState"
-												title="supplier State" name="listRFQuotationSupply[0].suppState"></td>
+												title="supplier State"
+												th:field="*{listRFQuotationSupply[__${stat.index}__].suppState}"></td>
 
 										<td><input type="text" class="form-control form-control-sm" id="contactPerson"
-												title="contact person" name="listRFQuotationSupply[0].contactPerson"></td>
+												title="contact person"
+												th:field="*{listRFQuotationSupply[__${stat.index}__].contactPerson}">
+										</td>
 
 										<td><input type="text" class="form-control form-control-sm" id="email"
-												name="listRFQuotationSupply[0].email">
+												th:field="*{listRFQuotationSupply[__${stat.index}__].email}">
 										</td>
 
 										<td><input type="text" class="form-control form-control-sm"
 												id="accademicQualificatio" title="Accademic qualification"
-												name="listRFQuotationSupply[0].phoneNumber">
+												th:field="*{listRFQuotationSupply[__${stat.index}__].phoneNumber}">
 										</td>
 
 										<td><input type="text" class="form-control form-control-sm"
 												id="technicalQualification" title="Technical Qualification"
-												name="listRFQuotationSupply[0].faxNum">
+												th:field="*{listRFQuotationSupply[__${stat.index}__].faxNum}">
 										</td>
 
 

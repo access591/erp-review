@@ -1,15 +1,20 @@
 package com.access.erp.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -17,6 +22,7 @@ import com.access.erp.model.master.Item;
 public class RfQuotationItem {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="RFQ_ITEM_ID",length = 50)
 	private Long id;
 	
@@ -26,6 +32,12 @@ public class RfQuotationItem {
 	
 	@Column(name="UOM",length = 50)
 	private String uom;
+	
+	@Column(name="CITY",length = 50)
+	private String city;
+	
+	@Column(name="RFQ_DATE",length=20)
+	private Date rfqDate;
 	
 	@Column(name="SR_NO",length = 50)
 	private String srNo;
@@ -50,6 +62,7 @@ public class RfQuotationItem {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "RFQ_NUM")
+	@JsonIgnore
 	private RfQuotation rfQuotations;
 
 	public RfQuotationItem() {
@@ -138,6 +151,22 @@ public class RfQuotationItem {
 
 	public void setOpenIndent(OpenIndent openIndent) {
 		this.openIndent = openIndent;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Date getRfqDate() {
+		return rfqDate;
+	}
+
+	public void setRfqDate(Date rfqDate) {
+		this.rfqDate = rfqDate;
 	}
 	
 	
