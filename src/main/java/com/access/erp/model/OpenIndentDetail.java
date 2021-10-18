@@ -24,7 +24,7 @@ public class OpenIndentDetail {
 	private Long id;
 	
 	
-	@Column(name = "IN_ITEM_CODE", length = 50)
+	@Column(name = "ITEM_CODE", length = 50)
 	private String indItemCode;
 	
 	@Column(name = "IN_QTY", length = 50)

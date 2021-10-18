@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="M_PACKING_DETAIL")
 public class PackingDetail {
@@ -29,6 +31,7 @@ public class PackingDetail {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "ITEM_CODE")
+	@JsonIgnore
 	private Item item;
 
 	public PackingDetail() {

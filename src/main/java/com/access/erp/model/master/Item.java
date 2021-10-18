@@ -218,7 +218,7 @@ public class Item {
 	@Column(name="CRITICAL_ITEM",length = 10)
 	private String criticalItem;
 	
-	@Column(name="HSN_CODE",length = 10)
+	@Column(name="HSN_CODE",length = 50)
 	private String hsnCode;
 	
 	@Column(name="CGST",length = 10)

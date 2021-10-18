@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.access.erp.model.OpenIndent;
 import com.access.erp.model.OpenIndentDetail;
 import com.access.erp.repo.OpenIndentDetailRepo;
 import com.access.erp.repo.SeqMainRepo;
@@ -41,6 +42,12 @@ public class OpenIndentDetailServiceImpl implements OpenIndentDetailService{
 	public void deleteOpenIndentDetail(Long OpenIndentDetail) {
 		indentDetailRepo.deleteById(OpenIndentDetail);
 		
+	}
+
+	@Override
+	public List<OpenIndentDetail> findOpenIndentDetailByOpenIndent(OpenIndent openIndent) {
+		
+		return this.indentDetailRepo.findByOpenIndent(openIndent);
 	}
 
 }
