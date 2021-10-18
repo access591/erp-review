@@ -187,6 +187,81 @@ function addRowInRfQuotation() {
 
 
 
+//*********************************************QUOTATION DETAIL ********************************* */
+
+
+function changeRequestForQuotation(){
+	
+	console.log("get Item function calling");
+	var rfqNumber = document.getElementById("rfqNum").value;
+	console.log("emp code : " + rfqNumber);
+	
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/rfqdetail/" + rfqNumber,
+
+		success: function (data) {
+			console.log("ite data is : "+ data)
+
+			$("#rfqDate").val(data.rfqDate)
+			
+		}, error: function () {
+			console.log("Error");
+		}
+	});
+	
+	
+	
+}
+
+
+
+function supplierInfo1(){
+
+	var supplierId = document.getElementById("supplierId").value;
+	console.log("supplier id is : "+ supplierId)
+
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/supplierinfo/" + supplierId,
+
+		success: function (data) {
+			console.log("ite data is : "+ data)
+
+			//$("#supplierAdd").val(data.supplierAdd)
+			$("#supplierCity").val(data.supplierCity)
+			$("#supplierState").val(data.supplierState)
+			$("#supplierName").val(data.supplierName)
+		}, error: function () {
+			console.log("Error");
+		}
+	});
+
+}
+
+
+
+function changeCurrency(){
+
+	var currencyCode = document.getElementById("spanForCurrValue").value;
+	
+	//var currencyValue = currencyCode.options[currencyCode.selectedIndex].text;
+	
+	
+	//console.log("supplier id is : "+ currencyCode)
+
+	
+
+}
+
+
+
+
+
+
+
+//*********************************************END QUOTATION DETAIL ********************************* */
+
 
 //>**************************************************COMON DYNAMIC AJAX********************************************** */
 

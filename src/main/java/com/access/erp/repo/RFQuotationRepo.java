@@ -8,4 +8,5 @@ import com.access.erp.model.RfQuotation;
 @Repository
 public interface RFQuotationRepo extends JpaRepository<RfQuotation, String>{
 
+	public RfQuotation findByRfqNo(String rfqNo);
 }
