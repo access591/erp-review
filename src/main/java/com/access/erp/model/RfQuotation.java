@@ -15,49 +15,52 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="RFQ_MASTER")
+@Table(name = "RFQ_MASTER")
 public class RfQuotation {
 
 	@Id
-	@Column(name="RFQ_NUM",length=50)
+	@Column(name = "RFQ_NUM", length = 50)
 	private String rfqNo;
-	
-	@Column(name="RFQ_DATE")
+
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "RFQ_DATE")
 	private Date rfqDate;
-	
-	@Column(name="RFQ_TYPE",length=20)
+
+	@Column(name = "RFQ_TYPE", length = 20)
 	private String rfqType;
-	
-	@Column(name="C_CODE",length=50)
+
+	@Column(name = "C_CODE", length = 50)
 	private String cCode;
-	
-	@Column(name="FY_CODE",length=50)
+
+	@Column(name = "FY_CODE", length = 50)
 	private String fyCode;
-	
-	@Column(name="u_CODE",length=50)
+
+	@Column(name = "u_CODE", length = 50)
 	private String uCode;
-	
-	@Column(name="u_DATE")
+
+	@Column(name = "u_DATE")
 	private Date uDate;
-	
-	@Column(name="RFQ_TERMCONDITION",length=1000)
+
+	@Column(name = "RFQ_TERMCONDITION", length = 1000)
 	private String rfqTermCondition;
-	
-	@OneToMany(mappedBy = "rfQuotations", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "rfQuotations", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
+	@JsonIgnore
 	private List<RfQuotationItem> listRFQuotation = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "rfQuotation", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "rfQuotation", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<RfQuotationSupply> listRFQuotationSupply = new ArrayList<>();
 
 	public RfQuotation() {
 		super();
-		
+
 	}
 
 	public String getRfqNo() {
@@ -124,8 +127,6 @@ public class RfQuotation {
 		this.rfqTermCondition = rfqTermCondition;
 	}
 
-
-
 	public List<RfQuotationItem> getListRFQuotation() {
 		return listRFQuotation;
 	}
@@ -141,11 +142,5 @@ public class RfQuotation {
 	public void setListRFQuotationSupply(List<RfQuotationSupply> listRFQuotationSupply) {
 		this.listRFQuotationSupply = listRFQuotationSupply;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

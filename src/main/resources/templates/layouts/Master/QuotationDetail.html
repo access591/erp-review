@@ -73,22 +73,21 @@
 										class="form-control" id="inputAddress" placeholder="received on"
 										th:field="*{receivedOn}">
 								</div>
-								
+
 								<div class="form-group col-md-4">
-									<label class="form-label">RFQ Number </label> <label
-										style="color: red">*</label> <select class="form-control"
-										onchange="changeDepartment()" title="RFQ Number"
-										required>
+									<label class="form-label">RFQ Number </label> <label style="color: red">*</label>
+									<select class="form-control" onchange="changeRequestForQuotation()"
+										title="RFQ Number" id="rfqNum">
 										<option value="">Select RFQ</option>
-										<option th:each="rfq :  ${listrfQuotation}"
-											th:text="${rfq.deptName}" th:value=" ${department.departmentCode}">
+										<option th:each="rfq :  ${listRfQuotation}" th:text="${rfq.rfqNo}"
+											th:value=" ${rfq.rfqNo}">
 										</option>
 									</select>
 								</div>
-								
+
 								<div class="form-group col-md-4">
 									<label for="inputAddress">RFQ Date</label> <input type="date" class="form-control"
-										id="inputAddress" placeholder="rfq date" th:field=*{refDate}>
+										id="rfqDate" placeholder="rfq date" th:field=*{refDate}>
 								</div>
 
 
@@ -103,29 +102,36 @@
 						<div class="form-border">
 							<h5>Supplier Info</h5>
 							<div class="form-row">
+
 								<div class="form-group col-md-4">
-									<label for="inputEmail4">Supplier Code</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="quotation no"
-										th:field="*{suplierCode}">
+									<label class="form-label">Supplier </label> <label style="color: red">*</label>
+									<select class="form-control" onchange="supplierInfo1()" title="RFQ Number"
+										id="supplierId">
+										<option value="">Select RFQ</option>
+										<option th:each="supp :  ${listSupplier}" th:text="${supp.supplierName}"
+											th:value=" ${supp.supplierId}">
+										</option>
+									</select>
 								</div>
+
 								<div class="form-group col-md-4">
-									<label for="inputPassword4">Supplier Name</label> <input type="date"
-										class="form-control" id="inputPassword4" placeholder="quotation date"
+									<label for="inputPassword4">Supplier Name</label> <input type="text"
+										class="form-control" placeholder="quotation date" id="supplierName"
 										th:field="*{tempSupName}">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="inputPassword4">Supplier City</label> <input type="text"
-										class="form-control" id="inputPassword4" placeholder="nature of purchase"
+										class="form-control" id="supplierCity" placeholder="nature of purchase"
 										th:field="*{supCityCode}">
 								</div>
 
 								<div class="form-group col-md-4">
-									<label for="inputAddress">Form Code</label> <input type="date" class="form-control"
+									<label for="inputAddress">Form Code</label> <input type="text" class="form-control"
 										id="inputAddress" placeholder="received on">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputAddress">Supplier Country</label> <input type="text"
-										class="form-control" id="inputAddress" placeholder="supplier country"
+									<label for="inputAddress">Supplier State</label> <input type="text"
+										class="form-control" id="supplierState" placeholder="supplier country"
 										th:field="*{supCountry}">
 								</div>
 								<div class="form-group col-md-4">
@@ -146,13 +152,20 @@
 
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="inputEmail4">Currency Code</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="currency code"
-										th:field="*{currencyCode}">
+									<label class="form-label">Currency Code</label> <label
+										style="color: red">*</label> <select class="form-control"
+										onchange="changeCurrency()" title="currency Name"
+										required id="currencyCode">
+										<option value="">Select Department</option>
+										<option th:each="currency :  ${listCurrencyMaster}"
+											th:text="${currency.currencyCode}" th:value=" ${currency.currencyCode}">
+										<span id="spanForCurrValue" th:value="${currency.currencyValue}"></span> </option>
+									</select>
 								</div>
+								
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Currency Value</label> <input type="text"
-										class="form-control" id="inputPassword4" placeholder="currency value"
+										class="form-control" id="currencyValue" placeholder="currency value"
 										th:field="*{conversionValue}">
 								</div>
 

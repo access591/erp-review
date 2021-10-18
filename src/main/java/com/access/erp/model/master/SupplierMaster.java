@@ -27,6 +27,11 @@ public class SupplierMaster {
 	
 	@Column(name="SUPPLIER_STATE")
 	private String supplierState;
+	
+	@Column(name="SUPPLIER_COUNTRY")
+	private String supplierCountry;
+	
+	
 
 	public SupplierMaster() {
 		super();
@@ -71,6 +76,14 @@ public class SupplierMaster {
 
 	public void setSupplierState(String supplierState) {
 		this.supplierState = supplierState;
+	}
+
+	public String getSupplierCountry() {
+		return supplierCountry;
+	}
+
+	public void setSupplierCountry(String supplierCountry) {
+		this.supplierCountry = supplierCountry;
 	}
 	
 	
