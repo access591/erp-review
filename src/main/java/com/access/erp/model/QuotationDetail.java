@@ -1,10 +1,14 @@
 package com.access.erp.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -105,7 +109,7 @@ public class QuotationDetail {
 	private String currencyCode;
 	
 	@Column(name="CONVERSION_VALUE",length = 30)
-	private int conversionValue;
+	private String conversionValue;
 	
 	@Column(name="CAPITAL_YN",length = 30)
 	private String capitalYn;
@@ -131,11 +135,11 @@ public class QuotationDetail {
 	@Column(name="QUOT_TYPE",length = 30)
 	private String quotType;
 	
-	@Column(name="REF_NUM",length = 30)
-	private String refNo;
+	@Column(name="RFQ_NUM",length = 30)
+	private String rfqNo;
 	
-	@Column(name="REF_DATE")
-	private Date refDate;
+	@Column(name="RFQ_DATE")
+	private Date rfqDate;
 	
 	@Column(name="APPROVAL_STATUS_1",length = 5)
 	private String approvalStatus1;
@@ -184,10 +188,15 @@ public class QuotationDetail {
 	
 	@Column(name="REMARKS_4",length = 100)
 	private String remarks4;
+	
+	@OneToMany(mappedBy = "quotationDetail", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	private List<QuotationItem> quotationItem;
+	
+	
 
 	public QuotationDetail() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getQuotNo() {
@@ -422,11 +431,11 @@ public class QuotationDetail {
 		this.currencyCode = currencyCode;
 	}
 
-	public int getConversionValue() {
+	public String getConversionValue() {
 		return conversionValue;
 	}
 
-	public void setConversionValue(int conversionValue) {
+	public void setConversionValue(String conversionValue) {
 		this.conversionValue = conversionValue;
 	}
 
@@ -494,20 +503,22 @@ public class QuotationDetail {
 		this.quotType = quotType;
 	}
 
-	public String getRefNo() {
-		return refNo;
+	
+
+	public String getRfqNo() {
+		return rfqNo;
 	}
 
-	public void setRefNo(String refNo) {
-		this.refNo = refNo;
+	public void setRfqNo(String rfqNo) {
+		this.rfqNo = rfqNo;
 	}
 
-	public Date getRefDate() {
-		return refDate;
+	public Date getRfqDate() {
+		return rfqDate;
 	}
 
-	public void setRefDate(Date refDate) {
-		this.refDate = refDate;
+	public void setRfqDate(Date rfqDate) {
+		this.rfqDate = rfqDate;
 	}
 
 	public String getApprovalStatus1() {
@@ -636,6 +647,14 @@ public class QuotationDetail {
 
 	public void setRemarks4(String remarks4) {
 		this.remarks4 = remarks4;
+	}
+
+	public List<QuotationItem> getQuotationItem() {
+		return quotationItem;
+	}
+
+	public void setQuotationItem(List<QuotationItem> quotationItem) {
+		this.quotationItem = quotationItem;
 	}
 	
 	

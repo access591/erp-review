@@ -14,9 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -30,7 +35,7 @@ public class OpenIndent {
 	@Column(name = "INDENT_NUMBER", length = 30)
 	private String indentNumber;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "INDENTS_DATE")
 	private Date indentDate;
 
@@ -38,7 +43,7 @@ public class OpenIndent {
 	private String indDept;
 
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="EMP_CODE")
 	private Employee employee;
 
@@ -188,6 +193,7 @@ public class OpenIndent {
 	
 	
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "openIndent")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<OpenIndentDetail> opeIndentDetail = new ArrayList<>();
 
 

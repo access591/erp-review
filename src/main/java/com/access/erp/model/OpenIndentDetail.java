@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -76,7 +77,7 @@ public class OpenIndentDetail {
 	private String pipelineQty;
 	
 	@ManyToOne
-	@JsonManagedReference
+	@JsonIgnore
 	@JoinColumn(name="INDENT_NUMBER")
 	private OpenIndent openIndent;
 	
