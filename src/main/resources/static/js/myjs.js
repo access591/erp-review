@@ -13,13 +13,13 @@ function indentGetEmployee() {
 		type: "GET",
 		url: "/employee/employeeinfo/" + empCode,
 
-		success: function (data) {
+		success: function(data) {
 			//$("#resultarea").text(data);
 			console.log("response data : " + data);
 			$("#employeename").val(data.empName);
 			$("#departmentcode").val(data.department.deptCode)
 			$("#departmentname").val(data.department.deptName)
-		}, error: function () {
+		}, error: function() {
 			console.log("Error");
 		}
 	});
@@ -49,7 +49,7 @@ function getIndentList() {
 		type: "GET",
 		url: "/requestquotation/itemdetail/" + indentNumber,
 
-		success: function (data) {
+		success: function(data) {
 			//$("#resultarea").text(data);
 			console.log("response data : " + $(this.data).addClass('show'));
 
@@ -57,7 +57,7 @@ function getIndentList() {
 			$("#indentDate").val(data.indentDate);
 
 			var options = '<option value=""><strong>Select Item</strong></option>';
-			$(data.listItem).each(function (index, value) {
+			$(data.listItem).each(function(index, value) {
 
 				console.log("item info : " + value.description)
 				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
@@ -67,7 +67,7 @@ function getIndentList() {
 			$('.itemContainer').html(options);
 			// $("#departmentcode").val(data.department.deptCode)
 			// $("#departmentname").val(data.department.deptName)
-		}, error: function () {
+		}, error: function() {
 			console.log("Error");
 		}
 	});
@@ -82,35 +82,35 @@ function getItemDetail() {
 		type: "GET",
 		url: "/requestquotation/itemdetail1/" + item,
 
-		success: function (data) {
-			console.log("ite data is : "+ data)
+		success: function(data) {
+			console.log("ite data is : " + data)
 
 			$("#uom").val(data.uom.uomCode)
 			// $("#departmentname").val(data.department.deptName)
-		}, error: function () {
+		}, error: function() {
 			console.log("Error");
 		}
 	});
 }
 
 
-function supplierInfo(){
+function supplierInfo() {
 
 	var supplierId = document.getElementById("supplierId").value;
-	console.log("supplier id is : "+ supplierId)
+	console.log("supplier id is : " + supplierId)
 
 	$.ajax({
 		type: "GET",
 		url: "/requestquotation/supplierdetail/" + supplierId,
 
-		success: function (data) {
-			console.log("ite data is : "+ data)
+		success: function(data) {
+			console.log("ite data is : " + data)
 
 			$("#supplierAdd").val(data.supplierAdd)
 			$("#supplierCity").val(data.supplierCity)
 			$("#supplierState").val(data.supplierState)
 			// $("#departmentname").val(data.department.deptName)
-		}, error: function () {
+		}, error: function() {
 			console.log("Error");
 		}
 	});
@@ -122,7 +122,7 @@ function addRowInRfQuotation() {
 	idIndex = 0;
 	$(document)
 		.ready(
-			function () {
+			function() {
 				console.log("click function...");
 				var i = 1;
 
@@ -130,7 +130,7 @@ function addRowInRfQuotation() {
 					+ idIndex);
 				$("#add_row")
 					.click(
-						function () {
+						function() {
 							idIndex++;
 							$('#addr' + i)
 								.html(
@@ -169,7 +169,7 @@ function addRowInRfQuotation() {
 
 						});
 
-				$("#delete_row").click(function () {
+				$("#delete_row").click(function() {
 					if (i > 1) {
 						$("#addr" + (i - 1)).html('');
 						$('#_cr').val(i - 1);
@@ -190,49 +190,49 @@ function addRowInRfQuotation() {
 //*********************************************QUOTATION DETAIL ********************************* */
 
 
-function changeRequestForQuotation(){
-	
+function changeRequestForQuotation() {
+
 	console.log("get Item function calling");
 	var rfqNumber = document.getElementById("rfqNum").value;
 	console.log("emp code : " + rfqNumber);
-	
+
 	$.ajax({
 		type: "GET",
 		url: "/quotationdetail/rfqdetail/" + rfqNumber,
 
-		success: function (data) {
-			console.log("ite data is : "+ data)
+		success: function(data) {
+			console.log("ite data is : " + data)
 
 			$("#rfqDate").val(data.rfqDate)
-			
-		}, error: function () {
+
+		}, error: function() {
 			console.log("Error");
 		}
 	});
-	
-	
-	
+
+
+
 }
 
 
 
-function supplierInfo1(){
+function supplierInfo1() {
 
 	var supplierId = document.getElementById("supplierId").value;
-	console.log("supplier id is : "+ supplierId)
+	console.log("supplier id is : " + supplierId)
 
 	$.ajax({
 		type: "GET",
 		url: "/quotationdetail/supplierinfo/" + supplierId,
 
-		success: function (data) {
-			console.log("ite data is : "+ data)
+		success: function(data) {
+			console.log("ite data is : " + data)
 
 			//$("#supplierAdd").val(data.supplierAdd)
 			$("#supplierCity").val(data.supplierCity)
 			$("#supplierState").val(data.supplierState)
 			$("#supplierName").val(data.supplierName)
-		}, error: function () {
+		}, error: function() {
 			console.log("Error");
 		}
 	});
@@ -241,22 +241,119 @@ function supplierInfo1(){
 
 
 
-function changeCurrency(){
+function changeCurrency() {
 
-	var currencyCode = document.getElementById("spanForCurrValue").value;
-	
+	var currencyCode = document.getElementById("currencyCode").value;
+
 	//var currencyValue = currencyCode.options[currencyCode.selectedIndex].text;
-	
-	
+	var currencyValue = $('#currencyCode :selected').text();
+	console.log("currency code is : " + currencyCode)
+	console.log("currency value is : " + currencyValue)
+	document.getElementById("currencyValue").value = currencyCode;
+
+
 	//console.log("supplier id is : "+ currencyCode)
 
-	
+
 
 }
 
 
+function getIndentDetailByIndentNumber() {
+
+	var indentNumber = document.getElementById("indentNumber").value;
+
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/indentdetail/" + indentNumber,
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			console.log("indent data is : " + data.indentDate)
+			$("#indentDate").val(data.indentDate)
+			$("#empName").val(data.employee.empName);
+			$("#empCode").val(data.employee.empCode);
+
+			getItemListByIndentNumber(indentNumber);
 
 
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}
+
+
+//Get Object length
+Object.size = function(obj) {
+	var size = 0,
+		key;
+	for (key in obj) {
+		if (obj.hasOwnProperty(key)) size++;
+	}
+	return size;
+};
+
+
+
+function getItemListByIndentNumber(indentNumber) {
+
+
+	console.log("get Item List Function is : " + indentNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/itemList/" + indentNumber,
+
+		success: function(data) {
+			console.log("Item Info behalf of Indent Number  : " + data)
+
+			var options = '<option value=""><strong>Select Item</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.itemCode)
+				console.log("item info : " + value.itemName)
+
+				options += '<option value="' + value.itemCode + '">' + value.itemName + '</option>';
+
+			});
+
+			$('.itemContainer').html(options);
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}
+
+
+function changeItemInQuotationDetail() {
+
+	var itemCode = document.getElementById("item").value;
+	console.log("ItemCode is : " + itemCode)
+
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/itemInfo/" + itemCode,
+
+		success: function(data) {
+			console.log("Item Info behalf of Indent Number  : " + data)
+
+			$("#itemDescriptin").val(data.description)
+			$("#uomCode").val(data.uom.uomCode);
+			
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}
 
 
 
