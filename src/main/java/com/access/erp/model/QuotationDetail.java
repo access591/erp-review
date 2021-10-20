@@ -142,7 +142,7 @@ public class QuotationDetail {
 	private Date rfqDate;
 	
 	@Column(name="APPROVAL_STATUS_1",length = 5)
-	private String approvalStatus1;
+	private String approvalStatus1 = "N";
 	
 	@Column(name="APPROVAL_STATUS_2",length = 5)
 	private String approvalStatus2;

@@ -360,6 +360,52 @@ function changeItemInQuotationDetail() {
 //*********************************************END QUOTATION DETAIL ********************************* */
 
 
+
+
+
+
+
+
+//*******************************************PURCHASE ORDER ******************************** */
+
+function supplierInfoPurchase(){
+	
+	var supplierCode = document.getElementById("supplierId").value;
+	console.log("ItemCode is : " + supplierCode)
+
+	$.ajax({
+		type: "GET",
+		url: "/purchaseorder/supplierDetail/" + supplierCode,
+
+		success: function(data) {
+			console.log("Data From Supplier Info Purchase : " + data)
+
+			$("#supplierState").val(data.supplierState)
+			//$("#uomCode").val(data.uom.uomCode);
+			
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+	
+}
+
+
+
+
+
+
+//******************************************END PURCHASE ORDER ******************************* */
+
+
+
+
+
+
+
+
 //>**************************************************COMON DYNAMIC AJAX********************************************** */
 
 

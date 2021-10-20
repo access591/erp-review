@@ -14,5 +14,7 @@ public interface QuotationDetailService {
 	public void deleteQuotationDetail(String quotCode);
 	
 	public List<OpenIndent> getIndentInRFQ();
+	
+	public void approvalForQuotationDetail(String quotNum , String status);
 
 }
