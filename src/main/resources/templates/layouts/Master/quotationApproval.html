@@ -32,7 +32,7 @@
 
 	<div id="home-main-content">
 
-		<h4>Quotation Comparitive and Approval</h4>
+		<h5>Quotation Comparitive and Approval</h5>
 
 
 		<form th:action="@{/designation/}" method="POST">
@@ -76,36 +76,72 @@
 
 								<td><label th:text="${quotation.itemCode}"></label></td>
 
-								<td><label th:text="${quotation.quotationItem[0].totalValue}"></label></td>
+								<td><label>value</label></td>
 
-								<td><label>testing</label></td>
-								<td>
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary dropdown-toggle"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-											style="white-space: nowrap;font-weight: btn-font-weight;">
-											Pending
-										</button>
-										<div class="dropdown-menu" onclick="myfunction()">
-											<!--th:href="@{/qpprovalquotationdetail/{quotNum}/{status}/(quotNum=${leaveRequestapproval.leaveRequestId},status=${'Y'},leaveType=${leaveRequestapproval.leave.levCode})}"-->
-											<a class="dropdown-item" th:href="@{/approvalquotationdetail/{quotNum}/ 
-																		{status}/(quotNum=
-																			${quotation.quotNo},
-																				status=${'Y'})}">Approved</a>
-											<a class="dropdown-item" th:href="@{/approvalquotationdetail/{quotNum}/ 
-																		{status}/(quotNum=
-																			${quotation.quotNo},
-																				status=${'N'})}">Cancel</a>
+								<td><label th:text="${quotation.approvalStatus1}">testing</label></td>
 
+
+
+
+
+
+
+								<td class="text-center" th:if="${quotation.approvalStatus1 == 'Y'}">
+									<div class="dropdown show">
+										<a class="btn btn-primary dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"> Approved </a>
+
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											<a class="dropdown-item"
+												th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'Y'})}">Approved</a>
+											<a class="dropdown-item"
+												th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'C'})}">Cancel</a>
 
 										</div>
 									</div>
+								</td>
+								
+								<td class="text-center" th:if="${quotation.approvalStatus1 == 'N'}">
+									<div class="dropdown show">
+										<a class="btn btn-primary dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"> Pending</a>
 
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											<a class="dropdown-item"
+												th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'Y'})}">Approved</a>
+											<a class="dropdown-item"
+												th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'C'})}">Cancel</a>
+
+										</div>
+									</div>
+								</td>
+								
+								<td class="text-center" th:if="${quotation.approvalStatus1 == 'C'}">
+									<div class="dropdown show">
+										<a class="btn btn-primary dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false"> Cancelled</a>
+
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											<a class="dropdown-item"
+												th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'Y'})}">Approved</a>
+											<a class="dropdown-item"
+												th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'C'})}">Cancel</a>
+
+										</div>
+									</div>
 								</td>
 
-								<td class="text-center"><a class="btn btn-primary" 
-															th:href="@{/approvalquotationdetail/view}">
+
+
+
+								<td class="text-center"><a class="btn btn-primary"
+										th:href="@{/approvalquotationdetail/view/{id}/(id=${quotation.quotNo})}">
 										View</a></td>
+
+
 							</tr>
 
 
