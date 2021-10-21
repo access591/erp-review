@@ -2,15 +2,16 @@
 <html>
 
 <head xmlns:th="http://www.thymeleaf.org">
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>AdminLTE 2 | General Form Elements</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="css/AdminLTE.min.css">
-	<link rel="stylesheet" href="css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css">
 
 </head>
 
@@ -25,28 +26,71 @@
 					<div class="col-md-12">
 						<div class="col-md-3">
 						</div>
-						
-						
+
+
 						<div class="col-md-6" style="margin-top: 20px;">
-						
+
 							<div class="box box-primary">
 								<div class="box-header with-border">
-									<h3 class="box-title">Quick Example</h3>
+									<h3 class="box-title">Department Master</h3>
 								</div>
 								<!-- form start -->
-								<form role="form">
+								<form role="form" th:action="@{/department/}" method="POST" th:object="${department}">
 									<div class="box-body">
+
+										<div class="form-group">
+											<label for="inputEmail4">Department Code</label> <input type="text"
+												class="form-control" placeholder="city code" th:field="*{deptCode}">
+										</div>
+										<div class="form-group">
+											<label for="inputPassword4">Department Name</label> <input type="text"
+												class="form-control" placeholder="city name" th:field="*{deptName}">
+										</div>
+
+										<div class="form-group">
+											<label for="inputEmail4">Company Code</label> <input type="text"
+												class="form-control" placeholder="city code" th:field="*{compCode}">
+										</div>
+										<div class="form-group">
+											<label for="inputPassword4">Department Head</label> <input type="text"
+												class="form-control" placeholder="city name" th:field="*{depHead}">
+										</div>
+
+										<div class="form-group">
+											<label for="inputEmail4">Department Sr Code</label> <input type="text"
+												class="form-control" placeholder="city code" th:field="*{deptSrCode}">
+										</div>
+
+										<div class="form-group" style="margin: 10px;">
+
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="inlineRadioOptions"
+													id="inlineRadio1" value="Y"> <label class="form-check-label"
+													for="inlineRadio1">Active</label>
+											</div>
+
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="inlineRadioOptions"
+													id="inlineRadio1" value="N"> <label class="form-check-label"
+													for="inlineRadio1">In-Active</label>
+											</div>
+
+										</div>
+
+
+
 									</div>
 
 									<div class="box-footer">
-										<button type="submit" class="btn btn-primary">Submit</button>
+										<input type="submit" value="Submit" class="btn btn-primary" />
+										<input type="reset" value="Reset" class="btn btn-danger" />
 									</div>
-
+									<a th:href="@{/department/list}">view department list</a>
 								</form>
 							</div>
 						</div>
-						
-						
+
+
 						<div class="col-md-3">
 						</div>
 					</div>
@@ -58,9 +102,10 @@
 			<!--   <section class="content">
         
         </section>-->
-			<script src="js/app.min.js"></script>
 
-			<script src="/js/demo.js"></script>
+			<script src="../../js/app.min.js"></script>
+
+			<script src="../../js/demo.js"></script>
 </body>
 
 </html>
