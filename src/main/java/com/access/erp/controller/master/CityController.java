@@ -29,9 +29,11 @@ public class CityController {
 	@GetMapping("/")
 	public String city(Model model) {
 		
-		List<State> stateList = stateService.getAllState();
-		model.addAttribute("stateList", stateList);
-		model.addAttribute("city", new City());
+		
+		  List<State> stateList = stateService.getAllState();
+		  model.addAttribute("stateList", stateList); model.addAttribute("city", new
+		  City());
+		 
 		return "layouts/Master/city";
 	}
 	
