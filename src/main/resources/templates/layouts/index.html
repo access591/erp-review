@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -23,17 +23,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-
-
-
-
-
-		<div>
-
 			<div th:replace="fragments/header :: header">...</div>
-
 			<div th:replace="fragments/sidebar :: sidebar">...</div>
-
 			<section class="content-wrapper">
 				<div class="row">
 					<!-- left column -->
@@ -100,6 +91,7 @@
 
 				</div>
 			</section>
+			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
 			<!--   <section class="content">
