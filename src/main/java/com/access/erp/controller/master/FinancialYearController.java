@@ -27,7 +27,7 @@ public class FinancialYearController {
 	public String financialYear(Model model) {
 		
 		model.addAttribute("financialYear", new FinancialYear());
-		return "layouts/financialyear";
+		return "layouts/Master/financialyear";
 	}
 	
 	@PostMapping("/")
