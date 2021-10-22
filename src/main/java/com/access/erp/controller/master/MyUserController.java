@@ -12,23 +12,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.MyUser;
+import com.access.erp.service.EmployeeService;
 import com.access.erp.service.MyUserService;
 
 @Controller
 @RequestMapping("/user")
 public class MyUserController {
 	
-	//@Autowired CityService cityService;
+	@Autowired EmployeeService employeeService;
 	@Autowired MyUserService userService;
 	
+	
 	@GetMapping("/")
-	public String user(Model model) {
+	public String user(Model model) { 
 		
-		List<MyUser> userList = userService.getAllMyUser();
-		model.addAttribute("userList", userList);
+		//List<MyUser> userList = userService.getAllMyUser();
+		//model.addAttribute("userList", userList);
+		
+		List<Employee> listEmployee = employeeService.getAllEmployee();
+		
+		System.out.println("employee info is : " + listEmployee.get(0).getEmpName());
+		model.addAttribute("listEmployee", listEmployee);
+		
 		model.addAttribute("user", new MyUser());
-		return "layouts/Master/myuser";
+		return "layouts/Master/userMaster";
 	}
 	
 	@PostMapping("/")

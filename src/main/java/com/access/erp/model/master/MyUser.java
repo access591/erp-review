@@ -1,15 +1,13 @@
 package com.access.erp.model.master;
 
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -28,7 +26,7 @@ public class MyUser {
 	
 	
 	@OneToOne
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name="EMP_CODE")
 	private Employee employee;
 	
 	/*

@@ -233,9 +233,11 @@ public class Employee {
 	@Column(name = "OFFER_LEFT_NUMBER", length = 50)
 	private String offerLeftNumber;
 	
-	@OneToOne(mappedBy = "employee" ,cascade = CascadeType.ALL)
-	@JsonIgnore
-	private MyUser myUser;
+	/*
+	 * @OneToOne(mappedBy = "employee" ,cascade = CascadeType.ALL)
+	 * 
+	 * @JsonIgnore private MyUser myUser;
+	 */
 
 	public Employee() {
 		super();
@@ -289,8 +291,6 @@ public class Employee {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-	
 
 	public Character getMaritalStatus() {
 		return maritalStatus;
@@ -795,6 +795,8 @@ public class Employee {
 	public void setOfferLeftNumber(String offerLeftNumber) {
 		this.offerLeftNumber = offerLeftNumber;
 	}
+
+	
 
 	
 }
