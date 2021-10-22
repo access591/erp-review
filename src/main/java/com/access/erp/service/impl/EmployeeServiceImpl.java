@@ -33,6 +33,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	public List<Employee> getAllEmployee() {
+		
+		try {
+			Employee e = new Employee();
+			e.setEmpCode("EMP-007");
+			//System.out.println(employeeRepo.getOne(e.getEmpCode()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return employeeRepo.findAll();
 	}
 

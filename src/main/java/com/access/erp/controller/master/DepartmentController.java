@@ -31,8 +31,9 @@ public class DepartmentController {
 	}
 	
 	@PostMapping("/")
-	public String addDepartment(@ModelAttribute("designation") Department department) {
+	public String addDepartment(@ModelAttribute("department") Department department) {
 		
+		System.out.println("add deepartmet methiod");
 		departmentService.addDepartment(department);
 		
 		return "redirect:/department/";

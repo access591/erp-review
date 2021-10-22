@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>AdminLTE 2 | General Form Elements</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 </head>
 
@@ -132,13 +132,11 @@
 			<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js"></script>
-			<script src="../../js/bootstrap.min.js"></script>
-			<script src="../../js/fastclick.min.js"></script>
-			<script src="../../js/app.min.js"></script>
-			<script src="../../js/demo.js"></script><script src="../../js/app.min.js"></script>
-
-			<script src="../../js/demo.js"></script>
+			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>
