@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="INSURANCE_DETAIL")
@@ -19,8 +21,11 @@ public class InsuranceDetail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="INSURACE_ID",length=6)
+	private Long insuranceId;
+	
 	@Column(name="INSURACE_CODE",length=6)
-	private Long insuranceCode;
+	private String insuranceCode;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "COMPANY_CODE")
@@ -30,7 +35,7 @@ public class InsuranceDetail {
 	@Column(name="CUST_CODE",length=20)
 	private String custCode;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RENEWEL_DATE")
 	private Date renewalDate;
 	
@@ -48,11 +53,11 @@ public class InsuranceDetail {
 		
 	}
 
-	public Long getInsuranceCode() {
+	public String getInsuranceCode() {
 		return insuranceCode;
 	}
 
-	public void setInsuranceCode(Long insuranceCode) {
+	public void setInsuranceCode(String insuranceCode) {
 		this.insuranceCode = insuranceCode;
 	}
 
@@ -62,6 +67,14 @@ public class InsuranceDetail {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Long getInsuranceId() {
+		return insuranceId;
+	}
+
+	public void setInsuranceId(Long insuranceId) {
+		this.insuranceId = insuranceId;
 	}
 
 	public String getCustCode() {

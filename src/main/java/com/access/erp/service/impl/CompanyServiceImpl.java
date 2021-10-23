@@ -4,20 +4,41 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.access.erp.model.master.Company;
+import com.access.erp.model.master.InsuranceDetail;
+import com.access.erp.model.master.SiteOffice;
 import com.access.erp.repo.CompanyRepo;
+import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.CompanyService;
 
+
+@Service
 public class CompanyServiceImpl implements CompanyService{
 
-	
+	@Autowired SeqMainRepo seqMainRepo;
 	@Autowired CompanyRepo companyRepo;
+	
 	
 	@Override
 	public void addCompany(Company company) {
 		
+
+		if (company.getCompCode() == "" || company.getCompCode() == null) {
+			System.out.println("company code is : "+ company.getCompCode());
+			String maxCode = seqMainRepo.findByTranType("COM");
+			company.setCompCode(maxCode);
+		}
 		
+		for(InsuranceDetail insurance : company.getInsuranceDetail()) {
+			insurance.setCompany(company);
+		}
+		for(SiteOffice siteOffice : company.getSiteOffice()) {
+			siteOffice.setCompany(company);
+		}
+
+		companyRepo.save(company);
 		
 	}
 

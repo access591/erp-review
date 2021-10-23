@@ -18,6 +18,9 @@ public class SiteOffice {
 	@Column(name="SITE_OFFICE_CODE",length=50)
 	private Long siteOfficeCode;
 	
+	@Column(name="SITE_CODE",length=50)
+	private String siteCode;
+	
 	@Column(name="SITE_LOCATION",length=50)
 	private String siteLocation;
 	
