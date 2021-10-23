@@ -11,7 +11,7 @@ public class CompanyController {
 	@GetMapping("companydetail")
 	public String companyDetail(Model model) {
 		
-		return "layouts/companyDetail";
+		return "layouts/Master/companyDetail";
 	}
 
 }
