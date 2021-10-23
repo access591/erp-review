@@ -406,6 +406,57 @@ function supplierInfoPurchase(){
 
 
 
+
+
+
+
+//********************************************Company Detail ********************************* */
+
+
+function getCityOnState(){
+	
+	var stateCode = document.getElementById("state").value;
+	console.log("State is : " + stateCode)
+
+	$.ajax({
+		type: "GET",
+		url: "/companydetail/citylist/" + stateCode,
+
+		success: function(data) {
+			
+			var options = '<option value=""><strong>Select City</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.cityCode)
+				console.log("item info : " + value.cityName)
+
+				options += '<option value="' + value.cityCode + '">' + value.cityName + '</option>';
+
+			});
+
+			$('.cityContainer').html(options);
+		
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+//********************************************End Company Detail ********************************* */
+
+
+
+
+
+
 //>**************************************************COMON DYNAMIC AJAX********************************************** */
 
 
