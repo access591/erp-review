@@ -29,8 +29,13 @@ body {
 /* Layout */
 .wrapper {
   min-height: 100%;
-  position: static;
-  overflow: hidden;
+  /*main css */
+ /* position: static;
+  overflow: hidden;*/
+  
+  /*modified*/
+  position: fixed;
+  overflow-y: scroll;
 }
 .wrapper:before,
 .wrapper:after {
@@ -462,6 +467,8 @@ a:focus {
 }
 .sidebar {
   padding-bottom: 10px;
+  position: fixed;
+  overflow-y: scroll;
 }
 .sidebar-form input:focus {
   border-color: transparent;

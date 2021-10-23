@@ -1,6 +1,6 @@
 package com.access.erp.model.master;
 
-import java.util.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,12 +22,15 @@ public class FinancialActiveYear {
 	private String financialYearCode;
 	
 	
-	@Column(name="FROM_DATE")
-	private Date fromDate;
+	@Column(name="C_CODE")
+	private String cCode;
 	
 	
-	@Column(name="TO_DATE")
-	private Date toDate;
+	@Column(name="U_CODE")
+	private String uCode;
+	
+	@Column(name="F_ACTIVE")
+	private String fActive;
 
 
 	public FinancialActiveYear() {
@@ -59,27 +62,42 @@ public class FinancialActiveYear {
 	}
 
 
-	public Date getFromDate() {
-		return fromDate;
+
+	public String getcCode() {
+		return cCode;
 	}
 
 
-	public void setFromDate(Date fromDate) {
-		this.fromDate = fromDate;
+
+	public void setcCode(String cCode) {
+		this.cCode = cCode;
 	}
 
 
-	public Date getToDate() {
-		return toDate;
+
+	public String getuCode() {
+		return uCode;
 	}
 
 
-	public void setToDate(Date toDate) {
-		this.toDate = toDate;
+
+	public void setuCode(String uCode) {
+		this.uCode = uCode;
 	}
+
+
+
+	public String getfActive() {
+		return fActive;
+	}
+
+
+
+	public void setfActive(String fActive) {
+		this.fActive = fActive;
+	}
+
+
 	
-	
-
-
 	
 }

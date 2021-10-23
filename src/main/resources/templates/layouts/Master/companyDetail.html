@@ -39,7 +39,7 @@
 									<h3 class="box-title">Company Details</h3>
 								</div>
 								<!-- form start -->
-								<form role="form">
+								<form role="form" th:action="@{/companydetail/}" th:object="${company}" method="POST">
 									<div class="box-body">
 
 										<div class="container-fluid">
@@ -73,17 +73,17 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Company Code</label>
 																		<input type="text" class="form-control"
-																			id="inputEmail4" placeholder="company code">
+																			id="inputEmail4" placeholder="company code" th:field="*{compCode}">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Company Name</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="company name">
+																			id="inputPassword4" placeholder="company name" th:field="*{compName}">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Company Type</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="company type">
+																			id="inputPassword4" placeholder="company type" th:field="*{compType}">
 																	</div>
 
 																	<div class="form-group col-md-4">
@@ -96,23 +96,23 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">PF Number</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="pf number">
+																			id="inputPassword4" placeholder="pf number" th:field="*{pfNumber}">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Parent Code</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="parent code">
+																			id="inputPassword4" placeholder="parent code" th:field="*{parentCode}">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Calculate ESI</label>
 																		<input type="text" class="form-control"
-																			id="inputEmail4" placeholder="calculate esi">
+																			id="inputEmail4" placeholder="calculate esi" th:field="*{calculateEsi}">
 																	</div>
 
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">ESI Number</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="esi number">
+																			id="inputPassword4" placeholder="esi number" th:field="*{esiNo}">
 																	</div>
 
 																	<div class="form-group col-md-4">
@@ -132,7 +132,7 @@
 																		<label for="inputPassword4">Tax
 																			Account(Purchase)</label> <input
 																			type="text" class="form-control"
-																			id="inputPassword4" placeholder="tax account">
+																			id="inputPassword4" placeholder="tax account" th:field="*{accountTaxPurchase}">
 																	</div>
 
 																	<div class="form-group col-md-4">
@@ -170,7 +170,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Email</label> <input
 																	type="email" class="form-control" id="inputEmail4"
-																	placeholder="Email">
+																	placeholder="Email" th:field="*{email}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Password</label> <input
@@ -248,7 +248,7 @@
 															<div class="form-group col-md-12">
 																<label for="inputAddress">Name</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="name">
+																	placeholder="name" th:field="*{rName}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Type of Deductor</label> <input
@@ -263,38 +263,38 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Excise Devison</label>
 																<input type="text" class="form-control"
-																	id="inputPassword4" placeholder="excise devision">
+																	id="inputPassword4" placeholder="excise devision" >
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Designation</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="designation">
+																	placeholder="designation" th:field="*{rDesig}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Flat Number</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="flat number">
+																	placeholder="flat number" th:field="*{rFlatNum}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Building</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="building">
+																	placeholder="building" th:field="*{rBuildingNo}">
 															</div>
 															<div class="form-group col-md-12">
 																<label for="inputAddress">Road/street/lane</label>
 																<input type="text" class="form-control"
-																	id="inputAddress" placeholder="road/street/lane">
+																	id="inputAddress" placeholder="road/street/lane" th:field="*{rStreet}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Town/City/District</label>
 																<input type="text" class="form-control"
-																	id="inputAddress" placeholder="town/city/district">
+																	id="inputAddress" placeholder="town/city/district" th:field="*{rCity}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">State</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="state">
+																	placeholder="state" th:field="*{rState}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Area/Location</label> <input
@@ -302,19 +302,19 @@
 																	placeholder="area/location">
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputAddress">Pin</label> <input type="text"
+																<label for="inputAddress">Pin</label> <input type="number"
 																	class="form-control" id="inputAddress"
-																	placeholder="pin">
+																	placeholder="pin" th:field="*{rPin}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Telephone Number</label>
 																<input type="text" class="form-control"
-																	id="inputAddress" placeholder="telephone number">
+																	id="inputAddress" placeholder="telephone number" th:field="*{rTel}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Email</label> <input
 																	type="email" class="form-control" id="inputAddress"
-																	placeholder="email">
+																	placeholder="email" th:field="*{rEmail}">
 															</div>
 														</div>
 													</div>
@@ -332,30 +332,30 @@
 															<div class="form-group col-md-6">
 																<label for="inputAddress">Pan Number</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="pan number">
+																	placeholder="pan number" th:field="*{panNumber}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label> <input
 																	type="text" class="form-control" id="inputEmail4"
-																	placeholder="gst number">
+																	placeholder="gst number" th:field="*{gstNo}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Legal
 																	Number</label> <input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="taxpayer legal ">
+																	placeholder="taxpayer legal" th:field="*{taxPayerLegalName}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Trade
 																	Number</label> <input type="password"
 																	class="form-control" id="inputPassword4"
-																	placeholder="taxpayer trade number">
+																	placeholder="taxpayer trade number" th:field="*{taxPayerTradeName}">
 															</div>
 
 															<div class="form-group col-md-6">
 																<label for="inputAddress">Date of Filling</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="date of filling">
+																	placeholder="date of filling" th:field="*{fillingDate}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputAddress">pan Number</label> <input
