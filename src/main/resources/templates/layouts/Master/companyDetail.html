@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head xmlns:th="http://www.thymeleaf.org">
 	<meta charset="utf-8">
@@ -85,16 +85,23 @@
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Company Type</label>
-																		<input type="text" class="form-control"
-																			id="inputPassword4"
-																			placeholder="company type"
-																			th:field="*{compType}">
+																		<select class="form-control"
+																			th:field="*{compType}" id="" title="urgency"
+																			required>
+
+																			<option value="dependent">Dependent</option>
+																			<option value="independent" selected>
+																				Independent</option>
+
+																		</select>
+
+
 																	</div>
 
 																	<div class="form-group col-md-4">
 																		<label for="inputAddress">Director Name</label>
 																		<input type="text" class="form-control"
-																			id="inputAddress"
+																			id="inputAddress" th:field="*{dirName}"
 																			placeholder="director name">
 																	</div>
 
@@ -113,9 +120,15 @@
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Calculate ESI</label>
-																		<input type="text" class="form-control"
-																			id="inputEmail4" placeholder="calculate esi"
-																			th:field="*{calculateEsi}">
+																		<select class="form-control"
+																			th:field="*{calculateEsi}" id=""
+																			title="urgency" required>
+
+																			<option value="yes" selected>Yes</option>
+																			<option value="no">No</option>
+
+																		</select>
+
 																	</div>
 
 																	<div class="form-group col-md-4">
@@ -135,7 +148,8 @@
 																		<label for="inputPassword4">Tax
 																			Account(Sale)</label> <input type="text"
 																			class="form-control" id="inputPassword4"
-																			placeholder="tax">
+																			placeholder="tax"
+																			th:field="*{acountTaxSale}">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Tax
@@ -147,9 +161,14 @@
 
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Deduction Form
-																			Employee(y/n)</label> <input type="text"
-																			class="form-control" id="inputPassword4"
-																			placeholder="deduction form">
+																			Employee(y/n)</label> <select
+																			class="form-control" id="" title="urgency"
+																			required th="*{deductionFromEmp}">
+
+																			<option value="yes" selected>Yes</option>
+																			<option value="no" selected>No</option>
+
+																		</select>
 																	</div>
 
 
@@ -166,8 +185,8 @@
 
 
 
-
 													</div>
+
 
 
 
@@ -188,11 +207,13 @@
 																			class="col-md-2 control-label">Address</label>
 																		<div class="col-md-5">
 																			<input type="text" class="form-control"
-																				id="inputEmail3" placeholder="address">
+																				th:field="*{cAddr1}" id="inputEmail3"
+																				placeholder="address">
 																		</div>
 																		<div class="col-md-5">
 																			<input type="text" class="form-control"
-																				id="inputEmail3" placeholder="address">
+																				th:field="*{cAddr2}" id="inputEmail3"
+																				placeholder="address">
 																		</div>
 																	</div>
 
@@ -201,7 +222,7 @@
 																			class="col-md-2 control-label">Road/street/lane</label>
 																		<div class="col-md-4">
 																			<input type="text" class="form-control"
-																				id=""
+																				id="" th:field="*{cStreet}"
 																				placeholder="road / street / lane">
 																		</div>
 																	</div>
@@ -210,8 +231,10 @@
 																		<label for="inputEmail3"
 																			class="col-md-2 control-label">State</label>
 																		<div class="col-md-4">
-																			<select class="form-control" id="state" onchange="getCityOnState()" title="Department Name" 
-																				th:field="*{state}" required>
+																			<select class="form-control" id="state"
+																				onchange="getCityOnState()"
+																				title="Department Name"
+																				th:field="*{cState}" required>
 																				<option value="">Select State</option>
 																				<option th:each="state :  ${listState}"
 																					th:text="${state.stateName}"
@@ -228,9 +251,11 @@
 																		<label for=""
 																			class="col-md-2 control-label">City</label>
 																		<div class="col-md-4">
-																			<select class="form-control cityContainer"title="city" id="cityCode" th:field="*{city}" required>
+																			<select class="form-control cityContainer"
+																				title="city" id="cityCode"
+																				th:field="*{cCity}" required>
 																				<option value="">Select City</option>
-																				
+
 																			</select>
 																		</div>
 																	</div>
@@ -240,7 +265,8 @@
 																			Code</label>
 																		<div class="col-md-4">
 																			<input type="text" class="form-control"
-																				id="" placeholder="pin code">
+																				th:field="*{cPin}" id=""
+																				placeholder="pin code">
 																		</div>
 																	</div>
 
@@ -250,7 +276,8 @@
 																			class="col-md-2 control-label">Fax</label>
 																		<div class="col-md-4">
 																			<input type="text" class="form-control"
-																				id="" placeholder="fax">
+																				id="" placeholder="fax"
+																				th:field="*{cFax}">
 																		</div>
 																	</div>
 
@@ -258,8 +285,10 @@
 																		<label for=""
 																			class="col-md-2 control-label">WebSite</label>
 																		<div class="col-md-4">
+																			
 																			<input type="text" class="form-control"
-																				id="" placeholder="website">
+																				id="" placeholder="website"
+																				th:field="*{cWebsite}">
 																		</div>
 																	</div>
 
@@ -271,7 +300,8 @@
 																			class="col-md-2 control-label">Email</label>
 																		<div class="col-md-10">
 																			<input type="text" class="form-control"
-																				id="" placeholder="email">
+																				id="" placeholder="email"
+																				th:field="*{cEmail}">
 																		</div>
 																	</div>
 
@@ -283,7 +313,8 @@
 																			1</label>
 																		<div class="col-md-4">
 																			<input type="text" class="form-control"
-																				id="" placeholder="phone-1">
+																				id="" placeholder="phone-1"
+																				th:field="*{cPhone1}">
 																		</div>
 																	</div>
 
@@ -292,17 +323,24 @@
 																			class="col-md-2 control-label">Phone-2</label>
 																		<div class="col-md-4">
 																			<input type="text" class="form-control"
-																				id="inputEmail3" placeholder="phone-2">
+																				id="inputEmail3" placeholder="phone-2"
+																				th:field="*{cPhone2}">
 																		</div>
 																	</div>
 
+
+
 																</div><!-- /.box-body -->
 
+																<!-- 
+														REMOVE DIB -->
 
 															</div>
 														</div>
+
 													</div>
 
+													<!-- ADD -->
 												</div>
 												<!-- end company detail tab -->
 
@@ -314,7 +352,8 @@
 													<p></p>
 													<div class="box">
 
-														<h5>Particular of the Person Responsible for deduction of tax
+														<h5>Particular of the Person Responsible for deduction of
+															tax
 														</h5>
 														<div class="row">
 															<div class="form-group col-md-12">
@@ -323,19 +362,24 @@
 																	placeholder="name" th:field="*{rName}">
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputEmail4">Type of Deductor</label> <input
-																	type="text" class="form-control" id="inputEmail4"
-																	placeholder="type of deductor">
+																<label for="inputEmail4">Type of Deductor</label>
+																<select class="form-control" id="" title="urgency"
+																	required th:field="*{rTypeOfDeductor}">
+
+																	<option value="other">Other</option>
+
+																</select>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Branch</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="branch">
+																	placeholder="branch" th:field="*{rBranch}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Excise Devison</label>
 																<input type="text" class="form-control"
-																	id="inputPassword4" placeholder="excise devision">
+																	id="inputPassword4" placeholder="excise devision"
+																	th:field="*{rExciseDivision}">
 															</div>
 
 															<div class="form-group col-md-4">
@@ -359,21 +403,37 @@
 																	id="inputAddress" placeholder="road/street/lane"
 																	th:field="*{rStreet}">
 															</div>
+
+
+
+
+
+															<div class="form-group col-md-4">
+																<label for="inputAddress">State</label> <select
+																	class="form-control" id="state"
+																	onchange="getRCityOnState()" title="Department Name"
+																	th:field="*{rState}" required>
+																	<option value="">Select State</option>
+																	<option th:each="state :  ${listState}"
+																		th:text="${state.stateName}"
+																		th:value=" ${state.stateCode}">
+																	</option>
+																</select>
+															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Town/City/District</label>
+																<select class="form-control cityContainer" title="city"
+																	id="cityCode" th:field="*{rCity}" required>
+																	<option value="">Select City</option>
+
+																</select>
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputAddress">Area/Location</label>
 																<input type="text" class="form-control"
-																	id="inputAddress" placeholder="town/city/district"
-																	th:field="*{rCity}">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputAddress">State</label> <input
-																	type="text" class="form-control" id="inputAddress"
-																	placeholder="state" th:field="*{rState}">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Area/Location</label> <input
-																	type="text" class="form-control" id="inputAddress"
-																	placeholder="area/location">
+																	id="inputAddress" placeholder="area/location"
+																	th:field="*{rLocation}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Pin</label> <input
@@ -404,14 +464,14 @@
 														<h5>Tax Details</h5>
 														<div class="row">
 															<div class="form-group col-md-6">
-																<label for="inputAddress">Pan Number</label> <input
+																<label for="inputAddress">PP Number</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="pan number" th:field="*{panNumber}">
+																	placeholder="pan number" th:field="*{tPfNumber}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label> <input
 																	type="text" class="form-control" id="inputEmail4"
-																	placeholder="gst number" th:field="*{gstNo}">
+																	placeholder="gst number" th:field="*{tGstNo}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Legal
@@ -429,15 +489,15 @@
 															</div>
 
 															<div class="form-group col-md-6">
-																<label for="inputAddress">Date of Filling</label> <input
-																	type="date" class="form-control" id="inputAddress"
-																	placeholder="date of filling"
-																	th:field="*{fillingDate}">
+																<label for="inputAddress">Date of Filling</label>
+																<input type="date" class="form-control"
+																	id="inputAddress" placeholder="date of filling"
+																	th:field="*{tFillingDate}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputAddress">pan Number</label> <input
 																	type="text" class="form-control" id="inputAddress"
-																	placeholder="pan number">
+																	placeholder="pan number" th:field="*{tPanNumber}">
 															</div>
 
 														</div>
@@ -458,31 +518,36 @@
 																	<div class="form-group col-md-6">
 																		<label for="inputAddress">Pan Number</label>
 																		<input type="text" class="form-control"
-																			id="inputAddress" placeholder="pan number">
+																			id="inputAddress" placeholder="pan number"
+																			th:field="*{tdPanNumber}">
 																	</div>
 																	<div class="form-group col-md-6">
 																		<label for="inputEmail4">GST Number</label>
 																		<input type="text" class="form-control"
-																			id="inputEmail4" placeholder="gst number">
+																			id="inputEmail4" placeholder="gst number"
+																			th:field="*{tdGstNumber}">
 																	</div>
 																	<div class="form-group col-md-6">
 																		<label for="inputPassword4">Taxpayer Legal
 																			Number</label> <input type="password"
 																			class="form-control" id="inputPassword4"
-																			placeholder="taxpayer legal number">
+																			placeholder="taxpayer legal number"
+																			th:field="*{tdTaxPayerLegalName}">
 																	</div>
 																	<div class="form-group col-md-6">
 																		<label for="inputPassword4">Taxpayer Trade
 																			Number</label> <input type="password"
 																			class="form-control" id="inputPassword4"
-																			placeholder="taxpayer trade number ">
+																			placeholder="taxpayer trade number"
+																			th:field="*{tdTaxPayerTradeName}">
 																	</div>
 
 																	<div class="form-group col-md-6">
 																		<label for="inputAddress">Date of
 																			Filling</label> <input type="text"
 																			class="form-control" id="inputAddress"
-																			placeholder="date of filling">
+																			placeholder="date of filling"
+																			th:field="*{tdFillingDate}">
 																	</div>
 
 
@@ -821,18 +886,21 @@
 					</div>
 				</section>
 			</div>
+		</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
-			
-			<script src="../../js/demo.js" th:src="@{/js/myjs.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+
+	<script src="../../js/demo.js" th:src="@{/js/myjs.js}"></script>
 
 </body>
 

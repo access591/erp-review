@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name="INSURANCE_DETAIL")
+@Table(name="M_INSURANCE_DETAIL")
 public class InsuranceDetail {
 	
 	@Id
