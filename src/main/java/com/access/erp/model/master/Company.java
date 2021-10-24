@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "COMPANY_MASTER")
+@Table(name = "M_COMPANY")
 public class Company {
 
 	@Id
@@ -27,22 +27,168 @@ public class Company {
 
 	@Column(name = "COMP_NAME", length = 100)
 	private String compName;
+	
+	@Column(name = "DIR_NAME", length = 75)
+	private String dirName;
+	
+	@Column(name = "PARENT_CODE", length = 50)
+	private String parentCode;
+	
+	@Column(name = "COMP_LOGO", length = 500)
+	private String compLogo;
 
-	@Column(name = "ADDRESS1", length = 100)
-	private String addr1;
+	@Column(name = "CALCULATE_ESI", length = 10)
+	private String calculateEsi;
+	
+	@Column(name = "ESI_NO", length = 50)
+	private String esiNo;
+	
+	@Column(name = "COMP_TYPE", length = 50)
+	private String compType;
+	
+	@Column(name = "ACCOUNT_TAX_SALE", length = 50)
+	private String acountTaxSale;
 
-	@Column(name = "ADDRESS2", length = 100)
-	private String addr2;
+	@Column(name = "ACCOUNT_TAX_PURCHASE", length = 50)
+	private String accountTaxPurchase;
+	
+	@Column(name = "DEDUCTION_FROM_EMP", length = 10)
+	private String deductionFromEmp;
+	
+	@Column(name = "PF_NUMBER", length = 50)
+	private String PfNumber;
 
-	@Column(name = "FAX", length = 80)
-	private String fax;
+	@Column(name = "C_ADDRESS1", length = 100)
+	private String cAddr1;
 
-	@Column(name = "EMAIL", length = 75)
-	private String email;
+	@Column(name = "C_ADDRESS2", length = 100)
+	private String cAddr2;
+	
+	@Column(name = "C_ROAD_STREET_LANE", length = 100)
+	private String cStreet;
 
-	@Column(name = "PHONE", length = 45)
-	private String phone;
+	@Column(name = "C_FAX", length = 80)
+	private String cFax;
 
+	@Column(name = "C_EMAIL", length = 75)
+	private String cEmail;
+	
+	@Column(name = "C_WEBSITE", length = 75)
+	private String cWebsite;
+
+	@Column(name = "C_PHONE", length = 45)
+	private String cPhone1;
+	
+	@Column(name = "C_PHONE2", length = 45)
+	private String cPhone2;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "C_STATE_CODE")
+	private State cState;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "C_CITY_CODE")
+	private City cCity;
+	
+	@Column(name = "C_PIN", length = 8)
+	private int cPin;
+	
+
+	
+	
+	@Column(name = "R_NAME", length = 80)
+	private String rName;
+	
+	@Column(name = "R_TYPE_DEDUCTOR", length = 80)
+	private String rTypeOfDeductor;
+	
+	@Column(name = "R_BRANCH", length = 75)
+	private String rBranch;
+
+	@Column(name = "R_EXCISE_DIVISION", length = 100)
+	private String rExciseDivision;
+	
+	@Column(name = "R_DESIG", length = 30)
+	private String rDesig;
+
+	@Column(name = "R_FLAT_NO", length = 30)
+	private String rFlatNum;
+
+	@Column(name = "R_BUILDING_NO", length = 30)
+	private String rBuildingNo;
+
+	@Column(name = "R_STREET", length = 30)
+	private String rStreet;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "R_STATE_CODE")
+	private State rState;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "R_CITY_CODE")
+	private City rCity;
+
+	@Column(name = "R_LOCATION", length = 50)
+	private int rLocation;
+
+	@Column(name = "R_PIN", length = 8)
+	private int rPin;
+
+	@Column(name = "R_STD", length = 10)
+	private String rStd;
+
+	@Column(name = "R_TEL", length = 15)
+	private int rTel;
+
+	@Column(name = "R_EMAIL", length = 30)
+	private String rEmail;
+
+	
+	
+	
+	
+	@Column(name = "T_T_PF_NUMBER", length = 50)
+	private String tPfNumber;
+	
+	@Column(name = "T_GST_NO", length = 30)
+	private String tGstNo;
+	
+	@Column(name = "TAX_PAYERLEGALNAME", length = 100)
+	private String taxPayerLegalName;
+
+	@Column(name = "TAX_PAYER_TRADE_NAME", length = 100)
+	private String taxPayerTradeName;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "T_FILLING_DATE")
+	private Date tFillingDate;
+	
+	@Column(name = "PAN_NUMBER", length = 50)
+	private String tPanNumber;
+	
+	
+	
+	
+	
+	@Column(name = "TD_PAN_NUMBER", length = 50)
+	private String tdPanNumber;
+	
+	@Column(name = "TD_GST_NUMBER", length = 50)
+	private String tdGstNumber;
+	
+	@Column(name = "TD_TAX_PAYERLEGALNAME", length = 100)
+	private String tdTaxPayerLegalName;
+
+	@Column(name = "TD_TAX_PAYER_TRADE_NAME", length = 100)
+	private String tdTaxPayerTradeName;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "TD_FILLING_DATE")
+	private Date tdFillingDate;
+	
+	
+//	 extra collumn 
+	
 	@Column(name = "CST_NUMBER", length = 25)
 	private String cstNumber;
 
@@ -53,11 +199,7 @@ public class Company {
 	@Column(name = "VAT_NUMBER", length = 50)
 	private String vatNumber;
 
-	@Column(name = "PF_NUMBER", length = 50)
-	private String pfNumber;
-
-	@Column(name = "PAN_NUMBER", length = 50)
-	private String panNumber;
+	
 
 	@Column(name = "IMPORT_LICENSE_NUMBER", length = 50)
 	private String importLicenseNumber;
@@ -68,14 +210,11 @@ public class Company {
 	@Column(name = "B17_BOND_DATE")
 	private Date b17BondDate;
 
-	@Column(name = "BRANCH", length = 75)
-	private String branch;
-
+	
 	@Column(name = "ECC_NUMBER", length = 50)
 	private String eccNumber;
 
-	@Column(name = "EXCISE_DIVISION", length = 100)
-	private String exciseDivision;
+	
 
 	@Column(name = "COMMISSIONORATE", length = 100)
 	private String commissionRate;
@@ -92,14 +231,9 @@ public class Company {
 	@Column(name = "CENTRAL_EXCISE_REGION_NO", length = 500)
 	private String centralExciseRegionNo;
 
-	@Column(name = "COMP_LOGO", length = 500)
-	private String compLogo;
+	
 
-	@Column(name = "PARENT_CODE", length = 50)
-	private String parentCode;
-
-	@Column(name = "CALCULATE_ESI", length = 10)
-	private String calculateEsi;
+	
 
 	@Column(name = "TIN", length = 20)
 	private String tin;
@@ -108,86 +242,18 @@ public class Company {
 	 * @Column(name = "CITY_CODE", length = 50) private String cityCode;
 	 */
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "CITY_CODE")
-	private City city;
-	
-	
-	@Column(name = "TAN", length = 20)
-	private String tan;
 
-	@Column(name = "DIR_NAME", length = 75)
-	private String dirName;
-
-	@Column(name = "TYPE", length = 10)
-	private String type;
-
-	@Column(name = "FLAT_NO", length = 30)
-	private String flatNo;
-
-	@Column(name = "BUILDING", length = 30)
-	private String building;
-
-	@Column(name = "STREET", length = 30)
-	private String street;
-
-	@Column(name = "DISTRICT", length = 30)
-	private String district;
-
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "STATE_CODE")
-	private State state;
-
-	@Column(name = "PIN", length = 8)
-	private int pin;
 
 	@Column(name = "STD", length = 10)
 	private String std;
 
-	@Column(name = "R_NAME", length = 80)
-	private String rName;
-
-	@Column(name = "R_DESIG", length = 30)
-	private String rDesig;
-
-	@Column(name = "R_FLAT_NO", length = 30)
-	private String rFlatNum;
-
-	@Column(name = "R_BUILDING_NO", length = 30)
-	private String rBuildingNo;
-
-	@Column(name = "R_STREET", length = 30)
-	private String rStreet;
-
-	@Column(name = "R_STATE", length = 30)
-	private String rState;
-
-	@Column(name = "R_CITY", length = 30)
-	private String rCity;
-
-	@Column(name = "R_DISTRICT", length = 30)
-	private String rDistrict;
-
-	@Column(name = "R_PIN", length = 6)
-	private int rPin;
-
-	@Column(name = "R_STD", length = 10)
-	private String rStd;
-
-	@Column(name = "R_TEL", length = 15)
-	private int rTel;
-
-	@Column(name = "R_EMAIL", length = 30)
-	private String rEmail;
-
-	@Column(name = "COMP_TYPE", length = 50)
-	private String compType;
+	
+	
 
 	@Column(name = "ESI_C_E", length = 4)
 	private String esiCe;
 
-	@Column(name = "ESI_NO", length = 50)
-	private String esiNo;
+	
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "SERVICE_TAX_DATE")
@@ -196,11 +262,7 @@ public class Company {
 	@Column(name = "SERVICE_TAX_NO", length = 50)
 	private String serviceTaxNo;
 
-	@Column(name = "ACCOUNT_TAX_SALE", length = 10)
-	private String ccountTaxSale;
-
-	@Column(name = "ACCOUNT_TAX_PURCHASE", length = 10)
-	private String accountTaxPurchase;
+	
 
 	@Column(name = "DRUG_LICENCE_NO", length = 25)
 	private String drugLicenceNo;
@@ -208,8 +270,7 @@ public class Company {
 	@Column(name = "STD2", length = 10)
 	private String std2;
 
-	@Column(name = "PHONE2", length = 45)
-	private String phone2;
+	
 
 	@Column(name = "PLA_NO", length = 20)
 	private String plaNo;
@@ -229,13 +290,8 @@ public class Company {
 	@Column(name = "EXCISE_DIVISION_ADD", length = 100)
 	private String exciseDivisionAdd;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "TIN_DATE")
-	private Date tinDate;
-
-	@Column(name = "WEBSITE", length = 50)
-	private String website;
-
+	
+	
 	@Column(name = "NOTIFICATION_NO", length = 30)
 	private String notificationNo;
 
@@ -251,18 +307,11 @@ public class Company {
 	@Column(name = "CIN_NO", length = 30)
 	private String cinNo;
 
-	@Column(name = "GST_NO", length = 30)
-	private String gstNo;
+	
 
-	@Column(name = "TAX_PAYERLEGALNAME", length = 100)
-	private String taxPayerLegalName;
+	
 
-	@Column(name = "TAX_PAYER_TRADE_NAME", length = 100)
-	private String taxPayerTradeName;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "FILLING_DATE")
-	private Date fillingDate;
+	
 
 	@Column(name = "BANK_IFSC_CODE", length = 50)
 	private String bankIfscCode;
@@ -293,24 +342,16 @@ public class Company {
 
 	}
 
+	public String getPfNumber() {
+		return PfNumber;
+	}
+
+	public void setPfNumber(String pfNumber) {
+		PfNumber = pfNumber;
+	}
+
 	public String getCompCode() {
 		return compCode;
-	}
-
-	public List<InsuranceDetail> getInsuranceDetail() {
-		return insuranceDetail;
-	}
-
-	public void setInsuranceDetail(List<InsuranceDetail> insuranceDetail) {
-		this.insuranceDetail = insuranceDetail;
-	}
-
-	public List<SiteOffice> getSiteOffice() {
-		return siteOffice;
-	}
-
-	public void setSitOffice(List<SiteOffice> siteOffice) {
-		this.siteOffice = siteOffice;
 	}
 
 	public void setCompCode(String compCode) {
@@ -325,44 +366,372 @@ public class Company {
 		this.compName = compName;
 	}
 
-	public String getAddr1() {
-		return addr1;
+	public String getDirName() {
+		return dirName;
 	}
 
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
+	public void setDirName(String dirName) {
+		this.dirName = dirName;
 	}
 
-	public String getAddr2() {
-		return addr2;
+	public String getParentCode() {
+		return parentCode;
 	}
 
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
 	}
 
-	public String getFax() {
-		return fax;
+	public String getCompLogo() {
+		return compLogo;
 	}
 
-	public void setFax(String fax) {
-		this.fax = fax;
+	public void setCompLogo(String compLogo) {
+		this.compLogo = compLogo;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCalculateEsi() {
+		return calculateEsi;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCalculateEsi(String calculateEsi) {
+		this.calculateEsi = calculateEsi;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getEsiNo() {
+		return esiNo;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEsiNo(String esiNo) {
+		this.esiNo = esiNo;
+	}
+
+	public String getCompType() {
+		return compType;
+	}
+
+	public void setCompType(String compType) {
+		this.compType = compType;
+	}
+
+	public String getAcountTaxSale() {
+		return acountTaxSale;
+	}
+
+	public void setAcountTaxSale(String acountTaxSale) {
+		this.acountTaxSale = acountTaxSale;
+	}
+
+	public String getAccountTaxPurchase() {
+		return accountTaxPurchase;
+	}
+
+	public void setAccountTaxPurchase(String accountTaxPurchase) {
+		this.accountTaxPurchase = accountTaxPurchase;
+	}
+
+	public String getDeductionFromEmp() {
+		return deductionFromEmp;
+	}
+
+	public void setDeductionFromEmp(String deductionFromEmp) {
+		this.deductionFromEmp = deductionFromEmp;
+	}
+
+	public String getcAddr1() {
+		return cAddr1;
+	}
+
+	public void setcAddr1(String cAddr1) {
+		this.cAddr1 = cAddr1;
+	}
+
+	public String getcAddr2() {
+		return cAddr2;
+	}
+
+	public void setcAddr2(String cAddr2) {
+		this.cAddr2 = cAddr2;
+	}
+
+	public String getcStreet() {
+		return cStreet;
+	}
+
+	public void setcStreet(String cStreet) {
+		this.cStreet = cStreet;
+	}
+
+	public String getcFax() {
+		return cFax;
+	}
+
+	public void setcFax(String cFax) {
+		this.cFax = cFax;
+	}
+
+	public String getcEmail() {
+		return cEmail;
+	}
+
+	public void setcEmail(String cEmail) {
+		this.cEmail = cEmail;
+	}
+
+	public String getcPhone1() {
+		return cPhone1;
+	}
+
+	public void setcPhone1(String cPhone1) {
+		this.cPhone1 = cPhone1;
+	}
+
+	public String getcPhone2() {
+		return cPhone2;
+	}
+
+	public void setcPhone2(String cPhone2) {
+		this.cPhone2 = cPhone2;
+	}
+
+	public State getcState() {
+		return cState;
+	}
+
+	public void setcState(State cState) {
+		this.cState = cState;
+	}
+
+	public City getcCity() {
+		return cCity;
+	}
+
+	public void setcCity(City cCity) {
+		this.cCity = cCity;
+	}
+
+	public int getcPin() {
+		return cPin;
+	}
+
+	public void setcPin(int cPin) {
+		this.cPin = cPin;
+	}
+
+	public String getrName() {
+		return rName;
+	}
+
+	public void setrName(String rName) {
+		this.rName = rName;
+	}
+
+	public String getrTypeOfDeductor() {
+		return rTypeOfDeductor;
+	}
+
+	public void setrTypeOfDeductor(String rTypeOfDeductor) {
+		this.rTypeOfDeductor = rTypeOfDeductor;
+	}
+
+	public String getrBranch() {
+		return rBranch;
+	}
+
+	public void setrBranch(String rBranch) {
+		this.rBranch = rBranch;
+	}
+
+	public String getrExciseDivision() {
+		return rExciseDivision;
+	}
+
+	public void setrExciseDivision(String rExciseDivision) {
+		this.rExciseDivision = rExciseDivision;
+	}
+
+	public String getrDesig() {
+		return rDesig;
+	}
+
+	public void setrDesig(String rDesig) {
+		this.rDesig = rDesig;
+	}
+
+	public String getrFlatNum() {
+		return rFlatNum;
+	}
+
+	public void setrFlatNum(String rFlatNum) {
+		this.rFlatNum = rFlatNum;
+	}
+
+	public String getrBuildingNo() {
+		return rBuildingNo;
+	}
+
+	public void setrBuildingNo(String rBuildingNo) {
+		this.rBuildingNo = rBuildingNo;
+	}
+
+	public String getrStreet() {
+		return rStreet;
+	}
+
+	public void setrStreet(String rStreet) {
+		this.rStreet = rStreet;
+	}
+
+	public State getrState() {
+		return rState;
+	}
+
+	public void setrState(State rState) {
+		this.rState = rState;
+	}
+
+	public City getrCity() {
+		return rCity;
+	}
+
+	public void setrCity(City rCity) {
+		this.rCity = rCity;
+	}
+
+	public int getrLocation() {
+		return rLocation;
+	}
+
+	public void setrLocation(int rLocation) {
+		this.rLocation = rLocation;
+	}
+
+	public int getrPin() {
+		return rPin;
+	}
+
+	public void setrPin(int rPin) {
+		this.rPin = rPin;
+	}
+
+	public String getrStd() {
+		return rStd;
+	}
+
+	public void setrStd(String rStd) {
+		this.rStd = rStd;
+	}
+
+	public int getrTel() {
+		return rTel;
+	}
+
+	public void setrTel(int rTel) {
+		this.rTel = rTel;
+	}
+
+	public String getrEmail() {
+		return rEmail;
+	}
+
+	public void setrEmail(String rEmail) {
+		this.rEmail = rEmail;
+	}
+
+	public String gettPfNumber() {
+		return tPfNumber;
+	}
+
+	public void settPfNumber(String tPfNumber) {
+		this.tPfNumber = tPfNumber;
+	}
+
+	public String gettGstNo() {
+		return tGstNo;
+	}
+
+	public void settGstNo(String tGstNo) {
+		this.tGstNo = tGstNo;
+	}
+
+	public String getTaxPayerLegalName() {
+		return taxPayerLegalName;
+	}
+
+	public void setTaxPayerLegalName(String taxPayerLegalName) {
+		this.taxPayerLegalName = taxPayerLegalName;
+	}
+
+	public String getcWebsite() {
+		return cWebsite;
+	}
+
+	public void setcWebsite(String cWebsite) {
+		this.cWebsite = cWebsite;
+	}
+
+	public String getTaxPayerTradeName() {
+		return taxPayerTradeName;
+	}
+
+	public void setTaxPayerTradeName(String taxPayerTradeName) {
+		this.taxPayerTradeName = taxPayerTradeName;
+	}
+
+	public Date gettFillingDate() {
+		return tFillingDate;
+	}
+
+	public void settFillingDate(Date tFillingDate) {
+		this.tFillingDate = tFillingDate;
+	}
+
+	public String gettPanNumber() {
+		return tPanNumber;
+	}
+
+	public void settPanNumber(String tPanNumber) {
+		this.tPanNumber = tPanNumber;
+	}
+
+	public String getTdPanNumber() {
+		return tdPanNumber;
+	}
+
+	public void setTdPanNumber(String tdPanNumber) {
+		this.tdPanNumber = tdPanNumber;
+	}
+
+	public String getTdGstNumber() {
+		return tdGstNumber;
+	}
+
+	public void setTdGstNumber(String tdGstNumber) {
+		this.tdGstNumber = tdGstNumber;
+	}
+
+	public String getTdTaxPayerLegalName() {
+		return tdTaxPayerLegalName;
+	}
+
+	public void setTdTaxPayerLegalName(String tdTaxPayerLegalName) {
+		this.tdTaxPayerLegalName = tdTaxPayerLegalName;
+	}
+
+	public String getTdTaxPayerTradeName() {
+		return tdTaxPayerTradeName;
+	}
+
+	public void setTdTaxPayerTradeName(String tdTaxPayerTradeName) {
+		this.tdTaxPayerTradeName = tdTaxPayerTradeName;
+	}
+
+	public Date getTdFillingDate() {
+		return tdFillingDate;
+	}
+
+	public void setTdFillingDate(Date tdFillingDate) {
+		this.tdFillingDate = tdFillingDate;
 	}
 
 	public String getCstNumber() {
@@ -389,22 +758,6 @@ public class Company {
 		this.vatNumber = vatNumber;
 	}
 
-	public String getPfNumber() {
-		return pfNumber;
-	}
-
-	public void setPfNumber(String pfNumber) {
-		this.pfNumber = pfNumber;
-	}
-
-	public String getPanNumber() {
-		return panNumber;
-	}
-
-	public void setPanNumber(String panNumber) {
-		this.panNumber = panNumber;
-	}
-
 	public String getImportLicenseNumber() {
 		return importLicenseNumber;
 	}
@@ -429,28 +782,12 @@ public class Company {
 		this.b17BondDate = b17BondDate;
 	}
 
-	public String getBranch() {
-		return branch;
-	}
-
-	public void setBranch(String branch) {
-		this.branch = branch;
-	}
-
 	public String getEccNumber() {
 		return eccNumber;
 	}
 
 	public void setEccNumber(String eccNumber) {
 		this.eccNumber = eccNumber;
-	}
-
-	public String getExciseDivision() {
-		return exciseDivision;
-	}
-
-	public void setExciseDivision(String exciseDivision) {
-		this.exciseDivision = exciseDivision;
 	}
 
 	public String getCommissionRate() {
@@ -493,124 +830,12 @@ public class Company {
 		this.centralExciseRegionNo = centralExciseRegionNo;
 	}
 
-	public String getCompLogo() {
-		return compLogo;
-	}
-
-	public void setCompLogo(String compLogo) {
-		this.compLogo = compLogo;
-	}
-
-	public String getParentCode() {
-		return parentCode;
-	}
-
-	public void setParentCode(String parentCode) {
-		this.parentCode = parentCode;
-	}
-
-	public String getCalculateEsi() {
-		return calculateEsi;
-	}
-
-	public void setCalculateEsi(String calculateEsi) {
-		this.calculateEsi = calculateEsi;
-	}
-
 	public String getTin() {
 		return tin;
 	}
 
 	public void setTin(String tin) {
 		this.tin = tin;
-	}
-
-	
-
-	public String getTan() {
-		return tan;
-	}
-
-	public void setTan(String tan) {
-		this.tan = tan;
-	}
-
-	public String getDirName() {
-		return dirName;
-	}
-
-	public void setDirName(String dirName) {
-		this.dirName = dirName;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getFlatNo() {
-		return flatNo;
-	}
-
-	public void setFlatNo(String flatNo) {
-		this.flatNo = flatNo;
-	}
-
-	public String getBuilding() {
-		return building;
-	}
-
-	public void setBuilding(String building) {
-		this.building = building;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public State getState() {
-		return state;
-	}
-
-	public void setState(State state) {
-		this.state = state;
-	}
-
-	public void setSiteOffice(List<SiteOffice> siteOffice) {
-		this.siteOffice = siteOffice;
-	}
-
-	public int getPin() {
-		return pin;
-	}
-
-	public void setPin(int pin) {
-		this.pin = pin;
 	}
 
 	public String getStd() {
@@ -621,124 +846,12 @@ public class Company {
 		this.std = std;
 	}
 
-	public String getrName() {
-		return rName;
-	}
-
-	public void setrName(String rName) {
-		this.rName = rName;
-	}
-
-	public String getrDesig() {
-		return rDesig;
-	}
-
-	public void setrDesig(String rDesig) {
-		this.rDesig = rDesig;
-	}
-
-	public String getrFlatNum() {
-		return rFlatNum;
-	}
-
-	public void setrFlatNum(String rFlatNum) {
-		this.rFlatNum = rFlatNum;
-	}
-
-	public String getrBuildingNo() {
-		return rBuildingNo;
-	}
-
-	public void setrBuildingNo(String rBuildingNo) {
-		this.rBuildingNo = rBuildingNo;
-	}
-
-	public String getrStreet() {
-		return rStreet;
-	}
-
-	public void setrStreet(String rStreet) {
-		this.rStreet = rStreet;
-	}
-
-	public String getrState() {
-		return rState;
-	}
-
-	public void setrState(String rState) {
-		this.rState = rState;
-	}
-
-	public String getrCity() {
-		return rCity;
-	}
-
-	public void setrCity(String rCity) {
-		this.rCity = rCity;
-	}
-
-	public String getrDistrict() {
-		return rDistrict;
-	}
-
-	public void setrDistrict(String rDistrict) {
-		this.rDistrict = rDistrict;
-	}
-
-	public int getrPin() {
-		return rPin;
-	}
-
-	public void setrPin(int rPin) {
-		this.rPin = rPin;
-	}
-
-	public String getrStd() {
-		return rStd;
-	}
-
-	public void setrStd(String rStd) {
-		this.rStd = rStd;
-	}
-
-	public int getrTel() {
-		return rTel;
-	}
-
-	public void setrTel(int rTel) {
-		this.rTel = rTel;
-	}
-
-	public String getrEmail() {
-		return rEmail;
-	}
-
-	public void setrEmail(String rEmail) {
-		this.rEmail = rEmail;
-	}
-
-	public String getCompType() {
-		return compType;
-	}
-
-	public void setCompType(String compType) {
-		this.compType = compType;
-	}
-
 	public String getEsiCe() {
 		return esiCe;
 	}
 
 	public void setEsiCe(String esiCe) {
 		this.esiCe = esiCe;
-	}
-
-	public String getEsiNo() {
-		return esiNo;
-	}
-
-	public void setEsiNo(String esiNo) {
-		this.esiNo = esiNo;
 	}
 
 	public Date getServiceTaxDate() {
@@ -757,22 +870,6 @@ public class Company {
 		this.serviceTaxNo = serviceTaxNo;
 	}
 
-	public String getCcountTaxSale() {
-		return ccountTaxSale;
-	}
-
-	public void setCcountTaxSale(String ccountTaxSale) {
-		this.ccountTaxSale = ccountTaxSale;
-	}
-
-	public String getAccountTaxPurchase() {
-		return accountTaxPurchase;
-	}
-
-	public void setAccountTaxPurchase(String accountTaxPurchase) {
-		this.accountTaxPurchase = accountTaxPurchase;
-	}
-
 	public String getDrugLicenceNo() {
 		return drugLicenceNo;
 	}
@@ -787,14 +884,6 @@ public class Company {
 
 	public void setStd2(String std2) {
 		this.std2 = std2;
-	}
-
-	public String getPhone2() {
-		return phone2;
-	}
-
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
 	}
 
 	public String getPlaNo() {
@@ -845,22 +934,6 @@ public class Company {
 		this.exciseDivisionAdd = exciseDivisionAdd;
 	}
 
-	public Date getTinDate() {
-		return tinDate;
-	}
-
-	public void setTinDate(Date tinDate) {
-		this.tinDate = tinDate;
-	}
-
-	public String getWebsite() {
-		return website;
-	}
-
-	public void setWebsite(String website) {
-		this.website = website;
-	}
-
 	public String getNotificationNo() {
 		return notificationNo;
 	}
@@ -899,38 +972,6 @@ public class Company {
 
 	public void setCinNo(String cinNo) {
 		this.cinNo = cinNo;
-	}
-
-	public String getGstNo() {
-		return gstNo;
-	}
-
-	public void setGstNo(String gstNo) {
-		this.gstNo = gstNo;
-	}
-
-	public String getTaxPayerLegalName() {
-		return taxPayerLegalName;
-	}
-
-	public void setTaxPayerLegalName(String taxPayerLegalName) {
-		this.taxPayerLegalName = taxPayerLegalName;
-	}
-
-	public String getTaxPayerTradeName() {
-		return taxPayerTradeName;
-	}
-
-	public void setTaxPayerTradeName(String taxPayerTradeName) {
-		this.taxPayerTradeName = taxPayerTradeName;
-	}
-
-	public Date getFillingDate() {
-		return fillingDate;
-	}
-
-	public void setFillingDate(Date fillingDate) {
-		this.fillingDate = fillingDate;
 	}
 
 	public String getBankIfscCode() {
@@ -981,4 +1022,21 @@ public class Company {
 		this.fssaiCode = fssaiCode;
 	}
 
+	public List<InsuranceDetail> getInsuranceDetail() {
+		return insuranceDetail;
+	}
+
+	public void setInsuranceDetail(List<InsuranceDetail> insuranceDetail) {
+		this.insuranceDetail = insuranceDetail;
+	}
+
+	public List<SiteOffice> getSiteOffice() {
+		return siteOffice;
+	}
+
+	public void setSiteOffice(List<SiteOffice> siteOffice) {
+		this.siteOffice = siteOffice;
+	}
+
+	
 }
