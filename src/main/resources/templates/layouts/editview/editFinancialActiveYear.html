@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="changeUserCode()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -51,16 +51,16 @@
 
 										<div class="form-group col-md-6">
 											<label for="inputPassword4">User Name</label> <input type="text"
-												class="form-control" placeholder="from date" id="userName">
+												class="form-control" placeholder="user name" id="userName">
 										</div>
 
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">FinancialYear</label> <select class="form-control"
 												id="financialYear" onchange="" title="Financial year" required th:field="*{financialYear}">
 												<option value="">Select Financial year</option>
-												<option th:each="financialYear :  ${listFinancialyear}"
-													th:text="${financialYear.financialYearCode}"
-													th:value=" ${financialYear.id}"></option>
+												<option th:each="financialY :  ${listFinancialyear}"
+													th:text="${financialY.financialYearCode}"
+													th:value=" ${financialY.id}"></option>
 											</select>
 										</div>
 										

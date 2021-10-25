@@ -19,7 +19,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/login*").permitAll()
 		.anyRequest().authenticated().and()
 		.formLogin().loginPage("/login").loginProcessingUrl("/doLogin")	
-		.defaultSuccessUrl("/index",true).and().logout().logoutSuccessUrl("/login")
+		.defaultSuccessUrl("/verify",true).and().logout().logoutSuccessUrl("/login")
 		;
 		
 	}
