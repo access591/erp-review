@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -582,52 +583,53 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
+																<tr th:each="row, stat :${company.insuranceDetail}">
 																	<th scope="row">
+																		<input type="hidden" th:field="*{insuranceDetail[__${stat.index}__].insuranceId}">
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" readonly>
+																				placeholder="" readonly th:field="*{insuranceDetail[__${stat.index}__].company.compCode}">
 																		</fieldset>
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" readonly>
+																				placeholder="" readonly th:field="*{insuranceDetail[__${stat.index}__].company.compName}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="insuranceDetail[0].custCode">
+																				th:field="*{insuranceDetail[__${stat.index}__].custCode}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="date" class="form-control"
 																				placeholder=""
-																				name="insuranceDetail[0].renewalDate">
+																				th:field="*{insuranceDetail[__${stat.index}__].renewalDate}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="insuranceDetail[0].version">
+																				th:field="*{insuranceDetail[__${stat.index}__].version}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="insuranceDetail[0].desc1">
+																				th:field="*{insuranceDetail[__${stat.index}__].desc1}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="insuranceDetail[0].desc2">
+																				th:field="*{insuranceDetail[__${stat.index}__].desc2}">
 																		</fieldset>
 																	</td>
 																</tr>
@@ -745,40 +747,42 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
+																<tr th:each="row, stat :${company.siteOffice}">
 																	<th scope="row">
+																	
+																		
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="siteOffice[0].siteCode">
+																				th:field="*{siteOffice[__${stat.index}__].siteOfficeCode}">
 																		</fieldset>
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="siteOffice[0].siteLocation">
+																				th:field="*{siteOffice[__${stat.index}__].siteLocation}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="siteOffice[0].siteIncharge">
+																				th:field="*{siteOffice[__${stat.index}__].siteIncharge}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder=""
-																				name="siteOffice[0].siteAddress">
+																				th:field="*{siteOffice[__${stat.index}__].siteAddress}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="number" class="form-control"
 																				placeholder=""
-																				name="siteOffice[0].approvedBudget">
+																				th:field="*{siteOffice[__${stat.index}__].approvedBudget}">
 																		</fieldset>
 																	</td>
 																</tr>
@@ -895,6 +899,14 @@
 	<!--   <section class="content">
         
         </section>-->
+        
+        <script>
+        	window.addEventListener("load", myInit, true); 
+        	function myInit(){  
+				getCityOnState();
+				getRCityOnState();
+}; 
+        </script>
 	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>

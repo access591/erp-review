@@ -71,9 +71,15 @@ public class CompanyController {
 		
 		System.out.println("company code is : "+ compCode);
 	
+		List<State> listState = stateService.getAllState();
+		model.addAttribute("listState", listState);
+		
 		
 		Company company = companyService.editCompany(compCode);
 		model.addAttribute("company", company);
+		
+		
+		System.out.println("company child info : "+ company.getInsuranceDetail().get(0).getCustCode());
 		return "layouts/editview/editCompany";
 	}
 	
