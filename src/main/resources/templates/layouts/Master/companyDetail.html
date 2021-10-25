@@ -410,7 +410,7 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputAddress">State</label> <select
-																	class="form-control" id="state"
+																	class="form-control" id="rState"
 																	onchange="getRCityOnState()" title="Department Name"
 																	th:field="*{rState}" required>
 																	<option value="">Select State</option>
@@ -422,7 +422,7 @@
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Town/City/District</label>
-																<select class="form-control cityContainer" title="city"
+																<select class="form-control rCityContainer" title="city"
 																	id="cityCode" th:field="*{rCity}" required>
 																	<option value="">Select City</option>
 
@@ -544,7 +544,7 @@
 
 																	<div class="form-group col-md-6">
 																		<label for="inputAddress">Date of
-																			Filling</label> <input type="text"
+																			Filling</label> <input type="date"
 																			class="form-control" id="inputAddress"
 																			placeholder="date of filling"
 																			th:field="*{tdFillingDate}">

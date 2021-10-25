@@ -443,6 +443,36 @@ function getCityOnState(){
 }
 
 
+function getRCityOnState(){
+	
+	var stateCode = document.getElementById("rState").value;
+	console.log("State is : " + stateCode)
+
+	$.ajax({
+		type: "GET",
+		url: "/companydetail/citylist/" + stateCode,
+
+		success: function(data) {
+			
+			var options = '<option value=""><strong>Select City</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.cityCode)
+				console.log("item info : " + value.cityName)
+
+				options += '<option value="' + value.cityCode + '">' + value.cityName + '</option>';
+
+			});
+
+			$('.rCityContainer').html(options);
+		
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
+
+
 
 
 

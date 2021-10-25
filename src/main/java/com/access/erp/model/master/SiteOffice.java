@@ -36,17 +36,17 @@ public class SiteOffice {
 	@Column(name="LEAD_TIME",length=10)
 	private int leadTime;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "SUPPLIER_CODE")
-	private SupplierMaster supplier;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "CITY_CODE")
-	private City city;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "STATE_CODE")
-	private State state;
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name = "SUPPLIER_CODE")
+//	private SupplierMaster supplier;
+//	
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name = "CITY_CODE")
+//	private City city;
+//	
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name = "STATE_CODE")
+//	private State state;
 	
 	@Column(name="PIN_CODE",length=10)
 	private int pinCode;
@@ -125,13 +125,7 @@ public class SiteOffice {
 
 	
 
-	public SupplierMaster getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(SupplierMaster supplier) {
-		this.supplier = supplier;
-	}
+	
 
 	public Company getCompany() {
 		return company;
@@ -141,21 +135,7 @@ public class SiteOffice {
 		this.company = company;
 	}
 
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public State getState() {
-		return state;
-	}
-
-	public void setState(State state) {
-		this.state = state;
-	}
+	
 
 	public int getPinCode() {
 		return pinCode;

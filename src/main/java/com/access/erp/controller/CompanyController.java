@@ -47,6 +47,9 @@ public class CompanyController {
 	@PostMapping("/")
 	public String addCompany(@ModelAttribute("company") Company company) {
 		
+		
+		System.out.println("city code 1: " + company.getcCity().getCityCode());
+		System.out.println("city code 2: " + company.getrCity().getCityCode());
 		companyService.addCompany(company);		
 		return "redirect:/companydetail/";
 	}

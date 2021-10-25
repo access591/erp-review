@@ -24,7 +24,7 @@ public class InsuranceDetail {
 	@Column(name="INSURACE_ID",length=6)
 	private Long insuranceId;
 	
-	@Column(name="INSURACE_CODE",length=6)
+	@Column(name="INSURACE_CODE",length=50)
 	private String insuranceCode;
 	
 	@ManyToOne(optional = false)
