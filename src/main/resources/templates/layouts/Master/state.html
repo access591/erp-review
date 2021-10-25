@@ -61,7 +61,7 @@
 											<label class="form-label">Country Name</label> <label
 												style="color: red">*</label> <select class="form-control"
 												title="country Name" required th:field="*{country}">
-												<option value="">Select Department</option>
+												<option value="">Select Country</option>
 												<option th:each="country :  ${countryList}"
 													th:text="${country.countryName}" th:value=" ${country.countryCode}">
 												</option>
