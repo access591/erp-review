@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.access.erp.model.master.City;
+import com.access.erp.model.master.State;
 import com.access.erp.repo.CityRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.CityService;
@@ -46,6 +47,12 @@ public class CityServiceImpl implements CityService{
 	public void deleteCity(String cityCode) {
 		
 		cityRepo.deleteById(cityCode);
+	}
+
+	@Override
+	public List<City> findByState(State state) {
+		
+		return cityRepo.findByState(state);
 	}
 
 }

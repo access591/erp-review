@@ -23,15 +23,15 @@
 				<div class="row">
 					<!-- left column -->
 					<div class="col-md-12">
-						<div class="col-md-3">
+						<div class="col-md-2">
 						</div>
 
 
-						<div class="col-md-6" style="margin-top: 20px;">
+						<div class="col-md-8" style="margin-top: 20px;">
 
 							<div class="box box-primary">
 								<div class="box-header with-border">
-									<h3 class="box-title">Quick Example</h3>
+									<h3 class="box-title">Financial Active year</h3>
 								</div>
 								<!-- form start -->
 								<form role="form" th:action="@{/financialactiveyear/}" method="POST"
@@ -39,14 +39,12 @@
 									<div class="box-body">
 
 										<div class="form-group col-md-12">
-											<label for="inputEmail4">User</label> <select
-												class="form-control" id="departmentDropdown"
-												th:field = "*{myUser}"
-												onchange="" title="user code" required>
-												<option value="">Select Department</option>
-												<option th:each="user :  ${listMyUser}"
-													th:text="${department.deptName}"
-													th:value=" ${department.departmentCode}"></option>
+											<label for="inputEmail4">User</label> <select class="form-control"
+												id="userCode" th:field="*{myUser}" onchange="changeUserCode()"
+												title="user code" required>
+												<option value="">Select User</option>
+												<option th:each="user :  ${listMyUser}" th:text="${user.userCode}"
+													th:value=" ${user.userCode}"></option>
 											</select>
 										</div>
 
@@ -58,8 +56,7 @@
 
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">FinancialYear</label> <select class="form-control"
-												id="financialYear" onchange=""
-												title="Financial year" required>
+												id="financialYear" onchange="" title="Financial year" required>
 												<option value="">Select Department</option>
 												<option th:each="financialYear :  ${listFinancialyear}"
 													th:text="${financialYear.financialYearCode}"
@@ -67,7 +64,17 @@
 											</select>
 										</div>
 										
-										
+										<div class="form-group col-md-12">
+											<label for="inputEmail4">Select Company</label> <select class="form-control"
+												id="company" th:field="*{company}" onchange="changeUserCode()"
+												title="compnay" required>
+												<option value="">Select</option>
+												<option th:each="company :  ${listCompany}" th:text="${company.compCode}"
+													th:value=" ${company.compName}"></option>
+											</select>
+										</div>
+
+
 
 										<div class="form-group" style="margin: 10px;">
 
@@ -100,7 +107,7 @@
 						</div>
 
 
-						<div class="col-md-3">
+						<div class="col-md-2">
 						</div>
 					</div>
 
@@ -111,6 +118,17 @@
 			<!--   <section class="content">
         
         </section>-->
+
+
+
+			<script>
+				function changeUserCode() {
+					var userCode = document.getElementById("userCode").value;
+					document.getElementById("userName").value = userCode;
+
+				}
+
+			</script>
 			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>

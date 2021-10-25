@@ -87,7 +87,10 @@ public class CompanyController {
 	public List<City> getCityListByStateId(@PathVariable(value = "id") String id, Model model) {
 		
 		System.out.println("get city list by State code ");
-		List<City> listCity = cityService.getAllCity();
+		
+		State state = new State();
+		state.setStateCode(id);
+		List<City> listCity = cityService.findByState(state);
 		
 		return listCity;
 

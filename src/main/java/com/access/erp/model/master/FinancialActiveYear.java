@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="M_FINANCIAL_ACTIVE_Y")
+@Table(name="M_FINANCIAL_ACTIVE_YEAR")
 public class FinancialActiveYear {
 	
 	@Id
@@ -46,11 +46,9 @@ public class FinancialActiveYear {
 	}
 
 
-	
 	public Long getId() {
 		return id;
 	}
-
 
 
 	public void setId(Long id) {
@@ -58,8 +56,34 @@ public class FinancialActiveYear {
 	}
 
 
+	public FinancialYear getFinancialYear() {
+		return financialYear;
+	}
 
-	
+
+	public void setFinancialYear(FinancialYear financialYear) {
+		this.financialYear = financialYear;
+	}
+
+
+	public MyUser getMyUser() {
+		return myUser;
+	}
+
+
+	public void setMyUser(MyUser myUser) {
+		this.myUser = myUser;
+	}
+
+
+	public Company getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
 
 	public String getfActive() {
@@ -67,10 +91,10 @@ public class FinancialActiveYear {
 	}
 
 
-
 	public void setfActive(String fActive) {
 		this.fActive = fActive;
 	}
+
 
 
 	

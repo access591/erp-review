@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
@@ -42,6 +43,10 @@ public class FinancialActciveYearController {
 		
 		List<FinancialYear> listFinancialyear = financialYearService.getAllFinancialYear();
 		model.addAttribute("listFinancialyear", listFinancialyear);
+		
+		
+		List<Company> listCompany = companyService.getAllCompany();
+		model.addAttribute("listCompany", listCompany);
 		
 		
 		
