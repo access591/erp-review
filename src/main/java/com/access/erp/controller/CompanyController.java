@@ -65,6 +65,7 @@ public class CompanyController {
 		return "layouts/listview/listofCompany";
 	}
 	
+	
 	@GetMapping("/edit/{id}")
 	public String editCompany(@PathVariable("id") String compCode,Model model) {
 		

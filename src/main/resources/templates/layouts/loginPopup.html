@@ -20,52 +20,69 @@
 
 <body>
 
-<form th:action="@{/doLogin}" method="POST">
+	<form th:action="@{/index}" method="POST">
 
-<section class="vh-100" style="background-color: white;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div>
-          <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
+		<section class="vh-100" style="background-color: white;">
+			<div class="container py-5 h-100">
+				<div class="row d-flex justify-content-center align-items-center h-100">
+					<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+						<div>
+							<div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
 
-            <h3 class="mb-5"></h3>
+								<h3 class="mb-5"></h3>
 
-            <div class="form-outline mb-4">
-              <input type="text" id="typeEmailX-2" class="form-control form-control-lg " name="username"/>
-             
-            </div>
+								<div class="form-outline mb-4">
+									<div class="form-group col-md-12">
+										<label for="inputEmail4">Company</label> <select class="form-control" id=""
+											onchange="" title="company" required>
+											<option value="">Select</option>
+											<option value="">company-A</option>
+											<option value="">company-B</option>
+											<!--<option th:each="financialYear :  ${listFinancialyear}"
+												th:text="${financialYear.financialYearCode}"
+												th:value=" ${financialYear.id}"></option>-->
+										</select>
+									</div>
 
-            <div class="form-outline mb-4">
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password"/>
-             
-            </div>
+								</div>
 
-            <!-- Checkbox -->
-            <div class="form-check d-flex justify-content-start mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="form1Example3"
-              />
-             
-            </div>
+								<div class="form-outline mb-4">
+									<div class="form-group col-md-12">
+										<label for="inputEmail4">Financial Year</label> <select class="form-control"
+											id="" onchange="" title="company" required>
+											<option value="">Select</option>
+											<option value="">20-21</option>
+											<option value="">19-20</option>
+											<!--<option th:each="financialYear :  ${listFinancialyear}"
+												th:text="${financialYear.financialYearCode}"
+												th:value=" ${financialYear.id}"></option>-->
+										</select>
+									</div>
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">submit</button>
+								</div>
 
-            <hr class="my-4">
 
-           
+								<div class="form-outline mb-4">
+									<div class="form-group col-md-12">
+										<button  class="btn btn-primary btn-lg btn-block" type="submit">submit</button>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+									</div>
+								</div>
+								
+								
+								
+								<hr class="my-4">
 
-</form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</form>
 
 </body>
 

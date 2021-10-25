@@ -76,10 +76,23 @@ public class FinancialActciveYearController {
 	@GetMapping("/edit/{id}")
 	public String editFinancialActiveYear(@PathVariable("id") Long id, Model model) {
 
-		Optional<FinancialActiveYear> financialActiveYear = financialActiveYearService
-				.editFinancialActiveYear(id);
+		List<MyUser> listMyUser = myUserService.getAllMyUser();
+		model.addAttribute("listMyUser", listMyUser);
+		
+		List<FinancialYear> listFinancialyear = financialYearService.getAllFinancialYear();
+		model.addAttribute("listFinancialyear", listFinancialyear); 
+		
+		
+		List<Company> listCompany = companyService.getAllCompany();
+		model.addAttribute("listCompany", listCompany);
+		
+		
+		
+		FinancialActiveYear financialActiveYear = financialActiveYearService
+				.editFinancialActiveYear(id).get();
 		model.addAttribute("financialActiveYear", financialActiveYear);
-		return "layouts/editview/editfinancialyear";
+		
+		return "layouts/editview/editfinancialActiveyear";
 	}
 
 	@GetMapping("/delete/{id}")

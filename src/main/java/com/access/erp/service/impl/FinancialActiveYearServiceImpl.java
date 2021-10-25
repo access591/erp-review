@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.repo.FinnancialActiveYearRepo;
+import com.access.erp.repo.FinnancialYearRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.FinancialActiveYearService;
 
@@ -18,6 +19,8 @@ public class FinancialActiveYearServiceImpl implements FinancialActiveYearServic
 	SeqMainRepo seqMainRepo;
 	@Autowired
 	FinnancialActiveYearRepo financialActiveYearRepo;
+	@Autowired FinnancialYearRepo financialYearRepo;
+	
 
 	@Override
 	public void addFinancialActiveYear(FinancialActiveYear financialActiveYear) {
@@ -39,7 +42,7 @@ public class FinancialActiveYearServiceImpl implements FinancialActiveYearServic
 		 * }
 		 */
 		
-		
+		//financialYearRepo.findByFinancialYearCode(financialActiveYear.getFinancialYear())
 		financialActiveYearRepo.save(financialActiveYear);
 
 		System.out.println("end");

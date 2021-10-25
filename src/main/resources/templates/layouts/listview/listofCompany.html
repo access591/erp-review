@@ -36,50 +36,48 @@
 
 								<div class="box box-primary">
 									<div class="box-header with-border">
-										<h3 class="box-title">List of Category</h3>
+										<h3 class="box-title">List of Company</h3>
 									</div>
 									<!-- form start -->
 									<form role="form">
 										<div class="box-body">
 											<div class="table-responsive-sm">
-												<table class="table table-striped" style="width: 80%">
-													<thead>
-														<tr>
-															<th scope="col">#</th>
-															<th scope="col">User Code</th>
-															<th scope="col">User Name</th>
-															<th scope="col">Company Name</th>
-															<th scope="col">Financial Year</th>
-															
-															<th scope="col">Status</th>
-															<th scope="col">Action</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr th:each="activeFinancial,iter  : ${financialActiveYearList}">
-															<td th:text="${iter.index}">1</td>
-															<td th:text="${activeFinancial.myUser.userCode}">Garrett Winters</td>
-															<td th:text="${activeFinancial.myUser.userName}">Garrett Winters</td>
-															<td th:text="${activeFinancial.company.compName}">Garrett Winters</td>
-															<td th:text="${activeFinancial.financialYear.financialYearCode}">Garrett Winters</td>
-															
+									<table class="table table-striped" style="width: 80%">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Company Code</th>
+												<th scope="col">Company Name</th>
+												<th scope="col">Company Type</th>
+												<th scope="col">Director Name</th>
+												<th scope="col">State</th>
+												<th scope="col">City</th>
+												
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="company,iter  : ${listCompany}">
+												<td th:text="${iter.index}">1</td>
+												<td th:text="${company.compCode}">Garrett Winters</td>
+												<td th:text="${company.compName}">Garrett Winters</td>
+												<td th:text="${company.compType}">Garrett Winters</td>
+												<td th:text="${company.dirName}">Garrett Winters</td>
+												<td th:text="${company.cState.stateName}">Garrett Winters</td>
+												<td th:text="${company.cCity.cityName}">Garrett Winters</td>
+												
+												
 
-															<td><span class="badge bg-success"
-																	>Active</span></td>
-
-															<td><span> <a
-																		th:href="@{/financialactiveyear/edit/{id}(id=${activeFinancial.id})}">edit</a></span>
-																<span> <a
-																		th:href="@{/financialactiveyear/delete/{id}(id=${activeFinancial.id})}">delete</a></span>
-															</td>
-														</tr>
+												<td><span> <a th:href="@{/companydetail/edit/{id}(id=${company.compCode})}">edit</a></span> <span> <a
+														th:href="@{/companydetail/delete/{id}(id=${company.compCode})}">delete</a></span></td>
+											</tr>
 
 
 
 
-													</tbody>
-												</table>
-											</div>
+										</tbody>
+									</table>
+								</div>
 										</div>
 
 										<div class="box-footer">
