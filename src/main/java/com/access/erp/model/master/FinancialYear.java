@@ -2,25 +2,34 @@ package com.access.erp.model.master;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
 @Entity	
+@Table(name="M_FINANCIAL_YEAR")
 public class FinancialYear {
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
+	@Column(name="FINANCIAL_YEAR")
 	private String financialYearCode;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="FROM_DATE")
 	private Date fromDate;
 	
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="TO_DATE")
 	private Date toDate;
 
 

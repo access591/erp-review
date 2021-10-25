@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -18,16 +20,21 @@ public class FinancialActiveYear {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(name="FINANCIAL_CODE")
-	private String financialYearCode;
+	@OneToOne
+    @JoinColumn(name="FINANCIAL_YEAR")
+	private FinancialYear financialYear;
+	
+	@OneToOne
+    @JoinColumn(name="USER_CODE")
+    private MyUser myUser;
+
+	
+	@OneToOne
+    @JoinColumn(name="COMPANY_CODE")
+	private Company company;
 	
 	
-	@Column(name="C_CODE")
-	private String cCode;
 	
-	
-	@Column(name="U_CODE")
-	private String uCode;
 	
 	@Column(name="F_ACTIVE")
 	private String fActive;
@@ -52,39 +59,7 @@ public class FinancialActiveYear {
 
 
 
-	public String getFinancialYearCode() {
-		return financialYearCode;
-	}
-
-
-	public void setFinancialYearCode(String financialYearCode) {
-		this.financialYearCode = financialYearCode;
-	}
-
-
-
-	public String getcCode() {
-		return cCode;
-	}
-
-
-
-	public void setcCode(String cCode) {
-		this.cCode = cCode;
-	}
-
-
-
-	public String getuCode() {
-		return uCode;
-	}
-
-
-
-	public void setuCode(String uCode) {
-		this.uCode = uCode;
-	}
-
+	
 
 
 	public String getfActive() {

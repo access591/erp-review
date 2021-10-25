@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
+import com.access.erp.model.master.MyUser;
+import com.access.erp.service.CompanyService;
 import com.access.erp.service.FinancialActiveYearService;
+import com.access.erp.service.FinancialYearService;
+import com.access.erp.service.MyUserService;
 
 @Controller
 
@@ -23,10 +28,23 @@ public class FinancialActciveYearController {
 
 	@Autowired
 	FinancialActiveYearService financialActiveYearService;
+	@Autowired MyUserService myUserService;
+	@Autowired CompanyService companyService;
+	@Autowired FinancialYearService financialYearService;
+	
+	
 
 	@GetMapping("/")
 	public String financialActiveYear(Model model) {
 
+		List<MyUser> listMyUser = myUserService.getAllMyUser();
+		model.addAttribute("listMyUser", listMyUser);
+		
+		List<FinancialYear> listFinancialyear = financialYearService.getAllFinancialYear();
+		model.addAttribute("listFinancialyear", listFinancialyear);
+		
+		
+		
 		model.addAttribute("financialActiveYear", new FinancialActiveYear());
 		return "layouts/Master/financialactiveyear";
 	}

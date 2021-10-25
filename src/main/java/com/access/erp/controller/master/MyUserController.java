@@ -43,6 +43,7 @@ public class MyUserController {
 	@PostMapping("/")
 	public String addUser(@ModelAttribute("user") MyUser user) {
 		
+		System.out.println("add method of my user controller");
 		userService.addMyUSer(user);
 		
 		return "redirect:/user/";
@@ -54,7 +55,7 @@ public class MyUserController {
 		List<MyUser> userList = userService.getAllMyUser();
 		
 		if(userList != null) {
-			model.addAttribute("userList", userList);
+			model.addAttribute("listMyUser", userList);
 		}
 		return "layouts/listview/listofuser";
 	}

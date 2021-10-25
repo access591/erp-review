@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class MyUser {
 
 	@Id
-	@Column(name = "USER_CODE",length = 30,updatable = false)
-	private String userCode;
+	@Column(name = "USER_CODE",length = 50)
+	private String userCode; 
 	
 	@Column(name = "USER_NAME",length = 50)
 	private String userName;
@@ -75,6 +75,14 @@ public class MyUser {
 		this.userPassword = userPassword;
 	}
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 	public String getInsBy() {
 		return insBy;
 	}
@@ -107,21 +115,6 @@ public class MyUser {
 		this.updDate = updDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	/*
-	 * public List<UserRights> getUserRights() { return UserRights; }
-	 * 
-	 * public void setUserRights(List<UserRights> userRights) { UserRights =
-	 * userRights; }
-	 */
-	
 	
 	
 	
