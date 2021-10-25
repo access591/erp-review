@@ -22,6 +22,14 @@ public class MyUserImpl implements MyUserService{
 	@Override
 	public void addMyUSer(MyUser myUser) {
 		
+		/*
+		 * if (myUser.getUserCode() == "" || myUser.getUserCode() == null) {
+		 * System.out.println("user code is : "+ myUser.getUserCode()); String maxCode =
+		 * seqMainRepo.findByTranType(""); city.setCityCode(maxCode); }
+		 */
+		
+		
+		
 		userRepo.save(myUser);
 		
 	}

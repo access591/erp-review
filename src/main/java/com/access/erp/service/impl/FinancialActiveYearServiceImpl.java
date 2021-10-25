@@ -22,20 +22,24 @@ public class FinancialActiveYearServiceImpl implements FinancialActiveYearServic
 	@Override
 	public void addFinancialActiveYear(FinancialActiveYear financialActiveYear) {
 
-		if (financialActiveYear.getId() == null) {
-			System.out.println("country code is : " + financialActiveYear.getFinancialYearCode());
-			
-			if(financialActiveYear.getFinancialYearCode().isEmpty()) {
-				
-				String maxCode = seqMainRepo.findByTranType("FIA");
-
-				System.out.println(" max code is : " + maxCode);
-				financialActiveYear.setFinancialYearCode(maxCode);
-				
-			}
-			
-		}
-
+		/*
+		 * if (financialActiveYear.getId() == null) {
+		 * System.out.println("country code is : " +
+		 * financialActiveYear.getFinancialYearCode());
+		 * 
+		 * if(financialActiveYear.getFinancialYearCode().isEmpty()) {
+		 * 
+		 * String maxCode = seqMainRepo.findByTranType("FIA");
+		 * 
+		 * System.out.println(" max code is : " + maxCode);
+		 * financialActiveYear.setFinancialYearCode(maxCode);
+		 * 
+		 * }
+		 * 
+		 * }
+		 */
+		
+		
 		financialActiveYearRepo.save(financialActiveYear);
 
 		System.out.println("end");

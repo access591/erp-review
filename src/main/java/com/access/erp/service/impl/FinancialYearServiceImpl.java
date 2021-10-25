@@ -1,5 +1,7 @@
 package com.access.erp.service.impl;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +27,8 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 		if (financialYear.getId() == null) {
 			System.out.println("country code is : " + financialYear.getFinancialYearCode());
 			
+			// code execute but does not set value 
+			
 			if(financialYear.getFinancialYearCode().isEmpty()){
 				String maxCode = seqMainRepo.findByTranType("FIN");
 				System.out.println(" max code is : " + maxCode);
@@ -32,7 +36,22 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 			}
 				
 		}
-
+		
+		
+		Calendar data = Calendar.getInstance();
+		data.setTime(financialYear.getFromDate());
+		
+		int lastDigitFromDate = data.get(Calendar.YEAR) % 100;
+		
+		
+		Calendar data2 = Calendar.getInstance();
+		data2.setTime(financialYear.getToDate());
+		
+		int lastDigitToDate = data2.get(Calendar.YEAR) % 100;
+		
+		
+		financialYear.setFinancialYearCode(String.valueOf(lastDigitFromDate)+"-"+String.valueOf(lastDigitToDate));
+		
 		financialYearRepo.save(financialYear);
 
 		System.out.println("end");
