@@ -129,7 +129,7 @@ public class Company {
 	private City rCity;
 
 	@Column(name = "R_LOCATION", length = 50)
-	private int rLocation;
+	private String rLocation;
 
 	@Column(name = "R_PIN", length = 8)
 	private int rPin;
@@ -598,11 +598,11 @@ public class Company {
 		this.rCity = rCity;
 	}
 
-	public int getrLocation() {
+	public String getrLocation() {
 		return rLocation;
 	}
 
-	public void setrLocation(int rLocation) {
+	public void setrLocation(String rLocation) {
 		this.rLocation = rLocation;
 	}
 
