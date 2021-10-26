@@ -377,66 +377,67 @@
 
 													<div class="box">
 
-														<div class="form-group row">
-															<label for="staticEmail"
-																class="col-sm-2 col-form-label">Product
-																Group</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control-plaintext"
-																	placeholder="product group"
-																	th:field="*{productGroup}">
-															</div>
-														</div>
+														<div class="box-body">
 
-														<div class="form-group row">
-															<label for="staticEmail"
-																class="col-sm-2 col-form-label">Purchase
-																HSN Code</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control-plaintext"
-																	placeholder="purchase hsn code"
-																	th:field="*{hsnCode}">
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label for="staticEmail"
-																class="col-sm-2 col-form-label">Sales
-																HSN Code</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control-plaintext"
-																	placeholder="sales hsn code">
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label for="staticEmail"
-																class="col-sm-2 col-form-label">CGST(%)</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control-plaintext"
-																	placeholder="" th:field="*{cgst}">
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label for="staticEmail"
-																class="col-sm-2 col-form-label">SGST(%)</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control-plaintext"
-																	placeholder="" th:field="*{sgst}">
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label for="staticEmail"
-																class="col-sm-2 col-form-label">IGST(%)</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control-plaintext"
-																	placeholder="" th:field="*{igst}">
+															<div class="col-md-12 m-10">
+																<label for="inputEmail3"
+																	class="col-md-2 control-label">Product Group</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control"
+																		placeholder="product group"
+																		th:field="*{productGroup}">
+																</div>
 															</div>
 
-														</div>
+															<div class="col-md-12 m-10">
+																<label for="inputEmail3"
+																	class="col-md-2 control-label">Purchase
+																	HSN Code</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control"
+																		placeholder="purchase hsn code"
+																		th:field="*{hsnCode}">
+																</div>
+															</div>
 
+															<div class="col-md-12 m-10">
+																<label for="inputEmail3"
+																	class="col-md-2 control-label">Sales
+																	HSN Code</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control"
+																		id="inputEmail3" placeholder="sales hsn code">
+																</div>
+															</div>
+
+															<div class="col-md-12 m-10">
+																<label for="inputEmail3"
+																	class="col-md-2 control-label">CGST(%)</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control"
+																		placeholder="cgst" th:field="*{cgst}">
+																</div>
+															</div>
+
+															<div class="col-md-12 m-10">
+																<label for="inputEmail3"
+																	class="col-md-2 control-label">SGST(%)</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control"
+																		placeholder="sgst" th:field="*{sgst}">
+																</div>
+															</div>
+
+															<div class="col-md-12 m-10">
+																<label for="inputEmail3"
+																	class="col-md-2 control-label">IGST(%)</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control"
+																		placeholder="igst" th:field="*{igst}">
+																</div>
+															</div>
+
+														</div>
 													</div>
 
 
@@ -444,6 +445,140 @@
 
 												<!--end tax detail tab -->
 
+												<!-- packing detail -->
+
+												<div id="packing" class="tab-pane fade">
+													
+													<p></p>
+													<p></p>
+													<div class="box">
+														<h5>Packing Details</h5>
+
+														<table class="table table-sm">
+															<thead>
+																<tr>
+																	<th scope="col">Packing Code</th>
+																	<th scope="col">Packing Name</th>
+																	<th scope="col">Unit Name</th>
+																	<th scope="col">Qty</th>
+																	<th scope="col">BarCode</th>
+																	
+
+
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<th scope="row">
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" readonly>
+																		</fieldset>
+																	</th>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" readonly>
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder=""
+																				name="insuranceDetail[0].custCode">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="date" class="form-control"
+																				placeholder=""
+																				name="insuranceDetail[0].renewalDate">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder=""
+																				name="insuranceDetail[0].version">
+																		</fieldset>
+																	</td>
+																	
+																</tr>
+																<tr>
+																	<th scope="row">
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</th>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	
+																</tr>
+																<tr>
+																	<th scope="row">
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</th>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="">
+																		</fieldset>
+																	</td>
+																	
+																</tr>
+
+															</tbody>
+														</table>
+
+													</div>
+
+
+												</div>
+												<!--end packing detail -->
 
 
 												<!--	<div class="box-body">
