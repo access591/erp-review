@@ -88,14 +88,16 @@ public class QuotationDetailController {
 		if (quotationList != null) {
 			model.addAttribute("quotationList", quotationList);
 		}
-		return "layouts/listview/listofQuotationDetail";
+		
+		System.out.println("quotation length : " + quotationList.size());
+		return "layouts/listview/listofQuotation";
 	}
 
 	@GetMapping("/edit/{id}")
 	public String editQuotation(@PathVariable("id") String quotCode, Model model) {
 
-		Optional<QuotationDetail> quotaion = quotationService.editQuotationDetail(quotCode);
-		model.addAttribute("quotaion", quotaion);
+		QuotationDetail quotaion = quotationService.editQuotationDetail(quotCode).get();
+		model.addAttribute("quotation", quotaion);
 		return "layouts/editview/editQuotationDetail";
 	}
 

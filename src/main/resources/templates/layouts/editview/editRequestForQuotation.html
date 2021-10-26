@@ -1,168 +1,171 @@
 <!DOCTYPE html>
+<html>
+
+<head xmlns:th="http://www.thymeleaf.org">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AdminLTE 2 | General Form Elements</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+	<script type="text/javascript" th:src="@{/JS/myjs.js}"></script>
 
 
-<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main-layout :: main-fragment(  
-                                                ~{::title},
-                                                ~{:: #home-static-resources},
-                                                ~{:: #home-header},
-                                                ~{:: #home-nav},
-                                                ~{:: #home-main-content},  
-                                                ~{:: #home-footer}
-                                               )}">
+	<style>
+		.form-control-sm {
+			height: 30px;
+			width: 120px;
+			font-size: 11px;
 
-<head>
+		}
 
-
-
-
-	<title>Title of Home Page</title>
-
-	<th:block id="home-static-resources">
-
-		<style>
-			.form-control-sm {
-				height: 30px;
-				width: 120px;
-				font-size: 11px;
-
-			}
-
-			.select {
-				width: 130px;
-				font-size: 11px;
-			}
-		</style>
-	</th:block>
-
-
+		.select {
+			width: 130px;
+			font-size: 11px;
+		}
+	</style>
 
 
 </head>
 
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
 
-	<div id="home-header">ERP WhareHouse</div>
+			<div class="wrapper">
 
-	<div id="home-nav" th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
-	</div>
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Request for Quotation
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
 
 
+					<!-- Main content -->
+					<section class="content">
 
-
-
-	<div id="home-main-content">
-
-		<h5 style="color: #2e7ef2;">Request for Quotation Master</h5>
-
-
-		<form th:action="@{/requestquotation/}" method="POST" th:object="${rFQuotation}">
-			<div class="form-border">
-
-				<div class="row">
-					<div class="form-group col-md-6">
-						<label for="inputEmail4">Request for Quotation Num</label> <input type="text"
-							class="form-control" placeholder="quotation number" th:field="*{rfqNo}">
-					</div>
-					<div class="form-group col-md-6">
-						<label class="form-label">Request For Quotation Type</label> <label style="color: red">*</label>
-						<select class="form-control" id="" title="urgency" th:field="*{rfqType}" required>
-							<option value="">Select</option>
-							<option value="indent">Indent</option>
-							<option value="withoutIndent">without Indent</option>
-
-						</select>
-					</div>
-
-				</div>
-
-				<div class="row">
-					<div class="form-group col-md-6">
-						<label for="inputEmail4">Request for Quotation Date</label> <input type="date"
-							class="form-control" placeholder="quotation date" th:field="*{rfqDate}">
-					</div>
+						<!-- Default box -->
+						<div class="box">
 
 
 
-				</div>
-
-				<!-- 	<div class="row" style="margin: 10px">
-					<input type="submit" value="Submit" class="btn btn-primary" />
-					<input type="reset" value="Reset" class="btn btn-danger" />
-				</div> -->
-
-			</div>
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
 
 
 
-			<!-- request for quotation detail -->
+									<div class="col-md-12 shadow bg-white rounded" style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div><!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/requestquotation/}" method="POST"
+												th:object="${rFQuotation}">
+												<div class="box-body">
 
-			<h5 style="color: #2e7ef2;">Request for Quotation Detail</h5>
-			<div class="card form-border">
-				<div class="card-header"></div>
-				<div class="card-body">
+													<div class="form-group col-md-4">
+														<label for="inputEmail4">Request for Quotation Num</label>
+														<input type="text" class="form-control"
+															placeholder="quotation number" th:field="*{rfqNo}">
+													</div>
+													<div class="form-group col-md-4">
+														<label class="form-label">Request For Quotation Type</label>
+														<label style="color: red">*</label>
+														<select class="form-control" id="" title="urgency"
+															th:field="*{rfqType}" required>
+															<option value="">Select</option>
+															<option value="indent">Indent</option>
+															<option value="withoutIndent">without Indent</option>
 
-					<input id="_cr" name="_cr" type="hidden" value="1">
+														</select>
+													</div>
 
-					<div>
+													<div class="form-group col-md-4">
+														<label for="inputEmail4">Request for Quotation Date</label>
+														<input type="date" class="form-control"
+															placeholder="quotation date" th:field="*{rfqDate}">
+													</div>
 
-						<div style="text-align: right">
-
-
-
-
-							<a id="add_row" class="fa fa-plus" aria-hidden="true"
-								style="font-size: 22px; color: #001080"></a> <a id="delete_row" class="fa fa-trash"
-								style="font-size: 22px; color: #399490fc" aria-hidden="true"></a>
-						</div>
-
-						<div class="table-responsive">
-							<table id="example" aria-describedby="example" class="table table-striped display"
-								style="width: 100%">
-								<thead>
-									<tr>
-										<th scope="col" class="text-center">Indent
-											Number</th>
-										<th scope="col" class="text-center">Indent
-											Date</th>
-										<th scope="col" class="text-center">Item
-											Name</th>
-										<th scope="col" class="text-center">UOM</th>
-										<th scope="col" class="text-center">City</th>
-										<th scope="col" class="text-center">Required
-											Date</th>
-										<th scope="col" class="text-center">Item
-											Specification</th>
-										<th scope="col" class="text-center">Term
-											and Conditions</th>
-										<th scope="col" class="text-center">Remarks</th>
+												</div><!-- /.box-body -->
 
 
-
-									</tr>
-								</thead>
-								<tbody>
-									<tr id="addr0" th:each="row, stat :${rFQuotation.listRFQuotation}">
-
-
-										<td><select class="select form-control form-control-sm" id="indentNumber"
-												title="Location" required onchange="getIndentList()"
-												th:field="*{listRFQuotation[__${stat.index}__].openIndent}">
-												<option value=" ">Select Indent Number</option>
-												<option th:each="indent :  ${aprovedOpenIndentList}"
-													th:text="${indent.indentNumber}" th:value=" ${indent.indentNumber}">
-												</option>
-
-											</select></td>
-
-										<td><input type="date" style="font-size: 0.95rem" title="indent date"
-												class="form-control form-control-sm" id="indentDate"
-												th:field="*{listRFQuotation[__${stat.index}__].rfqDate}" required>
-										</td>
+												<div class="box">
+													<div class="box-body">
+														<input id="_cr" name="_cr" type="hidden" value="1">
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display" style="width: 100%">
+																<thead>
+																	<tr>
+																		<th scope="col" class="text-center">Indent
+																			Number</th>
+																		<th scope="col" class="text-center">Indent
+																			Date</th>
+																		<th scope="col" class="text-center">Item
+																			Name</th>
+																		<th scope="col" class="text-center">UOM</th>
+																		<th scope="col" class="text-center">City</th>
+																		<th scope="col" class="text-center">Required
+																			Date</th>
+																		<th scope="col" class="text-center">Item
+																			Specification</th>
+																		<th scope="col" class="text-center">Term
+																			and Conditions</th>
+																		<th scope="col" class="text-center">Remarks</th>
 
 
 
-										<!--<td><select class="form-control form-control-sm select itemContainer"
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr id="addr0"
+																		th:each="row, stat :${rFQuotation.listRFQuotation}">
+
+
+																		<td><select
+																				class="select form-control form-control-sm"
+																				id="indentNumber" title="Location"
+																				required onchange="getIndentList()"
+																				th:field="*{listRFQuotation[__${stat.index}__].openIndent}">
+																				<option value=" ">Select Indent Number
+																				</option>
+																				<option
+																					th:each="indent :  ${aprovedOpenIndentList}"
+																					th:text="${indent.indentNumber}"
+																					th:value=" ${indent.indentNumber}">
+																				</option>
+
+																			</select></td>
+
+																		<td><input type="date"
+																				style="font-size: 0.95rem"
+																				title="indent date"
+																				class="form-control form-control-sm"
+																				id="indentDate"
+																				th:field="*{listRFQuotation[__${stat.index}__].rfqDate}"
+																				required>
+																		</td>
+
+
+
+																		<!--<td><select class="form-control form-control-sm select itemContainer"
 												onchange="getItemDetail()" title="Location" id="item"
 												th:field="*{listRFQuotation[__${stat.index}__].item}"
 												 required>
@@ -171,210 +174,214 @@
 											</select></td>
 -->
 
-										<td><input type="text" style="font-size: 0.95rem" title="indent date"
-												class="form-control form-control-sm" id="indentDate"
-												th:field="*{listRFQuotation[__${stat.index}__].item}" required>
-										</td>
-										
-										<td><input type="text" title="uom" class="form-control form-control-sm" id="uom"
-												th:field="*{listRFQuotation[__${stat.index}__].uom}">
-										</td>
+																		<td><input type="text"
+																				style="font-size: 0.95rem"
+																				title="indent date"
+																				class="form-control form-control-sm"
+																				id="indentDate"
+																				th:field="*{listRFQuotation[__${stat.index}__].item}"
+																				required>
+																		</td>
 
-										<td><input type="text" title="city" class="form-control form-control-sm"
-												th:field="*{listRFQuotation[__${stat.index}__].city}">
-										</td>
+																		<td><input type="text" title="uom"
+																				class="form-control form-control-sm"
+																				id="uom"
+																				th:field="*{listRFQuotation[__${stat.index}__].uom}">
+																		</td>
 
-										<td><input type="date" style="font-size: 0.95rem"
-												class="form-control form-control-sm"
-												th:field="*{listRFQuotation[__${stat.index}__].rfqDate}" required></td>
+																		<td><input type="text" title="city"
+																				class="form-control form-control-sm"
+																				th:field="*{listRFQuotation[__${stat.index}__].city}">
+																		</td>
 
-										<td><input type="text" class="form-control form-control-sm"
-												th:field="*{listRFQuotation[__${stat.index}__].itemSpec}" required
-												title="">
-										</td>
+																		<td><input type="date"
+																				style="font-size: 0.95rem"
+																				class="form-control form-control-sm"
+																				th:field="*{listRFQuotation[__${stat.index}__].rfqDate}"
+																				required></td>
 
-										<td><input type="text" class="form-control form-control-sm"
-												th:field="*{listRFQuotation[__${stat.index}__].termCondition}" required
-												title="">
-										</td>
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				th:field="*{listRFQuotation[__${stat.index}__].itemSpec}"
+																				required title="">
+																		</td>
 
-										<td><input type="text" class="form-control form-control-sm"
-												th:field="*{listRFQuotation[__${stat.index}__].remarks}" required
-												title="">
-										</td>
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				th:field="*{listRFQuotation[__${stat.index}__].termCondition}"
+																				required title="">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				th:field="*{listRFQuotation[__${stat.index}__].remarks}"
+																				required title="">
+																		</td>
 
 
 
 
-									</tr>
-									<tr id='addr1' />
+																	</tr>
+																	<tr id='addr1' />
 
-								</tbody>
+																</tbody>
 
-							</table>
+															</table>
+															<input type="hidden" id="hidden_field"
+																th:value="${length}" />
+														</div>
+
+													</div>
+												</div>
+
+
+
+												<div class="body">
+													<div class="box-body">
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display" style="width: 100%">
+																<thead>
+																	<tr>
+																		<th scope="col" class="text-center">Supplier
+																			Name</th>
+																		<th scope="col" class="text-center">Supplier
+																			Address</th>
+																		<th scope="col" class="text-center">Supplier
+																			City</th>
+																		<th scope="col" class="text-center">Supplier
+																			State</th>
+																		<th scope="col" class="text-center">Contact
+																			Person</th>
+																		<th scope="col" class="text-center">Email</th>
+																		<th scope="col" class="text-center">Phone Number
+																		</th>
+																		<th scope="col" class="text-center">fax Number
+																		</th>
+
+
+
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr id="addr0"
+																		th:each="row, stat :${rFQuotation.listRFQuotationSupply}">
+
+																		<td><select id="supplierId"
+																				class="form-control form-control-sm select"
+																				required title="supplier code"
+																				onchange="supplierInfo()"
+																				name="listRFQuotationSupply[0].suppCode.supplierId">
+																				<option value=" ">Select</option>
+																				<option
+																					th:each="supplier :  ${listSupplier}"
+																					th:text="${supplier.supplierName}"
+																					th:value=" ${supplier.supplierId}">
+																				</option>
+
+
+																			</select></td>
+
+
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="supplierAdd"
+																				title="supplier address"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].suppAdd}">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="supplierCity" title="supplier city"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].suppCity}">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="supplierState"
+																				title="supplier State"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].suppState}">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="contactPerson"
+																				title="contact person"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].contactPerson}">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="email"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].email}">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="accademicQualificatio"
+																				title="Accademic qualification"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].phoneNumber}">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				id="technicalQualification"
+																				title="Technical Qualification"
+																				th:field="*{listRFQuotationSupply[__${stat.index}__].faxNum}">
+																		</td>
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+															</table>
+														</div>
+													</div>
+												</div>
+
+
+
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+
+
+											</form>
+
+
+										</div><!-- /.box -->
+										<div style="width: parent; text-align-last: right; margin:8px">
+											<a th:href="@{/requestquotation/list}">View All R.F.Q</a>
+										</div>
+									</div>
+
+
+
+								</div>
+
+							</div>
+
 						</div>
-					</div>
-					<input type="hidden" id="hidden_field" th:value="${length}" />
-				</div>
-
+					</section>
+				</section>
 			</div>
 
-
-
-			<!-- end request for quotationdetail -->
-
-
-			<div style="height: 10px"></div>
-
-
-
-			<h5 style="color: #2e7ef2;">Supplier Information</h5>
-			<!-- supplier information detail -->
-
-			<div class="card form-border">
-				<div class="card-header"></div>
-				<div class="card-body">
-
-					<input id="_cr" name="_cr" type="hidden" value="1">
-
-					<div>
-
-						<div style="text-align: right">
-
-
-
-
-							<a id="add_row" class="fa fa-plus" aria-hidden="true"
-								style="font-size: 22px; color: #001080"></a> <a id="delete_row" class="fa fa-trash"
-								style="font-size: 22px; color: #399490fc" aria-hidden="true"></a>
-						</div>
-
-						<div class="table-responsive">
-							<table id="example" aria-describedby="example" class="table table-striped display"
-								style="width: 100%">
-								<thead>
-									<tr>
-										<th scope="col" class="text-center">Supplier Name</th>
-										<th scope="col" class="text-center">Supplier Address</th>
-										<th scope="col" class="text-center">Supplier City</th>
-										<th scope="col" class="text-center">Supplier State</th>
-										<th scope="col" class="text-center">Contact Person</th>
-										<th scope="col" class="text-center">Email</th>
-										<th scope="col" class="text-center">Phone Number</th>
-										<th scope="col" class="text-center">fax Number</th>
-
-
-
-									</tr>
-								</thead>
-								<tbody>
-									<tr id="addr0" th:each="row, stat :${rFQuotation.listRFQuotationSupply}">
-
-										<td><select id="supplierId" class="form-control form-control-sm select" required
-												title="supplier code" onchange="supplierInfo()"
-												name="listRFQuotationSupply[0].suppCode.supplierId">
-												<option value=" ">Select</option>
-												<option th:each="supplier :  ${listSupplier}"
-													th:text="${supplier.supplierName}"
-													th:value=" ${supplier.supplierId}">
-												</option>
-
-
-											</select></td>
-											
-											
-
-										<td><input type="text" class="form-control form-control-sm" id="supplierAdd"
-												title="supplier address"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].suppAdd}"></td>
-
-										<td><input type="text" class="form-control form-control-sm" id="supplierCity"
-												title="supplier city"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].suppCity}"></td>
-
-										<td><input type="text" class="form-control form-control-sm" id="supplierState"
-												title="supplier State"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].suppState}"></td>
-
-										<td><input type="text" class="form-control form-control-sm" id="contactPerson"
-												title="contact person"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].contactPerson}">
-										</td>
-
-										<td><input type="text" class="form-control form-control-sm" id="email"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].email}">
-										</td>
-
-										<td><input type="text" class="form-control form-control-sm"
-												id="accademicQualificatio" title="Accademic qualification"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].phoneNumber}">
-										</td>
-
-										<td><input type="text" class="form-control form-control-sm"
-												id="technicalQualification" title="Technical Qualification"
-												th:field="*{listRFQuotationSupply[__${stat.index}__].faxNum}">
-										</td>
-
-
-
-
-									</tr>
-									<tr id='addr1' />
-
-								</tbody>
-
-							</table>
-						</div>
-					</div>
-					<input type="hidden" id="hidden_field" th:value="${length}" />
-				</div>
-
-			</div>
-
-			<div class="row" style="margin: 10px">
-				<input type="submit" value="Submit" class="btn btn-primary" />
-				<input type="reset" value="Reset" class="btn btn-danger" />
-			</div>
-			<!-- end supplier information detail -->
-		</form>
-
-
-
-
-		<div class="row text-right m-10">
-			<a th:href="@{/requestquotation/list}">view Request for Quotaion list</a>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-	<script>
-		$(function () {
-			console.log("ready!");
-		});
-
-
-
-		function fun() {
-
-			console.log("my function running...")
-		}
-
-
-	</script>
-
-
-
+			<div th:replace="fragments/footer :: footer">...</div>
+			<!--   <section class="content">
+        
+        </section>-->
+			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
-
 
 </html>

@@ -36,7 +36,7 @@
 
 								<div class="box box-primary">
 									<div class="box-header with-border">
-										<h3 class="box-title">List of Request For Quotation</h3>
+										<h3 class="box-title">List of Quotation</h3>
 									</div>
 									<!-- form start -->
 									<form role="form">
@@ -46,30 +46,29 @@
 													<thead>
 														<tr>
 															<th scope="col">#</th>
-															<th scope="col">RFQ Number</th>
+															<th scope="col">Quotation Number</th>
+															<th scope="col">Quotation Date</th>
+															<th scope="col">Employee</th>
 															<th scope="col">RFQ Date</th>
-															<th scope="col">RFQ Type</th>
-
-
+															<th scope="col">Supplier Name</th>
 
 														</tr>
 													</thead>
 													<tbody>
-														<tr th:each="rfq,iter  : ${rfqList}">
+														<tr th:each="quotation,iter  : ${quotationList}">
 															<td th:text="${iter.index}">1</td>
-															<td th:text="${rfq.rfqNo}">Garrett Winters</td>
-															<td th:text="${rfq.rfqDate}">Garrett Winters</td>
-															<td th:text="${rfq.rfqType}">Garrett Winters</td>
-
+															<td th:text="${quotation.quotNo}">Garrett Winters</td>
+															<td th:text="${quotation.quotDate}">Garrett Winters</td>
+															<td th:text="${quotation.employee}">Garrett Winters</td>
+															<td th:text="${quotation.suplierCode}">Garrett Winters</td>
 
 
 															<td><span> <a
-																		th:href="@{/requestquotation/edit/{id}(id=${rfq.rfqNo})}">edit</a></span>
+																		th:href="@{/quotationdetail/edit/{id}(id=${quotation.quotNo})}">edit</a></span>
 																<span> <a
-																		th:href="@{/requestquotation/delete/{id}(id=${rfq.rfqNo})}">delete</a></span>
+																		th:href="@{/quotationdetail/delete/{id}(id=${quotation.quotNo})}">delete</a></span>
 															</td>
 														</tr>
-
 
 
 
@@ -80,7 +79,7 @@
 										</div>
 
 										<div class="box-footer">
-											<input type="submit" value="Back" onclick='javascript:window.history.back()'
+											<input type="submit" value="Back" onclick='window.history.back();'
 												class="btn btn-link" />
 										</div>
 

@@ -268,7 +268,7 @@
 												<!-- end company detail tab -->
 
 
-												<!-- item detail -->
+												<!--  detail -->
 												<div id="tdsinfo" class="tab-pane fade">
 													<p></p>
 													<div class="box">
@@ -315,7 +315,7 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="addr0" th:each="row, stat :${quotationdetail.quotationItem}">
 
 
 																		<td><select
@@ -323,7 +323,7 @@
 																				id="indentNumber" title="Location"
 																				required
 																				onchange="getIndentDetailByIndentNumber()"
-																				name="quotationItem[0].indentNum">
+																				th:field="*{quotationItem[__${stat.index}__].indentNum}">
 																				<option value=" ">Select Indent Number
 																				</option>
 																				<option
@@ -338,14 +338,14 @@
 																				style="font-size: 0.95rem"
 																				title="indent date"
 																				class="form-control form-control-sm"
-																				name="quotationItem[0].indentDate"
+																				th:field="*{quotationItem[__${stat.index}__].indentDate}"
 																				id="indentDate" required>
 																		</td>
 
 
 
 																		<td><input type="text" title="employee name"
-																				name="quotationItem[0].employee"
+																				th:field="*{quotationItem[__${stat.index}__].employee}"
 																				class="form-control form-control-sm"
 																				id="empCode">
 																		</td>
@@ -359,7 +359,7 @@
 																		<td><select
 																				class="select form-control form-control-sm itemContainer"
 																				id="item" title="item" required
-																				name="quotationItem[0].qtItemCode"
+																				th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
 																				onchange="changeItemInQuotationDetail()">
 																				<option value="">Select Item Code
 																				</option>
@@ -378,7 +378,7 @@
 
 																		<td><input type="text"
 																				class="form-control form-control-sm"
-																				required name="quotationItem[0].rate"
+																				required th:field="*{quotationItem[__${stat.index}__].rate}"
 																				title="">
 																		</td>
 
@@ -391,14 +391,14 @@
 																		<td><input type="text"
 																				class="form-control form-control-sm"
 																				required
-																				name="quotationItem[0].qtItemQty"
+																				th:field="*{quotationItem[__${stat.index}__].qtItemQty}"
 																				title="">
 																		</td>
 
 																		<td><input type="text"
 																				class="form-control form-control-sm"
 																				required
-																				name="quotationItem[0].totalValue"
+																				th:field="*{quotationItem[__${stat.index}__].totalValue}"
 																				title="">
 																		</td>
 
@@ -438,11 +438,13 @@
 																		Discount</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="total discount">
+																			id="inputEmail3"
+																			placeholder="total discount">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="total discount">
+																			id="inputEmail3"
+																			placeholder="total discount">
 																	</div>
 																</div>
 															</div>
