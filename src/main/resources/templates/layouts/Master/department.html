@@ -2,7 +2,6 @@
 <html>
 
 <head xmlns:th="http://www.thymeleaf.org">
-
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>AdminLTE 2 | General Form Elements</title>
@@ -20,89 +19,134 @@
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
 			<div th:replace="fragments/sidebar :: sidebar">...</div>
-			<section class="content-wrapper">
-				<div class="row">
-					<!-- left column -->
-					<div class="col-md-12">
-						<div class="col-md-3">
-						</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Department Master
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
 
 
-						<div class="col-md-6" style="margin-top: 20px;">
+					<!-- Main content -->
+					<section class="content">
 
-							<div class="box box-primary">
-								<div class="box-header with-border">
-									<h3 class="box-title">Department Master</h3>
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+									<div class="col-md-2">
+									</div>
+
+
+									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div><!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/department/}" method="POST"
+												th:object="${department}">
+												<div class="box-body">
+
+													<div class="form-group col-md-12">
+														<label for="inputEmail4">Department Code</label> <input
+															type="text" class="form-control" placeholder="city code"
+															th:field="*{deptCode}">
+													</div>
+													<div class="form-group col-md-12">
+														<label for="inputPassword4">Department Name</label> <input
+															type="text" class="form-control" placeholder="city name"
+															th:field="*{deptName}">
+													</div>
+
+
+
+													<div class="form-group col-md-12">
+														<label for="inputEmail4">Company Code</label> <input type="text"
+															class="form-control" placeholder="city code"
+															th:field="*{compCode}">
+													</div>
+													<div class="form-group col-md-6">
+														<label for="inputPassword4">Department Head</label> <input
+															type="text" class="form-control" placeholder="city name"
+															th:field="*{depHead}">
+													</div>
+
+
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Department Sr Code</label> <input
+															type="text" class="form-control" placeholder="city code"
+															th:field="*{deptSrCode}">
+													</div>
+
+													<div class="form-group" style="margin: 10px;">
+
+														<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio"
+																name="inlineRadioOptions" id="inlineRadio1" value="Y">
+															<label class="form-check-label"
+																for="inlineRadio1">Active</label>
+														</div>
+
+														<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio"
+																name="inlineRadioOptions" id="inlineRadio1" value="N">
+															<label class="form-check-label"
+																for="inlineRadio1">In-Active</label>
+														</div>
+
+													</div>
+
+												</div><!-- /.box-body -->
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+
+
+											</form>
+
+
+										</div><!-- /.box -->
+										<div style="width: parent; text-align-last: right; margin:8px">
+											<a th:href="@{/department/list}">View All Department</a>
+										</div>
+									</div>
+
+
+									<div class="col-md-2">
+									</div>
 								</div>
-								<!-- form start -->
-								<form role="form" th:action="@{/department/}" method="POST" th:object="${department}">
-									<div class="box-body">
 
-										<div class="form-group">
-											<label for="inputEmail4">Department Code</label> <input type="text"
-												class="form-control" placeholder="city code" th:field="*{deptCode}">
-										</div>
-										<div class="form-group">
-											<label for="inputPassword4">Department Name</label> <input type="text"
-												class="form-control" placeholder="city name" th:field="*{deptName}">
-										</div>
-
-										<div class="form-group">
-											<label for="inputEmail4">Company Code</label> <input type="text"
-												class="form-control" placeholder="city code" th:field="*{compCode}">
-										</div>
-										<div class="form-group">
-											<label for="inputPassword4">Department Head</label> <input type="text"
-												class="form-control" placeholder="city name" th:field="*{depHead}">
-										</div>
-
-										<div class="form-group">
-											<label for="inputEmail4">Department Sr Code</label> <input type="text"
-												class="form-control" placeholder="city code" th:field="*{deptSrCode}">
-										</div>
-
-										<div class="form-group" style="margin: 10px;">
-
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="inlineRadioOptions"
-													id="inlineRadio1" value="Y"> <label class="form-check-label"
-													for="inlineRadio1">Active</label>
-											</div>
-
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="inlineRadioOptions"
-													id="inlineRadio1" value="N"> <label class="form-check-label"
-													for="inlineRadio1">In-Active</label>
-											</div>
-
-										</div>
-
-
-
-									</div>
-
-									<div class="box-footer">
-										<input type="submit" value="Submit" class="btn btn-primary" />
-										<input type="reset" value="Reset" class="btn btn-danger" />
-									</div>
-									<a th:href="@{/department/list}">view department list</a>
-								</form>
 							</div>
+
 						</div>
-
-
-						<div class="col-md-3">
-						</div>
-					</div>
-
-				</div>
-			</section>
+					</section>
+				</section>
+			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
 			<!--   <section class="content">
         
         </section>-->
-
 			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
