@@ -1,114 +1,138 @@
 <!DOCTYPE html>
+<html>
 
-<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layouts/main-layout :: main-fragment(  
-                                                ~{::title},
-                                                ~{:: #home-static-resources},
-                                                ~{:: #home-header},
-                                                ~{:: #home-nav},
-                                                ~{:: #home-main-content},  
-                                                ~{:: #home-footer}
-                                               )}">
-
-<head>
-<title>Title of Home Page</title>
-
-<th:block id="home-static-resources">
-
-	<script type="text/javascript" src="../static/home.js"
-		th:src="@{/home.js}"></script>
-	<link rel="stylesheet" type="text/css" href="../static/home.css"
-		th:href="@{/home.css}" />
-
-</th:block>
+<head xmlns:th="http://www.thymeleaf.org">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AdminLTE 2 | General Form Elements</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 </head>
-<body>
 
-	<div id="home-header">ERP WhareHouse</div>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
 
-	<div id="home-nav"
-		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
-	</div>
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Module Master
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
 
 
+					<!-- Main content -->
+					<section class="content">
 
-
-
-	<div id="home-main-content">
-
-		<h3>Module Master</h3>
-
-
-		<form th:action="@{/module/}" method="POST" th:object="${module}">
-			<div class="form-border">
-
-				<div class="row">
-					<div class="form-group col-md-6">
-						<label for="inputEmail4">Module Code</label> <input type="text"
-							class="form-control" placeholder="module code"
-							th:field="*{moduleCode}">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="inputPassword4">Module Name</label> <input type="text"
-							class="form-control" placeholder="module name"
-							th:field="*{moduleName}">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="inputPassword4">Sequence Number</label> <input
-							type="text" class="form-control" placeholder="sequence number"
-							th:field="*{seqNo}">
-					</div>
-				</div>
+						<!-- Default box -->
+						<div class="box">
 
 
 
-				<div class="form-group" style="margin: 10px;">
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+									<div class="col-md-2">
+									</div>
 
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="inlineRadioOptions" id="inlineRadio1" value="Y"> <label
-							class="form-check-label" for="inlineRadio1">Active</label>
-					</div>
 
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="inlineRadioOptions" id="inlineRadio1" value="N"> <label
-							class="form-check-label" for="inlineRadio1">In-Active</label>
-					</div>
+									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div><!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/module/}" method="POST"
+												th:object="${module}">
+												<div class="box-body">
 
-				</div>
+													<div class="form-group col-md-12">
+														<label for="inputEmail4">Module Code</label> <input type="text"
+															class="form-control" placeholder="module code"
+															th:field="*{moduleCode}" disabled>
+													</div>
+													<div class="form-group col-md-12">
+														<label for="inputPassword4">Module Name</label> <input
+															type="text" class="form-control" placeholder="module name"
+															th:field="*{moduleName}">
+													</div>
+													<div class="form-group col-md-12">
+														<label for="inputPassword4">Sequence Number</label> <input
+															type="text" class="form-control"
+															placeholder="sequence number" th:field="*{seqNo}">
+													</div>
 
-				<div class="row" style="margin: 10px">
-					<input type="submit" value="Update" class="btn btn-primary" />
-					<input type="submit" value="Back"
-						onclick='javascript:window.history.back()'
-						class="btn btn-link button" />
-				</div>
 
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" type="radio"
+															name="inlineRadioOptions" id="inlineRadio1" value="Y">
+														<label class="form-check-label" for="inlineRadio1"
+															th:field="*{active}">Active</label>
+													</div>
+
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" type="radio"
+															name="inlineRadioOptions" id="inlineRadio1" value="N">
+														<label class="form-check-label" for="inlineRadio1"
+															th:field="*{active}">In-Active</label>
+													</div>
+
+												</div><!-- /.box-body -->
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+
+
+											</form>
+
+
+										</div><!-- /.box -->
+										<div style="width: parent; text-align-last: right; margin:8px">
+											<a th:href="@{/module/list}">View All Module</a>
+										</div>
+									</div>
+
+
+									<div class="col-md-2">
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</section>
+				</section>
 			</div>
-		</form>
 
-		<div class="row text-right m-10">
-			<a th:href="@{/module/list}">view module list</a>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
-        Footer
-    </div> -->
-
-
+			<div th:replace="fragments/footer :: footer">...</div>
+			<!--   <section class="content">
+        
+        </section>-->
+			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
+
 </html>
