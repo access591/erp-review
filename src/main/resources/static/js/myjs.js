@@ -434,17 +434,17 @@ function getIndentAgainstQuotationDetail() {
 			//$("#uomCode").val(data.uom.uomCode);
 
 			console.log(" result : " + JSON.stringify(data))
-			
+
 			console.log(" result : " + data[0])
-			
+
 			//console.log(" result : " + data.listRfQuotationItem[0].item.itemCode)
-			
+
 			var options = '<option value=""><strong>Select Indent</strong></option>';
 			$(data).each(function(index, value) {
 
 				console.log("data in loop : ")
 				console.log("data in loop : " + value)
-				
+
 				options += '<option value="' + value + '">' + value + '</option>';
 
 			});
@@ -459,6 +459,85 @@ function getIndentAgainstQuotationDetail() {
 	});
 }
 
+
+
+function getIndentDetailPo() {
+
+	var indentNumber = document.getElementById("indentNumberPo").value;
+
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/indentdetail/" + indentNumber,
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			console.log("indent data is : " + data.indentDate)
+			$("#indentDatePo").val(data.indentDate)
+			//$("#empName").val(data.employee.empName);
+			//$("#empCode").val(data.employee.empCode);
+
+			getItemList(indentNumber);
+
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
+
+
+function getItemList(indentNumber) {
+
+
+	console.log("get Item List Function is : " + indentNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "/quotationdetail/itemList/" + indentNumber,
+
+		success: function(data) {
+			console.log("Item Info behalf of Indent Number  : " + data)
+
+			var options = '<option value=""><strong>Select Item</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.itemCode)
+				console.log("item info : " + value.itemName)
+
+				options += '<option value="' + value.itemCode + '">' + value.itemName + '</option>';
+
+			});
+
+			$('.itemContainerPo').html(options);
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}
+
+/*function getItemDetailForPo() {
+
+	var item = document.getElementById("itemPo").value;
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/itemdetail1/" + item,
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			$("#uom").val(data.uom.uomCode)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}*/
 
 
 //******************************************END PURCHASE ORDER ******************************* */
@@ -536,27 +615,3 @@ function getRCityOnState() {
 	});
 }
 
-
-
-
-
-
-
-
-
-//********************************************End Company Detail ********************************* */
-
-
-
-
-
-
-//>**************************************************COMON DYNAMIC AJAX********************************************** */
-
-
-function dynamicAjaxRequest(url, val) {
-
-}
-
-
-//**************************************************END COMMON AJAX********************************************** */

@@ -105,6 +105,18 @@ public class PurchaseOrderController {
 	}
 	
 	
+	//working 
+	
+	
+	@ResponseBody
+	@GetMapping("/indentdetail/{id}")
+	public List<String> getIndentDetailByPurchaseThroughIndent(@PathVariable(value = "id") String quotationId, Model model) {
+		
+		
+		return null;
+	}
+	
+	
 	
 	
 
