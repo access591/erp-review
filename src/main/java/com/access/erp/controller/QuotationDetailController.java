@@ -96,6 +96,22 @@ public class QuotationDetailController {
 	@GetMapping("/edit/{id}")
 	public String editQuotation(@PathVariable("id") String quotCode, Model model) {
 
+		
+		List<RfQuotation> listRfQuotation = rfQuotationService.getAllRfQuotation();
+		model.addAttribute("listRfQuotation", listRfQuotation);
+
+		List<SupplierMaster> listSupplierMaster = supplierRepo.findAll();
+		model.addAttribute("listSupplier", listSupplierMaster);
+
+		List<CurrencyMaster> listCurrencyMaster = currencyRepo.findAll();
+		model.addAttribute("listCurrencyMaster", listCurrencyMaster);
+
+		// get indent number which is in RFQ (Child Of RFQ)
+		List<OpenIndent> listIndentInRfq = quotationService.getIndentInRFQ();
+		model.addAttribute("listIndentInRfq", listIndentInRfq);
+		
+		
+		
 		QuotationDetail quotaion = quotationService.editQuotationDetail(quotCode).get();
 		model.addAttribute("quotation", quotaion);
 		return "layouts/editview/editQuotationDetail";

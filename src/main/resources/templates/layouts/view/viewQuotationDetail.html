@@ -1,573 +1,619 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main-layout :: main-fragment(  
-                                                ~{::title},
-                                                ~{:: #home-static-resources},
-                                                ~{:: #home-header},
-                                                ~{:: #home-nav},
-                                                ~{:: #home-main-content},  
-                                                ~{:: #home-footer}
-                                               )}">
+<head xmlns:th="http://www.thymeleaf.org">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AdminLTE 2 | General Form Elements</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
-<head>
-	<title>Title of Home Page</title>
 
-	<th:block id="home-static-resources">
+	<style>
+		.form-control-sm {
+			height: 30px;
+			width: 120px;
+			font-size: 11px;
 
-		<script type="text/javascript" src="../static/home.js" th:src="@{/home.js}"></script>
-		<link rel="stylesheet" type="text/css" href="../static/home.css" th:href="@{/home.css}" />
+		}
 
-		<style>
-			.form-control-sm {
-				height: 30px;
-				width: 120px;
-				font-size: 11px;
+		.select {
+			width: 130px;
+			font-size: 11px;
+		}
+	</style>
 
-			}
-
-			.select {
-				width: 130px;
-				font-size: 11px;
-			}
-		</style>
-	</th:block>
 
 </head>
 
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
 
-	<div id="home-header">WhareHouse</div>
+			<div class="wrapper">
 
-	<div id="home-nav" th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
-	</div>
-
-
-
-	<div id="home-main-content">
-
-		<div class="container-fluid">
-			<ul class="nav nav-pills">
-				<li class="active"><a data-toggle="tab" href="#companydetail">Quotation
-						Detail</a></li>
-				<li><a data-toggle="tab" href="#tdsinfo">Items Detail</a></li>
-
-			</ul>
+				<section class="content-wrapper">
 
 
-			<form th:action="@{/quotationdetail/}" th:object="${quotation}" method="POST">
-				<!-- div content -->
-				<div class="tab-content">
+					<div class="row">
+						<!-- left column -->
 
-					<!-- company detail tab -->
-					<div id="companydetail" class="tab-pane fade in active">
-						<p></p>
 
-						<div class="form-border">
-							<h5>Quotation Details</h5>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="inputEmail4">Quotation No.</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="quotation no"
-										th:field="*{quotNo}">
+
+
+						<div class="col-md-12" style="margin-top: 20px;">
+
+							<div class="box box-primary">
+								<div class="box-header with-border">
+									<h3 class="box-title">Quotation Details</h3>
 								</div>
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">Quotation Date</label> <input type="date"
-										class="form-control" id="inputPassword4" placeholder="quotation date"
-										th:field="*{quotDate}">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">Nature of Purchase</label> <input type="text"
-										class="form-control" id="inputPassword4" placeholder="nature of purchase">
-								</div>
+								<!-- form start -->
+								<form role="form" th:action="@{/quotationdetail/}" th:object="${quotation}"
+									method="POST">
+									<div class="box-body">
 
-								<div class="form-group col-md-4">
-									<label for="inputAddress">Received On</label> <input type="date"
-										class="form-control" id="inputAddress" placeholder="received on"
-										th:field="*{receivedOn}">
-								</div>
+										<div class="container-fluid">
 
-								<div class="form-group col-md-4">
-									<label class="form-label">RFQ Number </label> <label style="color: red">*</label>
-									<select class="form-control" onchange="changeRequestForQuotation()"
-										title="RFQ Number" id="rfqNum" th:field="*{rfqNo}">
-										<option value="">Select RFQ</option>
-										<option th:each="rfq :  ${listRfQuotation}" th:text="${rfq.rfqNo}"
-											th:value=" ${rfq.rfqNo}">
-										</option>
-									</select>
-								</div>
-
-								<div class="form-group col-md-4">
-									<label for="inputAddress">RFQ Date</label> <input type="date" class="form-control"
-										id="rfqDate" placeholder="rfq date" th:field=*{rfqDate}>
-								</div>
+											<ul class="nav nav-pills">
+												<li class="active"><a data-toggle="tab" href="#companydetail">Quotation
+														Detail</a></li>
+												<li><a data-toggle="tab" href="#tdsinfo">Items Detail</a></li>
 
 
+
+											</ul>
+
+											<!-- main div content -->
+											<div class="tab-content">
+
+												<!-- company detail tab -->
+												<div id="companydetail" class="tab-pane fade in active">
+													<p></p>
+
+													<div class="box">
+
+														<div class="box-body">
+															<h5>Quotation Details</h5>
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="form-group col-md-4">
+																		<label for="inputEmail4">Quotation No.</label>
+																		<input type="text" class="form-control"
+																			id="inputEmail4" placeholder="quotation no"
+																			th:field="*{quotNo}">
+																	</div>
+																	<div class="form-group col-md-4">
+																		<label for="inputPassword4">Quotation
+																			Date</label>
+																		<input type="date" class="form-control"
+																			id="inputPassword4"
+																			placeholder="quotation date"
+																			th:field="*{quotDate}">
+																	</div>
+																	<div class="form-group col-md-4">
+																		<label for="inputPassword4">Nature of
+																			Purchase</label> <input type="text"
+																			class="form-control" id="inputPassword4"
+																			placeholder="nature of purchase">
+																	</div>
+
+																	<div class="form-group col-md-4">
+																		<label for="inputAddress">Received On</label>
+																		<input type="date" class="form-control"
+																			id="inputAddress" placeholder="received on"
+																			th:field="*{receivedOn}">
+																	</div>
+
+																	<div class="form-group col-md-4">
+																		<label class="form-label">RFQ Number </label>
+																		<label style="color: red">*</label>
+																		<select class="form-control"
+																			onchange="changeRequestForQuotation()"
+																			title="RFQ Number" id="rfqNum"
+																			th:field="*{rfqNo}">
+																			<option value="">Select RFQ</option>
+																			<option th:each="rfq :  ${listRfQuotation}"
+																				th:text="${rfq.rfqNo}"
+																				th:value=" ${rfq.rfqNo}">
+																			</option>
+																		</select>
+																	</div>
+
+																	<div class="form-group col-md-4">
+																		<label for="inputAddress">RFQ Date</label>
+																		<input type="date" class="form-control"
+																			id="rfqDate" placeholder="rfq date"
+																			th:field=*{rfqDate}>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+
+													</div>
+
+
+
+
+													<div>
+														<h5>Supplier Info</h5>
+
+														<div class="box">
+															<div class="box-body">
+																<div class="form-group col-md-4">
+																	<label class="form-label">Supplier </label>
+																	<label style="color: red">*</label>
+																	<select class="form-control"
+																		onchange="supplierInfo1()" title="supplier "
+																		id="supplierId" th:field="*{suplierCode}">
+																		<option value="">Select</option>
+																		<option th:each="supp :  ${listSupplier}"
+																			th:text="${supp.supplierName}"
+																			th:value=" ${supp.supplierId}">
+																		</option>
+																	</select>
+																</div>
+
+																<div class="form-group col-md-4">
+																	<label for="inputPassword4">Supplier
+																		Name</label>
+																	<input type="text" class="form-control"
+																		placeholder="quotation date" id="supplierName"
+																		th:field="*{tempSupName}">
+																</div>
+																<div class="form-group col-md-4">
+																	<label for="inputPassword4">Supplier
+																		City</label>
+																	<input type="text" class="form-control"
+																		id="supplierCity"
+																		placeholder="nature of purchase"
+																		th:field="*{supCityCode}">
+																</div>
+
+																<div class="form-group col-md-4">
+																	<label for="inputAddress">Form Code</label>
+																	<input type="text" class="form-control"
+																		id="inputAddress" placeholder="received on"
+																		th:field="*{fromCode}">
+																</div>
+																<div class="form-group col-md-4">
+																	<label for="inputAddress">Supplier State</label>
+																	<input type="text" class="form-control"
+																		id="supplierState"
+																		placeholder="supplier country"
+																		th:field="*{supCountry}">
+																</div>
+																<div class="form-group col-md-4">
+																	<label for="inputAddress">Form Type</label>
+																	<input type="text" class="form-control"
+																		id="inputAddress" placeholder="from type"
+																		th:field="*{quotType}">
+																</div>
+															</div><!-- /.box-body -->
+
+														</div>
+
+
+														<div class="box">
+															<div class="box-body">
+																<div class="form-group col-md-6">
+																	<label class="form-label">Currency Code</label>
+																	<label style="color: red">*</label>
+																	<select class="form-control"
+																		onchange="changeCurrency()"
+																		title="currency Name" required id="currencyCode"
+																		th:field="*{currencyCode}">
+																		<option value="">Select Department</option>
+																		<option
+																			th:each="currency :  ${listCurrencyMaster}"
+																			th:text="${currency.currencyCode}"
+																			th:value=" ${currency.currencyValue}">
+																		</option>
+																	</select>
+																</div>
+
+																<div class="form-group col-md-6">
+																	<label for="inputPassword4">Currency Value</label>
+																	<input type="text" class="form-control"
+																		id="currencyValue" placeholder="currency value"
+																		th:field="*{conversionValue}">
+																</div>
+
+
+															</div>
+														</div>
+
+
+
+														<div class="box">
+															<h5>Delivery Details</h5>
+															<div class="box-body">
+
+
+
+																<div class="form-group col-md-4">
+																	<label for="inputEmail4">Delivery Period</label>
+																	<input type="text" class="form-control"
+																		id="inputEmail4" placeholder="delivery period"
+																		th:field="*{deliveryPeriod}">
+																</div>
+																<div class="form-group col-md-4">
+																	<label for="inputPassword4">Delivery Mode</label>
+																	<input type="text" class="form-control"
+																		id="inputPassword4" placeholder="delivery mode"
+																		th:field="*{delMode}">
+																</div>
+
+
+																<div class="form-group col-md-4">
+																	<label for="inputEmail4">Term and Condition</label>
+																	<input type="text" class="form-control"
+																		id="inputEmail4" placeholder="delivery period"
+																		th:field="*{deliveryPeriod}">
+																</div>
+
+
+															</div>
+
+														</div>
+													</div>
+													<!-- ADD -->
+												</div>
+												<!-- end company detail tab -->
+
+
+												<!-- item detail -->
+												<div id="tdsinfo" class="tab-pane fade">
+													<p></p>
+													<div class="box">
+														<h5>Item Details</h5>
+														<div class="table-responsive">
+															<table class="table table-sm">
+																<thead>
+																	<tr>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Indent
+																			Number</th>
+																		<th scope="col" class="text-center"
+																			style="width: 130px;">Indent
+																			Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">Employee
+																			Code</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Employee
+																			Name</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Code
+																		</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Description
+																		</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">UOM</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Rate</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Negotiable
+																			Cost</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Qty</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Total INR
+																			Value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Approval
+																			Status</th>
+
+
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr id="addr0" th:each="row, stat :${quotation.quotationItem}">
+
+
+																		<td><select
+																				class="select form-control form-control-sm"
+																				id="indentNumber" title="Location"
+																				required
+																				onchange="getIndentDetailByIndentNumber()"
+																				th:field="*{quotationItem[__${stat.index}__].indentNum}">
+																				<option value=" ">Select Indent Number
+																				</option>
+																				<option
+																					th:each="indent :  ${listIndentInRfq}"
+																					th:text="${indent.indentNumber}"
+																					th:value=" ${indent.indentNumber}">
+																				</option>
+
+																			</select></td>
+
+																		<td><input type="date"
+																				style="font-size: 0.95rem"
+																				title="indent date"
+																				class="form-control form-control-sm"
+																				th:field="*{quotationItem[__${stat.index}__].indentDate}"
+																				id="indentDate" required>
+																		</td>
+
+
+
+																		<td><input type="text" title="employee name"
+																				th:field="*{quotationItem[__${stat.index}__].employee}"
+																				class="form-control form-control-sm"
+																				id="empCode">
+																		</td>
+
+																		<td><input type="text" title="uom"
+																				class="form-control form-control-sm"
+																				id="empName">
+																		</td>
+
+
+																		<td><select
+																				class="select form-control form-control-sm itemContainer"
+																				id="item" title="item" required
+																				th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
+																				onchange="changeItemInQuotationDetail()">
+																				<option value="">Select Item Code
+																				</option>
+
+
+																			</select></td>
+
+																		<td><input type="text" id="itemDescriptin"
+																				class="form-control form-control-sm"
+																				required></td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				required id="uomCode" title="">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				required th:field="*{quotationItem[__${stat.index}__].rate}"																				title="">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				required title="">
+																		</td>
+
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				required
+																				th:field="*{quotationItem[__${stat.index}__].qtItemQty}"																				title="">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				required
+																				th:field="*{quotationItem[__${stat.index}__].totalValue}"
+																				title="">
+																		</td>
+
+																		<td><input type="text"
+																				class="form-control form-control-sm"
+																				required title="">
+																		</td>
+
+
+
+
+																	</tr>
+
+
+
+
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+
+
+													<!--miscellaneas start -->
+
+
+													<div class="box">
+														<h5>Miscellaneous Charge</h5>
+
+														<div class="box-body">
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">Total
+																		Discount</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="total discount">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="total discount">
+																	</div>
+																</div>
+															</div>
+
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">Discount</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="discount">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="discount">
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">CGST(%)</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="cgst">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="cgst">
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">Packing</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="packing">
+																	</div>
+
+																</div>
+															</div>
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">SGST(%)</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="sgst">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="sgst">
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">Freight</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="freight">
+																	</div>
+
+																</div>
+															</div>
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">CGST(%)</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="cgst">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="cgst">
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label">IGST(%)</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="igst">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control"
+																			id="inputEmail3" placeholder="igst">
+																	</div>
+																</div>
+															</div>
+
+														</div>
+
+													</div>
+
+													<!--miscellaneas end -->
+
+												</div>
+												<!--end  detail -->
+
+
+
+
+												<!--</div>-->
+												<!--end main div content-->
+
+
+
+											</div>
+
+
+										</div>
+
+										<div class="box-footer">
+											<input type="submit" value="Back" onclick='window.history.back();'
+												class="btn btn-link" />
+										</div>
+
+								</form>
+
+
+								<div class="box-footer">
+									<div style="width: parent; text-align-last: right; margin:8px">
+										<!--<a th:href="@{/quotationdetail/list}">View All Quotation Detail</a>-->
+									</div>
+
+								</div>
+								<!-- end form -->
 							</div>
 						</div>
 
 
-						<p></p>
-						<p></p>
 
 
-						<div class="form-border">
-							<h5>Supplier Info</h5>
-							<div class="form-row">
-
-								<div class="form-group col-md-4">
-									<label class="form-label">Supplier </label> <label style="color: red">*</label>
-									<select class="form-control" onchange="supplierInfo1()" title="supplier "
-										id="supplierId" th:field="*{suplierCode}">
-										<option value="">Select</option>
-										<option th:each="supp :  ${listSupplier}" th:text="${supp.supplierName}"
-											th:value=" ${supp.supplierId}">
-										</option>
-									</select>
-								</div>
-
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">Supplier Name</label> <input type="text"
-										class="form-control" placeholder="quotation date" id="supplierName"
-										th:field="*{tempSupName}">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">Supplier City</label> <input type="text"
-										class="form-control" id="supplierCity" placeholder="nature of purchase"
-										th:field="*{supCityCode}">
-								</div>
-
-								<div class="form-group col-md-4">
-									<label for="inputAddress">Form Code</label> <input type="text" class="form-control"
-										id="inputAddress" placeholder="received on" th:field="*{fromCode}">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputAddress">Supplier State</label> <input type="text"
-										class="form-control" id="supplierState" placeholder="supplier country"
-										th:field="*{supCountry}">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputAddress">Form Type</label> <input type="text" class="form-control"
-										id="inputAddress" placeholder="from type" th:field="*{quotType}">
-								</div>
-
-
-							</div>
-						</div>
-
-
-						<p></p>
-						<p></p>
-
-
-						<div class="form-border">
-
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label class="form-label">Currency Code</label> <label style="color: red">*</label>
-									<select class="form-control" onchange="changeCurrency()" title="currency Name"
-										required id="currencyCode" th:field="*{currencyCode}">
-										<option value="">Select Department</option>
-										<option th:each="currency :  ${listCurrencyMaster}"
-											th:text="${currency.currencyCode}" th:value=" ${currency.currencyValue}">
-										</option>
-									</select>
-								</div>
-
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">Currency Value</label> <input type="text"
-										class="form-control" id="currencyValue" placeholder="currency value"
-										th:field="*{conversionValue}">
-								</div>
-
-
-							</div>
-						</div>
-
-						<p></p>
-
-
-						<div class="form-border">
-							<h5>Delivery Details</h5>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="inputEmail4">Delivery Period</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="delivery period"
-										th:field="*{deliveryPeriod}">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputPassword4">Delivery Mode</label> <input type="text"
-										class="form-control" id="inputPassword4" placeholder="delivery mode"
-										th:field="*{delMode}">
-								</div>
-
-
-								<div class="form-group col-md-4">
-									<label for="inputEmail4">Term and Condition</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="delivery period"
-										th:field="*{deliveryPeriod}">
-								</div>
-
-
-							</div>
-							<br>
-
-						</div>
 
 					</div>
-					<!-- end company detail -->
-
-
-					<!-- second tab -->
-					<div id="tdsinfo" class="tab-pane fade">
-						<!-- dynamic content start -->
-
-						<div class="card form-border">
-							<div class="card-header"></div>
-							<div class="card-body">
-
-								<input id="_cr" name="_cr" type="hidden" value="1">
-
-								<div>
-
-									<div style="text-align: right">
-
-
-
-
-										<a id="add_row" class="fa fa-plus" aria-hidden="true"
-											style="font-size: 22px; color: #001080"></a>
-										<a id='delete_row' class="fa fa-trash" style="font-size: 22px; color: #399490fc"
-											aria-hidden="true"></a>
-									</div>
-
-									<div class="table-responsive">
-										<table id="example" aria-describedby="example"
-											class="table table-striped display" style="width: 100%">
-											<thead>
-												<tr>
-													<th scope="col" class="text-center" style="width: 90px;">Indent
-														Number</th>
-													<th scope="col" class="text-center" style="width: 130px;">Indent
-														Date</th>
-													<th scope="col" class="text-center" style="width: 100px;">Employee
-														Code</th>
-													<th scope="col" class="text-center" style="width: 90px;">Employee
-														Name</th>
-													<th scope="col" class="text-center" style="width: 90px;">Item Code
-													</th>
-													<th scope="col" class="text-center" style="width: 90px;">Description
-													</th>
-													<th scope="col" class="text-center" style="width: 10px;">UOM</th>
-													<th scope="col" class="text-center" style="width: 120px;">Rate</th>
-													<th scope="col" class="text-center" style="width: 90px;">Negotiable
-														Cost</th>
-													<th scope="col" class="text-center" style="width: 90px;">Qty</th>
-													<th scope="col" class="text-center" style="width: 120px;">Total INR
-														Value</th>
-													<th scope="col" class="text-center" style="width: 90px;">Approval
-														Status</th>
-
-
-												</tr>
-											</thead>
-											<tbody>
-												<tr id="addr0">
-
-
-													<td><select class="select form-control form-control-sm"
-															id="indentNumber" title="Location" required
-															onchange="getIndentDetailByIndentNumber()"
-															name="quotationItem[0].indentNum">
-															<option value=" ">Select Indent Number</option>
-															<option th:each="indent :  ${listIndentInRfq}"
-																th:text="${indent.indentNumber}"
-																th:value=" ${indent.indentNumber}">
-															</option>
-
-														</select></td>
-
-													<td><input type="date" style="font-size: 0.95rem"
-															title="indent date" class="form-control form-control-sm"
-															name="quotationItem[0].indentDate" id="indentDate" required>
-													</td>
-
-
-
-													<td><input type="text" title="employee name"
-															name="quotationItem[0].employee"
-															class="form-control form-control-sm" id="empCode">
-													</td>
-
-													<td><input type="text" title="uom"
-															class="form-control form-control-sm" id="empName">
-													</td>
-
-
-													<td><select
-															class="select form-control form-control-sm itemContainer"
-															id="item" title="item" required
-															name="quotationItem[0].qtItemCode"
-															onchange="changeItemInQuotationDetail()">
-															<option value="">Select Item Code</option>
-
-
-														</select></td>
-
-													<td><input type="text" id="itemDescriptin"
-															class="form-control form-control-sm" required></td>
-
-													<td><input type="text" class="form-control form-control-sm" required
-															id="uomCode" title="">
-													</td>
-
-													<td><input type="text" class="form-control form-control-sm" required
-															name="quotationItem[0].rate" title="">
-													</td>
-
-													<td><input type="text" class="form-control form-control-sm" required
-															title="">
-													</td>
-
-
-													<td><input type="text" class="form-control form-control-sm" required
-															name="quotationItem[0].qtItemQty" title="">
-													</td>
-
-													<td><input type="text" class="form-control form-control-sm" required
-															name="quotationItem[0].totalValue" title="">
-													</td>
-
-													<td><input type="text" class="form-control form-control-sm" required
-															title="">
-													</td>
-
-
-
-
-												</tr>
-												<tr id='addr1' />
-
-											</tbody>
-
-
-										</table>
-									</div>
-								</div>
-								<input type="hidden" id="hidden_field" th:value="${length}" />
-							</div>
-
-						</div>
-
-
-
-						<!-- dynamic content end -->
-
-						<!--miscellaneas start -->
-
-
-						<div class="form-border">
-							<h5>Miscellaneous Charge</h5>
-
-							<div class="container">
-
-								<div class="row">
-
-									<div class="col-md-5">
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">Total
-												Discount(%)</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-										</div>
-									</div>
-
-
-									<div class="col-md-5">
-
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">Discount(%)</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-										</div>
-
-									</div>
-
-
-									<div class="col-md-2">
-									</div>
-
-								</div>
-
-								<div class="row">
-
-									<div class="col-md-5">
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">CGST(%)</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-										</div>
-									</div>
-
-
-									<div class="col-md-5">
-
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">Packing</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-
-										</div>
-
-									</div>
-
-
-									<div class="col-md-2">
-									</div>
-
-								</div>
-
-								<div class="row">
-
-									<div class="col-md-5">
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">SGST(%)</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-										</div>
-									</div>
-
-
-									<div class="col-md-5">
-
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">Freight</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-										</div>
-
-									</div>
-
-
-									<div class="col-md-2">
-									</div>
-
-								</div>
-
-								<div class="row">
-
-									<div class="col-md-5">
-										<div class="form-group row">
-											<label for="inputEmail3" class="col-sm-2 col-form-label">IGST(%)</label>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-											<div class="col-sm-5">
-												<input type="number" class="form-control form-control-sm"
-													id="inputEmail3" placeholder="">
-											</div>
-										</div>
-									</div>
-
-
-									<div class="col-md-5">
-
-
-									</div>
-
-
-									<div class="col-md-2">
-									</div>
-
-								</div>
-
-							</div>
-
-
-
-						</div>
-
-						<!--miscellaneas end -->
-
-
-
-						<!--Total value -->
-						<div style="padding-top: 20px; margin: 20px;">
-
-							<div class="width:100%; margin: 20px;">
-								<h5>Total Value</h5>
-							</div>
-
-
-							<div class="form-group row" style="padding-top: 13px;">
-								<label for="inputEmail3" class="col-sm-2 col-form-label">Total Value(INR)</label>
-								<div class="col-sm-4">
-									<input type="number" class="form-control" id="inputEmail3">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-2 col-form-label">Total Value INR</label>
-								<div class="col-sm-4">
-									<input type="number" class="form-control" id="inputEmail3">
-								</div>
-							</div>
-						</div>
-
-						<!--End Total value -->
-					</div>
-
-
-
-
-				</div>
-				<!-- end div content -->
-
-
-
-				<div class="row" style="margin: 10px">
-					<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset"
-						class="btn btn-danger" />
-				</div>
-
-			</form>
+				</section>
+			</div>
 		</div>
 
 	</div>
 
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
+        
+        </section>-->
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
-
-
-
+	<script src="../../js/demo.js" th:src="@{/js/myjs.js}"></script>
 
 </body>
 

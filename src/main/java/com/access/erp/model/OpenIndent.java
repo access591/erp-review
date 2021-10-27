@@ -193,7 +193,7 @@ public class OpenIndent {
 	
 	
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "openIndent")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<OpenIndentDetail> opeIndentDetail = new ArrayList<>();
 
 

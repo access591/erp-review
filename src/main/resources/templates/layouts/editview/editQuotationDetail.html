@@ -30,7 +30,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="getIndentDetailByIndentNumber()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -268,7 +268,7 @@
 												<!-- end company detail tab -->
 
 
-												<!--  detail -->
+												<!-- item detail -->
 												<div id="tdsinfo" class="tab-pane fade">
 													<p></p>
 													<div class="box">
@@ -315,7 +315,7 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr id="addr0" th:each="row, stat :${quotationdetail.quotationItem}">
+																	<tr id="addr0" th:each="row, stat :${quotation.quotationItem}">
 
 
 																		<td><select
@@ -378,8 +378,7 @@
 
 																		<td><input type="text"
 																				class="form-control form-control-sm"
-																				required th:field="*{quotationItem[__${stat.index}__].rate}"
-																				title="">
+																				required th:field="*{quotationItem[__${stat.index}__].rate}"																				title="">
 																		</td>
 
 																		<td><input type="text"
@@ -391,8 +390,7 @@
 																		<td><input type="text"
 																				class="form-control form-control-sm"
 																				required
-																				th:field="*{quotationItem[__${stat.index}__].qtItemQty}"
-																				title="">
+																				th:field="*{quotationItem[__${stat.index}__].qtItemQty}"																				title="">
 																		</td>
 
 																		<td><input type="text"
@@ -438,13 +436,11 @@
 																		Discount</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="inputEmail3"
-																			placeholder="total discount">
+																			id="inputEmail3" placeholder="total discount">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="inputEmail3"
-																			placeholder="total discount">
+																			id="inputEmail3" placeholder="total discount">
 																	</div>
 																</div>
 															</div>
