@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
-	
+
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
 	<style>
@@ -155,8 +155,9 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Purchase Through</label>
-																<select class="form-control" id="purchaseThrough" title="urgency"
-																	required onchange="againstPurchaseThrough()">
+																<select class="form-control" id="purchaseThrough"
+																	title="urgency" required
+																	onchange="againstPurchaseThrough()">
 																	<option value="quotation" selected>Quotation
 																	</option>
 																	<option value="indent">Indent</option>
@@ -165,7 +166,8 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Quotation Number</label>
-																<select class="form-control" id="quotationNumber" title="" required>
+																<select class="form-control" id="quotationNumber"
+																	title="" onchange="quotationNumberInfo()" required>
 																	<option value="">Select</option>
 																	<option
 																		th:each="quotationDetal :  ${lsitQuotationDetail}"
@@ -191,8 +193,7 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Supplier</label>
-																<select id="supplierId"
-																	class="form-control" required
+																<select id="supplierId" class="form-control" required
 																	title="supplier code" onchange="supplierInfo()">
 																	<option value=" ">Select</option>
 																	<option th:each="supplier :  ${listSupplier}"
@@ -213,8 +214,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Currency</label>
 
-																<select id="currencyId"
-																	class="form-control" required
+																<select id="currencyId" class="form-control" required
 																	title="currency">
 																	<option value=" ">Select</option>
 																	<option th:each="currency :  ${listCurrency}"
@@ -334,14 +334,17 @@
 
 																				</select></td>
 
-																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="supplierAdd"
-																					title="supplier address"></td>
+																			<td><select class="form-control indentContainer form-control-sm select"
+																					id="indentNumber"
+																					title="Department Name" required>
+																					<option value="">Select Indent
+																					</option>
+																					
+																				</select></td>
 
-																			<td><input type="text"
+																			<td><input type="date"
 																					class="form-control form-control-sm"
-																					id="supplierCity"
+																					id="indentDate"
 																					title="supplier city"></td>
 
 																			<td><input type="text"
@@ -473,38 +476,56 @@
 			<script>
 
 				$(document).ready(function () {
-					
-					
+
+
 				});
 			</script>
 
 
-<script>
-	function againstPurchaseThrough(){
-		
-		let purchaseThrough = document.getElementById("purchaseThrough").value;
-		console.log("purchase through value : " + purchaseThrough );
-		
-		
-		if (purchaseThrough == "quotation"){
-			console.log("quotation ")
-			 $("#quotationNumber").prop('disabled', false);
-			 $("#quotationDate").prop('disabled', false);
-			
-		}else{
-			console.log(" is not")
-			$("#quotationNumber").prop('disabled', true);
-			$("#quotationDate").prop('disabled', true);
-			
-		}
-		
-		
-	}
-</script>
+			<script>
+				function againstPurchaseThrough() {
+
+					let purchaseThrough = document.getElementById("purchaseThrough").value;
+					console.log("purchase through value : " + purchaseThrough);
+
+
+					if (purchaseThrough == "quotation") {
+						console.log("quotation ")
+						// enable field
+						$("#quotationNumber").prop('disabled', false);
+						$("#quotationDate").prop('disabled', false);
+
+						
+						
+						
+						//get indent detail against quotation detail 
+						
+						//getIndentAgainstQuotationDetail()
+
+					} else {
+						console.log(" is not")
+						//disabled and do blank 
+						$("#quotationNumber").prop('disabled', true);
+						$("#quotationDate").prop('disabled', true);
+						$('#quotationNumber').val('');
+						$('#quotationDate').val('');
+
+						
+
+
+					}
+
+
+				}
+			</script>
 			<!--   <section class="content">
         
         
         </section>-->
+
+			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
+
+
 			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
