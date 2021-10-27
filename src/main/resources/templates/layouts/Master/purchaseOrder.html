@@ -335,23 +335,26 @@
 																				</select></td>
 
 																			<td><select class="form-control indentContainer form-control-sm select"
-																					id="indentNumber"
-																					title="Department Name" required>
+																					id="indentNumberPo"
+																					title="Department Name" onchange='getIndentDetailPo()' required>
 																					<option value="">Select Indent
 																					</option>
 																					
 																				</select></td>
-
-																			<td><input type="date"
+																				
+																				<td><input type="text"
 																					class="form-control form-control-sm"
-																					id="indentDate"
-																					title="supplier city"></td>
-
-																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="supplierState"
+																					id="indentDatePo"
 																					title="supplier State"></td>
 
+
+																			<td><select id="itemPo"
+																					class="form-control form-control-sm select itemContainerPo"
+																					required title="supplier code" onchange="getItemDetailForPo()"
+																					>
+																					<option value="">Select</option></td>
+
+																			
 																			<td><input type="text"
 																					class="form-control form-control-sm"
 																					id="contactPerson"
@@ -509,6 +512,12 @@
 						$("#quotationDate").prop('disabled', true);
 						$('#quotationNumber').val('');
 						$('#quotationDate').val('');
+						
+						
+						
+						//call api in case of purchase through 
+						
+						
 
 						
 
