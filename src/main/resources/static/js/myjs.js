@@ -345,7 +345,7 @@ function changeItemInQuotationDetail() {
 
 			$("#itemDescriptin").val(data.description)
 			$("#uomCode").val(data.uom.uomCode);
-			
+
 
 
 		}, error: function() {
@@ -368,8 +368,8 @@ function changeItemInQuotationDetail() {
 
 //*******************************************PURCHASE ORDER ******************************** */
 
-function supplierInfoPurchase(){
-	
+function supplierInfoPurchase() {
+
 	var supplierCode = document.getElementById("supplierId").value;
 	console.log("ItemCode is : " + supplierCode)
 
@@ -382,18 +382,82 @@ function supplierInfoPurchase(){
 
 			$("#supplierState").val(data.supplierState)
 			//$("#uomCode").val(data.uom.uomCode);
-			
+
 
 
 		}, error: function() {
 			console.log("Error");
 		}
 	});
-	
+
+}
+
+function quotationNumberInfo() {
+
+	var quotationNumber = document.getElementById("quotationNumber").value;
+	console.log("quotation number is : " + quotationNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "/purchaseorder/quotationDetail/" + quotationNumber,
+
+		success: function(data) {
+			console.log("Data From quotaionInfo : " + data)
+
+			$("#quotationDate").val(data.quotDate)
+			//$("#uomCode").val(data.uom.uomCode);
+
+			getIndentAgainstQuotationDetail()
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
 }
 
 
+function getIndentAgainstQuotationDetail() {
 
+	var quotationNumber = document.getElementById("quotationNumber").value;
+	console.log("quotation number is/ getIndent against quotation detail  : " + quotationNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "/purchaseorder/indentdetail/" + quotationNumber,
+
+		success: function(data) {
+			console.log("Data From quotaionInfo : " + data)
+
+			//$("#quotationDate").val(data.quotDate)
+			//$("#uomCode").val(data.uom.uomCode);
+
+			console.log(" result : " + JSON.stringify(data))
+			
+			console.log(" result : " + data[0])
+			
+			//console.log(" result : " + data.listRfQuotationItem[0].item.itemCode)
+			
+			var options = '<option value=""><strong>Select Indent</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("data in loop : ")
+				console.log("data in loop : " + value)
+				
+				options += '<option value="' + value + '">' + value + '</option>';
+
+			});
+
+			$('.indentContainer').html(options);
+
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
 
 
 
@@ -413,8 +477,8 @@ function supplierInfoPurchase(){
 //********************************************Company Detail ********************************* */
 
 
-function getCityOnState(){
-	
+function getCityOnState() {
+
 	var stateCode = document.getElementById("state").value;
 	console.log("State is : " + stateCode)
 
@@ -423,7 +487,7 @@ function getCityOnState(){
 		url: "/companydetail/citylist/" + stateCode,
 
 		success: function(data) {
-			
+
 			var options = '<option value=""><strong>Select City</strong></option>';
 			$(data).each(function(index, value) {
 
@@ -435,7 +499,7 @@ function getCityOnState(){
 			});
 
 			$('.cityContainer').html(options);
-		
+
 		}, error: function() {
 			console.log("Error");
 		}
@@ -443,8 +507,8 @@ function getCityOnState(){
 }
 
 
-function getRCityOnState(){
-	
+function getRCityOnState() {
+
 	var stateCode = document.getElementById("rState").value;
 	console.log("State is : " + stateCode)
 
@@ -453,7 +517,7 @@ function getRCityOnState(){
 		url: "/companydetail/citylist/" + stateCode,
 
 		success: function(data) {
-			
+
 			var options = '<option value=""><strong>Select City</strong></option>';
 			$(data).each(function(index, value) {
 
@@ -465,7 +529,7 @@ function getRCityOnState(){
 			});
 
 			$('.rCityContainer').html(options);
-		
+
 		}, error: function() {
 			console.log("Error");
 		}

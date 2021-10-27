@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="QUOTATION_DETAIL")
@@ -21,7 +28,9 @@ public class QuotationDetail {
 	@Column(name="QUOT_NUM",length = 30)
 	private String quotNo;
 	
-	@Column(name="QUOT_DATE",length = 30)
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
+	@Column(name="QUOT_DATE")
 	private Date quotDate;
 	
 	@Column(name="RECEIVED_ON",length = 30)
@@ -190,6 +199,8 @@ public class QuotationDetail {
 	private String remarks4;
 	
 	@OneToMany(mappedBy = "quotationDetail", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JsonIgnore
 	private List<QuotationItem> quotationItem;
 	
 	
