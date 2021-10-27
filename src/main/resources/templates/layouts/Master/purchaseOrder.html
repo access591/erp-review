@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
 	<style>
 		.form-control-sm {
@@ -27,7 +29,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="againstPurchaseThrough()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -153,8 +155,8 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Purchase Through</label>
-																<select class="form-control" id="" title="urgency"
-																	required>
+																<select class="form-control" id="purchaseThrough" title="urgency"
+																	required onchange="againstPurchaseThrough()">
 																	<option value="quotation" selected>Quotation
 																	</option>
 																	<option value="indent">Indent</option>
@@ -163,7 +165,7 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Quotation Number</label>
-																<select class="form-control" id="" title="" required>
+																<select class="form-control" id="quotationNumber" title="" required>
 																	<option value="">Select</option>
 																	<option
 																		th:each="quotationDetal :  ${lsitQuotationDetail}"
@@ -174,7 +176,7 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Date</label> <input
-																	type="date" class="form-control" id="inputAddress"
+																	type="date" class="form-control" id="quotationDate"
 																	placeholder="cancelbutton status">
 															</div>
 
@@ -190,7 +192,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Supplier</label>
 																<select id="supplierId"
-																	class="form-control form-control-sm select" required
+																	class="form-control" required
 																	title="supplier code" onchange="supplierInfo()">
 																	<option value=" ">Select</option>
 																	<option th:each="supplier :  ${listSupplier}"
@@ -212,7 +214,7 @@
 																<label for="inputPassword4">Currency</label>
 
 																<select id="currencyId"
-																	class="form-control form-control-sm select" required
+																	class="form-control" required
 																	title="currency">
 																	<option value=" ">Select</option>
 																	<option th:each="currency :  ${listCurrency}"
@@ -471,12 +473,34 @@
 			<script>
 
 				$(document).ready(function () {
-					console.log("ready!");
-					alert("hello");
+					
+					
 				});
 			</script>
 
 
+<script>
+	function againstPurchaseThrough(){
+		
+		let purchaseThrough = document.getElementById("purchaseThrough").value;
+		console.log("purchase through value : " + purchaseThrough );
+		
+		
+		if (purchaseThrough == "quotation"){
+			console.log("quotation ")
+			 $("#quotationNumber").prop('disabled', false);
+			 $("#quotationDate").prop('disabled', false);
+			
+		}else{
+			console.log(" is not")
+			$("#quotationNumber").prop('disabled', true);
+			$("#quotationDate").prop('disabled', true);
+			
+		}
+		
+		
+	}
+</script>
 			<!--   <section class="content">
         
         
