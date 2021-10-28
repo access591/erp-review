@@ -33,6 +33,47 @@ public class Role {
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<UserRole> userRoleList = new ArrayList<>();
+
+	public Role() {
+		super();
+		
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public Program getProgram() {
+		return program;
+	}
+
+	public void setProgram(Program program) {
+		this.program = program;
+	}
+
+	public List<UserRole> getUserRoleList() {
+		return userRoleList;
+	}
+
+	public void setUserRoleList(List<UserRole> userRoleList) {
+		this.userRoleList = userRoleList;
+	}
+	
+	
+	
+	
 	
 
 }
