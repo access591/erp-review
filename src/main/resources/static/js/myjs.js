@@ -420,6 +420,11 @@ function quotationNumberInfo() {
 
 function getIndentAgainstQuotationDetail() {
 
+	//do all value clear on click selection 
+					
+	/*$('#quotationDate').val('');*/
+					
+					
 	var quotationNumber = document.getElementById("quotationNumber").value;
 	console.log("quotation number is/ getIndent against quotation detail  : " + quotationNumber)
 
@@ -457,6 +462,47 @@ function getIndentAgainstQuotationDetail() {
 			console.log("Error");
 		}
 	});
+}
+
+
+function indentDetailInCaseOfIndent() {
+
+
+	$.ajax({
+		type: "GET",
+		url: "/purchaseorder/indent/indentdetail/",
+
+		success: function(data) {
+			console.log("Data From quotaionInfo : " + data)
+
+			//$("#quotationDate").val(data.quotDate)
+			//$("#uomCode").val(data.uom.uomCode);
+
+			console.log(" result : " + JSON.stringify(data))
+
+			console.log(" result : " + data[0])
+
+			//console.log(" result : " + data.listRfQuotationItem[0].item.itemCode)
+
+			var options = '<option value=""><strong>Select Indent</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("data in loop : ")
+				console.log("data in loop : " + value)
+
+				options += '<option value="' + value + '">' + value + '</option>';
+
+			});
+
+			$('.indentContainer').html(options);
+
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
 }
 
 
@@ -519,25 +565,9 @@ function getItemList(indentNumber) {
 
 }
 
-/*function getItemDetailForPo() {
 
-	var item = document.getElementById("itemPo").value;
 
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/itemdetail1/" + item,
 
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			$("#uom").val(data.uom.uomCode)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}*/
 
 
 //******************************************END PURCHASE ORDER ******************************* */

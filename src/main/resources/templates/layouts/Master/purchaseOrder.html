@@ -491,6 +491,9 @@
 					let purchaseThrough = document.getElementById("purchaseThrough").value;
 					console.log("purchase through value : " + purchaseThrough);
 
+					//do all value clear on click selection 
+					
+					$('#quotationDate').val('');
 
 					if (purchaseThrough == "quotation") {
 						console.log("quotation ")
@@ -515,7 +518,9 @@
 						
 						
 						
-						//call api in case of purchase through 
+						//call api in case of purchase through is indent
+						
+						indentDetailInCaseOfIndent();
 						
 						
 
