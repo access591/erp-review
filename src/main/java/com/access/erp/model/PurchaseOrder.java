@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.SupplierMaster;
 
@@ -29,14 +32,18 @@ public class PurchaseOrder {
 
 	@Column(name = "PO_DATE")
 	private Date poDate;
-
-	@ManyToOne
-	@JoinColumn(name = "SUPP_CODE")
-	private SupplierMaster supplier;
-
-	@Column(name = "SUPPLY_DATE")
-	private Date supplyDate;
 	
+	@Column(name = "CANC_STATUS", length = 8)
+	private String cancStatus;
+	
+	@Column(name = "NATURE_OF_PUR", length = 10)
+	private String natureOfPur;
+	
+	@Column(name = "OPEN_PO", length = 20)
+	private String openPo;
+	
+	@Column(name = "PO_TYPE", length = 10)
+	private String poType;
 	
 	@ManyToOne
 	@JoinColumn(name = "QUOT_NO")
@@ -44,11 +51,41 @@ public class PurchaseOrder {
 
 	@Column(name = "QUOT_DATE")
 	private Date quotationDate;
-
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "SUPP_CODE")
+	private SupplierMaster supplier;
+	
+	@ManyToOne
+	@JoinColumn(name = "CURRENCY_CODE")
+	private CurrencyMaster currency;
+
+	@Column(name = "SUPPLY_DATE")
+	private Date supplyDate;
+	
+	@Column(name = "DELIVERY_DATE")
+	private Date deliveryDate;
+	
+	@Column(name = "CONVERSION_VALUE", length = 20)
+	private int conversionValue;
+	
+	@Column(name = "REMARKS", length = 100)
+	private String remarks;
 
 	@Column(name = "TOTAL_VALUE", length = 10)
 	private String totalValue;
+	
+	
+
+	
+	
+	
+	
+
+	
+
+
 
 	@Column(name = "RECD_DATE", length = 50)
 	private Date recdDate;
@@ -56,11 +93,8 @@ public class PurchaseOrder {
 	@Column(name = "WORKER_CODE", length = 50)
 	private String workerCode;
 
-	@Column(name = "REMARKS", length = 100)
-	private String remarks;
-
-	@Column(name = "CANC_STATUS", length = 8)
-	private String cancStatus;
+	
+	
 
 	@Column(name = "EXCISE", length = 6)
 	private int excise;
@@ -134,8 +168,7 @@ public class PurchaseOrder {
 	@Column(name = "CARTAGE", length = 50)
 	private int cartage;
 
-	@Column(name = "PO_TYPE", length = 10)
-	private String poType;
+	
 
 	@Column(name = "CAPITALYN", length = 10)
 	private String capitalYn;
@@ -150,12 +183,9 @@ public class PurchaseOrder {
 	private String subPoType;
 
 	
-	@ManyToOne
-	@JoinColumn(name = "CURRENCY_CODE")
-	private CurrencyMaster currency;
+	
 
-	@Column(name = "CONVERSION_VALUE", length = 20)
-	private int conversionValue;
+	
 
 	@Column(name = "PO_CAP_TYPE", length = 10)
 	private String poCapType;
@@ -223,8 +253,7 @@ public class PurchaseOrder {
 	@Column(name = "ANAME", length = 50)
 	private String aName;
 
-	@Column(name = "OPEN_PO", length = 20)
-	private String openPo;
+	
 
 	@Column(name = "APPROVAL_STATUS", length = 10)
 	private String approvalStatus;
@@ -241,8 +270,7 @@ public class PurchaseOrder {
 	@Column(name = "PO_CATEGORY", length = 10)
 	private String poCategory;
 
-	@Column(name = "DELIVERY_DATE")
-	private String deliveryDate;
+	
 
 	@Column(name = "NATURE", length = 10)
 	private String nature;
@@ -259,8 +287,7 @@ public class PurchaseOrder {
 	@Column(name = "FRM_DT")
 	private String frmDate;
 
-	@Column(name = "NATURE_OF_PUR", length = 10)
-	private String natureOfPur;
+	
 
 	@Column(name = "PRICE_TYPE", length = 10)
 	private String priceType;
@@ -396,6 +423,7 @@ public class PurchaseOrder {
 	
 	
 	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<PurchaseOrderItem> listPurchaseOrderItem = new ArrayList<>();
 
 
@@ -425,23 +453,43 @@ public class PurchaseOrder {
 	}
 
 
-	public SupplierMaster getSupplier() {
-		return supplier;
+	public String getCancStatus() {
+		return cancStatus;
 	}
 
 
-	public void setSupplier(SupplierMaster supplier) {
-		this.supplier = supplier;
+	public void setCancStatus(String cancStatus) {
+		this.cancStatus = cancStatus;
 	}
 
 
-	public Date getSupplyDate() {
-		return supplyDate;
+	public String getNatureOfPur() {
+		return natureOfPur;
 	}
 
 
-	public void setSupplyDate(Date supplyDate) {
-		this.supplyDate = supplyDate;
+	public void setNatureOfPur(String natureOfPur) {
+		this.natureOfPur = natureOfPur;
+	}
+
+
+	public String getOpenPo() {
+		return openPo;
+	}
+
+
+	public void setOpenPo(String openPo) {
+		this.openPo = openPo;
+	}
+
+
+	public String getPoType() {
+		return poType;
+	}
+
+
+	public void setPoType(String poType) {
+		this.poType = poType;
 	}
 
 
@@ -462,6 +510,66 @@ public class PurchaseOrder {
 
 	public void setQuotationDate(Date quotationDate) {
 		this.quotationDate = quotationDate;
+	}
+
+
+	public SupplierMaster getSupplier() {
+		return supplier;
+	}
+
+
+	public void setSupplier(SupplierMaster supplier) {
+		this.supplier = supplier;
+	}
+
+
+	public CurrencyMaster getCurrency() {
+		return currency;
+	}
+
+
+	public void setCurrency(CurrencyMaster currency) {
+		this.currency = currency;
+	}
+
+
+	public Date getSupplyDate() {
+		return supplyDate;
+	}
+
+
+	public void setSupplyDate(Date supplyDate) {
+		this.supplyDate = supplyDate;
+	}
+
+
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+
+	public int getConversionValue() {
+		return conversionValue;
+	}
+
+
+	public void setConversionValue(int conversionValue) {
+		this.conversionValue = conversionValue;
+	}
+
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 
@@ -492,26 +600,6 @@ public class PurchaseOrder {
 
 	public void setWorkerCode(String workerCode) {
 		this.workerCode = workerCode;
-	}
-
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-
-	public String getCancStatus() {
-		return cancStatus;
-	}
-
-
-	public void setCancStatus(String cancStatus) {
-		this.cancStatus = cancStatus;
 	}
 
 
@@ -755,16 +843,6 @@ public class PurchaseOrder {
 	}
 
 
-	public String getPoType() {
-		return poType;
-	}
-
-
-	public void setPoType(String poType) {
-		this.poType = poType;
-	}
-
-
 	public String getCapitalYn() {
 		return capitalYn;
 	}
@@ -802,26 +880,6 @@ public class PurchaseOrder {
 
 	public void setSubPoType(String subPoType) {
 		this.subPoType = subPoType;
-	}
-
-
-	public CurrencyMaster getCurrency() {
-		return currency;
-	}
-
-
-	public void setCurrency(CurrencyMaster currency) {
-		this.currency = currency;
-	}
-
-
-	public int getConversionValue() {
-		return conversionValue;
-	}
-
-
-	public void setConversionValue(int conversionValue) {
-		this.conversionValue = conversionValue;
 	}
 
 
@@ -1045,16 +1103,6 @@ public class PurchaseOrder {
 	}
 
 
-	public String getOpenPo() {
-		return openPo;
-	}
-
-
-	public void setOpenPo(String openPo) {
-		this.openPo = openPo;
-	}
-
-
 	public String getApprovalStatus() {
 		return approvalStatus;
 	}
@@ -1105,16 +1153,6 @@ public class PurchaseOrder {
 	}
 
 
-	public String getDeliveryDate() {
-		return deliveryDate;
-	}
-
-
-	public void setDeliveryDate(String deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
-
-
 	public String getNature() {
 		return nature;
 	}
@@ -1162,16 +1200,6 @@ public class PurchaseOrder {
 
 	public void setFrmDate(String frmDate) {
 		this.frmDate = frmDate;
-	}
-
-
-	public String getNatureOfPur() {
-		return natureOfPur;
-	}
-
-
-	public void setNatureOfPur(String natureOfPur) {
-		this.natureOfPur = natureOfPur;
 	}
 
 
@@ -1623,6 +1651,8 @@ public class PurchaseOrder {
 	public void setListPurchaseOrderItem(List<PurchaseOrderItem> listPurchaseOrderItem) {
 		this.listPurchaseOrderItem = listPurchaseOrderItem;
 	}
+
+
 
 
 }
