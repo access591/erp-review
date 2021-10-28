@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar" th:fragment="sidebar" >
+<aside class="main-sidebar" th:fragment="sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">
 		<!-- Sidebar user panel -->
@@ -31,12 +31,14 @@
 			<li class="header">MAIN NAVIGATION</li>
 			<li class="treeview">
 				<a href="#">
-					<i class="fa fa-dashboard"></i> <span>Software Admin</span> <i class="fa fa-angle-left pull-right"></i>
+					<i class="fa fa-dashboard"></i> <span>Software Admin</span> <i
+						class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
 					<li><a th:href="@{/companydetail/}"><i class="fa fa-circle-o"></i> Company</a></li>
 					<li><a th:href="@{/financialyear/}"><i class="fa fa-circle-o"></i>Financial year</a></li>
-					<li><a th:href="@{/financialactiveyear/}"><i class="fa fa-circle-o"></i> Active Financial Year</a></li>
+					<li><a th:href="@{/financialactiveyear/}"><i class="fa fa-circle-o"></i> Active Financial Year</a>
+					</li>
 					<li><a th:href="@{/user/}"><i class="fa fa-circle-o"></i>Users</a></li>
 					<li><a th:href="@{/financialyear/}"><i class="fa fa-circle-o"></i>User Rights</a></li>
 					<li><a th:href="@{/module/}"><i class="fa fa-circle-o"></i>Module</a></li>
@@ -64,29 +66,74 @@
 			</li>-->
 			<li class="treeview">
 				<a href="#">
-					<i class="fa fa-pie-chart"></i>
-					<span>Master</span>
+					<i class="fa fa-share"></i> <span>Master</span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="#">WhareHouse Master</a></li>
-					
-				</ul>
+					<!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>-->
+					<li>
+						<a href="#"><i class="fa fa-circle-o"></i>WhareHouse Master <i
+								class="fa fa-angle-left pull-right"></i></a>
+						<ul class="treeview-menu">
 
-				<ul class="treeview-menu">
-					<li><a th:href="@{/store/}"><i class="fa fa-circle-o"></i> Store</a></li>
-					<li><a th:href="@{/category/}"><i class="fa fa-circle-o"></i> Category</a></li>
-					<li><a th:href="@{/item/}"><i class="fa fa-circle-o"></i> Item</a></li>
-					<li><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i> UOM(Unit of Measurement)</a></li>
+							<li><a th:href="@{/store/}"><i class="fa fa-circle-o"></i> Store</a></li>
+							<li><a th:href="@{/category/}"><i class="fa fa-circle-o"></i> Category</a></li>
+							<li><a th:href="@{/item/}"><i class="fa fa-circle-o"></i> Item</a></li>
+							<li><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i> UOM(Unit of Measurement)</a></li>
+
+
+
+
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
 				</ul>
-				
-				
-				
 			</li>
-			
-			
-			
-			
+
+
+
+
+
+
+			<!--purchase module -->
+
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-share"></i> <span>Purchase Module</span>
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>-->
+					<li>
+						<a href="#"><i class="fa fa-circle-o"></i>Material <i
+								class="fa fa-angle-left pull-right"></i></a>
+						<ul class="treeview-menu">
+
+							<li><a th:href="@{/openindent/}"><i class="fa fa-circle-o"></i> Open Indent</a></li>
+							<li><a th:href="@{/openindent/approve}"><i class="fa fa-circle-o"></i> Indent Approval</a>
+							</li>
+							<li><a th:href="@{/requestquotation/}"><i class="fa fa-circle-o"></i> Request For
+									Quotation</a></li>
+							<li><a th:href="@{/quotationdetail/}"><i class="fa fa-circle-o"></i> Quotation Detail</a>
+							</li>
+							<li><a th:href="@{/approvalquotationdetail/}"><i class="fa fa-circle-o"></i> Quotation
+									Comparitive
+									<br>and approval</a></li>
+							<li><a th:href="@{/purchaseorder/}"><i class="fa fa-circle-o"></i>Purchase Order</a></li>
+
+
+
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+				</ul>
+			</li>
+
+
+
+
+
+
 			<li class="treeview">
 				<a href="#">
 					<i class="fa fa-laptop"></i>
@@ -109,7 +156,11 @@
 
 
 
-		
+
+
+
+
+
 		</ul>
 	</section>
 	<!-- /.sidebar -->

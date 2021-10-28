@@ -1,12 +1,17 @@
 package com.access.erp.model.master;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,6 +34,9 @@ public class MyUser {
 	@JoinColumn(name="EMP_CODE")
 	private Employee employee;
 	
+	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	private List<UserRole> listUserRole = new ArrayList<>();
+	
 	/*
 	 * @ManyToMany(mappedBy = "myUser") private List<UserRights> UserRights = new
 	 * ArrayList<>();
@@ -50,6 +58,17 @@ public class MyUser {
 		super();
 		
 	}
+
+	
+	public List<UserRole> getListUserRole() {
+		return listUserRole;
+	}
+
+
+	public void setListUserRole(List<UserRole> listUserRole) {
+		this.listUserRole = listUserRole;
+	}
+
 
 	public String getUserCode() {
 		return userCode;
