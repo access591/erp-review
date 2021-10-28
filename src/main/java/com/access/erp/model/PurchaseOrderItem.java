@@ -23,10 +23,45 @@ public class PurchaseOrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PURCHASE_ORDER_ITEM", length = 50)
-	private String purchaseOrderItem;
+	private Long purchaseOrderItem;
 	
 	
 	@ManyToOne
+	@JoinColumn(name = "INDENT_NO") 
+	@JsonIgnore
+	private OpenIndent openIndent;
+	
+	@Column(name = "INDENT_DATE", length = 50)
+	private Date indentDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "ITEM_CODE")
+	@JsonIgnore
+	private Item item;
+	
+	@Column(name = "ITEM_RATE", length = 10)
+	private int itemRate;
+	
+	@Column(name = "RATE_EFFECTIVE_DATE")
+	private Date rateEffectiveDate;
+	
+	@Column(name = "QTY_ORDER", length = 50)
+	private int qtyOrder;
+	
+	@Column(name = "ITEM_STATUS",length=5)
+	private String itemStatus = "P";
+	
+	
+	@Column(name = "ITEM_REMARKS" ,length = 1000)
+	private String itemRemarks;
+
+	
+	
+	
+	
+	
+	
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "PO_NO")
 	private PurchaseOrder purchaseOrder;
 	
@@ -34,24 +69,7 @@ public class PurchaseOrderItem {
 	@Column(name = "PO_DATE")
 	private Date poDate;
 
-	@ManyToOne
-	@JoinColumn(name = "ITEM_CODE")
-	@JsonIgnore
-	private Item item;
-
-	@Column(name = "ITEM_RATE", length = 10)
-	private int itemRate;
 	
-	@Column(name = "QTY_ORDER", length = 50)
-	private int qtyOrder;
-
-	@Column(name = "ITEM_STATUS")
-	private char itemStatus = 'p';
-
-	
-	@Column(name = "ITEM_REMARKS" ,length = 1000)
-	private String itemRemarks;
-
 	@Column(name = "PO_SEQ_NO", length = 5)
 	private int poSeqNo;
 	
@@ -60,8 +78,6 @@ public class PurchaseOrderItem {
 
 	@Column(name = "PACKING",length = 10)
 	private int packing;
-
-	
 
 
 	@Column(name = "P_UNDER",length = 10)
@@ -89,9 +105,6 @@ public class PurchaseOrderItem {
 	@Column(name = "OCTROI",length = 15)
 	private int octroi;
 
-	
-
-
 	@Column(name = "DISCOUNT",length=15)
 	private int discount;
 
@@ -105,21 +118,9 @@ public class PurchaseOrderItem {
 	@Column(name = "D_ADDRESS",length=150)
 	private String dAddress;
 
-	
-
-
 	@Column(name = "TOTAL_VALUE",length=12)
 	private int totalValue;
 
-	@ManyToOne
-	@JoinColumn(name = "INDENT_NO") 
-	@JsonIgnore
-	private OpenIndent openIndent;
-	
-	@Column(name = "INDENT_DATE", length = 50)
-	private Date indentDate;
-
-	
 	@ManyToOne
 	@JoinColumn(name = "EMPLOYEE_CODE")
 	private Employee employee;
@@ -137,11 +138,6 @@ public class PurchaseOrderItem {
 	@Column(name = "VAT_CST_ST",length = 15)
 	private String vatCstSt;
 
-	
-
-
-	@Column(name = "RATE_EFFECTIVE_DATE")
-	private Date rateEffectiveDate;
 
 	@Column(name = "TDS", length = 10)
 	private int tds;
@@ -151,9 +147,6 @@ public class PurchaseOrderItem {
 
 	@Column(name = "SERVICE_CHARGE",length=12)
 	private int serviceCharge;
-
-	
-
 
 	@Column(name = "EXCISE_VALUE",length=12)
 	private int exciseValue;
@@ -168,9 +161,6 @@ public class PurchaseOrderItem {
 	@Column(name = "CESS_VALUE",length=12)
 	private int cessValue;
 
-	
-
-
 	@Column(name = "SRHRCESS_VALUE",length=12)
 	private int srhrcessValue;
 
@@ -182,9 +172,6 @@ public class PurchaseOrderItem {
 
 	@Column(name = "VAT_SUR_VALUE",length=15)
 	private int vatSurValue;
-
-	
-
 
 	@Column(name = "CST_VALUE",length = 15)
 	private int cstValue;
@@ -212,8 +199,6 @@ public class PurchaseOrderItem {
 	@Column(name = "EXCESS_QTY_PER",length = 15)
 	private int excessQtyPer;
 
-
-	
 	@Column(name = "EXP_DATE")
 	private Date expDate;
 	
@@ -222,8 +207,6 @@ public class PurchaseOrderItem {
 
 	@Column(name = "SHELF_LIFE",length = 10)
 	private int shelfLife;
-	
-	
 	
 	
 	@Column(name = "DISC_PER",length = 10)
@@ -244,11 +227,7 @@ public class PurchaseOrderItem {
 
 	@Column(name = "LAND_CHG_VALUE",length=15)
 	private int landChgValue;
-	
-	
-	
-	
-	
+
 	@Column(name = "CUST_DUTY", length = 10)
 	private int custDuty;
 
@@ -260,13 +239,7 @@ public class PurchaseOrderItem {
 
 	@Column(name = "SPL_DUTY_VALUE",length=15)
 	private int splDutyValue;
-	
-	
-	
-	
-	
-	
-	
+
 	@Column(name = "CASH_DIS", length = 10)
 	private int cashDis;
 
@@ -324,11 +297,11 @@ public class PurchaseOrderItem {
 		
 	}
 
-	public String getPurchaseOrderItem() {
+	public Long getPurchaseOrderItem() {
 		return purchaseOrderItem;
 	}
 
-	public void setPurchaseOrderItem(String purchaseOrderItem) {
+	public void setPurchaseOrderItem(Long purchaseOrderItem) {
 		this.purchaseOrderItem = purchaseOrderItem;
 	}
 
@@ -372,11 +345,11 @@ public class PurchaseOrderItem {
 		this.qtyOrder = qtyOrder;
 	}
 
-	public char getItemStatus() {
+	public String getItemStatus() {
 		return itemStatus;
 	}
 
-	public void setItemStatus(char itemStatus) {
+	public void setItemStatus(String itemStatus) {
 		this.itemStatus = itemStatus;
 	}
 

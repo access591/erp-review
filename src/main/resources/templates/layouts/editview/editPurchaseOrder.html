@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" onload="againstPurchaseThrough()">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -330,8 +330,11 @@
 																	</thead>
 
 																	<tbody>
-																		<tr id="addr0">
+																		<tr id="addr0"
+																			th:each="row, stat :${purchaseOrder.listPurchaseOrderItem}">
 
+																			<input type="hidden" th:field="*{listPurchaseOrderItem[__${stat.index}__].purchaseOrderItem}">
+																			
 																			<td><select id="supplierId"
 																					class="form-control form-control-sm select"
 																					title="type"
@@ -342,10 +345,15 @@
 
 																				</select></td>
 
-																			<td><select
+																			<td><input type="text"
+																					class="form-control form-control-sm"
+																					id="" title="indent number"
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].openIndent}">
+																			</td>
+																			<!--<td><select
 																					class="form-control indentContainer form-control-sm select"
 																					id="indentNumberPo"
-																					name="listPurchaseOrderItem[0].openIndent"
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].openIndent}"
 																					title="indent number"
 																					onchange='getIndentDetailPo()'
 																					required>
@@ -353,48 +361,54 @@
 																					</option>
 
 																				</select></td>
-
+-->
 																			<td><input type="text"
 																					class="form-control form-control-sm"
 																					id="indentDatePo"
 																					title="indent date"
-																					name="listPurchaseOrderItem[0].indentDate">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].indentDate}">
 																			</td>
 
 
-																			<td><select id="itemPo"
+																			<!--<td><select id="itemPo"
 																					class="form-control form-control-sm select itemContainerPo"
-																					required title="item"
-																					onchange="getItemDetailForPo()"
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].item}"
 																					name="listPurchaseOrderItem[0].item">
 																					<option value="">Select</option>
+																			</td>-->
+																			
+																			
+																			<td><input type="text"
+																					class="form-control form-control-sm"
+																					id="" title="item"
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].item}">
 																			</td>
 
 
 																			<td><input type="number"
 																					class="form-control form-control-sm"
 																					id="contactPerson" title="item rate"
-																					name="listPurchaseOrderItem[0].itemRate">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].itemRate}">
 																			</td>
 
 																			<td><input type="date"
 																					title="effective date"
 																					class="form-control form-control-sm"
 																					id="email"
-																					name="listPurchaseOrderItem[0].rateEffectiveDate">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].rateEffectiveDate}">
 																			</td>
 
 																			<td><input type="number"
 																					class="form-control form-control-sm"
 																					title="qty order"
-																					name="listPurchaseOrderItem[0].qtyOrder">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].qtyOrder}">
 																			</td>
 
 																			<td><input type="text"
 																					class="form-control form-control-sm"
 																					id="technicalQualification"
 																					title="status"
-																					name="listPurchaseOrderItem[0].itemStatus">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].itemStatus}">
 																			</td>
 																			<td><input type="text"
 																					class="form-control form-control-sm"
@@ -409,7 +423,7 @@
 																			<td><input type="text" title="remarks"
 																					class="form-control form-control-sm"
 																					id="email"
-																					name="listPurchaseOrderItem[0].itemRemarks">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].itemRemarks}">
 																			</td>
 
 																			<td><input type="text"
@@ -421,7 +435,7 @@
 																					class="form-control form-control-sm"
 																					id="technicalQualification"
 																					title="Tax detail"
-																					name="listPurchaseOrderItem[0].openIndent">
+																					th:field="*{listPurchaseOrderItem[__${stat.index}__].openIndent}">
 																			</td>
 
 
@@ -501,6 +515,12 @@
 
 			<script>
 
+				window.addEventListener("load", myInit, true); function myInit() {
+
+					againstPurchaseThrough();
+					quotationNumberInfo();
+
+				};
 				$(document).ready(function () {
 
 
@@ -544,6 +564,7 @@
 						//call api in case of purchase through is indent
 
 						indentDetailInCaseOfIndent();
+
 
 
 
