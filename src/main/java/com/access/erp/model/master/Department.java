@@ -28,6 +28,7 @@ public class Department {
 
 	public Department() {
 		super();
+		System.out.println("==========>  IN DEPARTMENT MASTER <==============");
 		
 	}
 

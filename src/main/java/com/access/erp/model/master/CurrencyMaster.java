@@ -19,6 +19,7 @@ public class CurrencyMaster {
 
 	public CurrencyMaster() {
 		super();
+		System.out.println("==========>  IN CURRENCY MASTER <==============");
 		
 	}
 

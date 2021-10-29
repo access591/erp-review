@@ -19,96 +19,138 @@
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
 			<div th:replace="fragments/sidebar :: sidebar">...</div>
-			<section class="content-wrapper">
-				<div class="row">
-					<!-- left column -->
-					<div class="col-md-12">
-						<div class="col-md-3">
-						</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Sub-Module Master
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
 
 
-						<div class="col-md-6" style="margin-top: 20px;">
+					<!-- Main content -->
+					<section class="content">
 
-							<div class="box box-primary">
-								<div class="box-header with-border">
-									<h3 class="box-title">Sub-Module Master</h3>
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+									<div class="col-md-2">
+									</div>
+
+
+									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div><!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/sub-module/}" th:object="${subModule}"
+												method="post">
+												<div class="box-body">
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Sub Module Code</label> <input
+															type="text" class="form-control" placeholder="store code"
+															th:field="*{subModuleCode}">
+													</div>
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">SubModule Name</label> <input
+															type="text" class="form-control" placeholder="location"
+															th:field="*{subModuleName}">
+													</div>
+
+
+
+
+													<div class="form-group col-md-12">
+														<label class="form-label">Select Module</label> <label
+															style="color: red">*</label> <select
+															title="Module Name" class="form-control"
+															th:field="*{moduleMaster}" required>
+															<option value="">Select</option>
+															<option th:each="module :  ${moduleList}"
+																th:text="${module.moduleName}"
+																th:value=" ${module.moduleCode}"></option>
+														</select>
+													</div>
+													
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Sequence Number</label> <input
+															type="text" class="form-control" placeholder="location"
+															th:field="*{seqNoSubModule}">
+													</div>
+
+
+
+
+													<div class="form-group" style="margin: 10px;">
+
+														<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio"
+																name="inlineRadioOptions" id="inlineRadio1" value="Y">
+															<label class="form-check-label"
+																for="inlineRadio1">Active</label>
+														</div>
+
+														<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio"
+																name="inlineRadioOptions" id="inlineRadio1" value="N">
+															<label class="form-check-label"
+																for="inlineRadio1">In-Active</label>
+														</div>
+
+													</div>
+
+												</div><!-- /.box-body -->
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+
+
+											</form>
+
+
+										</div><!-- /.box -->
+										<div style="width: parent; text-align-last: right; margin:8px">
+											<a th:href="@{/sub-module/list}">View All SubModule</a>
+										</div>
+									</div>
+
+
+									<div class="col-md-2">
+									</div>
 								</div>
-								<!-- form start -->
-								<form role="form" th:action="@{/sub-module/}" th:object="${subModule}" method="post">
-									<div class="box-body">
 
-										<div class="form-group col-md-12">
-											<label for="inputEmail4">Sub Module Code</label> <input type="email"
-												class="form-control" placeholder="sub module code"
-												th:field="*{subModuleCode}">
-										</div>
-
-										<div class="form-group col-md-12">
-											<label for="inputPassword4">Sub Module Name</label> <input type="text"
-												class="form-control" placeholder="sub module name"
-												th:field="*{subModuleName}">
-										</div>
-
-
-
-										<div class="form-group col-lg-12">
-											<label class="form-label">Module Name</label> <label
-												style="color: red">*</label> <select
-												class="form-control form-control-sm" title="Module Name"
-												th:field="*{moduleMaster}" required>
-												<option value="">Select Module</option>
-												<option th:each="module :  ${moduleList}" th:text="${module.moduleName}"
-													th:value=" ${module.moduleCode}"></option>
-											</select>
-										</div>
-
-										<div class="form-group col-md-12">
-											<label for="inputPassword4">Sequence Number</label> <input type="password"
-												class="form-control" placeholder="sequence number"
-												th:field="*{seqNoSubModule}">
-										</div>
-
-
-										<div class="form-group" style="margin: 10px;">
-
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="inlineRadioOptions"
-													id="inlineRadio1" value="Y"> <label class="form-check-label"
-													for="inlineRadio1" th:field="*{acitveSubModule}">Active</label>
-											</div>
-
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="inlineRadioOptions"
-													id="inlineRadio1" value="N"> <label class="form-check-label"
-													for="inlineRadio1" th:field="*{acitveSubModule}">In-Active</label>
-											</div>
-
-										</div>
-									</div>
-
-									<div class="box-footer">
-										<input type="submit" value="Submit" class="btn btn-primary" />
-										<input type="reset" value="Reset" class="btn btn-danger" />
-									</div>
-									<a th:href="@{/sub-module/list}">view sub-module list</a>
-
-								</form>
 							</div>
+
 						</div>
-
-
-						<div class="col-md-3">
-						</div>
-					</div>
-
-				</div>
-			</section>
+					</section>
+				</section>
+			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
 			<!--   <section class="content">
         
         </section>-->
-		<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>

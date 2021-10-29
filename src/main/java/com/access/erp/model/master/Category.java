@@ -45,6 +45,7 @@ public class Category {
 
 	public Category() {
 		super();
+		System.out.println("==========>  IN CATEGORY MASTER <==============");
 		
 	}
 
