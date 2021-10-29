@@ -61,13 +61,13 @@
 											</div><!-- /.box-header -->
 											<!-- form start -->
 											<form role="form" th:action="@{/userrights/}" method="POST"
-												th:object="${userRole}">
+												th:object="${userRights}">
 
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">User Name</label> <select
-															class="form-control" id="" title="User Name" required>
+															class="form-control" id="" title="User Name" th:field="*{myUser.userCode}" required>
 															<option value="">Select User</option>
 															<option th:each="user :  ${listMyUser}"
 																th:text="${user.userName}" th:value=" ${user.userCode}">
@@ -78,30 +78,39 @@
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Module</label> <select
-															class="form-control" id="" title="User Name" required>
-															<option value="">Select User</option>
+															class="form-control" id="" title="User Name" th:field="*{module}" required>
+															<option value="">Select Module</option>
 															<option th:each="module :  ${listModule}"
-																th:text="${module.moduleName}" th:value=" ${module.moduleCode}">
+																th:text="${module.moduleName}"
+																th:value=" ${module.moduleCode}">
 															</option>
 														</select>
 													</div>
 
 													<div class="form-group col-md-6">
 														<label class="form-label">Sub-Module</label> <label
-															style="color: red">*</label> <select class="form-control"
-															id="" title="type" required>
-															<option value="">Select</option>
-															<option value="t-1">type-1</option>
-															<option value="t-2">type-2</option>
+															style="color: red">*</label>
+														<select class="form-control" id="" title="User Name" th:field="*{subModule}" required>
+															<option value="">Select Module</option>
+															<option th:each="subModule :  ${listSubModule}"
+																th:text="${subModule.subModuleName}"
+																th:value=" ${subModule.subModuleCode}">
+															</option>
 														</select>
 													</div>
 
 
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">Program</label> <input type="text"
-															class="form-control" placeholder="description">
+														<label class="form-label">Program</label> <label
+															style="color: red">*</label>
+														<select class="form-control" id="" title="User Name" th:field="*{prgCode}" required>
+															<option value="">Select</option>
+															<option th:each="program :  ${listProgram}"
+																th:text="${program.programName}"
+																th:value=" ${program.programCode}">
+															</option>
+														</select>
 													</div>
-
 
 
 

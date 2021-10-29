@@ -343,6 +343,8 @@ public class Company {
 
 	public Company() {
 		super();
+		
+		System.out.println("==========>  IN COMPANY MASTER <==============");
 
 	}
 

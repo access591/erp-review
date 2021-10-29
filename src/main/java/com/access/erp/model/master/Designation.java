@@ -42,6 +42,12 @@ public class Designation {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "designation",cascade = CascadeType.ALL)
 	List<Employee> employees;
 
+	
+	public Designation() {
+		super();
+		System.out.println("==========>  IN DESIGNATION MASTER <==============");
+	}
+
 	public String getDesigCode() {
 		return desigCode;
 	}

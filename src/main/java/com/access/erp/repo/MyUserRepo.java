@@ -8,4 +8,5 @@ import com.access.erp.model.master.MyUser;
 @Repository
 public interface MyUserRepo extends JpaRepository<MyUser,String >{
 
+	public MyUser findByUserCode(String userCode);
 }

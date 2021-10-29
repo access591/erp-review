@@ -54,6 +54,7 @@ public class City {
 
 	public City() {
 		super();
+		System.out.println("==========>  IN CITY MASTER <==============");
 		
 	}
 
