@@ -15,8 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name="MY_USER")
+@Component
 public class MyUser {
 
 	@Id
@@ -34,7 +37,7 @@ public class MyUser {
 	@JoinColumn(name="EMP_CODE")
 	private Employee employee;
 	
-	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<UserRole> listUserRole = new ArrayList<>();
 	
 	/*
