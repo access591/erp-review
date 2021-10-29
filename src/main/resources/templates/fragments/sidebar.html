@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar" th:fragment="sidebar">
@@ -35,7 +36,13 @@
 						class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li><a th:href="@{/companydetail/}"><i class="fa fa-circle-o"></i> Company</a></li>
+				
+				
+					<li th:if="${#request.isUserInRole('COMPANY')}"><a th:href="@{/companydetail/}"><i class="fa fa-circle-o"></i> Company</a></li>
+					
+				
+				
+				
 					<li><a th:href="@{/financialyear/}"><i class="fa fa-circle-o"></i>Financial year</a></li>
 					<li><a th:href="@{/financialactiveyear/}"><i class="fa fa-circle-o"></i> Active Financial Year</a>
 					</li>
