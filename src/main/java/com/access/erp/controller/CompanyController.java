@@ -1,5 +1,6 @@
 package com.access.erp.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +32,9 @@ public class CompanyController {
 	
 	
 	@GetMapping("/")
-	public String companyDetail(Model model) {
+	public String companyDetail(Model model,Principal principal) {
 		
+		System.out.println("principal : " + principal.getName());
 		model.addAttribute("company", new Company());
 		
 		List<State> listState = stateService.getAllState();

@@ -28,6 +28,7 @@ public class IndexController {
 		model.addAttribute("myCaptcha", myCaptcha);
 		
 		
+		
 		return "layouts/login";
 	}
 
