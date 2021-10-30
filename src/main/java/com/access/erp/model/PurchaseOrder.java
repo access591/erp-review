@@ -256,7 +256,7 @@ public class PurchaseOrder {
 	
 
 	@Column(name = "APPROVAL_STATUS", length = 10)
-	private String approvalStatus;
+	private String approvalStatus ="P";
 
 	@Column(name = "REMARK", length = 1000)
 	private String remark;

@@ -1,5 +1,6 @@
 package com.access.erp.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,28 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 	@Override
 	public void deletePurchaseOrder(String poCode) {
 		purchaseOrderRepo.deleteById(poCode);
+		
+	}
+
+	@Override
+	public void purchaseOrderApproval(String poNumber, String approvalStatus) {
+		
+		PurchaseOrder purchaseOrder = editPurchaseOrder(poNumber).get();
+		
+		if(approvalStatus.equals("Y")) {
+			System.out.println("approval status is : Y");
+			purchaseOrder.setApprovalDate(new Date());
+		}
+		else if(approvalStatus.equals("N")) {
+			System.out.println("approval status is : N");
+			purchaseOrder.setCancelDate(new Date());
+		}
+	
+		
+		purchaseOrder.setApprovalStatus(approvalStatus);
+		
+		
+		addPurchaseOrder(purchaseOrder); 
 		
 	}
 

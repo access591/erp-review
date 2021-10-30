@@ -41,5 +41,7 @@ public class IndexController {
 		myCaptcha.setRealCaptcha(CaptchaUtil.encodeCaptcha(captcha));
 
 	}
+	
+	
 
 }
