@@ -39,7 +39,7 @@ public class OpenIndentController {
 		List<Item> itemList = itemService.getAllItem();
 		model.addAttribute("itemList", itemList);
 		
-		return "layouts/Master/openindent";
+		return "layouts/Master/openIndent"; //layouts/Master/openindent
 	}
 
 	@PostMapping("/")
@@ -59,7 +59,7 @@ public class OpenIndentController {
 		if (openIndentList != null) {
 			model.addAttribute("openIndentList", openIndentList);
 		}
-		return "layouts/listview/listofopenIndent";
+		return "layouts/listview/listofOpenIndent";
 	}
 
 	@GetMapping("/edit/{id}")

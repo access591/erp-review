@@ -23,13 +23,6 @@ public class CustomUserDetailService implements UserDetailsService{
 		
 		MyUser user = userRepo.findByUserCode(username);
 		
-		
-		
-		System.out.println("user name is "+ user.getUserCode());
-		System.out.println("user code is "+ user.getUserName());
-		System.out.println("user password is "+ user.getUserPassword());
-		
-		
 		if(user == null) {
 			System.out.println("user is not found");
 			throw new UsernameNotFoundException("No User is available in this User Code ");

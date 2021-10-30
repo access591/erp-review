@@ -11,5 +11,7 @@ public interface PurchaseOrderService {
 	public List<PurchaseOrder> getAllPurchaseOrder();
 	public Optional<PurchaseOrder> editPurchaseOrder(String poCode);
 	public void deletePurchaseOrder(String poCode);
+	
+	public void purchaseOrderApproval(String poNumber, String approvalStatus);
 
 }
