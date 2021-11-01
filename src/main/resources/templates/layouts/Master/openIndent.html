@@ -192,7 +192,7 @@
 												<h5>Indent Item Detail</h5>
 												<div class="box-body">
 													<input id="_cr" name="_cr" type="hidden" value="1">
-													<div class="table-responsive">
+													<div class="table-responsive" id="example">
 														<table id="example" aria-describedby="example"
 															class="table table-striped display">
 															<thead>
@@ -390,6 +390,18 @@
 			<!--   <section class="content">
         
         </section>-->
+
+			<script>
+
+				var idIndex = 0;
+				$(document).ready(function () {
+					console.log("open indent detail is ready!");
+					var i = 1;
+					
+				});
+				
+				
+			</script>
 
 			<script>
 				let txt = $("#editDistName option:selected").text();
