@@ -185,11 +185,21 @@ public class RfQuotationController {
 	@ResponseBody
 	@GetMapping("/indentinfo")
 	public List<OpenIndent> indentInfo( Model model) {
-		
-		
+	
 		
 		List<OpenIndent> listOpenIndent = openIndentRepo.findAll();		
 		return listOpenIndent;
+		
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/supplierlist")
+	public List<SupplierMaster> supplierList( Model model) {
+		
+		List<SupplierMaster> listSupplier = supplierRepo.findAll();	
+		System.out.println("list of supplier size is : " + listSupplier.size());
+		return listSupplier;
 		
 		
 	}

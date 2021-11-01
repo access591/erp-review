@@ -43,28 +43,7 @@ function indentGetEmployee() {
 
 
 
-function supplierInfo() {
 
-	var supplierId = document.getElementById("supplierId").value;
-	console.log("supplier id is : " + supplierId)
-
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/supplierdetail/" + supplierId,
-
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			$("#supplierAdd").val(data.supplierAdd)
-			$("#supplierCity").val(data.supplierCity)
-			$("#supplierState").val(data.supplierState)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
 
 
 //*********************************************end request for quotation***************************

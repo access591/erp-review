@@ -291,7 +291,7 @@
 																<tbody>
 																	<tr id="spr0">
 
-																		<td><select id="supplierId"
+																		<td><select id="supplierId0"
 																				class="form-control form-control-sm select"
 																				required title="supplier code"
 																				onchange="supplierInfo()"
@@ -308,20 +308,20 @@
 
 																		<td><input type="text"
 																				class="form-control form-control-sm"
-																				id="supplierAdd"
+																				id="supplierAdd0"
 																				title="supplier address"
 																				name="listRFQuotationSupply[0].suppAdd">
 																		</td>
 
 																		<td><input type="text"
 																				class="form-control form-control-sm"
-																				id="supplierCity" title="supplier city"
+																				id="supplierCity0" title="supplier city"
 																				name="listRFQuotationSupply[0].suppCity">
 																		</td>
 
 																		<td><input type="text"
 																				class="form-control form-control-sm"
-																				id="supplierState"
+																				id="supplierState0"
 																				title="supplier State"
 																				name="listRFQuotationSupply[0].suppState">
 																		</td>
@@ -464,16 +464,16 @@
 					$('#add_row_sup').click(function () {
 						idIndex2++;
 						$('#spr' + j).html(
-							"<td><select id='supplierId' class='form-control form-control-sm select' required "+
+							"<td><select id='supplierId"+idIndex2+"' class='form-control form-control-sm select supplierContainer"+idIndex2+"' required "+
 							+"title='supplier code' onchange='supplierInfo()'name='listRFQuotationSupply[0].suppCode'><option value=''>"+
 							"Select</option><optionth:each='supplier :  ${listSupplier}'th:text='${supplier.supplierName}'th:value='${supplier.supplierId}'></option></select></td>"
 							
 							
-							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom' name='listRFQuotationSupply[0].suppAdd'> </td>"
+							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierAdd"+idIndex2+"' name='listRFQuotationSupply[0].suppAdd'> </td>"
 							
-							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom' name='listRFQuotationSupply[0].suppCity'> </td>"
-							+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotationSupply[0].suppState'></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].contactPerson'required title=''></td>"
+							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierCity"+idIndex2+"' name='listRFQuotationSupply[0].suppCity'> </td>"
+							+ "<td><input type='text' title='city' class='form-control form-control-sm'id='supplierState"+idIndex2+"' name='listRFQuotationSupply[0].suppState'></td>"
+							+ "<td><input type='text'class='form-control form-control-sm' name='listRFQuotationSupply[0].contactPerson'required title=''></td>"
 							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].email'required title=''></td>"
 							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].phoneNumber'required title=''></td>"
 							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].fax'required title=''></td>"
@@ -483,6 +483,8 @@
 							'<tr id="spr'
 							+ (j + 1)
 							+ '"></tr>');
+							
+							listOfSupplierInfo()
 
 						j++;
 
@@ -602,6 +604,63 @@ function getItemDetail() {
 }
 
 
+
+function supplierInfo() {
+
+	
+	var supplierId = document.getElementById("supplierId"+idIndex2).value;
+	console.log("supplier id is : " + supplierId)
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/supplierdetail/" + supplierId,
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			$("#supplierAdd"+idIndex2).val(data.supplierAdd)
+			$("#supplierCity"+idIndex2).val(data.supplierCity)
+			$("#supplierState"+idIndex2).val(data.supplierState)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}
+
+
+
+// dynamic drop down for supplier list
+
+function listOfSupplierInfo(){
+
+	console.log("list of supplier info ");
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/supplierlist/",
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			console.log(" json data :" + JSON.stringify(data))
+
+			var options = '<option value=""><strong>Select</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.supplierId)
+				options += '<option value="' + value.supplierId + '">' + value.supplierName + '</option>';
+
+			});
+
+			$('.supplierContainer'+idIndex2).html(options);
+			
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+	
+}
 
 			</script>
 			<!--   <section class="content">
