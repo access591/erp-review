@@ -162,8 +162,8 @@
 
 																		<td><select
 																				class="select form-control form-control-sm"
-																				id="indentNumber" title="Location"
-																				required onchange="getIndentList0()"
+																				id="indentNumber0" title="Location"
+																				required onchange="getIndentList()"
 																				name="listRFQuotation[0].openIndent">
 																				<option value=" ">Select Indent Number
 																				</option>
@@ -179,7 +179,7 @@
 																				style="font-size: 0.95rem"
 																				title="indent date"
 																				class="form-control form-control-sm"
-																				id="indentDate"
+																				id="indentDate0"
 																				name="listRFQuotation[0].indentDate"
 																				required>
 																		</td>
@@ -187,9 +187,9 @@
 
 
 																		<td><select
-																				class="form-control form-control-sm select itemContainer"
+																				class="form-control form-control-sm select itemContainer0"
 																				onchange="getItemDetail()"
-																				title="Location" id="item"
+																				title="Location" id="item0"
 																				name="listRFQuotation[0].item" required>
 																				<option value=" ">Select Item Name
 																				</option>
@@ -198,7 +198,7 @@
 
 																		<td><input type="text" title="uom"
 																				class="form-control form-control-sm"
-																				id="uom" name="listRFQuotation[0].uom">
+																				id="uom0" name="listRFQuotation[0].uom">
 																		</td>
 
 																		<td><input type="text" title="city"
@@ -408,18 +408,22 @@
 					console.log("ready!");
 
 					var i = 1;
+					console.log("id Index value after adding ")
 
 					$('#add_row_in').click(function () {
+						console.log("click method")
+						
 						idIndex1++;
+						console.log("id index value id " + idIndex1)
 						$('#inr' + i).html(
 							"<td><select class='select form-control form-control-sm indentContainer"+idIndex1+"' id='indentNumber"+idIndex1+"' title='Location'" +
 							"required onchange='getIndentList()' name='listRFQuotation[" + idIndex1 + "].openIndent'><option value=''>Select" +
 							" Indent Number" +
 							"</select></td>"
 
-							+ "<td><input type='date' style='font-size: 0.95rem'title='indent date' class='form-control form-control-sm' id='indentDate' name='listRFQuotation[" + idIndex1 + "].indentDate' required></td>"
-							+ "<td><select class='form-control form-control-sm select itemContainer' onchange='getItemDetail()'  title='Location' id='item' name='listRFQuotation[" + idIndex1 + "].item' required><option value=''>Select Item Name</option></select></td>"
-							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom' name='listRFQuotation[" + idIndex1 + "].uom'> </td>"
+							+ "<td><input type='date' style='font-size: 0.95rem'title='indent date' class='form-control form-control-sm' id='indentDate"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].indentDate' required></td>"
+							+ "<td><select class='form-control form-control-sm select itemContainer"+idIndex1+"' onchange='getItemDetail()'  title='Location' id='item"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].item' required><option value=''>Select Item Name</option></select></td>"
+							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].uom'> </td>"
 							+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotation[" + idIndex1 + "].city'></td>"
 							+ "<td><input type='date'style='font-size: 0.95rem'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].rfqDate'required></td>"
 							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].itemSpec'required title=''></td>"
@@ -503,9 +507,8 @@
 
 function indentInfoForRfq(){
 	
-	console.log("indent info for rfq "+idIndex1)
-	//var indentNumber = document.getElementById("indentNumber"+idIndex1).value;
-	console.log("indent id is : " + indentNumber)
+	console.log("indent info for rfq ")
+	
 
 	$.ajax({
 		type: "GET",
@@ -535,6 +538,67 @@ function indentInfoForRfq(){
 	});
 
 	
+}
+
+
+
+
+function getIndentList() {
+
+	console.log("get Item function calling");
+	var indentNumber = document.getElementById("indentNumber"+idIndex1).value;
+	console.log("emp code : " + indentNumber);
+
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/itemdetail/" + indentNumber,
+
+		success: function(data) {
+			//$("#resultarea").text(data);
+			console.log("response data : " + $(this.data).addClass('show'));
+
+
+			$("#indentDate"+idIndex1).val(data.indentDate);
+
+			var options = '<option value=""><strong>Select Item</strong></option>';
+			$(data.listItem).each(function(index, value) {
+
+				console.log("item info : " + value.description)
+				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
+
+			});
+
+			$('.itemContainer'+idIndex1).html(options);
+			// $("#departmentcode").val(data.department.deptCode)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+}
+
+
+
+function getItemDetail() {
+
+	var item = document.getElementById("item"+idIndex1).value;
+	console.log("item number is " + item)
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/itemdetail1/" + item,
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			$("#uom"+idIndex1).val(data.uom.uomCode)
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function() {
+			console.log("Error");
+		}
+	});
 }
 
 

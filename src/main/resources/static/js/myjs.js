@@ -38,61 +38,9 @@ function indentGetEmployee() {
 
 //*********************************************RequestForQuotation***************************
 
-var idIndex = 0;
-function getIndentList() {
-
-	console.log("get Item function calling");
-	var indentNumber = document.getElementById("indentNumber").value;
-	console.log("emp code : " + indentNumber);
 
 
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/itemdetail/" + indentNumber,
 
-		success: function(data) {
-			//$("#resultarea").text(data);
-			console.log("response data : " + $(this.data).addClass('show'));
-
-
-			$("#indentDate").val(data.indentDate);
-
-			var options = '<option value=""><strong>Select Item</strong></option>';
-			$(data.listItem).each(function(index, value) {
-
-				console.log("item info : " + value.description)
-				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
-
-			});
-
-			$('.itemContainer').html(options);
-			// $("#departmentcode").val(data.department.deptCode)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
-
-function getItemDetail() {
-
-	var item = document.getElementById("item").value;
-
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/itemdetail1/" + item,
-
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			$("#uom").val(data.uom.uomCode)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-}
 
 
 function supplierInfo() {
