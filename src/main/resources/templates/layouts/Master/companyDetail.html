@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </head>
 
@@ -567,7 +568,17 @@
 													<div class="box">
 														<h5>Insurance Details</h5>
 
-														<table class="table table-sm">
+
+														<div class="col-sm-12" style="text-align:right">
+
+															<a id="add_row_ins" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_ins' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+
+														<table class="table table-sm" id="example">
 															<thead>
 																<tr>
 																	<th scope="col">Company Code</th>
@@ -582,7 +593,7 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
+																<tr id="addr0">
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" class="form-control"
@@ -631,94 +642,8 @@
 																		</fieldset>
 																	</td>
 																</tr>
-																<tr>
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																</tr>
-																<tr>
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																</tr>
+
+																<tr id="addr1"></tr>
 
 															</tbody>
 														</table>
@@ -733,6 +658,16 @@
 
 													<div class="box">
 														<h5>Site Offices</h5>
+
+
+														<div class="col-sm-12" style="text-align:right">
+
+															<a id="add_row" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
 
 														<table class="table table-sm">
 															<thead>
@@ -892,6 +827,52 @@
 	</div>
 
 	<div th:replace="fragments/footer :: footer">...</div>
+
+
+	<script>
+
+		var idIndex = 0;
+		$(document).ready(function () {
+			console.log("document is ready!");
+			var i = 1;
+
+			$('#add_row_ins').click(function () {
+
+				idIndex++;
+				$('#addr' + i).html(
+					"<th scope='row'><fieldset><input type='text' class='form-control' placeholder='' readonly></fieldset></th>"
+					+ "<td><fieldset><input type='text' class='form-control' placeholder='' readonly></fieldset></td>"
+					+ "<td><fieldset><input type='text' class='form-control'placeholder=''name=''insuranceDetail[" + idIndex + "].custCode'"
+					+ "></fieldset>        </td>"
+					+ "<td><fieldset><input type='date' class='form-control' placeholder=''"
+					+ "name='insuranceDetail[" + idIndex + "].renewalDate'></fieldset>      </td>"
+					+ "<td><fieldset><input type='text' class='form-control' placeholder='' "
+					+ "name='insuranceDetail[" + idIndex + "].version'></fieldset>     </td>"
+					+ "<td><fieldset><input type='text' class='form-control' placeholder='' name='insuranceDetail[" + idIndex + "].desc1'"
+					+ "></fieldset></td>"
+					+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].desc2'></fieldset></td>"
+
+				);
+
+				$('#example').append(
+					'<tr id="addr'
+					+ (i + 1)
+					+ '"></tr>');
+
+				i++;
+			});
+
+			$("#delete_row_ins").click(function () {
+				if (i > 1) {
+					$("#addr" + (i - 1)).html('');
+					$('#_cr').val(i - 1);
+					i--;
+					idIndex--;
+				}
+			});
+		});
+	</script>
+
 	<!--   <section class="content">
         
         </section>-->
