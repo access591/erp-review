@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
 	<style>
 		.form-control-sm {
 			height: 30px;
@@ -190,171 +193,178 @@
 
 											<div class="box">
 												<h5>Indent Item Detail</h5>
-												<div class="box-body">
-													<input id="_cr" name="_cr" type="hidden" value="1">
-													<div class="table-responsive" id="example">
-														<table id="example" aria-describedby="example"
-															class="table table-striped display">
-															<thead>
-																<tr>
 
-																	<th scope="col" class="text-center">Item Code</th>
-																	<th scope="col" class="text-center">Item Description
-																	</th>
-																	<th scope="col" class="text-center">Qty.(In Stock)
-																	</th>
-																	<th scope="col" class="text-center">Qty to be
-																		Procured</th>
-																	<th scope="col" class="text-center">Pipeline indent
-																		Qty</th>
-																	<th scope="col" class="text-center">Indented Qty
-																	</th>
-																	<th scope="col" class="text-center">Approved
-																		Indented Qty</th>
-																	<th scope="col" class="text-center">Status</th>
-																	<th scope="col" class="text-center">Currency Code
-																	</th>
-																	<th scope="col" class="text-center">Conversion Value
-																	</th>
-																	<th scope="col" class="text-center">Item Rate</th>
-																	<th scope="col" class="text-center">Units</th>
-																	<th scope="col" class="text-center">Total value</th>
-																	<th scope="col" class="text-center">Total Value(INR)
-																	</th>
+												<div class="col-sm-12" style="text-align:right">
 
-																	<th scope="col" class="text-center">Requisition Date
-																	</th>
-																	<th scope="col" class="text-center">Status</th>
-
-																	<th scope="col" class="text-center">Indent Purpose
-																	</th>
-																</tr>
-															</thead>
-
-															<tbody>
-																<tr id="addr0">
-
-																	<td>
-																		<select
-																			class="select form-control form-control-sm"
-																			id="departmentDropdown" title="item Name"
-																			name="opeIndentDetail[0].indItemCode"
-																			required>
-																			<option value="">Select Item </option>
-																			<option th:each="item :  ${itemList}"
-																				th:text="${item.description}"
-																				th:value=" ${item.itemCode}">
-																			</option>
-																		</select>
-																	</td>
-																	<td><input type="text" id="indItemCode0" title=""
-																			class="form-control form-control-sm"
-																			required></td>
-																	<!-- item description -->
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="salaryFrom" title="Salary">
-																	</td>
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="qtyInStock0" title="" required
-																			name="opeIndentDetail[0].qtyInStock"></td>
-
-
-
-
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="qtyProcured0" title=""
-																			name="opeIndentDetail[0].qtyProcured"></td>
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="qtyProcured0" title="" required
-																			name="opeIndentDetail[0].pipelineQty"></td>
-
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="indQty0" min="18" title="Age from"
-																			required name="opeIndentDetail[0].indQty">
-																	</td>
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="ageTo" required
-																			name="opeIndentDetail[0].approvedQty"></td>
-
-																	<!-- gor status -->
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="accademicQualificatio" required
-																			title="Accademic qualification"></td>
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="expMaxMonth" required
-																			title="max experience"
-																			name="opeIndentDetail[0].currencyCode"></td>
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="expMaxMonth" required
-																			title="max experience"
-																			name="opeIndentDetail[0].conversionvalue">
-																	</td>
-
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="technicalQualification" required
-																			title="Technical Qualification"
-																			name="opeIndentDetail[0].itemRate"></td>
-
-																	<!--unit  -->
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="salaryTo" required></td>
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="salaryTo" required
-																			name="opeIndentDetail[0].totalValue"></td>
-
-																	<!-- total value (INR)  -->
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="salaryTo" required></td>
-
-
-
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="purStatusItemWise" required
-																			title="minimum experience"
-																			name="opeIndentDetail[0].purStatusItemWise">
-																	</td>
-
-
-																	<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="indPurpose0" required
-																			name="opeIndentDetail[0].indPurpose"></td>
-
-
-																</tr>
-																<tr id='addr1' />
-
-															</tbody>
-
-
-														</table>
-													</div>
-													<input type="hidden" id="hidden_field" th:value="${length}" />
+													<a id="add_row" class="fa fa-plus" aria-hidden="true"
+														style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+													<a id='delete_row' class="fa fa-trash"
+														style="font-size: 24px; color: #399490fc"
+														aria-hidden="true"></a>
 												</div>
+
+
+
+												<div class="table-responsive">
+													<table id="example" aria-describedby="example1">
+
+														<thead>
+															<tr>
+
+																<th scope="col" class="text-center">Item Code</th>
+																<th scope="col" class="text-center">Item Description
+																</th>
+																<th scope="col" class="text-center">Qty.(In Stock)
+																</th>
+																<th scope="col" class="text-center">Qty to be
+																	Procured</th>
+																<th scope="col" class="text-center">Pipeline indent
+																	Qty</th>
+																<th scope="col" class="text-center">Indented Qty
+																</th>
+																<th scope="col" class="text-center">Approved
+																	Indented Qty</th>
+																<th scope="col" class="text-center">Status</th>
+																<th scope="col" class="text-center">Currency Code
+																</th>
+																<th scope="col" class="text-center">Conversion Value
+																</th>
+																<th scope="col" class="text-center">Item Rate</th>
+																<th scope="col" class="text-center">Units</th>
+																<th scope="col" class="text-center">Total value</th>
+																<th scope="col" class="text-center">Total Value(INR)
+																</th>
+
+																<th scope="col" class="text-center">Requisition Date
+																</th>
+																<th scope="col" class="text-center">Status</th>
+
+																<th scope="col" class="text-center">Indent Purpose
+																</th>
+															</tr>
+														</thead>
+
+														<tbody>
+															<tr id="addr0">
+
+																<td>
+																	<select class="select form-control form-control-sm"
+																		id="departmentDropdown" title="item Name"
+																		name="opeIndentDetail[0].indItemCode" required>
+																		<option value="">Select Item </option>
+																		<option th:each="item :  ${itemList}"
+																			th:text="${item.description}"
+																			th:value=" ${item.itemCode}">
+																		</option>
+																	</select>
+																</td>
+																<td><input type="text" id="indItemCode0" title=""
+																		class="form-control form-control-sm" required>
+																</td>
+																<!-- item description -->
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="salaryFrom" title="Salary">
+																</td>
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="qtyInStock0" title="" required
+																		name="opeIndentDetail[0].qtyInStock"></td>
+
+
+
+
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="qtyProcured0" title=""
+																		name="opeIndentDetail[0].qtyProcured"></td>
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="qtyProcured0" title="" required
+																		name="opeIndentDetail[0].pipelineQty"></td>
+
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="indQty0" min="18" title="Age from" required
+																		name="opeIndentDetail[0].indQty">
+																</td>
+
+																<td><input type="text"
+																		class="form-control form-control-sm" id="ageTo"
+																		required name="opeIndentDetail[0].approvedQty">
+																</td>
+
+																<!-- gor status -->
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="accademicQualificatio" required
+																		title="Accademic qualification"></td>
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="expMaxMonth" required title="max experience"
+																		name="opeIndentDetail[0].currencyCode"></td>
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="expMaxMonth" required title="max experience"
+																		name="opeIndentDetail[0].conversionvalue">
+																</td>
+
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="technicalQualification" required
+																		title="Technical Qualification"
+																		name="opeIndentDetail[0].itemRate"></td>
+
+																<!--unit  -->
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="salaryTo" required></td>
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="salaryTo" required
+																		name="opeIndentDetail[0].totalValue"></td>
+
+																<!-- total value (INR)  -->
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="salaryTo" required></td>
+
+
+
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="purStatusItemWise" required
+																		title="minimum experience"
+																		name="opeIndentDetail[0].purStatusItemWise">
+																</td>
+
+
+																<td><input type="text"
+																		class="form-control form-control-sm"
+																		id="indPurpose0" required
+																		name="opeIndentDetail[0].indPurpose"></td>
+
+
+															</tr>
+															<tr id='addr1' />
+
+														</tbody>
+
+
+													</table>
+												</div>
+
+												<input type="hidden" id="hidden_field" th:value="${length}" />
+
 
 											</div>
 
@@ -397,16 +407,59 @@
 				$(document).ready(function () {
 					console.log("open indent detail is ready!");
 					var i = 1;
-					
+
+					$('#add_row').click(function () {
+						idIndex++;
+
+						$('#addr' + i).html(
+
+							"<td><select class='select form-control form-control-sm' id='departmentDropdown' title='item Name'name='opeIndentDetail[" + idIndex + "].indItemCode'required><option value=''>Select Item </option><option th:each='item :  ${itemList}'th:text='${item.description}'th:value='${item.itemCode}'></option></select></td>"
+							+ "<td><input type='text' id='indItemCode0' title=''class='form-control form-control-sm'required></td>"
+							+ "<td><input type='text' class='form-control form-control-sm'id='salaryFrom' title='Salary'></td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock0' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock'></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'id='qtyProcured0' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured'></td>"
+							+ "<td><input type='text'class='form-control form-control-sm' id='qtyProcured0' title='' requiredname='opeIndentDetail[" + idIndex + "].pipelineQty'></td>"
+
+							+ "<td><input type='text'class='form-control form-control-sm'id='indQty0' min='18' title='Age from'required name='opeIndentDetail[" + idIndex + "].indQty'>"
+							+ "<td><input type='text' class='form-control form-control-sm'id=''ageTo' requiredname='opeIndentDetail[" + idIndex + "].approvedQty'></td>"
+							+ "<td><input type='text'class='form-control form-control-sm' id='accademicQualificatio' required title='Accademic qualification'></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'id='expMaxMonth' requiredtitle='max experience'name='opeIndentDetail[" + idIndex + "].currencyCode'></td>"
+							+ "<td><input type='text' class='form-control form-control-sm'id='expMaxMonth' required title='max experience' name='opeIndentDetail[" + idIndex + "].conversionvalue'> </td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='technicalQualification' required title='Technical Qualification' name='opeIndentDetail[" + idIndex + "].itemRate'></td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' required></td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' requiredname='opeIndentDetail[" + idIndex + "].totalValue'></td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' required></td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='purStatusItemWise' required title='minimum experience' name='opeIndentDetail[" + idIndex + "].purStatusItemWise'> </td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' required name='opeIndentDetail[" + idIndex + "].indPurpose'></td>"
+						);
+
+						$('#example').append(
+							'<tr id="addr'
+							+ (i + 1)
+							+ '"></tr>');
+
+						i++;
+					});
+
+					$("#delete_row").click(function () {
+						if (i > 1) {
+							$("#addr" + (i - 1)).html('');
+
+							i--;
+							idIndex--;
+						}
+					});
+
 				});
-				
-				
+
+
 			</script>
 
 			<script>
-				let txt = $("#editDistName option:selected").text();
-				$("#employeename").val(data.empName);
+				//let txt = $("#editDistName option:selected").text();
+				//$("#employeename").val(data.empName);
 			</script>
+
 			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>

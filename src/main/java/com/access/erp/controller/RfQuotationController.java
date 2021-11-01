@@ -180,4 +180,17 @@ public class RfQuotationController {
 		
 		
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("/indentinfo")
+	public List<OpenIndent> indentInfo( Model model) {
+		
+		
+		
+		List<OpenIndent> listOpenIndent = openIndentRepo.findAll();		
+		return listOpenIndent;
+		
+		
+	}
 }
