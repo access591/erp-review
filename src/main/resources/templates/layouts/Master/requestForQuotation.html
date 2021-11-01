@@ -14,6 +14,9 @@
 	<script type="text/javascript" th:src="@{/JS/myjs.js}"></script>
 
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
 	<style>
 		.form-control-sm {
 			height: 30px;
@@ -107,10 +110,29 @@
 
 
 												<div class="box">
+
+													<h5>Indent Detail</h5>
+
 													<div class="box-body">
+
+
 														<input id="_cr" name="_cr" type="hidden" value="1">
+
+
+
 														<div class="table-responsive">
-															<table id="example" aria-describedby="example"
+
+															<div class="col-sm-12" style="text-align:right">
+
+																<a id="add_row_in" class="fa fa-plus" aria-hidden="true"
+																	style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+																<a id='delete_row_in' class="fa fa-trash"
+																	style="font-size: 24px; color: #399490fc"
+																	aria-hidden="true"></a>
+															</div>
+
+
+															<table id="indentTable" aria-describedby="example"
 																class="table table-striped display" style="width: 100%">
 																<thead>
 																	<tr>
@@ -135,13 +157,13 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="inr0">
 
 
 																		<td><select
 																				class="select form-control form-control-sm"
 																				id="indentNumber" title="Location"
-																				required onchange="getIndentList()"
+																				required onchange="getIndentList0()"
 																				name="listRFQuotation[0].openIndent">
 																				<option value=" ">Select Indent Number
 																				</option>
@@ -212,7 +234,7 @@
 
 
 																	</tr>
-																	<tr id='addr1' />
+																	<tr id='inr1' />
 
 																</tbody>
 
@@ -227,9 +249,22 @@
 
 
 												<div class="body">
+												<h5>Supplier Info</h5>
 													<div class="box-body">
+
+
+
 														<div class="table-responsive">
-															<table id="example" aria-describedby="example"
+
+															<div class="col-sm-12" style="text-align:right">
+
+																<a id="add_row_sup" class="fa fa-plus" aria-hidden="true"
+																	style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+																<a id='delete_row_sup' class="fa fa-trash"
+																	style="font-size: 24px; color: #399490fc"
+																	aria-hidden="true"></a>
+															</div>
+															<table id="supplierTable" aria-describedby="example"
 																class="table table-striped display" style="width: 100%">
 																<thead>
 																	<tr>
@@ -254,7 +289,7 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="spr0">
 
 																		<td><select id="supplierId"
 																				class="form-control form-control-sm select"
@@ -322,7 +357,7 @@
 
 
 																	</tr>
-																	<tr id='addr1' />
+																	<tr id='spr1' />
 
 																</tbody>
 
@@ -361,6 +396,150 @@
 			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+
+
+			<script th:inline="javascript">
+
+				var idIndex1 = 0;
+				var idIndex2 = 0;
+
+
+				$(document).ready(function () {
+					console.log("ready!");
+
+					var i = 1;
+
+					$('#add_row_in').click(function () {
+						idIndex1++;
+						$('#inr' + i).html(
+							"<td><select class='select form-control form-control-sm indentContainer"+idIndex1+"' id='indentNumber"+idIndex1+"' title='Location'" +
+							"required onchange='getIndentList()' name='listRFQuotation[" + idIndex1 + "].openIndent'><option value=''>Select" +
+							" Indent Number" +
+							"</select></td>"
+
+							+ "<td><input type='date' style='font-size: 0.95rem'title='indent date' class='form-control form-control-sm' id='indentDate' name='listRFQuotation[" + idIndex1 + "].indentDate' required></td>"
+							+ "<td><select class='form-control form-control-sm select itemContainer' onchange='getItemDetail()'  title='Location' id='item' name='listRFQuotation[" + idIndex1 + "].item' required><option value=''>Select Item Name</option></select></td>"
+							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom' name='listRFQuotation[" + idIndex1 + "].uom'> </td>"
+							+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotation[" + idIndex1 + "].city'></td>"
+							+ "<td><input type='date'style='font-size: 0.95rem'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].rfqDate'required></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].itemSpec'required title=''></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].termCondition'required title=''></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].remarks'required title=''></td>"
+
+						);
+						$('#indentTable').append(
+							'<tr id="inr'
+							+ (i + 1)
+							+ '"></tr>');
+							
+							indentInfoForRfq();
+
+
+						i++;
+
+					});
+					
+					
+					$("#delete_row_in").click(function () {
+						if (i > 1) {
+							$("#inr" + (i - 1)).html('');
+
+							i--;
+							idIndex1--;
+						}
+					});
+				});
+				
+				
+				
+				$(document).ready(function () {
+					console.log("ready!");
+
+					var j = 1;
+
+					$('#add_row_sup').click(function () {
+						idIndex2++;
+						$('#spr' + j).html(
+							"<td><select id='supplierId' class='form-control form-control-sm select' required "+
+							+"title='supplier code' onchange='supplierInfo()'name='listRFQuotationSupply[0].suppCode'><option value=''>"+
+							"Select</option><optionth:each='supplier :  ${listSupplier}'th:text='${supplier.supplierName}'th:value='${supplier.supplierId}'></option></select></td>"
+							
+							
+							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom' name='listRFQuotationSupply[0].suppAdd'> </td>"
+							
+							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom' name='listRFQuotationSupply[0].suppCity'> </td>"
+							+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotationSupply[0].suppState'></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].contactPerson'required title=''></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].email'required title=''></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].phoneNumber'required title=''></td>"
+							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].fax'required title=''></td>"
+
+						);
+						$('#supplierTable').append(
+							'<tr id="spr'
+							+ (j + 1)
+							+ '"></tr>');
+
+						j++;
+
+					});
+
+					$("#delete_row_sup").click(function () {
+						if (j > 1) {
+							$("#spr" + (j - 1)).html('');
+
+							j--;
+							idIndex2--;
+						}
+					});
+				});
+
+
+
+
+
+// ajax request for get indent info for dynamic row 
+
+
+function indentInfoForRfq(){
+	
+	console.log("indent info for rfq "+idIndex1)
+	//var indentNumber = document.getElementById("indentNumber"+idIndex1).value;
+	console.log("indent id is : " + indentNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "/requestquotation/indentinfo/",
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			var options = '<option value=""><strong>Select Indent</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.indentNumber)
+				console.log("item info : " + value.indentNumber)
+
+				options += '<option value="' + value.indentNumber + '">' + value.indentNumber + '</option>';
+
+			});
+
+			$('.indentContainer'+idIndex1).html(options);
+			
+			
+			
+			// $("#departmentname").val(data.department.deptName)
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+
+	
+}
+
+
+
+			</script>
 			<!--   <section class="content">
         
         </section>-->
