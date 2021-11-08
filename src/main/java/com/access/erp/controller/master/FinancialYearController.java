@@ -1,5 +1,6 @@
 package com.access.erp.controller.master;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.master.FinancialYear;
+import com.access.erp.repo.FinnancialYearRepo;
 import com.access.erp.service.FinancialYearService;
 
 @Controller
@@ -31,9 +34,31 @@ public class FinancialYearController {
 	}
 	
 	@PostMapping("/")
-	public String addFinancialYear(@ModelAttribute("financialYear") FinancialYear financialYear) {
+	public String addFinancialYear(@ModelAttribute("financialYear") FinancialYear financialYear,RedirectAttributes redirectAttributes) {
 		
-		financialYearService.addFinancialYear(financialYear);
+		
+		String lastDigitFromDate = financialYear.getFromDate().substring(Math.max(financialYear.getFromDate().length() - 2, 0));
+		
+		String lastDigitToDate = financialYear.getToDate().substring(Math.max(financialYear.getToDate().length() - 2, 0));
+		
+		
+		financialYear.setFinancialYearCode(String.valueOf(lastDigitFromDate)+"-"+String.valueOf(lastDigitToDate));
+		
+		boolean fYear = financialYearService.isFinancialYearExists(financialYear.getFinancialYearCode());
+		System.out.println("fyear is : "+ fYear);
+		
+		if(fYear == false) {
+			financialYearService.addFinancialYear(financialYear);
+			redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+			redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		}
+		else {
+			redirectAttributes.addFlashAttribute("message", "Financial Year Already Exists..");
+			redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		}
+		
+		
+		
 		
 		return "redirect:/financialyear/";
 	}

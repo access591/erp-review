@@ -13,6 +13,10 @@
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+		rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
 
 	<style>
 		.form-control-sm {
@@ -70,6 +74,9 @@
 									<div class="col-md-12 shadow bg-white rounded" style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
+
+											<input type="hidden" id="mess" name="mess" th:value="${message}">
+
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
@@ -133,7 +140,7 @@
 																	title="urgency" th:field="*{natureOfPur}" required>
 
 																	<option value="yes">Capital</option>
-																		<option value="non" selected>Non-Capital</option>
+																	<option value="non" selected>Non-Capital</option>
 																</select>
 															</div>
 															<div class="form-group col-md-4">
@@ -554,6 +561,25 @@
 
 
 				}
+			</script>
+
+			<script>
+
+				$(document).ready(function () {
+					var message = document.getElementById('mess').value
+					if (message != null && message !== "") {
+
+						swal(message, "", "success", {
+							button: "OK",
+							hideClass: {
+								popup: 'animate__animated animate__fadeOutUp'
+							},
+						});
+					} else {
+						console.log("ajax request : " + message);
+					}
+
+				});
 			</script>
 			<!--   <section class="content">
         

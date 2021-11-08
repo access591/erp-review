@@ -12,6 +12,12 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+		rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -56,6 +62,8 @@
 									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
+
+											<input type="hidden" id="mess" name="mess" th:value="${message}">
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
@@ -151,6 +159,26 @@
 			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+
+			<script>
+
+				$(document).ready(function () {
+					var message = document.getElementById('mess').value
+					if (message != null && message !== "") {
+
+						swal(message, "", "success", {
+							button: "OK",
+							hideClass: {
+								popup: 'animate__animated animate__fadeOutUp'
+							},
+						});
+					} else {
+						console.log("ajax request : " + message);
+					}
+
+				});
+			</script>
+
 			<!--   <section class="content">
         
         </section>-->

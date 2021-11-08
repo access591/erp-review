@@ -14,6 +14,7 @@ public interface FinancialYearService {
 	public List<FinancialYear> getAllFinancialYear();
 	public Optional<FinancialYear> editFinancialYear(Long id);
 	public void deleteFinancialYear(Long id);
+	public boolean isFinancialYearExists(String financialYearCode);
 	
 	
 }
