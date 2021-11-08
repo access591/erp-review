@@ -211,7 +211,17 @@ public class Company {
 
 	@Column(name = "B17_BOND_DATE")
 	private Date b17BondDate;
+	
+	@Column(name = "RCMC_NO", length = 30)
+	private String rcmcNo;
 
+	@Column(name = "EXP_PERFORMANCE", length = 50)
+	private String expPerformance;
+	
+	@Column(name = "EXP_CERTIFICATE_NO", length = 30)
+	private String expCertiificateNo;
+	
+	
 	
 	@Column(name = "ECC_NUMBER", length = 50)
 	private String eccNumber;
@@ -300,11 +310,9 @@ public class Company {
 	@Column(name = "NOTIFICATION_NO1", length = 30)
 	private String notificationNo1;
 
-	@Column(name = "RCMC_NO", length = 30)
-	private String rcmcNo;
+	
 
-	@Column(name = "EXP_CERTIFICATE_NO", length = 30)
-	private String expCertiificateNo;
+	
 
 	@Column(name = "CIN_NO", length = 30)
 	private String cinNo;
@@ -1042,6 +1050,14 @@ public class Company {
 
 	public void setSiteOffice(List<SiteOffice> siteOffice) {
 		this.siteOffice = siteOffice;
+	}
+
+	public String getExpPerformance() {
+		return expPerformance;
+	}
+
+	public void setExpPerformance(String expPerformance) {
+		this.expPerformance = expPerformance;
 	}
 
 	

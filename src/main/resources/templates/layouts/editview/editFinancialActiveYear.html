@@ -109,30 +109,17 @@
 
 
 
-													<div class="form-group" style="margin: 10px;">
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="Y">
-															<label class="form-check-label"
-																for="inlineRadio1">Active</label>
-														</div>
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="N">
-															<label class="form-check-label"
-																for="inlineRadio1">In-Active</label>
-														</div>
-
-
-
-													</div>
+													<label class="checkbox-inline">
+														<input type="radio" value="Y" name="inlineRadioOptions">Active
+														<input type="radio" value="N"
+															name="inlineRadioOptions">In-Active
+													</label>
 												</div><!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
+													<input type="button" value="Go back!" class="btn btn-danger"
+															onclick="history.back()">
 												</div>
 
 
@@ -140,9 +127,7 @@
 
 
 										</div><!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin:8px">
-											<a th:href="@{/financialactiveyear/list}">View All Active Financial Year</a>
-										</div>
+										
 									</div>
 
 

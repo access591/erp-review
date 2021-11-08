@@ -5,6 +5,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,38 +24,12 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 	SeqMainRepo seqMainRepo;
 	@Autowired
 	FinnancialYearRepo financialYearRepo;
+	@Autowired
+	SessionFactory sessionFactory;
 
 	@Override
 	public void addFinancialYear(FinancialYear financialYear) {
 
-		if (financialYear.getId() == null) {
-			System.out.println("country code is : " + financialYear.getFinancialYearCode());
-			
-			// code execute but does not set value 
-			
-			if(financialYear.getFinancialYearCode().isEmpty()){
-				String maxCode = seqMainRepo.findByTranType("FIN");
-				System.out.println(" max code is : " + maxCode);
-				financialYear.setFinancialYearCode(maxCode);
-			}
-				
-		}
-		
-		
-		Calendar data = Calendar.getInstance();
-		data.setTime(financialYear.getFromDate());
-		
-		int lastDigitFromDate = data.get(Calendar.YEAR) % 100;
-		
-		
-		Calendar data2 = Calendar.getInstance();
-		data2.setTime(financialYear.getToDate());
-		
-		int lastDigitToDate = data2.get(Calendar.YEAR) % 100;
-		
-		
-		financialYear.setFinancialYearCode(String.valueOf(lastDigitFromDate)+"-"+String.valueOf(lastDigitToDate));
-		
 		financialYearRepo.save(financialYear);
 
 		System.out.println("end");
@@ -66,7 +44,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 	public Optional<FinancialYear> editFinancialYear(Long id) {
 
 		return financialYearRepo.findById(id);
-		
+
 	}
 
 	@Override
@@ -74,6 +52,44 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 
 		financialYearRepo.deleteById(id);
 
+	}
+
+	@Override
+	public boolean isFinancialYearExists(String financialYearCode) {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		boolean results = false;
+
+		try {
+			tx = session.beginTransaction();
+
+			Query<FinancialYear> query = session.createQuery("from FinancialYear f where f.financialYearCode=:financialYearCode",
+					FinancialYear.class);
+			query.setParameter("financialYearCode", financialYearCode);
+			
+			List<FinancialYear> listFinancialYear = query.getResultList();
+			
+			for(FinancialYear f : listFinancialYear) {
+				System.out.println("f value is : " + f.getFinancialYearCode() + " : " + f.getId());
+			}
+			
+			if(listFinancialYear.size()>0) {
+				System.out.println("not null");
+				results = true;
+			}
+			
+			
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		System.out.println("rseult is :" + results);
+		return results;
+		
 	}
 
 }

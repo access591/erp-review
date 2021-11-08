@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
@@ -56,9 +57,11 @@ public class FinancialActciveYearController {
 
 	@PostMapping("/")
 	public String addFinancialActiveYear(
-			@ModelAttribute("financialActiveYear") FinancialActiveYear financialActiveYear) {
+			@ModelAttribute("financialActiveYear") FinancialActiveYear financialActiveYear,RedirectAttributes redirectAttributes) {
 
 		financialActiveYearService.addFinancialActiveYear(financialActiveYear);
+		redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
 		return "redirect:/financialactiveyear/";
 	}
@@ -96,9 +99,12 @@ public class FinancialActciveYearController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String deleteFianncialActiveYear(@PathVariable("id") Long id, Model model) {
+	public String deleteFianncialActiveYear(@PathVariable("id") Long id, Model model,RedirectAttributes redirectAttributes) {
 		financialActiveYearService.deleteFinanciaActivelYear(id);
 
+		redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		
 		return "redirect:/financialactiveyear/list";
 
 	}

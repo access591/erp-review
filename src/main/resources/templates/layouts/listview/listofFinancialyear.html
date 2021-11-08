@@ -46,7 +46,7 @@
 													<table class="table table-striped" style="width: 80%">
 														<thead>
 															<tr>
-																<th scope="col">#</th>
+																<th scope="col">S.N.</th>
 																<th scope="col">Financial Code</th>
 																<th scope="col">From Date</th>
 																<th scope="col">To date</th>
@@ -57,13 +57,13 @@
 														</thead>
 														<tbody>
 															<tr th:each="financialyear,iter  : ${financialYearList}">
-																<td th:text="${iter.index}">1</td>
+																<td th:text="${iter.index}+1">1</td>
 																<td th:text="${financialyear.financialYearCode}">Garrett
 																	Winters</td>
-																<td th:text="${financialyear.fromDate}">Garrett Winters
-																</td>
-																<td th:text="${financialyear.toDate}">Garrett Winters
-																</td>
+																
+																<td th:text="${financialyear.fromDate}"></td>
+																<td th:text="${financialyear.toDate}"></td>
+																
 
 
 																<td><span> <a
@@ -82,9 +82,7 @@
 												</div>
 
 												<div class="row" style="margin: 10px">
-													<input type="submit" value="Back"
-														onclick='javascript:window.history.back()'
-														class="btn btn-link" />
+													<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
 												</div>
 
 
