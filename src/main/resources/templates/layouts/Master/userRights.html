@@ -67,7 +67,8 @@
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">User Name</label> <select
-															class="form-control" id="" title="User Name" th:field="*{myUser.userCode}" required>
+															class="form-control" id="" title="User Name"
+															th:field="*{myUser.userCode}" required>
 															<option value="">Select User</option>
 															<option th:each="user :  ${listMyUser}"
 																th:text="${user.userName}" th:value=" ${user.userCode}">
@@ -78,7 +79,8 @@
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Module</label> <select
-															class="form-control" id="" title="User Name" th:field="*{module}" required>
+															class="form-control" id="" title="User Name"
+															th:field="*{module}" required>
 															<option value="">Select Module</option>
 															<option th:each="module :  ${listModule}"
 																th:text="${module.moduleName}"
@@ -90,7 +92,8 @@
 													<div class="form-group col-md-6">
 														<label class="form-label">Sub-Module</label> <label
 															style="color: red">*</label>
-														<select class="form-control" id="" title="User Name" th:field="*{subModule}" required>
+														<select class="form-control" id="" title="User Name"
+															th:field="*{subModule}" required>
 															<option value="">Select Module</option>
 															<option th:each="subModule :  ${listSubModule}"
 																th:text="${subModule.subModuleName}"
@@ -103,7 +106,8 @@
 													<div class="form-group col-md-6">
 														<label class="form-label">Program</label> <label
 															style="color: red">*</label>
-														<select class="form-control" id="" title="User Name" th:field="*{prgCode}" required>
+														<select class="form-control" id="" title="User Name"
+															th:field="*{prgCode}" required>
 															<option value="">Select</option>
 															<option th:each="program :  ${listProgram}"
 																th:text="${program.programName}"
@@ -114,25 +118,11 @@
 
 
 
-
-													<div class="form-group" style="margin: 10px;">
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="Y">
-															<label class="form-check-label"
-																for="inlineRadio1">Active</label>
-														</div>
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="N">
-															<label class="form-check-label"
-																for="inlineRadio1">In-Active</label>
-														</div>
-
-													</div>
-
+													<label class="checkbox-inline">
+														<input type="radio" value="Y" name="inlineRadioOptions">Active
+														<input type="radio" value="N"
+															name="inlineRadioOptions">In-Active
+													</label>
 												</div><!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
@@ -146,7 +136,7 @@
 
 										</div><!-- /.box -->
 										<div style="width: parent; text-align-last: right; margin:8px">
-											<a th:href="@{/category/list}">view category</a>
+											<a href='#' onclick='myFun()'>View All UserRights</a>
 										</div>
 									</div>
 
@@ -163,6 +153,10 @@
 			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+			
+			function myFun(){
+				alert("under construction")
+			}
 			<!--   <section class="content">
         
         </section>-->

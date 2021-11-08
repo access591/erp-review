@@ -37,6 +37,9 @@
 						<div class="col-md-6" style="margin-top: 20px;">
 
 							<div class="box box-primary">
+							
+							<input type="hidden" id="mess" name="mess" th:value="${message}">
+							
 								<div class="box-header with-border">
 									<h3 class="box-title">State Master</h3>
 								</div>
@@ -109,6 +112,26 @@
 			</section>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+			
+			<script>
+
+				$(document).ready(function () {
+					var message = document.getElementById('mess').value
+					if (message != null && message !== "") {
+
+						swal(message, "", "success", {
+							button: "OK",
+							hideClass: {
+								popup: 'animate__animated animate__fadeOutUp'
+							},
+						});
+					} else {
+						console.log("ajax request : " + message);
+					}
+
+				});
+			</script>
+
 			<!--   <section class="content">
         
         </section>-->
