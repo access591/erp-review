@@ -65,8 +65,9 @@
 												<td><span class="badge bg-success"
 													th:text="${country.activeYn}">Active</span></td>
 
-												<td><span> <a th:href="@{/country/edit/{id}(id=${country.countryCode})}">edit</a></span> <span> <a
-														th:href="@{/country/delete/{id}(id=${country.countryCode})}">delete</a></span></td>
+												<td><span> <a th:href="@{/country/edit/{id}(id=${country.countryCode})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span> <a
+														th:href="@{/country/delete/{id}(id=${country.countryCode})}">
+<em class="fa fa-times" style="color: red"> Remove</em></a></span></td>
 											</tr>
 
 
