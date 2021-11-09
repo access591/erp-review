@@ -27,7 +27,7 @@ public class StoreController {
 	public String store(Model model) {
 
 		model.addAttribute("store", new Store());
-		return "layouts/Master/storeMaster";
+		return "layouts/Master/StoreMaster";
 	}
 
 	@PostMapping("/")

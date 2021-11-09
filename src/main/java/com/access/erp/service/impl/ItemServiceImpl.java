@@ -17,14 +17,22 @@ public class ItemServiceImpl implements ItemService{
 
 	@Autowired ItemRepo itemRepo;
 	@Autowired SeqMainRepo seqMainRepo;
+	@Autowired SeqMainRepo seqMainRepo1;
 	
 	@Override
 	public void addItem(Item item) {
 		
+		 String maxCode = seqMainRepo.findByTranType("ITM");
+		 
 		if (item.getItemCode() == "" || item.getItemCode()== null) {
-			System.out.println("item code is : "+ item.getItemCode());
-			String maxCode = seqMainRepo.findByTranType("ITM");
-			item.setItemCode(maxCode);
+			
+			  System.out.println("item code is : "+ item.getItemCode()); 
+			 
+			  System.out.println("item max code is : " + maxCode);
+			 
+			
+			
+			item.setItemCode("EB"+item.getCategory().getCategCode()+maxCode.substring(2));
 			
 			
 		}
@@ -33,8 +41,10 @@ public class ItemServiceImpl implements ItemService{
 			
 			if(p.getPackingCode() == "" || p.getPackingCode() == null) {
 				
-				String maxCode1 = seqMainRepo.findByTranType("PAK");
-				p.setPackingCode(maxCode1);
+				String maxCode1 = seqMainRepo.findByTranType("PAC");
+				System.out.println("max code 1 is : " + maxCode1);
+				
+				p.setPackingCode(maxCode);
 				
 			}
 			
