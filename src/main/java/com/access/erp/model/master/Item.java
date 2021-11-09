@@ -36,6 +36,9 @@ public class Item {
 	@Column(name="PART_NAME",length = 150)
 	private String partName;
 	
+	@Column(name="STORE_INFO",length = 40)
+	private String storeInfo;
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="STORE_CODE")
 	private Store store;
@@ -281,6 +284,14 @@ public class Item {
 	}
 
 	
+
+	public String getStoreInfo() {
+		return storeInfo;
+	}
+
+	public void setStoreInfo(String storeInfo) {
+		this.storeInfo = storeInfo;
+	}
 
 	public UOM getUom() {
 		return uom;
