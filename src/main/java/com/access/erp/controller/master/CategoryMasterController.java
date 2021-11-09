@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.master.Category;
 import com.access.erp.service.CategoryService;
@@ -31,9 +34,14 @@ public class CategoryMasterController {
 	}
 	
 	@PostMapping("/")
-	public String addCategory(@ModelAttribute("category") Category category) {
+	public String addCategory(@ModelAttribute("category") Category category,RedirectAttributes redirectAttributes,Principal principal) {
+		
+		category.setInsertedBy(principal.getName());
+		category.setInsertedDate(new Date());
 		
 		categoryService.addCategory(category);
+		redirectAttributes.addFlashAttribute("message", "Category  has been saved successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 		
 		return "redirect:/category/";
 	}
@@ -59,8 +67,12 @@ public class CategoryMasterController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteCategory(@PathVariable("id") String categoryCode,Model model) {
+	public String deleteCategory(@PathVariable("id") String categoryCode,Model model,RedirectAttributes redirectAttributes) {
 		categoryService.deleteCategory(categoryCode);
+		
+		redirectAttributes.addFlashAttribute("message", "Category  has been deleted successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
+		
 		return "redirect:/category/list";
 	}
 

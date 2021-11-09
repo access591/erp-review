@@ -42,45 +42,50 @@
 									<form role="form">
 										<div class="box-body">
 											<div class="table-responsive-sm">
-									<table class="table table-striped" style="width: 80%">
-										<thead>
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">City Code</th>
-												<th scope="col">City Name</th>
-												<th scope="col">City Type</th>
-												<th scope="col">District</th>
-												<th scope="col">Region Code</th>
-												<th scope="col">State</th>
-												<th scope="col">Inserted By</th>
-												<th scope="col">Status</th>
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:each="city,iter  : ${cityList}">
-												<td th:text="${iter.index}">1</td>
-												<td th:text="${city.cityCode}">Garrett Winters</td>
-												<td th:text="${city.cityName}">Garrett Winters</td>
-												<td th:text="${city.cityType}">Garrett Winters</td>
-												<td th:text="${city.district}">Garrett Winters</td>
-												<td th:text="${city.regionCode}">Garrett Winters</td>
-												<td th:text="${city.state.stateName}">Garrett Winters</td>
-												<td th:text="${city.insertedBy}">Good Guys</td>
+												<table class="table table-striped" style="width: 80%">
+													<thead>
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">City Code</th>
+															<th scope="col">City Name</th>
+															<th scope="col">City Type</th>
+															<th scope="col">District</th>
+															<th scope="col">Region Code</th>
+															<th scope="col">State</th>
+															<th scope="col">Inserted By</th>
+															<th scope="col">Status</th>
+															<th scope="col">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="city,iter  : ${cityList}">
+															<td th:text="${iter.index}">1</td>
+															<td th:text="${city.cityCode}">Garrett Winters</td>
+															<td th:text="${city.cityName}">Garrett Winters</td>
+															<td th:text="${city.cityType}">Garrett Winters</td>
+															<td th:text="${city.district}">Garrett Winters</td>
+															<td th:text="${city.regionCode}">Garrett Winters</td>
+															<td th:text="${city.state.stateName}">Garrett Winters</td>
+															<td th:text="${city.insertedBy}">Good Guys</td>
 
-												<td><span class="badge bg-success"
-													th:text="${city.activeYn}">Active</span></td>
+															<td><span class="badge bg-success"
+																	th:text="${city.activeYn}">Active</span></td>
 
-												<td><span> <a th:href="@{/city/edit/{id}(id=${city.cityCode})}">edit</a></span> <span> <a
-														th:href="@{/city/delete/{id}(id=${city.cityCode})}">delete</a></span></td>
-											</tr>
+															<td><span> <a
+																		th:href="@{/city/edit/{id}(id=${city.cityCode})}"><em
+																			class="fa fa-edit" style="color: blue;">
+																			Edit</em></a></span> <span> <a
+																		th:href="@{/city/delete/{id}(id=${city.cityCode})}">
+																		<em class="fa fa-times" style="color: red">
+																			Remove</em></a></span></td>
+														</tr>
 
 
 
 
-										</tbody>
-									</table>
-								</div>
+													</tbody>
+												</table>
+											</div>
 										</div>
 
 										<div class="box-footer">

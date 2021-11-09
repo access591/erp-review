@@ -31,6 +31,9 @@ public class Category {
 	@Column(name = "DESCRIPTION", length = 100)
 	private String description;
 	
+	@Column(name = "A_DESCRIPTION", length = 100)
+	private String accountDescription;
+	
 	@Column(name = "INS_BY",length = 50)
 	private String insertedBy;
 
@@ -48,6 +51,20 @@ public class Category {
 		System.out.println("==========>  IN CATEGORY MASTER <==============");
 		
 	}
+
+	
+
+	public String getAccountDescription() {
+		return accountDescription;
+	}
+
+
+
+	public void setAccountDescription(String accountDescription) {
+		this.accountDescription = accountDescription;
+	}
+
+
 
 	public String getCategCode() {
 		return categCode;
