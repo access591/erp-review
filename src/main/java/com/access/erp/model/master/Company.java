@@ -208,6 +208,7 @@ public class Company {
 	@Column(name = "B17_BOND_NUMBER", length = 40)
 	private String b17BondNumber;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "B17_BOND_DATE")
 	private Date b17BondDate;
 	
