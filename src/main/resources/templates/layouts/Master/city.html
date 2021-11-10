@@ -13,11 +13,22 @@
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
 		rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
+
+<style>
+.error {
+  color: red;
+  font-size: 11px;
+}
+</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -68,7 +79,7 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/city/}" method="POST" th:object="${city}">
+											<form id="cityForm" role="form" th:action="@{/city/}" method="POST" th:object="${city}">
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
@@ -78,6 +89,7 @@
 
 													<div class="form-group col-md-6">
 														<label>City Name</label> <input type="text" class="form-control"
+															id="cityName" name="cityName"
 															placeholder="city name" th:field="*{cityName}">
 													</div>
 
@@ -180,11 +192,12 @@
 			<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
 			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+			<script src="../../js/demo.js" th:src="@{/js/validation.js}"></script>
 </body>
 
 </html>

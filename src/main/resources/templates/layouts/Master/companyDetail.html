@@ -19,10 +19,16 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
 		rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
-	
-	
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
 
 </head>
 
@@ -51,7 +57,8 @@
 									<h3 class="box-title">Company Details</h3>
 								</div>
 								<!-- form start -->
-								<form role="form" th:action="@{/companydetail/}" th:object="${company}" method="POST">
+								<form id="companyDetail" class="wizard wizard-primary" role="form"
+									th:action="@{/companydetail/}" th:object="${company}" method="POST">
 									<div class="box-body">
 
 										<div class="container-fluid">
@@ -87,16 +94,18 @@
 																			Code</label><span
 																			style="color: red">*</span>
 																		<input type="text" class="form-control"
-																			id="companyCode" placeholder="company code"
+																			id="companyCode" name="companyCode"
+																			placeholder="company code"
 																			th:field="*{compCode}" title="company code"
-																			required onkeyup="getCompanyCode()">
+																			onkeyup="getCompanyCode()">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Company
 																			Name</label><span
 																			style="color: red">*</span>
 																		<input type="text" class="form-control"
-																			id="companyName" placeholder="Company Name"
+																			id="companyName" name="companyName"
+																			placeholder="Company Name"
 																			th:field="*{compName}" title="company name"
 																			required onkeyup=getCompanyName()>
 																	</div>
@@ -118,7 +127,7 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputAddress">Director Name</label>
 																		<input type="text" class="form-control"
-																			id="inputAddress" th:field="*{dirName}"
+																			th:field="*{dirName}"
 																			placeholder="director name"
 																			title="Director Name">
 																	</div>
@@ -126,13 +135,13 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">PF Number</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="Pf Number"
+																			placeholder="Pf Number"
 																			th:field="*{pfNumber}" title="pf number">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Parent Code</label>
 																		<input type="text" class="form-control"
-																			id="inputPassword4" title="parent code"
+																			title="parent code"
 																			placeholder="Parent Code"
 																			th:field="*{parentCode}">
 																	</div>
@@ -233,7 +242,8 @@
 
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
-																					id="" placeholder="Address-1"
+																					id="address1" name="address1"
+																					placeholder="Address-1"
 																					title="address-1"
 																					th:field="*{cAddr1}" required>
 																			</div>
@@ -310,8 +320,10 @@
 																				class="col-md-2 control-label">Pin
 																				Code</label>
 																			<div class="col-md-4">
-																				<input type="text" class="form-control"
-																					th:field="*{cPin}" id="" title="pin"
+																				<input type="number"
+																					class="form-control"
+																					th:field="*{cPin}" id="pin1"
+																					name="pin1" title="pin"
 																					placeholder="Pin Code">
 																			</div>
 																		</div>
@@ -352,7 +364,7 @@
 																			<label for=""
 																				class="col-md-2 control-label">Email</label>
 																			<div class="col-md-10">
-																				<input type="text" class="form-control"
+																				<input type="email" class="form-control"
 																					id="" placeholder="Email"
 																					title="email" th:field="*{cEmail}">
 																			</div>
@@ -368,7 +380,8 @@
 																				1</label>
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
-																					id="" placeholder="Phone-1"
+																					id="phone1" name="phone1"
+																					placeholder="Phone-1"
 																					title="phone-1"
 																					th:field="*{cPhone1}">
 																			</div>
@@ -379,8 +392,8 @@
 																				class="col-md-2 control-label">Phone-2</label>
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
-																					placeholder="Phone-2"
-																					title="phone-2"
+																					placeholder="Phone-2" id="phone2"
+																					name="phone2" title="phone-2"
 																					th:field="*{cPhone2}">
 																			</div>
 																		</div>
@@ -418,7 +431,7 @@
 															<div class="form-group col-md-12">
 																<label for="inputAddress">Name</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="inputAddress"
+																	class="form-control" id="name" name="name"
 																	placeholder="Name" th:field="*{rName}" title="name"
 																	required>
 															</div>
@@ -449,9 +462,9 @@
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Designation</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="inputAddress"
-																	placeholder="Designation" th:field="*{rDesig}"
-																	title="designation" required>
+																	class="form-control" id="designation"
+																	name="designation" placeholder="Designation"
+																	th:field="*{rDesig}" title="designation" required>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Flat Number</label> <input
@@ -507,18 +520,19 @@
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Pin</label> <input
-																	type="number" class="form-control" id="inputAddress"
-																	placeholder="Pin" th:field="*{rPin}" title="pin">
+																	type="number" class="form-control" id="pin2"
+																	name="pin2" placeholder="Pin" th:field="*{rPin}"
+																	title="pin">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Telephone Number</label>
-																<input type="int" class="form-control" id="inputAddress"
-																	placeholder="Telephone Number" th:field="*{rTel}"
-																	title="telephone number">
+																<input type="number" class="form-control" id="telephone"
+																	name="telephone" placeholder="Telephone Number"
+																	th:field="*{rTel}" title="telephone number">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Email</label> <input
-																	type="text" class="form-control" id="inputAddress"
+																	type="email" class="form-control" id="inputAddress"
 																	placeholder="Email" th:field="*{rEmail}"
 																	title="email">
 															</div>
@@ -536,16 +550,16 @@
 														<h5>Tax Details</h5>
 														<div class="row">
 															<div class="form-group col-md-6">
-																<label for="inputAddress">Pan Number</label><span
+																<label for="inputAddress">PAN Number</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="inputAddress"
+																	class="form-control" id="panNumber" name="panNumber"
 																	placeholder="Pan Number" th:field="*{panNumber}"
 																	title="pan number" required>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="inputEmail4"
+																	class="form-control" id="gstNumber" name="gstNumber"
 																	placeholder="Gst Number" th:field="*{tGstNo}"
 																	title="gst number" required>
 															</div>
@@ -572,7 +586,7 @@
 																	id="inputAddress" placeholder="Date of Filling"
 																	th:field="*{tFillingDate}" title="date of filling">
 															</div>
-															
+
 
 														</div>
 													</div>
@@ -591,8 +605,7 @@
 																<div class="form-row">
 																	<div class="form-group col-md-6">
 																		<label for="inputAddress">Import License
-																			Number</label><span
-																			style="color: red">*</span>
+																			Number</label>
 																		<input type="text" class="form-control"
 																			id="inputAddress"
 																			placeholder="Import License Number"
@@ -992,18 +1005,78 @@
 			}
 
 		});
+
+		$(document).ready(function () {
+			$("form").validate().settings.ignore = "";
+		});
+
+
+	</script>
+
+
+
+	<script>
+		$(function () {
+			$("#smartwizard-default-primary").smartWizard({
+				theme: "default",
+				showStepURLhash: false
+			});
+
+			// Validation
+			var $validationForm = $("#companyDetail");
+			$validationForm.validate({
+				errorPlacement: function errorPlacement(error, element) {
+					$(element).parents(".form-group").append(
+						error.addClass("invalid-feedback small d-block"))
+				},
+				highlight: function (element) {
+					$(element).addClass("is-invalid");
+				},
+				unhighlight: function (element) {
+					$(element).removeClass("is-invalid");
+				},
+				rules: {
+					"wizard-confirm": {
+						equalTo: "input[name=\"wizard-password\"]"
+					}
+				}
+			});
+			$validationForm.smartWizard({
+				autoAdjustHeight: false,
+				backButtonSupport: false,
+				useURLhash: false,
+				showStepURLhash: false,
+
+			}).on("leaveStep",
+				function (e, anchorObject, stepNumber, stepDirection) {
+					if (stepDirection === "forward") {
+						return $validationForm.valid();
+					}
+					return true;
+				});
+			/* $validationForm.find(".btn-submit").on("click", function() {
+				if (!$validationForm.valid()) {
+					return;
+				}
+				
+				return false;
+			}); */
+		});
+
+		
 	</script>
 
 	<!--   <section class="content">
         
         </section>-->
-	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<!--	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>-->
 	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
 	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 	<script src="../../js/demo.js" th:src="@{/js/myjs.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/validation.js}"></script>
 
 </body>
 
