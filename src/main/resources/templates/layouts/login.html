@@ -20,7 +20,7 @@
 
 <body>
 
-	<form th:action="@{/doLogin}" method="POST" th:object="${myCaptcha}" id="myForm">
+	<form th:action="@{/doLogin}" method="POST" th:object="${myCaptcha}" id="myForm"> 
 
 		<section class="vh-100" style="background-color: #508bfc;">
 			<div class="container py-5 h-100">
@@ -30,12 +30,12 @@
 							<div class="card-body p-5 text-center">
 
 								<h3 class="mb-5">Sign in</h3>
-								
+
 								<div th:if="${param.error}" class="alert alert-danger text-center">Invalid User Name
-								and Password</div>
-								
+									and Password</div>
+
 								<div th:if="${param.logout}" class="alert alert-danger">
-								You have been logout</div>
+									You have been logout</div>
 
 
 
@@ -45,24 +45,25 @@
 
 								<div class="form-outline mb-4">
 									<div class="row text-center" style="height: 8px; text-align:center;">
-									
+
 										<div class="col-md-2 m-auto">
 											<img
 												src="https://img.icons8.com/ios-glyphs/30/000000/gender-neutral-user.png" />
 										</div>
-										
+
 										<div class="col-md-10">
 											<input type="text" id="typeEmailX-2" class="form-control form-control-lg"
-												name="username" placeholder="Enter User Name"style="line-height: 0.8em;background: #cbe5f5;font-size:1.0em;"/>
+												name="username" placeholder="Enter User Name"
+												style="line-height: 0.8em;background: #cbe5f5;font-size:1.0em;" />
 										</div>
 									</div>
 
-									
+
 								</div>
-								
-								
-								
-								
+
+
+
+
 
 								<div class="form-outline mb-4 mt-5">
 									<div class="row" style="height: 8px;">
@@ -72,7 +73,8 @@
 										<div class="col-md-10">
 											<input type="password" id="typePasswordX-2"
 												class="form-control form-control-lg" name="password"
-												placeholder="Enter Password" style="line-height: 0.8em;background: #cbe5f5;font-size:1.0em;"/>
+												placeholder="Enter Password"
+												style="line-height: 0.8em;background: #cbe5f5;font-size:1.0em;" />
 										</div>
 									</div>
 
@@ -80,37 +82,42 @@
 								</div>
 
 								<!-- Checkbox -->
-								<div class="form-check d-flex justify-content-start mb-4" >
+								<div class="form-check d-flex justify-content-start mb-4">
+
+								</div>
+
+
+								<div class="form-group row" style="margin-bottom: 20px;">
+
+									<div class="col-md-6">
+										<img th:src="*{'data:realCaptcha/jpg;base64,'+ realCaptcha}"
+											style="height: 40px;" />
+									</div>
+
+
+									<div class="col-md-6" >
+										<!-- <label>ENTER CAPTCHA</label> -->
+
+										
+											
+											
+												<input type="hidden" th:field="*{hiddenCaptcha}" />
+												<input style="text-align: center" type="text" th:field="*{captcha}"
+													class="form-control" placeholder="Enter Captcha" />
 									
-								</div>
-
-
-								<div class="form-group text-center" style="margin: 3px;">
-									<img th:src="*{'data:realCaptcha/jpg;base64,'+ realCaptcha}"
-										style="height: 45px;" />
-								</div>
-
-								<div class="form-group text-center">
-									<!-- <label>ENTER CAPTCHA</label> -->
-
-									<div class="row">
-										<div class="col-md-3"></div>
-										<div class="col-md-6" style="margin: 1.5px;">
-											<input type="hidden" th:field="*{hiddenCaptcha}" />
-											<input style="text-align: center" type="text" th:field="*{captcha}"
-												class="form-control" placeholder="Enter Captcha" />
-										</div>
-										<div class="col-md-3"></div>
-
 									</div>
 
 
 								</div>
 
+
+
+
+
 								<div class="form-group">
 									<!--<button class="btn btn-primary btn-block" type="submit">Login</button>-->
-									<button type="submit"
-										class="btn btn-primary input-block-level form-control" onclick="myFunction()">Login</button>
+									<button type="submit" class="btn btn-primary input-block-level form-control"
+										onclick="myFunction()" style="margin: 10px;">Login</button>
 								</div>
 
 
@@ -135,7 +142,7 @@
 			console.log("myfunction")
 			var hiddenCaptcha = document.getElementById("hiddenCaptcha").value;
 			var captcha = document.getElementById("captcha").value;
-		
+
 
 			document.getElementById("myForm").submit();
 		}

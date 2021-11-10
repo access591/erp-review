@@ -57,28 +57,28 @@ public class Company {
 	@Column(name = "DEDUCTION_FROM_EMP", length = 10)
 	private String deductionFromEmp;
 	
-	@Column(name = "PF_NUMBER", length = 50)
+	@Column(name = "PF_NO", length = 50)
 	private String PfNumber;
 
-	@Column(name = "C_ADDRESS1", length = 100)
+	@Column(name = "ADDR1", length = 100)
 	private String cAddr1;
 
-	@Column(name = "C_ADDRESS2", length = 100)
+	@Column(name = "ADDR2", length = 100)
 	private String cAddr2;
 	
 	@Column(name = "C_ROAD_STREET_LANE", length = 100)
 	private String cStreet;
 
-	@Column(name = "C_FAX", length = 80)
+	@Column(name = "FAX", length = 80)
 	private String cFax;
 
-	@Column(name = "C_EMAIL", length = 75)
+	@Column(name = "EMAIL", length = 75)
 	private String cEmail;
 	
 	@Column(name = "C_WEBSITE", length = 75)
 	private String cWebsite;
 
-	@Column(name = "C_PHONE", length = 45)
+	@Column(name = "PHONE", length = 45)
 	private String cPhone1;
 	
 	@Column(name = "C_PHONE2", length = 45)
@@ -89,7 +89,7 @@ public class Company {
 	private State cState;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "C_CITY_CODE")
+	@JoinColumn(name = "CITY")
 	private City cCity;
 	
 	@Column(name = "C_PIN", length = 8)
@@ -113,21 +113,21 @@ public class Company {
 	@Column(name = "R_DESIG", length = 30)
 	private String rDesig;
 
-	@Column(name = "R_FLAT_NO", length = 30)
+	@Column(name = "R_FLATNO", length = 30)
 	private String rFlatNum;
 
-	@Column(name = "R_BUILDING_NO", length = 30)
+	@Column(name = "R_BUILDING", length = 30)
 	private String rBuildingNo;
 
 	@Column(name = "R_STREET", length = 30)
 	private String rStreet;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "R_STATE_CODE")
+	@JoinColumn(name = "R_STATE")
 	private State rState;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "R_CITY_CODE")
+	@JoinColumn(name = "R_CITY")
 	private City rCity;
 
 	@Column(name = "R_LOCATION", length = 50)
@@ -144,13 +144,13 @@ public class Company {
 
 	@Column(name = "R_EMAIL", length = 30)
 	private String rEmail;
+	
+	
+	@Column(name = "PARENT_CCODE", length = 30)
+	private String parentCCode;
 
 	
-	
-	
-	
-	@Column(name = "T_T_PF_NUMBER", length = 50)
-	private String tPfNumber;
+
 	
 	@Column(name = "T_GST_NO", length = 30)
 	private String tGstNo;
@@ -165,15 +165,14 @@ public class Company {
 	@Column(name = "T_FILLING_DATE")
 	private Date tFillingDate;
 	
-	@Column(name = "PAN_NUMBER", length = 50)
-	private String tPanNumber;
+	@Column(name = "PAN_NO", length = 50)
+	private String panNumber;
 	
 	
 	
 	
 	
-	@Column(name = "TD_PAN_NUMBER", length = 50)
-	private String tdPanNumber;
+	
 	
 	@Column(name = "TD_GST_NUMBER", length = 50)
 	private String tdGstNumber;
@@ -191,19 +190,19 @@ public class Company {
 	
 //	 extra collumn 
 	
-	@Column(name = "CST_NUMBER", length = 25)
+	@Column(name = "CST_NO", length = 25)
 	private String cstNumber;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "CST_DATE")
+	@Column(name = "CST_DT")
 	private Date cstDate;
 
-	@Column(name = "VAT_NUMBER", length = 50)
+	@Column(name = "VAT_NO", length = 50)
 	private String vatNumber;
 
 	
 
-	@Column(name = "IMPORT_LICENSE_NUMBER", length = 50)
+	@Column(name = "IMPORT_LICENSE_NO", length = 50)
 	private String importLicenseNumber;
 
 	@Column(name = "B17_BOND_NUMBER", length = 40)
@@ -223,7 +222,7 @@ public class Company {
 	
 	
 	
-	@Column(name = "ECC_NUMBER", length = 50)
+	@Column(name = "ECC_NO", length = 50)
 	private String eccNumber;
 
 	
@@ -287,10 +286,10 @@ public class Company {
 	@Column(name = "PLA_NO", length = 20)
 	private String plaNo;
 
-	@Column(name = "TDS_EXCISE_DIVISION", length = 100)
+	@Column(name = "EXCISE_DIVISION", length = 100)
 	private String tdsExciseDivision;
 
-	@Column(name = "TDS_BRANCH", length = 75)
+	@Column(name = "BRANCH", length = 75)
 	private String tdsBranch;
 
 	@Column(name = "IEC_CODE_NO", length = 20)
@@ -323,23 +322,19 @@ public class Company {
 
 	
 
-	@Column(name = "BANK_IFSC_CODE", length = 50)
-	private String bankIfscCode;
-
-	@Column(name = "BANK_NAME", length = 100)
-	private String bankName;
-
-	@Column(name = "BANK_ADDRESS", length = 220)
-	private String bankAddress;
-
-	@Column(name = "BANK_ACC_NO", length = 50)
-	private String bankAccNo;
-
-	@Column(name = "I_BAN", length = 50)
-	private String Iban;
-
-	@Column(name = "FSSAI_CODE", length = 50)
-	private String fssaiCode;
+	/*
+	 * @Column(name = "BANK_IFSC_CODE", length = 50) private String bankIfscCode;
+	 * 
+	 * @Column(name = "BANK_NAME", length = 100) private String bankName;
+	 * 
+	 * @Column(name = "BANK_ADDRESS", length = 220) private String bankAddress;
+	 * 
+	 * @Column(name = "BANK_ACC_NO", length = 50) private String bankAccNo;
+	 * 
+	 * @Column(name = "I_BAN", length = 50) private String Iban;
+	 * 
+	 * @Column(name = "FSSAI_CODE", length = 50) private String fssaiCode;
+	 */
 
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SELECT)
@@ -354,14 +349,6 @@ public class Company {
 		
 		System.out.println("==========>  IN COMPANY MASTER <==============");
 
-	}
-
-	public String getPfNumber() {
-		return PfNumber;
-	}
-
-	public void setPfNumber(String pfNumber) {
-		PfNumber = pfNumber;
 	}
 
 	public String getCompCode() {
@@ -452,6 +439,14 @@ public class Company {
 		this.deductionFromEmp = deductionFromEmp;
 	}
 
+	public String getPfNumber() {
+		return PfNumber;
+	}
+
+	public void setPfNumber(String pfNumber) {
+		PfNumber = pfNumber;
+	}
+
 	public String getcAddr1() {
 		return cAddr1;
 	}
@@ -490,6 +485,14 @@ public class Company {
 
 	public void setcEmail(String cEmail) {
 		this.cEmail = cEmail;
+	}
+
+	public String getcWebsite() {
+		return cWebsite;
+	}
+
+	public void setcWebsite(String cWebsite) {
+		this.cWebsite = cWebsite;
 	}
 
 	public String getcPhone1() {
@@ -652,13 +655,14 @@ public class Company {
 		this.rEmail = rEmail;
 	}
 
-	public String gettPfNumber() {
-		return tPfNumber;
+	public String getParentCCode() {
+		return parentCCode;
 	}
 
-	public void settPfNumber(String tPfNumber) {
-		this.tPfNumber = tPfNumber;
+	public void setParentCCode(String parentCCode) {
+		this.parentCCode = parentCCode;
 	}
+
 
 	public String gettGstNo() {
 		return tGstNo;
@@ -674,14 +678,6 @@ public class Company {
 
 	public void setTaxPayerLegalName(String taxPayerLegalName) {
 		this.taxPayerLegalName = taxPayerLegalName;
-	}
-
-	public String getcWebsite() {
-		return cWebsite;
-	}
-
-	public void setcWebsite(String cWebsite) {
-		this.cWebsite = cWebsite;
 	}
 
 	public String getTaxPayerTradeName() {
@@ -700,20 +696,12 @@ public class Company {
 		this.tFillingDate = tFillingDate;
 	}
 
-	public String gettPanNumber() {
-		return tPanNumber;
+	public String getPanNumber() {
+		return panNumber;
 	}
 
-	public void settPanNumber(String tPanNumber) {
-		this.tPanNumber = tPanNumber;
-	}
-
-	public String getTdPanNumber() {
-		return tdPanNumber;
-	}
-
-	public void setTdPanNumber(String tdPanNumber) {
-		this.tdPanNumber = tdPanNumber;
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
 	}
 
 	public String getTdGstNumber() {
@@ -794,6 +782,30 @@ public class Company {
 
 	public void setB17BondDate(Date b17BondDate) {
 		this.b17BondDate = b17BondDate;
+	}
+
+	public String getRcmcNo() {
+		return rcmcNo;
+	}
+
+	public void setRcmcNo(String rcmcNo) {
+		this.rcmcNo = rcmcNo;
+	}
+
+	public String getExpPerformance() {
+		return expPerformance;
+	}
+
+	public void setExpPerformance(String expPerformance) {
+		this.expPerformance = expPerformance;
+	}
+
+	public String getExpCertiificateNo() {
+		return expCertiificateNo;
+	}
+
+	public void setExpCertiificateNo(String expCertiificateNo) {
+		this.expCertiificateNo = expCertiificateNo;
 	}
 
 	public String getEccNumber() {
@@ -964,22 +976,6 @@ public class Company {
 		this.notificationNo1 = notificationNo1;
 	}
 
-	public String getRcmcNo() {
-		return rcmcNo;
-	}
-
-	public void setRcmcNo(String rcmcNo) {
-		this.rcmcNo = rcmcNo;
-	}
-
-	public String getExpCertiificateNo() {
-		return expCertiificateNo;
-	}
-
-	public void setExpCertiificateNo(String expCertiificateNo) {
-		this.expCertiificateNo = expCertiificateNo;
-	}
-
 	public String getCinNo() {
 		return cinNo;
 	}
@@ -988,53 +984,6 @@ public class Company {
 		this.cinNo = cinNo;
 	}
 
-	public String getBankIfscCode() {
-		return bankIfscCode;
-	}
-
-	public void setBankIfscCode(String bankIfscCode) {
-		this.bankIfscCode = bankIfscCode;
-	}
-
-	public String getBankName() {
-		return bankName;
-	}
-
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-
-	public String getBankAddress() {
-		return bankAddress;
-	}
-
-	public void setBankAddress(String bankAddress) {
-		this.bankAddress = bankAddress;
-	}
-
-	public String getBankAccNo() {
-		return bankAccNo;
-	}
-
-	public void setBankAccNo(String bankAccNo) {
-		this.bankAccNo = bankAccNo;
-	}
-
-	public String getIban() {
-		return Iban;
-	}
-
-	public void setIban(String iban) {
-		Iban = iban;
-	}
-
-	public String getFssaiCode() {
-		return fssaiCode;
-	}
-
-	public void setFssaiCode(String fssaiCode) {
-		this.fssaiCode = fssaiCode;
-	}
 
 	public List<InsuranceDetail> getInsuranceDetail() {
 		return insuranceDetail;
@@ -1052,13 +1001,5 @@ public class Company {
 		this.siteOffice = siteOffice;
 	}
 
-	public String getExpPerformance() {
-		return expPerformance;
-	}
 
-	public void setExpPerformance(String expPerformance) {
-		this.expPerformance = expPerformance;
-	}
-
-	
 }
