@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "EMPLOYEE_MASTER")
+@Table(name = "M_EMPLOYEE")
 public class Employee {
 	
 	
@@ -110,7 +110,7 @@ public class Employee {
 	@Column(name = "IT_PAN_NUMBER", length = 50)
 	private String itPanNumber;
 	
-	@Column(name = "COM_CODE", length = 50)
+	@Column(name = "CCODE", length = 50)
 	private String compCode;
 	
 	@Column(name = "EMP_IMG", length = 150)

@@ -26,12 +26,12 @@ public class FinancialActiveYear {
 	private FinancialYear financialYear;
 	
 	@OneToOne
-    @JoinColumn(name="USER_CODE")
+    @JoinColumn(name="UCODE")
     private MyUser myUser;
 
 	
 	@OneToOne
-    @JoinColumn(name="COMPANY_CODE")
+    @JoinColumn(name="CCODE")
 	private Company company;
 	
 	

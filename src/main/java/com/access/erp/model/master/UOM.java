@@ -21,11 +21,7 @@ public class UOM {
 	@Column(name="MEASUREMENT_SYSTEM",length = 50)
 	private String measurementSystem;
 	
-	@Column(name="TUNGSTEN_UOM_CODE",length = 50)
-	private String tungstenUomCode;
 	
-	@Column(name="TUNGSTEN_DESCRIPTION",length = 50)
-	private String tungstenDescription;
 
 	public UOM() {
 		super();
@@ -56,21 +52,7 @@ public class UOM {
 		this.measurementSystem = measurementSystem;
 	}
 
-	public String getTungstenUomCode() {
-		return tungstenUomCode;
-	}
-
-	public void setTungstenUomCode(String tungstenUomCode) {
-		this.tungstenUomCode = tungstenUomCode;
-	}
-
-	public String getTungstenDescription() {
-		return tungstenDescription;
-	}
-
-	public void setTungstenDescription(String tungstenDescription) {
-		this.tungstenDescription = tungstenDescription;
-	}
+	
 	
 	
 	

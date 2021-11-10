@@ -30,7 +30,7 @@ public class InsuranceDetail {
 	private String insuranceCode;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "COMPANY_CODE")
+	@JoinColumn(name = "CCODE")
 	private Company company;
 	
 	

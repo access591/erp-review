@@ -18,12 +18,12 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="MY_USER")
+@Table(name="M_MY_USER")
 @Component
 public class MyUser {
 
 	@Id
-	@Column(name = "USER_CODE",length = 50)
+	@Column(name = "UCODE",length = 50)
 	private String userCode; 
 	
 	@Column(name = "USER_NAME",length = 50)

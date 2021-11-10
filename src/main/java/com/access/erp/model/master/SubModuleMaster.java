@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SUB_MODULE_MASTER")
+@Table(name = "M_SUB_MODULE")
 public class SubModuleMaster {
 	
 	
