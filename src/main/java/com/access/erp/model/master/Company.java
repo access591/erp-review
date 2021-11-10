@@ -148,6 +148,8 @@ public class Company {
 	
 	@Column(name = "PARENT_CCODE", length = 30)
 	private String parentCCode;
+	
+	
 
 	
 
