@@ -15,12 +15,7 @@ public class ErpSolutionApplication extends SpringBootServletInitializer{
 		SpringApplication.run(ErpSolutionApplication.class, args);
 		
 		System.out.println(" Running...");
-		
-		
-		 
-		
 	
-		
 		
 	}
 	
