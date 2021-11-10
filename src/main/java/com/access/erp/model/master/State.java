@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="STATE_MASTER")
+@Table(name="M_STATE")
 public class State {
 
 	

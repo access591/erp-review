@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Company {
 
 	@Id
-	@Column(name = "COMP_CODE", length = 30)
+	@Column(name = "CCODE", length = 30)
 	private String compCode;
 
-	@Column(name = "COMP_NAME", length = 100)
+	@Column(name = "CNAME", length = 100)
 	private String compName;
 	
 	@Column(name = "DIR_NAME", length = 75)
@@ -36,7 +36,7 @@ public class Company {
 	@Column(name = "PARENT_CODE", length = 50)
 	private String parentCode;
 	
-	@Column(name = "COMP_LOGO", length = 500)
+	@Column(name = "CLOGO", length = 500)
 	private String compLogo;
 
 	@Column(name = "CALCULATE_ESI", length = 10)

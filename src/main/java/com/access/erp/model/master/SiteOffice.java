@@ -69,7 +69,7 @@ public class SiteOffice {
 	private String phone2;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "COMPANY_CODE")
+	@JoinColumn(name = "CCODE")
 	private Company company;
 
 	public SiteOffice() {

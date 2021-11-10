@@ -1,5 +1,6 @@
 package com.access.erp.model.master;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DESIGNATION_MASTER")
+@Table(name = "M_DESIGNATION")
 public class Designation {
 	
 	@Id
@@ -38,6 +39,18 @@ public class Designation {
 	
 	@Column(name = "INCREMENT2")
 	private long increment2;
+	
+	@Column(name = "INS_BY",length = 50)
+	private String insertedBy;
+
+	@Column(name = "INS_DATE")
+	private Date insertedDate=new Date();
+	
+	@Column(name = "UPDATE_BY",length = 50)
+	private String updateBy;
+
+	@Column(name = "UPDATE_DATE")
+	private Date updatedDate=new Date();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "designation",cascade = CascadeType.ALL)
 	List<Employee> employees;
@@ -118,6 +131,38 @@ public class Designation {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+
+	public String getInsertedBy() {
+		return insertedBy;
+	}
+
+	public void setInsertedBy(String insertedBy) {
+		this.insertedBy = insertedBy;
+	}
+
+	public Date getInsertedDate() {
+		return insertedDate;
+	}
+
+	public void setInsertedDate(Date insertedDate) {
+		this.insertedDate = insertedDate;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 	
 	

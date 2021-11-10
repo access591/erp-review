@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MODULE_MASTER")
+@Table(name = "M_MODULE")
 public class ModuleMaster {
 	
 	@Id
