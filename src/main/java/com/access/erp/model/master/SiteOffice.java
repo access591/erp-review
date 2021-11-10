@@ -29,7 +29,7 @@ public class SiteOffice {
 	@Column(name="SITE_INCHARGE",length=50)
 	private String siteIncharge;
 	
-	@Column(name="SITE_ADDRESS",length=100)
+	@Column(name="SITE_ADDR",length=100)
 	private String siteAddress;
 	
 	@Column(name="APPROVED_BUDGET",length=15)
@@ -38,17 +38,6 @@ public class SiteOffice {
 	@Column(name="LEAD_TIME",length=10)
 	private int leadTime;
 	
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name = "SUPPLIER_CODE")
-//	private SupplierMaster supplier;
-//	
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name = "CITY_CODE")
-//	private City city;
-//	
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name = "STATE_CODE")
-//	private State state;
 	
 	@Column(name="PIN_CODE",length=10)
 	private int pinCode;
