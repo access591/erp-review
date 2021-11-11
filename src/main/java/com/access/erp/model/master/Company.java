@@ -84,12 +84,12 @@ public class Company {
 	@Column(name = "C_PHONE2", length = 45)
 	private String cPhone2;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "C_STATE_CODE")
+	@ManyToOne
+	@JoinColumn(name = "C_STATE_CODE",nullable = true)
 	private State cState;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "CITY")
+	@ManyToOne
+	@JoinColumn(name = "CITY",nullable = true)
 	private City cCity;
 	
 	@Column(name = "C_PIN", length = 8)
@@ -123,11 +123,11 @@ public class Company {
 	private String rStreet;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "R_STATE")
+	@JoinColumn(name = "R_STATE",nullable = false)
 	private State rState;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "R_CITY")
+	@JoinColumn(name = "R_CITY",nullable = false)
 	private City rCity;
 
 	@Column(name = "R_LOCATION", length = 50)

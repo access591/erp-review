@@ -842,7 +842,7 @@
 																		<fieldset>
 																			<input type="number" class="form-control"
 																				placeholder="" title="approval budget"
-																				name="siteOffice[0].approvedBudget">
+																				name="siteOffice[0].approvedBudget" value="0">
 																		</fieldset>
 																	</td>
 																</tr>
@@ -972,7 +972,7 @@
 					+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='siteOffice[" + idIndex2 + "].siteLocation'></fieldset></td>"
 					+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='siteOffice[" + idIndex2 + "].siteIncharge'></fieldset></td>"
 					+ "<td><fieldset><input type='text' class='form-control'placeholder=''name='siteOffice[" + idIndex2 + "].siteAddress'></fieldset></td>"
-					+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='siteOffice[" + idIndex2 + "].approvedBudget'></fieldset></td>"
+					+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='siteOffice[" + idIndex2 + "].approvedBudget' value='0'></fieldset></td>"
 				);
 
 				$('#example2').append(
@@ -1090,34 +1090,7 @@
 
 
 
-		$(document).ready(function () {
-			$("#submit").click(function () {
-				var user_mobile1 = document.getElementById("phone1");
-				var user_mobile2 = document.getElementById("phone2");
-				var user_mobile3 = document.getElementById("telephone");
-
-				var pat1 = /^\d{6}$/;
-				var pattern = /^\d{10}$/;
-				var filter = /^([a-z A-Z 0-9 _\.\-])+\@(([a-z A-Z 0-9\-])+\.)+([a-z A-z 0-9]{3,3})+$/;
-
-				if (!pattern.test(user_mobile.value)) {
-					$('#phone1Error').show();
-					user_mobile1.focus();
-					return false;
-				}
-				if (!pattern.test(user_mobile2.value)) {
-					$('#phone2Error').show();
-					user_mobile2.focus();
-					return false;
-				}
-				if (!pattern.test(user_mobile2.value)) {
-					$('#phone3Error').show();
-					user_mobile3.focus();
-					return false;
-				}
-				
-			});
-		});
+		
 
 
 
