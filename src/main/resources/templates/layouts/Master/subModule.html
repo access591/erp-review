@@ -12,6 +12,17 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -60,7 +71,7 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/sub-module/}" th:object="${subModule}"
+											<form id="subModuleMasterForm"role="form" th:action="@{/sub-module/}" th:object="${subModule}"
 												method="post">
 												<div class="box-body">
 
@@ -70,9 +81,10 @@
 															th:field="*{subModuleCode}">
 													</div>
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">SubModule Name</label> <input
-															type="text" class="form-control" placeholder="location"
-															th:field="*{subModuleName}">
+														<label for="inputEmail4">SubModule Name</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="location" title="This field is required"
+															th:field="*{subModuleName}" required>
 													</div>
 
 
@@ -80,42 +92,30 @@
 
 													<div class="form-group col-md-12">
 														<label class="form-label">Select Module</label> <label
-															style="color: red">*</label> <select
-															title="Module Name" class="form-control"
-															th:field="*{moduleMaster}" required>
+															style="color: red">*</label> <select title="Module Name"
+															class="form-control" th:field="*{moduleMaster}" required>
 															<option value="">Select</option>
 															<option th:each="module :  ${moduleList}"
 																th:text="${module.moduleName}"
 																th:value=" ${module.moduleCode}"></option>
 														</select>
 													</div>
-													
-													<div class="form-group col-md-6">
-														<label for="inputEmail4">Sequence Number</label> <input
-															type="text" class="form-control" placeholder="location"
+
+													<div class="form-group col-md-12">
+														<label for="inputEmail4">Sequence Number</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="location"
 															th:field="*{seqNoSubModule}">
 													</div>
 
 
 
 
-													<div class="form-group" style="margin: 10px;">
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="Y">
-															<label class="form-check-label"
-																for="inlineRadio1">Active</label>
-														</div>
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="N">
-															<label class="form-check-label"
-																for="inlineRadio1">In-Active</label>
-														</div>
-
-													</div>
+													<label class="checkbox-inline">
+														<input type="radio" value="Y" name="inlineRadioOptions">Active
+														<input type="radio" value="N"
+															name="inlineRadioOptions">In-Active
+													</label>
 
 												</div><!-- /.box-body -->
 
@@ -147,10 +147,20 @@
 			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+
+
+			<script>
+
+				$("#subModuleMasterForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
+
 			<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			<!--<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>-->
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>

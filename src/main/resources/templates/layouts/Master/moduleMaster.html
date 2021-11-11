@@ -18,6 +18,15 @@
 		rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -67,24 +76,27 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/module/}" method="POST"
+											<form id="moduleMasterForm" role="form" th:action="@{/module/}" method="POST"
 												th:object="${module}">
 												<div class="box-body">
 
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">Module Code</label> <input type="text"
-															class="form-control" placeholder="module code"
+														<label for="inputEmail4">Module Code</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="Module Code" title="module code"
 															th:field="*{moduleCode}">
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputPassword4">Module Name</label> <input
+														<label for="inputPassword4">Module Name</label><span
+															style="color: red">*</span> <input title="This field is required"
 															type="text" class="form-control" placeholder="module name"
-															th:field="*{moduleName}">
+															th:field="*{moduleName}" required>
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputPassword4">Sequence Number</label> <input
-															type="text" class="form-control"
-															placeholder="sequence number" th:field="*{seqNo}">
+														<label for="inputPassword4">Sequence Number</label><span
+															style="color: red">*</span> <input
+															type="text" class="form-control" title="This field is required"
+															placeholder="sequence number" th:field="*{seqNo}" required>
 													</div>
 
 
@@ -151,6 +163,15 @@
 
 				});
 			</script>
+			
+			<script>
+
+				$("#moduleMasterForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
+
 			<!--   <section class="content">
         
         </section>-->

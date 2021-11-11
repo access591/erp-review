@@ -12,6 +12,18 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -60,23 +72,33 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/store/}" method="POST" th:object="${store}">
+											<form id="storeMasterForm" role="form" th:action="@{/store/}" method="POST"
+												th:object="${store}">
 												<div class="box-body">
 
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">Store Code</label> <input type="text"
-															class="form-control" placeholder="store code"
+															class="form-control" placeholder="Store Code"
 															th:field="*{storeCode}">
 													</div>
+													
+													<div class="form-group col-md-12">
+														<label for="inputEmail4">Description</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="Description" required
+															th:field="*{description}" title="This field is required">
+													</div>
+													
+													
 													<div class="form-group col-md-12">
 														<label class="form-label">Status</label> <label
 															style="color: red">*</label>
 														<select class="form-control" id="" title="status"
 															th:field="*{storeStatus}" required>
-															<option value="">Select</option>
+															
 
-															<option value="Normal">Normal</option>
-															<option value="Ondate">As On Date</option>
+															<option value="functional" selected>Functional</option>
+															<option value="non-functional">Non-Functioanl</option>
 														</select>
 													</div>
 
@@ -85,22 +107,18 @@
 															style="color: red">*</label>
 														<select class="form-control" id="" title="type"
 															th:field="*{storeType}" required>
-															<option value="">Select</option>
-															<option value="t-1">type-1</option>
-															<option value="t-2">type-2</option>
+															
+															<option value="store">Store</option>
+															<option value="godown">Godown</option>
 														</select>
 													</div>
 
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">Location</label> <input type="text"
-															class="form-control" placeholder="location"
+															class="form-control" placeholder="Location" title="location"
 															th:field="*{location}">
 													</div>
-													<div class="form-group col-md-12">
-														<label for="inputEmail4">Description</label> <input type="text"
-															class="form-control" placeholder="description"
-															th:field="*{description}">
-													</div>
+													
 
 													<div class="form-check form-check-inline">
 														<input class="form-check-input" type="radio"
@@ -147,6 +165,14 @@
 			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+
+			<script>
+
+				$("#storeMasterForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
 			<!--   <section class="content">
         
         </section>-->

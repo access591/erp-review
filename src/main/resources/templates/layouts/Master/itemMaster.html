@@ -18,6 +18,17 @@
 		rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
 
 
 </head>
@@ -45,7 +56,7 @@
 									<h3 class="box-title">Item Master</h3>
 								</div>
 								<!-- form start -->
-								<form role="form" th:action="@{/item/}" method="post" th:object="${item}" novalidate>
+								<form id="itemMasterForm"role="form" th:action="@{/item/}" method="post" th:object="${item}" novalidate>
 
 									<div class="box-body">
 
@@ -85,9 +96,11 @@
 																</div>
 																<div class="form-group col-md-8">
 																	<label for="inputPassword4">Description</label>
-																	<input type="text" title="description"
+																	<span
+															style="color: red">*</span>
+																	<input type="text" title="This field is required"
 																		class="form-control form-control-sm"
-																		placeholder="Decription"
+																		placeholder="Decription" required
 																		th:field="*{description}">
 																</div>
 
@@ -100,9 +113,9 @@
 																<div class="form-group col-md-4">
 																	<label class="form-label">UOM Name</label> <label
 																		style="color: red">*</label> <select
-																		class="form-control" title="uom Name" required
+																		class="form-control" title="This field is required" 
 																		th:field="*{uom}" id="uomName"
-																		onchange="getUomNameInfo()">
+																		onchange="getUomNameInfo()" required>
 																		<option value="">Select</option>
 																		<option th:each="uom :  ${listUom}"
 																			th:text="${uom.unit}"
@@ -114,8 +127,8 @@
 																<div class="form-group col-md-4">
 																	<label class="form-label">Store Info</label> <label
 																		style="color: red">*</label> <select
-																		class="form-control" title="store info"
-																		th:field="*{storeInfo}">
+																		class="form-control" title="This field is required"
+																		th:field="*{storeInfo}" required>
 																		<option value="">Select</option>
 																		<!--<option th:each="store :  ${listStore}"
 																			th:text="${store.storeCode}"
@@ -143,7 +156,7 @@
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Work Center Name</label>
-															<label style="color: red">*</label> <select
+															 <select
 																class="form-control" title="work center Name" required>
 																<option value="">Select</option>
 																<option value="demo1">demo-1</option>
@@ -172,8 +185,7 @@
 														</div>
 
 														<div class="form-group col-md-3">
-															<label class="form-label">GST</label> <label
-																style="color: red">*</label>
+															<label class="form-label">GST</label> 
 															<select class="form-control" title="gst" th:field="*{cgst}">
 																<option value="">Select</option>
 																<option value="gst">GST</option>
@@ -194,8 +206,7 @@
 
 
 														<div class="form-group col-md-3">
-															<label class="form-label">Category</label> <label
-																style="color: red">*</label> <select
+															<label class="form-label">Category</label>  <select
 																class="form-control" title="category"
 																th:field="*{category}">
 																<option value="">Select Category</option>
@@ -260,14 +271,16 @@
 																		type="number"
 																		class="form-control form-control-sm"
 																		placeholder="Min Level" title="min level"
-																		th:field="*{minLevel}" style='text-align: right;'>
+																		th:field="*{minLevel}"
+																		style='text-align: right;'>
 																</div>
 																<div class="form-group col-md-4">
 																	<label for="inputPassword4">Max. Stock</label>
 																	<input type="number"
 																		class="form-control form-control-sm"
 																		title="max stock" placeholder="Max Stock"
-																		th:field="*{maxLavel}" style='text-align: right;'>
+																		th:field="*{maxLavel}"
+																		style='text-align: right;'>
 																</div>
 
 																<div class="form-group col-md-4">
@@ -276,7 +289,8 @@
 																		class="form-control form-control-sm"
 																		placeholder="Recorder Level"
 																		title="recorder level"
-																		th:field="*{reOrderLevel}"  style='text-align: right;'>
+																		th:field="*{reOrderLevel}"
+																		style='text-align: right;'>
 																</div>
 															</div>
 														</div>
@@ -301,8 +315,8 @@
 																<div class="form-group col-md-4">
 																	<label class="form-label">Store Name</label> <label
 																		style="color: red">*</label> <select
-																		class="form-control" title="store name"
-																		th:field="*{store}">
+																		class="form-control" title="This field is required"
+																		th:field="*{store}" required>
 																		<option value="">Select</option>
 																		<option th:each="store :  ${listStore}"
 																			th:text="${store.storeCode}"
@@ -344,7 +358,7 @@
 																</div>
 																<div class="form-group col-md-6">
 																	<label class="form-label">Account Name</label>
-																	<label style="color: red">*</label> <select
+																	<select
 																		class="form-control" id="departmentDropdown"
 																		title="account name">
 																		<option value="">Select</option>
@@ -374,7 +388,7 @@
 																</div>
 																<div class="form-group col-md-4">
 																	<label class="form-label">Product Name</label>
-																	<label style="color: red">*</label> <select
+																	<select
 																		class="form-control" id="departmentDropdown"
 																		title="product name">
 																		<option value="">Select</option>
@@ -393,8 +407,7 @@
 																</div>
 
 																<div class="form-group col-md-4">
-																	<label class="form-label">Design Name</label> <label
-																		style="color: red">*</label> <select
+																	<label class="form-label">Design Name</label>  <select
 																		class="form-control" id="departmentDropdown"
 																		title="design name">
 																		<option value="">Select</option>
@@ -562,8 +575,9 @@
 																		<fieldset>
 																			<input type="number" class="form-control"
 																				placeholder="" title="qty"
-																				name="packingDetails[0].qty" 
-																				oninput="limitDecimalPlaces(event, 2)" style="text-align: right;">
+																				name="packingDetails[0].qty"
+																				oninput="limitDecimalPlaces(event, 2)"
+																				style="text-align: right;">
 																		</fieldset>
 																	</td>
 																	<td>
@@ -688,6 +702,15 @@
 					}
 				}
 			</script>
+
+			<script>
+
+				$("#itemMasterForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
+
 
 
 			<!--   <section class="content">
