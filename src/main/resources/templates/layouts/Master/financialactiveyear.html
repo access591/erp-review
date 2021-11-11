@@ -76,9 +76,9 @@
 												<div class="box-body">
 
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">User Code</label> <select
+														<label for="inputEmail4">User Code</label><span style="color: red">*</span> <select
 															class="form-control" id="userCode" th:field="*{myUser}"
-															onchange="changeUserCode()" title="user code" required>
+															onchange="changeUserCode()" title="This field is required" required>
 															<option value="">Select</option>
 															<option th:each="user :  ${listMyUser}"
 																th:text="${user.userCode}" th:value=" ${user.userCode}">
@@ -88,15 +88,15 @@
 
 
 													<div class="form-group col-md-6">
-														<label for="inputPassword4">User Name</label> <input type="text"
+														<label for="inputPassword4">User Name</label><span style="color: red">*</span> <input type="text"
 															class="form-control" placeholder="User Name" id="userName"
 															title="user name">
 													</div>
 
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">FinancialYear</label> <select
+														<label for="inputEmail4">FinancialYear</label><span style="color: red">*</span> <select
 															class="form-control" id="financialYear" onchange=""
-															title="Financial year" required th:field="*{financialYear}">
+															title="This field is required" required th:field="*{financialYear}">
 															<option value="">Select Financial year</option>
 															<option th:each="financialYear :  ${listFinancialyear}"
 																th:text="${financialYear.financialYearCode}"
@@ -109,9 +109,9 @@
 
 
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">Select Company</label> <select
+														<label for="inputEmail4">Select Company</label><span style="color: red">*</span> <select
 															class="form-control" id="company" th:field="*{company}"
-															onchange="changeUserCode()" title="compnay" required>
+															onchange="changeUserCode()" title="This field is required" required>
 															<option value="">Select</option>
 															<option th:each="company :  ${listCompany}"
 																th:text="${company.compName}"

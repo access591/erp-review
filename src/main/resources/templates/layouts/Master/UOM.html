@@ -12,6 +12,18 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -34,28 +46,26 @@
 									<h3 class="box-title">UOM</h3>
 								</div>
 								<!-- form start -->
-								<form role="form" th:action="@{/uom/}" method="POST" th:object="${uom}">
+								<form id="uomForm" role="form" th:action="@{/uom/}" method="POST" th:object="${uom}">
 									<div class="box-body">
 
 										<div class="form-group col-md-12">
-											<label>UOM Code</label><label
-												style="color: red">*</label>
+											<label>UOM Code</label><label style="color: red">*</label>
 											<input type="text" class="form-control" placeholder="Uom Code"
-												th:field="*{uomCode}" title="uom code" required/>
+												th:field="*{uomCode}" title="This field is required" required />
 
 										</div>
 										<div class="form-group col-md-12">
-											<label>Unit</label><label
-												style="color: red">*</label>
+											<label>Unit</label><label style="color: red">*</label>
 											<input type="text" class="form-control" placeholder="Unit"
-												th:field="*{unit}" title="unit" required />
+												th:field="*{unit}" title="This field is required" required />
 
 										</div>
 
 										<div class="form-group col-lg-12">
 											<label class="form-label">Measurement System</label>
-											 <select class="form-control"
-												title="measurement system" th:field="*{measurementSystem}">
+											<select class="form-control" title="measurement system"
+												th:field="*{measurementSystem}">
 												<option value="">Select</option>
 												<option value="british">British</option>
 												<option value="french">French</option>
@@ -72,13 +82,13 @@
 										<input type="submit" value="Submit" class="btn btn-primary" /> <input
 											type="reset" value="Reset" class="btn btn-danger" />
 									</div>
-									
+
 
 								</form>
-								
-									<div style="width: parent; text-align-last: right; margin:8px">
-											<a th:href="@{/uom/list}">View All UOM</a>
-										</div>
+
+								<div style="width: parent; text-align-last: right; margin:8px">
+									<a th:href="@{/uom/list}">View All UOM</a>
+								</div>
 							</div>
 						</div>
 
@@ -91,6 +101,14 @@
 			</section>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+
+			<script>
+
+				$("#uomForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
 			<!--   <section class="content">
         
         </section>-->

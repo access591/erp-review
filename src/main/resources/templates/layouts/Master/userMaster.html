@@ -12,6 +12,16 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -60,12 +70,13 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/user/}" method="POST" th:object="${user}">
+											<form id="userMasterForm" role="form" th:action="@{/user/}" method="POST"
+												th:object="${user}">
 												<div class="box-body">
 
 													<div class="form-group col-md-12">
 														<label>Employee</label> <label style="color: red">*</label>
-														<select class="form-control" title="state Name" required
+														<select class="form-control" title="Employee" required
 															th:field="*{employee}">
 															<option value="">Select</option>
 															<option th:each="employee :  ${listEmployee}"
@@ -75,22 +86,27 @@
 														</select>
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">User Code</label> <input type="text"
-															class="form-control" placeholder="district"
-															th:field="*{userCode}">
+														<label>User Code</label><span style="color: red">*</span> <input
+															type="text" id="userCode" name="userCode"
+															class="form-control" placeholder="User Code"
+															title="This field is required" th:field="*{userCode}"
+															required>
 													</div>
 
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">User Name</label> <input type="text"
-															class="form-control" placeholder="city type"
-															th:field="*{userName}">
+														<label for="inputEmail4">User Name</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="User Name"
+															title="This field is required" th:field="*{userName}"
+															required>
 													</div>
 
 
 													<div class="form-group col-md-12">
-														<label>User Password</label> <input type="password"
-															class="form-control" placeholder="city code"
-															th:field="*{userPassword}">
+														<label>User Password</label><span style="color: red">*</span>
+														<input type="password" class="form-control"
+															placeholder="User Password" title="This field is required"
+															th:field="*{userPassword}" required>
 													</div>
 
 
@@ -143,10 +159,19 @@
 			</div>
 
 			<div th:replace="fragments/footer :: footer">...</div>
+
+
+			<script>
+
+				$("#userMasterForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
 			<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+			<!--<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>-->
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
