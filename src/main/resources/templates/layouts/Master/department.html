@@ -19,6 +19,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
+
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -68,60 +81,53 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/department/}" method="POST"
-												th:object="${department}">
+											<form id="departmentForm" role="form" th:action="@{/department/}"
+												method="POST" th:object="${department}">
 												<div class="box-body">
 
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">Department Code</label> <input
-															type="text" class="form-control" placeholder="city code"
-															th:field="*{deptCode}">
+															type="text" class="form-control"
+															placeholder="Department Code" th:field="*{deptCode}">
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputPassword4">Department Name</label> <input
-															type="text" class="form-control" placeholder="city name"
-															th:field="*{deptName}">
+														<label for="inputPassword4">Department Name</label><span
+															style="color: red">*</span> <input
+															type="text" class="form-control" title="This field is required" required
+															placeholder="Department Name" th:field="*{deptName}">
 													</div>
 
 
 
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">Company Code</label> <input type="text"
-															class="form-control" placeholder="city code"
-															th:field="*{compCode}">
-													</div>
-													<div class="form-group col-md-6">
-														<label for="inputPassword4">Department Head</label> <input
-															type="text" class="form-control" placeholder="city name"
-															th:field="*{depHead}">
-													</div>
-
-
-
-													<div class="form-group col-md-6">
 														<label for="inputEmail4">Department Sr Code</label> <input
-															type="text" class="form-control" placeholder="city code"
-															th:field="*{deptSrCode}">
+															type="text" class="form-control"
+															placeholder="Department Sr Code" th:field="*{deptSrCode}">
+													</div>
+													<div class="form-group col-md-6">
+														<label for="inputPassword4">Department Head Code</label> <input
+															type="text" class="form-control"
+															placeholder="Department Head Code" th:field="*{depHead}">
 													</div>
 
-													<div class="form-group" style="margin: 10px;">
 
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="Y">
-															<label class="form-check-label"
-																for="inlineRadio1">Active</label>
-														</div>
 
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="N">
-															<label class="form-check-label"
-																for="inlineRadio1">In-Active</label>
-														</div>
-
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Department Head Name</label><span
+															style="color: red">*</span>
+														<select class="form-control" id="" title="This field is required" required>
+															<option value="">Select</option>
+															<option value="Most">head-1</option>
+															<option value="Normal">head 2</option>
+															<option value="Ondate">head 3</option>
+														</select>
 													</div>
 
+													<label class="checkbox-inline">
+														<input type="radio" value="Y" name="inlineRadioOptions">Active
+														<input type="radio" value="N"
+															name="inlineRadioOptions">In-Active
+													</label>
 												</div><!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
@@ -170,6 +176,16 @@
 					}
 
 				});
+			</script>
+
+
+
+			<script>
+
+				$("#departmentForm").validate({
+					ignoreTitle: true
+				});
+
 			</script>
 			<!--   <section class="content">
 			
