@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	
+
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
@@ -23,12 +23,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
 
-<style>
-.error {
-  color: red;
-  font-size: 11px;
-}
-</style>
+
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -79,7 +81,8 @@
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div><!-- /.box-header -->
 											<!-- form start -->
-											<form id="cityForm" role="form" th:action="@{/city/}" method="POST" th:object="${city}">
+											<form id="cityForm" role="form" th:action="@{/city/}" method="POST"
+												th:object="${city}">
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
@@ -88,9 +91,10 @@
 													</div>
 
 													<div class="form-group col-md-6">
-														<label>City Name</label> <input type="text" class="form-control"
-															id="cityName" name="cityName"
-															placeholder="city name" th:field="*{cityName}">
+														<label>City Name</label> <span
+															style="color: red">*</span><input type="text" class="form-control"
+															id="cityName" name="cityName" placeholder="City Name" title="This field is required"
+															th:field="*{cityName}" required>
 													</div>
 
 													<div class="form-group col-md-12">
@@ -101,7 +105,7 @@
 
 													<div class="form-group col-md-12">
 														<label>State</label> <label style="color: red">*</label> <select
-															class="form-control" title="state Name" required
+															class="form-control" title="This field is required" required
 															th:field="*{state}">
 															<option value="">Select State</option>
 															<option th:each="state :  ${stateList}"
@@ -189,10 +193,19 @@
 				});
 			</script>
 
+
+			<script>
+
+				$("#cityForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
+
 			<!--   <section class="content">
         
         </section>-->
-			
+
 			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>

@@ -12,11 +12,24 @@
 	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
 	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
 		rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+	<style>
+		.error {
+			color: red;
+			font-size: 11px;
+		}
+	</style>
 
 
 </head>
@@ -37,40 +50,40 @@
 						<div class="col-md-6" style="margin-top: 20px;">
 
 							<div class="box box-primary">
-							
-							<input type="hidden" id="mess" name="mess" th:value="${message}">
-							
+
+								<input type="hidden" id="mess" name="mess" th:value="${message}">
+
 								<div class="box-header with-border">
 									<h3 class="box-title">State Master</h3>
 								</div>
 								<!-- form start -->
-								<form role="form" th:action="@{/state/}" method="POST" th:object="${state}">
+								<form id="stateForm" role="form" th:action="@{/state/}" method="POST"
+									th:object="${state}">
 									<div class="box-body">
 
-										
-											<div class="form-group col-md-6">
-												<label for="inputEmail4">State Code</label> <input type="text"
-													class="form-control" placeholder="state code"
-													th:field="*{stateCode}">
-											</div>
-											<div class="form-group col-md-6">
-												<label for="inputPassword4">State Name</label> <input type="text"
-													class="form-control" placeholder="state name"
-													th:field="*{stateName}">
-											</div>
 
-										
+										<div class="form-group col-md-6">
+											<label for="inputEmail4">State Code</label> <input type="text"
+												class="form-control" placeholder="state code" th:field="*{stateCode}">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPassword4">State Name</label><span
+												style="color: red">*</span> <input type="text" class="form-control"
+												placeholder="State Name" th:field="*{stateName}" title="This field is required" required>
+										</div>
+
+
 
 										<div class="form-group col-md-12">
 											<label for="inputEmail4">Gst State Code</label> <input type="text"
-												class="form-control" placeholder="state gst code"
+												class="form-control" placeholder="State Gst Code" title="state gst code"
 												th:field="*{gstStateCode}">
 										</div>
 
 										<div class="form-group col-md-12">
 											<label class="form-label">Country Name</label> <label
 												style="color: red">*</label> <select class="form-control"
-												title="country Name" required th:field="*{country}">
+												title="This field is required" required th:field="*{country}">
 												<option value="">Select Country</option>
 												<option th:each="country :  ${countryList}"
 													th:text="${country.countryName}" th:value=" ${country.countryCode}">
@@ -79,24 +92,18 @@
 										</div>
 
 
-										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions"
-												id="inlineRadio1" value="Y"> <label class="form-check-label"
-												for="inlineRadio1" th:field="*{activeYn}">Active</label>
-										</div>
+										<label class="checkbox-inline">
+											<input type="radio" value="Y" name="inlineRadioOptions">Active
+											<input type="radio" value="N" name="inlineRadioOptions">In-Active
+										</label>
 
-										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions"
-												id="inlineRadio1" value="N"> <label class="form-check-label"
-												for="inlineRadio1" th:field="*{activeYn}">In-Active</label>
-										</div>
 									</div>
 
 									<div class="box-footer">
 										<input type="submit" value="Submit" class="btn btn-primary" />
 										<input type="reset" value="Reset" class="btn btn-danger" />
 									</div>
-									
+
 									<a th:href="@{/state/list}">view state list</a>
 
 								</form>
@@ -112,7 +119,7 @@
 			</section>
 
 			<div th:replace="fragments/footer :: footer">...</div>
-			
+
 			<script>
 
 				$(document).ready(function () {
@@ -130,6 +137,15 @@
 					}
 
 				});
+			</script>
+
+
+			<script>
+
+				$("#stateForm").validate({
+					ignoreTitle: true
+				});
+
 			</script>
 
 			<!--   <section class="content">
