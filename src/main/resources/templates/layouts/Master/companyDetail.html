@@ -407,7 +407,7 @@
 																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 																					th:field="*{cPhone2}"
 																					maxlength="12">
-																					<span class="error" id="phone2Error"
+																				<span class="error" id="phone2Error"
 																					style='display:none'>Phone nubmer is
 																					in 0123456789 format</span>
 																			</div>
@@ -428,6 +428,15 @@
 													</div>
 
 													<!-- ADD -->
+													
+													<div class="box-footer">
+												<button type="submit" class="btn btn-primary"
+													id="submit">Submit</button>
+
+												<button type="reset" class="btn btn-danger" value="Reset">
+													&nbsp;Reset
+												</button>
+											</div>
 												</div>
 												<!-- end company detail tab -->
 
@@ -550,9 +559,9 @@
 																	name="telephone" placeholder="Telephone Number"
 																	th:field="*{rTel}" title="telephone number"
 																	maxlength="12">
-																	<span class="error" id="phone3Error"
-																					style='display:none'>Phone nubmer is
-																					in 0123456789 format</span>
+																<span class="error" id="phone3Error"
+																	style='display:none'>Phone nubmer is
+																	in 0123456789 format</span>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Email</label> <input
@@ -842,7 +851,8 @@
 																		<fieldset>
 																			<input type="number" class="form-control"
 																				placeholder="" title="approval budget"
-																				name="siteOffice[0].approvedBudget" value="0">
+																				name="siteOffice[0].approvedBudget"
+																				value="0">
 																		</fieldset>
 																	</td>
 																</tr>
@@ -854,14 +864,7 @@
 
 													</div>
 
-													<div class="box-footer">
-														<button type="submit" class="btn btn-primary"
-															id="submit">Submit</button>
 
-														<button type="reset" class="btn btn-danger" value="Reset">
-															&nbsp;Reset
-														</button>
-													</div>
 
 												</div>
 												<!--end site offices detail -->
@@ -869,6 +872,9 @@
 
 											</div>
 											<!--end main div content-->
+
+
+											
 
 
 
@@ -1090,7 +1096,7 @@
 
 
 
-		
+
 
 
 
