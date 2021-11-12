@@ -65,7 +65,7 @@
 							<div class="box box-primary">
 								<input type="hidden" id="mess" name="mess" th:value="${message}">
 								<div class="box-header with-border">
-									<h3 class="box-title">Item Master</h3>
+									<h3 class="box-title">Party Master</h3>
 								</div>
 								<!-- form start -->
 								<form id="itemMasterForm" role="form" th:action="@{/item/}"
@@ -77,11 +77,12 @@
 
 											<ul class="nav nav-pills">
 												<li class="active"><a data-toggle="tab"
-													href="#itemdetail">Item Detail</a></li>
+													href="#itemdetail">Party Detail</a></li>
 
 												<li><a data-toggle="tab" href="#taxdetail">Tax
 														Detail</a></li>
-												<li><a data-toggle="tab" href="#packing">Packing</a></li>
+												<li><a data-toggle="tab" href="#packing">Billing
+														Detail</a></li>
 
 
 
@@ -96,8 +97,124 @@
 
 													<div class="box">
 
-														<h5>Item Details</h5>
+														<h5>Party Details</h5>
 
+														<div class="box-body">
+
+															<div class="form-group col-md-4">
+																<label for="inputAddress">Party Code</label><span
+																	style="color: red">*</span> <input type="text"
+																	class="form-control" placeholder="Party Code"
+																	title="party code" required>
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputEmail4">Name</label><span
+																	style="color: red">*</span> <input type="text"
+																	class="form-control" placeholder="Name" title="name"
+																	required>
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Type Number</label><span
+																	style="color: red">*</span> <input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Type Number" title="type number">
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Person Through</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Person Through" title="person through">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Representative Code</label>
+																<input type="text" class="form-control"
+																	id="inputPassword4" placeholder="Representative Code"
+																	title="representative code">
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Representative Name</label>
+																<input type="text" class="form-control"
+																	id="inputPassword4" placeholder="Representative Name"
+																	title="representative name">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">work Address</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Work Address" title="work address">
+															</div>
+
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">City</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="City" title="city">
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">State</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="State" title="state">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Country</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Country" title="country">
+															</div>
+
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Pin</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Pin" title="pin">
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Phone</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Phone" title="phone">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Mobile</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Mobile" title="mobile">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Fax</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Fax" title="fax">
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Email</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Email" title="email">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Website</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="website" title="website">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Contact Person</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Contact Person" title="contact person">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Phone No</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Phone No" title="phone no">
+															</div>
+
+														</div>
 
 
 													</div>
@@ -108,10 +225,37 @@
 													<!--stock label-->
 													<div class="box">
 
-														<h5>Stock Level</h5>
-														<div class="row">
+														<h5>Office Address</h5>
+														<div class="box-body">
 
-															<div class="col-md-12"></div>
+															<div class="form-group col-md-12">
+																<label for="inputPassword4">Registered Office
+																	Address</label><span style="color: red">*</span><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Registered Office Address"
+																	title="Registered Office Address">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">City</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="City" title="City">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">State</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="State" title="State">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Country</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Country" title="Country">
+															</div>
+
 														</div>
 													</div>
 													<!--end stock level -->
@@ -122,34 +266,41 @@
 
 													<div class="box">
 
-														<h5>Location</h5>
-														<div class="row">
-															<div class="col-md-12"></div>
+														<h5>Local Address</h5>
+														<div class="box-body">
+
+															<div class="form-group col-md-12">
+																<label for="inputPassword4">Local Address</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Local Address" title="Local Address">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">City</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="City" title="City">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">State</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="State" title="State">
+															</div>
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Country</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Country" title="Country">
+															</div>
+
 														</div>
 													</div>
 
-													<p></p>
-													<p></p>
 
-													<div class="box">
 
-														<h5>Account Information</h5>
-														<div class="row">
-															<div class="col-md-12"></div>
-														</div>
-													</div>
-
-													<p></p>
-													<p></p>
-
-													<div class="box">
-
-														<h5>Product Information</h5>
-														<div class="row">
-															<div class="col-md-12"></div>
-
-														</div>
-													</div>
 
 												</div>
 												<!--end item detal -->
@@ -159,7 +310,117 @@
 
 													<div class="box">
 
-														<div class="box-body"></div>
+
+														<div class="box-body">
+
+															<label>Registered</label> <label class="checkbox-inline">
+																<input type="radio" value="Y" name="inlineRadioOptions">Yes
+																<input type="radio" value="N" name="inlineRadioOptions"
+																style="margin-left: 20px">No
+															</label>
+															<div class="form-group row">
+
+																<div style="margin-top: 10px">
+
+																	<label class="col-md-2 control-label">GST
+																		Customer Type</label>
+
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" id="address1"
+																			placeholder="GST Customer Type"
+																			title="gst customer type">
+																	</div>
+																</div>
+
+
+															</div>
+
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">PAN
+																		Number</label>
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" id=""
+																			placeholder="Pan Number" title="pan number">
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">Credit
+																		Amount</label>
+																	<div class="col-md-8">
+																		<input type="email" class="form-control" id=""
+																			placeholder="Credit Amount" title="credit amount">
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">Credit
+																		Period (No of days)</label>
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" id=""
+																			placeholder="Credit Period " title="credit period">
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">GST
+																		No.</label>
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" id=""
+																			placeholder="GST No." title="gst no">
+																	</div>
+																</div>
+															</div>
+
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">Taxpayer
+																		Legal Name</label>
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" id=""
+																			placeholder="TaxtPayer Legal name"
+																			title="taxpayer legal name">
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">Taxpayer
+																		Trade Name</label>
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" id=""
+																			placeholder="TaxtPayer Trade name"
+																			title="taxpayer trade name">
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group row">
+																<div>
+																	<label for="" class="col-md-2 control-label">Date
+																		of Filling</label>
+																	<div class="col-md-4">
+																		<input type="date" class="form-control" id=""
+																			title="date of filling">
+																	</div>
+																</div>
+															</div>
+
+
+
+
+
+														</div>
 													</div>
 
 
@@ -173,6 +434,201 @@
 
 													<p></p>
 													<p></p>
+
+
+													<div class="box">
+														<h5>Billing Details</h5>
+
+
+														<div class="col-sm-12" style="text-align: right">
+
+															<a id="add_row_ins" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_ins' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+
+														<table class="table table-sm" id="example">
+															<thead>
+																<tr>
+																	<th scope="col">Billing Name</th>
+																	<th scope="col">Billing GST No</th>
+																	<th scope="col">Billing Addr1</th>
+																	<th scope="col">Billing Addr2</th>
+																	<th scope="col">Billing Addr3</th>
+																	<th scope="col">City</th>
+																	<th scope="col">State</th>
+																	<th scope="col">Pin Code</th>
+																	<th scope="col">Country</th>
+
+
+																</tr>
+															</thead>
+															<tbody>
+																<tr id="addr0">
+																	<th scope="row">
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyCode0" readonly
+																				title="Billing Name">
+																		</fieldset>
+																	</th>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyName0" readonly
+																				title="Billing GST No">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="Billing Addr1">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="date" class="form-control"
+																				placeholder="" title="Billing Addr2">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="Billing Addr3">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="City">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="State">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyName0" readonly
+																				title="pin code">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyName0" readonly
+																				title="country">
+																		</fieldset>
+																	</td>
+
+																</tr>
+
+																<tr id="addr1"></tr>
+
+															</tbody>
+														</table>
+
+													</div>
+
+
+													<div class="box">
+														
+
+
+														<div class="box-body">
+															<div class="col-sm-12" style="text-align: right">
+
+															<a id="add_row_ins" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_ins' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+
+														<table class="table table-sm" id="example">
+															<thead>
+																<tr>
+																	<th scope="col">Code</th>
+																	<th scope="col">Name</th>
+																	<th scope="col">Address1</th>
+																	<th scope="col">Address2</th>
+																	<th scope="col">Address3</th>
+																	<th scope="col">City</th>
+																	<th scope="col">Country</th>
+																	<th scope="col">Pin Code</th>
+																	
+
+																</tr>
+															</thead>
+															<tbody>
+																<tr id="addr0">
+																	<th scope="row">
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyCode0" readonly
+																				title="Billing Name">
+																		</fieldset>
+																	</th>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyName0" readonly
+																				title="Billing GST No">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="Billing Addr1">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="date" class="form-control"
+																				placeholder="" title="Billing Addr2">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="Billing Addr3">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="City">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" title="State">
+																		</fieldset>
+																	</td>
+																	<td>
+																		<fieldset>
+																			<input type="text" class="form-control"
+																				placeholder="" id="insCompanyName0" readonly
+																				title="pin code">
+																		</fieldset>
+																	</td>
+																	
+
+																</tr>
+
+																<tr id="addr1"></tr>
+
+															</tbody>
+														</table>
+														</div>
+
+													</div>
 
 													<div class="box-footer">
 														<button type="submit" class="btn btn-primary">Submit</button>
