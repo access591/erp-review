@@ -2,23 +2,36 @@
 <html>
 
 <head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
-		rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
 
 </head>
@@ -62,23 +75,25 @@
 							<div class="row">
 								<!-- left column -->
 								<div class="col-md-12">
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 
 
-									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
+									<div class="col-md-8 shadow bg-white rounded"
+										style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
 
-											<input type="hidden" id="mess" name="mess" th:value="${message}">
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
 
 
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
-											</div><!-- /.box-header -->
+											</div>
+											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/financialyear/}" method="POST"
-												th:object="${financialYear}">
+											<form role="form" th:action="@{/financialyear/}"
+												method="POST" th:object="${financialYear}">
 
 
 
@@ -89,26 +104,29 @@
 														<label for="inputEmail4">Financial Year Code</label> <input
 															type="text" class="form-control"
 															placeholder="Financial Year Code"
-															th:field="*{financialYearCode}" title="financial year code"
-															readonly>
+															th:field="*{financialYearCode}"
+															title="financial year code" readonly>
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputPassword4">From (Date)</label><span style="color: red">*</span> 
-														<input type="text" class="form-control" name="fromDate"
-															id="fromDate" placeholder='From Date' title="This field is required" th:field="*{fromDate}" required/>
+														<label for="inputPassword4">From (Date)</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" name="fromDate" id="fromDate"
+															placeholder='From Date' title="This field is required"
+															th:field="*{fromDate}" required />
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">To (Date)</label><span style="color: red">*</span>
-														<input type="text" class="form-control" name="datepicker"
-															id="datepicker" placeholder='To Date' title="This field is required" th:field="*{toDate}" required/>
+														<label for="inputEmail4">To (Date)</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" name="datepicker" id="datepicker"
+															placeholder='To Date' title="This field is required"
+															th:field="*{toDate}" required />
 													</div>
 
 
 
-													<label class="checkbox-inline">
-														<input type="radio" value="Y" name="inlineRadioOptions">Active
-														<input type="radio" value="N"
-															name="inlineRadioOptions">In-Active
+													<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="inlineRadioOptions">Active <input
+														type="radio" value="N" name="inlineRadioOptions">In-Active
 													</label>
 
 
@@ -124,7 +142,8 @@
 
 
 
-												</div><!-- /.box-body -->
+												</div>
+												<!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Submit" class="btn btn-primary" />
@@ -135,15 +154,17 @@
 											</form>
 
 
-										</div><!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin:8px">
-											<a th:href="@{/financialyear/list}">View All Financial Year</a>
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
+											<a th:href="@{/financialyear/list}">View All Financial
+												Year</a>
 										</div>
 									</div>
 
 
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 								</div>
 
 							</div>
@@ -153,10 +174,14 @@
 				</section>
 			</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
+
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
 
 
-			<script>
+	<script>
 				$(document).ready(function () {
 
 					var message = document.getElementById('mess').value
@@ -189,14 +214,17 @@
 					autoclose: true //to close picker once year is selected
 				});
 			</script>
-			<!--   <section class="content">
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>
