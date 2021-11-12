@@ -68,8 +68,8 @@
 									<h3 class="box-title">Party Master</h3>
 								</div>
 								<!-- form start -->
-								<form id="itemMasterForm" role="form" th:action="@{/item/}"
-									method="post">
+								<form id="itemMasterForm" role="form" th:action="@{/party/}"
+									th:object="${partyMaster}" method="post">
 
 									<div class="box-body">
 
@@ -82,7 +82,7 @@
 												<li><a data-toggle="tab" href="#taxdetail">Tax
 														Detail</a></li>
 												<li><a data-toggle="tab" href="#packing">Billing
-														Detail</a></li>
+														And Consignee Detail</a></li>
 
 
 
@@ -105,24 +105,30 @@
 																<label for="inputAddress">Party Code</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" placeholder="Party Code"
-																	title="party code" required>
+																	title="party code" th:field="*{partyCode}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Name</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" placeholder="Name" title="name"
-																	required>
+																	th:field="*{partyName}">
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Type Number</label><span
-																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Type Number" title="type number">
+																<label for="inputPassword4">Type</label><span
+																	style="color: red">*</span> <select
+																	class="form-control" title="type"  th:field="*{custType}"
+																	required>
+																	<option value="">Select</option>
+																	<option value="supplier">Supplier</option>
+																	<option value="customer">Customer</option>
+																	<option value="both">Both</option>
+																	
+																</select>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Person Through</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Person Through" title="person through">
+																	placeholder="Person Through" title="person through" th:field="*{pthruCode}">
 															</div>
 
 															<div class="form-group col-md-4">
@@ -133,42 +139,64 @@
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Representative Name</label>
-																<input type="text" class="form-control"
-																	id="inputPassword4" placeholder="Representative Name"
-																	title="representative name">
+																<select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" required>
+																	<option value="">Select</option>
+																	<option th:each="employee :  ${listEmployee}"
+																		th:text="${employee.empName}"
+																		th:value=" ${employee.empCode}"></option>
+																</select>
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">work Address</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="Work Address" title="work address">
+																	placeholder="Work Address" title="work address" th:field="*{partyAddr1}">
 															</div>
 
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">City</label> <input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="City" title="city">
+																<label for="inputPassword4">City</label> <select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{cityCode}"required>
+																	<option value="">Select</option>
+																	<option th:each="city :  ${listCity}"
+																		th:text="${city.cityName}"
+																		th:value=" ${city.cityCode}"></option>
+																</select>
 															</div>
+
+
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">State</label> <input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="State" title="state">
+																<label for="inputPassword4">State</label> <select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{stateCode}" required>
+																	<option value="">Select</option>
+																	<option th:each="state :  ${listState}"
+																		th:text="${state.stateName}"
+																		th:value=" ${state.stateCode}"></option>
+																</select>
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Country" title="country">
+																	style="color: red">*</span><select class="form-control"
+																	id="departmentDropdown" title="Department Name" th:field="*{countryCode}"
+																	required>
+																	<option value="">Select</option>
+																	<option th:each="country :  ${listCountry}"
+																		th:text="${country.countryName}"
+																		th:value=" ${country.countryCode}"></option>
+																</select>
 															</div>
 
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Pin</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Pin" title="pin">
+																	placeholder="Pin" title="pin" th:field="*{pinCode}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Phone</label> <input
@@ -186,19 +214,21 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Fax</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Fax" title="fax">
+																	placeholder="Fax" title="fax" th:field="*{partyFax}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Email</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Email" title="email">
+																	placeholder="Email" title="email"
+																	th:field="*{partyEmail}">
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Website</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="website" title="website">
+																	placeholder="website" title="website"
+																	th:field="*{partyWebsite}">
 															</div>
 
 															<div class="form-group col-md-4">
@@ -228,32 +258,63 @@
 														<h5>Office Address</h5>
 														<div class="box-body">
 
-															<div class="form-group col-md-12">
+															<div class="form-group col-md-4">
 																<label for="inputPassword4">Registered Office
-																	Address</label><span style="color: red">*</span><input
+																	Address-1</label><span style="color: red">*</span><input
 																	type="text" class="form-control" id="inputPassword4"
 																	placeholder="Registered Office Address"
+																	title="Registered Office Address" th:field="*{regAddr1}">
+															</div>
+															
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Registered Office
+																	Address-2</label><span style="color: red">*</span><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Registered Office Address"th:field="*{regAddr2}"
+																	title="Registered Office Address">
+															</div>
+															
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Registered Office
+																	Address-3</label><span style="color: red">*</span><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Registered Office Address"th:field="*{regAddr3}"
 																	title="Registered Office Address">
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">City</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="City" title="City">
+																<label for="inputPassword4">City</label> <select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{regAddrCityCode}" required>
+																	<option value="">Select</option>
+																	<option th:each="city :  ${listCity}"
+																		th:text="${city.cityName}"
+																		th:value=" ${city.cityCode}"></option>
+																</select>
 															</div>
 
+
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">State</label> <input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="State" title="State">
+																<label for="inputPassword4">State</label> <select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{regAddrStateCode}" required>
+																	<option value="">Select</option>
+																	<option th:each="state :  ${listState}"
+																		th:text="${state.stateName}"
+																		th:value=" ${state.stateCode}"></option>
+																</select>
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Country" title="Country">
+																	style="color: red">*</span><select class="form-control"
+																	id="departmentDropdown" th:field="*{regAddrCntCode}" title="Department Name"
+																	required>
+																	<option value="">Select</option>
+																	<option th:each="country :  ${listCountry}"
+																		th:text="${country.countryName}"
+																		th:value=" ${country.countryCode}"></option>
+																</select>
 															</div>
 
 														</div>
@@ -269,31 +330,61 @@
 														<h5>Local Address</h5>
 														<div class="box-body">
 
-															<div class="form-group col-md-12">
-																<label for="inputPassword4">Local Address</label><span
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Local Address-1</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="Local Address" title="Local Address">
+																	placeholder="Local Address" title="Local Address" th:field="*{lclAddr1}">
 															</div>
-
+															
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">City</label><span
+																<label for="inputPassword4">Local Address-2</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="City" title="City">
+																	placeholder="Local Address" title="Local Address" th:field="*{lclAddr2}">
+															</div>
+															
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Local Address-3</label><span
+																	style="color: red">*</span><input type="text"
+																	class="form-control" id="inputPassword4"
+																	placeholder="Local Address" title="Local Address" th:field="*{lclAddr3}">
 															</div>
 
+
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">State</label> <input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="State" title="State">
+																<label for="inputPassword4">City</label> <select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{lclAddrCityCode}" required>
+																	<option value="">Select</option>
+																	<option th:each="city :  ${listCity}"
+																		th:text="${city.cityName}"
+																		th:value=" ${city.cityCode}"></option>
+																</select>
+															</div>
+
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">State</label> <select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{lclAddrStateCode}" required>
+																	<option value="">Select</option>
+																	<option th:each="state :  ${listState}"
+																		th:text="${state.stateName}"
+																		th:value=" ${state.stateCode}"></option>
+																</select>
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Country" title="Country">
+																	style="color: red">*</span><select class="form-control"
+																	id="departmentDropdown" th:field="*{lclAddrCntCode}" title="Department Name"
+																	required>
+																	<option value="">Select</option>
+																	<option th:each="country :  ${listCountry}"
+																		th:text="${country.countryName}"
+																		th:value=" ${country.countryCode}"></option>
+																</select>
 															</div>
 
 														</div>
@@ -328,7 +419,7 @@
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id="address1"
 																			placeholder="GST Customer Type"
-																			title="gst customer type">
+																			title="gst customer type" th:field="*{gstCustType}">
 																	</div>
 																</div>
 
@@ -342,7 +433,7 @@
 																		Number</label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
-																			placeholder="Pan Number" title="pan number">
+																			placeholder="Pan Number" title="pan number" th:field="*{lclAddrCntCode}">
 																	</div>
 																</div>
 															</div>
@@ -353,7 +444,7 @@
 																		Amount</label>
 																	<div class="col-md-8">
 																		<input type="email" class="form-control" id=""
-																			placeholder="Credit Amount" title="credit amount">
+																			placeholder="Credit Amount" title="credit amount" th:field="*{lclAddrCntCode}">
 																	</div>
 																</div>
 															</div>
@@ -364,7 +455,7 @@
 																		Period (No of days)</label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
-																			placeholder="Credit Period " title="credit period">
+																			placeholder="Credit Period " title="credit period" th:field="*{lclAddrCntCode}">
 																	</div>
 																</div>
 															</div>
@@ -501,14 +592,24 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" title="City">
+																			<select class="form-control" id="departmentDropdown"
+																				title="Department Name" required>
+																				<option value="">Select</option>
+																				<option th:each="city :  ${listCity}"
+																					th:text="${city.cityName}"
+																					th:value=" ${city.cityCode}"></option>
+																			</select>
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" title="State">
+																			<select class="form-control" id="departmentDropdown"
+																				title="Department Name" required>
+																				<option value="">Select</option>
+																				<option th:each="state :  ${listState}"
+																					th:text="${state.stateName}"
+																					th:value=" ${state.stateCode}"></option>
+																			</select>
 																		</fieldset>
 																	</td>
 																	<td>
@@ -537,95 +638,106 @@
 
 
 													<div class="box">
-														
+
 
 
 														<div class="box-body">
 															<div class="col-sm-12" style="text-align: right">
 
-															<a id="add_row_ins" class="fa fa-plus" aria-hidden="true"
-																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
-															<a id='delete_row_ins' class="fa fa-trash"
-																style="font-size: 24px; color: #399490fc"
-																aria-hidden="true"></a>
-														</div>
+																<a id="add_row_ins" class="fa fa-plus"
+																	aria-hidden="true"
+																	style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+																<a id='delete_row_ins' class="fa fa-trash"
+																	style="font-size: 24px; color: #399490fc"
+																	aria-hidden="true"></a>
+															</div>
 
-														<table class="table table-sm" id="example">
-															<thead>
-																<tr>
-																	<th scope="col">Code</th>
-																	<th scope="col">Name</th>
-																	<th scope="col">Address1</th>
-																	<th scope="col">Address2</th>
-																	<th scope="col">Address3</th>
-																	<th scope="col">City</th>
-																	<th scope="col">Country</th>
-																	<th scope="col">Pin Code</th>
-																	
+															<table class="table table-sm" id="example">
+																<thead>
+																	<tr>
+																		<th scope="col">Code</th>
+																		<th scope="col">Name</th>
+																		<th scope="col">Address1</th>
+																		<th scope="col">Address2</th>
+																		<th scope="col">Address3</th>
+																		<th scope="col">City</th>
+																		<th scope="col">Country</th>
+																		<th scope="col">Pin Code</th>
 
-																</tr>
-															</thead>
-															<tbody>
-																<tr id="addr0">
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyCode0" readonly
-																				title="Billing Name">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyName0" readonly
-																				title="Billing GST No">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr1">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="date" class="form-control"
-																				placeholder="" title="Billing Addr2">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr3">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" title="City">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" title="State">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyName0" readonly
-																				title="pin code">
-																		</fieldset>
-																	</td>
-																	
 
-																</tr>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr id="addr0">
+																		<th scope="row">
+																			<fieldset>
+																				<input type="text" class="form-control"
+																					placeholder="" id="insCompanyCode0" readonly
+																					title="Billing Name">
+																			</fieldset>
+																		</th>
+																		<td>
+																			<fieldset>
+																				<input type="text" class="form-control"
+																					placeholder="" id="insCompanyName0" readonly
+																					title="Billing GST No">
+																			</fieldset>
+																		</td>
+																		<td>
+																			<fieldset>
+																				<input type="text" class="form-control"
+																					placeholder="" title="Billing Addr1">
+																			</fieldset>
+																		</td>
+																		<td>
+																			<fieldset>
+																				<input type="date" class="form-control"
+																					placeholder="" title="Billing Addr2">
+																			</fieldset>
+																		</td>
+																		<td>
+																			<fieldset>
+																				<input type="text" class="form-control"
+																					placeholder="" title="Billing Addr3">
+																			</fieldset>
+																		</td>
+																		<td>
+																			<fieldset>
+																				<select class="form-control" id="departmentDropdown"
+																					title="Department Name" required>
+																					<option value="">Select</option>
+																					<option th:each="city :  ${listCity}"
+																						th:text="${city.cityName}"
+																						th:value=" ${city.cityCode}"></option>
+																				</select>
+																			</fieldset>
+																		</td>
+																		<td>
+																			<fieldset>
+																				<select class="form-control" id="departmentDropdown"
+																					title="Department Name" required>
+																					<option value="">Select</option>
+																					<option th:each="country :  ${listCountry}"
+																						th:text="${country.countryName}"
+																						th:value=" ${country.countryCode}"></option>
+																				</select>
+																			</fieldset>
+																		</td>
+																		<td>
+																			<fieldset>
+																				<input type="text" class="form-control"
+																					placeholder="" id="insCompanyName0" readonly
+																					title="pin code">
+																			</fieldset>
+																		</td>
 
-																<tr id="addr1"></tr>
 
-															</tbody>
-														</table>
+																	</tr>
+
+																	<tr id="addr1"></tr>
+
+																</tbody>
+															</table>
 														</div>
 
 													</div>
