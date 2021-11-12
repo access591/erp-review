@@ -2,26 +2,35 @@
 <html>
 
 <head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
-	<style>
-		.error {
-			color: red;
-			font-size: 11px;
-		}
-	</style>
+
+<style>
+.error {
+	color: red;
+	font-size: 11px;
+}
+</style>
 
 </head>
 
@@ -60,18 +69,20 @@
 							<div class="row">
 								<!-- left column -->
 								<div class="col-md-12">
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 
 
-									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
+									<div class="col-md-8 shadow bg-white rounded"
+										style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
-											</div><!-- /.box-header -->
+											</div>
+											<!-- /.box-header -->
 											<!-- form start -->
-											<form id="subModuleMasterForm"role="form" th:action="@{/sub-module/}" th:object="${subModule}"
+											<form id="subModuleMasterForm" role="form"
+												th:action="@{/sub-module/}" th:object="${subModule}"
 												method="post">
 												<div class="box-body">
 
@@ -83,7 +94,8 @@
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">SubModule Name</label><span
 															style="color: red">*</span> <input type="text"
-															class="form-control" placeholder="location" title="This field is required"
+															class="form-control" placeholder="location"
+															title="This field is required"
 															th:field="*{subModuleName}" required>
 													</div>
 
@@ -111,13 +123,13 @@
 
 
 
-													<label class="checkbox-inline">
-														<input type="radio" value="Y" name="inlineRadioOptions">Active
-														<input type="radio" value="N"
-															name="inlineRadioOptions">In-Active
+													<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="inlineRadioOptions">Active <input
+														type="radio" value="N" name="inlineRadioOptions">In-Active
 													</label>
 
-												</div><!-- /.box-body -->
+												</div>
+												<!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Submit" class="btn btn-primary" />
@@ -128,15 +140,16 @@
 											</form>
 
 
-										</div><!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin:8px">
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
 											<a th:href="@{/sub-module/list}">View All SubModule</a>
 										</div>
 									</div>
 
 
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 								</div>
 
 							</div>
@@ -146,10 +159,13 @@
 				</section>
 			</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
 
 
-			<script>
+	<script>
 
 				$("#subModuleMasterForm").validate({
 					ignoreTitle: true
@@ -157,14 +173,16 @@
 
 			</script>
 
-			<!--   <section class="content">
+	<!--   <section class="content">
         
         </section>-->
-			<!--<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>-->
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<!--<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>-->
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>

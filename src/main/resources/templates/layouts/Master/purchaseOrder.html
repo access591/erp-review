@@ -2,38 +2,48 @@
 <html>
 
 <head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
-		rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
 
-	<style>
-		.form-control-sm {
-			height: 30px;
-			width: 120px;
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+}
 
-		}
-
-		.select {
-			width: 130px;
-			font-size: 10px;
-		}
-	</style>
+.select {
+	width: 130px;
+	font-size: 10px;
+}
+</style>
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" onload="againstPurchaseThrough()">
+<body class="hold-transition skin-blue sidebar-mini"
+	onload="againstPurchaseThrough()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -71,15 +81,18 @@
 
 
 
-									<div class="col-md-12 shadow bg-white rounded" style="margin-top: 20px;">
+									<div class="col-md-12 shadow bg-white rounded"
+										style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
 
-											<input type="hidden" id="mess" name="mess" th:value="${message}">
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
 
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
-											</div><!-- /.box-header -->
+											</div>
+											<!-- /.box-header -->
 											<!-- form start -->
 											<form role="form" th:action="@{/purchaseorder/}"
 												th:object="${purchaseOrder}" method="POST">
@@ -114,17 +127,17 @@
 															</div>
 
 															<div class="form-group col-md-3">
-																<label for="inputAddress">Cancellation Status</label>
-																<select class="form-control" id=""
-																	title="cancellation status" th:field="*{cancStatus}"
-																	required>
+																<label for="inputAddress">Cancellation Status</label> <select
+																	class="form-control" id="" title="cancellation status"
+																	th:field="*{cancStatus}" required>
 																	<option value="yes">Yes</option>
 																	<option value="no" selected>No</option>
 
 																</select>
 															</div>
 
-														</div><!-- /.box-body -->
+														</div>
+														<!-- /.box-body -->
 
 													</div>
 													<!--end box-1-->
@@ -135,9 +148,9 @@
 														<h5 class="box-title">Nature of Purchase</h5>
 														<div class="box-body">
 															<div class="form-group col-md-4">
-																<label for="inputEmail4">Nature of
-																	Purchase</label><select class="form-control" id=""
-																	title="urgency" th:field="*{natureOfPur}" required>
+																<label for="inputEmail4">Nature of Purchase</label><select
+																	class="form-control" id="" title="urgency"
+																	th:field="*{natureOfPur}" required>
 
 																	<option value="yes">Capital</option>
 																	<option value="non" selected>Non-Capital</option>
@@ -157,28 +170,27 @@
 																	class="form-control" id="" title="urgency"
 																	th:field="*{poType}" required>
 
-																	<option value="InterState" selected>Inter State
-																	</option>
+																	<option value="InterState" selected>Inter
+																		State</option>
 																	<option value="IntraState">Intra State</option>
 																</select>
 															</div>
 
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Purchase Through</label>
-																<select class="form-control" id="purchaseThrough"
+																<label for="inputPassword4">Purchase Through</label> <select
+																	class="form-control" id="purchaseThrough"
 																	title="urgency" required
 																	onchange="againstPurchaseThrough()">
-																	<option value="quotation" selected>Quotation
-																	</option>
+																	<option value="quotation" selected>Quotation</option>
 																	<option value="indent">Indent</option>
 																</select>
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputAddress">Quotation Number</label>
-																<select class="form-control" id="quotationNumber"
-																	title="" onchange="quotationNumberInfo()"
+																<label for="inputAddress">Quotation Number</label> <select
+																	class="form-control" id="quotationNumber" title=""
+																	onchange="quotationNumberInfo()"
 																	th:field="*{quotationDetail}" required>
 																	<option value="">Select</option>
 																	<option
@@ -205,36 +217,33 @@
 														<div class="box-body">
 
 															<div class="form-group col-md-4">
-																<label for="inputEmail4">Supplier</label>
-																<select id="supplierId" class="form-control" required
+																<label for="inputEmail4">Supplier</label> <select
+																	id="supplierId" class="form-control" required
 																	title="supplier code" onchange="supplierInfo()"
 																	th:field="*{supplier}">
 																	<option value=" ">Select</option>
 																	<option th:each="supplier :  ${listSupplier}"
 																		th:text="${supplier.supplierName}"
-																		th:value=" ${supplier.supplierId}">
-																	</option>
+																		th:value=" ${supplier.supplierId}"></option>
 
 
 																</select>
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Supplier State</label>
-																<input type="text" class="form-control"
-																	id="supplierState" placeholder="supplier state">
+																<label for="inputPassword4">Supplier State</label> <input
+																	type="text" class="form-control" id="supplierState"
+																	placeholder="supplier state">
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Currency</label>
-
-																<select id="currencyId" class="form-control" required
+																<label for="inputPassword4">Currency</label> <select
+																	id="currencyId" class="form-control" required
 																	title="currency" th:field="*{currency}">
 																	<option value=" ">Select</option>
 																	<option th:each="currency :  ${listCurrency}"
 																		th:text="${currency.currencyValue}"
-																		th:value=" ${currency.currencyCode}">
-																	</option>
+																		th:value=" ${currency.currencyCode}"></option>
 
 
 																</select>
@@ -260,10 +269,9 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Conversion Value</label>
-																<input type="number" class="form-control"
-																	id="inputPassword4" placeholder="gst"
-																	th:field="*{conversionValue}">
+																<label for="inputPassword4">Conversion Value</label> <input
+																	type="number" class="form-control" id="inputPassword4"
+																	placeholder="gst" th:field="*{conversionValue}">
 															</div>
 
 															<div class="form-group col-md-4">
@@ -299,39 +307,29 @@
 																			<th scope="col" class="text-center"
 																				style="width: 130px;">Type</th>
 																			<th scope="col" class="text-center"
-																				style="width: 100px;">Indent
-																				Number</th>
+																				style="width: 100px;">Indent Number</th>
 																			<th scope="col" class="text-center"
-																				style="width: 90px;">Indent
-																				Date</th>
+																				style="width: 90px;">Indent Date</th>
 																			<th scope="col" class="text-center"
-																				style="width: 90px;">Item
-																				Number</th>
+																				style="width: 90px;">Item Number</th>
 																			<th scope="col" class="text-center"
-																				style="width: 90px;">Item
-																				Rate</th>
+																				style="width: 90px;">Item Rate</th>
 																			<th scope="col" class="text-center"
-																				style="width: 10px;">Effective
-																				Date</th>
+																				style="width: 10px;">Effective Date</th>
 																			<th scope="col" class="text-center"
-																				style="width: 120px;">Qty
-																				Order</th>
+																				style="width: 120px;">Qty Order</th>
 																			<th scope="col" class="text-center"
 																				style="width: 90px;">Status</th>
 																			<th scope="col" class="text-center"
-																				style="width: 90px;">Total
-																				Item Cost</th>
+																				style="width: 90px;">Total Item Cost</th>
 																			<th scope="col" class="text-center"
-																				style="width: 120px;">otal
-																				Item Cost(INR)</th>
+																				style="width: 120px;">otal Item Cost(INR)</th>
 																			<th scope="col" class="text-center"
 																				style="width: 90px;">Remarks</th>
 																			<th scope="col" class="text-center"
-																				style="width: 90px;">Rate
-																				History</th>
+																				style="width: 90px;">Rate History</th>
 																			<th scope="col" class="text-center"
-																				style="width: 90px;">Tax
-																				Detail</th>
+																				style="width: 90px;">Tax Detail</th>
 
 																		</tr>
 																	</thead>
@@ -340,95 +338,80 @@
 																		<tr id="addr0">
 
 																			<td><select id="supplierId"
-																					class="form-control form-control-sm select"
-																					title="type"
-																					onchange="supplierInfo()">
+																				class="form-control form-control-sm select"
+																				title="type" onchange="supplierInfo()">
 																					<option value="">Select</option>
 
 
 
-																				</select></td>
+																			</select></td>
 
 																			<td><select
-																					class="form-control indentContainer form-control-sm select"
-																					id="indentNumberPo"
-																					name="listPurchaseOrderItem[0].openIndent"
-																					title="indent number"
-																					onchange='getIndentDetailPo()'
-																					required>
-																					<option value="">Select Indent
-																					</option>
+																				class="form-control indentContainer form-control-sm select"
+																				id="indentNumberPo"
+																				name="listPurchaseOrderItem[0].openIndent"
+																				title="indent number" onchange='getIndentDetailPo()'
+																				required>
+																					<option value="">Select Indent</option>
 
-																				</select></td>
+																			</select></td>
 
 																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="indentDatePo"
-																					title="indent date"
-																					name="listPurchaseOrderItem[0].indentDate">
+																				class="form-control form-control-sm"
+																				id="indentDatePo" title="indent date"
+																				name="listPurchaseOrderItem[0].indentDate">
 																			</td>
 
 
 																			<td><select id="itemPo"
-																					class="form-control form-control-sm select itemContainerPo"
-																					required title="item"
-																					onchange="getItemDetailForPo()"
-																					name="listPurchaseOrderItem[0].item">
-																					<option value="">Select</option>
-																			</td>
+																				class="form-control form-control-sm select itemContainerPo"
+																				required title="item"
+																				onchange="getItemDetailForPo()"
+																				name="listPurchaseOrderItem[0].item">
+																					<option value="">Select</option></td>
 
 
 																			<td><input type="number"
-																					class="form-control form-control-sm"
-																					id="contactPerson" title="item rate"
-																					name="listPurchaseOrderItem[0].itemRate">
-																			</td>
+																				class="form-control form-control-sm"
+																				id="contactPerson" title="item rate"
+																				name="listPurchaseOrderItem[0].itemRate"></td>
 
-																			<td><input type="date"
-																					title="effective date"
-																					class="form-control form-control-sm"
-																					id="email"
-																					name="listPurchaseOrderItem[0].rateEffectiveDate">
+																			<td><input type="date" title="effective date"
+																				class="form-control form-control-sm" id="email"
+																				name="listPurchaseOrderItem[0].rateEffectiveDate">
 																			</td>
 
 																			<td><input type="number"
-																					class="form-control form-control-sm"
-																					title="qty order"
-																					name="listPurchaseOrderItem[0].qtyOrder">
-																			</td>
+																				class="form-control form-control-sm"
+																				title="qty order"
+																				name="listPurchaseOrderItem[0].qtyOrder"></td>
 
 																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="technicalQualification"
-																					title="status"
-																					name="listPurchaseOrderItem[0].itemStatus">
+																				class="form-control form-control-sm"
+																				id="technicalQualification" title="status"
+																				name="listPurchaseOrderItem[0].itemStatus">
 																			</td>
 																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="supplierState"
-																					title="total item cost"></td>
+																				class="form-control form-control-sm"
+																				id="supplierState" title="total item cost"></td>
 
 																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="contactPerson"
-																					title="total item cost(inr)"></td>
+																				class="form-control form-control-sm"
+																				id="contactPerson" title="total item cost(inr)"></td>
 
 																			<td><input type="text" title="remarks"
-																					class="form-control form-control-sm"
-																					id="email"
-																					name="listPurchaseOrderItem[0].itemRemarks">
+																				class="form-control form-control-sm" id="email"
+																				name="listPurchaseOrderItem[0].itemRemarks">
 																			</td>
 
 																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					title="rate history">
-																			</td>
+																				class="form-control form-control-sm"
+																				title="rate history"></td>
 
 																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="technicalQualification"
-																					title="Tax detail"
-																					name="listPurchaseOrderItem[0].openIndent">
+																				class="form-control form-control-sm"
+																				id="technicalQualification" title="Tax detail"
+																				name="listPurchaseOrderItem[0].openIndent">
 																			</td>
 
 
@@ -461,15 +444,14 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Total Cost(Excluding
-																	tax)</label> <input type="number"
-																	class="form-control" id="inputEmail4"
-																	placeholder="supplier" th:field="*{totalValue}">
+																	tax)</label> <input type="number" class="form-control"
+																	id="inputEmail4" placeholder="supplier"
+																	th:field="*{totalValue}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Total Cost(Including
-																	tax)</label> <input type="number"
-																	class="form-control" id="inputPassword4"
-																	placeholder="supplier state">
+																	tax)</label> <input type="number" class="form-control"
+																	id="inputPassword4" placeholder="supplier state">
 															</div>
 
 
@@ -478,16 +460,17 @@
 													<!--end final div-->
 
 													<div class="box-footer" style="margin: 10px">
-														<input type="submit" value="Submit" class="btn btn-primary" />
-														<input type="reset" value="Reset" class="btn btn-danger" />
+														<input type="submit" value="Submit"
+															class="btn btn-primary" /> <input type="reset"
+															value="Reset" class="btn btn-danger" />
 													</div>
-
-
 											</form>
 
 
-										</div><!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin:8px">
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
 											<a th:href="@{/purchaseorder/list}">View All PO</a>
 										</div>
 									</div>
@@ -503,10 +486,12 @@
 				</section>
 			</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
 
 
-			<script>
+	<script>
 
 				$(document).ready(function () {
 
@@ -515,7 +500,7 @@
 			</script>
 
 
-			<script>
+	<script>
 				function againstPurchaseThrough() {
 
 					let purchaseThrough = document.getElementById("purchaseThrough").value;
@@ -563,7 +548,7 @@
 				}
 			</script>
 
-			<script>
+	<script>
 
 				$(document).ready(function () {
 					var message = document.getElementById('mess').value
@@ -581,19 +566,22 @@
 
 				});
 			</script>
-			<!--   <section class="content">
+	<!--   <section class="content">
         
         
         </section>-->
 
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
 
 
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>

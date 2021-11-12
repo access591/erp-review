@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+<style>
+.error {
+	color: red;
+	font-size: 11px;
+}
+</style>
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+					<div class="row">
+						<!-- left column -->
+
+
+
+
+						<div class="col-md-12" style="margin-top: 20px;">
+
+							<div class="box box-primary">
+								<input type="hidden" id="mess" name="mess" th:value="${message}">
+								<div class="box-header with-border">
+									<h3 class="box-title">Item Master</h3>
+								</div>
+								<!-- form start -->
+								<form id="itemMasterForm" role="form" th:action="@{/item/}"
+									method="post">
+
+									<div class="box-body">
+
+										<div class="container-fluid">
+
+											<ul class="nav nav-pills">
+												<li class="active"><a data-toggle="tab"
+													href="#itemdetail">Item Detail</a></li>
+
+												<li><a data-toggle="tab" href="#taxdetail">Tax
+														Detail</a></li>
+												<li><a data-toggle="tab" href="#packing">Packing</a></li>
+
+
+
+											</ul>
+
+											<div class="tab-content">
+												<p></p>
+
+
+												<!-- item detail div  -->
+												<div id="itemdetail" class="tab-pane fade in active">
+
+													<div class="box">
+
+														<h5>Item Details</h5>
+
+
+
+													</div>
+
+													<p></p>
+													<p></p>
+
+													<!--stock label-->
+													<div class="box">
+
+														<h5>Stock Level</h5>
+														<div class="row">
+
+															<div class="col-md-12"></div>
+														</div>
+													</div>
+													<!--end stock level -->
+
+													<p></p>
+													<p></p>
+
+
+													<div class="box">
+
+														<h5>Location</h5>
+														<div class="row">
+															<div class="col-md-12"></div>
+														</div>
+													</div>
+
+													<p></p>
+													<p></p>
+
+													<div class="box">
+
+														<h5>Account Information</h5>
+														<div class="row">
+															<div class="col-md-12"></div>
+														</div>
+													</div>
+
+													<p></p>
+													<p></p>
+
+													<div class="box">
+
+														<h5>Product Information</h5>
+														<div class="row">
+															<div class="col-md-12"></div>
+
+														</div>
+													</div>
+
+												</div>
+												<!--end item detal -->
+
+												<!--text detail tab-->
+												<div id="taxdetail" class="tab-pane fade">
+
+													<div class="box">
+
+														<div class="box-body"></div>
+													</div>
+
+
+												</div>
+
+												<!--end tax detail tab -->
+
+												<!-- packing detail -->
+
+												<div id="packing" class="tab-pane fade">
+
+													<p></p>
+													<p></p>
+
+													<div class="box-footer">
+														<button type="submit" class="btn btn-primary">Submit</button>
+														<input type="reset" value="Reset" class="btn btn-danger" />
+													</div>
+												</div>
+												<!--end packing detail -->
+
+
+
+
+
+
+
+											</div>
+										</div>
+									</div>
+								</form>
+								<div style="width: parent; text-align-last: right; margin: 8px">
+									<a th:href="@{/item/list}">View All Item</a>
+								</div>
+
+							</div>
+
+							<!-- end box primary  -->
+						</div>
+
+						<!-- end left column -->
+
+
+
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+
+
+	<script>
+				var idIndex = 0;
+				$(document).ready(function () {
+					console.log("item master is ready!");
+					var i = 1;
+					$('#add_row').click(function () {
+						idIndex++;
+						$('#addr' + i).html(
+							"<th scope='row'><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingCode'></fieldset></th>"
+							+ "<td><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingName'></fieldset></td>"
+							+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].unitName'></fieldset></td>"
+							+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].qty'></fieldset></td>"
+							+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].barCode'></fieldset></td>"
+						);
+
+						$('#example').append(
+							'<tr id="addr'
+							+ (i + 1)
+							+ '"></tr>');
+
+						i++;
+
+					});
+
+					$("#delete_row").click(function () {
+						if (i > 1) {
+							$("#addr" + (i - 1)).html('');
+							$('#_cr').val(i - 1);
+							i--;
+							idIndex--;
+						}
+					});
+
+				});
+
+			</script>
+
+	<script>
+
+				$(document).ready(function () {
+					var message = document.getElementById('mess').value
+					if (message != null && message !== "") {
+
+						swal(message, "", "success", {
+							button: "OK",
+							hideClass: {
+								popup: 'animate__animated animate__fadeOutUp'
+							},
+						});
+					} else {
+						console.log("ajax request : " + message);
+					}
+
+				});
+
+
+				function getUomNameInfo() {
+
+					var uomName = document.getElementById("uomName").value;
+					document.getElementById("uomCode").value = uomName;
+				}
+
+
+
+				function limitDecimalPlaces(e, count) {
+					if (e.target.value.indexOf('.') == -1) {return;}
+					if ((e.target.value.length - e.target.value.indexOf('.')) > count) {
+						e.target.value = parseFloat(e.target.value).toFixed(count);
+					}
+				}
+			</script>
+
+	<script>
+
+				$("#itemMasterForm").validate({
+					ignoreTitle: true
+				});
+
+			</script>
+
+
+
+	<!--   <section class="content">
+        
+        </section>-->
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+</body>
+
+</html>
