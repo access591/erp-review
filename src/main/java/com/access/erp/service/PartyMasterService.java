@@ -7,9 +7,9 @@ import com.access.erp.model.master.PartyMaster;
 
 public interface PartyMasterService {
 	
-	public void addPartyMaster(PartyMaster city);
+	public void addPartyMaster(PartyMaster partyMaster);
 	public List<PartyMaster> getAllpartyMaster();
 	public Optional<PartyMaster> editPartyMaster(String partyCode);
-	public void deletePartMaster(String partyCode);
+	public void deletePartyMaster(String partyCode);
 	
 }

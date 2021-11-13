@@ -1,6 +1,7 @@
 package com.access.erp.model.master;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,12 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="M_PARTY")
 public class PartyMaster {
 
 	@Id
-	@Column(name="PARTY_CODE",length=10)
+	@Column(name="PARTY_CODE",length=50)
 	private String partyCode;
 	
 	@Column(name="PARTY_NAME",length=100)
@@ -112,16 +115,18 @@ public class PartyMaster {
 	@Column(name="GST_CUST_TYPE",length=5)
 	private String gstCustType;
 	
+	@Column(name="PARTY_PANNO",length=20)
+	private String partyPanno;
+	
+	
+	@Column(name="GST_NO",length=15)
+	private String gstNo;
 	
 	@Column(name="CREDIT_PERIOD",length=50)
 	private String creditPeriod;
 	
 	@Column(name="CREDIT_AMOUNT",length=15)
 	private String creditAmount;
-		
-	
-	@Column(name="GST_NO",length=15)
-	private String gstNo;
 	
 	@Column(name="TAXPAYER_LEGAL_NAME",length=100)
 	private String taxpayerLegalName;
@@ -129,6 +134,7 @@ public class PartyMaster {
 	@Column(name="TAXPAYER_TRADE_NAME",length=100)
 	private String taxpayerTradeName;
 		
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="FILLING_DATE")
 	private String fillingDate;
 	
@@ -222,29 +228,29 @@ public class PartyMaster {
 	@Column(name="TIN_NO",length=20)
 	private String tinNo;
 		
-	@Column(name="PARTY_PANNO",length=20)
-	private String partyPanno;
+	
 		
 	@Column(name="PARTY_CSTNO",length=20)
 	private String partyCstno;
-		
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="PARTY_CSTDATE")
-	private String partyCstDate;
+	private Date partyCstDate;
 	
 	@Column(name="PARTY_SSTNO",length=50)
 	private String partySstNo;
 		
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="PARTY_SSTDATE")
-	private String partySstDate;
+	private Date partySstDate;
 		
-	@Column(name="PARTY_CSTRATE",length=10)
-	private int partyCstRate;
-		
-	@Column(name="PARTY_STRATE",length=10)
-	private int partyStrate;
-		
-	@Column(name="PARTY_SCRATE",length=10)
-	private int partyScrate;
+	/*
+	 * @Column(name="PARTY_CSTRATE",length=10) private int partyCstRate;
+	 * 
+	 * @Column(name="PARTY_STRATE",length=10) private int partyStrate;
+	 * 
+	 * @Column(name="PARTY_SCRATE",length=10) private int partyScrate;
+	 */
 	
 	@Column(name="PARTY_ECCNO",length=15)
 	private String partEccno;
@@ -352,8 +358,10 @@ public class PartyMaster {
 	@Column(name="AGENT_CODE",length=20)
 	private String agentCode;
 	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="TIN_DT")
-	private String tinDate;
+	private Date tinDate;
 		
 	
 	@Column(name="SUPP_APPROVAL_STATUS",length=5)
@@ -423,8 +431,10 @@ public class PartyMaster {
 	@Column(name="VENDOR_CODE",length=30)
 	private String vendorCode;
 	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="LST_DATE")
-	private String lstDate;
+	private Date lstDate;
 		
 	@Column(name="LST_NO",length=50)
 	private String lstNo;
@@ -756,13 +766,7 @@ public class PartyMaster {
 		this.partyCstno = partyCstno;
 	}
 
-	public String getPartyCstDate() {
-		return partyCstDate;
-	}
-
-	public void setPartyCstDate(String partyCstDate) {
-		this.partyCstDate = partyCstDate;
-	}
+	
 
 	public String getPartySstNo() {
 		return partySstNo;
@@ -772,37 +776,6 @@ public class PartyMaster {
 		this.partySstNo = partySstNo;
 	}
 
-	public String getPartySstDate() {
-		return partySstDate;
-	}
-
-	public void setPartySstDate(String partySstDate) {
-		this.partySstDate = partySstDate;
-	}
-
-	public int getPartyCstRate() {
-		return partyCstRate;
-	}
-
-	public void setPartyCstRate(int partyCstRate) {
-		this.partyCstRate = partyCstRate;
-	}
-
-	public int getPartyStrate() {
-		return partyStrate;
-	}
-
-	public void setPartyStrate(int partyStrate) {
-		this.partyStrate = partyStrate;
-	}
-
-	public int getPartyScrate() {
-		return partyScrate;
-	}
-
-	public void setPartyScrate(int partyScrate) {
-		this.partyScrate = partyScrate;
-	}
 
 	public String getPartEccno() {
 		return partEccno;
@@ -1148,13 +1121,7 @@ public class PartyMaster {
 		this.agentCode = agentCode;
 	}
 
-	public String getTinDate() {
-		return tinDate;
-	}
-
-	public void setTinDate(String tinDate) {
-		this.tinDate = tinDate;
-	}
+	
 
 	public String getSuppApprovalStatus() {
 		return suppApprovalStatus;
@@ -1308,13 +1275,6 @@ public class PartyMaster {
 		this.vendorCode = vendorCode;
 	}
 
-	public String getLstDate() {
-		return lstDate;
-	}
-
-	public void setLstDate(String lstDate) {
-		this.lstDate = lstDate;
-	}
 
 	public String getLstNo() {
 		return lstNo;
@@ -1402,6 +1362,38 @@ public class PartyMaster {
 
 	public void setListPartyConsignee(List<PartyConsignee> listPartyConsignee) {
 		this.listPartyConsignee = listPartyConsignee;
+	}
+
+	public Date getPartyCstDate() {
+		return partyCstDate;
+	}
+
+	public void setPartyCstDate(Date partyCstDate) {
+		this.partyCstDate = partyCstDate;
+	}
+
+	public Date getPartySstDate() {
+		return partySstDate;
+	}
+
+	public void setPartySstDate(Date partySstDate) {
+		this.partySstDate = partySstDate;
+	}
+
+	public Date getTinDate() {
+		return tinDate;
+	}
+
+	public void setTinDate(Date tinDate) {
+		this.tinDate = tinDate;
+	}
+
+	public Date getLstDate() {
+		return lstDate;
+	}
+
+	public void setLstDate(Date lstDate) {
+		this.lstDate = lstDate;
 	}
 	
 	

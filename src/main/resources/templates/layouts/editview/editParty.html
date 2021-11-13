@@ -558,16 +558,16 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr id="addr0">
+																<tr  th:each="row, stat :${partyMaster.listPartyBilling}">
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder="" id="insCompanyCode0"
-																				title="Billing Name">
+																				title="Billing Name" th:field="*{listPartyBilling[__${stat.index}__].partyBillingId}">
 																		</fieldset>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyCode0" name="listPartyBilling[0].billingName"
+																				placeholder="" id="insCompanyCode0" th:field="*{listPartyBilling[__${stat.index}__].billingName}"
 																				title="Billing Name">
 																		</fieldset>
 																	</th>
@@ -575,31 +575,31 @@
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder="" id="insCompanyName0"
-																				title="Billing GST No" name="listPartyBilling[0].billingGstNo">
+																				title="Billing GST No" th:field="*{listPartyBilling[__${stat.index}__].billingGstNo}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr1" name="listPartyBilling[0].billingAddr1">
+																				placeholder="" title="Billing Addr1" th:field="*{listPartyBilling[__${stat.index}__].billingAddr1}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="date" class="form-control"
-																				placeholder="" title="Billing Addr2" name="listPartyBilling[0].billingAddr2">
+																				placeholder="" title="Billing Addr2" th:field="*{listPartyBilling[__${stat.index}__].billingAddr2}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr3" name="listPartyBilling[0].billingAddr3">
+																				placeholder="" title="Billing Addr3" th:field="*{listPartyBilling[__${stat.index}__].billingAddr3}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<select class="form-control" id="departmentDropdown"
-																				title="Department Name" name="listPartyBilling[0].billingAddr3" required>
+																				title="Department Name" th:field="*{listPartyBilling[__${stat.index}__].billingCity}" required>
 																				<option value="">Select</option>
 																				<option th:each="city :  ${listCity}"
 																					th:text="${city.cityName}"
@@ -610,7 +610,7 @@
 																	<td>
 																		<fieldset>
 																			<select class="form-control" id="departmentDropdown"
-																				title="Department Name" name="listPartyBilling[0].billingAddr3" required>
+																				title="Department Name" th:field="*{listPartyBilling[__${stat.index}__].billingState}"  required>
 																				<option value="">Select</option>
 																				<option th:each="state :  ${listState}"
 																					th:text="${state.stateName}"
@@ -622,13 +622,13 @@
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder="" id="insCompanyName0"
-																				title="pin code" name="listPartyBilling[0].billingAddr3">
+																				title="pin code" th:field="*{listPartyBilling[__${stat.index}__].billingPin}">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<select class="form-control" 
-																				title="Country Name" name="listPartyBilling[0].billingAddr3" required>
+																				title="Country Name" th:field="*{listPartyBilling[__${stat.index}__].billingCountry}" required>
 																				<option value="">Select</option>
 																				<option th:each="country :  ${listCountry}"
 																					th:text="${country.countryName}"
@@ -678,43 +678,43 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="addr0" th:each="row, stat :${partyMaster.listPartyConsignee}">
 																		<th scope="row">
 																			<fieldset>
 																				<input type="text" class="form-control"
 																					placeholder="" id="insCompanyCode0"
-																					title="Billing Name" name="listPartyConsignee[0].conSigneeCode">
+																					title="Billing Name" th:field="*{listPartyConsignee[__${stat.index}__].conSigneeCode}">
 																			</fieldset>
 																		</th>
 																		<td>
 																			<fieldset>
 																				<input type="text" class="form-control"
 																					placeholder="" id="insCompanyName0" 
-																					title="Billing GST No" name="listPartyConsignee[0].conSigneeName">
+																					title="Billing GST No" th:field="*{listPartyConsignee[__${stat.index}__].consigneeName}" >
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="text" class="form-control" name="listPartyConsignee[0].consigneeAddr1"
+																				<input type="text" class="form-control" th:field="*{listPartyConsignee[__${stat.index}__].consigneeAddr1}" 
 																					placeholder="" title="Billing Addr1">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="date" class="form-control" name="listPartyConsignee[0].consigneeAddr2"
+																				<input type="date" class="form-control" th:field="*{listPartyConsignee[__${stat.index}__].consigneeAddr2}" 
 																					placeholder="" title="Billing Addr2">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="text" class="form-control" name="listPartyConsignee[0].consigneeAddr3"
+																				<input type="text" class="form-control" th:field="*{listPartyConsignee[__${stat.index}__].consigneeAddr3}" 
 																					placeholder="" title="Billing Addr3">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
 																				<select class="form-control" id="departmentDropdown"
-																					title="Department Name" name="listPartyConsignee[0].city" required>
+																					title="Department Name" th:field="*{listPartyConsignee[__${stat.index}__].city}" required>
 																					<option value="">Select</option>
 																					<option th:each="city :  ${listCity}"
 																						th:text="${city.cityName}"
@@ -725,7 +725,7 @@
 																		<td>
 																			<fieldset>
 																				<select class="form-control" id="departmentDropdown"
-																					title="Department Name" name="listPartyConsignee[0].country" required>
+																					title="Department Name" th:field="*{listPartyConsignee[__${stat.index}__].country}"required>
 																					<option value="">Select</option>
 																					<option th:each="country :  ${listCountry}"
 																						th:text="${country.countryName}"
@@ -736,7 +736,7 @@
 																		<td>
 																			<fieldset>
 																				<input type="text" class="form-control"
-																					placeholder="" id="insCompanyName0" name="listPartyConsignee[0].pin"
+																					placeholder="" id="insCompanyName0" th:field="*{listPartyConsignee[__${stat.index}__].pin}"
 																					title="pin code">
 																			</fieldset>
 																		</td>

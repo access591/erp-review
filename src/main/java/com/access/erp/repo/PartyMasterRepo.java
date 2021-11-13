@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.access.erp.model.master.PartyMaster;
 
 @Repository
-public interface PartyMasterRepo extends JpaRepository<PartyMaster, Long>{
+public interface PartyMasterRepo extends JpaRepository<PartyMaster, String>{
 
 }
