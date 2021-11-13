@@ -89,8 +89,8 @@
 											<!-- /.box-header -->
 											<!-- form start -->
 											<h5>Request for Quotation Detail</h5>
-
-
+											
+											
 											<form role="form" th:action="@{/requestquotation/}"
 												method="POST" th:object="${rFQuotation}">
 												<div class="box-body">
@@ -106,7 +106,7 @@
 															Type</label> <label style="color: red">*</label> <select
 															class="form-control" id="" title="request for quotation"
 															th:field="*{rfqType}" required>
-
+															
 															<option value="indent" selected>Indent</option>
 															<option value="withoutIndent">without Indent</option>
 
@@ -116,8 +116,7 @@
 													<div class="form-group col-md-4">
 														<label for="inputEmail4">Request for Quotation
 															Date</label> <input type="date" class="form-control"
-															title="quotation date" th:field="*{rfqDate}"
-															id="requestForQuotationDate">
+															title="quotation date" th:field="*{rfqDate}" id="requestForQuotationDate">
 													</div>
 
 												</div>
@@ -127,19 +126,24 @@
 												<div class="box">
 
 													<h5>Indent Detail</h5>
-													
-													
 
 													<div class="box-body">
 
 
 														<input id="_cr" name="_cr" type="hidden" value="1">
-														
+
 
 
 														<div class="table-responsive">
 
+															<div class="col-sm-12" style="text-align: right">
 
+																<a id="add_row_in" class="fa fa-plus" aria-hidden="true"
+																	style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+																<a id='delete_row_in' class="fa fa-trash"
+																	style="font-size: 24px; color: #399490fc"
+																	aria-hidden="true"></a>
+															</div>
 
 
 															<table id="indentTable" aria-describedby="example"
@@ -148,8 +152,7 @@
 																	<tr>
 																		<th scope="col" class="text-center">Indent Number</th>
 																		<th scope="col" class="text-center">Indent Date</th>
-																		<th scope="col" class="text-center">Item Name<span
-																			style="color: red">*</span></th>
+																		<th scope="col" class="text-center">Item Name<span style="color:red">*</span></th>
 																		<th scope="col" class="text-center">UOM</th>
 																		<th scope="col" class="text-center">City</th>
 																		<th scope="col" class="text-center">Required Date</th>
@@ -272,7 +275,7 @@
 																		<th scope="col" class="text-center">Email</th>
 																		<th scope="col" class="text-center">Phone Number
 																		</th>
-																		<th scope="col" class="text-center">fax Number</th>
+																		<th scope="col" class="text-center">Fax Number</th>
 
 
 
