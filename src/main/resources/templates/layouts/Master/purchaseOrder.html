@@ -109,15 +109,15 @@
 															</div>
 															<div class="form-group col-md-3">
 																<label for="inputPassword4">PO Date</label> <input
-																	type="date" class="form-control" id="inputPassword4"
-																	placeholder="po date" th:field="*{poDate}">
+																	type="date" class="form-control" placeholder="po date"
+																	id="poDate" th:field="*{poDate}">
 															</div>
 
 														</div>
 
 														<div class="form-row">
 															<div class="form-group col-md-3">
-																<label class="form-label">Gst</label> <label
+																<label class="form-label">GST</label> <label
 																	style="color: red">*</label> <select
 																	class="form-control" id="" title="gst" required>
 																	<option value="gst" selected>GST</option>
@@ -137,333 +137,328 @@
 															</div>
 
 														</div>
-														<!-- /.box-body -->
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
+
+												<!--box2-->
+
+												<div class="box">
+													<h5 class="box-title">Nature of Purchase</h5>
+													<div class="box-body">
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Nature of Purchase</label><select
+																class="form-control" id="" title="urgency"
+																th:field="*{natureOfPur}" required>
+
+																<option value="yes">Capital</option>
+																<option value="non" selected>Non-Capital</option>
+															</select>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Open PO</label> <select
+																class="form-control" id="" title="urgency"
+																th:field="*{openPo}" required>
+
+																<option value="yes" selected>Yes</option>
+																<option value="non">No</option>
+															</select>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">PO Type</label> <select
+																class="form-control" id="" title="urgency"
+																th:field="*{poType}" required>
+
+																<option value="InterState" selected>Inter State</option>
+																<option value="IntraState">Intra State</option>
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Purchase Through</label> <select
+																class="form-control" id="purchaseThrough"
+																title="urgency" required
+																onchange="againstPurchaseThrough()">
+																<option value="quotation" selected>Quotation</option>
+																<option value="indent">Indent</option>
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Quotation Number</label> <select
+																class="form-control" id="quotationNumber" title=""
+																onchange="quotationNumberInfo()"
+																th:field="*{quotationDetail}" required>
+																<option value="">Select</option>
+																<option
+																	th:each="quotationDetal :  ${lsitQuotationDetail}"
+																	th:text="${quotationDetal.quotNo}"
+																	th:value=" ${quotationDetal.quotNo}"></option>
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Date</label> <input type="date"
+																class="form-control" id="quotationDate"
+																placeholder="cancelbutton status"
+																th:field="*{quotationDate}">
+														</div>
 
 													</div>
-													<!--end box-1-->
+												</div>
+												<!--end box-2-->
 
-													<!--box2-->
+												<!--box-3-->
+												<div class="box">
+													<h5>Supplier Info</h5>
+													<div class="box-body">
 
-													<div class="box">
-														<h5 class="box-title">Nature of Purchase</h5>
-														<div class="box-body">
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Nature of Purchase</label><select
-																	class="form-control" id="" title="urgency"
-																	th:field="*{natureOfPur}" required>
-
-																	<option value="yes">Capital</option>
-																	<option value="non" selected>Non-Capital</option>
-																</select>
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Open PO</label> <select
-																	class="form-control" id="" title="urgency"
-																	th:field="*{openPo}" required>
-
-																	<option value="yes" selected>Yes</option>
-																	<option value="non">No</option>
-																</select>
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">PO Type</label> <select
-																	class="form-control" id="" title="urgency"
-																	th:field="*{poType}" required>
-
-																	<option value="InterState" selected>Inter
-																		State</option>
-																	<option value="IntraState">Intra State</option>
-																</select>
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Supplier</label> <select
+																id="supplierId" class="form-control" required
+																title="supplier code" onchange="supplierInfo()"
+																th:field="*{supplier}">
+																<option value=" ">Select</option>
+																<option th:each="supplier :  ${listSupplier}"
+																	th:text="${supplier.supplierName}"
+																	th:value=" ${supplier.supplierId}"></option>
 
 
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Purchase Through</label> <select
-																	class="form-control" id="purchaseThrough"
-																	title="urgency" required
-																	onchange="againstPurchaseThrough()">
-																	<option value="quotation" selected>Quotation</option>
-																	<option value="indent">Indent</option>
-																</select>
-															</div>
+															</select>
+														</div>
 
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Quotation Number</label> <select
-																	class="form-control" id="quotationNumber" title=""
-																	onchange="quotationNumberInfo()"
-																	th:field="*{quotationDetail}" required>
-																	<option value="">Select</option>
-																	<option
-																		th:each="quotationDetal :  ${lsitQuotationDetail}"
-																		th:text="${quotationDetal.quotNo}"
-																		th:value=" ${quotationDetal.quotNo}"></option>
-																</select>
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Supplier State</label> <input
+																type="text" class="form-control" id="supplierState"
+																placeholder="supplier state">
+														</div>
 
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Date</label> <input
-																	type="date" class="form-control" id="quotationDate"
-																	placeholder="cancelbutton status"
-																	th:field="*{quotationDate}">
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Currency</label> <select
+																id="currencyId" class="form-control" required
+																title="currency" th:field="*{currency}">
+																<option value=" ">Select</option>
+																<option th:each="currency :  ${listCurrency}"
+																	th:text="${currency.currencyValue}"
+																	th:value=" ${currency.currencyCode}"></option>
 
+
+															</select>
 														</div>
 													</div>
-													<!--end box-2-->
+												</div>
+												<!--end box-3-->
 
-													<!--box-3-->
-													<div class="box">
-														<h5>Supplier Info</h5>
-														<div class="box-body">
+												<!--box-4-->
+												<div class="box">
+													<h5>Execution Detail</h5>
+													<div class="box-body">
 
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Supplier</label> <select
-																	id="supplierId" class="form-control" required
-																	title="supplier code" onchange="supplierInfo()"
-																	th:field="*{supplier}">
-																	<option value=" ">Select</option>
-																	<option th:each="supplier :  ${listSupplier}"
-																		th:text="${supplier.supplierName}"
-																		th:value=" ${supplier.supplierId}"></option>
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Supply Date</label> <input
+																type="date" class="form-control" id="inputEmail4"
+																placeholder="supply date" th:field="*{supplyDate}">
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Delivery Date</label> <input
+																type="date" class="form-control" id="inputPassword4"
+																placeholder="po date" th:field="*{deliveryDate}">
+														</div>
 
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Conversion Value</label> <input
+																type="number" class="form-control" id="inputPassword4"
+																placeholder="gst" th:field="*{conversionValue}">
+														</div>
 
-																</select>
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Remarks</label> <input
+																type="text" class="form-control" id="inputPassword4"
+																placeholder="gst" th:field="*{remarks}">
+														</div>
 
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Supplier State</label> <input
-																	type="text" class="form-control" id="supplierState"
-																	placeholder="supplier state">
-															</div>
-
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Currency</label> <select
-																	id="currencyId" class="form-control" required
-																	title="currency" th:field="*{currency}">
-																	<option value=" ">Select</option>
-																	<option th:each="currency :  ${listCurrency}"
-																		th:text="${currency.currencyValue}"
-																		th:value=" ${currency.currencyCode}"></option>
-
-
-																</select>
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Invoice Address</label> <input
+																type="text" class="form-control" id="inputAddress"
+																placeholder="Invoce Address">
 														</div>
 													</div>
-													<!--end box-3-->
+												</div>
+												<!--end box-4-->
 
-													<!--box-4-->
-													<div class="box">
-														<h5>Execution Detail</h5>
-														<div class="box-body">
 
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Supply Date</label> <input
-																	type="date" class="form-control" id="inputEmail4"
-																	placeholder="supply date" th:field="*{supplyDate}">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Delivery Date</label> <input
-																	type="date" class="form-control" id="inputPassword4"
-																	placeholder="po date" th:field="*{deliveryDate}">
-															</div>
+												<!--detail box-->
+												<div class="box">
+													<div class="box-body">
 
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Conversion Value</label> <input
-																	type="number" class="form-control" id="inputPassword4"
-																	placeholder="gst" th:field="*{conversionValue}">
-															</div>
+														<input id="_cr" name="_cr" type="hidden" value="1">
 
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Remarks</label> <input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="gst" th:field="*{remarks}">
-															</div>
 
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Invoice Address</label> <input
-																	type="text" class="form-control" id="inputAddress"
-																	placeholder="Invoce Address">
-															</div>
+
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display">
+																<thead>
+																	<tr>
+
+																		<th scope="col" class="text-center"
+																			style="width: 130px;">Type</th>
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">Indent Number</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Indent Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Number</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Rate</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">Effective Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Qty Order</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Status</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Total Item Cost</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">otal Item Cost(INR)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Remarks</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Rate History</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Tax Detail</th>
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0">
+
+																		<td><select id="supplierId"
+																			class="form-control form-control-sm select"
+																			title="type" onchange="supplierInfo()">
+																				<option value="">Select</option>
+
+
+
+																		</select></td>
+
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="indentNumberPo"
+																			name="listPurchaseOrderItem[0].openIndent"
+																			title="indent number" onchange='getIndentDetailPo()'
+																			required>
+																				<option value="">Select Indent</option>
+
+																		</select></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="indentDatePo" title="indent date"
+																			name="listPurchaseOrderItem[0].indentDate"></td>
+
+
+																		<td><select id="itemPo"
+																			class="form-control form-control-sm select itemContainerPo"
+																			required title="item" onchange="getItemDetailForPo()"
+																			name="listPurchaseOrderItem[0].item">
+																				<option value="">Select</option>
+																		</select></td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="contactPerson" title="item rate"
+																			name="listPurchaseOrderItem[0].itemRate"></td>
+
+																		<td><input type="date" title="effective date"
+																			class="form-control form-control-sm" id="email"
+																			name="listPurchaseOrderItem[0].rateEffectiveDate">
+																		</td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			title="qty order"
+																			name="listPurchaseOrderItem[0].qtyOrder"></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="status"
+																			name="listPurchaseOrderItem[0].itemStatus"></td>
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="supplierState" title="total item cost"></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="contactPerson" title="total item cost(inr)"></td>
+
+																		<td><input type="text" title="remarks"
+																			class="form-control form-control-sm" id="email"
+																			name="listPurchaseOrderItem[0].itemRemarks">
+																		</td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			title="rate history"></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="Tax detail"
+																			name="listPurchaseOrderItem[0].openIndent"></td>
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+
+															</table>
 														</div>
+
+														<input type="hidden" id="hidden_field"
+															th:value="${length}" />
 													</div>
-													<!--end box-4-->
+												</div>
 
 
-													<!--detail box-->
-													<div class="box">
-														<div class="box-body">
-
-															<input id="_cr" name="_cr" type="hidden" value="1">
+												<!--end detail box-->
 
 
-
-															<div class="table-responsive">
-																<table id="example" aria-describedby="example"
-																	class="table table-striped display">
-																	<thead>
-																		<tr>
-
-																			<th scope="col" class="text-center"
-																				style="width: 130px;">Type</th>
-																			<th scope="col" class="text-center"
-																				style="width: 100px;">Indent Number</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Indent Date</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Item Number</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Item Rate</th>
-																			<th scope="col" class="text-center"
-																				style="width: 10px;">Effective Date</th>
-																			<th scope="col" class="text-center"
-																				style="width: 120px;">Qty Order</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Status</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Total Item Cost</th>
-																			<th scope="col" class="text-center"
-																				style="width: 120px;">otal Item Cost(INR)</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Remarks</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Rate History</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Tax Detail</th>
-
-																		</tr>
-																	</thead>
-
-																	<tbody>
-																		<tr id="addr0">
-
-																			<td><select id="supplierId"
-																				class="form-control form-control-sm select"
-																				title="type" onchange="supplierInfo()">
-																					<option value="">Select</option>
+												<!--final div -->
 
 
+												<div class="box">
+													<h5>Total value</h5>
+													<div class="box-body">
 
-																			</select></td>
-
-																			<td><select
-																				class="form-control indentContainer form-control-sm select"
-																				id="indentNumberPo"
-																				name="listPurchaseOrderItem[0].openIndent"
-																				title="indent number" onchange='getIndentDetailPo()'
-																				required>
-																					<option value="">Select Indent</option>
-
-																			</select></td>
-
-																			<td><input type="text"
-																				class="form-control form-control-sm"
-																				id="indentDatePo" title="indent date"
-																				name="listPurchaseOrderItem[0].indentDate">
-																			</td>
-
-
-																			<td><select id="itemPo"
-																				class="form-control form-control-sm select itemContainerPo"
-																				required title="item"
-																				onchange="getItemDetailForPo()"
-																				name="listPurchaseOrderItem[0].item">
-																					<option value="">Select</option></td>
-
-
-																			<td><input type="number"
-																				class="form-control form-control-sm"
-																				id="contactPerson" title="item rate"
-																				name="listPurchaseOrderItem[0].itemRate"></td>
-
-																			<td><input type="date" title="effective date"
-																				class="form-control form-control-sm" id="email"
-																				name="listPurchaseOrderItem[0].rateEffectiveDate">
-																			</td>
-
-																			<td><input type="number"
-																				class="form-control form-control-sm"
-																				title="qty order"
-																				name="listPurchaseOrderItem[0].qtyOrder"></td>
-
-																			<td><input type="text"
-																				class="form-control form-control-sm"
-																				id="technicalQualification" title="status"
-																				name="listPurchaseOrderItem[0].itemStatus">
-																			</td>
-																			<td><input type="text"
-																				class="form-control form-control-sm"
-																				id="supplierState" title="total item cost"></td>
-
-																			<td><input type="text"
-																				class="form-control form-control-sm"
-																				id="contactPerson" title="total item cost(inr)"></td>
-
-																			<td><input type="text" title="remarks"
-																				class="form-control form-control-sm" id="email"
-																				name="listPurchaseOrderItem[0].itemRemarks">
-																			</td>
-
-																			<td><input type="text"
-																				class="form-control form-control-sm"
-																				title="rate history"></td>
-
-																			<td><input type="text"
-																				class="form-control form-control-sm"
-																				id="technicalQualification" title="Tax detail"
-																				name="listPurchaseOrderItem[0].openIndent">
-																			</td>
-
-
-
-
-																		</tr>
-																		<tr id='addr1' />
-
-																	</tbody>
-
-
-																</table>
-															</div>
-
-															<input type="hidden" id="hidden_field"
-																th:value="${length}" />
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Total Cost(Excluding
+																tax)</label> <input type="number" class="form-control"
+																id="inputEmail4" placeholder="supplier"
+																th:field="*{totalValue}">
 														</div>
-													</div>
-
-
-													<!--end detail box-->
-
-
-													<!--final div -->
-
-
-													<div class="box">
-														<h5>Total value</h5>
-														<div class="box-body">
-
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Total Cost(Excluding
-																	tax)</label> <input type="number" class="form-control"
-																	id="inputEmail4" placeholder="supplier"
-																	th:field="*{totalValue}">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Total Cost(Including
-																	tax)</label> <input type="number" class="form-control"
-																	id="inputPassword4" placeholder="supplier state">
-															</div>
-
-
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Total Cost(Including
+																tax)</label> <input type="number" class="form-control"
+																id="inputPassword4" placeholder="supplier state">
 														</div>
-													</div>
-													<!--end final div-->
 
-													<div class="box-footer" style="margin: 10px">
-														<input type="submit" value="Submit"
-															class="btn btn-primary" /> <input type="reset"
-															value="Reset" class="btn btn-danger" />
+
 													</div>
+												</div>
+												<!--end final div-->
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
 											</form>
 
 
@@ -495,6 +490,7 @@
 
 				$(document).ready(function () {
 
+					document.getElementById('poDate').valueAsDate = new Date();
 
 				});
 			</script>

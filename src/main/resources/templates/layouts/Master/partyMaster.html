@@ -40,6 +40,19 @@
 	color: red;
 	font-size: 11px;
 }
+
+
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+	font-size: 11px;
+}
+
+.select {
+	width: 77px;
+	font-size: 11px;
+}
+
 </style>
 
 
@@ -565,12 +578,15 @@
 																				placeholder="" id="insCompanyCode0"
 																				title="Billing Name">
 																		</fieldset>
+																		
+																	</th>
+																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder="" id="insCompanyCode0" name="listPartyBilling[0].billingName"
 																				title="Billing Name">
 																		</fieldset>
-																	</th>
+																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
@@ -586,7 +602,7 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<input type="date" class="form-control"
+																			<input type="text" class="form-control"
 																				placeholder="" title="Billing Addr2" name="listPartyBilling[0].billingAddr2">
 																		</fieldset>
 																	</td>
@@ -598,7 +614,7 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<select class="form-control" id="departmentDropdown"
+																			<select class="form-control form-control-sm select" id="departmentDropdown"
 																				title="Department Name" name="listPartyBilling[0].billingAddr3" required>
 																				<option value="">Select</option>
 																				<option th:each="city :  ${listCity}"
@@ -609,7 +625,7 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<select class="form-control" id="departmentDropdown"
+																			<select class="form-control form-control-sm select" id="departmentDropdown"
 																				title="Department Name" name="listPartyBilling[0].billingAddr3" required>
 																				<option value="">Select</option>
 																				<option th:each="state :  ${listState}"
@@ -627,7 +643,7 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<select class="form-control" 
+																			<select class="form-control form-control-sm select" 
 																				title="Country Name" name="listPartyBilling[0].billingAddr3" required>
 																				<option value="">Select</option>
 																				<option th:each="country :  ${listCountry}"
@@ -649,7 +665,7 @@
 
 													<div class="box">
 
-
+														<h5>Consignee Details</h5>
 
 														<div class="box-body">
 															<div class="col-sm-12" style="text-align: right">
@@ -701,7 +717,7 @@
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="date" class="form-control" name="listPartyConsignee[0].consigneeAddr2"
+																				<input type="text" class="form-control" name="listPartyConsignee[0].consigneeAddr2"
 																					placeholder="" title="Billing Addr2">
 																			</fieldset>
 																		</td>
@@ -713,7 +729,7 @@
 																		</td>
 																		<td>
 																			<fieldset>
-																				<select class="form-control" id="departmentDropdown"
+																				<select class="form-control form-control-sm select" id="departmentDropdown"
 																					title="Department Name" name="listPartyConsignee[0].city" required>
 																					<option value="">Select</option>
 																					<option th:each="city :  ${listCity}"
@@ -724,7 +740,7 @@
 																		</td>
 																		<td>
 																			<fieldset>
-																				<select class="form-control" id="departmentDropdown"
+																				<select class="form-control form-control-sm select" id="departmentDropdown"
 																					title="Department Name" name="listPartyConsignee[0].country" required>
 																					<option value="">Select</option>
 																					<option th:each="country :  ${listCountry}"

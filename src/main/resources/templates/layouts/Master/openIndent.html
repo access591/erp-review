@@ -88,7 +88,7 @@
 
 										<div class="box-header with-border">
 
-											<h4 class="box-title">Indent Detail</h4>
+											<h6 class="box-title">Indent Detail</h6>
 										</div>
 										<!-- /.box-header -->
 
@@ -107,42 +107,44 @@
 												</div>
 												<div class="form-group col-md-4">
 													<label for="inputPassword4">Indent Date</label> <input
-														type="date" class="form-control" id=""
+														type="date" class="form-control" id="indentDate"
 														placeholder="Indent Date" title="indent date"
-														th:field="*{indentDate}">
+														th:field="*{indentDate}" readonly>
 												</div>
 
+
+
+
+												<!-- <div class="form-group col-md-4">
+													<label for="inputAddress">Employee Code</label> <input
+														type="text" class="form-control" id="employeename"
+														title="employee name" placeholder="Employee Name">
+												</div> -->
+
 												<div class="form-group col-md-4">
-													<label class="form-label">Employee Code</label> <label
+													<label class="form-label">Employee Name</label> <label
 														style="color: red">*</label> <select class="form-control"
 														title="employee code" id="employee" required
 														onchange="indentGetEmployee()" th:field="*{employee}">
 														<option value="">Select Employee</option>
 														<option th:each="employee :  ${employeeList}"
-															th:text="${employee.empCode}"
+															th:text="${employee.empName}"
 															th:value=" ${employee.empCode}"></option>
 													</select>
 												</div>
 
-
 												<div class="form-group col-md-4">
-													<label for="inputAddress">Employee Name</label> <input
-														type="text" class="form-control" id="employeename"
-														title="employee name" placeholder="Employee Name">
-												</div>
-												<div class="form-group col-md-4">
-													<label for="inputAddress">Department Code</label> <input
-														type="text" class="form-control" id="departmentcode"
-														title="department code" placeholder="Department code"
-														th:field="*{deptCode}">
+													<label for="inputAddress">Department Name</label> <select
+														class="form-control" title="employee code" id="employee"
+														required th:field="*{deptCode}">
+														<option value="">Select Department</option>
+														<option th:each="department :  ${departmentList}"
+															th:text="${department.deptName}"
+															th:value=" ${department.deptCode}"></option>
+													</select>
 												</div>
 
-												<div class="form-group col-md-4">
-													<label for="inputAddress">Department Name</label> <input
-														type="text" class="form-control" id="departmentname"
-														title="department name" placeholder="Department Name"
-														th:field="*{deptName}">
-												</div>
+
 												<div class="form-group col-md-4">
 													<label class="form-label">Urgency</label> <label
 														style="color: red">*</label> <select class="form-control"
@@ -157,7 +159,7 @@
 												<div class="form-group col-md-4">
 													<label class="form-label">Purchase Type</label> <label
 														style="color: red">*</label> <select class="form-control"
-														id="" title="indent type" required>
+														id="" title="purchase type" required>
 														<option value="">Select</option>
 														<option value="Capex">Capex</option>
 														<option value="NonCapex">Non-Capex</option>
@@ -167,15 +169,19 @@
 												</div>
 
 												<div class="form-group col-md-4">
-													<label for="inputAddress">Indent Type</label> <input
-														type="text" class="form-control" id="inputAddress"
-														title="purchase type" placeholder="Purchase Type">
+													<label for="inputAddress">Indent Type</label> <select
+														class="form-control" id="" title="urgency" required>
+
+														<option value="general" selected>General</option>
+
+
+													</select>
 												</div>
-												<div class="form-group col-md-6">
-													<label for="inputAddress">Remarks</label> <input
-														type="text" class="form-control" id="inputAddress"
-														placeholder="Remarks" th:field="*{remarks}"
-														title="remarks">
+												<div class="form-group col-md-8">
+													<label for="inputAddress">Remarks</label>
+													<textarea type="text" class="form-control"
+														id="inputAddress" placeholder="Remarks"
+														th:field="*{remarks}" title="remarks"></textarea>
 												</div>
 
 											</div>
@@ -184,7 +190,10 @@
 
 											<!--2nd div -->
 											<div class="box">
-												<h5>Indent Status</h5>
+												<div style="padding-left: 12px;">
+													<h5>Indent Status</h5>
+												</div>
+
 												<div class="box-body">
 
 													<div class="form-row">
@@ -192,19 +201,19 @@
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
-																th:field="*{approvalStatus1}">
+																th:field="*{approvalStatus1}" readonly>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Date of Approval</label> <input
 																type="date" class="form-control" id="inputPassword4"
 																placeholder="Date of Approval" title="date of approval"
-																th:field="*{approvalDate1}">
+																th:field="*{approvalDate1}" readonly>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Purchase Status</label> <input
 																type="text" class="form-control" id="inputPassword4"
 																placeholder="Purchase Status" title="purchase status"
-																th:field="*{indPurStatus}">
+																th:field="*{indPurStatus}" readonly>
 														</div>
 
 													</div>
@@ -216,7 +225,9 @@
 
 
 											<div class="box">
-												<h5>Indent Item Detail</h5>
+												<div style="padding-left: 12px">
+													<h5>Indent Item Detail</h5>
+												</div>
 
 												<div class="col-sm-12" style="text-align: right">
 
@@ -229,7 +240,7 @@
 
 
 
-												<div class="table-responsive">
+												<div class="table-responsive table table-sm">
 													<table id="example" aria-describedby="example1">
 
 														<thead>
@@ -242,15 +253,14 @@
 																</th>
 																<th scope="col" class="text-center">Qty to be
 																	Procured</th>
-																<th scope="col" class="text-center">Pipeline indent
-																	Qty</th>
+																<th scope="col" class="text-center">Pipeline indent<span
+																	style="color: red">*</span> Qty
+																</th>
 																<th scope="col" class="text-center">Indented Qty</th>
 																<th scope="col" class="text-center">Approved
 																	Indented Qty</th>
-																<th scope="col" class="text-center">Status</th>
+
 																<th scope="col" class="text-center">Currency Code</th>
-																<th scope="col" class="text-center">Conversion
-																	Value</th>
 																<th scope="col" class="text-center">Item Rate</th>
 																<th scope="col" class="text-center">Units</th>
 																<th scope="col" class="text-center">Total value</th>
@@ -258,7 +268,8 @@
 																	Value(INR)</th>
 
 																<th scope="col" class="text-center">Requisition
-																	Date</th>
+																	Date<span style="color: red">*</span>
+																</th>
 																<th scope="col" class="text-center">Status</th>
 
 																<th scope="col" class="text-center">Indent Purpose
@@ -278,81 +289,100 @@
 																			th:text="${item.description}"
 																			th:value=" ${item.itemCode}"></option>
 																</select></td>
+
+																<!-- item description -->
 																<td><input type="text" id="indItemCode0"
 																	title="item code" class="form-control form-control-sm"
-																	required></td>
-																<!-- item description -->
-																<td><input type="text"
-																	class="form-control form-control-sm" id="salaryFrom"
-																	title="Salary"></td>
+																	readonly></td>
 
+																<!-- qty in stock -->
 																<td><input type="text"
 																	class="form-control form-control-sm" id="qtyInStock0"
 																	title="qty" required
-																	name="opeIndentDetail[0].qtyInStock"></td>
+																	name="opeIndentDetail[0].qtyInStock"
+																	style="text-align: right" readonly></td>
 
 
 
 
+																<!-- qt to procured -->
 
 																<td><input type="text"
 																	class="form-control form-control-sm" id="qtyProcured0"
-																	title="qty" name="opeIndentDetail[0].qtyProcured"></td>
+																	title="qty" name="opeIndentDetail[0].qtyProcured"
+																	style="text-align: right" readonly></td>
 
+																<!-- pipeline indent qty  -->
 																<td><input type="text"
 																	class="form-control form-control-sm" id="qtyProcured0"
 																	title="pipline" required
-																	name="opeIndentDetail[0].pipelineQty"></td>
+																	name="opeIndentDetail[0].pipelineQty"
+																	style="text-align: right"></td>
 
+																<!-- indent qty -->
 
 																<td><input type="text"
 																	class="form-control form-control-sm" id="indQty0"
 																	min="18" title="ind qty" required
-																	name="opeIndentDetail[0].indQty"></td>
+																	name="opeIndentDetail[0].indQty"
+																	style="text-align: right"></td>
+
+
+																<!-- approved indent qty -->
 
 																<td><input type="text"
 																	class="form-control form-control-sm" id="ageTo"
 																	title="approvaed qty" required
-																	name="opeIndentDetail[0].approvedQty"></td>
+																	name="opeIndentDetail[0].approvedQty"
+																	style="text-align: right"></td>
 
-																<!-- gor status -->
-																<td><input type="text"
-																	class="form-control form-control-sm"
-																	id="accademicQualificatio" required
-																	title="Accademic qualification"></td>
 
-																<td><input type="text"
-																	class="form-control form-control-sm" id="expMaxMonth"
-																	required title="currency code"
-																	name="opeIndentDetail[0].currencyCode"></td>
+																<!-- currency code -->
 
-																<td><input type="text"
-																	class="form-control form-control-sm" id="expMaxMonth"
-																	required title="conversion value"
-																	name="opeIndentDetail[0].conversionvalue"></td>
+																<td><select class="form-control form-control-sm"
+																	title="currency code"
+																	name="opeIndentDetail[0].currencyCode" required>
+																		<option value="">Select</option>
+																		<option value="inr">INR</option>
+																		<option value="usd">USD</option>
 
+																</select></td>
+
+																<!-- item rate -->
 
 																<td><input type="text"
 																	class="form-control form-control-sm"
 																	id="technicalQualification" required title="item rate"
-																	name="opeIndentDetail[0].itemRate"></td>
+																	name="opeIndentDetail[0].itemRate"
+																	style="text-align: right"></td>
 
-																<!--unit  -->
+
+																<!-- units  -->
 																<td><input type="text"
 																	class="form-control form-control-sm" title=""
 																	id="salaryTo" required></td>
 
+
+																<!-- total value inr -->
+																<td><input type="text"
+																	class="form-control form-control-sm" id="salaryFrom"
+																	title="Salary" readonly></td>
+
+																<!--total value  -->
 																<td><input type="text"
 																	class="form-control form-control-sm" id="salaryTo"
 																	required title="total value"
-																	name="opeIndentDetail[0].totalValue"></td>
+																	name="opeIndentDetail[0].totalValue"
+																	style="text-align: right" readonly></td>
 
-																<!-- total value (INR)  -->
-																<td><input type="text"
+
+																<!-- requisition date -->
+																<td><input type="date"
 																	class="form-control form-control-sm" id="salaryTo"
-																	required></td>
+																	style="width: 145px" required></td>
 
 
+																<!-- Status  -->
 
 
 																<td><input type="text"
@@ -361,6 +391,7 @@
 																	title="Purchase state wise"
 																	name="opeIndentDetail[0].purStatusItemWise"></td>
 
+																<!-- indent purpose -->
 
 																<td><input type="text"
 																	class="form-control form-control-sm" id="indPurpose0"
@@ -419,8 +450,13 @@
         
         </section>-->
 
+
+
 	<script>
 
+ document.getElementById('indentDate').valueAsDate = new Date();
+ 
+ 
 				var idIndex = 0;
 				$(document).ready(function () {
 					console.log("open indent detail is ready!");
@@ -432,21 +468,30 @@
 						$('#addr' + i).html(
 
 							"<td><select class='select form-control form-control-sm' id='departmentDropdown' title='item Name'name='opeIndentDetail[" + idIndex + "].indItemCode'required><option value=''>Select Item </option><option th:each='item :  ${itemList}'th:text='${item.description}'th:value='${item.itemCode}'></option></select></td>"
-							+ "<td><input type='text' id='indItemCode0' title=''class='form-control form-control-sm'required></td>"
-							+ "<td><input type='text' class='form-control form-control-sm'id='salaryFrom' title='Salary'></td>"
-							+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock0' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock'></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'id='qtyProcured0' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured'></td>"
-							+ "<td><input type='text'class='form-control form-control-sm' id='qtyProcured0' title='' requiredname='opeIndentDetail[" + idIndex + "].pipelineQty'></td>"
-
+							+ "<td><input type='text' readonly id='indItemCode0' title=''class='form-control form-control-sm'required></td>"
+						
+							+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock0' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' readonly></td>"
+							
+								+ "<td><input type='text'class='form-control form-control-sm'id='qtyProcured0' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' readonly></td>"
+							
+							+ "<td><input type='text'class='form-control form-control-sm' id='qtyProcured0' title='' requiredname='opeIndentDetail[" +  idIndex + "].pipelineQty'></td>"
+							
 							+ "<td><input type='text'class='form-control form-control-sm'id='indQty0' min='18' title='Age from'required name='opeIndentDetail[" + idIndex + "].indQty'>"
+							
+							
+							
+							
+						
+							
+
+							
 							+ "<td><input type='text' class='form-control form-control-sm'id=''ageTo' requiredname='opeIndentDetail[" + idIndex + "].approvedQty'></td>"
-							+ "<td><input type='text'class='form-control form-control-sm' id='accademicQualificatio' required title='Accademic qualification'></td>"
 							+ "<td><input type='text'class='form-control form-control-sm'id='expMaxMonth' requiredtitle='max experience'name='opeIndentDetail[" + idIndex + "].currencyCode'></td>"
-							+ "<td><input type='text' class='form-control form-control-sm'id='expMaxMonth' required title='max experience' name='opeIndentDetail[" + idIndex + "].conversionvalue'> </td>"
 							+ "<td><input type='text' class='form-control form-control-sm' id='technicalQualification' required title='Technical Qualification' name='opeIndentDetail[" + idIndex + "].itemRate'></td>"
 							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' required></td>"
-							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' requiredname='opeIndentDetail[" + idIndex + "].totalValue'></td>"
-							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' required></td>"
+							+ "<td><input type='text' redaonly class='form-control form-control-sm'id='salaryFrom' title='Salary'></td>"
+							+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' requiredname='opeIndentDetail[" + idIndex + "].totalValue' readonly></td>"
+							+ "<td><input type='date' class='form-control form-control-sm' id='salaryTo' style='width: 145px' required></td>"
 							+ "<td><input type='text' class='form-control form-control-sm' id='purStatusItemWise' required title='minimum experience' name='opeIndentDetail[" + idIndex + "].purStatusItemWise'> </td>"
 							+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' required name='opeIndentDetail[" + idIndex + "].indPurpose'></td>"
 						);
