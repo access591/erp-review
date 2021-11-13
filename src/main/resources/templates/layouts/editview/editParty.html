@@ -588,7 +588,7 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<input type="date" class="form-control"
+																			<input type="text" class="form-control"
 																				placeholder="" title="Billing Addr2" th:field="*{listPartyBilling[__${stat.index}__].billingAddr2}">
 																		</fieldset>
 																	</td>
@@ -703,7 +703,7 @@
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="date" class="form-control" th:field="*{listPartyConsignee[__${stat.index}__].consigneeAddr2}" 
+																				<input type="text" class="form-control" th:field="*{listPartyConsignee[__${stat.index}__].consigneeAddr2}" 
 																					placeholder="" title="Billing Addr2">
 																			</fieldset>
 																		</td>
@@ -756,7 +756,7 @@
 
 													<div class="box-footer">
 														<button type="submit" class="btn btn-primary">Submit</button>
-														<input type="reset" value="Reset" class="btn btn-danger" />
+														<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
 													</div>
 												</div>
 												<!--end packing detail -->

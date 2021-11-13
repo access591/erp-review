@@ -43,7 +43,7 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 		if (openIndent.getIndentNumber() == "" || openIndent.getIndentNumber() == null) {
 			System.out.println("country code is : " + openIndent.getIndentNumber());
 			String maxCode = seqMainRepo.findByTranType("IND");
-			openIndent.setIndentNumber(maxCode);
+			openIndent.setIndentNumber("EB-IND"+maxCode.substring(2));
 
 			for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
 				// openIndent.getOpeIndentDetail().add(indent);
