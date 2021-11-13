@@ -2,6 +2,8 @@ package com.access.erp.model.master;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 public class PartyBilling {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="PART_BILLING_ID")
 	public Long partyBillingId;
 	
@@ -41,7 +44,19 @@ public class PartyBilling {
 	public String billingPinCode;
 	
 	@Column(name="BILLING_CST_NO",length = 50)
-	public String billingCstNo;
+	public String billingGstNo;
+	
+	@Column(name="BILLING_CITY",length = 50)
+	public String billingCity;
+	
+	@Column(name="BILLING_STATE",length = 50)
+	public String billingState;
+	
+	@Column(name="BILLING_COUNTRY",length = 50)
+	public String billingCountry;
+	
+	@Column(name="BILLING_PIN",length = 50)
+	public String billingPin;
 	
 	
 	@ManyToOne(optional = false)
@@ -146,13 +161,15 @@ public class PartyBilling {
 	}
 
 
-	public String getBillingCstNo() {
-		return billingCstNo;
+	
+
+	public String getBillingGstNo() {
+		return billingGstNo;
 	}
 
 
-	public void setBillingCstNo(String billingCstNo) {
-		this.billingCstNo = billingCstNo;
+	public void setBillingGstNo(String billingGstNo) {
+		this.billingGstNo = billingGstNo;
 	}
 
 
@@ -163,6 +180,46 @@ public class PartyBilling {
 
 	public void setPartyMaster(PartyMaster partyMaster) {
 		this.partyMaster = partyMaster;
+	}
+
+
+	public String getBillingCity() {
+		return billingCity;
+	}
+
+
+	public void setBillingCity(String billingCity) {
+		this.billingCity = billingCity;
+	}
+
+
+	public String getBillingState() {
+		return billingState;
+	}
+
+
+	public void setBillingState(String billingState) {
+		this.billingState = billingState;
+	}
+
+
+	public String getBillingCountry() {
+		return billingCountry;
+	}
+
+
+	public void setBillingCountry(String billingCountry) {
+		this.billingCountry = billingCountry;
+	}
+
+
+	public String getBillingPin() {
+		return billingPin;
+	}
+
+
+	public void setBillingPin(String billingPin) {
+		this.billingPin = billingPin;
 	}
 	
 	
