@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
-	
-	<link  href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 
 </head>
@@ -39,9 +50,10 @@
 							<div class="col-md-12" style="margin-top: 20px;">
 
 								<div class="box box-primary">
-								
-									<input type="hidden" id="mess" name="mess"th:value="${message}">
-									
+
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
+
 									<div class="box-header with-border">
 										<h3 class="box-title">List of Category</h3>
 									</div>
@@ -55,7 +67,7 @@
 															<th scope="col">#</th>
 															<th scope="col">Category Code</th>
 															<th scope="col">Category Name</th>
-															
+
 															<th scope="col">Action</th>
 
 														</tr>
@@ -64,17 +76,18 @@
 														<tr th:each="category,iter  : ${categoryList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${category.categCode}">Garrett Winters</td>
-															<td th:text="${category.description}">Garrett Winters</td>
-															
+															<td th:text="${category.description}">Garrett
+																Winters</td>
+
 
 
 															<td><span> <a
-																		th:href="@{/category/edit/{id}(id=${category.categCode})}"><em
-														class="fa fa-edit" style="color: blue;"> Edit</em></a></span>
-																<span> <a
-																		th:href="@{/category/delete/{id}(id=${category.categCode})}"><em
-														class="fa fa-times" style="color: red"> Remove</em></a></span>
-															</td>
+																	th:href="@{/category/edit/{id}(id=${category.categCode})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
+																	<a
+																	th:href="@{/category/delete/{id}(id=${category.categCode})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a>
+															</span></td>
 														</tr>
 
 
@@ -86,7 +99,7 @@
 										</div>
 
 										<div class="box-footer">
-										<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
+											<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
 										</div>
 
 									</form>
@@ -100,35 +113,40 @@
 					</div>
 				</section>
 			</div>
+		</div>
+	</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
-			
-			<script>
-$(document).ready(function() {
-var message = document.getElementById('mess').value
-if (message != null && message !== "") {
- 
-swal(message, "", "success", {
-button : "OK",
-hideClass : {
-popup : 'animate__animated animate__fadeOutUp'
-},
-});
-} else {
-console.log("ajax request : " + message);
-}
- 
-});
-</script>
+	<div th:replace="fragments/footer :: footer">...</div>
 
-			<!--   <section class="content">
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 </body>
 
