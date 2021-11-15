@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -19,8 +19,8 @@
 <link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
 	th:href="@{/css/skins/_all-skins.min.css}">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
@@ -101,7 +101,7 @@
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Item Code</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="" th:field="*{itemCode}" placeholder="Item Code"
+															id="" th:field="*{itemCode}"
 															title="item code" required>
 															<option value="">Select</option>
 															<option th:each="item :  ${listItem}"
