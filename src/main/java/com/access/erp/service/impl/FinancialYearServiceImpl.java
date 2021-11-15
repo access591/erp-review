@@ -41,14 +41,14 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 	}
 
 	@Override
-	public Optional<FinancialYear> editFinancialYear(Long id) {
+	public Optional<FinancialYear> editFinancialYear(String id) {
 
 		return financialYearRepo.findById(id);
 
 	}
 
 	@Override
-	public void deleteFinancialYear(Long id) {
+	public void deleteFinancialYear(String id) {
 
 		financialYearRepo.deleteById(id);
 
@@ -71,7 +71,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 			List<FinancialYear> listFinancialYear = query.getResultList();
 			
 			for(FinancialYear f : listFinancialYear) {
-				System.out.println("f value is : " + f.getFinancialYearCode() + " : " + f.getId());
+				System.out.println("f value is : " + f.getFinancialYearCode() + " : " + f.getFinancialYearCode());
 			}
 			
 			if(listFinancialYear.size()>0) {
