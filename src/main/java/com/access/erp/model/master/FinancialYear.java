@@ -17,11 +17,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="M_FINANCIAL_YEAR")
 public class FinancialYear {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="FINANCIAL_CODE")
-	private Long id;
 	
+	
+	
+	@Id
 	@Column(name="FINANCIAL_YEAR")
 	private String financialYearCode;
 	
@@ -43,15 +42,7 @@ public class FinancialYear {
 	}
 
 
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 
 	public String getFinancialYearCode() {
 		return financialYearCode;

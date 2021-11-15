@@ -74,7 +74,7 @@ public class FinancialYearController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String editFinancialYear(@PathVariable("id") Long id,Model model) {
+	public String editFinancialYear(@PathVariable("id") String id,Model model) {
 		
 		
 		
@@ -84,7 +84,7 @@ public class FinancialYearController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteFianncialYear(@PathVariable("id") Long id,Model model) {
+	public String deleteFianncialYear(@PathVariable("id") String id,Model model) {
 		financialYearService.deleteFinancialYear(id);
 		return "redirect:/financialyear/list";
 	}
