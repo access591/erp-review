@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+<style>
+.error {
+	color: red;
+	font-size: 11px;
+}
+</style>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Item Opening
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
+
+
+					<!-- Main content -->
+					<section class="content">
+
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+									<div class="col-md-2"></div>
+
+
+									<div class="col-md-8 shadow bg-white rounded"
+										style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div>
+											<!-- /.box-header -->
+											<!-- form start -->
+											<form id="itemOpeningForm" role="form"
+												th:action="@{/itemOpening/}" method="POST"
+												th:object="${itemOpening}">
+												<div class="box-body">
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Item Code</label><span
+															style="color: red">*</span> <select class="form-control"
+															id="" th:field="*{itemCode}" placeholder="Item Code"
+															title="item code" required>
+															<option value="">Select</option>
+															<option th:each="item :  ${listItem}"
+																th:text="${item.itemName}"
+																th:value=" ${department.itemCode}"></option>
+
+														</select>
+													</div>
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Item Description</label> <input
+															type="text" class="form-control" id="itemDescription"
+															placeholder="Description" title="item description"
+															required>
+													</div>
+
+													<div class="form-group col-md-6">
+														<label class="form-label">Item Type</label> <input
+															type="text" class="form-control" placeholder="Item Type"
+															title="item type" id="itemType">
+													</div>
+
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Category</label> <input
+															type="text" class="form-control" placeholder="Category"
+															title="category" id="category">
+													</div>
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Item UOM</label> <input
+															type="text" class="form-control" placeholder="Item UOM"
+															title="item uom" id="itemCode">
+													</div>
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Opening Date</label><span
+															style="color: red">*</span> <input type="date"
+															class="form-control" th:field="*{openingDate}"
+															title="opening date">
+													</div>
+
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Opening Stock</label> <input
+															type="number" class="form-control floatNumberField"
+															th:field="*{openingStock}" title="opening stock"
+															style="text-align: right">
+													</div>
+
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Current Stock</label> <input
+															type="number" class="form-control floatNumberField"
+															placeholder="Current Stock" th:field="*{currentStock}"
+															title="current stock" style="text-align: right">
+													</div>
+
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Opening Rate</label><span
+															style="color: red">*</span> <input type="number"
+															class="form-control floatNumberField"
+															placeholder="Opening Rate" th:field="*{openingRate}"
+															title="opening rate" style="text-align: right">
+													</div>
+
+												</div>
+												<!-- /.box-body -->
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+
+
+											</form>
+
+
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
+											<a th:href="@{/itemopening/list}">View All Item-Opening</a>
+										</div>
+									</div>
+
+
+									<div class="col-md-2"></div>
+								</div>
+
+							</div>
+
+						</div>
+					</section>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+
+	<script>
+	
+		// for two decimal number 
+		$(document).ready(function() {
+			$(".floatNumberField").change(function() {
+				$(this).val(parseFloat($(this).val()).toFixed(3));
+			});
+		});
+
+		// sweet alert messsage 
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+		
+		
+		// ajax for selected item code and populate record against item code 
+		
+		function getItemDetail(){
+			
+			var itemCode = document.getElementById("itemCode").value;
+			$.ajax({
+				type: "GET",
+				url: "/itemopening/itemdetail/" + itemCode,
+
+				success: function(data) {
+					//$("#resultarea").text(data);
+					console.log("response data : " + data);
+					$("#itemDescription").val(data.description);
+					$("#itemType").val(data.itemType)
+					$("#category").val(data.category)
+					$("#itemUom").val(data.uom)
+				}, error: function() {
+					console.log("Error");
+				}
+			});
+			
+			
+		}
+	</script>
+
+	<script>
+		$("#itemOpeningForm").validate({
+			ignoreTitle : true
+		});
+	</script>
+
+	<!--   <section class="content">
+        
+        </section>-->
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+</body>
+
+</html>
