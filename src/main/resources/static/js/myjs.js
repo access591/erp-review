@@ -285,10 +285,10 @@ function quotationNumberInfo() {
 function getIndentAgainstQuotationDetail() {
 
 	//do all value clear on click selection 
-					
+
 	/*$('#quotationDate').val('');*/
-					
-					
+
+
 	var quotationNumber = document.getElementById("quotationNumber").value;
 	console.log("quotation number is/ getIndent against quotation detail  : " + quotationNumber)
 
@@ -509,3 +509,79 @@ function getRCityOnState() {
 	});
 }
 
+
+//*********************************GATE ENTRY ***************************************************** */
+
+function getOrderIndentDetailPo() {
+
+	var indentNumber = document.getElementById("orderIndentNumberPo").value;
+
+	$.ajax({
+		type: "GET",
+		url: "/gateentry/indentdetailinpo/" + indentNumber,
+
+		success: function(data) {
+			console.log("ite data is : " + data)
+
+			console.log("indent data is : " + data.poDate)
+			$("#orderIndentDatePo").val(data.poDate)
+			//$("#empName").val(data.employee.empName);
+			//$("#empCode").val(data.employee.empCode);
+
+			getOrderItemList(indentNumber);
+
+			//item trave
+
+
+
+
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
+
+function getOrderItemList(indentNumber) {
+
+
+	//Get Item lIst in purchase order item detail using po number (FK)
+
+	console.log("get Item List Function is : " + indentNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "/gateentry/itemList/" + indentNumber,
+
+		success: function(data) {
+			console.log("Item Info behalf of Indent Number  : " + data)
+
+			var options = '<option value=""><strong>Select Item</strong></option>';
+			$(data).each(function(index, value) {
+
+				console.log("item info : " + value.item.itemCode)
+				console.log("item info : " + value.item.itemName)
+
+				options += '<option value="' + value.item.itemCode + '">' + value.item.itemName + '</option>';
+
+			});
+
+			$('.orderItemContainerPo').html(options);
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
+
+
+
+function getOrderItemDetailForPo(){
+	
+	
+	
+}
+
+
+
+//***********************************END GATE ENTRY ************************************************* */

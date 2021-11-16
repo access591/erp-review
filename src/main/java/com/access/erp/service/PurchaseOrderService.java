@@ -13,5 +13,7 @@ public interface PurchaseOrderService {
 	public void deletePurchaseOrder(String poCode);
 	
 	public void purchaseOrderApproval(String poNumber, String approvalStatus);
+	
+	public List<PurchaseOrder> getApprovedPurchaseorder();
 
 }

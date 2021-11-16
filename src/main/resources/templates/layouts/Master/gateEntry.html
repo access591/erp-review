@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+}
+
+.select {
+	width: 130px;
+	font-size: 10px;
+}
+</style>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini"
+	onload="againstPurchaseThrough()">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Gate Entry
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
+
+
+					<!-- Main content -->
+					<section class="content">
+
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+
+
+
+									<div class="col-md-12 shadow bg-white rounded"
+										style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
+
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div>
+											<!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/gateentry/}"
+												th:object="${gateEntry}" method="POST">
+
+												<div class="box">
+													<h5 class="box-title">Gate Entry</h5>
+													<div class="box-body">
+
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Gate Sr No</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Gate Sr No" th:field="*{gateSrNo}">
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">gate Entry Date</label> <input
+																type="date" class="form-control"
+																th:field="*{gateEntryDate}">
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Entry Type</label> <select
+																class="form-control" id="" title="entry type"
+																th:field="*{entryType}" required>
+																<option value="p">Purchased</option>
+																<option value="n" selected>No</option>
+
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label class="form-label">GST Type</label> <label
+																style="color: red">*</label> <select
+																class="form-control" id="" title="gst type" required>
+																<option value="g" selected>GST</option>
+																<option value="n">Non-GST</option>
+
+															</select>
+														</div>
+
+
+
+
+
+														<div class="form-group col-md-4">
+															<label class="form-label">Supplier Code</label> <label
+																style="color: red">*</label> <select
+																class="form-control" id="" title="supplier code"
+																th:field="*{supplier}">
+
+
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Supplier Name</label> <input
+																type="text" class="form-control"
+																placeholder="Supplier Name" title="supplier name">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Bar Code</label> <input
+																placeholder="bar Code" title="bar code" type="text"
+																class="form-control">
+														</div>
+
+
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
+
+
+												<!-- box 2 -->
+
+												<div class="box">
+													<h5 class="box-title">Other Detail</h5>
+													<div class="box-body">
+
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">G.R.Number</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Gate Sr No" th:field="*{grNumber}">
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">G.R.Date</label> <input
+																type="date" class="form-control" th:field="*{grDate}">
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Transporter Code</label> <select
+																class="form-control" id="" title="entry type"
+																th:field="*{entryType}" required>
+
+
+															</select>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Transporter Name</label> <input
+																type="text" class="form-control"
+																placeholder="Transporter Name" title="transporter name"
+																th:field="*{trCode}">
+
+
+
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label class="form-label">Vehicle No.</label> <label
+																style="color: red">*</label> <input type="text"
+																class="form-control" placeholder="Vehicle No."
+																title="vehicle no." th:field="*{vehicleNumber}">
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Remarks</label> <input
+																type="text" class="form-control" placeholder="Remarks"
+																title="remarks" th:field="*{remarks}">
+														</div>
+
+
+
+
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
+												<!-- end box-2 -->
+
+
+
+
+
+
+
+												<!--detail box-->
+												<div class="box">
+
+													<h5>Item Details</h5>
+													<div class="box-body">
+
+														<input id="_cr" name="_cr" type="hidden" value="1">
+
+
+
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display">
+																<thead>
+																	<tr>
+
+
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">Order/Indent No</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Code</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Description</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">Pending Qty</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Quantity</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">UOM</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Incoming Part Sr.No.</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Claim part</th>
+
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0">
+
+
+
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="orderIndentNumberPo"
+																			name="gateEntryItemDetails[0].openIndent"
+																			title="indent number" onchange='getOrderIndentDetailPo()'
+																			required>
+																				<option value="">Select Indent</option>
+																				<option th:each="po :  ${listPO}"
+																					th:text="${po.poNumber}"
+																					th:value=" ${po.poNumber}"></option>
+
+																		</select></td>
+
+																		<td><input type="date"
+																			class="form-control form-control-sm"
+																			id="orderIndentDatePo" title="order date"
+																			name="gateEntryItemDetails[0].orderDate"></td>
+
+
+																		<td><select id="itemPo"
+																			class="form-control form-control-sm select orderItemContainerPo"
+																			required title="item" onchange="getItemDetailForPo()"
+																			name="gateEntryItemDetails[0].itemCode">
+																				<option value="">Select</option>
+																		</select></td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="contactPerson" title="item description"
+																			name="gateEntryItemDetails[0].itemDescription"></td>
+
+																		<td><input type="number" title="pending qty"
+																			class="form-control form-control-sm"
+																			name="gateEntryItemDetails[0].pendingQty"></td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm" title="net qty"
+																			name="gateEntryItemDetails[0].netQty"></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="status"
+																			name="gateEntryItemDetails[0].uom"></td>
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="supplierState" title=""></td>
+
+
+
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title=""></td>
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+
+															</table>
+														</div>
+
+														<input type="hidden" id="hidden_field"
+															th:value="${length}" />
+													</div>
+												</div>
+
+
+												<!--end detail box-->
+
+
+
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+											</form>
+
+
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
+											<a th:href="@{/purchaseorder/list}">View All PO</a>
+										</div>
+									</div>
+
+
+
+								</div>
+
+							</div>
+
+						</div>
+					</section>
+				</section>
+			</div>
+
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+
+
+	<script>
+		$(document).ready(function() {
+
+			document.getElementById('poDate').valueAsDate = new Date();
+
+		});
+	</script>
+
+
+	<script>
+		function againstPurchaseThrough() {
+
+			let purchaseThrough = document.getElementById("purchaseThrough").value;
+			console.log("purchase through value : " + purchaseThrough);
+
+			//do all value clear on click selection 
+
+			$('#quotationDate').val('');
+
+			if (purchaseThrough == "quotation") {
+				console.log("quotation ")
+				// enable field
+				$("#quotationNumber").prop('disabled', false);
+				$("#quotationDate").prop('disabled', false);
+
+				//get indent detail against quotation detail 
+
+				//getIndentAgainstQuotationDetail()
+
+			} else {
+				console.log(" is not")
+				//disabled and do blank 
+				$("#quotationNumber").prop('disabled', true);
+				$("#quotationDate").prop('disabled', true);
+				$('#quotationNumber').val('');
+				$('#quotationDate').val('');
+
+				//call api in case of purchase through is indent
+
+				indentDetailInCaseOfIndent();
+
+			}
+
+		}
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+	<!--   <section class="content">
+        
+        
+        </section>-->
+
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
+
+
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+</body>
+
+</html>

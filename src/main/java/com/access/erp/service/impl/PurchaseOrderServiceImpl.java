@@ -76,4 +76,13 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 		
 	}
 
+	@Override
+	public List<PurchaseOrder> getApprovedPurchaseorder() {
+		
+		String approvalStatus = "Y";
+		
+		purchaseOrderRepo.findByApprovalStatus(approvalStatus);
+		return null;
+	}
+
 }
