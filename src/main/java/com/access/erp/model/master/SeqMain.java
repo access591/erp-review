@@ -23,6 +23,14 @@ public class SeqMain {
 	
 	@Column(name="TRAN_CODE")
 	private String tranCode;
+	
+	@Column(name="FYCODE")
+	private String fyCode;
+	
+	@Column(name="CCODE")
+	private String cCode;
+	
+	
 
 	
 	
@@ -53,6 +61,22 @@ public class SeqMain {
 
 	public void setTranCode(String tranCode) {
 		this.tranCode = tranCode;
+	}
+
+	public String getFyCode() {
+		return fyCode;
+	}
+
+	public void setFyCode(String fyCode) {
+		this.fyCode = fyCode;
+	}
+
+	public String getcCode() {
+		return cCode;
+	}
+
+	public void setcCode(String cCode) {
+		this.cCode = cCode;
 	}
 	
 	

@@ -578,7 +578,21 @@ function getOrderItemList(indentNumber) {
 
 function getOrderItemDetailForPo(){
 	
+	var itemNumber = document.getElementById("orderItemPo").value;
 	
+	$.ajax({
+		type: "GET",
+		url: "/gateentry/itemInfo/" + itemNumber,
+
+		success: function(data) {
+			
+			$("#orderItemDescription").val(data.description)
+			$("#orderItemuom").val(data.uom.uomCode)	
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
 	
 }
 

@@ -12,4 +12,6 @@ public interface PartyMasterService {
 	public Optional<PartyMaster> editPartyMaster(String partyCode);
 	public void deletePartyMaster(String partyCode);
 	
+	public List<PartyMaster> findByPartyCodeContaining(String s);
+	
 }

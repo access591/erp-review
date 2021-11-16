@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+
+					<div class="row">
+						<!-- left column -->
+						<div class="col-md-12">
+
+
+
+							<div class="col-md-12" style="margin-top: 20px;">
+
+								<div class="box box-primary">
+
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
+
+									<div class="box-header with-border">
+										<h3 class="box-title">List of Gate Entry</h3>
+									</div>
+									<!-- form start -->
+									<form role="form">
+										<div class="box-body">
+											<div class="table-responsive-sm">
+												<table class="table table-striped" style="width: 80%">
+													<thead>
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">Gate-Entry Code</th>
+															<th scope="col">Gate-Entry Date</th>
+															<th scope="col">Gate-Entry Type</th>
+
+															<th scope="col">Action</th>
+
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="gate,iter  : ${gateEntryList}">
+															<td th:text="${iter.index}">1</td>
+															<td th:text="${gate.gateSrNo}">Garrett Winters</td>
+															<td th:text="${gate.gateEntryDate}">Garrett
+																Winters</td>
+															<td th:text="${gate.entryType}">Garrett Winters</td>
+															
+
+
+
+															<td><span> <a
+																	th:href="@{/gateentry/edit/{id}(id=${gate.gateSrNo})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
+																	<a
+																	th:href="@{/gateentry/delete/{id}(id=${gate.gateSrNo})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a>
+															</span></td>
+														</tr>
+
+
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+										<div class="box-footer">
+											<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
+										</div>
+
+									</form>
+								</div>
+							</div>
+
+
+
+						</div>
+
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+	<!--   <section class="content">
+        
+        </section>-->
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+
+</body>
+
+</html>

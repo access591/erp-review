@@ -56,7 +56,7 @@
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
-							Gate Entry
+							Material RECEIPT
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
@@ -94,31 +94,31 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/gateentry/}"
-												th:object="${gateEntry}" method="POST">
+											<form role="form" th:action="@{/mrn/}"
+												th:object="${mrn}" method="POST">
 
 												<div class="box">
-													<h5 class="box-title">Gate Entry</h5>
+													<h5 class="box-title">Material RECEIPT Master</h5>
 													<div class="box-body">
 
 
-														<div class="form-group col-md-4">
-															<label for="inputEmail4">Gate Sr No</label> <input
+														<div class="form-group col-md-3">
+															<label for="inputEmail4">MRN No</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No" th:field="*{gateSrNo}">
+																placeholder="Gate Sr No" th:field="*{mrnNo}">
 														</div>
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Gate Entry Date</label> <input
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">MRN Date</label> <input
 																type="date" class="form-control" id="gateEntryDate"
-																th:field="*{gateEntryDate}">
+																th:field="*{mrnDate}">
 														</div>
 
 
 
-														<div class="form-group col-md-4">
-															<label for="inputAddress">Entry Type</label> <select
+														<div class="form-group col-md-3">
+															<label for="inputAddress">Gate Entry No</label> <select
 																class="form-control" id="" title="entry type"
-																th:field="*{entryType}">
+																th:field="*{gateEntryNo}">
 																<option value="p">Purchased Item</option>
 																<option value="re">Returned Item</option>
 																<option value="pe">Petty Item</option>
@@ -128,103 +128,121 @@
 														</div>
 
 
-														<div class="form-group col-md-4">
-															<label class="form-label">GST Type</label> <select
-																class="form-control" id="" title="gst type">
-																<option value="g" selected>GST</option>
-																<option value="n">Non-GST</option>
-
-															</select>
+														<div class="form-group col-md-3">
+															<label class="form-label">Gate Entry Date</label> 
+															<input
+																type="date" class="form-control" id="gateEntryDate"
+																th:field="*{gateEntryDate}">
 														</div>
 
 
 
 
 
-														<div class="form-group col-md-4">
+														<div class="form-group col-md-3">
 															<label class="form-label">Supplier Code</label> <label
 																style="color: red">*</label> <select
 																class="form-control" id="" title="supplier code"
-																th:field="*{supplier}">
+																th:field="*{supplierMaster}">
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
-																	th:text="${party.partyName}" th:value=" ${party.partyCode}"></option>
+																	th:text="${party.partyName}"
+																	th:value=" ${party.partyCode}"></option>
 
 
 															</select>
 														</div>
 
 
-														<div class="form-group col-md-4">
+														<div class="form-group col-md-3">
 															<label for="inputPassword4">Supplier Name</label> <input
 																type="text" class="form-control"
 																placeholder="Supplier Name" title="supplier name">
 														</div>
 
-
-
-													</div>
-													<!-- /.box-body -->
-
-												</div>
-												<!--end box-1-->
-
-
-												<!-- box 2 -->
-
-												<div class="box">
-													<h5 class="box-title">Other Detail</h5>
-													<div class="box-body">
-
-
-														<div class="form-group col-md-4">
-															<label for="inputEmail4">G.R.Number</label> <input
-																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No" th:field="*{grNumber}">
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Received By</label> <input
+																type="text" class="form-control"
+																placeholder="Supplier Name" title="supplier name">
 														</div>
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">G.R.Date</label> <input
-																type="date" class="form-control" th:field="*{grDate}">
+
+														<div class="form-group col-md-3">
+															<label class="form-label">Bill Type</label> <select
+																class="form-control" id="" title="gst type">
+																<option value="b" selected>Bill</option>
+																<option value="t">Trading</option>
+
+															</select>
+														</div>
+
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Bill No</label> <input
+																type="text" class="form-control"
+																placeholder="Supplier Name" title="supplier name">
 														</div>
 
 
+														<div class="form-group col-md-3">
+															<label class="form-label">GST</label> <select
+																class="form-control" id="" title="gst type">
+																<option value="g" selected>GST</option>
+																<option value="n">NON-GST</option>
 
-														<div class="form-group col-md-4">
-															<label for="inputAddress">Transporter Code</label><label
-																style="color: red">*</label> <select
-																class="form-control" id="" title="entry type"
-																th:field="*{entryType}" required>
+															</select>
+														</div>
+
+														<div class="form-group col-md-3">
+															<label class="form-label">MRN Type</label> <select
+																class="form-control" id="" title="gst type">
+																<option value="c" selected>Capital</option>
+																<option value="n">Non-Capital</option>
+
+															</select>
+														</div>
+
+														<div class="form-group col-md-3">
+															<label class="form-label">Currency Code</label> <select
+																class="form-control" id="" title="gst type">
+																<option value="" selected>select</option>
 
 
 															</select>
 														</div>
-														<div class="form-group col-md-4">
-															<label for="inputAddress">Transporter Name</label> <input
+
+
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Currency Name</label> <input
 																type="text" class="form-control"
-																placeholder="Transporter Name" title="transporter name"
-																th:field="*{trCode}">
-
-
-
+																placeholder="Currency Name" title="currency name">
 														</div>
 
+														<div class="form-group col-md-3">
+															<label class="form-label">Material Type</label> <select
+																class="form-control" id="" title="gst type">
+																<option value="" selected>PO</option>
 
 
-														<div class="form-group col-md-4">
-															<label class="form-label">Vehicle No.</label> <label
-																style="color: red">*</label> <input type="text"
-																class="form-control" placeholder="Vehicle No."
-																title="vehicle no." th:field="*{vehicleNumber}">
+															</select>
+														</div>
+														
+														
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Date of Bill</label> <input
+																type="date" class="form-control"
+																title="date of bill">
+														</div>
+														
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Date of Receipt</label> <input
+																type="date" class="form-control"
+																title="date of bill">
 														</div>
 
-
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Remarks</label> <input
-																type="text" class="form-control" placeholder="Remarks"
-																title="remarks" th:field="*{remarks}">
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Conversion Value</label> <input
+																type="text" class="form-control"
+																placeholder="Conversion Value" title="conversion value">
 														</div>
-
-
 
 
 													</div>
@@ -232,7 +250,9 @@
 
 												</div>
 												<!--end box-1-->
-												<!-- end box-2 -->
+
+
+												
 
 
 
@@ -281,7 +301,7 @@
 																</thead>
 
 																<tbody>
-																	<tr id="addr0">
+																	<!-- <tr id="addr0">
 
 
 
@@ -342,7 +362,7 @@
 
 
 
-																	</tr>
+																	</tr> -->
 																	<tr id='addr1' />
 
 																</tbody>
