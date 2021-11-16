@@ -24,7 +24,7 @@ public class PartyMasterServiceImpl implements PartyMasterService{
 	public void addPartyMaster(PartyMaster partyMaster) {
 		
 		String maxCode =  seqmainRepo.findByTranType("PRT");
-		partyMaster.setPartyCode("EB" + partyMaster.getCustType() + maxCode.substring(3));
+		partyMaster.setPartyCode("EB" + partyMaster.getCustType().charAt(0) + maxCode.substring(3));
 		
 		for(PartyBilling party : partyMaster.getListPartyBilling()) {
 			
@@ -57,6 +57,12 @@ public class PartyMasterServiceImpl implements PartyMasterService{
 		
 		partyMasterRepo.deleteById(partyCode);
 		
+	}
+
+	@Override
+	public List<PartyMaster> findByPartyCodeContaining(String s) {
+		
+		return this.partyMasterRepo.findByPartyCodeContaining(s);
 	}
 
 }

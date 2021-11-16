@@ -6,16 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.GateEntry;
+import com.access.erp.model.ItemOpening;
 import com.access.erp.model.PurchaseOrder;
 import com.access.erp.model.PurchaseOrderItem;
+import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.PartyMaster;
 import com.access.erp.repo.PurchaseOrderItemRepo;
 import com.access.erp.repo.PurchaseOrderRepo;
+import com.access.erp.service.GateEntryService;
+import com.access.erp.service.ItemService;
+import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
 
 @Controller
@@ -24,6 +33,11 @@ public class GateEntryController {
 	
 	@Autowired PurchaseOrderService purchaseOrderService;
 	@Autowired PurchaseOrderItemRepo purchaseOrderItemRepo;
+	@Autowired ItemService itemService;
+	
+	@Autowired GateEntryService gateEntryService;
+	
+	@Autowired PartyMasterService partyMasterService;
 	
 	
 	@GetMapping("/")
@@ -34,8 +48,76 @@ public class GateEntryController {
 		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
 		model.addAttribute("listPO", listPurchaseOrder);
 		
+		List<PartyMaster> partyMasterList = partyMasterService.findByPartyCodeContaining("S");
+		model.addAttribute("partyMasterList", partyMasterList);
+		
+		
 		
 		return "layouts/Master/gateEntry";
+	}
+	
+	
+	@PostMapping("/")
+	public String addGateEntry(@ModelAttribute("gateEntry") GateEntry gateEntry, RedirectAttributes redirectAttributes) {
+
+		
+
+		
+		//boolean exists = companyRepo.existsById(company.getCompCode());
+		/*
+		 * if (!exists) {
+		 * 
+		 * companyService.addCompany(company);
+		 * redirectAttributes.addFlashAttribute("message",
+		 * "Company  has been saved successfully! ");
+		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		 * 
+		 * } else {
+		 * 
+		 * redirectAttributes.addFlashAttribute("message",
+		 * "Company Code Allready exists! Please try another One !!");
+		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
+		 */
+		gateEntryService.addGateEntry(gateEntry);
+		
+		redirectAttributes.addFlashAttribute("message", "Gate Entry  has been saved successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		return "redirect:/gateEntry/";
+	}
+	
+	
+	@GetMapping("/list")
+	public String gateEntryList(Model model) {
+
+		List<GateEntry> gateEntryList = gateEntryService.getAllGateEntry();
+
+		if (gateEntryList != null) {
+			model.addAttribute("gateEntryList", gateEntryList);
+		}
+		return "layouts/listview/listofGateEntry";
+	}
+
+	@GetMapping("/edit/{id}")
+	public String editGateEntry(@PathVariable("id") String gateEntryCode, Model model) {
+
+		System.out.println("edit item opening form is running ");
+		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryCode).get();
+		model.addAttribute("gateEntry", gateEntry);
+
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
+		model.addAttribute("listPO", listPurchaseOrder);
+
+		return "layouts/editview/editItemOpening";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteGateEntry(@PathVariable("id") String gateEntryCode, Model model,RedirectAttributes redirectAttributes) {
+		gateEntryService.deleteGateEntry(gateEntryCode);
+		
+		redirectAttributes.addFlashAttribute("message", "Gate Entry  has been deleted successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		
+		return "redirect:/itemopening/list";
 	}
 	
 	
@@ -69,6 +151,18 @@ public class GateEntryController {
 		
 	
 		return purchaseOrderItem;
+
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/itemInfo/{poNumber}")
+	public Item itemInfo(@PathVariable(value = "poNumber") String itemNumber, Model model) {
+
+		Item item = itemService.editItem(itemNumber).get();
+		
+	
+		return item;
 
 	}
 	
