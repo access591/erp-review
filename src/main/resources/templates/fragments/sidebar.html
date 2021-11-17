@@ -11,15 +11,15 @@
 			<div class="pull-left image">
 				<img src="/img/contact.png" class="img-circle" alt="User Image">
 			</div>
-			
-			
+
+
 			<div class="pull-left info">
 				<p></p>
 				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- search form -->
 		<!--<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
@@ -30,37 +30,42 @@
 				</span>
 			</div>
 		</form>-->
-		
-		
+
+
 		<!-- /.search form -->
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
 			<li class="header">MAIN NAVIGATION</li>
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-dashboard"></i> <span>Software Admin</span> <i
-						class="fa fa-angle-left pull-right"></i>
-				</a>
+			<li class="treeview"><a href="#"> <i class="fa fa-dashboard"></i>
+					<span>Software Admin</span> <i class="fa fa-angle-left pull-right"></i>
+			</a>
 				<ul class="treeview-menu">
-				
-				
-					<li th:if="${#request.isUserInRole('COMPANY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/companydetail/}"><i class="fa fa-circle-o"></i> Company</a></li>
-					
-				
-				
-				
-					<li><a th:href="@{/financialyear/}"><i class="fa fa-circle-o"></i>Financial year</a></li>
-					<li><a th:href="@{/financialactiveyear/}"><i class="fa fa-circle-o"></i> Active Financial Year</a>
-					</li>
-					
-					<li th:if="${#request.isUserInRole('USER') or #request.isUserInRole('ADMIN')}"><a th:href="@{/user/}"><i class="fa fa-circle-o"></i>Users</a></li>
-					
-					<li><a th:href="@{/userrights/}"><i class="fa fa-circle-o"></i>User Rights</a></li>
+
+
+					<li
+						th:if="${#request.isUserInRole('COMPANY') or #request.isUserInRole('ADMIN')}"><a
+						th:href="@{/companydetail/}"><i class="fa fa-circle-o"></i>
+							Company</a></li>
+
+
+
+
+					<li><a th:href="@{/financialyear/}"><i
+							class="fa fa-circle-o"></i>Financial year</a></li>
+					<li><a th:href="@{/financialactiveyear/}"><i
+							class="fa fa-circle-o"></i> Active Financial Year</a></li>
+
+					<li
+						th:if="${#request.isUserInRole('USER') or #request.isUserInRole('ADMIN')}"><a
+						th:href="@{/user/}"><i class="fa fa-circle-o"></i>Users</a></li>
+
+					<li><a th:href="@{/userrights/}"><i class="fa fa-circle-o"></i>User
+							Rights</a></li>
 					<li><a th:href="@{/module/}"><i class="fa fa-circle-o"></i>Module</a></li>
-					<li><a th:href="@{/sub-module/}"><i class="fa fa-circle-o"></i>Sub Module</a></li>
+					<li><a th:href="@{/sub-module/}"><i class="fa fa-circle-o"></i>Sub
+							Module</a></li>
 					<li><a th:href="@{/program/}"><i class="fa fa-circle-o"></i>Program</a></li>
-				</ul>
-			</li>
+				</ul></li>
 			<!--<li class="treeview">
 				<a href="#">
 					<i class="fa fa-files-o"></i>
@@ -80,70 +85,60 @@
 					<i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
 				</a>
 			</li>-->
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-share"></i> <span>Master</span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
+			<li class="treeview"><a href="#"> <i class="fa fa-share"></i>
+					<span>Master</span> <i class="fa fa-angle-left pull-right"></i>
+			</a>
 				<ul class="treeview-menu">
 					<!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>-->
-					<li>
-						<a href="#"><i class="fa fa-circle-o"></i>Store Master <i
-								class="fa fa-angle-left pull-right"></i></a>
+					<li><a href="#"><i class="fa fa-circle-o"></i>Store Master
+							<i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 
-							<li><a th:href="@{/store/}"><i class="fa fa-circle-o"></i> Store</a></li>
-							<li><a th:href="@{/category/}"><i class="fa fa-circle-o"></i> Category</a></li>
-							<li><a th:href="@{/item/}"><i class="fa fa-circle-o"></i> Item</a></li>
-							<li><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i> UOM(Unit of Measurement)</a></li>
-							<li><a th:href="@{/servicecategory/}"><i class="fa fa-circle-o"></i> Service Category</a></li>
-							<li><a th:href="@{/party/}"><i class="fa fa-circle-o"></i> Party Master</a></li>
-							
+							<li><a th:href="@{/store/}"><i class="fa fa-circle-o"></i>
+									Store</a></li>
+							<li><a th:href="@{/category/}"><i class="fa fa-circle-o"></i>
+									Category</a></li>
+							<li><a th:href="@{/item/}"><i class="fa fa-circle-o"></i>
+									Item</a></li>
+							<li><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i>
+									UOM(Unit of Measurement)</a></li>
+							<li><a th:href="@{/servicecategory/}"><i
+									class="fa fa-circle-o"></i> Service Category</a></li>
+							<li><a th:href="@{/party/}"><i class="fa fa-circle-o"></i>
+									Party Master</a></li>
 
 
 
-						</ul>
-					</li>
-					
-					
-					<li>
-						<a href="#"><i class="fa fa-circle-o"></i>WhareHouse Master <i
-								class="fa fa-angle-left pull-right"></i></a>
+
+						</ul></li>
+
+
+
+
+
+					<li><a href="#"><i class="fa fa-circle-o"></i>Employee
+							Info <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 
-							<li><a th:href="@{/itemopening/}"><i class="fa fa-circle-o"></i> Item-Opening</a></li>
-							<li><a th:href="@{/gateentry/}"><i class="fa fa-circle-o"></i> Gate Entry</a></li>
-							<li><a th:href="@{/mrm/}"><i class="fa fa-circle-o"></i> Material Receipt Master</a></li>
-							
+							<li><a th:href="@{/country/}"><i class="fa fa-circle-o"></i>
+									Country</a></li>
+							<li><a th:href="@{/state/}"><i class="fa fa-circle-o"></i>
+									State</a></li>
+							<li><a th:href="@{/city/}"><i class="fa fa-circle-o"></i>
+									City</a></li>
+
+							<li><a th:href="@{/department/}"><i
+									class="fa fa-circle-o"></i> Department</a></li>
+							<li><a th:href="@{/designation/}"><i
+									class="fa fa-circle-o"></i> Designation</a></li>
 
 
 
 
-						</ul>
-					</li>
-					
-					
-					<li>
-						<a href="#"><i class="fa fa-circle-o"></i>Employee Info <i
-								class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-
-							<li><a th:href="@{/country/}"><i class="fa fa-circle-o"></i> Country</a></li>
-							<li><a th:href="@{/state/}"><i class="fa fa-circle-o"></i> State</a></li>
-							<li><a th:href="@{/city/}"><i class="fa fa-circle-o"></i> City</a></li>
-							
-							<li><a th:href="@{/department/}"><i class="fa fa-circle-o"></i> Department</a></li>
-							<li><a th:href="@{/designation/}"><i class="fa fa-circle-o"></i> Designation</a></li>
-							
-							
 
 
-
-
-						</ul>
-					</li>
-				</ul>
-			</li>
+						</ul></li>
+				</ul></li>
 
 
 
@@ -152,60 +147,79 @@
 
 			<!--purchase module -->
 
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-share"></i> <span>Purchase Module</span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
+			<li class="treeview"><a href="#"> <i class="fa fa-share"></i>
+					<span>Purchase Module</span> <i class="fa fa-angle-left pull-right"></i>
+			</a>
 				<ul class="treeview-menu">
 					<!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>-->
-					<li>
-						<a href="#"><i class="fa fa-circle-o"></i>Material <i
-								class="fa fa-angle-left pull-right"></i></a>
+					<li><a href="#"><i class="fa fa-circle-o"></i>Material <i
+							class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 
-							<li><a th:href="@{/openindent/}"><i class="fa fa-circle-o"></i> Open Indent</a></li>
-							<li><a th:href="@{/openindent/approve}"><i class="fa fa-circle-o"></i> Indent Approval</a>
-							</li>
-							<li><a th:href="@{/requestquotation/}"><i class="fa fa-circle-o"></i> Request For
-									Quotation</a></li>
-							<li><a th:href="@{/quotationdetail/}"><i class="fa fa-circle-o"></i> Quotation Detail</a>
-							</li>
-							<li><a th:href="@{/approvalquotationdetail/}"><i class="fa fa-circle-o"></i> Quotation
-									Comparitive
-									<br>and approval</a></li>
-							<li><a th:href="@{/purchaseorder/}"><i class="fa fa-circle-o"></i>Purchase Order</a></li>
-							
-							<li><a th:href="@{/poapproval/}"><i class="fa fa-circle-o"></i>PO Approval</a></li>
+							<li><a th:href="@{/openindent/}"><i
+									class="fa fa-circle-o"></i> Open Indent</a></li>
+							<li><a th:href="@{/openindent/approve}"><i
+									class="fa fa-circle-o"></i> Indent Approval</a></li>
+							<li><a th:href="@{/requestquotation/}"><i
+									class="fa fa-circle-o"></i> Request For Quotation</a></li>
+							<li><a th:href="@{/quotationdetail/}"><i
+									class="fa fa-circle-o"></i> Quotation Detail</a></li>
+							<li><a th:href="@{/approvalquotationdetail/}"><i
+									class="fa fa-circle-o"></i> Quotation Comparitive <br>and
+									approval</a></li>
+							<li><a th:href="@{/purchaseorder/}"><i
+									class="fa fa-circle-o"></i>Purchase Order</a></li>
+
+							<li><a th:href="@{/poapproval/}"><i
+									class="fa fa-circle-o"></i>PO Approval</a></li>
 
 
 
-						</ul>
-					</li>
+						</ul></li>
 					<li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-				</ul>
-			</li>
+				</ul></li>
 
 
 
+			<!-- Whare house module  -->
 
-
-
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-laptop"></i>
-					<span>UI Elements</span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
+			<li class="treeview"><a href="#"> <i class="fa fa-dashboard"></i>
+					<span>WhareHouse</span> <i class="fa fa-angle-left pull-right"></i>
+			</a>
 				<ul class="treeview-menu">
-					<li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-					<li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-					<li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-					<li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-					<li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-					<li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-				</ul>
-			</li>
+
+
+					<li><a th:href="@{/itemopening/}"><i
+							class="fa fa-circle-o"></i> Item-Opening</a></li>
+					<li><a th:href="@{/gateentry/}"><i class="fa fa-circle-o"></i>
+							Gate Entry</a></li>
+					<li><a th:href="@{/mrn/}"><i class="fa fa-circle-o"></i>
+							Material Receipt Master</a></li>
+				</ul></li>
+
+
+
+
+
+
+
+			<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
+					<span>UI Elements</span> <i class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="treeview-menu">
+					<li><a href="../UI/general.html"><i class="fa fa-circle-o"></i>
+							General</a></li>
+					<li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i>
+							Icons</a></li>
+					<li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i>
+							Buttons</a></li>
+					<li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i>
+							Sliders</a></li>
+					<li><a href="../UI/timeline.html"><i
+							class="fa fa-circle-o"></i> Timeline</a></li>
+					<li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i>
+							Modals</a></li>
+				</ul></li>
 
 
 
@@ -229,7 +243,8 @@
 		<!-- Create the tabs -->
 
 
-	</aside><!-- /.control-sidebar -->
+	</aside>
+	<!-- /.control-sidebar -->
 </aside>
 
 </html>

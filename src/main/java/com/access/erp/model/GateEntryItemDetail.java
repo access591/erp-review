@@ -54,9 +54,8 @@ public class GateEntryItemDetail {
 	@Column(name="NET_QTY",length=14)
 	private int netQty;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "UOM")
-	private UOM uom;
+	@Column(name="UOM_CODE",length=50)
+	private String uom;
 	
 	
 	
@@ -163,13 +162,18 @@ public class GateEntryItemDetail {
 		this.qty = qty;
 	}
 
-	public UOM getUom() {
+	
+	public String getUom() {
 		return uom;
 	}
 
-	public void setUom(UOM uom) {
+
+
+	public void setUom(String uom) {
 		this.uom = uom;
 	}
+
+
 
 	public int getGateSeqNo() {
 		return gateSeqNo;
