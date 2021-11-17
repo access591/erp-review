@@ -94,8 +94,8 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/mrn/}"
-												th:object="${mrn}" method="POST">
+											<form role="form" th:action="@{/mrn/}" th:object="${mrn}"
+												method="POST">
 
 												<div class="box">
 													<h5 class="box-title">Material RECEIPT Master</h5>
@@ -109,7 +109,7 @@
 														</div>
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">MRN Date</label> <input
-																type="date" class="form-control" id="gateEntryDate"
+																type="date" class="form-control" id="mrnGateEntryDate"
 																th:field="*{mrnDate}">
 														</div>
 
@@ -119,19 +119,18 @@
 															<label for="inputAddress">Gate Entry No</label> <select
 																class="form-control" id="" title="entry type"
 																th:field="*{gateEntryNo}">
-																<option value="p">Purchased Item</option>
-																<option value="re">Returned Item</option>
-																<option value="pe">Petty Item</option>
-																<option value="w">Warranty</option>
+																<option value="">Select Department</option>
+																<option th:each="gateEntry :  ${gateEntryList}"
+																	th:text="${gateEntry.gateSrNo}"
+																	th:value=" ${gateEntry.gateSrNo}"></option>
 
 															</select>
 														</div>
 
 
 														<div class="form-group col-md-3">
-															<label class="form-label">Gate Entry Date</label> 
-															<input
-																type="date" class="form-control" id="gateEntryDate"
+															<label class="form-label">Gate Entry Date</label> <input
+																type="date" class="form-control" id="mrnGateEntryDate"
 																th:field="*{gateEntryDate}">
 														</div>
 
@@ -142,12 +141,12 @@
 														<div class="form-group col-md-3">
 															<label class="form-label">Supplier Code</label> <label
 																style="color: red">*</label> <select
-																class="form-control" id="" title="supplier code"
+																class="form-control" id="mrnSupplierCode" title="supplier code"
 																th:field="*{supplierMaster}">
 																<option value="">Select</option>
-																<option th:each="party :  ${partyMasterList}"
-																	th:text="${party.partyName}"
-																	th:value=" ${party.partyCode}"></option>
+																<option th:each="supplier :  ${supplierList}"
+																	th:text="${supplier.supplierName}"
+																	th:value=" ${supplier.supplierRepo}"></option>
 
 
 															</select>
@@ -168,7 +167,8 @@
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Bill Type</label> <select
-																class="form-control" id="" title="gst type">
+																class="form-control" id="" title="gst type"
+																th:field="*{billType}">
 																<option value="b" selected>Bill</option>
 																<option value="t">Trading</option>
 
@@ -177,7 +177,7 @@
 
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Bill No</label> <input
-																type="text" class="form-control"
+																type="text" class="form-control" th:field="*{billNo}"
 																placeholder="Supplier Name" title="supplier name">
 														</div>
 
@@ -193,7 +193,8 @@
 
 														<div class="form-group col-md-3">
 															<label class="form-label">MRN Type</label> <select
-																class="form-control" id="" title="gst type">
+																class="form-control" id="" title="gst type"
+																th:field="*{mrnType}">
 																<option value="c" selected>Capital</option>
 																<option value="n">Non-Capital</option>
 
@@ -202,8 +203,12 @@
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Currency Code</label> <select
-																class="form-control" id="" title="gst type">
+																class="form-control" id="mrnCurrencyCode" title="gst type"
+																th:field="*{currency}">
 																<option value="" selected>select</option>
+																<option th:each="currency :  ${currencyList}"
+																	th:text="${currency.currencyValue}"
+																	th:value=" ${currency.currencyCode}"></option>
 
 
 															</select>
@@ -224,24 +229,25 @@
 
 															</select>
 														</div>
-														
-														
+
+
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Date of Bill</label> <input
-																type="date" class="form-control"
-																title="date of bill">
+																type="date" class="form-control" title="date of bill"
+																th:field="*{billDate}">
 														</div>
-														
+
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Date of Receipt</label> <input
-																type="date" class="form-control"
-																title="date of bill">
+																type="date" class="form-control" title="date of bill"
+																th:field="*{reciepDate}">
 														</div>
 
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Conversion Value</label> <input
 																type="text" class="form-control"
-																placeholder="Conversion Value" title="conversion value">
+																placeholder="Conversion Value" title="conversion value"
+																th:field="*{conversionvalue}">
 														</div>
 
 
@@ -252,7 +258,7 @@
 												<!--end box-1-->
 
 
-												
+
 
 
 
@@ -278,91 +284,174 @@
 
 
 																		<th scope="col" class="text-center"
-																			style="width: 100px;">Order/Indent No</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Date</th>
+																			style="width: 100px;">Material Type</th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Item Code</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Item Description</th>
+																			style="width: 90px;">Item Name</th>
 																		<th scope="col" class="text-center"
-																			style="width: 10px;">Pending Qty</th>
+																			style="width: 90px;">Account Name</th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">Quantity</th>
+																			style="width: 10px;">UOM</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">UOM</th>
+																			style="width: 120px;">PO Qty</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Incoming Part Sr.No.</th>
+																			style="width: 90px;">INR Qty</th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">Claim part</th>
+																			style="width: 90px;">Rec Qty</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">PO Rate Curr</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">PO Rate</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Bill Rate</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Total Cost</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Net Cost</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Total Purr Cost</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Total INR Cost</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Remarks</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">DOL</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Tax</th>
 
 
 																	</tr>
 																</thead>
 
 																<tbody>
-																	<!-- <tr id="addr0">
+																	<tr id="addr0">
 
 
-
+																		<!-- matrial type  -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
 																			id="orderIndentNumberPo"
-																			name="gateEntryItemDetails[0].openIndent"
+																			name="mrnDetails[0].matServType"
 																			title="indent number"
-																			onchange='getOrderIndentDetailPo()' required>
-																				<option value="">Select Indent</option>
-																				<option th:each="po :  ${listPO}"
-																					th:text="${po.poNumber}" th:value=" ${po.poNumber}"></option>
+																			>
+																				<option value="">Select</option>
+																				<option value="m">M</option>
+																				<option value="s">S</option>
+																				
 
 																		</select></td>
-
-																		<td><input type="date"
+																		<!-- item code -->
+																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderIndentDatePo" title="order date"
-																			name="gateEntryItemDetails[0].orderDate"></td>
+																			name="mrnDetails[0].item"></td>
 
-
-																		<td><select id="orderItemPo"
-																			class="form-control form-control-sm select orderItemContainerPo"
-																			required title="item"
-																			onchange="getOrderItemDetailForPo()"
-																			name="gateEntryItemDetails[0].itemCode">
+																		<!-- item name -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderIndentDatePo" title="item name"
+																			></td>
+																		<!-- Account Name -->
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="orderIndentNumberPo"
+																			name="mrnDetails[0].itemAccCode"
+																			title="account name"
+																			>
 																				<option value="">Select</option>
+																				<option value="ac-1">Ac01</option>
+																				<option value="ac-2">Ac02</option>
+																				
+
+																		</select></td>
+																		<!-- UOM -->
+																		<td><input type="number" title="uom"
+																			class="form-control form-control-sm"
+																			></td>
+																		<!-- po qty   -->
+																		<td><input type="number"
+																			class="form-control form-control-sm" title="po qty"
+																			></td>
+																		<!-- inr qty -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="inv qty"
+																			 name="mrnDetails[0].itemInv"></td>
+
+																		<!-- rec qty  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemuom" title="rec qty" name="mrnDetails[0].itemRec"></td>
+
+
+																		<!-- po rate curr -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="po rate curr"></td>
+
+																		<!-- po rate  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="po rate" name="mrnDetails[0].itemRate"></td>
+
+																		<!-- bill rate  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="bill rate" name="mrnDetails[0].itemrateOnBill"></td>
+
+																		<!-- total cost   -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="total cost" name="mrnDetails[0].totalvalue"></td>
+
+																		<!-- net cost  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="net cost" name="mrnDetails[0].itemNetVal"></td>
+
+
+																		<!-- total pur cost  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="total pur cost"name="mrnDetails[0].totalPurCost"></td>
+
+																		<!-- total inr cost  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="total inr cost"></td>
+
+																		<!-- remarks   -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="remarks" name="mrnDetails[0].totalPurCost"></td>
+
+																		<!-- dol -->
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="orderIndentNumberPo"
+																			
+																			title="dol"
+																			>
+																				<option value="">Select</option>
+																				<option value="y">YES</option>
+																				<option value="n">NO</option>
+																				
+
 																		</select></td>
 
-																		<td><input type="number"
-																			class="form-control form-control-sm"
-																			id="orderItemDescription" title="item description"
-																			name="gateEntryItemDetails[0].itemDescription"></td>
-
-																		<td><input type="number" title="pending qty"
-																			class="form-control form-control-sm"
-																			name="gateEntryItemDetails[0].pendingQty"></td>
-
-																		<td><input type="number"
-																			class="form-control form-control-sm" title="net qty"
-																			name="gateEntryItemDetails[0].netQty"></td>
-
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="technicalQualification" title="status"
-																			name="gateEntryItemDetails[0].uom"></td>
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="orderItemuom" title=""></td>
 
 
-
-
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="technicalQualification" title=""></td>
-
-
-
-
-																	</tr> -->
+																	</tr>
 																	<tr id='addr1' />
 
 																</tbody>
@@ -416,47 +505,17 @@
 	<script>
 		$(document).ready(function() {
 
-			document.getElementById('gateEntryDate').valueAsDate = new Date();
+			document.getElementById('mrnGateEntryDate').valueAsDate = new Date();
 
 		});
+		
+		
 	</script>
 
 
 	<script>
-		function againstPurchaseThrough() {
-
-			let purchaseThrough = document.getElementById("purchaseThrough").value;
-			console.log("purchase through value : " + purchaseThrough);
-
-			//do all value clear on click selection 
-
-			$('#quotationDate').val('');
-
-			if (purchaseThrough == "quotation") {
-				console.log("quotation ")
-				// enable field
-				$("#quotationNumber").prop('disabled', false);
-				$("#quotationDate").prop('disabled', false);
-
-				//get indent detail against quotation detail 
-
-				//getIndentAgainstQuotationDetail()
-
-			} else {
-				console.log(" is not")
-				//disabled and do blank 
-				$("#quotationNumber").prop('disabled', true);
-				$("#quotationDate").prop('disabled', true);
-				$('#quotationNumber').val('');
-				$('#quotationDate').val('');
-
-				//call api in case of purchase through is indent
-
-				indentDetailInCaseOfIndent();
-
-			}
-
-		}
+		
+		
 	</script>
 
 	<script>

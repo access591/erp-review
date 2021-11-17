@@ -24,24 +24,45 @@ public class MRNDetail {
 	@Column(name="MRN_DETAIL_ID" , length = 20)
 	private Long mrnDetailId;
 	
-	@Column(name="MRN_SEQ_NO",length = 3)
-	private int mrnSeqNo;
+	@Column(name="MAT_SERV_TYPE",length = 2)
+	private String matServType;
 	
 	@ManyToOne
 	@JoinColumn(name="ITEM_CODE")
 	private Item item;
 	
+	@Column(name="ITEM_ACC_CODE",length = 9)
+	private String itemAccCode; 
+	
+	@Column(name="REMARKS",length = 50)
+	private String remarks;
+	
+	@Column(name="MRN_SEQ_NO",length = 3)
+	private int mrnSeqNo;
+	
+	
+	
 	@Column(name="ITEM_REC",length = 12)
-	private int itemRec;
+	private int itemRec; // rec qty 
 	
 	@Column(name="ITEM_RATE",length = 15)
-	private int itemRate;
+	private int itemRate;  //po rate 
 	
 	@Column(name="ITEM_INV",length = 12)
-	private int itemInv;
+	private int itemInv;  //invQty
 	
 	@Column(name="ITEM_RATE_ON_BILL",length = 16)
-	private int itemrateOnBill;
+	private int itemrateOnBill; // bill rate
+	
+	@Column(name="ITEM_NET_VAL",length = 15)
+	private int itemNetVal;  //net cost
+	
+	@Column(name="TOTAL_PUR_COST",length = 15)
+	private int totalPurCost; // total pur cost 
+	
+	@Column(name="TOTAL_VALUE",length = 15)
+	private int totalvalue; // total cost
+	
 	
 	@Column(name="CAPITALYN",length = 2)
 	private String capitalYn;
@@ -88,8 +109,7 @@ public class MRNDetail {
 	@Column(name="D_ADDRESS",length = 200)
 	private String dAddress;
 	
-	@Column(name="TOTAL_VALUE",length = 15)
-	private int totalvalue;
+	
 	
 	
 	@Column(name="AIR_FREIGHT",length = 16)
@@ -134,7 +154,7 @@ public class MRNDetail {
 	@Column(name="PO_NO",length = 15)
 	private String poNo;
 	
-	@Column(name="PO_DATE")
+	@Column(name="PO_DATE") //m or s 
 	private Date poDate;
 	
 	@ManyToOne
@@ -144,8 +164,6 @@ public class MRNDetail {
 	@Column(name="GATE_ENTRY_DATE")
 	private Date gateEntryDate;
 	
-	@Column(name="ITEM_NET_VAL",length = 15)
-	private int itemNetVal;
 	
 	@Column(name="CUSTOM_DUTY",length = 15)
 	private int customDuty;
@@ -196,8 +214,7 @@ public class MRNDetail {
 	@Column(name="NON_VAT_VALUE",length = 14)
 	private int nonVatValue;
 	
-	@Column(name="TOTAL_PUR_COST",length = 15)
-	private int totalPurCost;
+	
 	
 	
 	
@@ -259,8 +276,7 @@ public class MRNDetail {
 	@Column(name="NON_SALES_TAX_VALUE",length = 14)
 	private int nonSalesTaxValue;
 	
-	@Column(name="REMARKS",length = 50)
-	private String remarks;
+	
 	
 	@Column(name="ASS_VALUE",length = 15)
 	private String assvalue;
@@ -307,8 +323,7 @@ public class MRNDetail {
 	@Column(name="DEV_CHARGES",length = 8)
 	private int devCharges;
 	
-	@Column(name="ITEM_ACC_CODE",length = 9)
-	private String itemAccCode;
+	
 	
 	@Column(name="ITEM_RECEIVED",length = 12)
 	private int itemRecieved;
@@ -367,8 +382,7 @@ public class MRNDetail {
 	@Column(name="IGST_VALUE",length = 14)
 	private int igstValue;
 	
-	@Column(name="MAT_SERV_TYPE",length = 2)
-	private String matServType;
+	
 	
 	@Column(name="ED_HCESS_CUSTOM_PER",length = 5)
 	private int edHcessCustomPer;
