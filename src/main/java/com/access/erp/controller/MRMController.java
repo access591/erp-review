@@ -109,6 +109,15 @@ public class MRMController {
 		return "redirect:/mrn/list";
 	}
 
+	
+	@GetMapping("mrnTaxInfo")
+	public String taxInfo(Model model) {
+		
+		model.addAttribute("mrn", new MRN());
+		
+		return "layouts/Master/mrntaxInfo";
+	}
+	
 	@ResponseBody
 	@GetMapping("/gateentryinfo/{id}")
 	public MrnUtility getItemInfoAgainstGateEntry(@PathVariable(value = "id") String id, Model model) {
