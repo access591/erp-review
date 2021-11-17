@@ -4,11 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.access.erp.model.master.Item;
 import com.access.erp.model.master.UOM;
 
 
@@ -17,8 +20,14 @@ import com.access.erp.model.master.UOM;
 public class GateEntryItemDetail {
 
 	@Id
-	@Column(name="ITEM_CODE",length=20)
-	private String itemCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="GATE_ENTRY_DETAIL_ID",length = 30)
+	private Long gateEntryDetailId;
+	
+	
+	@JoinColumn(name="ITEM_CODE")
+	@ManyToOne
+	private Item item;
 	
 	@Column(name="ITEM_DESCRIPTION",length=100)
 	private String itemDescription;
@@ -32,8 +41,9 @@ public class GateEntryItemDetail {
 	@Column(name="GATE_SEQ_NO",length=2)
 	private int gateSeqNo;
 	
-	@Column(name="ORDER_NO",length=15)
-	private String orderNo;
+	@JoinColumn(name="ORDER_NO")
+	@ManyToOne
+	private PurchaseOrder purchaseOrder;
 	
 	@Column(name="ORDER_DATE")
 	private Date orderDate;
@@ -135,13 +145,7 @@ public class GateEntryItemDetail {
 		
 	}
 
-	public String getItemCode() {
-		return itemCode;
-	}
-
-	public void setItemCode(String itemCode) {
-		this.itemCode = itemCode;
-	}
+	
 
 	public String getItemDescription() {
 		return itemDescription;
@@ -175,13 +179,7 @@ public class GateEntryItemDetail {
 		this.gateSeqNo = gateSeqNo;
 	}
 
-	public String getOrderNo() {
-		return orderNo;
-	}
-
-	public void setOrderNo(String orderNo) {
-		this.orderNo = orderNo;
-	}
+	
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -405,6 +403,42 @@ public class GateEntryItemDetail {
 
 	public void setGateEntryDate(Date gateEntryDate) {
 		this.gateEntryDate = gateEntryDate;
+	}
+
+
+
+	public Long getGateEntryDetailId() {
+		return gateEntryDetailId;
+	}
+
+
+
+	public void setGateEntryDetailId(Long gateEntryDetailId) {
+		this.gateEntryDetailId = gateEntryDetailId;
+	}
+
+
+
+	public Item getItem() {
+		return item;
+	}
+
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+
+	public PurchaseOrder getPurchaseOrder() {
+		return purchaseOrder;
+	}
+
+
+
+	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+		this.purchaseOrder = purchaseOrder;
 	}
 	
 	

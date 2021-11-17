@@ -11,5 +11,7 @@ public interface GateEntryService {
 	public List<GateEntry> getAllGateEntry();
 	public Optional<GateEntry> editGateEntry(String gateEntryCode);
 	public void deleteGateEntry(String gateEntryCode);
+	
+	
 
 }

@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Company;
+import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.SupplierMaster;
@@ -31,18 +32,53 @@ public class MRN {
 	@Column(name="MRN_DATE" )
 	public Date mrnDate;
 	
-	@Column(name="MRN_VAL",length = 14) //decimal nummber ,.00(14,2)
-	public int mrnval;
+	@ManyToOne
+	@JoinColumn(name="GATE_ENTRY_NO")
+	public GateEntry gateEntryNo;
+	
+	@Column(name="GATE_ENTRY_DATE")
+	public Date gateEntryDate;
 	
 	@ManyToOne
 	@JoinColumn(name="SUPP_CODE")
 	public SupplierMaster supplierMaster;
 	
+	@Column(name="BILL_TYPE",length = 2)
+	public String billType;
+	
 	@Column(name="BILL_NO",length = 25)
 	public String billNo;
 	
+	@Column(name="MRN_TYPE",length = 2)
+	public String mrnType;
+	
+	@ManyToOne
+	@JoinColumn(name="CURRENCY_CODE")
+	public CurrencyMaster currency;
+	
 	@Column(name="BILL_DATE")
 	public Date billDate;
+	
+	@Column(name="RECIP_DATE")
+	public Date reciepDate;
+	
+	@Column(name="CONVERSION_VALUE",length = 14)
+	public String conversionvalue;
+	
+	
+	
+	@Column(name="MRN_VAL",length = 14) //decimal nummber ,.00(14,2)
+	public int mrnval;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@Column(name="PO_NO",length = 25)
 	public String poNo;
@@ -50,8 +86,7 @@ public class MRN {
 	@Column(name="PO_DATE")
 	public Date poDate;
 	
-	@Column(name="RECIP_DATE")
-	public Date reciepDate;
+	
 	
 	@Column(name="WORKER_CODE")
 	public String workerCode;
@@ -128,8 +163,7 @@ public class MRN {
 	@Column(name="G_R_DATE")
 	public Date grDate;
 	
-	@Column(name="BILL_TYPE",length = 2)
-	public String billType;
+	
 	
 	@Column(name="CAPITALYN",length = 2)
 	public String capitalYn;
@@ -137,22 +171,13 @@ public class MRN {
 	@Column(name="CFORM_YN",length = 2)
 	public String cFromYn;
 	
-	@Column(name="CURRENCY_CODE",length = 6)
-	public String currencyCode;
-	
-	@Column(name="CONVERSION_VALUE",length = 14)
-	public String conversionvalue;
-	
-	@Column(name="MRN_TYPE",length = 2)
-	public String mrnType;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="GATE_ENTRY_NO")
-	public GateEntry gateEntryNo;
 	
-	@Column(name="GATE_ENTRY_DATE")
-	public Date gateEntryDate;
+	
+	
+	
+	
 	
 	@Column(name="CHALLAN_NO",length = 25)
 	public String challenNo;
@@ -551,12 +576,14 @@ public class MRN {
 		this.cFromYn = cFromYn;
 	}
 
-	public String getCurrencyCode() {
-		return currencyCode;
+	
+
+	public CurrencyMaster getCurrency() {
+		return currency;
 	}
 
-	public void setCurrencyCode(String currencyCode) {
-		this.currencyCode = currencyCode;
+	public void setCurrency(CurrencyMaster currency) {
+		this.currency = currency;
 	}
 
 	public String getConversionvalue() {

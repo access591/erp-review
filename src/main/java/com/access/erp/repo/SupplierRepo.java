@@ -9,5 +9,7 @@ import com.access.erp.model.master.SupplierMaster;
 public interface SupplierRepo extends JpaRepository<SupplierMaster, Long>{
 	
 	public SupplierMaster findBySupplierId(Long supplierId);
+	
+	
 
 }

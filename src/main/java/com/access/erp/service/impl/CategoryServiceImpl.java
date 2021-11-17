@@ -16,6 +16,8 @@ public class CategoryServiceImpl implements CategoryService{
 
 	
 	@Autowired CategoryRepo categoryRepo;
+	
+	
 	@Autowired SeqMainRepo seqMainRepo;
 	
 	@Override
