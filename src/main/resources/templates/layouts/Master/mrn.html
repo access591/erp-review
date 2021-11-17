@@ -381,13 +381,13 @@ iframe {
 																		<td><input type="number"
 																			class="form-control form-control-sm" title="po qty"></td>
 																		<!-- inr qty -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="inv qty"
 																			name="mrnDetails[0].itemInv"></td>
 
 																		<!-- rec qty  -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="rec qty"
 																			name="mrnDetails[0].itemRec"></td>
@@ -400,32 +400,32 @@ iframe {
 																			id="technicalQualification" title="po rate curr"></td>
 
 																		<!-- po rate  -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="po rate"
 																			name="mrnDetails[0].itemRate"></td>
 
 																		<!-- bill rate  -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="bill rate"
 																			name="mrnDetails[0].itemrateOnBill"></td>
 
 																		<!-- total cost   -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="total cost"
 																			name="mrnDetails[0].totalvalue"></td>
 
 																		<!-- net cost  -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="net cost"
 																			name="mrnDetails[0].itemNetVal"></td>
 
 
 																		<!-- total pur cost  -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="total pur cost"
 																			name="mrnDetails[0].totalPurCost"></td>
@@ -436,7 +436,7 @@ iframe {
 																			id="technicalQualification" title="total inr cost"></td>
 
 																		<!-- remarks   -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="remarks"
 																			name="mrnDetails[0].totalPurCost"></td>
@@ -453,9 +453,7 @@ iframe {
 																		</select></td>
 
 																		<td>
-																			<button type="button" class="btn btn-primary"
-																				data-toggle="modal" data-target="#exampleModal">
-																				Tax Info</button>
+																			<button data-toggle="modal" th:attr="data-target=${'#editModal'+1}" data-row="${row}">DEL</button>
 																		</td>
 
 
@@ -516,29 +514,21 @@ iframe {
 
 	<!-- modal -->
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<iframe src="www.google.com"></iframe>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div>
+  <div class="modal-body">
+    <div class="modal-body">
+       You are about to delete: 
+     <!--   <div th:text="${row.firstname}"/> <div th:text="${row.lastname}"/> -->
 
+      <h1>hello</h1>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
+    </div>
+  </div>
+</div>
 
 	<!-- end modal   -->
 
