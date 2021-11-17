@@ -90,6 +90,9 @@ public class CompanyController {
 
 		List<State> listState = stateService.getAllState();
 		model.addAttribute("listState", listState);
+		
+		List<City> listCity = cityService.getAllCity();
+		model.addAttribute("listCity", listCity);
 
 		Company company = companyService.editCompany(compCode);
 		model.addAttribute("company", company);
