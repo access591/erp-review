@@ -11,7 +11,7 @@ function indentGetEmployee() {
 
 	$.ajax({
 		type: "GET",
-		url: "/employee/employeeinfo/" + empCode,
+		url: "employeeinfo/" + empCode,
 
 		success: function(data) {
 			//$("#resultarea").text(data);
@@ -62,7 +62,7 @@ function changeRequestForQuotation() {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/rfqdetail/" + rfqNumber,
+		url: "rfqdetail/" + rfqNumber,
 
 		success: function(data) {
 			console.log("ite data is : " + data)
@@ -87,7 +87,7 @@ function supplierInfo1() {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/supplierinfo/" + supplierId,
+		url: "supplierinfo/" + supplierId,
 
 		success: function(data) {
 			console.log("ite data is : " + data)
@@ -129,7 +129,7 @@ function getIndentDetailByIndentNumber() {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/indentdetail/" + indentNumber,
+		url: "indentdetail/" + indentNumber,
 
 		success: function(data) {
 			console.log("ite data is : " + data)
@@ -170,7 +170,7 @@ function getItemListByIndentNumber(indentNumber) {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/itemList/" + indentNumber,
+		url: "itemList/" + indentNumber,
 
 		success: function(data) {
 			console.log("Item Info behalf of Indent Number  : " + data)
@@ -202,7 +202,7 @@ function changeItemInQuotationDetail() {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/itemInfo/" + itemCode,
+		url: "itemInfo/" + itemCode,
 
 		success: function(data) {
 			console.log("Item Info behalf of Indent Number  : " + data)
@@ -239,7 +239,7 @@ function supplierInfoPurchase() {
 
 	$.ajax({
 		type: "GET",
-		url: "/purchaseorder/supplierDetail/" + supplierCode,
+		url: "supplierDetail/" + supplierCode,
 
 		success: function(data) {
 			console.log("Data From Supplier Info Purchase : " + data)
@@ -263,7 +263,7 @@ function quotationNumberInfo() {
 
 	$.ajax({
 		type: "GET",
-		url: "/purchaseorder/quotationDetail/" + quotationNumber,
+		url: "quotationDetail/" + quotationNumber,
 
 		success: function(data) {
 			console.log("Data From quotaionInfo : " + data)
@@ -294,7 +294,7 @@ function getIndentAgainstQuotationDetail() {
 
 	$.ajax({
 		type: "GET",
-		url: "/purchaseorder/indentdetail/" + quotationNumber,
+		url: "indentdetail/" + quotationNumber,
 
 		success: function(data) {
 			console.log("Data From quotaionInfo : " + data)
@@ -334,7 +334,7 @@ function indentDetailInCaseOfIndent() {
 
 	$.ajax({
 		type: "GET",
-		url: "/purchaseorder/indent/indentdetail/",
+		url: "indent/indentdetail/",
 
 		success: function(data) {
 			console.log("Data From quotaionInfo : " + data)
@@ -377,7 +377,7 @@ function getIndentDetailPo() {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/indentdetail/" + indentNumber,
+		url: "indentdetail/" + indentNumber,
 
 		success: function(data) {
 			console.log("ite data is : " + data)
@@ -405,7 +405,7 @@ function getItemList(indentNumber) {
 
 	$.ajax({
 		type: "GET",
-		url: "/quotationdetail/itemList/" + indentNumber,
+		url: "itemList/" + indentNumber,
 
 		success: function(data) {
 			console.log("Item Info behalf of Indent Number  : " + data)
@@ -457,7 +457,7 @@ function getCityOnState() {
 
 	$.ajax({
 		type: "GET",
-		url: "/companydetail/citylist/" + stateCode,
+		url: "citylist/" + stateCode,
 
 		success: function(data) {
 
@@ -487,7 +487,7 @@ function getRCityOnState() {
 
 	$.ajax({
 		type: "GET",
-		url: "/companydetail/citylist/" + stateCode,
+		url: "citylist/" + stateCode,
 
 		success: function(data) {
 
@@ -518,7 +518,7 @@ function getOrderIndentDetailPo() {
 
 	$.ajax({
 		type: "GET",
-		url: "/gateentry/indentdetailinpo/" + indentNumber,
+		url: "indentdetailinpo/" + indentNumber,
 
 		success: function(data) {
 			console.log("ite data is : " + data)
@@ -551,7 +551,7 @@ function getOrderItemList(indentNumber) {
 
 	$.ajax({
 		type: "GET",
-		url: "/gateentry/itemList/" + indentNumber,
+		url: "itemList/" + indentNumber,
 
 		success: function(data) {
 			console.log("Item Info behalf of Indent Number  : " + data)
@@ -582,7 +582,7 @@ function getOrderItemDetailForPo(){
 	
 	$.ajax({
 		type: "GET",
-		url: "/gateentry/itemInfo/" + itemNumber,
+		url: "itemInfo/" + itemNumber,
 
 		success: function(data) {
 			
@@ -614,7 +614,7 @@ function getGateEntryInfo() {
 
 	$.ajax({
 		type: "GET",
-		url: "/mrn/gateentryinfo/" + gateEntryNumber,
+		url: "gateentryinfo/" + gateEntryNumber,
 
 		success: function(data) {
 			console.log("Item Info behalf of Indent Number  : " + data)
