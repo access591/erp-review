@@ -1,19 +1,30 @@
 package com.access.erp.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
 
+
+@Entity
+@Table(name="INSPECTION")
 public class MrnInspection {
 
-	
+	@Id
 	@Column(name="INSP_NO",length = 15)
 	private String inspNo;
 	
@@ -70,6 +81,10 @@ public class MrnInspection {
 	
 	@Column(name="REP_IN_DATE" )
 	private Date repInDate;
+	
+	
+	@OneToMany(mappedBy = "mrnInspection", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	private List<MrnInspectionItemDetail> mrnInspectionItems = new ArrayList<>();
 
 	public MrnInspection() {
 		super();
@@ -203,6 +218,9 @@ public class MrnInspection {
 	public void setRepInDate(Date repInDate) {
 		this.repInDate = repInDate;
 	}
+	
+	
+	
 	
 	
 	
