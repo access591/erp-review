@@ -46,7 +46,7 @@ public class MrnInspectionController {
 	
 	
 	@PostMapping("/")
-	public String addInspection(@ModelAttribute("mrnInspection") MrnInspection inspection, RedirectAttributes redirectAttributes) {
+	public String addInspection(@ModelAttribute("inspection") MrnInspection inspection, RedirectAttributes redirectAttributes) {
 
 		
 
@@ -103,6 +103,16 @@ public class MrnInspectionController {
 		mrnInspectionService.deleteMrnInspection(inspCode);
 		return "redirect:/inspection/list";
 	}
+	
+	
+	@GetMapping("/approval/")
+	public String approvalInspection(@ModelAttribute("inspection") Model model) {
+		
+		
+		
+		return "layouts/Master/mrnInspectionApproval";
+	}
+	
 	
 	
 	@ResponseBody
