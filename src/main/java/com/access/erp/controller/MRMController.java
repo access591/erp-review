@@ -2,7 +2,6 @@ package com.access.erp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -110,12 +109,12 @@ public class MRMController {
 	}
 
 	
-	@GetMapping("mrnTaxInfo")
+	@GetMapping("/mrnTaxInfo")
 	public String taxInfo(Model model) {
 		
 		model.addAttribute("mrn", new MRN());
 		
-		return "layouts/Master/mrntaxInfo";
+		return "layouts/Master/mrnTaxInfo";
 	}
 	
 	@ResponseBody
