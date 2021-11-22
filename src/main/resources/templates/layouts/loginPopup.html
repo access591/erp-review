@@ -27,7 +27,7 @@
 
 <body th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
 
-	<form th:action="@{/index}" method="POST" >
+	<form th:action="@{/index}" method="POST" th:object="${login}">
 
 		<section class="vh-100" th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
 			<div class="container py-5 h-100" th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
@@ -43,7 +43,7 @@
 									<div class="form-group col-md-12">
 										<label for="inputEmail4">Company</label> <select
 											class="form-control" id="company" onchange="selectCompany()" title="company"
-											required>
+											required name="company" th:field="*{company}">
 											<option value="">Select</option>
 											<option th:each="company :  ${listCompany}"
 												th:text="${company.compName}"
@@ -57,7 +57,7 @@
 									<div class="form-group col-md-12">
 										<label for="inputEmail4">Financial Year</label> <select
 											class="form-control fyContainer" id="" onchange="" title="company"
-											required>
+											required name="financialYear" th:field="*{financialYear}">
 											<option value="">Select</option>
 											
 										</select>
@@ -102,7 +102,7 @@
 			url: "activefy/" + company,
 
 			success: function(data) {
-				//$("#resultarea").text(data);
+				
 				console.log("response data : " + data);
 				
 				var options = '<option value=""><strong>Select</strong></option>';
@@ -110,7 +110,7 @@
 				$(data).each(function(index, value) {
 
 					console.log("item info : " + value.financialYear.financialYearCode)
-					//console.log("item info : " + value.itemName)
+					
 
 					options += '<option value="' + value.id + '">' + value.financialYear.financialYearCode + '</option>';
 
