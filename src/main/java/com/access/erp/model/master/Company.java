@@ -18,6 +18,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "M_COMPANY")
@@ -86,10 +87,12 @@ public class Company {
 	
 	@ManyToOne
 	@JoinColumn(name = "C_STATE_CODE",nullable = true)
+	@JsonIgnore
 	private State cState;
 	
 	@ManyToOne
 	@JoinColumn(name = "CITY",nullable = true)
+	@JsonIgnore
 	private City cCity;
 	
 	@Column(name = "C_PIN", length = 8)
@@ -124,10 +127,12 @@ public class Company {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "R_STATE",nullable = false)
+	@JsonIgnore
 	private State rState;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "R_CITY",nullable = false)
+	@JsonIgnore
 	private City rCity;
 
 	@Column(name = "R_LOCATION", length = 50)
@@ -339,11 +344,11 @@ public class Company {
 	 * @Column(name = "FSSAI_CODE", length = 50) private String fssaiCode;
 	 */
 
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Fetch(value = FetchMode.SELECT)
 	private List<InsuranceDetail> insuranceDetail;
 
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Fetch(value = FetchMode.SELECT)
 	private List<SiteOffice> siteOffice;
 

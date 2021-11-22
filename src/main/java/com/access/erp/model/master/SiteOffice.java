@@ -59,6 +59,7 @@ public class SiteOffice {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "CCODE")
+	@JsonIgnore
 	private Company company;
 
 	public SiteOffice() {

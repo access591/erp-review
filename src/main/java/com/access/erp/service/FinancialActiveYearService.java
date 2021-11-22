@@ -4,7 +4,7 @@ package com.access.erp.service;
 import java.util.List;
 import java.util.Optional;
 
-
+import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 
 public interface FinancialActiveYearService {
@@ -16,5 +16,7 @@ public interface FinancialActiveYearService {
 	public Optional<FinancialActiveYear> editFinancialActiveYear(Long id);
 
 	public void deleteFinanciaActivelYear(Long id);
+	
+	List<FinancialActiveYear> findByCompany(Company company);
 
 }

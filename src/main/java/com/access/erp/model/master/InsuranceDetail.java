@@ -31,6 +31,7 @@ public class InsuranceDetail {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "CCODE")
+	@JsonIgnore
 	private Company company;
 	
 	

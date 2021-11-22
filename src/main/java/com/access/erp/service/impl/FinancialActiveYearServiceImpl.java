@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.repo.FinnancialActiveYearRepo;
 import com.access.erp.repo.FinnancialYearRepo;
@@ -65,6 +66,12 @@ public class FinancialActiveYearServiceImpl implements FinancialActiveYearServic
 
 		financialActiveYearRepo.deleteById(id);
 
+	}
+
+	@Override
+	public List<FinancialActiveYear> findByCompany(Company company) {
+		
+		return this.financialActiveYearRepo.findByCompany(company);
 	}
 
 }
