@@ -65,9 +65,9 @@ iframe {
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
+							<li><a href="#">MRN</a></li>
+							<li class="active">Master</li>
 						</ol>
 					</section>
 
@@ -330,8 +330,7 @@ iframe {
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">DOL</th>
 
-																		<th scope="col" class="text-center"
-																			style="width: 120px;">Tax</th>
+																		
 
 
 																	</tr>
@@ -452,9 +451,7 @@ iframe {
 
 																		</select></td>
 
-																		<td>
-																			<a href="mrnTaxInfo">click</a>
-																		</td>
+																		
 
 
 
@@ -478,6 +475,118 @@ iframe {
 
 
 
+												<!-- detail details block  -->
+
+												<div class="box">
+
+													<h5>Tax Info</h5>
+													<div class="box-body">
+
+														<input id="_cr" name="_cr" type="hidden" value="1">
+
+
+
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display">
+																<thead>
+																	<tr>
+
+
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">CGST in(%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">CGST Value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">SGST in(%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">SGST value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">IGST in (%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">IGST Value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Discount(%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Discount Value</th>
+																		
+
+																		
+
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0">
+
+
+																	
+																		<!-- item code -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderIndentDatePo" title="order date"
+																			name="mrnDetails[0].item"></td>
+
+																		<!-- item name -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderIndentDatePo" title="item name"></td>
+																	
+																		<!-- UOM -->
+																		<td><input type="number" title="uom"
+																			class="form-control form-control-sm"></td>
+																		<!-- po qty   -->
+																		<td><input type="number"
+																			class="form-control form-control-sm" title="po qty"></td>
+																		<!-- inr qty -->
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="inv qty"
+																			name="mrnDetails[0].itemInv"></td>
+
+																		<!-- rec qty  -->
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="orderItemuom" title="rec qty"
+																			name="mrnDetails[0].itemRec"></td>
+
+
+																		<!-- po rate curr -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="po rate curr"></td>
+
+																		<!-- po rate  -->
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="po rate"
+																			name="mrnDetails[0].itemRate"></td>
+
+																		
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+
+															</table>
+														</div>
+
+														<input type="hidden" id="hidden_field"
+															th:value="${length}" />
+													</div>
+												</div>
+
+
+
+												<!-- end detail details block  -->
+
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Submit" class="btn btn-primary" />
@@ -499,7 +608,6 @@ iframe {
 								</div>
 
 							</div>
-
 						</div>
 					</section>
 				</section>
@@ -514,7 +622,7 @@ iframe {
 
 	<!-- modal -->
 
-	
+
 
 	<!-- end modal   -->
 

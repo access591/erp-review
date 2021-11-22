@@ -2,45 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
 
 
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
 
-	<title>welcome to erp</title>
+<title>welcome to erp</title>
+
+
 </head>
 
-<body>
+<body th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
 
-	<form th:action="@{/index}" method="POST">
+	<form th:action="@{/index}" method="POST" >
 
-		<section class="vh-100" style="background-color: white;">
-			<div class="container py-5 h-100">
-				<div class="row d-flex justify-content-center align-items-center h-100">
-					<div class="col-12 col-md-8 col-lg-6 col-xl-5">
-						<div>
-							<div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
+		<section class="vh-100" th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
+			<div class="container py-5 h-100" th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
+				<div
+					class="row d-flex justify-content-center align-items-center h-100" th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
+					<div class="col-12 col-md-8 col-lg-6 col-xl-5" th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
+						<div th:style="'background: url(/img/theme/bck-theme-1.jpg) no-repeat center center fixed;'">
+							<div class="card-body shadow-lg p-3 mb-5 bg-white rounded" >
 
 								<h3 class="mb-5"></h3>
 
 								<div class="form-outline mb-4">
 									<div class="form-group col-md-12">
-										<label for="inputEmail4">Company</label> <select class="form-control" id=""
-											onchange="" title="company" required>
+										<label for="inputEmail4">Company</label> <select
+											class="form-control" id="company" onchange="selectCompany()" title="company"
+											required>
 											<option value="">Select</option>
-											<option value="">company-A</option>
-											<option value="">company-B</option>
-											<!--<option th:each="financialYear :  ${listFinancialyear}"
-												th:text="${financialYear.financialYearCode}"
-												th:value=" ${financialYear.id}"></option>-->
+											<option th:each="company :  ${listCompany}"
+												th:text="${company.compName}"
+												th:value=" ${company.compCode}"></option>
 										</select>
 									</div>
 
@@ -48,14 +55,11 @@
 
 								<div class="form-outline mb-4">
 									<div class="form-group col-md-12">
-										<label for="inputEmail4">Financial Year</label> <select class="form-control"
-											id="" onchange="" title="company" required>
+										<label for="inputEmail4">Financial Year</label> <select
+											class="form-control fyContainer" id="" onchange="" title="company"
+											required>
 											<option value="">Select</option>
-											<option value="">20-21</option>
-											<option value="">19-20</option>
-											<!--<option th:each="financialYear :  ${listFinancialyear}"
-												th:text="${financialYear.financialYearCode}"
-												th:value=" ${financialYear.id}"></option>-->
+											
 										</select>
 									</div>
 
@@ -64,13 +68,13 @@
 
 								<div class="form-outline mb-4">
 									<div class="form-group col-md-12">
-										<button  class="btn btn-primary btn-lg btn-block" type="submit">submit</button>
+										<button class="btn btn-primary btn-lg btn-block" type="submit">submit</button>
 
 									</div>
 								</div>
-								
-								
-								
+
+
+
 								<hr class="my-4">
 
 
@@ -86,8 +90,47 @@
 
 </body>
 
+<script>
+
+	function selectCompany(){
+		
+		
+		var company = document.getElementById("company").value;
+		
+		$.ajax({
+			type: "GET",
+			url: "activefy/" + company,
+
+			success: function(data) {
+				//$("#resultarea").text(data);
+				console.log("response data : " + data);
+				
+				var options = '<option value=""><strong>Select</strong></option>';
+				
+				$(data).each(function(index, value) {
+
+					console.log("item info : " + value.financialYear.financialYearCode)
+					//console.log("item info : " + value.itemName)
+
+					options += '<option value="' + value.id + '">' + value.financialYear.financialYearCode + '</option>';
+
+				});
+				$('.fyContainer').html(options);
+				
+			}, error: function() {
+				console.log("Error");
+				var options = '<option value=""><strong>Select</strong></option>';
+
+				$('.fyContainer').html(options);
+			}
+		});
+	}
+	
+</script>
+
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
 
