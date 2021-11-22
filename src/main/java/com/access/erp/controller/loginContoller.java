@@ -58,6 +58,7 @@ public class loginContoller {
 	public String loginPopupPage(Model model, @ModelAttribute("") FinancialActiveYear financialActiveYear,
 			Principal principal) {
 
+		
 		String activeUser = principal.getName();
 
 		System.out.println("company is : " + financialActiveYear.getCompany().getCompCode());
@@ -83,6 +84,20 @@ public class loginContoller {
 		}
 
 		
+		
+	}
+	
+	
+	@GetMapping("/home")
+	public String homePage(Model model,Principal principal) {
+
+		if(principal.getName().isBlank()) {
+			return "layouts/login";
+		}
+		else {
+			return "layouts/index";
+		}
+
 		
 	}
 
