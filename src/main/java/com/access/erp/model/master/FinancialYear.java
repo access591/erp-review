@@ -24,14 +24,14 @@ public class FinancialYear {
 	@Column(name="FINANCIAL_YEAR")
 	private String financialYearCode;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="FROM_DATE")
-	private String fromDate;
+	private Date fromDate;
 	
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="TO_DATE")
-	private String toDate;
+	private Date toDate;
 
 
 	public FinancialYear() {
@@ -54,33 +54,23 @@ public class FinancialYear {
 	}
 
 
-	public String getFromDate() {
+	public Date getFromDate() {
 		return fromDate;
 	}
 
 
-	public void setFromDate(String fromDate) {
+	public void setFromDate(Date fromDate) {
 		this.fromDate = fromDate;
 	}
 
-
-	public String getToDate() {
+	public Date getToDate() {
 		return toDate;
 	}
 
-
-	public void setToDate(String toDate) {
+	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
 
-
-	
-
-
-	
-
-	
-	
 
 	
 }

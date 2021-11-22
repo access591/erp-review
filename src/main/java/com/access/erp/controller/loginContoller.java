@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,61 +36,68 @@ public class loginContoller {
 	FinancialActiveYearService financialActiveyearService;
 	@Autowired
 	CompanyService companyService;
-	@Autowired MyUserService myUserService;
-	@Autowired FinnancialActiveYearRepo finnancialActiveYearRepo;
-	@Autowired FinancialYearService financialYearService;
-	
+	@Autowired
+	MyUserService myUserService;
+	@Autowired
+	FinnancialActiveYearRepo finnancialActiveYearRepo;
+	@Autowired
+	FinancialYearService financialYearService;
 
 	@GetMapping("/verify")
 	public String indexPage(Model model) {
 
-
 		List<Company> listCompany = companyService.getAllCompany();
 		model.addAttribute("listCompany", listCompany);
-		
+
 		model.addAttribute("login", new FinancialActiveYear());
-		
+
 		return "layouts/loginPopup";
 	}
 
 	@PostMapping("/index")
-	public String loginPopupPage(Model model,HttpServletRequest request , HttpServletResponse response
-							,Principal principal) {
+	public String loginPopupPage(Model model, @ModelAttribute("") FinancialActiveYear financialActiveYear,
+			Principal principal) {
 
-		String comapny = request.getParameter("company");
-		String fyYear = request.getParameter("financialYear");
 		String activeUser = principal.getName();
-		
-		System.out.println("company is : " + comapny);
-		
-		System.out.println("fy year is : " + fyYear);
+
+		System.out.println("company is : " + financialActiveYear.getCompany().getCompCode());
+
+		System.out.println("fy year is : " + financialActiveYear.getFinancialYear().getFinancialYearCode());
 		System.out.println("active user  : " + activeUser);
+
+		Company aCompany = companyService.editCompany(financialActiveYear.getCompany().getCompCode());
 		
-		Company aCompany = companyService.editCompany(comapny);
-		FinancialYear aFy = financialYearService.editFinancialYear(fyYear).get();
+		FinancialYear aFy = financialYearService
+				.editFinancialYear(financialActiveYear.getFinancialYear().getFinancialYearCode()).get();
+		
 		MyUser aUser = myUserService.editMyUser(activeUser).get();
-		
+
 		boolean isExist = finnancialActiveYearRepo.existsByFinancialYearAndMyUserAndCompany(aFy, aUser, aCompany);
+
+		System.out.println("isExist or Not :" + isExist);
 		
-		System.out.println("isExist or Not " + isExist);
+		if(isExist) {
+			return "layouts/index";
+		}else {
+			return "layouts/login";
+		}
+
 		
 		
-		return "layouts/index";
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("/activefy/{id}")
 	public List<FinancialActiveYear> getStateCountryById(@PathVariable(value = "id") String compCode) {
-		
+
 		Company company = companyService.editCompany(compCode);
-		
+
 		System.out.println("Company code Is : " + company.getCompCode());
-		List<FinancialActiveYear> fy =  financialActiveyearService.findByCompany(company);
+		List<FinancialActiveYear> fy = financialActiveyearService.findByCompany(company);
 		System.out.println("fy size : " + fy.size());
 		return fy;
-		
-		//return null;
+
+		// return null;
 	}
 
 }

@@ -36,13 +36,17 @@ public class FinancialYearController {
 	@PostMapping("/")
 	public String addFinancialYear(@ModelAttribute("financialYear") FinancialYear financialYear,RedirectAttributes redirectAttributes) {
 		
+		String lastDigitFromDat = financialYear.getFromDate().toString().substring(26);
+		String lastDigitToDate = financialYear.getToDate().toString().substring(26);
+		System.out.println(" date is : " + lastDigitFromDat);
+		System.out.println(" date is : " + lastDigitToDate);
 		
-		String lastDigitFromDate = financialYear.getFromDate().substring(Math.max(financialYear.getFromDate().length() - 2, 0));
+		//String lastDigitFromDate = financialYear.getFromDate().substring(Math.max(financialYear.getFromDate().length() - 2, 0));
 		
-		String lastDigitToDate = financialYear.getToDate().substring(Math.max(financialYear.getToDate().length() - 2, 0));
+		//String lastDigitToDate = financialYear.getToDate().substring(Math.max(financialYear.getToDate().length() - 2, 0));
 		
 		
-		financialYear.setFinancialYearCode(String.valueOf(lastDigitFromDate)+"-"+String.valueOf(lastDigitToDate));
+		financialYear.setFinancialYearCode(lastDigitFromDat+"-"+lastDigitToDate);
 		
 		boolean fYear = financialYearService.isFinancialYearExists(financialYear.getFinancialYearCode());
 		System.out.println("fyear is : "+ fYear);

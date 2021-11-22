@@ -57,7 +57,7 @@
 									<div class="form-group col-md-12">
 										<label for="inputEmail4">Financial Year</label> <select
 											class="form-control fyContainer" id="" onchange="" title="company"
-											required name="financialYear" th:field="*{financialYear}">
+											required name="financialYear" th:field="*{financialYear.financialYearCode}">
 											<option value="">Select</option>
 											
 										</select>
@@ -112,7 +112,7 @@
 					console.log("item info : " + value.financialYear.financialYearCode)
 					
 
-					options += '<option value="' + value.id + '">' + value.financialYear.financialYearCode + '</option>';
+					options += '<option value="' + value.financialYear.financialYearCode + '">' + value.financialYear.financialYearCode + '</option>';
 
 				});
 				$('.fyContainer').html(options);
