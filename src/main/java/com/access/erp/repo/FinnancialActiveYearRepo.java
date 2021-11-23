@@ -14,6 +14,9 @@ import com.access.erp.model.master.MyUser;
 public interface FinnancialActiveYearRepo extends JpaRepository<FinancialActiveYear, Long>{
 	
 	List<FinancialActiveYear> findByCompany(Company company);
+	List<FinancialActiveYear> findByMyUser(MyUser myUSer);
+	
+	List<FinancialActiveYear> findByCompanyAndMyUser(Company company , MyUser myUser);
 	
 	//boolean existsByRegnoAndName(String regno, String name);
 	

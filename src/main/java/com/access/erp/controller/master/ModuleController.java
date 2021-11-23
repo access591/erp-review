@@ -1,5 +1,6 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +31,10 @@ public class ModuleController {
 	}
 	
 	@PostMapping("/")
-	public String addModule(@ModelAttribute("module") ModuleMaster moduleMaster) {
+	public String addModule(@ModelAttribute("module") ModuleMaster moduleMaster,Principal principal) {
 		
+		
+		moduleMaster.setInsertedBy(principal.getName());
 		moduleMasterService.addModule(moduleMaster);
 		
 		return "redirect:/module/";
