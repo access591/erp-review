@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+}
+
+.select {
+	width: 130px;
+	font-size: 10px;
+}
+</style>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Gate Pass
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
+							<li><a href="#">Gate Pass</a></li>
+
+						</ol>
+					</section>
+
+
+					<!-- Main content -->
+					<section class="content">
+
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+
+
+
+									<div class="col-md-12 shadow bg-white rounded"
+										style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
+
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div>
+											<!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/gateePass/}"
+												th:object="${gatePass}" method="POST">
+
+												<div class="box">
+													<h5 class="box-title">General Detail Of Gate Pass</h5>
+													<div class="box-body">
+
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Gate Pass No</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Gate Pass No" th:field="*{gatePassNo}"
+																title="gate pass no">
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Gate Pass Date</label> <input
+																type="date" class="form-control" id="gateEntryDate"
+																title="gate pass date" th:field="*{gatePassDate}">
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Gate Pass Type</label> <select
+																class="form-control" id="" title="gate pass type"
+																th:field="*{gatePassType}">
+																<option value="r">Returnable</option>
+																<option value="n">Non-Returnable</option>
+
+
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Item Return Date</label> <input
+																type="date" class="form-control"
+																title="item return date" th:field="*{itemReturnDate}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Cancellation Date</label> <input
+																type="date" class="form-control"
+																title="item return date" th:field="*{canellationDate}">
+														</div>
+
+
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
+
+
+												<!-- for whom detail  -->
+
+												<div class="box">
+													<h5 class="box-title">For Whom</h5>
+													<div class="box-body">
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Employee Type</label> <select
+																class="form-control" id="" title="gate pass type">
+
+																<option value="em">Employee</option>
+
+
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Employee</label> <select
+																class="form-control" id="" title=""
+																th:field="*{employee}">
+																<option value="">Select</option>
+																<option th:each="employee :  ${employeeList}"
+																	th:text="${employee.empName}"
+																	th:value=" ${employee.empCode}"></option>
+
+
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Department</label> <select
+																class="form-control" id="" title="gate pass type"
+																th:field="*{department}">
+																<option value="">Select</option>
+																<option th:each="department :  ${departmentList}"
+																	th:text="${department.deptName}"
+																	th:value=" ${department.deptCode}"></option>
+
+
+															</select>
+														</div>
+
+
+
+
+
+
+
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+
+
+
+												<!-- for whom detail end  -->
+
+
+												<!-- sent location  -->
+
+												<div class="box">
+													<h5 class="box-title">Sent Location</h5>
+													<div class="box-body">
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Consignee Type</label> <select
+																class="form-control" id="" title="consgnee type"
+																th:field="*{employee}">
+																<option value="s">Supplier</option>
+
+
+
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Sub Consignee Type</label> <select
+																class="form-control" id="" title="sub consignee type">
+																<option value="">Select</option>
+
+
+
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Supplier Code</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Supplier Code" title="supplier code">
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Supplier Name</label> <select
+																class="form-control" id="" title="supplier name"
+																th:field="*{supplier}">
+																<option value="">Select</option>
+																<option th:each="supplier :  ${supplierList}"
+																	th:text="${supplier.suppName}"
+																	th:value=" ${supplier.suppCode}"></option>
+
+
+
+															</select>
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Customer Code</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Customer Code" title="ustomer code">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Customer Name</label> <select
+																class="form-control" id="" title="customer name"
+																th:field="*{custCode}">
+																<option value="">Select</option>
+																<!-- <option th:each="customer :  ${customerList}"
+																	th:text="${customer.custName}"
+																	th:value=" ${customer.custCode}"></option>
+ -->
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Consignee Name</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Consignee Name" title="consignee name"
+																th:field="*{consigneeName}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Consignee Address</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Consignee Address"
+																title="consignee address" th:field="*{consigneeAddress}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Purpose</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Purpose" title="purpose"
+																th:field="*{purpose}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Sent Location</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Sent Location" title="sent location"
+																th:field="*{remarks}">
+														</div>
+
+
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+
+
+												<!-- end sent location -->
+
+
+												<!-- box 2 -->
+
+												<div class="box">
+													<h5 class="box-title">Invoice/Challan</h5>
+													<div class="box-body">
+
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Replace No/Work Order
+																No.</label> <input type="text" class="form-control"
+																id="inputEmail4" placeholder="Replace No/Work Order No">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Replacement Date/Work
+																Order Date</label> <input type="date" class="form-control"
+																id="inputEmail4"
+																placeholder="Replace date/Work Order Date">
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Invoice No</label> <input
+																type="text" class="form-control" th:field="*{invoiceNo}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Invoice Date</label> <input
+																type="date" class="form-control"
+																th:field="*{invoiceDate}">
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Challan No.</label><label
+																style="color: red">*</label> <select
+																class="form-control" id="" title="entry type"
+																th:field="*{challanNo}" required>
+
+
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Challan Date</label> <input
+																type="date" class="form-control"
+																th:field="*{challanDate}">
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Job Out No</label> <input
+																type="text" class="form-control"
+																placeholder="Transporter Name" title="transporter name"
+																th:field="*{jobOutNo}">
+
+
+
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Job Out Date</label> <input
+																type="date" class="form-control"
+																th:field="*{jobOutDate}">
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label class="form-label">Issue No </label> <label
+																style="color: red">*</label> <input type="text"
+																class="form-control" placeholder="Vehicle No."
+																title="vehicle no." th:field="*{issNo}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Issue Date</label> <input
+																type="date" class="form-control" th:field="*{issDate}">
+														</div>
+
+
+
+
+
+
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
+												<!-- end box-2 -->
+
+
+
+
+
+
+
+												<!--detail box-->
+												<div class="box">
+
+													<h5>Gate Pass Item wise Detail</h5>
+													<div class="box-body">
+
+														<input id="_cr" name="_cr" type="hidden" value="1">
+
+
+
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display">
+																<thead>
+																	<tr>
+
+
+																		<th scope="col" class="text-center"
+																			style="width: 50px;">S.No</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Code</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Description</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">UOM</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">Qty</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Rate Per Unit</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Serial No.<br>Claim
+																			Under
+																		</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Serial No.<br>Send Per
+																			Report
+																		</th>
+
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0">
+
+
+																		<td><input type="number" title="sno."
+																			class="form-control form-control-sm"style="width:70px;"
+																			name="gatePassDetails[0].gatePassSrNO"></td>
+
+
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="orderIndentNumberPo"
+																			name="gatePassDetails[0].item"
+																			title="item"
+																			onchange='getOrderIndentDetailPo()' required>
+																				<option value="">Select Indent</option>
+																				<option th:each="po :  ${listPO}"
+																					th:text="${po.poNumber}" th:value=" ${po.poNumber}"></option>
+
+																		</select></td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm" style="width:170px;"
+																			id="orderItemDescription" title="description"
+																			name="gatePassDetails[0].description"></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemDescription" title="uom"></td>
+
+																		<td><input type="number" title="qty"
+																			class="form-control form-control-sm" style="width:70px;"
+																			name="gatePassDetails[0].qty"></td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm" title="net qty"
+																			name="gatePassDetails[0].netQty"></td>
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="technicalQualification" title="srNoClaimUnder"
+																			name="gatePassDetails[0].srNoClaimUnder"></td>
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemuom" title="" name="gatePassDetails[0].srNoSendForRep"></td>
+
+
+
+
+
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+
+															</table>
+														</div>
+
+														<input type="hidden" id="hidden_field"
+															th:value="${length}" />
+													</div>
+												</div>
+
+
+												<!--end detail box-->
+
+
+
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
+											</form>
+
+
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
+											<a th:href="@{/gatepass/list}">View All Gate-Pass</a>
+										</div>
+									</div>
+
+
+
+								</div>
+
+							</div>
+
+						</div>
+					</section>
+				</section>
+			</div>
+
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+
+
+	<script>
+		$(document).ready(function() {
+
+			document.getElementById('gateEntryDate').valueAsDate = new Date();
+
+		});
+	</script>
+
+
+	<script>
+		function againstPurchaseThrough() {
+
+			let purchaseThrough = document.getElementById("purchaseThrough").value;
+			console.log("purchase through value : " + purchaseThrough);
+
+			//do all value clear on click selection 
+
+			$('#quotationDate').val('');
+
+			if (purchaseThrough == "quotation") {
+				console.log("quotation ")
+				// enable field
+				$("#quotationNumber").prop('disabled', false);
+				$("#quotationDate").prop('disabled', false);
+
+				//get indent detail against quotation detail 
+
+				//getIndentAgainstQuotationDetail()
+
+			} else {
+				console.log(" is not")
+				//disabled and do blank 
+				$("#quotationNumber").prop('disabled', true);
+				$("#quotationDate").prop('disabled', true);
+				$('#quotationNumber').val('');
+				$('#quotationDate').val('');
+
+				//call api in case of purchase through is indent
+
+				indentDetailInCaseOfIndent();
+
+			}
+
+		}
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+	<!--   <section class="content">
+        
+        
+        </section>-->
+
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
+
+
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+</body>
+
+</html>
