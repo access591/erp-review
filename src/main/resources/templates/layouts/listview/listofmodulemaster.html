@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>EBS</title>
@@ -48,7 +48,7 @@
 															<th scope="col">#</th>
 															<th scope="col">Module Code</th>
 															<th scope="col">Module Name</th>
-															<th scope="col">Inserted By</th>
+															
 															<th scope="col">Status</th>
 															<th scope="col">Action</th>
 														</tr>
@@ -58,10 +58,12 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${module.moduleCode}">Garrett Winters</td>
 															<td th:text="${module.moduleName}">Garrett Winters</td>
-															<td th:text="${module.insertedBy}">Good Guys</td>
+															
 
-															<td><span class="badge bg-success"
-																	th:text="${module.active}">Active</span></td>
+															<td th:if="${module.active =='Y'}"><span class="badge bg-success"
+																	>&nbsp;&nbsp;Active&nbsp;&nbsp;</span></td>
+															<td th:if="${module.active =='N'}"><span class="badge bg-success"
+																	>In-Active</span></td>
 
 															<td><span> <a
 																		th:href="@{/module/edit/{id}(id=${module.moduleCode})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span>

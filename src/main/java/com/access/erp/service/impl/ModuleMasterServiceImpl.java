@@ -1,5 +1,6 @@
 package com.access.erp.service.impl;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,8 @@ public class ModuleMasterServiceImpl implements ModuleMasterService{
 	@Autowired ModuleMasterRepo moduleMasterRepo;
 	@Autowired SeqMainRepo seqMainRepo;
 	
+	private Principal principal;
+	
 	@Override
 	public void addModule(ModuleMaster moduleMaster) {
 		
@@ -26,6 +29,10 @@ public class ModuleMasterServiceImpl implements ModuleMasterService{
 		if(moduleMaster.getModuleCode()=="" || moduleMaster.getModuleCode()==null) {
 			String maxCode = seqMainRepo.findByTranType("MOD");
 			moduleMaster.setModuleCode(maxCode);
+			moduleMaster.setInsertedBy(principal.getName());
+			
+		}else {
+			moduleMaster.setUpdateBy(principal.getName());
 		}
 		
 		

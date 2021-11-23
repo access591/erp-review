@@ -1,6 +1,7 @@
 package com.access.erp.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +45,22 @@ public class loginContoller {
 	FinancialYearService financialYearService;
 
 	@GetMapping("/verify")
-	public String indexPage(Model model) {
+	public String indexPage(Model model,Principal principal) {
 
-		List<Company> listCompany = companyService.getAllCompany();
-		model.addAttribute("listCompany", listCompany);
+		System.out.println("###################### Verify Page #####################");
+		
+		MyUser myUser = myUserService.editMyUser(principal.getName()).get();
+		
+		List<FinancialActiveYear> fyYearList =  finnancialActiveYearRepo.findByMyUser(myUser);
+		
+		
+		List<Company> companyList = new ArrayList<>();
+		for(FinancialActiveYear fy : fyYearList) {
+			companyList.add(fy.getCompany());
+		}
+		
+		
+		model.addAttribute("companyList", companyList);
 
 		model.addAttribute("login", new FinancialActiveYear());
 
@@ -58,7 +71,7 @@ public class loginContoller {
 	public String loginPopupPage(Model model, @ModelAttribute("") FinancialActiveYear financialActiveYear,
 			Principal principal) {
 
-		
+		//store current financial year 
 		String activeUser = principal.getName();
 
 		System.out.println("company is : " + financialActiveYear.getCompany().getCompCode());
@@ -103,16 +116,20 @@ public class loginContoller {
 
 	@ResponseBody
 	@GetMapping("/activefy/{id}")
-	public List<FinancialActiveYear> getStateCountryById(@PathVariable(value = "id") String compCode) {
+	public List<FinancialActiveYear> getStateCountryById(@PathVariable(value = "id") String compCode,Principal principal) {
 
 		Company company = companyService.editCompany(compCode);
 
 		System.out.println("Company code Is : " + company.getCompCode());
-		List<FinancialActiveYear> fy = financialActiveyearService.findByCompany(company);
+		
+		MyUser myUser = myUserService.editMyUser(principal.getName()).get();
+		
+		
+		List<FinancialActiveYear> fy = finnancialActiveYearRepo.findByCompanyAndMyUser(company,myUser);
 		System.out.println("fy size : " + fy.size());
 		return fy;
 
-		// return null;
+		
 	}
 
 }
