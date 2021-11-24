@@ -65,7 +65,7 @@ public class ItemController {
 		if(itemList != null) {
 			model.addAttribute("itemList", itemList);
 		}
-		return "layouts/listview/listofItem";
+		return "layouts/listview/listofitem";
 	}
 	
 	@GetMapping("/edit/{id}")

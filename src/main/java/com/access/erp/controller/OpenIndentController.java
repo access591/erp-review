@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.access.erp.model.ItemOpening;
 import com.access.erp.model.OpenIndent;
 import com.access.erp.model.master.Department;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.Item;
 import com.access.erp.service.DepartmentService;
 import com.access.erp.service.EmployeeService;
+import com.access.erp.service.ItemOpeningService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentService;
+import com.access.erp.utility.Item_itemOpening;
 
 @Controller
 @RequestMapping("/openindent")
@@ -29,6 +33,7 @@ public class OpenIndentController {
 	@Autowired EmployeeService employeeService;
 	@Autowired ItemService itemService;
 	@Autowired DepartmentService departmentService;
+	@Autowired ItemOpeningService itemOpeningService;
 	
 
 	@GetMapping("/")
@@ -131,6 +136,28 @@ public class OpenIndentController {
 		openIndentService.approval(indentNumber, approvalStatus, level);
 		
 		return "redirect:/openindent/approve";
+	}
+	
+	
+	
+	@ResponseBody
+	@GetMapping("itemdetail/{id}")
+	public Item_itemOpening itemDetail(@PathVariable("id") String itemCode) {
+		
+		Item_itemOpening itemItemOpening = new Item_itemOpening();
+		
+		Item item = itemService.editItem(itemCode).get();
+		
+		ItemOpening itemOpening = null;
+		try {
+			itemOpening = itemOpeningService.editItemOpening(itemCode).get();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		itemItemOpening.setItem(item);
+		itemItemOpening.setItemOpening(itemOpening);
+		return itemItemOpening;
 	}
 
 }
