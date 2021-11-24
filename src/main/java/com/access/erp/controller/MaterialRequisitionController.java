@@ -104,6 +104,16 @@ public class MaterialRequisitionController {
 	
 	
 	
+	@GetMapping("/approval")
+	public String materialRequisitionApproval( Model model) {
+		
+		//materialRequisitionMasterService.deleteMaterialRequisitionMaster(requisitionNo);
+		return "layouts/Master/materialRequisitionApproval";
+	}
+	
+	
+	
+	
 	
 	@ResponseBody
 	@GetMapping("/employeeinfo/{id}")

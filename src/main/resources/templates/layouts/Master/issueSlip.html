@@ -95,38 +95,38 @@
 											<!-- /.box-header -->
 											<!-- form start -->
 											<form role="form" th:action="@{/materialrequisition/}"
-												th:object="${materialRequisition}" method="POST">
+												method="POST">
 
 												<div class="box">
-													<h5 class="box-title">General Registration</h5>
+													<h5 class="box-title">Issue Details</h5>
 													<div class="box-body">
 
 
 														<div class="form-group col-md-4">
-															<label for="inputEmail4">Requisition No</label> <input
+															<label for="inputEmail4">Issue No</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Requisition No" th:field="*{requisitionNo}"
+																placeholder="Requisition No" 
 																title="requisition no">
 														</div>
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Requisition Date</label> <input
+															<label for="inputPassword4">Issue Date</label> <input
 																type="date" class="form-control" id="gateEntryDate"
-																title="requisition date" th:field="*{requisitionDate}">
+																title="requisition date" >
 														</div>
 
 
 
 														<div class="form-group col-md-4">
-															<label for="inputAddress">Employee Code</label> <input
+															<label for="inputAddress">Issue Type</label> <input
 																type="text" class="form-control" id="empCode"
 																title="employee code" readonly>
 														</div>
 
 
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Employee Name</label> <select
+															<label for="inputPassword4">Requisition Type</label> <select
 																class="form-control" id="employee"
-																title="employee name" th:field="*{employee}" 
+																title="employee name" 
 																onchange="selectEmployee()">
 																<option value="">Select</option>
 																<option th:each="employee :  ${employeeList}"
@@ -136,21 +136,21 @@
 														</div>
 
 														<div class="form-group col-md-4">
-															<label for="inputAddress">Department Code</label> <input
+															<label for="inputAddress">Requisition No</label> <input
 																type="text" class="form-control" id="departmentCode"
 																title="department code" placeholder ="Department Code" readonly>
 														</div>
 
 
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Department Name</label> <input
+															<label for="inputPassword4">Requisition Date</label> <input
 																type="text" class="form-control" id="departmentName"
 																title="department name" placeholder="Department Name" readonly>
 														</div>
 
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Requisition Type</label> <select
-																class="form-control" id="" title="requisition type" th:field="*{requisitionType}">
+															<label for="inputPassword4">Bulk Issue</label> <select
+																class="form-control" id="" title="requisition type">
 													
 																<option value="gn">General</option>
 																<option value="Normal">Normal</option>
@@ -158,53 +158,74 @@
 															</select>
 														</div>
 														
+													</div>
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
+												
+												
+												<div class="box">
+													<h5 class="box-title">Store/Employee Detail </h5>
+													<div class="box-body">
+
+
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Purchase Type</label> <select
+															<label for="inputEmail4">Transaction Type</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Requisition No"
+																title="requisition no">
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Issue To</label> <input
+																type="date" class="form-control" id="gateEntryDate"
+																title="requisition date">
+														</div>
+
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress"></label> <input
+																type="text" class="form-control" id="empCode"
+																title="employee code" readonly>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Issue Dept</label> <select
+																class="form-control" id="employee"
+																title="employee name" 
+																onchange="selectEmployee()">
+																<option value="">Select</option>
+																<option th:each="employee :  ${employeeList}"
+																	th:text="${employee.empName}"
+																	th:value=" ${employee.empCode}"></option>
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Work Center Code</label> <input
+																type="text" class="form-control" id="departmentCode"
+																title="department code" placeholder ="Department Code" readonly>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Work Center Name</label> <input
+																type="text" class="form-control" id="departmentName"
+																title="department name" placeholder="Department Name" readonly>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Issued By</label> <select
 																class="form-control" id="" title="requisition type">
 													
-																<option value="nc">Non-Capex</option>
-																<option value="c">Capex</option>
+																<option value="gn">General</option>
+																<option value="Normal">Normal</option>
 																<option value="Ondate">As On Date</option>
 															</select>
 														</div>
 														
-														<div class="form-group col-md-4">
-															<label for="inputAddress">Work Center Code</label> <input
-																type="text" class="form-control" id="gateEntryDate"
-																title="work center code" readonly>
-														</div>
-
-
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Work Center Name</label> <select
-																class="form-control" id="departmentDropdown"
-																title="work center name">
-																<option value="">Select</option>
-																<!-- <option th:each="department :  ${departmentList}"
-																	th:text="${department.deptName}"
-																	th:value=" ${department.deptCode}"></option> -->
-															</select>
-														</div>
-														
-														<div class="form-group col-md-4">
-															<label for="inputAddress">Store Code</label> <input
-																type="text" class="form-control" id="gateEntryDate"
-																title="store code" readonly>
-														</div>
-
-
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Store Name</label> <select
-																class="form-control" id="departmentDropdown"
-																title="store name" th:field="*{store}">
-																<option value="">Select</option>
-																<option th:each="store :  ${storeList}"
-																	th:text="${store.storeStatus}"
-																	th:value=" ${store.storeCode}"></option>
-															</select>
-														</div>
-
-
 													</div>
 													<!-- /.box-body -->
 
@@ -252,7 +273,7 @@
 																</thead>
 
 																<tbody>
-																	<tr id="addr0">
+																	<!-- <tr id="addr0">
 
 
 																		<td><input type="number" title="sno."
@@ -300,7 +321,7 @@
 																			name="materialRequisitionDetails[0].srNoSendForRep"></td>
 
 
-																	</tr> 
+																	</tr>  -->
 																	<tr id='addr1' />
 
 																</tbody>
