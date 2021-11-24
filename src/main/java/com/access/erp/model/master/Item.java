@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="M_ITEM")
 public class Item {
@@ -28,6 +30,7 @@ public class Item {
 
     @ManyToOne(optional = false)
     @JoinColumn(name="CATEGORY_CODE")
+    @JsonIgnore
 	private Category category;
 	
 	@Column(name="PART_NO",length = 20)
@@ -41,6 +44,7 @@ public class Item {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="STORE_CODE")
+	@JsonIgnore
 	private Store store;
 	
 	@Column(name="UNIT_COST",length = 14)
@@ -78,6 +82,7 @@ public class Item {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="UOM_CODE")
+	@JsonIgnore
 	private UOM uom;
 	
 	@Column(name="ACC_LEDGER_CODE",length = 30)
@@ -250,7 +255,7 @@ public class Item {
 	private String area;
 	
 	
-	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<PackingDetail> packingDetails;
 
 	public Item() {

@@ -3,17 +3,23 @@ package com.access.erp.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.UOM;
 
+@Entity
+@Table(name="MATERIAL_REQUISITION_DETAIL")
 public class MaterialRequisitionDetail { 
 	
+	@Id
 	@Column(name="MATE_REQ_ID",length = 20)
-	private String matReqDetId;
+	private Long matReqDetId;
 	
 	
 	@Column(name="REQUISITION_DATE")
@@ -72,6 +78,197 @@ public class MaterialRequisitionDetail {
 	@ManyToOne
 	@JoinColumn(name="REQUISITION_NO")
 	private MaterialRequisitionMaster materialRequisitionMaster;
+
+
+	public MaterialRequisitionDetail() {
+		super();
+		
+	}
+
+
+	public Long getMatReqDetId() {
+		return matReqDetId;
+	}
+
+
+	public void setMatReqDetId(Long matReqDetId) {
+		this.matReqDetId = matReqDetId;
+	}
+
+
+	public Date getRequisitionDate() {
+		return requisitionDate;
+	}
+
+
+	public void setRequisitionDate(Date requisitionDate) {
+		this.requisitionDate = requisitionDate;
+	}
+
+
+	public Item getItem() {
+		return item;
+	}
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+	public UOM getUom() {
+		return uom;
+	}
+
+
+	public void setUom(UOM uom) {
+		this.uom = uom;
+	}
+
+
+	public int getQtyRequired() {
+		return qtyRequired;
+	}
+
+
+	public void setQtyRequired(int qtyRequired) {
+		this.qtyRequired = qtyRequired;
+	}
+
+
+	public Company getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+
+	public String getSrNo() {
+		return srNo;
+	}
+
+
+	public void setSrNo(String srNo) {
+		this.srNo = srNo;
+	}
+
+
+	public int getPenQty() {
+		return penQty;
+	}
+
+
+	public void setPenQty(int penQty) {
+		this.penQty = penQty;
+	}
+
+
+	public int getQtyPerpair() {
+		return qtyPerpair;
+	}
+
+
+	public void setQtyPerpair(int qtyPerpair) {
+		this.qtyPerpair = qtyPerpair;
+	}
+
+
+	public String getReqAppStatus() {
+		return reqAppStatus;
+	}
+
+
+	public void setReqAppStatus(String reqAppStatus) {
+		this.reqAppStatus = reqAppStatus;
+	}
+
+
+	public Date getRequiredDate() {
+		return requiredDate;
+	}
+
+
+	public void setRequiredDate(Date requiredDate) {
+		this.requiredDate = requiredDate;
+	}
+
+
+	public int getQtyApproved() {
+		return qtyApproved;
+	}
+
+
+	public void setQtyApproved(int qtyApproved) {
+		this.qtyApproved = qtyApproved;
+	}
+
+
+	public String getRepAppStatus() {
+		return repAppStatus;
+	}
+
+
+	public void setRepAppStatus(String repAppStatus) {
+		this.repAppStatus = repAppStatus;
+	}
+
+
+	public String getPurchaseType() {
+		return purchaseType;
+	}
+
+
+	public void setPurchaseType(String purchaseType) {
+		this.purchaseType = purchaseType;
+	}
+
+
+	public String getPettyType() {
+		return pettyType;
+	}
+
+
+	public void setPettyType(String pettyType) {
+		this.pettyType = pettyType;
+	}
+
+
+	public int getActualQty() {
+		return actualQty;
+	}
+
+
+	public void setActualQty(int actualQty) {
+		this.actualQty = actualQty;
+	}
+
+
+	public int getLockedQty() {
+		return lockedQty;
+	}
+
+
+	public void setLockedQty(int lockedQty) {
+		this.lockedQty = lockedQty;
+	}
+
+
+	public MaterialRequisitionMaster getMaterialRequisitionMaster() {
+		return materialRequisitionMaster;
+	}
+
+
+	public void setMaterialRequisitionMaster(MaterialRequisitionMaster materialRequisitionMaster) {
+		this.materialRequisitionMaster = materialRequisitionMaster;
+	}
+	
+	
+	
+	
+	
 	
 	
 	

@@ -23,6 +23,8 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public void addCategory(Category category) {
 		
+		//category.getCategCode() == "" || category.getCategCode() == null
+		
 		if (category.getCategCode() == "" || category.getCategCode() == null) {
 			System.out.println("category code is : "+ category.getCategCode());
 			String maxCode = seqMainRepo.findByTranType("CAT");

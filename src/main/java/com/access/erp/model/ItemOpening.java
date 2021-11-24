@@ -9,9 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -22,6 +25,7 @@ public class ItemOpening {
 	@Column(name="ITEM_CODE",length = 50)
 	private String itemCode;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="OPENING_DATE" )
 	private Date openingDate;
 	
@@ -38,6 +42,7 @@ public class ItemOpening {
 	
 	@ManyToOne(optional = false)
     @JoinColumn(name="CCODE")
+	@JsonIgnore
     private Company company;
 	
 	
@@ -45,14 +50,16 @@ public class ItemOpening {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="FYCODE")
+	@JsonIgnore
 	private FinancialActiveYear financialActiveYear;
 	
 	//ucode 
 	@ManyToOne(optional = false)
 	@JoinColumn(name="UCODE")
+	@JsonIgnore
 	private MyUser myUser;
 	
-	
+
 	@Column(name="U_DATE" )
 	private Date uDate;
 	
