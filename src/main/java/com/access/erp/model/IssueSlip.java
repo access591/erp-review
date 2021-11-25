@@ -32,7 +32,7 @@ public class IssueSlip {
 	private Date issueDate;
 	
 	@Column(name="ISS_TYPE",length = 10)
-	private String isssueType;
+	private String issueType;
 	
 	@Column(name="REQ_TYPE",length = 2)
 	private String reqType;
@@ -174,14 +174,17 @@ public class IssueSlip {
 
 
 
-	public String getIsssueType() {
-		return isssueType;
+	
+
+
+	public String getIssueType() {
+		return issueType;
 	}
 
 
 
-	public void setIsssueType(String isssueType) {
-		this.isssueType = isssueType;
+	public void setIssueType(String issueType) {
+		this.issueType = issueType;
 	}
 
 
