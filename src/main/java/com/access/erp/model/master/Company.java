@@ -85,18 +85,18 @@ public class Company {
 	@Column(name = "C_PHONE2", length = 45)
 	private String cPhone2;
 	
-	@ManyToOne
-	@JoinColumn(name = "C_STATE_CODE",nullable = false)
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "C_STATE_CODE",nullable = true)
 	@JsonIgnore
 	private State cState;
 	
-	@ManyToOne
-	@JoinColumn(name = "CITY",nullable = false)
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "CITY",nullable = true)
 	@JsonIgnore
 	private City cCity;
 	
-	@Column(name = "C_PIN", length = 8)
-	private int cPin;
+	@Column(name = "C_PIN", length = 15)
+	private String cPin;
 	
 
 	
@@ -125,21 +125,21 @@ public class Company {
 	@Column(name = "R_STREET", length = 30)
 	private String rStreet;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "R_STATE",nullable = false)
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "R_STATE",nullable = true)
 	@JsonIgnore
 	private State rState;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "R_CITY",nullable = false)
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "R_CITY",nullable = true)
 	@JsonIgnore
 	private City rCity;
 
 	@Column(name = "R_LOCATION", length = 50)
 	private String rLocation;
 
-	@Column(name = "R_PIN", length = 8)
-	private int rPin;
+	@Column(name = "R_PIN", length = 15)
+	private String rPin;
 
 	@Column(name = "R_STD", length = 10)
 	private String rStd;
@@ -535,11 +535,11 @@ public class Company {
 		this.cCity = cCity;
 	}
 
-	public int getcPin() {
+	public String getcPin() {
 		return cPin;
 	}
 
-	public void setcPin(int cPin) {
+	public void setcPin(String cPin) {
 		this.cPin = cPin;
 	}
 
@@ -631,11 +631,11 @@ public class Company {
 		this.rLocation = rLocation;
 	}
 
-	public int getrPin() {
+	public String getrPin() {
 		return rPin;
 	}
 
-	public void setrPin(int rPin) {
+	public void setrPin(String rPin) {
 		this.rPin = rPin;
 	}
 

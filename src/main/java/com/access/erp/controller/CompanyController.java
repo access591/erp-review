@@ -53,8 +53,8 @@ public class CompanyController {
 	@PostMapping("/")
 	public String addCompany(@ModelAttribute("company") Company company, RedirectAttributes redirectAttributes) {
 
-		System.out.println("city code 1: " + company.getcCity().getCityCode());
-		System.out.println("city code 2: " + company.getrCity().getCityCode());
+		//System.out.println("city code 1: " + company.getcCity().getCityCode());
+		//System.out.println("city code 2: " + company.getrCity().getCityCode());
 
 		boolean exists = companyRepo.existsById(company.getCompCode());
 		if (!exists) {
@@ -97,7 +97,7 @@ public class CompanyController {
 		Company company = companyService.editCompany(compCode);
 		model.addAttribute("company", company);
 
-		System.out.println("company child info : " + company.getInsuranceDetail().get(0).getCustCode());
+		//System.out.println("company child info : " + company.getInsuranceDetail().get(0).getCustCode());
 		return "layouts/editview/editCompany";
 	}
 
