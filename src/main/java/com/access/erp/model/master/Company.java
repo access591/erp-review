@@ -86,12 +86,12 @@ public class Company {
 	private String cPhone2;
 	
 	@ManyToOne
-	@JoinColumn(name = "C_STATE_CODE",nullable = true)
+	@JoinColumn(name = "C_STATE_CODE",nullable = false)
 	@JsonIgnore
 	private State cState;
 	
 	@ManyToOne
-	@JoinColumn(name = "CITY",nullable = true)
+	@JoinColumn(name = "CITY",nullable = false)
 	@JsonIgnore
 	private City cCity;
 	
@@ -145,7 +145,7 @@ public class Company {
 	private String rStd;
 
 	@Column(name = "R_TEL", length = 15)
-	private int rTel;
+	private Long rTel;
 
 	@Column(name = "R_EMAIL", length = 30)
 	private String rEmail;
@@ -647,11 +647,11 @@ public class Company {
 		this.rStd = rStd;
 	}
 
-	public int getrTel() {
+	public Long getrTel() {
 		return rTel;
 	}
 
-	public void setrTel(int rTel) {
+	public void setrTel(Long rTel) {
 		this.rTel = rTel;
 	}
 

@@ -56,7 +56,7 @@ public class OpenIndentController {
 	@PostMapping("/")
 	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent) {
 
-		System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
+		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		openIndentService.addOpenIndent(openIndent);
 
 		return "redirect:/openindent/";
@@ -139,6 +139,7 @@ public class OpenIndentController {
 	}
 	
 	
+	//for record against item code 
 	
 	@ResponseBody
 	@GetMapping("itemdetail/{id}")
@@ -159,5 +160,18 @@ public class OpenIndentController {
 		itemItemOpening.setItemOpening(itemOpening);
 		return itemItemOpening;
 	}
+	
+	
+	//for item drop down 
+	
+	@ResponseBody
+	@GetMapping("iteminfo")
+	public List<Item> itemListInfo(){
+		
+		return itemService.getAllItem();
+	}
+	
+	
+	
 
 }
