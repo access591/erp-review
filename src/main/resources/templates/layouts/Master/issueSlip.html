@@ -94,8 +94,8 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/materialrequisition/}"
-												method="POST">
+											<form role="form" th:action="@{/issueSlip/}"
+												th:object="${issueSlip}" method="POST">
 
 												<div class="box">
 													<h5 class="box-title">Issue Details</h5>
@@ -105,21 +105,29 @@
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Issue No</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Requisition No" title="requisition no" th:field="*{issueNo}">
+																placeholder="Requisition No" title="requisition no"
+																th:field="*{issueNo}">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issue Date</label> <input
 																type="date" class="form-control" id="gateEntryDate"
 																title="requisition date" th:field="*{issueDate}">
+
 														</div>
 
 
 
 														<div class="form-group col-md-4">
-															<label for="inputAddress">Issue Type</label> <input
-																type="text" class="form-control" id="empCode"
-																title="employee code" th:field="*{isssueType}">
+															<label for="inputPassword4">Issue Type</label> <select
+																class="form-control" id="" title="issue type"
+																th:field="*{issueType}">
+																<option value="R">Returnable</option>
+																<option value="N">Non Returnable</option>
+																<option value="D">Dead Stock</option>
+
+															</select>
 														</div>
+
 
 
 														<div class="form-group col-md-4">
@@ -137,24 +145,25 @@
 															<label for="inputAddress">Requisition No</label> <input
 																type="text" class="form-control" id="departmentCode"
 																title="department code" placeholder="Department Code"
-																 th:field="*{requisition}">
+																th:field="*{requisition}">
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Requisition Date</label> <input
-																type="text" class="form-control" id="departmentName"
+																type="date" class="form-control" id="departmentName"
 																title="department name" placeholder="Department Name"
 																th:field="*{requisitionDate}">
 														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Bulk Issue</label> <select
-																class="form-control" id="" title="requisition type" th:field="*{bulkIssue}">
+																class="form-control" id="" title="requisition type"
+																th:field="*{bulkIssue}">
 
-																<option value="gn">General</option>
-																<option value="Normal">Normal</option>
-																<option value="Ondate">As On Date</option>
+																<option value="Y">Yes</option>
+																<option value="N">No</option>
+
 															</select>
 														</div>
 
@@ -173,26 +182,13 @@
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Transaction Type</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Requisition No" title="requisition no" th:field="*{tranType}">
+																placeholder="Requisition No" title="requisition no"
+																th:field="*{tranType}">
 														</div>
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Issue To</label> <input
-																type="date" class="form-control" id="gateEntryDate"
-																title="requisition date" th:field="*{issueTo}">
-														</div>
-
-
-
-														<div class="form-group col-md-4">
-															<label for="inputAddress"></label> <input type="text"
-																class="form-control" id="empCode" title="employee code">
-														</div>
-
-
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Issue Dept</label> <select
+															<label for="inputPassword4">Issue To</label> <select
 																class="form-control" id="employee" title="employee name"
-																onchange="selectEmployee()" th:field="*{issueDept}">
+																th:field="*{issueTo}">
 																<option value="">Select</option>
 																<option th:each="employee :  ${employeeList}"
 																	th:text="${employee.empName}"
@@ -200,12 +196,22 @@
 															</select>
 														</div>
 
+
+
+
+
+
 														<div class="form-group col-md-4">
-															<label for="inputAddress">Work Center Code</label> <input
-																type="text" class="form-control" id="departmentCode"
-																title="department code" placeholder="Department Code"
-																th:field="*{workCenterCode}">
+															<label for="inputPassword4">Issue Department</label> <select
+																class="form-control" id="employee" title="employee name"
+																th:field="*{issueDept}">
+																<option value="">Select</option>
+																<option th:each="department :  ${departmentList}"
+																	th:text="${department.deptName}"
+																	th:value=" ${department.deptCode}"></option>
+															</select>
 														</div>
+
 
 
 														<div class="form-group col-md-4">
@@ -213,14 +219,14 @@
 																type="text" class="form-control" id="departmentName"
 																title="department name" placeholder="Department Name">
 														</div>
-
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issued By</label> <select
-																class="form-control" id="" title="requisition type" th:field="*{issuedBy}">
-
-																<option value="gn">General</option>
-																<option value="Normal">Normal</option>
-																<option value="Ondate">As On Date</option>
+																class="form-control" id="employee" title="employee name"
+																th:field="*{issueDept}">
+																<option value="">Select</option>
+																<option th:each="employee :  ${employeeList}"
+																	th:text="${employee.empName}"
+																	th:value=" ${employee.empCode}"></option>
 															</select>
 														</div>
 
@@ -250,31 +256,36 @@
 																			style="width: 90px;">Description</th>
 
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Item Code</th>
+																			style="width: 90px;">Stock Detail</th>
+
+
 
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Item Type</th>
+																			style="width: 50px;">Item code</th>
+
 																		<th scope="col" class="text-center"
-																			style="width: 10px;">Item Code
-																		</th>
+																			style="width: 10px;">Item Description</th>
+
+
 																		<th scope="col" class="text-center"
-																			style="width: 50px;">Item Description
-																		</th>
+																			style="width: 50px;">UOM</th>
 																		<th scope="col" class="text-center"
-																			style="width: 50px;">UOM
-																		</th>
+																			style="width: 90px;">Qty Required</th>
+
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Required Date</th>
+																			style="width: 90px;">Qty Iss</th>
+
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Required Date</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Required Date</th>
-																			
+																			style="width: 90px;">Qty. Iss Conversion</th>
+
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Qty. In Stock</th>
-																			
+
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Required Date</th>
+																			style="width: 90px;">Issue Rate</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Lot.No.</th>
 
 
 
@@ -282,55 +293,86 @@
 																</thead>
 
 																<tbody>
-																	<!-- <tr id="addr0">
+																	<tr id="addr0">
 
-
+																		<!-- store description  -->
 																		<td><input type="number" title="sno."
 																			class="form-control form-control-sm"
-																			style="width: 70px;"
-																			name="materialRequisitionDetails[0].srNo"></td>
+																			style="width: 70px;" name="issueSlipDetails[0].store"></td>
 
-
+																		<!-- stock detail  -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
 																			id="orderIndentNumberPo"
-																			name="materialRequisitionDetails[0].item" title="item"
+																			name="issueSlipDetails[0].store" title="item"
 																			onchange='getOrderIndentDetailPo()' required>
 																				<option value="">Select Indent</option>
 																				<option th:each="po :  ${listPO}"
 																					th:text="${po.poNumber}" th:value=" ${po.poNumber}"></option>
 
 																		</select></td>
-
+																		<!-- item code -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			style="width: 170px;" id="orderItemDescription"
-																			title="description"></td>
+																			id="orderItemDescription" title="description"></td>
+																		<!-- item description  -->
 
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="orderItemDescription" title="uom"></td>
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="orderIndentNumberPo"
+																			name="issueSlipDetails[0].item" title="item"
+																			onchange='getOrderIndentDetailPo()' required>
+																				<option value="">Select Indent</option>
 
-																		<td><input type="number" title="qty"
-																			class="form-control form-control-sm"
-																			style="width: 70px;" name="materialRequisitionDetails[0].qty"></td>
+																		</select></td>
 
+																		<!-- UOM -->
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="orderIndentNumberPo"
+																			name="issueSlipDetails[0].uom" title="item"
+																			onchange='getOrderIndentDetailPo()' required>
+																				<option value="">Select Indent</option>
+
+																		</select></td>
+																		<!-- Qty Required  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" title="net qty"
-																			name="materialRequisitionDetails[0].netQty"></td>
-
+																			name="issueSlipDetails[0].qtyReq"></td>
+																		<!-- Qty Issue   -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="srNoClaimUnder"
-																			name="materialRequisitionDetails[0].srNoClaimUnder"></td>
-																			
-																		<td><input type="date"
+																			name="issueSlipDetails[0].qtyIssue"></td>
+																		<!-- qty Issue Conversion  -->
+																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="orderItemuom" title="" style="width:150px"
-																			name="materialRequisitionDetails[0].srNoSendForRep"></td>
+																			id="orderItemuom" title="" style="width: 150px"
+																			name="issueSlipDetails[0].qtyIssueConv"></td>
+
+																		<!-- qty in stock  -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemuom" title="" style="width: 150px"></td>
 
 
-																	</tr>  -->
+																		<!-- issue rate  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemuom" title="" style="width: 150px"
+																			name="issueSlipDetails[0].issueRate"></td>
+
+
+																		<!-- lot No. -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemuom" title="" style="width: 150px"
+																			name="issueSlipDetails[0].lotNo"></td>
+
+
+																	</tr>
 																	<tr id='addr1' />
 
 																</tbody>

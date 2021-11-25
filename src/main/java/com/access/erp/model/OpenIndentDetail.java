@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -34,6 +36,7 @@ public class OpenIndentDetail {
 	@Column(name = "QTY_IN_STOCK", length = 50)
 	private String qtyInStock;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "IN_REQ_DATE", length = 50)
 	private Date indReqDate;
 	
@@ -81,6 +84,7 @@ public class OpenIndentDetail {
 	@JoinColumn(name="INDENT_NUMBER")
 	private OpenIndent openIndent;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "INDENT_DATE", length = 50)
 	private Date indentDate;
 	

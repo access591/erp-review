@@ -35,7 +35,7 @@ public class OpenIndent {
 	@Column(name = "INDENT_NUMBER", length = 30)
 	private String indentNumber;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "INDENTS_DATE")
 	private Date indentDate;
 
@@ -56,6 +56,7 @@ public class OpenIndent {
 	@Column(name = "APPROVAL_STATUS", length = 20)
 	private String approvalStatus = "N";
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DATE_OF_APPROVAL")
 	private Date dateOfApproval;
 	
@@ -75,6 +76,7 @@ public class OpenIndent {
 	@Column(name = "COMPANY_CODE", length = 50)
 	private String company;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "UP_DATE", length = 50)
 	private Date update;
 	
@@ -108,6 +110,7 @@ public class OpenIndent {
 	@Column(name = "ID_OR_SO", length = 100)
 	private String idOrSo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "SALES_ORDER_DATE", length = 100)
 	private Date salesOrderDate;
 	
@@ -123,12 +126,14 @@ public class OpenIndent {
 	@Column(name = "REQUISITION_NO", length = 100)
 	private String requistionNu;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "REQUISITION_DATE", length = 100)
 	private Date requisitionDate;
 	
 	@Column(name = "INDENT_STATUS", length = 100)
 	private String indentsStatus;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DATE_OF_CANCEL", length = 100)
 	private Date dateOfCancel;
 
@@ -155,12 +160,15 @@ public class OpenIndent {
 	@Column(name = "APPROVAL_DATE_L1", length = 100)
 	private Date approvalDate1;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "APPROVAL_DATE_L2", length = 100)
 	private Date approvalDate2;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "APPROVAL_DATE_L3", length = 100)
 	private Date approvalDate3;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "APPROVAL_DATE_L4", length = 100)
 	private Date approvalDate4;
 	

@@ -20,10 +20,18 @@ public class IssueSlipDetail {
 	@Column(name="ISSUE_SLIP_DETAIL",length = 30)
 	private Long issueDetail;
 		
+	@ManyToOne
+	@JoinColumn(name="STORE_CODE",nullable = false)
+	private Store store;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="ITEM_CODE",nullable = false)
 	private Item item;
+	
+	@ManyToOne
+	@JoinColumn(name="UOM_CODE",nullable = false)
+	private UOM uom;
 	
 	@Column(name="QTY_REQ",length = 12)
 	private int qtyReq;
@@ -31,19 +39,19 @@ public class IssueSlipDetail {
 	@Column(name="QTY_ISS",length = 12)
 	private int qtyIssue;
 	
+	@Column(name="QTY_ISS_CONV",length = 16)
+	private String qtyIssueConv;
+	
 	@Column(name="ISS_SEQ_NO",length = 2)
 	private int issueSeqNo;
 	
 	@Column(name="ISS_RATE",length = 15)
 	private int issueRate;
 	
-	@ManyToOne
-	@JoinColumn(name="UOM_CODE",nullable = false)
-	private UOM uom;
+	@Column(name="LOT_NO",length = 20)
+	private String lotNo;
 	
-	@ManyToOne
-	@JoinColumn(name="STORE_CODE",nullable = false)
-	private Store store;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="TO_STORE",nullable = false)
@@ -51,8 +59,6 @@ public class IssueSlipDetail {
 	
 	
 	
-	@Column(name="LOT_NO",length = 20)
-	private String lotNo;
 	
 	@Column(name="PRODUCT_CODE",length = 15)
 	private String product;
@@ -72,8 +78,7 @@ public class IssueSlipDetail {
 	@Column(name="ITEM_CODE_ISSUE",length = 15)
 	private String itemCodeIssue;
 	
-	@Column(name="QTY_ISS_CONV",length = 16)
-	private String qtyIssueConv;
+	
 	
 	@Column(name="ITEM_CODE_NEW",length = 50)
 	private String itemCodeNew;
