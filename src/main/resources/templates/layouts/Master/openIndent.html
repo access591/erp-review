@@ -288,7 +288,7 @@
 
 																<!-- item description -->
 																<td><select
-																	class="select form-control form-control-sm"
+																	class="select form-control form-control-sm itemContainer0"
 																	id="indItemCode0" title="item code"
 																	name="opeIndentDetail[0].indItemCode"
 																	onchange="selectItem()" required>
@@ -343,7 +343,7 @@
 																<!-- currency code -->
 
 																<td><select class="form-control form-control-sm"
-																	title="currency code"
+																	title="currency code" id="indCurrencyCode0"
 																	name="opeIndentDetail[0].currencyCode" required>
 																		<option value="">Select</option>
 																		<option value="inr">INR</option>
@@ -366,12 +366,12 @@
 																	id="salaryTo" required></td>
 
 
-																<!-- total value inr -->
+																<!-- total value inr-total value  -->
 																<td><input type="text"
 																	class="form-control form-control-sm"
 																	id="totalValueInr0" title="Salary" readonly></td>
 
-																<!--total value  -->
+																<!--total value - inr -->
 																<td><input type="text"
 																	class="form-control form-control-sm floatNumberField"
 																	id="totalValue0" required title="total value"
@@ -465,31 +465,33 @@
 												$('#addr' + i)
 														.html(
 
-																"<td><select class='select form-control form-control-sm' id='departmentDropdown' title='item Name'name='opeIndentDetail[" + idIndex + "].indItemCode'required><option value=''>Select Item </option><option th:each='item :  ${itemList}'th:text='${item.description}'th:value='${item.itemCode}'></option></select></td>"
-																		+ "<td><input type='text' readonly id='indItemCode0' title=''class='form-control form-control-sm'required></td>"
+																"<td><input type='text' readonly id='indItemDescription"+idIndex+"' title=''class='form-control form-control-sm'required></td>"
 
-																		+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock0' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' readonly></td>"
+																		+"<td><select class='select form-control form-control-sm itemContainer"+idIndex+"' id='indItemCode"+idIndex+"' title='item Name'name='opeIndentDetail[" + idIndex + "].indItemCode'required onchange='selectItem()'></select></td>"
+																		
+																		+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock"+idIndex+"' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' readonly></td>"
 
-																		+ "<td><input type='text'class='form-control form-control-sm'id='qtyProcured0' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' readonly></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='qtyProcured"+idIndex+"' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' readonly></td>"
 
-																		+ "<td><input type='text'class='form-control form-control-sm' id='qtyProcured0' title='' requiredname='opeIndentDetail[" +  idIndex + "].pipelineQty'></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm' id='pipelineIndQty"+idIndex+"' title='' requiredname='opeIndentDetail[" +  idIndex + "].pipelineQty'></td>"
 
-																		+ "<td><input type='text'class='form-control form-control-sm'id='indQty0' min='18' title='Age from'required name='opeIndentDetail[" + idIndex + "].indQty'>"
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='indQty"+idIndex+"' min='18' title='Age from'required name='opeIndentDetail[" + idIndex + "].indQty' onkeyup='indentQtyValue()'>"
 
-																		+ "<td><input type='text' class='form-control form-control-sm'id=''ageTo' requiredname='opeIndentDetail[" + idIndex + "].approvedQty'></td>"
-																		+ "<td><input type='text'class='form-control form-control-sm'id='expMaxMonth' requiredtitle='max experience'name='opeIndentDetail[" + idIndex + "].currencyCode'></td>"
-																		+ "<td><input type='text' class='form-control form-control-sm' id='technicalQualification' required title='Technical Qualification' name='opeIndentDetail[" + idIndex + "].itemRate'></td>"
-																		+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' required></td>"
-																		+ "<td><input type='text' redaonly class='form-control form-control-sm'id='salaryFrom' title='Salary'></td>"
-																		+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo' requiredname='opeIndentDetail[" + idIndex + "].totalValue' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty'></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'id='indCurrencyCode"+idIndex+"' requiredtitle='max experience'name='opeIndentDetail[" + idIndex + "].currencyCode'></td>" //currency code 
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='itemRate"+idIndex+"' title='Technical Qualification' name='opeIndentDetail[" + idIndex + "].itemRate' onkeyup='indentItemRate()'></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo'></td>" //units 
+																		
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' requiredname='opeIndentDetail[" + idIndex + "].totalValue' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"' readonly></td>" //total value int
 																		+ "<td><input type='date' class='form-control form-control-sm' id='salaryTo' style='width: 145px' required></td>"
-																		+ "<td><input type='text' class='form-control form-control-sm' id='purStatusItemWise' required title='minimum experience' name='opeIndentDetail[" + idIndex + "].purStatusItemWise'> </td>"
 																		+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' required name='opeIndentDetail[" + idIndex + "].indPurpose'></td>");
 
 												$('#example').append(
 														'<tr id="addr'
 																+ (i + 1)
 																+ '"></tr>');
+												ajaxForItemDescription();
 
 												i++;
 											});
@@ -505,13 +507,52 @@
 
 						});
 	</script>
+	
+	
+	<script>
+	
+		function ajaxForItemDescription(){
+			
+			
+			$.ajax({
+				type: "GET",
+				url: "iteminfo/",
+
+				success: function(data) {
+					
+					console.log("response data : " + data);
+					$("#employeename").val(data.empName);
+					
+					var options = '<option value=""><strong>Select Item</strong></option>';
+					$(data).each(function(index, value) {
+
+						console.log("item info : " + value.itemCode)
+						console.log("item info : " + value.description)
+
+						options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
+
+					});
+
+					$('.itemContainer'+idIndex).html(options);
+					
+					
+				}, error: function() {
+					console.log("Error");
+				}
+			});
+		}
+	</script>
 
 
 	<script>
 		function selectItem() {
 
-			var itemCode = document.getElementById("indItemCode0").value;
+			console.log("id index value is : " + idIndex)
+			var itemCode = document.getElementById("indItemCode"+idIndex).value;
+			
 			console.log("Item code : " + itemCode);
+			
+			document.getElementById("indItemDescription"+idIndex).value = itemCode
 
 			$.ajax({
 				type : "GET",
@@ -519,19 +560,19 @@
 
 				success : function(data) {
 
-					document.getElementById("qtyProcured0").value = 0;
-					document.getElementById("approvedQty0").value = 0;
-					document.getElementById("totalValueInr0").value = 0;
-					document.getElementById("totalValue0").value = 0;
-					$("#indQty0").val(0);
-					$("#itemRate0").val(0);
-					$("#qtyInStock0").val(0);
+					document.getElementById("qtyProcured"+idIndex).value = 0;
+					document.getElementById("approvedQty"+idIndex).value = 0;
+					document.getElementById("totalValueInr"+idIndex).value = 0;
+					document.getElementById("totalValue"+idIndex).value = 0;
+					$("#indQty"+idIndex).val(0);
+					$("#itemRate"+idIndex).val(0);
+					$("#qtyInStock"+idIndex).val(0);
 
 					console.log("response data : " + data);
 					console.log("data value is : " + data.item.description)
 
-					$("#indItemDescription0").val(data.item.itemCode);
-					$("#qtyInStock0").val(data.itemOpening.currentStock)
+					$("#indItemDescription"+idIndex).val(data.item.itemCode);
+					$("#qtyInStock"+idIndex).val(data.itemOpening.currentStock)
 
 				},
 				error : function() {
@@ -543,23 +584,23 @@
 
 		function indentQtyValue() {
 			
-			var indQty = document.getElementById("indQty0").value;
+			var indQty = document.getElementById("indQty"+idIndex).value;
 			console.log("indent qty : " + indQty)
 
-			document.getElementById("qtyProcured0").value = indQty;
-			document.getElementById("approvedQty0").value = indQty;
+			document.getElementById("qtyProcured"+idIndex).value = indQty;
+			document.getElementById("approvedQty"+idIndex).value = indQty;
 		}
 
 		function indentItemRate() {
 
-			var itemRate = document.getElementById("itemRate0").value;
-			var indQty = document.getElementById("indQty0").value;
+			var itemRate = document.getElementById("itemRate"+idIndex).value;
+			var indQty = document.getElementById("indQty"+idIndex).value;
 
 			total = itemRate * indQty;
 			console.log("total value is : " + total)
 
-			document.getElementById("totalValueInr0").value = total;
-			document.getElementById("totalValue0").value = total;
+			document.getElementById("totalValueInr"+idIndex).value = total;
+			document.getElementById("totalValue"+idIndex).value = total;
 		}
 
 		$(document).ready(function() {
