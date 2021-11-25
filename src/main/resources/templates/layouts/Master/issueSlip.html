@@ -60,7 +60,7 @@
 						</h4>
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
-							<li><a href="#">Material Requisition</a></li>
+							<li><a href="#">Issue Slip</a></li>
 							<li class="active">Master</li>
 
 						</ol>
@@ -105,13 +105,12 @@
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Issue No</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Requisition No" 
-																title="requisition no">
+																placeholder="Requisition No" title="requisition no" th:field="*{issueNo}">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issue Date</label> <input
 																type="date" class="form-control" id="gateEntryDate"
-																title="requisition date" >
+																title="requisition date" th:field="*{issueDate}">
 														</div>
 
 
@@ -119,15 +118,14 @@
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Issue Type</label> <input
 																type="text" class="form-control" id="empCode"
-																title="employee code" readonly>
+																title="employee code" th:field="*{isssueType}">
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Requisition Type</label> <select
-																class="form-control" id="employee"
-																title="employee name" 
-																onchange="selectEmployee()">
+																class="form-control" id="employee" title="employee name"
+																onchange="selectEmployee()" th:field="*{reqType}">
 																<option value="">Select</option>
 																<option th:each="employee :  ${employeeList}"
 																	th:text="${employee.empName}"
@@ -138,64 +136,63 @@
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Requisition No</label> <input
 																type="text" class="form-control" id="departmentCode"
-																title="department code" placeholder ="Department Code" readonly>
+																title="department code" placeholder="Department Code"
+																 th:field="*{requisition}">
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Requisition Date</label> <input
 																type="text" class="form-control" id="departmentName"
-																title="department name" placeholder="Department Name" readonly>
+																title="department name" placeholder="Department Name"
+																th:field="*{requisitionDate}">
 														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Bulk Issue</label> <select
-																class="form-control" id="" title="requisition type">
-													
+																class="form-control" id="" title="requisition type" th:field="*{bulkIssue}">
+
 																<option value="gn">General</option>
 																<option value="Normal">Normal</option>
 																<option value="Ondate">As On Date</option>
 															</select>
 														</div>
-														
+
 													</div>
 													<!-- /.box-body -->
 
 												</div>
 												<!--end box-1-->
-												
-												
+
+
 												<div class="box">
-													<h5 class="box-title">Store/Employee Detail </h5>
+													<h5 class="box-title">Store/Employee Detail</h5>
 													<div class="box-body">
 
 
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Transaction Type</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Requisition No"
-																title="requisition no">
+																placeholder="Requisition No" title="requisition no" th:field="*{tranType}">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issue To</label> <input
 																type="date" class="form-control" id="gateEntryDate"
-																title="requisition date">
+																title="requisition date" th:field="*{issueTo}">
 														</div>
 
 
 
 														<div class="form-group col-md-4">
-															<label for="inputAddress"></label> <input
-																type="text" class="form-control" id="empCode"
-																title="employee code" readonly>
+															<label for="inputAddress"></label> <input type="text"
+																class="form-control" id="empCode" title="employee code">
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issue Dept</label> <select
-																class="form-control" id="employee"
-																title="employee name" 
-																onchange="selectEmployee()">
+																class="form-control" id="employee" title="employee name"
+																onchange="selectEmployee()" th:field="*{issueDept}">
 																<option value="">Select</option>
 																<option th:each="employee :  ${employeeList}"
 																	th:text="${employee.empName}"
@@ -206,26 +203,27 @@
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Work Center Code</label> <input
 																type="text" class="form-control" id="departmentCode"
-																title="department code" placeholder ="Department Code" readonly>
+																title="department code" placeholder="Department Code"
+																th:field="*{workCenterCode}">
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Work Center Name</label> <input
 																type="text" class="form-control" id="departmentName"
-																title="department name" placeholder="Department Name" readonly>
+																title="department name" placeholder="Department Name">
 														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issued By</label> <select
-																class="form-control" id="" title="requisition type">
-													
+																class="form-control" id="" title="requisition type" th:field="*{issuedBy}">
+
 																<option value="gn">General</option>
 																<option value="Normal">Normal</option>
 																<option value="Ondate">As On Date</option>
 															</select>
 														</div>
-														
+
 													</div>
 													<!-- /.box-body -->
 
@@ -248,25 +246,36 @@
 																<thead>
 																	<tr>
 
-
-																		<th scope="col" class="text-center"
-																			style="width: 50px;">S.No</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Item Code</th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Description</th>
+
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">UOM</th>
+																			style="width: 90px;">Item Code</th>
+
 																		<th scope="col" class="text-center"
-																			style="width: 10px;">Qty <br>in Stock</th>
+																			style="width: 90px;">Item Type</th>
 																		<th scope="col" class="text-center"
-																			style="width: 50px;">Qty <br>Required</th>
-																		<th scope="col" class="text-center"
-																			style="width: 50px;">Approved <br>Required Qty</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Required Date
+																			style="width: 10px;">Item Code
 																		</th>
-																		
+																		<th scope="col" class="text-center"
+																			style="width: 50px;">Item Description
+																		</th>
+																		<th scope="col" class="text-center"
+																			style="width: 50px;">UOM
+																		</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Required Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Required Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Required Date</th>
+																			
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Qty. In Stock</th>
+																			
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Required Date</th>
+
 
 
 																	</tr>
@@ -373,31 +382,30 @@
 
 
 	<script>
-	
-	
-	function selectEmployee(){
-		
-		var employee = document.getElementById("employee").value;
-		console.log("employee is "+ employee);
-		
-		document.getElementById("empCode").value = employee;
-		
-		$.ajax({
-			type: "GET",
-			url: "employeeinfo/" + employee,
+		function selectEmployee() {
 
-			success: function(data) {
-				
-				console.log("response data : " + data);
-				
-				$("#departmentCode").val(data.deptCode);
-				$("#departmentName").val(data.deptName)
-				//$("#departmentname").val(data.department.deptName)
-			}, error: function() {
-				console.log("Error");
-			}
-		});
-	}
+			var employee = document.getElementById("employee").value;
+			console.log("employee is " + employee);
+
+			document.getElementById("empCode").value = employee;
+
+			$.ajax({
+				type : "GET",
+				url : "employeeinfo/" + employee,
+
+				success : function(data) {
+
+					console.log("response data : " + data);
+
+					$("#departmentCode").val(data.deptCode);
+					$("#departmentName").val(data.deptName)
+					//$("#departmentname").val(data.department.deptName)
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+		}
 		$(document).ready(function() {
 
 			document.getElementById('gateEntryDate').valueAsDate = new Date();

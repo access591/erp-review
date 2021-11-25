@@ -34,17 +34,35 @@ public class IssueSlip {
 	@Column(name="ISS_TYPE",length = 10)
 	private String isssueType;
 	
-	@Column(name="ISS_DEPT",length = 15)
-	private String issueDept;
+	@Column(name="REQ_TYPE",length = 2)
+	private String reqType;
 	
-	@Column(name="WORK_CENTRE_CODE",length = 15)
-	private String workCenterCode;
+	@ManyToOne
+	@JoinColumn(name="REQUISITION_NO",nullable = false)
+	private MaterialRequisitionMaster requisition;
+	
+	@Column(name="REQUISITION_DATE")
+	private Date requisitionDate;
+	
+	@Column(name="BULK_ISSUE",length = 2)
+	private String bulkIssue = "N";
+	
+	@Column(name="TRAN_TYPE",length = 2)
+	private String tranType;
 	
 	@Column(name="ISS_TO",length = 9)
 	private String issueTo;
 	
+	@Column(name="ISS_DEPT",length = 15)
+	private String issueDept;
+	
+	
+	@Column(name="WORK_CENTRE_CODE",length = 15)
+	private String workCenterCode;
+	
 	@Column(name="ISSUED_BY",length = 30)
 	private String issuedBy;
+
 	
 	@ManyToOne
 	@JoinColumn(name="CCODE",nullable = false)
@@ -73,18 +91,12 @@ public class IssueSlip {
 	private Store toStoreCode;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="REQUISITION_NO",nullable = false)
-	private MaterialRequisitionMaster requisition;
 	
-	@Column(name="REQUISITION_DATE")
-	private Date requisitionDate;
 	
 	@Column(name="MANUAL_ISSUE_SLIP_NO",length = 25)
 	private String mannualIssueSlipNo;
 	
-	@Column(name="BULK_ISSUE",length = 2)
-	private String bulkIssue = "N";
+	
 	
 	@Column(name="PRODUCT_CODE",length = 30)
 	private String productCode;
@@ -99,8 +111,7 @@ public class IssueSlip {
 	@Column(name="FOR_TRADING",length = 2)
 	private String forTrading;
 	
-	@Column(name="REQ_TYPE",length = 2)
-	private String reqType;
+	
 	
 	@Column(name="LOT_NO",length = 20)
 	private String lotNo;
@@ -123,8 +134,7 @@ public class IssueSlip {
 	@Column(name="ISSUE_STATUS",length = 50)
 	private String issueSatus;
 	
-	@Column(name="TRAN_TYPE",length = 2)
-	private String tranType;
+	
 	
 	
 	
