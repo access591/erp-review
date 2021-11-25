@@ -10,6 +10,7 @@ import com.access.erp.model.master.City;
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.InsuranceDetail;
 import com.access.erp.model.master.SiteOffice;
+import com.access.erp.model.master.State;
 import com.access.erp.repo.CompanyRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.CompanyService;
@@ -38,6 +39,7 @@ public class CompanyServiceImpl implements CompanyService {
 			siteOffice.setCompany(company);
 		}
 
+		
 		companyRepo.save(company);
 
 	}
