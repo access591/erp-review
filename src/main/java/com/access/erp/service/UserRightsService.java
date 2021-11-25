@@ -9,9 +9,9 @@ import com.access.erp.model.master.UserRights;
 public interface UserRightsService {
 	
 	public void addUserRights(UserRights userRights);
-	public List<MyUser> getAllUserRights();
-	public Optional<MyUser> editUserRights(String userCode);
-	public void deleteUserRights(String userCode);
+	public List<UserRights> getAllUserRights();
+	public Optional<UserRights> editUserRights(Long userCode);
+	public void deleteUserRights(Long userCode);
 	
 
 }
