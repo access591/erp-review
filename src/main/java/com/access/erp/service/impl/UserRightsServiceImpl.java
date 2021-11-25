@@ -59,21 +59,21 @@ public class UserRightsServiceImpl implements UserRightsService {
 	}
 
 	@Override
-	public List<MyUser> getAllUserRights() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<MyUser> editUserRights(String userCode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteUserRights(String userCode) {
+	public List<UserRights> getAllUserRights() {
 		
+		return userRightRepo.findAll();
+	}
 
+	@Override
+	public Optional<UserRights> editUserRights(Long userCode) {
+		
+		return userRightRepo.findById(userCode);
+	}
+
+	@Override
+	public void deleteUserRights(Long userCode) {
+		
+		userRightRepo.deleteById(userCode);
 	}
 
 	public void addOrUpdateRole(String prgCode, String userCode) {
