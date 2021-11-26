@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -30,30 +31,35 @@ public class RfQuotationItem {
 	@JoinColumn(name = "ITEM_CODE")
 	private Item item;
 	
+	//fk
 	@Column(name="UOM",length = 50)
 	private String uom;
 	
 	@Column(name="CITY",length = 50)
 	private String city;
 	
-	@Column(name="RFQ_DATE",length=20)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Column(name="RFQ_DATE")
 	private Date rfqDate;
 	
-	@Column(name="SR_NO",length = 50)
+	@Column(name="SR_NO",length =6)
 	private String srNo;
 	
-	@Column(name="QTY",length = 50)
+	//12 , 3
+	@Column(name="QTY",length = 16)
 	private String qty;
 	
 	
-	@Column(name="ITEM_SPEC",length = 50)
+	@Column(name="ITEM_SPEC",length = 100)
 	private String itemSpec;
 	
-	@Column(name="TERM_CONDITION",length = 50)
+	@Column(name="TERM_CONDITION",length = 500)
 	private String termCondition;
 	
-	@Column(name="REMARKS",length = 50)
+	@Column(name="REMARKS",length = 500)
 	private String remarks;
+	
+	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "INDENT_NUMBER")

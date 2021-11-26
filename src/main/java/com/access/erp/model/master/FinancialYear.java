@@ -21,16 +21,16 @@ public class FinancialYear {
 	
 	
 	@Id
-	@Column(name="FINANCIAL_YEAR")
+	@Column(name="FYCODE",length = 6)
 	private String financialYearCode;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name="FROM_DATE")
+	@Column(name="FYFROM")
 	private Date fromDate;
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name="TO_DATE")
+	@Column(name="FYTO")
 	private Date toDate;
 
 

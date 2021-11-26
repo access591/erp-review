@@ -12,13 +12,13 @@ public class UOM {
 	
 	
 	@Id
-	@Column(name="UOM_CODE",length = 50)
+	@Column(name="UOM_CODE",length = 8)
 	private String uomCode;
 	
-	@Column(name="UNIT",length = 100)
+	@Column(name="UNIT",length = 15)
 	private String unit;
 	
-	@Column(name="MEASUREMENT_SYSTEM",length = 50)
+	@Column(name="MEASUREMENT_SYSTEM",length = 2)
 	private String measurementSystem;
 	
 	

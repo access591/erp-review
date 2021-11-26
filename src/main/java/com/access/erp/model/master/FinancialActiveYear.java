@@ -24,7 +24,7 @@ public class FinancialActiveYear {
 	private Long id;
 	
 	@OneToOne
-    @JoinColumn(name="FINANCIAL_CODE")
+    @JoinColumn(name="FYCODE")
 	private FinancialYear financialYear;
 	
 	@OneToOne
@@ -41,7 +41,7 @@ public class FinancialActiveYear {
 	
 	
 	
-	@Column(name="F_ACTIVE")
+	@Column(name="FACTIVE",length=2)
 	private String fActive;
 
 

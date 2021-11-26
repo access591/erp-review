@@ -31,6 +31,8 @@ public class PartyBilling {
 	@Column(name="BILLING_ADDR3",length = 50)
 	public String billingAddr3;
 	
+	
+	//fk
 	@Column(name="BILLING_CITY_CODE",length = 30)
 	public String billingCityCode;
 	
@@ -40,7 +42,7 @@ public class PartyBilling {
 	@Column(name="BILLING_COUNTRY_CODE",length = 30)
 	public String billingCountryCode;
 	
-	@Column(name="BILLING_PIN_CODE",length = 20)
+	@Column(name="BILLING_PIN_CODE",length = 6)
 	public String billingPinCode;
 	
 	@Column(name="BILLING_CST_NO",length = 50)
@@ -55,7 +57,7 @@ public class PartyBilling {
 	@Column(name="BILLING_COUNTRY",length = 50)
 	public String billingCountry;
 	
-	@Column(name="BILLING_PIN",length = 50)
+	@Column(name="BILLING_PIN",length = 6)
 	public String billingPin;
 	
 	

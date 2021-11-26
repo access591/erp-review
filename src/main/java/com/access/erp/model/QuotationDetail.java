@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name="QUOTATION_DETAIL")
+@Table(name="QUOTATION") // MASTER
 public class QuotationDetail {
 
 	
 	@Id
-	@Column(name="QUOT_NUM",length = 30)
+	@Column(name="QUOT_NO",length = 15)
 	private String quotNo;
 	
 	
@@ -33,94 +33,114 @@ public class QuotationDetail {
 	@Column(name="QUOT_DATE")
 	private Date quotDate;
 	
-	@Column(name="RECEIVED_ON",length = 30)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="RECEIVED_ON")
 	private Date receivedOn;
 	
 	// employee code fk
 	@Column(name="EMPLOYEE",length = 30)
 	private String employee;
 	
-	@Column(name="WORKER_CODE",length = 30)
+	
+	
+	@Column(name="WORKER_CODE",length = 10)
 	private String workerCode;
 	
-	@Column(name="INDENR_NUM",length = 30)
+	@Column(name="INDENR_N0",length = 15)
 	private String indentNu;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="INDENT_DATE")
 	private Date indentDate;
 	
-	@Column(name="QUOT_SUB",length = 30)
+	
+	@Column(name="QUOT_SUB",length =100)
 	private String quotSub;
 	
-	@Column(name="SUPPLIER_CODE",length = 30)
+	//fk party master 
+	@Column(name="SUPPL_CODE",length = 30)
 	private String suplierCode;
 	
+	//5,2
 	@Column(name="EXCISE",length = 10)
 	private int excise;
 	
+	//5,2
 	@Column(name="SALES_TAX",length = 10)
 	private int salesTax;
 	
+	//5,2
 	@Column(name="CST",length = 30)
 	private int cst;
 	
+	//5,2
 	@Column(name="TRADE_DISCOUNT",length = 30)
 	private int tradeDiscount;
 	
+	//14,2
 	@Column(name="FREIGHT",length = 30)
 	private int freight;
 	
+	//14,2
 	@Column(name="PACKING",length = 30)
 	private int packing;
 	
+	//14,2
 	@Column(name="OCTROI",length = 30)
 	private String octRoi;
 	
-	@Column(name="DELIVERY_PERIOD",length = 30)
+	
+	@Column(name="DELIVERY_PERIOD",length = 15)
 	private String deliveryPeriod;
 	
-	@Column(name="CONDITION_1",length = 30)
+	@Column(name="CONDITION_1",length = 500)
 	private String conditions1;
 	
-	@Column(name="CONDITION_2",length = 30)
+	@Column(name="CONDITION_2",length = 500)
 	private String conditions2;
 	
-	@Column(name="CONDITION_3",length = 30)
+	@Column(name="CONDITION_3",length = 500)
 	private String conditions3;
 	
-	@Column(name="CONDITION_4",length = 30)
+	@Column(name="CONDITION_4",length = 500)
 	private String conditions4;
 	
-	@Column(name="DEL_MODE",length = 30)
+	@Column(name="DEL_MODE",length = 15)
 	private String delMode;
 	
-	
-	@Column(name="C_C0DE",length = 30)
+	//fk
+	@Column(name="CC0DE",length = 30)
 	private String cCode;
 	
-	@Column(name="FY_CODE",length = 30)
+	
+	//fk
+	@Column(name="FYCODE",length = 30)
 	private String fyCode;
 	
-	
-	@Column(name="U_CODE",length = 30)
+	//fk
+	@Column(name="UCODE",length = 30)
 	private String uCode;
 	
-	@Column(name="u_DATE",length = 30)
+	@Column(name="uDATE")
 	private Date uDate;
 	
 	@Column(name="CESS",length = 30)
 	private int cess;
 	
+	
+	///fk master 
 	@Column(name="ITEM_CODE",length = 30)
 	private String itemCode;
 	
-	@Column(name="CURRENCY_CODE",length = 30)
+	@Column(name="CURRENCY_CODE",length = 10)
 	private String currencyCode;
 	
+	
+	//14,2
 	@Column(name="CONVERSION_VALUE",length = 30)
 	private String conversionValue;
 	
-	@Column(name="CAPITAL_YN",length = 30)
+	@Column(name="CAPITAL_YN",length = 2)
 	private String capitalYn;
 	
 	@Column(name="TEMP_SUP_NAME",length = 30)
@@ -132,18 +152,22 @@ public class QuotationDetail {
 	@Column(name="TEMP_SUP_ADD2",length = 30)
 	private String temSupAdd2;
 	
+	//fk
 	@Column(name="SUP_CITY_CODE",length = 30)
 	private String supCityCode;
 	
+	//fk
 	@Column(name="SUP_COUNTRY",length = 30)
 	private String supCountry;
 	
-	@Column(name="FROM_CODE",length = 30)
+	@Column(name="FROM_CODE",length = 8)
 	private String fromCode;
 	
-	@Column(name="QUOT_TYPE",length = 30)
+	@Column(name="QUOT_TYPE",length = 2)
 	private String quotType;
 	
+	
+	//fk
 	@Column(name="RFQ_NUM",length = 30)
 	private String rfqNo;
 	
@@ -174,28 +198,28 @@ public class QuotationDetail {
 	@Column(name="APPROVAL_DATE_4")
 	private Date approvalDate4;
 	
-	@Column(name="APPROVED_BY_1",length = 30)
+	@Column(name="APPROVED_BY_1",length = 10)
 	private String approvedBy1;
 	
-	@Column(name="APPROVED_BY_2",length = 30)
+	@Column(name="APPROVED_BY_2",length = 10)
 	private String approvedBy2;
 	
-	@Column(name="APPROVED_BY_3",length = 30)
+	@Column(name="APPROVED_BY_3",length = 10)
 	private String approvedBy3;
 	
-	@Column(name="APPROVED_BY_4",length = 30)
+	@Column(name="APPROVED_BY_4",length = 10)
 	private String approvedBy4;
 	
-	@Column(name="REMARKS_1",length = 100)
+	@Column(name="REMARKS_1",length = 500)
 	private String remarks1;
 	
-	@Column(name="REMARKS_2",length = 100)
+	@Column(name="REMARKS_2",length = 500)
 	private String remarks2;
 	
-	@Column(name="REMARKS_3",length = 100)
+	@Column(name="REMARKS_3",length = 500)
 	private String remarks3;
 	
-	@Column(name="REMARKS_4",length = 100)
+	@Column(name="REMARKS_4",length = 500)
 	private String remarks4;
 	
 	@OneToMany(mappedBy = "quotationDetail", cascade = CascadeType.ALL,fetch=FetchType.LAZY)

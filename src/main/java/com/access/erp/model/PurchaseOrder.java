@@ -27,19 +27,19 @@ import com.access.erp.model.master.SupplierMaster;
 public class PurchaseOrder {
 
 	@Id
-	@Column(name = "PO_NO", length = 50)
+	@Column(name = "PO_NO", length = 15)
 	private String poNumber;
 
 	@Column(name = "PO_DATE")
 	private Date poDate;
 	
-	@Column(name = "CANC_STATUS", length = 8)
+	@Column(name = "CANC_STATUS", length = 2)
 	private String cancStatus;
 	
 	@Column(name = "NATURE_OF_PUR", length = 10)
 	private String natureOfPur;
 	
-	@Column(name = "OPEN_PO", length = 20)
+	@Column(name = "OPEN_PO", length = 2)
 	private String openPo;
 	
 	@Column(name = "PO_TYPE", length = 10)
@@ -67,12 +67,14 @@ public class PurchaseOrder {
 	@Column(name = "DELIVERY_DATE")
 	private Date deliveryDate;
 	
+	//14,2
 	@Column(name = "CONVERSION_VALUE", length = 20)
 	private int conversionValue;
 	
 	@Column(name = "REMARKS", length = 100)
 	private String remarks;
 
+	//14,2
 	@Column(name = "TOTAL_VALUE", length = 10)
 	private String totalValue;
 	
@@ -87,48 +89,58 @@ public class PurchaseOrder {
 
 
 
-	@Column(name = "RECD_DATE", length = 50)
+	@Column(name = "RECD_DATE")
 	private Date recdDate;
 
-	@Column(name = "WORKER_CODE", length = 50)
+	@Column(name = "WORKER_CODE", length = 10)
 	private String workerCode;
 
 	
 	
 
+	//5,2
 	@Column(name = "EXCISE", length = 6)
 	private int excise;
 
+	//5,2
 	@Column(name = "SALES_TAX", length = 8)
 	private String salesTax;
 
+	//5,2
 	@Column(name = "CST", length = 8)
 	private String cst;
 
+	//5,2
 	@Column(name = "TRADE_DISCOUNT", length = 8)
 	private int tradeDiscount;
 
+	//5,2
 	@Column(name = "SURCHARGE", length = 8)
 	private int surCharge;
 
+	//5,2
 	@Column(name = "FREIGHT", length = 10)
 	private int freight;
 
 	@Column(name = "PO_BASED_VAL", length = 10)
 	private int poBasedVal;
 
+	//14,2
 	@Column(name = "OCTROI", length = 10)
 	private int octroi;
 
+	//5,2
 	@Column(name = "DISCOUNT", length = 10)
 	private int discount;
 
-	@Column(name = "AMEND_NO", length = 10)
+	//5,2
+	@Column(name = "AMEND_NO", length = 3)
 	private int amendNo;
 
 	@Column(name = "AMEND_DATE")
 	private Date amendDate;
 
+	//fk
 	@Column(name = "CCODE", length = 50)
 	private String cCode;
 
@@ -141,45 +153,49 @@ public class PurchaseOrder {
 	@Column(name = "UDATE", length = 50)
 	private Date uDate;
 
+	//5,2
 	@Column(name = "CESS", length = 50)
-	private Date cess;
+	private String cess;
 
-	@Column(name = "CONDITION1", length = 250)
+	@Column(name = "CONDITION1", length = 500)
 	private String condition1;
 
-	@Column(name = "CONDITION2", length = 250)
+	@Column(name = "CONDITION2", length = 500)
 	private String condition2;
 
-	@Column(name = "CONDITION3", length = 250)
+	@Column(name = "CONDITION3", length = 500)
 	private String condition3;
 
+	
+	//5,2
 	@Column(name = "VAT", length = 10)
 	private String vat;
 
-	@Column(name = "CONDITION_T1", length = 250)
+	@Column(name = "CONDITION_T1", length = 500)
 	private String conditionT1;
 
-	@Column(name = "CONDITION_T2", length = 50)
+	@Column(name = "CONDITION_T2", length = 500)
 	private String conditionT2;
 
-	@Column(name = "PRODUCTION_UNDER", length = 50)
+	@Column(name = "PRODUCTION_UNDER", length = 500)
 	private String productionUnder;
 
+	//5,2
 	@Column(name = "CARTAGE", length = 50)
 	private int cartage;
 
 	
 
-	@Column(name = "CAPITALYN", length = 10)
+	@Column(name = "CAPITALYN", length = 2)
 	private String capitalYn;
 
 	@Column(name = "I_ADDR", length = 150)
 	private String iAddr;
 
-	@Column(name = "CFORM_YN", length = 10)
+	@Column(name = "CFORM_YN", length = 2)
 	private String cFormYn;
 
-	@Column(name = "SUB_PO_TYPE", length = 10)
+	@Column(name = "SUB_PO_TYPE", length = 2)
 	private String subPoType;
 
 	
@@ -187,7 +203,7 @@ public class PurchaseOrder {
 
 	
 
-	@Column(name = "PO_CAP_TYPE", length = 10)
+	@Column(name = "PO_CAP_TYPE", length = 2)
 	private String poCapType;
 
 	@Column(name = "CONDITION4", length = 500)
@@ -229,7 +245,7 @@ public class PurchaseOrder {
 	@Column(name = "CONDITION16", length = 500)
 	private String condition16;
 
-	@Column(name = "FORM_CODE", length = 20)
+	@Column(name = "FORM_CODE", length = 6)
 	private String fromCode;
 
 	@Column(name = "FORM_NO", length = 20)
@@ -250,29 +266,29 @@ public class PurchaseOrder {
 	@Column(name = "ACODE", length = 10)
 	private String aCode;
 
-	@Column(name = "ANAME", length = 50)
+	@Column(name = "ANAME", length = 80)
 	private String aName;
 
 	
 
-	@Column(name = "APPROVAL_STATUS", length = 10)
+	@Column(name = "APPROVAL_STATUS", length =2)
 	private String approvalStatus ="P";
 
-	@Column(name = "REMARK", length = 1000)
+	@Column(name = "REMARK", length = 100)
 	private String remark;
 
-	@Column(name = "PO_REMARKS", length = 1000)
+	@Column(name = "PO_REMARKS", length = 5000)
 	private String poRemarks;
 
-	@Column(name = "AMEND_REMARKS2", length = 100)
+	@Column(name = "AMEND_REMARKS2", length = 500)
 	private String amendRemarks2;
 
-	@Column(name = "PO_CATEGORY", length = 10)
+	@Column(name = "PO_CATEGORY", length = 2)
 	private String poCategory;
 
 	
 
-	@Column(name = "NATURE", length = 10)
+	@Column(name = "NATURE", length = 2)
 	private String nature;
 
 	@Column(name = "PO_REMARK", length = 1000)
@@ -281,7 +297,7 @@ public class PurchaseOrder {
 	@Column(name = "APPROVAL_DATE")
 	private Date approvalDate;
 
-	@Column(name = "FRM_NO", length = 10)
+	@Column(name = "FRM_NO", length = 20)
 	private int frmNo;
 
 	@Column(name = "FRM_DT")
@@ -753,12 +769,12 @@ public class PurchaseOrder {
 	}
 
 
-	public Date getCess() {
+	public String getCess() {
 		return cess;
 	}
 
 
-	public void setCess(Date cess) {
+	public void setCess(String cess) {
 		this.cess = cess;
 	}
 

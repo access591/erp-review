@@ -23,29 +23,32 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class RfQuotation {
 
 	@Id
-	@Column(name = "RFQ_NUM", length = 50)
+	@Column(name = "RFQ_NUM", length = 15)
 	private String rfqNo;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "RFQ_DATE")
 	private Date rfqDate;
 
-	@Column(name = "RFQ_TYPE", length = 20)
+	@Column(name = "RFQ_TYPE", length = 2)
 	private String rfqType;
 
+	//fk
 	@Column(name = "C_CODE", length = 50)
 	private String cCode;
 
+	//fk
 	@Column(name = "FY_CODE", length = 50)
 	private String fyCode;
 
+	//fk
 	@Column(name = "u_CODE", length = 50)
 	private String uCode;
 
 	@Column(name = "u_DATE")
 	private Date uDate;
 
-	@Column(name = "RFQ_TERMCONDITION", length = 1000)
+	@Column(name = "RFQ_TERM_CONDITION", length = 1000)
 	private String rfqTermCondition;
 
 	@OneToMany(mappedBy = "rfQuotations", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

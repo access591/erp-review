@@ -33,7 +33,7 @@ public class Item {
     @JsonIgnore
 	private Category category;
 	
-	@Column(name="PART_NO",length = 20)
+	@Column(name="PART_NO",length = 15)
 	private String partNum;
 	
 	@Column(name="PART_NAME",length = 150)
@@ -47,34 +47,44 @@ public class Item {
 	@JsonIgnore
 	private Store store;
 	
+	///14 , 2
 	@Column(name="UNIT_COST",length = 14)
 	private int unitCode;
 	
+	//12,3
 	@Column(name="MIN_LEVEL",length = 12)
 	private int minLevel;
 	
+	//12,3
 	@Column(name="MAX_LEVEL",length = 14)
 	private int maxLavel;
 	
+	
+
+	//12,3
 	@Column(name="REORDER_LEVEL",length = 12)
 	private int reOrderLevel;
+	
 	
 	@Column(name="BIN_NO",length = 30)
 	private String binNum;
 	
+	//12,2
 	@Column(name="ITEM_AVGRATE",length = 14)
 	private int itemAvgRate;
 	
+	//12,2
 	@Column(name="OVERHEAD_COST",length = 14)
 	private int overHeadCost;
 	
+	//12,2
 	@Column(name="ITEM_RATE",length = 14)
 	private int itemRate;
 	
-	@Column(name="ITEM_ISSUE",length = 10)
+	@Column(name="ITEM_ISSUE",length = 2)
 	private String itemIssue;
 	
-	@Column(name="ITEM_SET",length = 10)
+	@Column(name="ITEM_SET",length = 2)
 	private String itemSet;
 	
 	@Column(name="REQUISITION_METHOD",length = 30)
@@ -85,7 +95,7 @@ public class Item {
 	@JsonIgnore
 	private UOM uom;
 	
-	@Column(name="ACC_LEDGER_CODE",length = 30)
+	@Column(name="ACC_LEDGER_CODE",length = 10)
 	private String accLedgerCode;
 	
 	@Column(name="ITEM_MODEL",length = 30)
@@ -94,27 +104,35 @@ public class Item {
 	@Column(name="TECH_SPEC",length = 2000)
 	private String techSpec;
 	
-	@Column(name="EXCISABLE",length = 10)
+	@Column(name="EXCISABLE",length = 2)
 	private String excisable;
 	
+	
+	//
 	@Column(name="CCODE",length = 30)
 	private String ccode;
 	
+	//5,2
 	@Column(name="DUTY_RATE",length = 10)
 	private int dutyRate;
 	
+	//5,2
 	@Column(name="CENVAT",length = 10)
 	private int cenvat;
 	
+	//5,2
 	@Column(name="SED",length = 10)
 	private int sed;
 	
+	//5,2
 	@Column(name="AED_TTA",length = 10)
 	private int aedTta;
 	
+	//5,2
 	@Column(name="AED_GSI",length = 10)
 	private int aedGsi;
 	
+	//5,2
 	@Column(name="CESS",length = 10)
 	private int cess;
 	
@@ -190,22 +208,22 @@ public class Item {
 	@Column(name="UOM_SHORTAGE_QTY",length = 15)
 	private String uomShortageQty;
 	
-	@Column(name="DOL",length = 10)
+	@Column(name="DOL",length = 2)
 	private String dol;
 	
-	@Column(name="INVENTORY_ITEM",length = 10)
+	@Column(name="INVENTORY_ITEM",length = 2)
 	private String inventoryItem;
 	
-	@Column(name="SCRAP_PRODUCT_YN",length = 10)
+	@Column(name="SCRAP_PRODUCT_YN",length = 2)
 	private String scrapProductYn;
 	
-	@Column(name="TRADING_ITEM",length = 10)
+	@Column(name="TRADING_ITEM",length = 2)
 	private String tradingItem;
 	
-	@Column(name="WARR_ITEM_YN",length = 10)
+	@Column(name="WARR_ITEM_YN",length = 2)
 	private String warItemYn;
 	
-	@Column(name="SECTION_CODE",length = 15)
+	@Column(name="SECTION_CODE",length = 7)
 	private String sectionCode;
 	
 	@Column(name="GRADE_CODE",length = 20)
@@ -214,34 +232,41 @@ public class Item {
 	@Column(name="TARIFF_ITEM",length = 10)
 	private int tariffItem;
 	
-	@Column(name="SIZE_CODE",length = 20)
+	@Column(name="SIZE_CODE",length = 6)
 	private String sizeCode;
 	
+	//5,2
 	@Column(name="SR_HR_CESS",length = 10)
 	private int srHrCess;
 	
 	@Column(name="BIN_LOC",length = 50)
 	private String binLoc;
 	
-	@Column(name="CRITICAL_ITEM",length = 10)
+	@Column(name="CRITICAL_ITEM",length = 2)
 	private String criticalItem;
 	
-	@Column(name="HSN_CODE",length = 50)
+	
+	@Column(name="HSN_CODE",length = 10)
 	private String hsnCode;
 	
+	//5,2
 	@Column(name="CGST",length = 10)
 	private String cgst;
 	
+	//5,2
 	@Column(name="SGST",length = 10)
 	private String sgst;
 	
+	//5,2
 	@Column(name="IGST",length = 10)
 	private String igst;
 	
-	
+	// ITEM CODE 
 	@Column(name="OLD_ITEM_CODE",length = 30)
 	private String oldItemCode;
 	
+	
+	// ITEM CODE 
 	@Column(name="OLD_CATEGORY_CODE",length = 30)
 	private String oldCategoryCode;
 	

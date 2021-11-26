@@ -14,20 +14,20 @@ public class Store {
 
 	
 	@Id
-	@Column(name = "STORE_CODE", length = 50)
+	@Column(name = "STORE_CODE", length = 20)
 	private String storeCode;
 	
-	@Column(name = "STORE_STATUS", length = 20)
+	@Column(name = "STORE_STATUS", length = 2)
 	private String storeStatus;
 	
 	
 	@Column(name = "STORE_TYPE", length = 20)
 	private String storeType;
 	
-	@Column(name = "LOCATION", length = 50)
+	@Column(name = "STORE_LOCATION", length = 40)
 	private String location;
 	
-	@Column(name = "DESCRIPTION", length = 100)
+	@Column(name = "STORE_DESCRIPTION", length = 40)
 	private String description;
 	
 	@Column(name = "INS_BY",length = 50)
@@ -41,6 +41,9 @@ public class Store {
 
 	@Column(name = "UPDATE_DATE")
 	private Date updatedDate=new Date();
+	
+	
+	//code add
 
 	public Store() {
 		super();

@@ -16,7 +16,7 @@ import com.access.erp.model.master.Employee;
 
 
 @Entity
-@Table(name="QUOTATION_ITEM")
+@Table(name="QUOTATION_ITEM") //DETAIL TABLE 
 public class QuotationItem {
 	
 	
@@ -25,21 +25,27 @@ public class QuotationItem {
 	@Column(name="Q_CODE")
 	private Long QCOde;
 	
-	@Column(name="QUO_ITEM_CODE",length=50)
+	//fk
+	@Column(name="ITEM_CODE",length=50)
 	private String qtItemCode;
 	
-	@Column(name="QUO_ITEM_RATE",length=50)
+	
+	//14,2
+	@Column(name="ITEM_RATE",length=50)
 	private int qtItemRate;
 	
-	@Column(name="QUO_ITEM_QTY",length=50)
+	//14,3
+	@Column(name="ITEM_QTY",length=50)
 	private String qtItemQty;
 	
-	@Column(name="QUO_SEQ_NO",length=10)
+	
+	@Column(name="QUO_SEQ_NO",length=5)
 	private int qtSeqNo;
 	
-	@Column(name="QUALITY",length=50)
+	@Column(name="QUALITY",length=30)
 	private String quality;
 	
+	//fk from inent master
 	@Column(name="INDENT_NUM",length=50)
 	private String indentNum;
 	
@@ -50,15 +56,17 @@ public class QuotationItem {
     @JoinColumn(name="EMP_CODE")
 	private Employee employee;
 	
-	@Column(name="WORKER_CODE",length=50)
+	@Column(name="WORKER_CODE",length=10)
 	private String workerCode;
 	
-	@Column(name="CURRENCY_CODE",length=50)
+	@Column(name="CURRENCY_CODE",length=10)
 	private String currencyCode;
 	
+	//14.2
 	@Column(name="CONVERSION_VALUE",length=10)
 	private int conversionValue;
 	
+	//14.2
 	@Column(name="EXCISE",length=10)
 	private int excise;
 	
@@ -71,101 +79,125 @@ public class QuotationItem {
 	@Column(name="TRADE_DISCOUNT",length=10)
 	private int tradeDiscount;
 	
+	//5.2
 	@Column(name="SUR_CHARGE",length=10)
 	private int surCharge;
-	
+	//5.2
 	@Column(name="DISCOUNT",length=10)
 	private int discount;
 	
+	//14.2
 	@Column(name="FREIGHT",length=10)
 	private int freight;
 	
+	//14.2
 	@Column(name="PACKING",length=10)
 	private int packing;
 	
+	//14.2
 	@Column(name="OCT_ROI",length=10)
 	private int octRoi;
 	
+	//5.2
 	@Column(name="CESS",length=10)
 	private int cess;
 	
+	//5.2
 	@Column(name="INDENT_SEQ_NO",length=10)
 	private int indentSeqNo;
 	
+	//5.2
 	@Column(name="VAT",length=10)
 	private int vat;
 	
+	//14.2
 	@Column(name="TOTAL_VALUE",length=10)
 	private int totalValue;
 	
+	//14.3
 	@Column(name="ITEM_NET_VAL",length=10)
 	private int itemNetVal;
 	
+	//14.2
 	@Column(name="SURCHARGE_NET_VAL",length=10)
 	private int surchargeNetVal;
 	
-	
+	//14.2
 	@Column(name="EXCISE_VAL",length=10)
 	private int exciseValue;
 	
+	//14.2
 	@Column(name="CESS_VAL",length=10)
 	private int cessValue;
 	
+	//14.2
 	@Column(name="CST_VAL",length=10)
 	private int cstValue;
 	
+	//14.2
 	@Column(name="SHCESS_VAL",length=10)
 	private int shcessValue;
 	
+	//14.2
 	@Column(name="DISCOUNT_VALUE",length=10)
 	private int discountValue;
 	
+	//14.2
 	@Column(name="TRADE_VALUE",length=10)
 	private int tradevalue;
 	
+	//14.2
 	@Column(name="RATE",length=10)
 	private int rate;
 	
+	//5.2
 	@Column(name="VAT_SURCHARGE",length=10)
 	private int vatSurcharge;
 	
-	@Column(name="APPROVAL_STATUS",length=10)
+	
+	@Column(name="APPROVAL_STATUS",length=2)
 	private String approvalStatus;
 	
-	@Column(name="DATE_OF_APPROVAL",length=10)
-	private String dateOfApproval;
+	@Column(name="DATE_OF_APPROVAL")
+	private Date dateOfApproval;
 	
-	@Column(name="APPROVED_BY",length=50)
+	@Column(name="APPROVED_BY",length=10)
 	private String approvedBy;
 	
 	@Column(name="DATE_OF_CANCEL")
 	private Date dateOfCancel;
 	
-	@Column(name="CANCEL_REMARKS",length=50)
+	@Column(name="CANCEL_REMARKS",length=500)
 	private String cancelRemarks;
 	
-	@Column(name="QUOT_REMARKS",length=50)
+	@Column(name="QUOT_REMARKS",length=500)
 	private String quotRemark;
 	
+	//5.2
 	@Column(name="CGST",length=10)
 	private int cgst;
 	
+	//14.2
 	@Column(name="CGST_VALUE",length=10)
 	private int cgstValue;
 	
+	//5.2
 	@Column(name="SGST",length=10)
 	private int sgst;
 	
-	
+	//14.2
 	@Column(name="SGST_VALUE",length=10)
 	private int sgstValue;
 	
+	//5.2
 	@Column(name="IGST",length=10)
 	private int igst;
 	
+	//14.2
 	@Column(name="IGST_VALUE",length=10)
 	private int igstValue;
 	
+	//5.2
 	@Column(name="SURCHARGE_VAL",length=10)
 	private int surchargeVal;
 	
@@ -471,11 +503,11 @@ public class QuotationItem {
 		this.approvalStatus = approvalStatus;
 	}
 
-	public String getDateOfApproval() {
+	public Date getDateOfApproval() {
 		return dateOfApproval;
 	}
 
-	public void setDateOfApproval(String dateOfApproval) {
+	public void setDateOfApproval(Date dateOfApproval) {
 		this.dateOfApproval = dateOfApproval;
 	}
 

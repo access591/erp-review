@@ -16,16 +16,16 @@ import javax.persistence.Table;
 public class ModuleMaster {
 	
 	@Id
-	@Column(name = "MODULE_CODE",length = 50)
+	@Column(name = "MCODE",length = 40)
 	private String moduleCode;
 	
-	@Column(name = "MODULE_NAME",length = 50)
+	@Column(name = "MNAME",length = 50)
 	private String moduleName;
 	
-	@Column(name = "ACTIVE_YN",length = 5)
+	@Column(name = "ACTIVE_YN",length = 2)
 	private String active;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY")
 	private String insertedBy;
 
 	@Column(name = "INS_DATE")

@@ -19,25 +19,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class PartyMaster {
 
 	@Id
-	@Column(name="PARTY_CODE",length=50)
+	@Column(name="PARTY_CODE",length=10)
 	private String partyCode;
 	
 	@Column(name="PARTY_NAME",length=100)
 	private String partyName;
 	
-	@Column(name="CUST_TYPE",length=8)
+	@Column(name="CUST_TYPE",length=7)
 	private String custType;
 	
 	@Column(name="PTHRUCODE",length=50)
 	private String pthruCode;
 		
-	@Column(name="REP_CODE",length=8)
+	@Column(name="REP_CODE",length=6)
 	private String repCode;
 		
 	@Column(name="PIN_CODE",length=6)
 	private String pinCode;
 	
-	@Column(name="PARTY_FAX",length=50)
+	@Column(name="PARTY_FAX",length=45)
 	private String partyFax;
 	
 	@Column(name="PARTY_EMAIL",length=100)
@@ -56,12 +56,15 @@ public class PartyMaster {
 	@Column(name="PARTY_WEBSITE",length=60)
 	private String partyWebsite;
 	
+	//fk 
 	@Column(name="CITY_CODE",length=8)
 	private String cityCode;
 	
+	//fk
 	@Column(name="STATE_CODE",length=6)
 	private String stateCode;
 	
+	//fk
 	@Column(name="COUNTRY_CODE",length=6)
 	private String countryCode;
 	
@@ -77,13 +80,15 @@ public class PartyMaster {
 	@Column(name="REG_ADDR3",length=50)
 	private String regAddr3;
 	
-	
+	//fk
 	@Column(name="REG_ADDR_CITY_CODE",length=8)
 	private String regAddrCityCode;
 		
+	//fk
 	@Column(name="REG_ADDR_STATE_CODE",length=8)
 	private String regAddrStateCode;
 	
+	//fk
 	@Column(name="REG_ADDR_CNT_CODE",length=8)
 	private String regAddrCntCode;
 	
@@ -99,7 +104,7 @@ public class PartyMaster {
 	@Column(name="LCL_ADDR3",length=50)
 	private String lclAddr3;
 	
-	
+	//fk
 	@Column(name="LCL_ADDR_CITY_CODE",length=10)
 	private String lclAddrCityCode;
 	
@@ -138,7 +143,7 @@ public class PartyMaster {
 	@Column(name="FILLING_DATE")
 	private String fillingDate;
 	
-	@Column(name="PARTY_TYP_CODE",length=50)
+	@Column(name="PARTY_TYP_CODE",length=4)
 	private String partyTypCode;
 		
 	@Column(name="STATUS_CUST",length=50)
@@ -177,25 +182,31 @@ public class PartyMaster {
 	@Column(name="BILL_ADDR2",length=30)
 	private String billAddr2;
 		
-	@Column(name="BILL_ADDR3",length=8)
+	@Column(name="BILL_ADDR3",length=30)
 	private String billAddr3;
 		
+	//fk
 	@Column(name="BILL_CITY_CODE",length=8)
 	private String billCityCode;
 		
+	//fk
 	@Column(name="BILL_STATE_CODE",length=8)
 	private String billStateCode;
 	
+	
+	//fk
 	@Column(name="BILL_COUNTRY_CODE",length=8)
 	private String billCountryCode;
+	
+	
 	
 	@Column(name="BILL_CURRENCY_CODE",length=50)
 	private String billCurrencyCode;
 	
-	@Column(name="PARTY_BANK",length=30)
+	@Column(name="PARTY_BANK",length=50)
 	private String partyBank;
 		
-	@Column(name="PARTY_BK_BRANCH",length=50)
+	@Column(name="PARTY_BK_BRANCH",length=30)
 	private String partyBkBranch;
 		
 	@Column(name="PARTY_BK_ADDR1",length=50)
@@ -204,22 +215,27 @@ public class PartyMaster {
 	@Column(name="PARTY_BK_ADDR2",length=50)
 	private String partyBkAddr2;
 	
-	@Column(name="PARTY_BK_ADDR3",length=30)
+	@Column(name="PARTY_BK_ADDR3",length=50)
 	private String partyBkAddr3;
 		
+	//fk
 	@Column(name="PARTY_BK_CITY_CODE",length=8)
 	private String partyBkCityCode;
-		
+	
+	//fk
 	@Column(name="PARTY_BK_STATE_CODE",length=8)
 	private String partyBkStateCode;
-		
+	
+	
+	//fk
 	@Column(name="PARTY_BK_COUNTRY_CODE",length=8)
 	private String partyBkCountryCode;
 		
-	@Column(name="SHP_METHOD_CODE",length=8)
+	
+	@Column(name="SHP_METHOD_CODE",length=6)
 	private String shpMethodCode;
 	
-	@Column(name="SHP_AGENT_CODE",length=8)
+	@Column(name="SHP_AGENT_CODE",length=6)
 	private String shpAgentCode;
 	
 	@Column(name="VAT_NO",length=50)
@@ -244,13 +260,15 @@ public class PartyMaster {
 	@Column(name="PARTY_SSTDATE")
 	private Date partySstDate;
 		
-	/*
-	 * @Column(name="PARTY_CSTRATE",length=10) private int partyCstRate;
-	 * 
-	 * @Column(name="PARTY_STRATE",length=10) private int partyStrate;
-	 * 
-	 * @Column(name="PARTY_SCRATE",length=10) private int partyScrate;
-	 */
+	//12,2
+	@Column(name="PARTY_CSTRATE",length=10) 
+	private int partyCstRate;
+	//12,2 
+	@Column(name="PARTY_STRATE",length=10) private int partyStrate;
+	  
+	 //12,2
+	@Column(name="PARTY_SCRATE",length=10) private int partyScrate;
+	 
 	
 	@Column(name="PARTY_ECCNO",length=15)
 	private String partEccno;
@@ -263,20 +281,20 @@ public class PartyMaster {
 	@Column(name="PARTY_SPLDISC",length=12)
 	private String partySplDisc;
 		
-	@Column(name="CD_CODE",length=50)
+	@Column(name="CD_CODE",length=6)
 	private String cdCode;
 		
 	
-	@Column(name="BLOCKED",length=5)
+	@Column(name="BLOCKED",length=2)
 	private String blocked;
 		
-	@Column(name="PARTY_PHONE",length=50)
+	@Column(name="PARTY_PHONE",length=40)
 	private String partyPhone;
 	
 	@Column(name="BRANCH",length=50)
 	private String branch;
 		
-	@Column(name="ECC_NO",length=100)
+	@Column(name="ECC_NO",length=50)
 	private String eccNo;
 		
 	@Column(name="EXCISE_DIVISION",length=100)
@@ -285,26 +303,27 @@ public class PartyMaster {
 	@Column(name="COMMISSIONORATE",length=100)
 	private String commissionrate;
 		
-	@Column(name="RANGE_SUPTT_OF_CENT_EXCISE",length=500)
+	@Column(name="RANGE_SUPTT_OF_CENT_EXCISE",length=100)
 	private String rangeSuptOfCentExcise;
 	
 	
 	@Column(name="ADDRESS_SUPTT_CENT_EXCISE",length=500)
 	private String addressSuptCentExcise;
 	
-	@Column(name="ADDR_ASST_DEPUTY_COMMRATE",length=50)
+	@Column(name="ADDR_ASST_DEPUTY_COMMRATE",length=500)
 	private String addrAsstDeputyCommrate;
 		
-	@Column(name="CENTRAL_EXCISE_REGION_NO",length=5)
+	@Column(name="CENTRAL_EXCISE_REGION_NO",length=50)
 	private String centralExciseRegionNo;
 		
-	@Column(name="DEALER_TYPE",length=5)
+	@Column(name="DEALER_TYPE",length=50)
 	private String dealerType;
 		
+	//fk
 	@Column(name="CCODE",length=10)
 	private String cCode;
 	
-	@Column(name="PARTY_TYPE",length=5)
+	@Column(name="PARTY_TYPE",length=2)
 	private String partType;
 		
 	
@@ -337,7 +356,7 @@ public class PartyMaster {
 		
 	
 	
-	@Column(name="ZONE_CODE",length=10)
+	@Column(name="ZONE_CODE",length=6)
 	private String zoneCode;
 		
 	@Column(name="COMMISSION_RATE",length=8)
@@ -428,7 +447,7 @@ public class PartyMaster {
 	@Column(name="REGISTERED_YN",length=5)
 	private String registerdYn;
 		
-	@Column(name="VENDOR_CODE",length=30)
+	@Column(name="VENDOR_CODE",length=20)
 	private String vendorCode;
 	
 	
@@ -445,10 +464,10 @@ public class PartyMaster {
 	
 	
 	
-	@Column(name="GST_REGISTERED",length=5)
+	@Column(name="GST_REGISTERED",length=2)
 	private String gstRegistered;
 		
-	@Column(name="REGISTER_ID",length=5)
+	@Column(name="REGISTER_ID",length=2)
 	private String registerId;
 	
 	@OneToMany(mappedBy = "partyMaster", cascade = CascadeType.ALL,fetch=FetchType.LAZY)

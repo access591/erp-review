@@ -14,29 +14,31 @@ public class PartyConsignee {
 	
 	
 	@Id
-	@Column(name="CONSIGNEE_CODE")
+	@Column(name="CONSIGNEE_CODE",length = 8)
 	public String conSigneeCode;
 	
-	@Column(name="CONSIGNEE_NAME")
+	@Column(name="CONSIGNEE_NAME",length = 50)
 	public String consigneeName;
 	
-	@Column(name="CONSIGNEE_ADDR1")
+	@Column(name="CONSIGNEE_ADDR1",length = 50)
 	public String consigneeAddr1;
 	
-	@Column(name="CONSIGNEE_ADDR2")
+	@Column(name="CONSIGNEE_ADDR2",length = 50)
 	public String consigneeAddr2;
 	
 	
-	@Column(name="CONSIGNEE_ADDR3")
+	@Column(name="CONSIGNEE_ADDR3",length = 50)
 	public String consigneeAddr3;
 	
+	//fk
 	@Column(name="CONSIGNEE_CITY")
 	public String city;
 	
+	//fk
 	@Column(name="CONSIGNEE_STATE")
 	public String country;
 	
-	@Column(name="CONSIGNEE_PIN")
+	@Column(name="CONSIGNEE_PIN",length = 6)
 	public String pin;
 	
 	
