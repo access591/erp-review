@@ -84,7 +84,7 @@ public class FinancialYearController {
 		
 		Optional<FinancialYear> financialYear = financialYearService.editFinancialYear(id);
 		model.addAttribute("financialYear", financialYear);
-		return "layouts/editview/editfinancialyear";
+		return "layouts/editview/editFinancialyear";
 	}
 	
 	@GetMapping("/delete/{id}")

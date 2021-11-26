@@ -244,9 +244,19 @@
 
 														<input id="_cr" name="_cr" type="hidden" value="1">
 
+														<div class="col-sm-12" style="text-align: right">
 
 
-														<div class="table-responsive">
+
+
+															<a id="add_row" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+
+														<div class="table-responsive" style="margin-top: 40px">
 															<table id="example" aria-describedby="example"
 																class="table table-striped display">
 																<thead>
@@ -509,6 +519,70 @@
 			}
 
 		});
+	</script>
+
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							console.log("ready!");
+
+							var j = 1;
+
+							$('#add_row')
+									.click(
+											function() {
+
+												console
+														.log("add clickk function")
+												//idIndex2++;
+												$('#adr' + j)
+														.html(
+																"<td><input type='number' title='sno.' class='form-control form-control-sm' style='width: 70px;' name='materialRequisitionDetails[0].srNo'></td>"
+
+																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='materialRequisitionDetails[0].item' title='item' onchange='getOrderIndentDetailPo()' required><option value=''>Select Indent</option><option th:each='po :  ${listPO}' th:text='${po.poNumber}' th:value=' ${po.poNumber}'></option></select></td>"
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+																		
+																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='materialRequisitionDetails[0].item' title='item' onchange='getOrderIndentDetailPo()' required><option value=''>Select Indent</option><option th:each='po :  ${listPO}' th:text='${po.poNumber}' th:value=' ${po.poNumber}'></option></select></td>"
+
+																		
+																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='materialRequisitionDetails[0].item' title='item' onchange='getOrderIndentDetailPo()' required><option value=''>Select Indent</option><option th:each='po :  ${listPO}' th:text='${po.poNumber}' th:value=' ${po.poNumber}'></option></select></td>"
+
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+																		
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo'   style='width: 150px' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' style='width: 150px' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' style='width: 150px' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' style='width: 150px' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
+
+														);
+												$('#example').append(
+														'<tr id="adr' + (j + 1)
+																+ '"></tr>');
+
+												//listOfSupplierInfo()
+
+												j++;
+
+											});
+
+							$("#delete_row").click(function() {
+								if (j > 1) {
+									$("#adr" + (j - 1)).html('');
+
+									j--;
+
+								}
+							});
+						});
 	</script>
 	<!--   <section class="content">
         
