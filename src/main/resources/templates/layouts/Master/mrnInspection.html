@@ -219,10 +219,30 @@ iframe {
 														<input id="_cr" name="_cr" type="hidden" value="1">
 
 
+														<div class="col-sm-12" style="text-align: right">
 
-														<div class="table-responsive">
+
+
+
+															<a id="add_row" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+
+														<div class="table-responsive" style="margin-top: 40px">
+
+
+
+
+
 															<table id="example" aria-describedby="example"
 																class="table table-striped display">
+
+
+
+
 																<thead>
 																	<tr>
 
@@ -270,7 +290,7 @@ iframe {
 																</thead>
 
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="adr0">
 
 
 																		<!-- Rep Out No -->
@@ -302,11 +322,10 @@ iframe {
 																		<!-- Description -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
-																			id="orderIndentNumberPo"
-																			title="account name">
+																			id="orderIndentNumberPo" title="account name">
 																				<option value="">Select</option>
-																				<option value="ac-1">Ac01</option>
-																				<option value="ac-2">Ac02</option>
+																				<option value="1">Ac01</option>
+																				<option value="2">Ac02</option>
 
 
 																		</select></td>
@@ -318,8 +337,7 @@ iframe {
 
 																		<!-- UOM -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" title="po qty"
-																			></td>
+																			class="form-control form-control-sm" title="po qty"></td>
 
 																		<!--Mrn Qty  -->
 																		<td><input type="number"
@@ -360,7 +378,7 @@ iframe {
 																			name="mrnInspectionItems[0].inspectedQty"></td>
 
 																		<!-- pending qty -->
-																		<td><input type="number"
+																		<td><input type="number" 
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="net cost"
 																			name="mrnInspectionItems[0].qtyPending"></td>
@@ -375,8 +393,7 @@ iframe {
 																		<!-- Remarks	 -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="technicalQualification" title="total inr cost"
-																			></td>
+																			id="technicalQualification" title="total inr cost"></td>
 
 
 
@@ -385,7 +402,7 @@ iframe {
 
 
 																	</tr>
-																	<tr id='addr1' />
+																	<tr id='adr1' />
 
 																</tbody>
 
@@ -400,8 +417,8 @@ iframe {
 
 
 												<!--end detail box-->
-												
-												
+
+
 												<!-- bottom block -->
 
 												<!-- end bottom block -->
@@ -498,6 +515,81 @@ iframe {
 		$(window).load(function() {
 			$('#exampleModal').modal('show');
 		});
+	</script>
+
+
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							console.log("ready!");
+
+							var j = 1;
+
+							$('#add_row')
+									.click(
+											function() {
+												
+												console.log("add clickk function")
+												//idIndex2++;
+												$('#adr' + j)
+														.html(
+																"<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='mrnInspectionItems[0].repOutNo'title='indent number'><option value=''>Select</option><option value='m'>M</option><option value='s'>S</option></select></td>'"
+																		
+																		
+																		
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='order date'name='mrnInspectionItems[0].repOutDate'> </td>" // ep Out Date
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>"  // Item Code
+																		
+																		
+																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' title='account name'><option value=''>Select</option><option value='1'>Ac01</option><option value='2'>Ac02</option></select></td>"  // Description
+																		
+																		+ "<td><input type='number' title='uom' class='form-control form-control-sm' name='mrnInspectionItems[0].itemRec1'></td>" // Item Received
+																		
+																		
+																		+ "<td><input type='number' class='form-control form-control-sm' title='po qty'></td>"  // UOM
+																		
+																		+ "<td><input type='number'class='form-control form-control-sm'id='technicalQualification' title='inv qty'name='mrnInspectionItems[0].qtyUd'></td>"  //  Mrn Qty
+																		
+																		+ "<td><input type='number' class='form-control form-control-sm'id='orderItemuom' title='rec qty' name='mrnInspectionItems[0].mrnRate'></td>"  // Mrn rate
+																		
+																		+ "<td><input type='text' class='form-control form-control-sm'id='technicalQualification' title='po rate curr'name='mrnInspectionItems[0].qtyAcceptDev'></td>"  // Deviration qty
+																		
+																		+ "<td><input type='number'class='form-control form-control-sm'id='technicalQualification' title='po rate'name='mrnInspectionItems[0].qtyAcceptDevRate'></td>"  // RAte of der Qty
+																		
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='bill rate' name='mrnInspectionItems[0].qtyRejected'></td>"  // Rejected Qty
+																		
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='total cost'name='mrnInspectionItems[0].inspectedQty'></td>"  //  Inspection Qty
+																		
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='net cost' name='mrnInspectionItems[0].qtyPending'></td>"  //  pending qty
+																		
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='total pur cost' name='mrnInspectionItems[0].inspStatus'></td>"  //  inspection status
+																		
+																		+ "<td><input type='text' class='form-control form-control-sm' id='technicalQualification' title='total inr cost'></td>"  //  Remarks
+
+														);
+												$('#example').append(
+														'<tr id="adr' + (j + 1)
+																+ '"></tr>');
+
+												//listOfSupplierInfo()
+
+												j++;
+
+											});
+
+							$("#delete_row").click(function() {
+								if (j > 1) {
+									$("#adr" + (j - 1)).html('');
+
+									j--;
+								
+								}
+							});
+						});
 	</script>
 	<!--   <section class="content">
         

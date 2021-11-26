@@ -28,6 +28,8 @@ public class CategoryServiceImpl implements CategoryService{
 		if (category.getCategCode() == "" || category.getCategCode() == null) {
 			System.out.println("category code is : "+ category.getCategCode());
 			String maxCode = seqMainRepo.findByTranType("CAT");
+			
+			System.out.println("max code is : " + maxCode);
 			category.setCategCode(maxCode);
 		}
 
