@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="changeUserCode()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -88,7 +88,7 @@
 															<option value="">Select Financial year</option>
 															<option th:each="financialYear :  ${listFinancialyear}"
 																th:text="${financialYear.financialYearCode}"
-																th:value=" ${financialYear.id}"></option>
+																th:value=" ${financialYear.financialYearCode}"></option>
 														</select>
 													</div>
 
