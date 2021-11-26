@@ -47,6 +47,8 @@ public class Category {
 	private Date updatedDate=new Date();
 	
 	//CCODE 
+	@Column(name="CCODE", updatable=false, insertable=false)
+	private String compCode;
 
 	public Category() {
 		super();
@@ -138,6 +140,18 @@ public class Category {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+
+	public String getCompCode() {
+		return compCode;
+	}
+
+
+
+	public void setCompCode(String compCode) {
+		this.compCode = compCode;
 	}
 	
 	

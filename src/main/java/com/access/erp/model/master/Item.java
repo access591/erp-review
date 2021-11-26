@@ -109,8 +109,7 @@ public class Item {
 	
 	
 	//
-	@Column(name="CCODE",length = 30)
-	private String ccode;
+	
 	
 	//5,2
 	@Column(name="DUTY_RATE",length = 10)
@@ -278,7 +277,9 @@ public class Item {
 	
 	@Column(name="AREA",length = 100)
 	private String area;
-	
+
+	@Column(name="CCODE", updatable=false, insertable=false)
+	private String compCode;
 	
 	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<PackingDetail> packingDetails;
@@ -478,12 +479,14 @@ public class Item {
 		this.excisable = excisable;
 	}
 
-	public String getCcode() {
-		return ccode;
+	
+
+	public String getCompCode() {
+		return compCode;
 	}
 
-	public void setCcode(String ccode) {
-		this.ccode = ccode;
+	public void setCompCode(String compCode) {
+		this.compCode = compCode;
 	}
 
 	public int getDutyRate() {
