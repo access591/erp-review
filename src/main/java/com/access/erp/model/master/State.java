@@ -19,7 +19,7 @@ public class State {
 
 	
 	@Id
-	@Column(name = "STATE_CODE", length = 50)
+	@Column(name = "STATE_CODE", length = 30)
 	private String stateCode;
 	
 	@Column(name = "STATE_NAME", length = 50)

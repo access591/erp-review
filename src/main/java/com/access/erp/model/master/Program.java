@@ -17,13 +17,13 @@ public class Program {
 	
 	
 	@Id
-	@Column(name = "PRG_CODE",length = 50)
+	@Column(name = "PCODE",length = 40)
 	private String programCode;
 	
-	@Column(name = "PRG_NAME",length = 50)
+	@Column(name = "PNAME",length = 50)
 	private String programName;
 	
-	@Column(name = "PRG_TYPE",length = 10)
+	@Column(name = "PTYPE",length = 6)
 	private String programType;
 	
 	@Column(name = "PRG_HREF_NAME",length = 100)
@@ -35,12 +35,12 @@ public class Program {
 	@Column(name = "INS_BY",length = 50)
 	private String insertedBy;
 	
-	@Column(name = "ACTIVE_YN",length = 10)
+	@Column(name = "ACTIVE_YN",length = 2)
 	private String activeYn;
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "SUB_MODUEL_CODE")
+	@JoinColumn(name = "SMCODE")
 	private SubModuleMaster subModuleMaster;
 	
 	

@@ -30,22 +30,22 @@ public class UserRights implements Serializable {
     private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_CODE")
+	@JoinColumn(name = "UCODE")
 	private MyUser myUser;
 	
 	@ManyToOne
-	@JoinColumn(name ="MODULE_CODE",updatable = false)
+	@JoinColumn(name ="MCODE",updatable = false)
 	private ModuleMaster module;
 	
 	@ManyToOne
-	@JoinColumn(name = "SUB_MODULE_CODE",updatable = false)
+	@JoinColumn(name = "SMCODE",updatable = false)
 	private SubModuleMaster subModule;
 
 	@ManyToOne
-	@JoinColumn(name = "PRG_CODE",updatable = false)
+	@JoinColumn(name = "PCODE",updatable = false)
 	private Program prgCode;
 
-	@Column(name = "ACTIVE_YN")
+	@Column(name = "ACTIVE_YN",length = 2)
 	private String active;
 	
 	
@@ -61,6 +61,8 @@ public class UserRights implements Serializable {
 	@Column(name = "UPD_DATE", insertable = false)
 	private Date updDate = new Date();
 	
+	@Column(name = "USER_TYPE", length = 2)
+	private String userType;
 	
 	
 	
@@ -132,6 +134,12 @@ public class UserRights implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 	
 	

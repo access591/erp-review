@@ -15,7 +15,7 @@ public class Category {
 	
 	
 	@Id
-	@Column(name = "CATEG_CODE", length = 50)
+	@Column(name = "CATEGORY_CODE", length = 10)
 	private String categCode;
 	
 	
@@ -28,7 +28,7 @@ public class Category {
 	@Column(name = "PARENT_NAME", length = 50)
 	private String parentName;
 	
-	@Column(name = "DESCRIPTION", length = 100)
+	@Column(name = "CATEGORY_DESCRIPTION", length = 150)
 	private String description;
 	
 	@Column(name = "A_DESCRIPTION", length = 100)
@@ -45,6 +45,8 @@ public class Category {
 
 	@Column(name = "UPDATE_DATE")
 	private Date updatedDate=new Date();
+	
+	//CCODE 
 
 	public Category() {
 		super();

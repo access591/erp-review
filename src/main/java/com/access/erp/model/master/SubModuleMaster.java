@@ -19,10 +19,10 @@ public class SubModuleMaster {
 	
 	
 	@Id
-	@Column(name = "SUB_MODULE_CODE",length = 50)
+	@Column(name = "SMCODE",length = 40)
 	private String subModuleCode;
 
-	@Column(name = "SUB_MODULE_NAME",length = 50)
+	@Column(name = "SMNAME",length = 50)
 	private String subModuleName;
 	
 	@Column(name = "INS_BY",length = 50)

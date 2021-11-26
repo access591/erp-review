@@ -1,6 +1,5 @@
 package com.access.erp.model.master;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,60 +17,70 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="M_MY_USER")
+@Table(name = "M_MY_USER")
 @Component
 public class MyUser {
 
 	@Id
-	@Column(name = "UCODE",length = 50)
-	private String userCode; 
-	
-	@Column(name = "USER_NAME",length = 50)
+	@Column(name = "UCODE", length = 6)
+	private String userCode;
+
+	@Column(name = "UNAME", length = 50)
 	private String userName;
-	
-	@Column(name = "USER_PASSWORD")
+
+	@Column(name = "UPASS")
 	private String userPassword;
-	
-	
+
 	@OneToOne
-	@JoinColumn(name="EMP_CODE")
+	@JoinColumn(name = "EMP_CODE")
 	private Employee employee;
-	
-	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<UserRole> listUserRole = new ArrayList<>();
-	
+
 	/*
 	 * @ManyToMany(mappedBy = "myUser") private List<UserRights> UserRights = new
 	 * ArrayList<>();
 	 */
-	
-	@Column(name = "Ins_by",updatable = false,length = 50)
+
+	@Column(name = "Ins_by", updatable = false, length = 50)
 	private String insBy;
 
-	@Column(name = "ins_date",updatable = false)
-	private Date insDate= new Date();
-	
-	@Column(name = "upd_by",insertable = false,length = 50)
+	@Column(name = "ins_date", updatable = false)
+	private Date insDate = new Date();
+
+	@Column(name = "upd_by", insertable = false, length = 50)
 	private String updBy;
 
-	@Column(name = "upd_date",insertable = false)
-	private Date updDate=new Date();
+	@Column(name = "upd_date", insertable = false)
+	private Date updDate = new Date();
+
+	@Column(name = "UACTIVE", length = 2)
+	private String uActive;
+	
+	@Column(name = "USER_TYPE", length = 2)
+	private String userType;
 
 	public MyUser() {
 		super();
-		
+
 	}
 
-	
 	public List<UserRole> getListUserRole() {
 		return listUserRole;
 	}
 
+	public String getuActive() {
+		return uActive;
+	}
+
+	public void setuActive(String uActive) {
+		this.uActive = uActive;
+	}
 
 	public void setListUserRole(List<UserRole> listUserRole) {
 		this.listUserRole = listUserRole;
 	}
-
 
 	public String getUserCode() {
 		return userCode;
@@ -137,7 +146,13 @@ public class MyUser {
 		this.updDate = updDate;
 	}
 
-	
-	
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
 	
 }

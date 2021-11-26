@@ -26,57 +26,57 @@ public class OpenIndentDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
-	@Column(name = "ITEM_CODE", length = 50)
+	//fk
+	@Column(name = "ITEM_CODE", length = 15)
 	private String indItemCode;
 	
-	@Column(name = "IN_QTY", length = 50)
+	@Column(name = "INN_QTY", length = 16)
 	private String indQty;
 	
-	@Column(name = "QTY_IN_STOCK", length = 50)
+	@Column(name = "QTY_IN_STOCK", length = 16)
 	private String qtyInStock;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "IN_REQ_DATE", length = 50)
+	@Column(name = "IND_REQ_DATE")
 	private Date indReqDate;
 	
-	@Column(name = "IN_PURPOSE", length = 50)
+	@Column(name = "IND_PURPOSE", length = 500)
 	private String indPurpose;
 	
-	@Column(name = "PUR_STATUS_ITEM_WISE", length = 50)
+	@Column(name = "PUR_STATUS_ITEM_WISE", length = 2)
 	private String purStatusItemWise;
 	
-	@Column(name = "ITEM_RATE", length = 50)
+	@Column(name = "ITEM_RATE", length = 16)
 	private String itemRate;
 	
-	@Column(name = "TOTAL_VALUE", length = 50)
+	@Column(name = "TOTAL_VALUE", length = 16)
 	private String totalValue;
 	
-	@Column(name = "CURRENCY_CODE", length = 50)
+	@Column(name = "CURRENCY_CODE", length = 6)
 	private String currencyCode;
 	
-	@Column(name = "CONVERSION_VALUE", length = 50)
+	@Column(name = "CONVERSION_VALUE", length = 16)
 	private String conversionvalue;
 	
-	@Column(name = "QTY_SO", length = 50)
+	@Column(name = "QTY_SO", length = 14)
 	private String qtySo;
 	
-	@Column(name = "QTY_PROCURED", length = 50)
+	@Column(name = "QTY_PROCURED", length = 14)
 	private String qtyProcured;
 	
-	@Column(name = "AVAIL_QTY", length = 50)
+	@Column(name = "AVAIL_QTY", length = 20)
 	private String availQty;
 	
-	@Column(name = "IN_APP_STATUS", length = 50)
+	@Column(name = "IND_APP_STATUS", length = 2)
 	private String indAppStatus;
 	
-	@Column(name = "STATUS", length = 50)
+	@Column(name = "STATUS", length = 2)
 	private String status;
 	
-	@Column(name = "APPROVED_QTY", length = 50)
+	@Column(name = "APPROVED_QTY", length = 16)
 	private String approvedQty;
 	
-	@Column(name = "PIPELINE_QTY", length = 50)
+	@Column(name = "PIPELINE_QTY", length = 16)
 	private String pipelineQty;
 	
 	@ManyToOne
@@ -88,7 +88,7 @@ public class OpenIndentDetail {
 	@Column(name = "INDENT_DATE", length = 50)
 	private Date indentDate;
 	
-	@Column(name = "IND_SEQ", length = 50) 
+	@Column(name = "IND_SEQ_NO", length = 4) 
 	private String indSeq;
 
 	public OpenIndentDetail() {

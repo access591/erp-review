@@ -25,52 +25,52 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Company {
 
 	@Id
-	@Column(name = "CCODE", length = 30)
+	@Column(name = "CCODE", length = 2)
 	private String compCode;
 
-	@Column(name = "CNAME", length = 100)
+	@Column(name = "CNAME", length = 75)
 	private String compName;
 	
 	@Column(name = "DIR_NAME", length = 75)
 	private String dirName;
 	
-	@Column(name = "PARENT_CODE", length = 50)
+	@Column(name = "PARENT_CODE", length = 2)
 	private String parentCode;
 	
 	@Column(name = "CLOGO", length = 500)
 	private String compLogo;
 
-	@Column(name = "CALCULATE_ESI", length = 10)
+	@Column(name = "CALCULATE_ESI", length = 2)
 	private String calculateEsi;
 	
 	@Column(name = "ESI_NO", length = 50)
 	private String esiNo;
 	
-	@Column(name = "COMP_TYPE", length = 50)
+	@Column(name = "COMP_TYPE", length = 2)
 	private String compType;
 	
-	@Column(name = "ACCOUNT_TAX_SALE", length = 50)
+	@Column(name = "ACCOUNT_TAX_SALE", length = 9)
 	private String acountTaxSale;
 
-	@Column(name = "ACCOUNT_TAX_PURCHASE", length = 50)
+	@Column(name = "ACCOUNT_TAX_PURCHASE", length = 9)
 	private String accountTaxPurchase;
 	
 	@Column(name = "DEDUCTION_FROM_EMP", length = 10)
 	private String deductionFromEmp;
 	
-	@Column(name = "PF_NO", length = 50)
+	@Column(name = "PF_NO", length = 20)
 	private String PfNumber;
 
-	@Column(name = "ADDR1", length = 100)
+	@Column(name = "ADDR1", length = 55)
 	private String cAddr1;
 
-	@Column(name = "ADDR2", length = 100)
+	@Column(name = "ADDR2", length = 55)
 	private String cAddr2;
 	
 	@Column(name = "C_ROAD_STREET_LANE", length = 100)
 	private String cStreet;
 
-	@Column(name = "FAX", length = 80)
+	@Column(name = "FAX", length = 45)
 	private String cFax;
 
 	@Column(name = "EMAIL", length = 75)
@@ -95,13 +95,14 @@ public class Company {
 	@JsonIgnore
 	private City cCity;
 	
-	@Column(name = "C_PIN", length = 15)
+	@Column(name = "PIN", length = 6)
 	private String cPin;
 	
 
+	@Column(name = "TYPE", length = 2)
+	private String type;
 	
-	
-	@Column(name = "R_NAME", length = 80)
+	@Column(name = "R_NAME", length = 75)
 	private String rName;
 	
 	@Column(name = "R_TYPE_DEDUCTOR", length = 80)
@@ -113,16 +114,16 @@ public class Company {
 	@Column(name = "R_EXCISE_DIVISION", length = 100)
 	private String rExciseDivision;
 	
-	@Column(name = "R_DESIG", length = 30)
+	@Column(name = "R_DESIG", length = 20)
 	private String rDesig;
 
-	@Column(name = "R_FLATNO", length = 30)
+	@Column(name = "R_FLAT_NO", length = 25)
 	private String rFlatNum;
 
-	@Column(name = "R_BUILDING", length = 30)
+	@Column(name = "R_BUILDING", length = 25)
 	private String rBuildingNo;
 
-	@Column(name = "R_STREET", length = 30)
+	@Column(name = "STREET", length = 25)
 	private String rStreet;
 
 	@ManyToOne(optional = true)
@@ -138,16 +139,16 @@ public class Company {
 	@Column(name = "R_LOCATION", length = 50)
 	private String rLocation;
 
-	@Column(name = "R_PIN", length = 15)
+	@Column(name = "R_PIN", length = 6)
 	private String rPin;
 
-	@Column(name = "R_STD", length = 10)
+	@Column(name = "R_STD", length = 5)
 	private String rStd;
 
-	@Column(name = "R_TEL", length = 15)
+	@Column(name = "R_TEL", length = 10)
 	private Long rTel;
 
-	@Column(name = "R_EMAIL", length = 30)
+	@Column(name = "R_EMAIL", length = 75)
 	private String rEmail;
 	
 	
@@ -172,7 +173,7 @@ public class Company {
 	@Column(name = "T_FILLING_DATE")
 	private Date tFillingDate;
 	
-	@Column(name = "PAN_NO", length = 50)
+	@Column(name = "PAN_NO", length = 10)
 	private String panNumber;
 	
 	
@@ -204,7 +205,7 @@ public class Company {
 	@Column(name = "CST_DT")
 	private Date cstDate;
 
-	@Column(name = "VAT_NO", length = 50)
+	@Column(name = "VAT_NO", length = 20)
 	private String vatNumber;
 
 	
@@ -212,20 +213,20 @@ public class Company {
 	@Column(name = "IMPORT_LICENSE_NO", length = 50)
 	private String importLicenseNumber;
 
-	@Column(name = "B17_BOND_NUMBER", length = 40)
+	@Column(name = "B17_BOND_NUMBER", length = 10)
 	private String b17BondNumber;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "B17_BOND_DATE")
 	private Date b17BondDate;
 	
-	@Column(name = "RCMC_NO", length = 30)
+	@Column(name = "RCMC_NO", length = 25)
 	private String rcmcNo;
 
 	@Column(name = "EXP_PERFORMANCE", length = 50)
 	private String expPerformance;
 	
-	@Column(name = "EXP_CERTIFICATE_NO", length = 30)
+	@Column(name = "EXP_CERTIFICATE_NO", length = 25)
 	private String expCertiificateNo;
 	
 	
@@ -247,7 +248,7 @@ public class Company {
 	@Column(name = "ADDR_ASST_DEPUTY_COMMRATE", length = 500)
 	private String addressAsstDeputyCommRate;
 
-	@Column(name = "CENTRAL_EXCISE_REGION_NO", length = 500)
+	@Column(name = "CENTRAL_EXCISE_REGION_NO", length = 50)
 	private String centralExciseRegionNo;
 
 	
@@ -263,13 +264,13 @@ public class Company {
 
 
 
-	@Column(name = "STD", length = 10)
+	@Column(name = "STD", length = 5)
 	private String std;
 
 	
 	
 
-	@Column(name = "ESI_C_E", length = 4)
+	@Column(name = "ESI_C_E", length = 2)
 	private String esiCe;
 
 	
@@ -286,7 +287,7 @@ public class Company {
 	@Column(name = "DRUG_LICENCE_NO", length = 25)
 	private String drugLicenceNo;
 
-	@Column(name = "STD2", length = 10)
+	@Column(name = "STD2", length = 5)
 	private String std2;
 
 	
@@ -294,10 +295,10 @@ public class Company {
 	@Column(name = "PLA_NO", length = 20)
 	private String plaNo;
 
-	@Column(name = "EXCISE_DIVISION", length = 100)
+	@Column(name = "TDS_EXCISE_DIVISION", length = 100)
 	private String tdsExciseDivision;
 
-	@Column(name = "BRANCH", length = 75)
+	@Column(name = "TDS_BRANCH", length = 75)
 	private String tdsBranch;
 
 	@Column(name = "IEC_CODE_NO", length = 20)
@@ -321,8 +322,11 @@ public class Company {
 
 	
 
-	@Column(name = "CIN_NO", length = 30)
+	@Column(name = "CIN_NO", length = 25)
 	private String cinNo;
+
+	@Column(name = "REGN_NO", length = 50)
+	private String regnNO;
 
 	
 
@@ -1008,6 +1012,24 @@ public class Company {
 	public void setSiteOffice(List<SiteOffice> siteOffice) {
 		this.siteOffice = siteOffice;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getRegnNO() {
+		return regnNO;
+	}
+
+	public void setRegnNO(String regnNO) {
+		this.regnNO = regnNO;
+	}
+	
+	
 
 
 }

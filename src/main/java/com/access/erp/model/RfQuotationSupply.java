@@ -32,23 +32,24 @@ public class RfQuotationSupply {
 	private SupplierMaster suppCode;
 	
 	
-	@Column(name="SUPPLIER_NAME",length = 50)
+	@Column(name="SUPP_NAME",length = 50)
 	private String suppName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ITEM_CODE")
 	private Item item;
 	
-	@Column(name="SUPPLIER_ADD",length = 50)
+	@Column(name="SUPP_ADDR",length = 200)
 	private String suppAdd;
 	
-	@Column(name="SUPPLIER_CITY",length = 50)
+// fk
+	@Column(name="SUPP_CITY",length = 50)
 	private String suppCity;
 	
-	@Column(name="SUPPLIER_STATE",length = 50)
+	@Column(name="SUPP_STATE",length = 50)
 	private String suppState;
 	
-	@Column(name="SR_NUM",length = 50)
+	@Column(name="SR_NO",length = 4)
 	private String srNum;
 	
 	
@@ -72,7 +73,7 @@ public class RfQuotationSupply {
 	private String email;
 	
 	@ManyToOne(optional = false,fetch=FetchType.LAZY)
-	@JoinColumn(name = "RFQ_NUM")
+	@JoinColumn(name = "RFQ_NO")
 	@JsonIgnore
 	private RfQuotation rfQuotation;
 
