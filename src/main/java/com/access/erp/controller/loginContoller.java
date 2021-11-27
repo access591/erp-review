@@ -103,7 +103,7 @@ public class loginContoller {
 	@GetMapping("/home")
 	public String homePage(Model model,Principal principal) {
 
-		if(principal.getName().isBlank()) {
+		if(principal.getName()==null) {
 			return "layouts/login";
 		}
 		else {

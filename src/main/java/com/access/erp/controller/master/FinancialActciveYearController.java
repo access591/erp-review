@@ -59,9 +59,25 @@ public class FinancialActciveYearController {
 	public String addFinancialActiveYear(
 			@ModelAttribute("financialActiveYear") FinancialActiveYear financialActiveYear,RedirectAttributes redirectAttributes) {
 
-		financialActiveYearService.addFinancialActiveYear(financialActiveYear);
-		redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
-		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		boolean isExist = financialActiveYearService.existsByFinancialYearAndMyUserAndCompany(financialActiveYear.getFinancialYear(), 
+							financialActiveYear.getMyUser(), financialActiveYear.getCompany());
+		
+		System.out.println("isExist value : " + isExist);
+		
+		if(isExist) {
+			
+			redirectAttributes.addFlashAttribute("message", "Record  Already Exists!");
+			redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
+			
+			
+		}else {
+			
+			financialActiveYearService.addFinancialActiveYear(financialActiveYear);
+			redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+			redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
+		}
+		
+		
 
 		return "redirect:/financialactiveyear/";
 	}

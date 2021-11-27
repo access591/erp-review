@@ -19,7 +19,7 @@ public class ModuleMasterServiceImpl implements ModuleMasterService{
 	@Autowired ModuleMasterRepo moduleMasterRepo;
 	@Autowired SeqMainRepo seqMainRepo;
 	
-	private Principal principal;
+	
 	
 	@Override
 	public void addModule(ModuleMaster moduleMaster) {
@@ -29,12 +29,9 @@ public class ModuleMasterServiceImpl implements ModuleMasterService{
 		if(moduleMaster.getModuleCode()=="" || moduleMaster.getModuleCode()==null) {
 			String maxCode = seqMainRepo.findByTranType("MOD");
 			moduleMaster.setModuleCode(maxCode);
-			moduleMaster.setInsertedBy(principal.getName());
 			
-		}else {
-			moduleMaster.setUpdateBy(principal.getName());
+			
 		}
-		
 		
 		moduleMasterRepo.save(moduleMaster);
 	}
