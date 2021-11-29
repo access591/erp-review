@@ -22,7 +22,7 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public void addItem(Item item) {
 		
-		 String maxCode = seqMainRepo.findByTranType("ITM");
+		String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("ITM", "20-21", "EB");
 		 
 		if (item.getItemCode() == "" || item.getItemCode()== null) {
 			

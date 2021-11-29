@@ -18,12 +18,12 @@ public class PartyMasterServiceImpl implements PartyMasterService{
 
 	
 	@Autowired PartyMasterRepo partyMasterRepo;
-	@Autowired SeqMainRepo seqmainRepo;
+	@Autowired SeqMainRepo seqMainRepo;
 	
 	@Override
 	public void addPartyMaster(PartyMaster partyMaster) {
 		
-		String maxCode =  seqmainRepo.findByTranType("PRT");
+		String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PRT", "20-21", "EB");
 		partyMaster.setPartyCode("EB" + partyMaster.getCustType().charAt(0) + maxCode.substring(3));
 		
 		for(PartyBilling party : partyMaster.getListPartyBilling()) {

@@ -24,7 +24,7 @@ public class PackingDetailServiceImpl implements PackingDetailService {
 		
 		if (packingDetail.getPackingCode() == "" || packingDetail.getPackingCode() == null) {
 			System.out.println("packing detail code is : "+ packingDetail.getPackingCode());
-			String maxCode = seqMainRepo.findByTranType("PAK");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAK", "20-21", "EB");
 			packingDetail.setPackingCode(maxCode);
 		}
 

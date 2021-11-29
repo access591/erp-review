@@ -22,7 +22,7 @@ public class ProgramServiceImpl implements ProgramService{
 	public void addProgram(Program program) {
 		
 		if(program.getProgramCode()=="" || program.getProgramCode()==null) {
-			String maxCode = seqMainRepo.findByTranType("PRO");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PRO", "20-21", "EB");
 			System.out.println("max code is : "+ maxCode);
 			program.setProgramCode(maxCode);
 		}

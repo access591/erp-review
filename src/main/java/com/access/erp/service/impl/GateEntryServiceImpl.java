@@ -15,14 +15,14 @@ import com.access.erp.service.GateEntryService;
 public class GateEntryServiceImpl implements GateEntryService{
 
 	@Autowired GateEntryRepo gateEntryRepo;
-	@Autowired SeqMainRepo seqmainRepo;
+	@Autowired SeqMainRepo seqMainRepo;
 	
 	
 	@Override
 	public void addGateEntry(GateEntry gateEntry) {
 		
 		if(gateEntry.getGateSrNo() == null || gateEntry.getGateSrNo()=="") {
-			String maxCode = seqmainRepo.findByTranType("GEN");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("GEN", "20-21", "EB");
 			gateEntry.setGateSrNo("EB"+ maxCode);
 		}
 		

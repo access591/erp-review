@@ -23,7 +23,7 @@ public class UOMServiceImpl implements UOMService{
 		
 		if (uom.getUomCode() == "" || uom.getUomCode() == null) {
 			System.out.println("uom code is : "+ uom.getUomCode());
-			String maxCode = seqMainRepo.findByTranType("UOM");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("UOM", "20-21", "EB");
 			uom.setUomCode(maxCode);
 		}
 

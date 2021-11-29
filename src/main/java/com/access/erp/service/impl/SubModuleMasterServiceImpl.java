@@ -23,7 +23,7 @@ public class SubModuleMasterServiceImpl implements SubModuleMasterService{
 		
 		if(subModuleMaster.getSubModuleCode() =="" || subModuleMaster.getSubModuleCode()==null) {
 			System.out.println("if block ");
-			String maxCode = seqMainRepo.findByTranType("SMO");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("SMO", "20-21", "EB");
 			subModuleMaster.setSubModuleCode(maxCode);
 		}
 		System.out.println("id is : "+ subModuleMaster.getSubModuleCode());

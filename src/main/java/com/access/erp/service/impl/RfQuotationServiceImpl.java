@@ -27,7 +27,7 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 		if(rfQuotation.getRfqNo()=="" || rfQuotation.getRfqNo()==null) {
 			
 			System.out.println("request for quotation code is : "+ rfQuotation.getRfqNo());
-			String maxCode = seqMainRepo.findByTranType("RFQ");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("RFQ", "20-21", "EB");
 			rfQuotation.setRfqNo(maxCode);
 			
 		}

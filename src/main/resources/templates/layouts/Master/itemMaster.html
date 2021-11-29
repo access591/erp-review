@@ -103,7 +103,7 @@
 
 																<div class="form-group col-md-4">
 																	<label for="#">Item Code</label> <input type="text"
-																		class="form-control form-control-sm" readonly
+																		class="form-control form-control-sm"
 																		title="item code" placeholder="Item Code"
 																		th:field="*{itemCode}">
 																</div>
@@ -145,8 +145,8 @@
 																			th:text="${store.storeCode}"
 																			th:value=" ${store.storeCode}">
 																		</option>-->
-																		<option value="capax">Capax</option>
-																		<option value="noncapax">Non-Capax</option>
+																		<option value="c">Capax</option>
+																		<option value="n">Non-Capax</option>
 																	</select>
 																</div>
 
@@ -169,8 +169,8 @@
 															<label class="form-label">Work Center Name</label> <select
 																class="form-control" title="work center Name" required>
 																<option value="">Select</option>
-																<option value="demo1">demo-1</option>
-																<option value="demo2">demo-2</option>
+																<option value="1">demo-1</option>
+																<option value="2">demo-2</option>
 
 															</select>
 														</div>
@@ -180,8 +180,8 @@
 																class="form-control" title="issueable"
 																th:field="*{itemIssue}">
 																<option value="">Select</option>
-																<option value="yes">Yes</option>
-																<option value="no">No</option>
+																<option value="Y">Yes</option>
+																<option value="N">No</option>
 
 															</select>
 														</div>
@@ -198,8 +198,8 @@
 															<label class="form-label">GST</label> <select
 																class="form-control" title="gst" th:field="*{cgst}">
 																<option value="">Select</option>
-																<option value="gst">GST</option>
-																<option value="nongst">NON-GST</option>
+																<option value="G">GST</option>
+																<option value="N">NON-GST</option>
 
 															</select>
 														</div>
@@ -208,8 +208,8 @@
 															<label class="form-label">DOL</label> <select
 																class="form-control" title="dol" th:field="*{dol}">
 																<option value="">Select</option>
-																<option value="yes">Yes</option>
-																<option value="no">No</option>
+																<option value="Y">Yes</option>
+																<option value="N">No</option>
 
 															</select>
 														</div>
@@ -232,8 +232,8 @@
 																class="form-control" title="critical item"
 																th:field="*{criticalItem}">
 																<option value="">Select</option>
-																<option value="yes">Yes</option>
-																<option value="no">No</option>
+																<option value="Y">Yes</option>
+																<option value="N">No</option>
 
 															</select>
 														</div>
@@ -356,8 +356,8 @@
 																		class="form-control" id="departmentDropdown"
 																		title="account name">
 																		<option value="">Select</option>
-																		<option value="acc-1">acc-1</option>
-																		<option value="acc-2">acc-2</option>
+																		<option value="1">acc-1</option>
+																		<option value="2">acc-2</option>
 																		<!-- <option th:each="department :  ${departmentList}"
 												th:text="${department.deptName}"
 												th:value=" ${department.departmentCode}"></option> -->
@@ -385,8 +385,8 @@
 																		class="form-control" id="departmentDropdown"
 																		title="product name">
 																		<option value="">Select</option>
-																		<option value="">P-1</option>
-																		<option value="">P-2</option>
+																		<option value="1">P-1</option>
+																		<option value="2">P-2</option>
 																		<!-- <option th:each="department :  ${departmentList}"
 												th:text="${department.deptName}"
 												th:value=" ${department.departmentCode}"></option> -->
@@ -403,8 +403,8 @@
 																		class="form-control" id="departmentDropdown"
 																		title="design name">
 																		<option value="">Select</option>
-																		<option value="">P-1</option>
-																		<option value="">P-2</option>
+																		<option value="1">P-1</option>
+																		<option value="2">P-2</option>
 																		<!-- <option th:each="department :  ${departmentList}"
 												th:text="${department.deptName}"
 												th:value=" ${department.departmentCode}"></option> -->
@@ -524,7 +524,7 @@
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" title="packing code"
-																				class="form-control" placeholder="" readonly
+																				class="form-control" placeholder="" 
 																				name="packingDetails[0].packingCode">
 																		</fieldset>
 																	</th>

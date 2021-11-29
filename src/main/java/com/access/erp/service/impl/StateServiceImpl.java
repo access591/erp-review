@@ -24,7 +24,7 @@ public class StateServiceImpl implements StateService{
 		
 		if (state.getStateCode() == "" || state.getStateCode() == null) {
 			System.out.println("country code is : "+ state.getStateCode());
-			String maxCode = seqMainRepo.findByTranType("STS");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("STS", "20-21", "EB");
 			state.setStateCode(maxCode);
 		}
 

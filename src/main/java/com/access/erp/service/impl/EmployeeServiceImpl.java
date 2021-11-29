@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		
 		if (employee.getEmpCode() == "" || employee.getEmpCode() == null) {
 			System.out.println("country code is : "+ employee.getEmpCode());
-			String maxCode = seqMainRepo.findByTranType("EMP");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("EMP", "20-21", "EB");
 			employee.setEmpCode(maxCode);
 		}
 

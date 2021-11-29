@@ -27,7 +27,7 @@ public class ModuleMasterServiceImpl implements ModuleMasterService{
 		System.out.println("actve status : "+ moduleMaster.getModuleCode());
 		
 		if(moduleMaster.getModuleCode()=="" || moduleMaster.getModuleCode()==null) {
-			String maxCode = seqMainRepo.findByTranType("MOD");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("MOD", "20-21", "EB");
 			moduleMaster.setModuleCode(maxCode);
 			moduleMaster.setInsertedBy(principal.getName());
 			

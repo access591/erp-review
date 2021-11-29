@@ -47,7 +47,7 @@ public class DepartmentController {
 		if(departmentList != null) {
 			model.addAttribute("departmentList", departmentList);
 		}
-		return "layouts/listview/listofDepartment";
+		return "layouts/listview/listofdepartment";
 	}
 	
 	@GetMapping("/edit/{id}")
