@@ -89,8 +89,8 @@
 											<!-- /.box-header -->
 											<!-- form start -->
 											<h5>Request for Quotation Detail</h5>
-											
-											
+
+
 											<form role="form" th:action="@{/requestquotation/}"
 												method="POST" th:object="${rFQuotation}">
 												<div class="box-body">
@@ -106,9 +106,9 @@
 															Type</label> <label style="color: red">*</label> <select
 															class="form-control" id="" title="request for quotation"
 															th:field="*{rfqType}" required>
-															
-															<option value="indent" selected>Indent</option>
-															<option value="withoutIndent">without Indent</option>
+
+															<option value="I" selected>Indent</option>
+															<option value="W">without Indent</option>
 
 														</select>
 													</div>
@@ -116,7 +116,8 @@
 													<div class="form-group col-md-4">
 														<label for="inputEmail4">Request for Quotation
 															Date</label> <input type="date" class="form-control"
-															title="quotation date" th:field="*{rfqDate}" id="requestForQuotationDate">
+															title="quotation date" th:field="*{rfqDate}"
+															id="requestForQuotationDate">
 													</div>
 
 												</div>
@@ -152,7 +153,8 @@
 																	<tr>
 																		<th scope="col" class="text-center">Indent Number</th>
 																		<th scope="col" class="text-center">Indent Date</th>
-																		<th scope="col" class="text-center">Item Name<span style="color:red">*</span></th>
+																		<th scope="col" class="text-center">Item Name<span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">UOM</th>
 																		<th scope="col" class="text-center">City</th>
 																		<th scope="col" class="text-center">Required Date</th>
@@ -290,8 +292,8 @@
 																			name="listRFQuotationSupply[0].suppCode">
 																				<option value=" ">Select</option>
 																				<option th:each="supplier :  ${listSupplier}"
-																					th:text="${supplier.supplierName}"
-																					th:value=" ${supplier.supplierId}"></option>
+																					th:text="${supplier.partyName}"
+																					th:value=" ${supplier.partyCode}"></option>
 
 
 																		</select></td>
@@ -301,15 +303,33 @@
 																			id="supplierAdd0" title="supplier address"
 																			name="listRFQuotationSupply[0].suppAdd"></td>
 
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="supplierCity0" title="supplier city"
-																			name="listRFQuotationSupply[0].suppCity"></td>
 
-																		<td><input type="text"
-																			class="form-control form-control-sm"
+
+																		<td><select
+																			class="form-control form-control-sm select" required
+																			title="supplier city" id="supplierCity0"
+																			name="listRFQuotationSupply[0].suppCity">
+																				<option value=" ">Select</option>
+																				<option th:each="city :  ${listCity}"
+																					th:text="${city.cityName}"
+																					th:value=" ${city.cityCode}"></option>
+
+
+																		</select></td>
+
+
+
+																		<td><select
+																			class="form-control form-control-sm select" required
 																			id="supplierState0" title="supplier State"
-																			name="listRFQuotationSupply[0].suppState"></td>
+																			name="listRFQuotationSupply[0].suppState">
+																				<option value=" ">Select</option>
+																				<option th:each="state :  ${listStates}"
+																					th:text="${state.stateName}"
+																					th:value=" ${state.stateCode}"></option>
+
+
+																		</select></td>
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
@@ -382,278 +402,308 @@
 
 
 	<script th:inline="javascript">
+		var idIndex1 = 0;
+		var idIndex2 = 0;
 
-				var idIndex1 = 0;
-				var idIndex2 = 0;
+		$(document)
+				.ready(
+						function() {
+							console.log("ready!");
 
+							var i = 1;
+							console.log("id Index value after adding ")
 
-				$(document).ready(function () {
-					console.log("ready!");
+							$('#add_row_in')
+									.click(
+											function() {
+												console.log("click method")
 
-					var i = 1;
-					console.log("id Index value after adding ")
+												idIndex1++;
+												console
+														.log("id index value id "
+																+ idIndex1)
+												$('#inr' + i)
+														.html(
+																"<td><select class='select form-control form-control-sm indentContainer"
+																		+ idIndex1
+																		+ "' id='indentNumber"
+																		+ idIndex1
+																		+ "' title='Location'"
+																		+ "required onchange='getIndentList()' name='listRFQuotation["
+																		+ idIndex1
+																		+ "].openIndent'><option value=''>Select"
+																		+ " Indent Number"
+																		+ "</select></td>"
 
-					$('#add_row_in').click(function () {
-						console.log("click method")
-						
-						idIndex1++;
-						console.log("id index value id " + idIndex1)
-						$('#inr' + i).html(
-							"<td><select class='select form-control form-control-sm indentContainer"+idIndex1+"' id='indentNumber"+idIndex1+"' title='Location'" +
-							"required onchange='getIndentList()' name='listRFQuotation[" + idIndex1 + "].openIndent'><option value=''>Select" +
-							" Indent Number" +
-							"</select></td>"
+																		+ "<td><input type='date' style='font-size: 0.95rem'title='indent date' class='form-control form-control-sm' id='indentDate"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].indentDate' required></td>"
+																		+ "<td><select class='form-control form-control-sm select itemContainer"
+																		+ idIndex1
+																		+ "' onchange='getItemDetail()'  title='Location' id='item"
+																		+ idIndex1
+																		+ "' name='listRFQuotation["
+																		+ idIndex1
+																		+ "].item' required><option value=''>Select Item Name</option></select></td>"
+																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].uom'> </td>"
+																		+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotation[" + idIndex1 + "].city'></td>"
+																		+ "<td><input type='date'style='font-size: 0.95rem'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].rfqDate'required></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].itemSpec'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].termCondition'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].remarks'required title=''></td>"
 
-							+ "<td><input type='date' style='font-size: 0.95rem'title='indent date' class='form-control form-control-sm' id='indentDate"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].indentDate' required></td>"
-							+ "<td><select class='form-control form-control-sm select itemContainer"+idIndex1+"' onchange='getItemDetail()'  title='Location' id='item"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].item' required><option value=''>Select Item Name</option></select></td>"
-							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].uom'> </td>"
-							+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotation[" + idIndex1 + "].city'></td>"
-							+ "<td><input type='date'style='font-size: 0.95rem'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].rfqDate'required></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].itemSpec'required title=''></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].termCondition'required title=''></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].remarks'required title=''></td>"
+														);
+												$('#indentTable').append(
+														'<tr id="inr' + (i + 1)
+																+ '"></tr>');
 
-						);
-						$('#indentTable').append(
-							'<tr id="inr'
-							+ (i + 1)
-							+ '"></tr>');
-							
-							indentInfoForRfq();
+												indentInfoForRfq();
 
+												i++;
 
-						i++;
+											});
 
-					});
-					
-					
-					$("#delete_row_in").click(function () {
-						if (i > 1) {
-							$("#inr" + (i - 1)).html('');
+							$("#delete_row_in").click(function() {
+								if (i > 1) {
+									$("#inr" + (i - 1)).html('');
 
-							i--;
-							idIndex1--;
+									i--;
+									idIndex1--;
+								}
+							});
+						});
+
+		$(document)
+				.ready(
+						function() {
+							console.log("ready!");
+
+							var j = 1;
+
+							$('#add_row_sup')
+									.click(
+											function() {
+												idIndex2++;
+												$('#spr' + j)
+														.html(
+																"<td><select id='supplierId"
+																		+ idIndex2
+																		+ "' class='form-control form-control-sm select supplierContainer"
+																		+ idIndex2
+																		+ "' required "
+																		+ +"title='supplier code' onchange='supplierInfo()'name='listRFQuotationSupply[0].suppCode'><option value=''>"
+																		+ "Select</option><optionth:each='supplier :  ${listSupplier}'th:text='${supplier.supplierName}'th:value='${supplier.supplierId}'></option></select></td>"
+
+																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierAdd"+idIndex2+"' name='listRFQuotationSupply[0].suppAdd'> </td>"
+
+																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierCity"+idIndex2+"' name='listRFQuotationSupply[0].suppCity'> </td>"
+																		+ "<td><input type='text' title='city' class='form-control form-control-sm'id='supplierState"+idIndex2+"' name='listRFQuotationSupply[0].suppState'></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm' name='listRFQuotationSupply[0].contactPerson'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].email'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].phoneNumber'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].fax'required title=''></td>"
+
+														);
+												$('#supplierTable').append(
+														'<tr id="spr' + (j + 1)
+																+ '"></tr>');
+
+												listOfSupplierInfo()
+
+												j++;
+
+											});
+
+							$("#delete_row_sup").click(function() {
+								if (j > 1) {
+									$("#spr" + (j - 1)).html('');
+
+									j--;
+									idIndex2--;
+								}
+							});
+						});
+
+		// ajax request for get indent info for dynamic row 
+
+		function indentInfoForRfq() {
+
+			console.log("indent info for rfq ")
+
+			$
+					.ajax({
+						type : "GET",
+						url : "indentinfo/",
+
+						success : function(data) {
+							console.log("ite data is : " + data)
+
+							var options = '<option value=""><strong>Select Indent</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.indentNumber)
+												console.log("item info : "
+														+ value.indentNumber)
+
+												options += '<option value="' + value.indentNumber + '">'
+														+ value.indentNumber
+														+ '</option>';
+
+											});
+
+							$('.indentContainer' + idIndex1).html(options);
+
+							// $("#departmentname").val(data.department.deptName)
+						},
+						error : function() {
+							console.log("Error");
 						}
 					});
-				});
-				
-				
-				
-				$(document).ready(function () {
-					console.log("ready!");
 
-					var j = 1;
+		}
 
-					$('#add_row_sup').click(function () {
-						idIndex2++;
-						$('#spr' + j).html(
-							"<td><select id='supplierId"+idIndex2+"' class='form-control form-control-sm select supplierContainer"+idIndex2+"' required "+
-							+"title='supplier code' onchange='supplierInfo()'name='listRFQuotationSupply[0].suppCode'><option value=''>"+
-							"Select</option><optionth:each='supplier :  ${listSupplier}'th:text='${supplier.supplierName}'th:value='${supplier.supplierId}'></option></select></td>"
-							
-							
-							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierAdd"+idIndex2+"' name='listRFQuotationSupply[0].suppAdd'> </td>"
-							
-							+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierCity"+idIndex2+"' name='listRFQuotationSupply[0].suppCity'> </td>"
-							+ "<td><input type='text' title='city' class='form-control form-control-sm'id='supplierState"+idIndex2+"' name='listRFQuotationSupply[0].suppState'></td>"
-							+ "<td><input type='text'class='form-control form-control-sm' name='listRFQuotationSupply[0].contactPerson'required title=''></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].email'required title=''></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].phoneNumber'required title=''></td>"
-							+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].fax'required title=''></td>"
+		function getIndentList() {
 
-						);
-						$('#supplierTable').append(
-							'<tr id="spr'
-							+ (j + 1)
-							+ '"></tr>');
-							
-							listOfSupplierInfo()
+			console.log("get Item function calling");
+			var indentNumber = document.getElementById("indentNumber"
+					+ idIndex1).value;
+			console.log("emp code : " + indentNumber);
 
-						j++;
+			$
+					.ajax({
+						type : "GET",
+						url : "itemdetail/" + indentNumber,
 
-					});
+						success : function(data) {
+							//$("#resultarea").text(data);
+							console.log("response data : "
+									+ $(this.data).addClass('show'));
 
-					$("#delete_row_sup").click(function () {
-						if (j > 1) {
-							$("#spr" + (j - 1)).html('');
+							$("#indentDate" + idIndex1).val(data.indentDate);
 
-							j--;
-							idIndex2--;
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data.listItem)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.description)
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
+
+											});
+
+							$('.itemContainer' + idIndex1).html(options);
+							// $("#departmentcode").val(data.department.deptCode)
+							// $("#departmentname").val(data.department.deptName)
+						},
+						error : function() {
+							console.log("Error");
 						}
 					});
-				});
 
+		}
 
+		function getItemDetail() {
 
+			var item = document.getElementById("item" + idIndex1).value;
+			console.log("item number is " + item)
 
+			$.ajax({
+				type : "GET",
+				url : "itemdetail1/" + item,
 
-// ajax request for get indent info for dynamic row 
+				success : function(data) {
+					console.log("ite data is : " + data)
 
+					console.log("response text object : "
+							+ JSON.stringify(data))
+					console.log("uom info Is : " + data.uom.uomCode);
 
-function indentInfoForRfq(){
-	
-	console.log("indent info for rfq ")
-	
+					$("#uom" + idIndex1).val(data.uom.uomCode)
 
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/indentinfo/",
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+		}
 
-		success: function(data) {
-			console.log("ite data is : " + data)
+		function supplierInfo() {
 
-			var options = '<option value=""><strong>Select Indent</strong></option>';
-			$(data).each(function(index, value) {
+			var supplierId = document.getElementById("supplierId" + idIndex2).value;
+			console.log("supplier id is : " + supplierId)
 
-				console.log("item info : " + value.indentNumber)
-				console.log("item info : " + value.indentNumber)
+			$.ajax({
+				type : "GET",
+				url : "supplierdetail/" + supplierId,
 
-				options += '<option value="' + value.indentNumber + '">' + value.indentNumber + '</option>';
+				success : function(data) {
+					
+					console.log("response text object : "
+							+ JSON.stringify(data))
+					console.log("ite data is : " + data)
 
+					$("#supplierAdd0").val(data.lclAddr1)
+					$("#supplierCity0").val(data.cityCode)
+					$("#supplierState0").val(data.stateCode)
+					// $("#departmentname").val(data.department.deptName)
+				},
+				error : function() {
+					console.log("Error");
+				}
 			});
 
-			$('.indentContainer'+idIndex1).html(options);
-			
-			
-			
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
 		}
-	});
 
-	
-}
+		// dynamic drop down for supplier list
 
+		function listOfSupplierInfo() {
 
+			console.log("list of supplier info ");
+			$
+					.ajax({
+						type : "GET",
+						url : "supplierlist/",
 
+						success : function(data) {
+							console.log("ite data is : " + data)
 
-function getIndentList() {
+							console.log(" json data :" + JSON.stringify(data))
 
-	console.log("get Item function calling");
-	var indentNumber = document.getElementById("indentNumber"+idIndex1).value;
-	console.log("emp code : " + indentNumber);
+							var options = '<option value=""><strong>Select</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
 
+												console.log("item info : "
+														+ value.supplierId)
+												options += '<option value="' + value.supplierId + '">'
+														+ value.supplierName
+														+ '</option>';
 
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/itemdetail/" + indentNumber,
+											});
 
-		success: function(data) {
-			//$("#resultarea").text(data);
-			console.log("response data : " + $(this.data).addClass('show'));
+							$('.supplierContainer' + idIndex2).html(options);
 
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
 
-			$("#indentDate"+idIndex1).val(data.indentDate);
-
-			var options = '<option value=""><strong>Select Item</strong></option>';
-			$(data.listItem).each(function(index, value) {
-
-				console.log("item info : " + value.description)
-				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
-
-			});
-
-			$('.itemContainer'+idIndex1).html(options);
-			// $("#departmentcode").val(data.department.deptCode)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
 		}
-	});
 
-}
+		// for current date 
 
-
-
-function getItemDetail() {
-
-	var item = document.getElementById("item"+idIndex1).value;
-	console.log("item number is " + item)
-
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/itemdetail1/" + item,
-
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			$("#uom"+idIndex1).val(data.uom.uomCode)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-}
-
-
-
-function supplierInfo() {
-
-	
-	var supplierId = document.getElementById("supplierId"+idIndex2).value;
-	console.log("supplier id is : " + supplierId)
-
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/supplierdetail/" + supplierId,
-
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			$("#supplierAdd"+idIndex2).val(data.supplierAdd)
-			$("#supplierCity"+idIndex2).val(data.supplierCity)
-			$("#supplierState"+idIndex2).val(data.supplierState)
-			// $("#departmentname").val(data.department.deptName)
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
-
-
-
-// dynamic drop down for supplier list
-
-function listOfSupplierInfo(){
-
-	console.log("list of supplier info ");
-	$.ajax({
-		type: "GET",
-		url: "/requestquotation/supplierlist/",
-
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			console.log(" json data :" + JSON.stringify(data))
-
-			var options = '<option value=""><strong>Select</strong></option>';
-			$(data).each(function(index, value) {
-
-				console.log("item info : " + value.supplierId)
-				options += '<option value="' + value.supplierId + '">' + value.supplierName + '</option>';
-
-			});
-
-			$('.supplierContainer'+idIndex2).html(options);
-			
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-	
-}
-
-
-
-// for current date 
-
-			$( document ).ready(function() {
-    			document.getElementById("requestForQuotationDate").valueAsDate = new Date();
-			});
-
-			</script>
+		$(document)
+				.ready(
+						function() {
+							document.getElementById("requestForQuotationDate").valueAsDate = new Date();
+						});
+	</script>
 	<!--   <section class="content">
         
         </section>-->

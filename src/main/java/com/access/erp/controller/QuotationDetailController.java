@@ -1,4 +1,4 @@
-package com.access.erp.controller;
+  package com.access.erp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +18,27 @@ import com.access.erp.model.OpenIndent;
 import com.access.erp.model.OpenIndentDetail;
 import com.access.erp.model.QuotationDetail;
 import com.access.erp.model.RfQuotation;
+import com.access.erp.model.RfQuotationItem;
+import com.access.erp.model.RfQuotationSupply;
+import com.access.erp.model.master.City;
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.PartyMaster;
+import com.access.erp.model.master.State;
 import com.access.erp.model.master.SupplierMaster;
 import com.access.erp.repo.CurrencyRepo;
 import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.repo.RFQuotationRepo;
+import com.access.erp.repo.RfQuotationItemRepo;
+import com.access.erp.repo.RfQuotationSupplyRepo;
 import com.access.erp.repo.SupplierRepo;
+import com.access.erp.service.CityService;
 import com.access.erp.service.ItemService;
+import com.access.erp.service.OpenIndentService;
+import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.QuotationDetailService;
 import com.access.erp.service.RfQuotationService;
+import com.access.erp.service.StateService;
 
 @Controller
 @RequestMapping("/quotationdetail")
@@ -47,9 +58,24 @@ public class QuotationDetailController {
 	OpenIndentRepo openIndentRepo;
 	@Autowired
 	ItemService itemService;
+	@Autowired
+	StateService stateService;
+	@Autowired
+	CityService cityService;
+	@Autowired RfQuotationSupplyRepo rfQuotationSupplyRepo;
+	@Autowired PartyMasterService partyMasterService;
+	@Autowired RfQuotationItemRepo rfQuotationItemRepo;
+	@Autowired OpenIndentService  openIndentService;
+	
 
 	@GetMapping("/")
 	public String quotationDetail(Model model) {
+		
+		List<City> listCity = cityService.getAllCity();
+		model.addAttribute("listCity", listCity);
+
+		List<State> listStates = stateService.getAllState();
+		model.addAttribute("listStates", listStates);
 
 		List<RfQuotation> listRfQuotation = rfQuotationService.getAllRfQuotation();
 		model.addAttribute("listRfQuotation", listRfQuotation);
@@ -133,16 +159,81 @@ public class QuotationDetailController {
 	}
 
 	@ResponseBody
-	@GetMapping("/supplierinfo/{supplierCode}")
-	public SupplierMaster supplierInfo(@PathVariable(value = "supplierCode") String supplierCode, Model model) {
+	@GetMapping("/supplierlist/{rfqNum}")
+	public List<PartyMaster> supplierList(@PathVariable(value = "rfqNum") String rfqNum, Model model) {
 
-		System.out.println("supplierCode iinfo : " + supplierCode);
+		System.out.println("supplierCode iinfo : " + rfqNum);
+		
+		RfQuotation  rfQuotation = rfQuotationService.editRfQuotation(rfqNum).get();
 
-		SupplierMaster supllier = supplierRepo.findBySupplierId(Long.valueOf(supplierCode).longValue());
+		//SupplierMaster supllier = supplierRepo.findBySupplierId(Long.valueOf(supplierCode).longValue());
+		
+		List<RfQuotationSupply> listRfQuotationSupply = rfQuotationSupplyRepo.findByRfQuotation(rfQuotation);
+		
+		List<PartyMaster> listParty = new ArrayList<>();
+		
+		for(int i =0 ; i< listRfQuotationSupply.size();i++) {
+			
+			
+				PartyMaster partyMaster = 		partyMasterService.editPartyMaster(listRfQuotationSupply.get(i).getSuppCode()).get();
+				listParty.add(partyMaster);
+						
+			
+		}
 
-		return supllier;
+		return listParty;
 
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("/supplierinfo/{supplierCode}")
+	public PartyMaster  supplierInfo(@PathVariable(value = "supplierCode") String supplierCode, Model model) {
+
+		System.out.println("supplierCode iinfo : " + supplierCode);
+		
+		PartyMaster partyMaster = partyMasterService.editPartyMaster(supplierCode).get();
+
+		//SupplierMaster supllier = supplierRepo.findBySupplierId(Long.valueOf(supplierCode).longValue());
+
+		return partyMaster;
+
+	}
+
+	
+	@ResponseBody
+	@GetMapping("/indentlist/{rfqNumber}")
+	public List<OpenIndent> indentListPOnRfq(@PathVariable(value = "rfqNumber") String rfqNumber,
+			Model model) {
+
+		System.out.println("supplierCode iinfo : " + rfqNumber);
+		
+		RfQuotation rfQuotation = rfQuotationService.editRfQuotation(rfqNumber).get();
+		
+		List<RfQuotationItem> rfQuotationItem  = rfQuotationItemRepo.findByRfQuotations(rfQuotation);
+
+		List<OpenIndent> listOpenIndent = new ArrayList<>();
+
+		for(int i=0;i<rfQuotationItem.size();i++) {
+			
+			if(rfQuotationItem.get(i).getOpenIndent().getIndentNumber()!=null || rfQuotationItem.get(i).getOpenIndent().getIndentNumber() != "") {
+				
+				OpenIndent openIndent =   openIndentService.editOpenIndent(rfQuotationItem.get(i).getOpenIndent().getIndentNumber()).get();
+				listOpenIndent.add(openIndent);
+				
+			}
+			
+		}
+
+	
+
+		// OpenIndent openIndent = openIndentRepo.findById(indentNumber).get();
+
+		return listOpenIndent;
+
+	}
+	
+	
 
 	@ResponseBody
 	@GetMapping("/indentdetail/{indentNumber}")

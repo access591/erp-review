@@ -1,11 +1,15 @@
 package com.access.erp.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.Store;
@@ -94,8 +98,9 @@ public class IssueSlipDetail {
 	@JoinColumn(name="ISS_NO",nullable = false)
 	private IssueSlip issueSlip;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="ISS_DATE",length = 15)
-	private String issueDate;
+	private Date issueDate;
 
 	public IssueSlipDetail() {
 		super();
@@ -270,13 +275,14 @@ public class IssueSlipDetail {
 		this.issueSlip = issueSlip;
 	}
 
-	public String getIssueDate() {
+	public Date getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(String issueDate) {
+	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
+
 	
 	
 	

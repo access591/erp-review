@@ -19,188 +19,223 @@ import com.access.erp.model.OpenIndentDetail;
 import com.access.erp.model.RfQuotation;
 import com.access.erp.model.master.City;
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.State;
 import com.access.erp.model.master.SupplierMaster;
+import com.access.erp.model.master.UOM;
 import com.access.erp.repo.ItemRepo;
 import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.repo.SupplierRepo;
+import com.access.erp.service.CityService;
 import com.access.erp.service.OpenIndentDetailService;
 import com.access.erp.service.OpenIndentService;
+import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.RfQuotationService;
+import com.access.erp.service.StateService;
+import com.access.erp.service.UOMService;
 import com.access.erp.utility.ItemListOfIndent;
-
-
+import com.access.erp.utility.ItemUom;
+import com.access.erp.utility.PartyStateCity;
 
 /*request for quotation*/
-
-
 
 @Controller
 @RequestMapping("/requestquotation")
 public class RfQuotationController {
 
-	@Autowired  OpenIndentService openIndentService;
-	@Autowired OpenIndentDetailService openIndentDetailService;
-	@Autowired ItemRepo itemRepo;
-	@Autowired OpenIndentRepo openIndentRepo;
-	@Autowired SupplierRepo supplierRepo;
-	@Autowired RfQuotationService rfQuotationService;
-	
-	
-	
+	@Autowired
+	OpenIndentService openIndentService;
+	@Autowired
+	OpenIndentDetailService openIndentDetailService;
+	@Autowired
+	ItemRepo itemRepo;
+	@Autowired
+	OpenIndentRepo openIndentRepo;
+	@Autowired
+	SupplierRepo supplierRepo;
+	@Autowired
+	RfQuotationService rfQuotationService;
+	@Autowired
+	UOMService uomService;
+	@Autowired
+	PartyMasterService partyMasterService;
+	@Autowired
+	StateService stateService;
+	@Autowired
+	CityService cityService;
+
 	@GetMapping("/")
 	public String requestQuotation(Model model) {
-		
+
 		List<OpenIndent> aprovedOpenIndentList = openIndentService.approvedOpenIndent();
 		model.addAttribute("aprovedOpenIndentList", aprovedOpenIndentList);
-		
+
 		model.addAttribute("rFQuotation", new RfQuotation());
-		
-		List<SupplierMaster> listSupplierMaster = supplierRepo.findAll();
+
+		// List<SupplierMaster> listSupplierMaster = supplierRepo.findAll();
+		// model.addAttribute("listSupplier", listSupplierMaster);
+
+		// Suplier == Party Master which containing S in pk
+		List<PartyMaster> listSupplierMaster = partyMasterService.findByPartyCodeContaining("S");
+
 		model.addAttribute("listSupplier", listSupplierMaster);
-		
+
+		List<City> listCity = cityService.getAllCity();
+		model.addAttribute("listCity", listCity);
+
+		List<State> listStates = stateService.getAllState();
+		model.addAttribute("listStates", listStates);
+
 		return "layouts/Master/requestForQuotation";
 	}
-	
-	
-	
-	
+
 	@PostMapping("/")
-	public String addrFQuotation(@ModelAttribute("rFQuotation")RfQuotation rfQuotation) {
-		
-		System.out.println( " add rf Quotation method " );
+	public String addrFQuotation(@ModelAttribute("rFQuotation") RfQuotation rfQuotation) {
+
+		System.out.println(" add rf Quotation method ");
 		rfQuotationService.addRfQuotation(rfQuotation);
 		return "redirect:/requestquotation/";
 	}
-	
-	
+
 	@GetMapping("/list")
 	public String viewRequestQuotation(Model model) {
-		
+
 		List<RfQuotation> rfqList = rfQuotationService.getAllRfQuotation();
-		
-		if(rfqList != null) {
+
+		if (rfqList != null) {
 			model.addAttribute("rfqList", rfqList);
 		}
 		return "layouts/listview/listofRequestForQuotation";
 	}
-	
+
 	@GetMapping("/edit/{id}")
-	public String editRequestQuotation(@PathVariable("id") String rfqCode,Model model) {
-		
-		System.out.println("rfqCode code is : "+ rfqCode);
-		
+	public String editRequestQuotation(@PathVariable("id") String rfqCode, Model model) {
+
+		System.out.println("rfqCode code is : " + rfqCode);
+
 		List<OpenIndent> aprovedOpenIndentList = openIndentService.approvedOpenIndent();
 		model.addAttribute("aprovedOpenIndentList", aprovedOpenIndentList);
-		
-		List<SupplierMaster> listSupplierMaster = supplierRepo.findAll();
+
+	
+		List<PartyMaster> listSupplierMaster = partyMasterService.findByPartyCodeContaining("S");
 		model.addAttribute("listSupplier", listSupplierMaster);
-		
-		
+
 		Optional<RfQuotation> rFQuotation = rfQuotationService.editRfQuotation(rfqCode);
-		
+
 		// openIndent.ifPresent(indent -> model.addAttribute("openIndent", indent));
-		
+
 		rFQuotation.ifPresent(quotation -> model.addAttribute("rFQuotation", quotation));
 		
-		//model.addAttribute("rFQuotation", rFQuotation);
+		
+		
+		List<City> listCity = cityService.getAllCity();
+		model.addAttribute("listCity", listCity);
+
+		List<State> listStates = stateService.getAllState();
+		model.addAttribute("listStates", listStates);
+
+		// model.addAttribute("rFQuotation", rFQuotation);
 		return "layouts/editview/editRequestForQuotation";
 	}
-	
+
 	@GetMapping("/delete/{id}")
-	public String deleteRequestQuotation(@PathVariable("id") String rfqCode,Model model) {
+	public String deleteRequestQuotation(@PathVariable("id") String rfqCode, Model model) {
 		rfQuotationService.deleteRfQuotation(rfqCode);
 		return "redirect:/requestquotation/list";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@ResponseBody
 	@GetMapping("/itemdetail/{indentNumber}")
-	public ItemListOfIndent getItemListBehalfOfIndentNumber(@PathVariable(value = "indentNumber") String indentNumber, Model model) {
-		
-		System.out.println("employee iinfo : "+ indentNumber);
-		
+	public ItemListOfIndent getItemListBehalfOfIndentNumber(@PathVariable(value = "indentNumber") String indentNumber,
+			Model model) {
+
+		System.out.println("employee iinfo : " + indentNumber);
+
 		OpenIndent openIndent = new OpenIndent();
 		openIndent.setIndentNumber(indentNumber);
-		
+
 		ItemListOfIndent itemListOfIndent = new ItemListOfIndent();
-		
-		List<OpenIndentDetail> listOpenIndentDetail = openIndentDetailService.findOpenIndentDetailByOpenIndent(openIndent);
-		
+
+		List<OpenIndentDetail> listOpenIndentDetail = openIndentDetailService
+				.findOpenIndentDetailByOpenIndent(openIndent);
+
 		OpenIndent indent = openIndentRepo.findByIndentNumber(indentNumber);
-		
+
 		List<Item> listItem = new ArrayList<>();
-		
-		for(OpenIndentDetail indentDetail : listOpenIndentDetail) {
-			
+
+		for (OpenIndentDetail indentDetail : listOpenIndentDetail) {
+
 			Item item = itemRepo.findByItemCode(indentDetail.getIndItemCode());
 			System.out.println("item info : " + item.getDescription());
 			System.out.println("item info : " + item.getItemCode());
 			listItem.add(item);
 		}
-		
+
 		itemListOfIndent.setIndentDate(indent.getIndentDate());
 		itemListOfIndent.setListItem(listItem);
-		
+
 		return itemListOfIndent;
-		
-		
+
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/itemdetail1/{itemCode}")
-	public Item getItemDetail(@PathVariable(value = "itemCode") String itemCode, Model model) {
-		
-		System.out.println("item iinfo : "+ itemCode);
-		
+	public ItemUom getItemDetail(@PathVariable(value = "itemCode") String itemCode, Model model) {
+
+		System.out.println("item iinfo : " + itemCode);
+
 		Item item = itemRepo.findByItemCode(itemCode);
-		
-		return item;
-		
-		
+
+		UOM uom = uomService.editUOM(item.getUom().getUomCode()).get();
+
+		ItemUom itemUom = new ItemUom();
+		itemUom.setItem(item);
+		itemUom.setUom(uom);
+
+		System.out.println("uom code info is : " + item.getUom().getUomCode());
+
+		return itemUom;
+
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("/supplierdetail/{supplierCode}")
-	public SupplierMaster supplierDetail(@PathVariable(value = "supplierCode") String supplierCode, Model model) {
-		
-		System.out.println("supplierCode iinfo : "+ supplierCode);
-		
-		SupplierMaster supllier = supplierRepo.findBySupplierId(Long.valueOf(supplierCode).longValue());
-		
-		return supllier;
-		
-		
+	public PartyMaster supplierDetail(@PathVariable(value = "supplierCode") String supplierCode, Model model) {
+
+		System.out.println("supplierCode iinfo : belongs to party master which has pk containing 'S' " + supplierCode);
+
+		PartyStateCity partStateCity = new PartyStateCity();
+
+		// SupplierMaster supllier =
+		// supplierRepo.findBySupplierId(Long.valueOf(supplierCode).longValue());
+		PartyMaster partyMaster = partyMasterService.editPartyMaster(supplierCode).get();
+		// State state = stateService.editState(partyMaster.getStateCode()).get();
+		// City city = cityService.editCity(partyMaster.getLclAddrCityCode()).get();
+
+		partStateCity.setPartyMaster(partyMaster);
+		// partStateCity.setState(state);
+		// partStateCity.setCity(city);
+
+		return partyMaster;
+
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("/indentinfo")
-	public List<OpenIndent> indentInfo( Model model) {
-	
-		
-		List<OpenIndent> listOpenIndent = openIndentRepo.findAll();		
+	public List<OpenIndent> indentInfo(Model model) {
+
+		List<OpenIndent> listOpenIndent = openIndentRepo.findAll();
 		return listOpenIndent;
-		
-		
+
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/supplierlist")
-	public List<SupplierMaster> supplierList( Model model) {
-		
-		List<SupplierMaster> listSupplier = supplierRepo.findAll();	
+	public List<SupplierMaster> supplierList(Model model) {
+
+		List<SupplierMaster> listSupplier = supplierRepo.findAll();
 		System.out.println("list of supplier size is : " + listSupplier.size());
 		return listSupplier;
-		
-		
+
 	}
 }

@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
@@ -28,6 +30,7 @@ public class IssueSlip {
 	@Column(name="ISS_NO",length = 15)
 	private String issueNo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="ISS_DT")
 	private Date issueDate;
 	
@@ -41,6 +44,7 @@ public class IssueSlip {
 	@JoinColumn(name="REQUISITION_NO",nullable = false)
 	private MaterialRequisitionMaster requisition;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="REQUISITION_DATE")
 	private Date requisitionDate;
 	
@@ -116,6 +120,7 @@ public class IssueSlip {
 	@Column(name="LOT_NO",length = 20)
 	private String lotNo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="LOT_DATE")
 	private Date lotDate;
 	

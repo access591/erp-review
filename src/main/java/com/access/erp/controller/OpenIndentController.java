@@ -40,6 +40,7 @@ public class OpenIndentController {
 	public String openIndent(Model model) {
 		
 		List<Employee> employeeList = employeeService.getAllEmployee();
+		System.out.println("employee list size : " + employeeList.size());
 		model.addAttribute("employeeList", employeeList);
 		
 		model.addAttribute("openIndent", new OpenIndent());
