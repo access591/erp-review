@@ -33,7 +33,7 @@ public class MyUserController {
 		
 		List<Employee> listEmployee = employeeService.getAllEmployee();
 		
-		System.out.println("employee info is : " + listEmployee.get(0).getEmpName());
+		
 		model.addAttribute("listEmployee", listEmployee);
 		
 		model.addAttribute("user", new MyUser());
