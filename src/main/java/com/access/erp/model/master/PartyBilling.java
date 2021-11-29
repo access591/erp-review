@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="PARTY_BILLING")
@@ -63,6 +65,7 @@ public class PartyBilling {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "PART_CODE")
+	@JsonIgnore
 	public PartyMaster partyMaster;
 
 

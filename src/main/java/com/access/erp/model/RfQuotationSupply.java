@@ -26,10 +26,11 @@ public class RfQuotationSupply {
 	/*
 	 * @Column(name="SUPPLIER_CODE",length = 50) private Long suppCode;
 	 */
-	@ManyToOne(optional = false,fetch=FetchType.EAGER)
-	@JoinColumn(name = "SUPPLIER_CODE")
-	@JsonIgnore
-	private SupplierMaster suppCode;
+	//@ManyToOne(optional = false,fetch=FetchType.EAGER)
+	//@JoinColumn(name = "SUPPLIER_CODE")
+	//@JsonIgnore
+	@Column(name="SUPP_CODE",length = 40)
+	private String suppCode;
 	
 	
 	@Column(name="SUPP_NAME",length = 50)
@@ -78,11 +79,12 @@ public class RfQuotationSupply {
 	private RfQuotation rfQuotation;
 
 	
-	public SupplierMaster getSuppCode() {
+
+	public String getSuppCode() {
 		return suppCode;
 	}
 
-	public void setSuppCode(SupplierMaster suppCode) {
+	public void setSuppCode(String suppCode) {
 		this.suppCode = suppCode;
 	}
 

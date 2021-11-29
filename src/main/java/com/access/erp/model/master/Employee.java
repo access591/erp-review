@@ -72,7 +72,7 @@ public class Employee {
 	private String permState;
 	
 	@Column(name = "PERM_PIN", length = 20)
-	private int permPin;
+	private Integer  permPin;
 	
 	@Column(name = "LOCAL_ADD1", length = 150)
 	private String localAdd1;
@@ -87,7 +87,7 @@ public class Employee {
 	private String localState;
 	
 	@Column(name = "LOCAL_PIN", length = 20)
-	private int localPin;
+	private Integer localPin;
 	
 	@Column(name = "LOCAL_PHONE", length = 50)
 	private String localPhone;
@@ -186,10 +186,10 @@ public class Employee {
 	private String regCode;
 	
 	@Column(name = "REST_DAY1", length = 20)
-	private int restDay1;
+	private Integer restDay1;
 	
 	@Column(name = "REST_DAY2", length = 20)
-	private int restDay2;
+	private Integer restDay2;
 	
 	@Column(name = "EMAIL_PASS", length = 50)
 	private String emailPass;
