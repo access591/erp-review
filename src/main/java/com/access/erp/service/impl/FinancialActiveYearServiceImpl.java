@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
+import com.access.erp.model.master.MyUser;
 import com.access.erp.repo.FinnancialActiveYearRepo;
 import com.access.erp.repo.FinnancialYearRepo;
 import com.access.erp.repo.SeqMainRepo;
@@ -72,6 +74,12 @@ public class FinancialActiveYearServiceImpl implements FinancialActiveYearServic
 	public List<FinancialActiveYear> findByCompany(Company company) {
 		
 		return this.financialActiveYearRepo.findByCompany(company);
+	}
+
+	@Override
+	public boolean existsByFinancialYearAndMyUserAndCompany(FinancialYear ff, MyUser user, Company company) {
+		
+		return financialActiveYearRepo.existsByFinancialYearAndMyUserAndCompany(ff, user, company);
 	}
 
 }
