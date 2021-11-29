@@ -21,10 +21,15 @@ public class CityServiceImpl implements CityService{
 	@Override
 	public void addCity(City city) {
 		
+		
+		// TRAN_TYPE=V_PRG_TYPE AND FYCODE =V_FYCODE AND CCODE =V_CCODE
+		
 		if (city.getCityCode() == "" || city.getCityCode() == null) {
 			System.out.println("country code is : "+ city.getCityCode());
-			String maxCode = seqMainRepo.findByTranType("CT");
-			city.setCityCode(maxCode);
+			//String maxCode = seqMainRepo.findByTranType("CT");
+			
+			String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("CT", "20-21", "EB");
+			city.setCityCode(maxCode1);
 		}
 
 		cityRepo.save(city);

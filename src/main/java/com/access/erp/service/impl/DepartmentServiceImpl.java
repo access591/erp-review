@@ -24,7 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 		if (department.getDeptCode() == "" || department.getDeptCode() == null) {
 			System.out.println("country code is : "+ department.getDeptCode());
-			String maxCode = seqMainRepo.findByTranType("DPT");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("DPT", "20-21", "EB");
 			department.setDeptCode(maxCode);
 		}
 

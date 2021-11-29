@@ -24,7 +24,7 @@ public class ServiceCategoryMasterServiceImpl implements ServiceCategoryMasterSe
 
 		if (serviceCategory.getCategoryCode() == "" || serviceCategory.getCategoryCode() == null) {
 			System.out.println("country code is : "+ serviceCategory.getCategoryCode());
-			String maxCode = seqMainRepo.findByTranType("CAT");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("CAT", "20-21", "EB");
 			serviceCategory.setCategoryCode(maxCode);
 		}
 

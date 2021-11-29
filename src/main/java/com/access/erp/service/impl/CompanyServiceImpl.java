@@ -28,7 +28,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 		if (company.getCompCode() == "" || company.getCompCode() == null) {
 			System.out.println("company code is : " + company.getCompCode());
-			String maxCode = seqMainRepo.findByTranType("COM");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("COM", "20-21", "EB");
 			company.setCompCode(maxCode);
 		}
 

@@ -25,7 +25,7 @@ public class MaterialRequisitionMasterServiceImpl implements MaterialRequisition
 		
 		if(materialRequisitionMaster.getRequisitionNo() == "" || materialRequisitionMaster.getRequisitionNo() == null) {
 			
-			String maxCode = seqMainRepo.findByTranType("MR");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("MR", "20-21", "EB");
 			materialRequisitionMaster.setRequisitionNo(maxCode);
 		}
 		

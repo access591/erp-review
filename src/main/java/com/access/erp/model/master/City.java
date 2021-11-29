@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class City {
 	
 	@Id
-	@Column(name = "CITY_CODE", length = 6)
+	@Column(name = "CITY_CODE", length = 30)
 	private String cityCode;
 	
 	@Column(name = "CITY_NAME", length = 50)

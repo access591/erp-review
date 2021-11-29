@@ -23,7 +23,7 @@ public class StoreServiceImpl implements StoreService {
 	public void addStore(Store store) {
 		if (store.getStoreCode() == "" || store.getStoreCode() == null) {
 			System.out.println("country code is : "+ store.getStoreCode());
-			String maxCode = seqMainRepo.findByTranType("STR");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("STR", "20-21", "EB");
 			store.setStoreCode(maxCode);
 		}
 

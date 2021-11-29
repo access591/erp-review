@@ -24,7 +24,7 @@ public class CountryServiceImpl implements CountryService {
 
 		if (country.getCountryCode() == "" || country.getCountryCode() == null) {
 			System.out.println("country code is : "+ country.getCountryCode());
-			String maxCode = seqMainRepo.findByTranType("CON");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("CON", "20-21", "EB");
 			country.setCountryCode(maxCode);
 		}
 

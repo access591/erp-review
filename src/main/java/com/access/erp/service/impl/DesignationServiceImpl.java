@@ -24,7 +24,7 @@ public class DesignationServiceImpl implements DesignationService{
 		
 		if (designation.getDesigCode() == "" || designation.getDesigCode() == null) {
 			System.out.println("country code is : "+ designation.getDesigCode());
-			String maxCode = seqMainRepo.findByTranType("DES");
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("DES", "20-21", "EB");
 			designation.setDesigCode(maxCode);
 		}
 
