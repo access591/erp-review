@@ -41,7 +41,7 @@ public class ItemServiceImpl implements ItemService{
 			
 			if(p.getPackingCode() == "" || p.getPackingCode() == null) {
 				
-				String maxCode1 = seqMainRepo.findByTranType("PAC");
+				String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAC", "20-21", "EB");
 				System.out.println("max code 1 is : " + maxCode1);
 				
 				p.setPackingCode(maxCode);
