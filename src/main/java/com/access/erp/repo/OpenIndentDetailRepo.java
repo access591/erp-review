@@ -13,5 +13,8 @@ import com.access.erp.model.OpenIndentDetail;
 public interface OpenIndentDetailRepo extends JpaRepository<OpenIndentDetail, Long>{
 	
 	List<OpenIndentDetail> findByOpenIndent(OpenIndent openIndent);
+	OpenIndentDetail findByIndItemCode(String indentItemCode);
+	
+	OpenIndentDetail findByIndItemCodeAndOpenIndent(String indentItemCode,OpenIndent openIndent);
 
 }

@@ -156,7 +156,7 @@
 																		<th scope="col" class="text-center">Item Name<span
 																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">UOM</th>
-																		<th scope="col" class="text-center">City</th>
+																		<th scope="col" class="text-center">Qty</th>
 																		<th scope="col" class="text-center">Required Date</th>
 																		<th scope="col" class="text-center">Item
 																			Specification</th>
@@ -205,7 +205,7 @@
 																			name="listRFQuotation[0].uom"></td>
 
 																		<td><input type="text" title="city"
-																			class="form-control form-control-sm"
+																			class="form-control form-control-sm"id="qty0"
 																			name="listRFQuotation[0].city"></td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
@@ -608,12 +608,13 @@
 
 		function getItemDetail() {
 
+			var indent =  document.getElementById("indentNumber"+ idIndex1).value;
 			var item = document.getElementById("item" + idIndex1).value;
 			console.log("item number is " + item)
 
 			$.ajax({
 				type : "GET",
-				url : "itemdetail1/" + item,
+				url : "itemdetail1/" + item +"/"+ indent,
 
 				success : function(data) {
 					console.log("ite data is : " + data)
@@ -621,9 +622,10 @@
 					console.log("response text object : "
 							+ JSON.stringify(data))
 					console.log("uom info Is : " + data.uom.uomCode);
+					//console.log("uom info Is : " + data.openIndentDetail.indQty);
 
 					$("#uom" + idIndex1).val(data.uom.uomCode)
-
+					$("#qty" + idIndex1).val(data.openIndentDetail.indQty)
 				},
 				error : function() {
 					console.log("Error");
