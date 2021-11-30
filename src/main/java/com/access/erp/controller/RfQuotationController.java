@@ -24,6 +24,7 @@ import com.access.erp.model.master.State;
 import com.access.erp.model.master.SupplierMaster;
 import com.access.erp.model.master.UOM;
 import com.access.erp.repo.ItemRepo;
+import com.access.erp.repo.OpenIndentDetailRepo;
 import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.repo.SupplierRepo;
 import com.access.erp.service.CityService;
@@ -63,6 +64,7 @@ public class RfQuotationController {
 	StateService stateService;
 	@Autowired
 	CityService cityService;
+	@Autowired OpenIndentDetailRepo openIndentDetailRepo;
 
 	@GetMapping("/")
 	public String requestQuotation(Model model) {
@@ -179,18 +181,25 @@ public class RfQuotationController {
 	}
 
 	@ResponseBody
-	@GetMapping("/itemdetail1/{itemCode}")
-	public ItemUom getItemDetail(@PathVariable(value = "itemCode") String itemCode, Model model) {
+	@GetMapping("/itemdetail1/{itemCode}/{indentNumber}")
+	public ItemUom getItemDetail(@PathVariable(value = "itemCode") String itemCode, @PathVariable(value = "indentNumber") String indentNumber,Model model) {
 
-		System.out.println("item iinfo : " + itemCode);
+		System.out.println("item iinfo : " + itemCode +"and indent number : "+ indentNumber);
 
 		Item item = itemRepo.findByItemCode(itemCode);
 
 		UOM uom = uomService.editUOM(item.getUom().getUomCode()).get();
+		
+		//OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCode(itemCode);
+		
+		OpenIndent openIndent = openIndentService.editOpenIndent(indentNumber).get();
+		
+		OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCodeAndOpenIndent(itemCode, openIndent);
 
 		ItemUom itemUom = new ItemUom();
 		itemUom.setItem(item);
 		itemUom.setUom(uom);
+		itemUom.setOpenIndentDetail(openIndentDetail);
 
 		System.out.println("uom code info is : " + item.getUom().getUomCode());
 
