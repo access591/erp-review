@@ -35,7 +35,7 @@ public class OpenIndent {
 	@Column(name = "INDENT_NUMBER", length = 20)
 	private String indentNumber;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "INDENTS_DATE")
 	private Date indentDate;
 
@@ -85,6 +85,7 @@ public class OpenIndent {
 	@Column(name = "URGENCY", length = 20)
 	private String urgency;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "AS_ON_DATE")
 	private Date asOnDate;
 	

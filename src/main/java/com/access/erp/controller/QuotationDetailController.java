@@ -219,6 +219,7 @@ public class QuotationDetailController {
 			if(rfQuotationItem.get(i).getOpenIndent().getIndentNumber()!=null || rfQuotationItem.get(i).getOpenIndent().getIndentNumber() != "") {
 				
 				OpenIndent openIndent =   openIndentService.editOpenIndent(rfQuotationItem.get(i).getOpenIndent().getIndentNumber()).get();
+				System.out.println("open indent date is : " + openIndent.getIndentDate());
 				listOpenIndent.add(openIndent);
 				
 			}
