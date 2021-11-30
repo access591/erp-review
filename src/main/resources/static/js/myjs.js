@@ -81,7 +81,7 @@ function changeCurrency() {
 
 function getIndentDetailByIndentNumber() {
 
-	var indentNumber = document.getElementById("indentNumber").value;
+	var indentNumber = document.getElementById("indentNumber0").value;
 
 	$.ajax({
 		type: "GET",
@@ -91,9 +91,9 @@ function getIndentDetailByIndentNumber() {
 			console.log("ite data is : " + data)
 
 			console.log("indent data is : " + data.indentDate)
-			$("#indentDate").val(data.indentDate)
-			$("#empName").val(data.employee.empName);
-			$("#empCode").val(data.employee.empCode);
+			$("#indentDate0").val(data.indentDate)
+			$("#empName0").val(data.employee.empName);
+			$("#empCode0").val(data.employee.empCode);
 
 			getItemListByIndentNumber(indentNumber);
 
@@ -135,9 +135,9 @@ function getItemListByIndentNumber(indentNumber) {
 			$(data).each(function(index, value) {
 
 				console.log("item info : " + value.itemCode)
-				console.log("item info : " + value.itemName)
+				console.log("item info : " + value.description)
 
-				options += '<option value="' + value.itemCode + '">' + value.itemName + '</option>';
+				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
 
 			});
 
@@ -164,7 +164,12 @@ function changeItemInQuotationDetail() {
 			console.log("Item Info behalf of Indent Number  : " + data)
 
 			$("#itemDescriptin").val(data.description)
-			$("#uomCode").val(data.uom.uomCode);
+			$("#uomCode0").val(data.uom);
+			$("#itemRate0").val(data.itemRate);
+
+			$("#itemQty0").val('0');
+
+
 
 
 
@@ -173,6 +178,70 @@ function changeItemInQuotationDetail() {
 		}
 	});
 
+}
+
+var totalValue = 0;
+
+//calulation of total row 
+function calculationOfTotalValue() {
+	var totalInr = document.getElementById("totalInrValue0").value;
+	totalValue = totalInr;
+	total_totalInr_calc();
+}
+function totalDiscountInPercentFun() {
+
+	var totalInPercent = document.getElementById("totalDiscountInPercent").value;
+	var result = totalValue * totalInPercent / 100;
+	document.getElementById("totalDiscountInValue").value = result;
+}
+
+function discountInPercentFun() {
+	var discountInPercent = document.getElementById("discountInPercent").value;
+	var result = totalValue * discountInPercent / 100;
+	document.getElementById("discountInValue").value = result;
+}
+
+function sgstInPercentFun() {
+	var sgstInPercent = document.getElementById("sgstInPercent").value;
+	var result = totalValue * sgstInPercent / 100;
+	document.getElementById("sgstInValue").value = result;
+	total_totalInr_calc_discount()
+}
+
+function cgstInPercentFun() {
+	var cgstInPercent = document.getElementById("cgstInPercent").value;
+	var result = totalValue * cgstInPercent / 100;
+	document.getElementById("cgstInValue").value = result;
+}
+
+function igstInPercentFun() {
+	var igstInPercent = document.getElementById("igstInPercent").value;
+	var result = totalValue * igstInPercent / 100;
+	document.getElementById("igstInValue").value = result
+}
+
+
+function total_totalInr_calc() {
+
+	document.getElementById("totalRs").value = totalValue;
+	
+}
+
+function total_totalInr_calc_discount(){
+	
+	var totalDiscountInvalue = document.getElementById("totalDiscountInValue").value;
+	var discountInvalue = document.getElementById("discountInValue").value;
+	var sgstInValue = document.getElementById("sgstInValue").value ;
+	var cgstInValue = document.getElementById("cgstInValue").value;
+	var igstInValue = document.getElementById("igstInValue").value;
+	
+	var totalValueWithDiscount =totalValue - (totalDiscountInvalue+discountInvalue+sgstInValue+cgstInValue+igstInValue)
+	
+	if(totalValueWithDiscount>=0){
+		document.getElementById("totalCount").value = totalValueWithDiscount;
+	}
+	
+	
 }
 
 
@@ -532,24 +601,24 @@ function getOrderItemList(indentNumber) {
 
 
 
-function getOrderItemDetailForPo(){
-	
+function getOrderItemDetailForPo() {
+
 	var itemNumber = document.getElementById("orderItemPo").value;
-	
+
 	$.ajax({
 		type: "GET",
 		url: "itemInfo/" + itemNumber,
 
 		success: function(data) {
-			
+
 			$("#orderItemDescription").val(data.description)
-			$("#orderItemuom").val(data.uom.uomCode)	
+			$("#orderItemuom").val(data.uom.uomCode)
 
 		}, error: function() {
 			console.log("Error");
 		}
 	});
-	
+
 }
 
 
@@ -579,11 +648,11 @@ function getGateEntryInfo() {
 			$("#mrnSupplierCode").val(data.mrnUtility.gateEntry.supplier)
 			$("#mrnCurrencyCode").val(data.mrnUtility.gateEntry.currency)
 
-			
+
 			// add dynamic drop down in item list in mrn detail form 
-						
+
 			var options = '<option value=""><strong>Select Item</strong></option>';
-			
+
 			$(data.itemList).each(function(index, value) {
 
 				//console.log("item info : " + value.item.itemCode)
@@ -594,7 +663,7 @@ function getGateEntryInfo() {
 			});
 
 			$('.orderItemContainerPo').html(options);
-						
+
 
 		}, error: function() {
 			console.log("Error");
