@@ -111,6 +111,7 @@ public class QuotationItem {
 	private int vat;
 	
 	//14.2
+	//against single record 
 	@Column(name="TOTAL_VALUE",length=10)
 	private int totalValue;
 	
@@ -139,6 +140,7 @@ public class QuotationItem {
 	private int shcessValue;
 	
 	//14.2
+	//total value inr  against total row 
 	@Column(name="DISCOUNT_VALUE",length=10)
 	private int discountValue;
 	

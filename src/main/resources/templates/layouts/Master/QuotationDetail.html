@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -196,7 +196,7 @@
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Form Type</label> <input
 																		type="text" class="form-control" id="inputAddress"
-																		placeholder="from type" th:field="*{quotType}">
+																		placeholder="from type">  //  <!-- th:field="*{quotType}" -->
 																</div>
 															</div>
 															<!-- /.box-body -->
@@ -212,10 +212,12 @@
 																		class="form-control" onchange="changeCurrency()"
 																		title="currency Name" required id="currencyCode"
 																		th:field="*{currencyCode}">
-																		<option value="">Select Department</option>
-																		<option th:each="currency :  ${listCurrencyMaster}"
+																		<option value="">Select </option>
+																		<option value="I">INR</option>
+																		<option value="U">USD </option>
+																		<!-- <option th:each="currency :  ${listCurrencyMaster}"
 																			th:text="${currency.currencyCode}"
-																			th:value=" ${currency.currencyValue}"></option>
+																			th:value=" ${currency.currencyValue}"></option> -->
 																	</select>
 																</div>
 
@@ -255,7 +257,7 @@
 																	<label for="inputEmail4">Term and Condition</label> <input
 																		type="text" class="form-control" id="inputEmail4"
 																		placeholder="delivery period"
-																		th:field="*{deliveryPeriod}">
+																		>
 																</div>
 
 
@@ -403,11 +405,11 @@
 															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3" class="col-md-2 control-label">Total
+																	<label for="inputEmail3" class="col-md-2 control-label">Trade
 																		Discount</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" onkeyup="totalDiscountInPercentFun()"
-																			id="totalDiscountInPercent" placeholder="Total Discount(%)">
+																			id="totalDiscountInPercent" placeholder="Total Discount(%)" name="quotationItem[0].discountValue">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
@@ -423,7 +425,7 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Discount</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" onkeyup="discountInPercentFun()"
-																			id="discountInPercent" placeholder="Discount(%)">
+																			id="discountInPercent" placeholder="Discount(%)"  name="quotationItem[0].discount">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
@@ -432,20 +434,7 @@
 																</div>
 															</div>
 
-															<!-- 	<div class="row">
-
-																<div class="form-group m-5">
-																	<label for="inputEmail3" class="col-md-2 control-label">CGST(%)</label>
-																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="cgst">
-																	</div>
-																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="cgst">
-																	</div>
-																</div>
-															</div> -->
+														
 
 															<div class="form-group row">
 
@@ -453,7 +442,7 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="packing"
-																			placeholder="Packing">
+																			placeholder="Packing"name="quotationItem[0].packing">
 																	</div>
 
 																</div>
@@ -467,7 +456,7 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Freight</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="freight"
-																			placeholder="Freight">
+																			placeholder="Freight" name="quotationItem[0].freight">
 																	</div>
 
 																</div>
@@ -480,11 +469,11 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">SGST(%)</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="sgstInPercent"
-																			placeholder="Sgst(%)" onkeyup="sgstInPercentFun()">
+																			placeholder="Sgst(%)" onkeyup="sgstInPercentFun()" name="quotationItem[0].sgst">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="sgstInValue"
-																			placeholder="Sgst">
+																			placeholder="Sgst" name="quotationItem[0].sgstValue">
 																	</div>
 																</div>
 															</div>
@@ -495,11 +484,11 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">CGST(%)</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="cgstInPercent"
-																			placeholder="Cgst(%)" onkeyup="cgstInPercentFun()">
+																			placeholder="Cgst(%)" onkeyup="cgstInPercentFun()" name="quotationItem[0].cgst">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="cgstInValue"
-																			placeholder="Cgst">
+																			placeholder="Cgst" name="quotationItem[0].cgstValue">
 																	</div>
 																</div>
 															</div>
@@ -510,11 +499,11 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">IGST(%)</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="igstInPercent"
-																			placeholder="Igst(%)" onkeyup="igstInPercentFun()">
+																			placeholder="Igst(%)" onkeyup="igstInPercentFun()"  name="quotationItem[0].igst">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="igstInValue"
-																			placeholder="Igst">
+																			placeholder="Igst"  name="quotationItem[0].igstValue">
 																	</div>
 																</div>
 															</div>
@@ -547,7 +536,7 @@
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value (INR)</label> <input
 																				type="text" class="form-control" id="totalCount"
-																				placeholder="Total Value (INR)">
+																				placeholder="Total Value (INR)" >
 																		</div>
 																	</div>
 
