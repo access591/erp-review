@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 
-	<style>
-		.form-control-sm {
-			height: 30px;
-			width: 120px;
-			font-size: 11px;
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+	font-size: 11px;
+}
 
-		}
-
-		.select {
-			width: 130px;
-			font-size: 11px;
-		}
-	</style>
+.select {
+	width: 130px;
+	font-size: 11px;
+}
+</style>
 
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" onload="getIndentDetailByIndentNumber()">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -54,16 +60,17 @@
 									<h3 class="box-title">Quotation Details</h3>
 								</div>
 								<!-- form start -->
-								<form role="form" th:action="@{/quotationdetail/}" th:object="${quotation}"
-									method="POST">
+								<form role="form" th:action="@{/quotationdetail/}"
+									th:object="${quotation}" method="POST">
 									<div class="box-body">
 
 										<div class="container-fluid">
 
 											<ul class="nav nav-pills">
-												<li class="active"><a data-toggle="tab" href="#companydetail">Quotation
+												<li class="active"><a data-toggle="tab"
+													href="#companydetail">Quotation Detail</a></li>
+												<li><a data-toggle="tab" href="#tdsinfo">Items
 														Detail</a></li>
-												<li><a data-toggle="tab" href="#tdsinfo">Items Detail</a></li>
 
 
 
@@ -83,53 +90,44 @@
 															<div class="row">
 																<div class="col-md-12">
 																	<div class="form-group col-md-4">
-																		<label for="inputEmail4">Quotation No.</label>
+																		<label for="inputEmail4">Quotation No.</label> <input
+																			type="text" class="form-control" id="inputEmail4"
+																			placeholder="quotation no" th:field="*{quotNo}">
+																	</div>
+																	<div class="form-group col-md-4">
+																		<label for="inputPassword4">Quotation Date</label> <input
+																			type="date" class="form-control" id="inputPassword4"
+																			placeholder="quotation date" th:field="*{quotDate}">
+																	</div>
+																	<div class="form-group col-md-4">
+																		<label for="inputPassword4">Nature of Purchase</label>
 																		<input type="text" class="form-control"
-																			id="inputEmail4" placeholder="quotation no"
-																			th:field="*{quotNo}">
-																	</div>
-																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Quotation
-																			Date</label>
-																		<input type="date" class="form-control"
-																			id="inputPassword4"
-																			placeholder="quotation date"
-																			th:field="*{quotDate}">
-																	</div>
-																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Nature of
-																			Purchase</label> <input type="text"
-																			class="form-control" id="inputPassword4"
-																			placeholder="nature of purchase">
+																			id="inputPassword4" placeholder="nature of purchase">
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputAddress">Received On</label>
-																		<input type="date" class="form-control"
-																			id="inputAddress" placeholder="received on"
-																			th:field="*{receivedOn}">
+																		<label for="inputAddress">Received On</label> <input
+																			type="date" class="form-control" id="inputAddress"
+																			placeholder="received on" th:field="*{receivedOn}">
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label class="form-label">RFQ Number </label>
-																		<label style="color: red">*</label>
-																		<select class="form-control"
+																		<label class="form-label">RFQ Number </label> <label
+																			style="color: red">*</label> <select
+																			class="form-control"
 																			onchange="changeRequestForQuotation()"
-																			title="RFQ Number" id="rfqNum"
-																			th:field="*{rfqNo}">
+																			title="RFQ Number" id="rfqNum" th:field="*{rfqNo}">
 																			<option value="">Select RFQ</option>
 																			<option th:each="rfq :  ${listRfQuotation}"
-																				th:text="${rfq.rfqNo}"
-																				th:value=" ${rfq.rfqNo}">
+																				th:text="${rfq.rfqNo}" th:value=" ${rfq.rfqNo}">
 																			</option>
 																		</select>
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputAddress">RFQ Date</label>
-																		<input type="date" class="form-control"
-																			id="rfqDate" placeholder="rfq date"
-																			th:field=*{rfqDate}>
+																		<label for="inputAddress">RFQ Date</label> <input
+																			type="date" class="form-control" id="rfqDate"
+																			placeholder="rfq date" th:field=*{rfqDate}>
 																	</div>
 																</div>
 
@@ -147,55 +145,61 @@
 														<div class="box">
 															<div class="box-body">
 																<div class="form-group col-md-4">
-																	<label class="form-label">Supplier </label>
-																	<label style="color: red">*</label>
-																	<select class="form-control"
+																	<label class="form-label ">Supplier </label> <label
+																		style="color: red">*</label> <select
+																		class="form-control suppContainer"
 																		onchange="supplierInfo1()" title="supplier "
 																		id="supplierId" th:field="*{suplierCode}">
 																		<option value="">Select</option>
-																		<option th:each="supp :  ${listSupplier}"
-																			th:text="${supp.supplierName}"
-																			th:value=" ${supp.supplierId}">
-																		</option>
+																		<option th:each="supp :  ${partyList}"
+																			th:text="${supp.partyName}"
+																			th:value=" ${supp.partyCode}"></option>
 																	</select>
 																</div>
 
 																<div class="form-group col-md-4">
-																	<label for="inputPassword4">Supplier
-																		Name</label>
-																	<input type="text" class="form-control"
+																	<label for="inputPassword4">Supplier Name</label> <input
+																		type="text" class="form-control"
 																		placeholder="quotation date" id="supplierName"
 																		th:field="*{tempSupName}">
 																</div>
 																<div class="form-group col-md-4">
-																	<label for="inputPassword4">Supplier
-																		City</label>
-																	<input type="text" class="form-control"
-																		id="supplierCity"
-																		placeholder="nature of purchase"
-																		th:field="*{supCityCode}">
+																	<label for="inputPassword4">SupplierState</label> <select
+																		class="form-control" required id="supplierState"
+																		title="supplier State" th:field="*{supCityCode}">
+																		<option value=" ">Select</option>
+																		<option th:each="state :  ${stateList}"
+																			th:text="${state.stateName}"
+																			th:value=" ${state.stateCode}"></option>
+
+
+																	</select>
 																</div>
 
 																<div class="form-group col-md-4">
-																	<label for="inputAddress">Form Code</label>
-																	<input type="text" class="form-control"
-																		id="inputAddress" placeholder="received on"
-																		th:field="*{fromCode}">
+																	<label for="inputAddress">Form Code</label> <input
+																		type="text" class="form-control" id="inputAddress"
+																		placeholder="received on" th:field="*{fromCode}">
 																</div>
 																<div class="form-group col-md-4">
-																	<label for="inputAddress">Supplier State</label>
-																	<input type="text" class="form-control"
-																		id="supplierState"
-																		placeholder="supplier country"
-																		th:field="*{supCountry}">
+																	<label for="inputAddress">Supplier City</label> <select
+																		class="form-control" required id="supplierCity"
+																		title="supplier State" th:field="*{supCountry}">
+																		<option value=" ">Select</option>
+																		<option th:each="city :  ${cityList}"
+																			th:text="${city.cityName}"
+																			th:value=" ${city.cityCode}"></option>
+
+
+																	</select>
 																</div>
 																<div class="form-group col-md-4">
-																	<label for="inputAddress">Form Type</label>
-																	<input type="text" class="form-control"
-																		id="inputAddress" placeholder="from type"
-																		th:field="*{quotType}">
+																	<label for="inputAddress">Form Type</label> <input
+																		type="text" class="form-control" id="inputAddress"
+																		placeholder="from type">    <!-- th:field="*{quotType}" -->
 																</div>
-															</div><!-- /.box-body -->
+															</div>
+															<!-- /.box-body -->
 
 														</div>
 
@@ -203,25 +207,24 @@
 														<div class="box">
 															<div class="box-body">
 																<div class="form-group col-md-6">
-																	<label class="form-label">Currency Code</label>
-																	<label style="color: red">*</label>
-																	<select class="form-control"
-																		onchange="changeCurrency()"
+																	<label class="form-label">Currency Code</label> <label
+																		style="color: red">*</label> <select
+																		class="form-control" onchange="changeCurrency()"
 																		title="currency Name" required id="currencyCode"
 																		th:field="*{currencyCode}">
-																		<option value="">Select Department</option>
-																		<option
-																			th:each="currency :  ${listCurrencyMaster}"
+																		<option value="">Select </option>
+																		<option value="I">INR</option>
+																		<option value="U">USD </option>
+																		<!-- <option th:each="currency :  ${listCurrencyMaster}"
 																			th:text="${currency.currencyCode}"
-																			th:value=" ${currency.currencyValue}">
-																		</option>
+																			th:value=" ${currency.currencyValue}"></option> -->
 																	</select>
 																</div>
 
 																<div class="form-group col-md-6">
-																	<label for="inputPassword4">Currency Value</label>
-																	<input type="text" class="form-control"
-																		id="currencyValue" placeholder="currency value"
+																	<label for="inputPassword4">Currency Value</label> <input
+																		type="text" class="form-control" id="currencyValue"
+																		placeholder="currency value"
 																		th:field="*{conversionValue}">
 																</div>
 
@@ -238,24 +241,23 @@
 
 
 																<div class="form-group col-md-4">
-																	<label for="inputEmail4">Delivery Period</label>
-																	<input type="text" class="form-control"
-																		id="inputEmail4" placeholder="delivery period"
+																	<label for="inputEmail4">Delivery Period</label> <input
+																		type="text" class="form-control" id="inputEmail4"
+																		placeholder="delivery period"
 																		th:field="*{deliveryPeriod}">
 																</div>
 																<div class="form-group col-md-4">
-																	<label for="inputPassword4">Delivery Mode</label>
-																	<input type="text" class="form-control"
-																		id="inputPassword4" placeholder="delivery mode"
-																		th:field="*{delMode}">
+																	<label for="inputPassword4">Delivery Mode</label> <input
+																		type="text" class="form-control" id="inputPassword4"
+																		placeholder="delivery mode" th:field="*{delMode}">
 																</div>
 
 
 																<div class="form-group col-md-4">
-																	<label for="inputEmail4">Term and Condition</label>
-																	<input type="text" class="form-control"
-																		id="inputEmail4" placeholder="delivery period"
-																		th:field="*{deliveryPeriod}">
+																	<label for="inputEmail4">Term and Condition</label> <input
+																		type="text" class="form-control" id="inputEmail4"
+																		placeholder="delivery period"
+																		>
 																</div>
 
 
@@ -278,132 +280,113 @@
 																<thead>
 																	<tr>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Indent
-																			Number</th>
+																			style="width: 90px;">Indent Number</th>
 																		<th scope="col" class="text-center"
-																			style="width: 130px;">Indent
-																			Date</th>
+																			style="width: 130px;">Indent Date</th>
+																		
 																		<th scope="col" class="text-center"
-																			style="width: 100px;">Employee
-																			Code</th>
+																			style="width: 90px;">Employee</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Employee
-																			Name</th>
+																			style="width: 90px;">Item Code</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Item Code
-																		</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Description
-																		</th>
+																			style="width: 90px;">Description</th>
 																		<th scope="col" class="text-center"
 																			style="width: 10px;">UOM</th>
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Rate</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Negotiable
-																			Cost</th>
+																			style="width: 90px;">Negotiable Cost</th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Qty</th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">Total INR
-																			Value</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Approval
-																			Status</th>
+																			style="width: 120px;">Total INR Value</th>
+
 
 
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr id="addr0" th:each="row, stat :${quotation.quotationItem}">
+																<tr id="addr0"
+																		th:each="row, stat :${quotation.quotationItem}">
 
 
 																		<td><select
-																				class="select form-control form-control-sm"
-																				id="indentNumber" title="Location"
-																				required
-																				onchange="getIndentDetailByIndentNumber()"
-																				th:field="*{quotationItem[__${stat.index}__].indentNum}">
-																				<option value=" ">Select Indent Number
-																				</option>
-																				<option
-																					th:each="indent :  ${listIndentInRfq}"
+																			class="select form-control form-control-sm"
+																			id="indentNumber" title="Location" required
+																			onchange="getIndentDetailByIndentNumber()"
+																			th:field="*{quotationItem[__${stat.index}__].indentNum}">
+																				<option value=" ">Select Indent Number</option>
+																				<option th:each="indent :  ${listIndentInRfq}"
 																					th:text="${indent.indentNumber}"
-																					th:value=" ${indent.indentNumber}">
-																				</option>
+																					th:value=" ${indent.indentNumber}"></option>
 
-																			</select></td>
+																		</select></td>
 
-																		<td><input type="date"
-																				style="font-size: 0.95rem"
-																				title="indent date"
-																				class="form-control form-control-sm"
-																				th:field="*{quotationItem[__${stat.index}__].indentDate}"
-																				id="indentDate" required>
-																		</td>
+																		<td><input type="date" style="font-size: 0.95rem"
+																			title="indent date"
+																			class="form-control form-control-sm"
+																			th:field="*{quotationItem[__${stat.index}__].indentDate}"
+																			id="indentDate" required></td>
 
-
-
-																		<td><input type="text" title="employee name"
-																				th:field="*{quotationItem[__${stat.index}__].employee}"
-																				class="form-control form-control-sm"
-																				id="empCode">
-																		</td>
-
-																		<td><input type="text" title="uom"
-																				class="form-control form-control-sm"
-																				id="empName">
-																		</td>
 
 
 																		<td><select
-																				class="select form-control form-control-sm itemContainer"
-																				id="item" title="item" required
-																				th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
-																				onchange="changeItemInQuotationDetail()">
-																				<option value="">Select Item Code
-																				</option>
+																			class="select form-control form-control-sm"
+																			title="employee name" required
+																			th:field="*{quotationItem[__${stat.index}__].employee}">
+																				<option value=" ">Select</option>
+																				<option th:each="employee :  ${employeeList}"
+																					th:text="${employee.empName}"
+																					th:value=" ${employee.empCode}"></option>
+
+																		</select></td>
 
 
-																			</select></td>
+
+
+
+
+																<!-- 		<td><select
+																			class="select form-control form-control-sm itemContainer"
+																			id="item" title="item" required
+																			th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
+																			onchange="changeItemInQuotationDetail()">
+																				<option value="">Select Item Code</option>
+
+
+																		</select></td> -->
+																		
+																			<td><input type="text" id="item" title="item"  th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
+																			class="form-control form-control-sm" required></td>
+																		
 
 																		<td><input type="text" id="itemDescriptin"
-																				class="form-control form-control-sm"
-																				required></td>
+																			class="form-control form-control-sm" required></td>
 
 																		<td><input type="text"
-																				class="form-control form-control-sm"
-																				required id="uomCode" title="">
-																		</td>
+																			class="form-control form-control-sm" required
+																			id="uomCode" title=""></td>
 
 																		<td><input type="text"
-																				class="form-control form-control-sm"
-																				required th:field="*{quotationItem[__${stat.index}__].rate}"																				title="">
-																		</td>
+																			class="form-control form-control-sm" required
+																			th:field="*{quotationItem[__${stat.index}__].rate}"
+																			title=""></td>
 
 																		<td><input type="text"
-																				class="form-control form-control-sm"
-																				required title="">
-																		</td>
+																			class="form-control form-control-sm" required
+																			title=""></td>
 
 
 																		<td><input type="text"
-																				class="form-control form-control-sm"
-																				required
-																				th:field="*{quotationItem[__${stat.index}__].qtItemQty}"																				title="">
-																		</td>
+																			class="form-control form-control-sm" required
+																			th:field="*{quotationItem[__${stat.index}__].qtItemQty}"
+																			title=""></td>
 
 																		<td><input type="text"
-																				class="form-control form-control-sm"
-																				required
-																				th:field="*{quotationItem[__${stat.index}__].totalValue}"
-																				title="">
-																		</td>
+																			class="form-control form-control-sm" required
+																			th:field="*{quotationItem[__${stat.index}__].totalValue}"
+																			title=""></td>
 
-																		<td><input type="text"
-																				class="form-control form-control-sm"
-																				required title="">
-																		</td>
 
 
 
@@ -428,126 +411,108 @@
 
 														<div class="box-body">
 
-															<div class="row">
+															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">Total
+																	<label for="inputEmail3" class="col-md-2 control-label">Trade
 																		Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="total discount">
+																		<input type="number" class="form-control" onkeyup="totalDiscountInPercentFun()"
+																			id="totalDiscountInPercent" placeholder="Total Discount(%)" th:field="*{quotationItem[0].discountValue}">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="total discount">
-																	</div>
-																</div>
-															</div>
-
-
-															<div class="row">
-
-																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">Discount</label>
-																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="discount">
-																	</div>
-																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="discount">
+																			id="totalDiscountInValue" placeholder="Total Discount">
 																	</div>
 																</div>
 															</div>
 
-															<div class="row">
+
+															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">CGST(%)</label>
+																	<label for="inputEmail3" class="col-md-2 control-label">Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="cgst">
+																		<input type="number" class="form-control" onkeyup="discountInPercentFun()"
+																			id="discountInPercent" placeholder="Discount(%)"  th:field="*{quotationItem[0].discount}">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="cgst">
+																			id="discountInValue" placeholder="Discount">
 																	</div>
 																</div>
 															</div>
 
-															<div class="row">
+														
+
+															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">Packing</label>
+																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="packing">
+																		<input type="number" class="form-control" id="packing"
+																			placeholder="Packing" th:field="*{quotationItem[0].packing}">
 																	</div>
 
 																</div>
 															</div>
 
-															<div class="row">
+
+
+															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">SGST(%)</label>
+																	<label for="inputEmail3" class="col-md-2 control-label">Freight</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="sgst">
-																	</div>
-																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="sgst">
-																	</div>
-																</div>
-															</div>
-
-															<div class="row">
-
-																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">Freight</label>
-																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="freight">
+																		<input type="number" class="form-control" id="freight"
+																			placeholder="Freight"  th:field="*{quotationItem[0].freight}">
 																	</div>
 
 																</div>
 															</div>
 
-															<div class="row">
+
+															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">CGST(%)</label>
+																	<label for="inputEmail3" class="col-md-2 control-label">SGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="cgst">
+																		<input type="number" class="form-control" id="sgstInPercent"
+																			placeholder="Sgst(%)" onkeyup="sgstInPercentFun()"  th:field="*{quotationItem[0].sgst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="cgst">
+																		<input type="number" class="form-control" id="sgstInValue"
+																			placeholder="Sgst"  th:field="*{quotationItem[0].sgstValue}">
 																	</div>
 																</div>
 															</div>
 
-															<div class="row">
+															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3"
-																		class="col-md-2 control-label">IGST(%)</label>
+																	<label for="inputEmail3" class="col-md-2 control-label">CGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="igst">
+																		<input type="number" class="form-control" id="cgstInPercent"
+																			placeholder="Cgst(%)" onkeyup="cgstInPercentFun()" th:field="*{quotationItem[0].cgst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
-																			id="inputEmail3" placeholder="igst">
+																		<input type="number" class="form-control" id="cgstInValue"
+																			placeholder="Cgst" th:field="*{quotationItem[0].cgstValue}">
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group row">
+
+																<div class="form-group m-5">
+																	<label for="inputEmail3" class="col-md-2 control-label">IGST(%)</label>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control" id="igstInPercent"
+																			placeholder="Igst(%)" onkeyup="igstInPercentFun()"  th:field="*{quotationItem[0].igst}" >
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" class="form-control" id="igstInValue"
+																			placeholder="Igst"  th:field="*{quotationItem[0].igstValue}">
 																	</div>
 																</div>
 															</div>
@@ -558,33 +523,67 @@
 
 													<!--miscellaneas end -->
 
+
+													<div class="box">
+														<h5>Total Details</h5>
+														<div class="box-body">
+
+															<div class="row">
+
+																<div class="col-md-2"></div>
+																<div class="col-md-8  center ">
+
+																	<div class="row ">
+																		<div class="form-group col-md-6">
+																			<label for="inputEmail4">Total Value </label> <input
+																				type="text" class="form-control" id="totalRs"
+																				placeholder="Total Value">
+																		</div>
+																	</div>
+																	
+																	<div class="row ">
+																		<div class="form-group col-md-6">
+																			<label for="inputEmail4">Total Value (INR)</label> <input
+																				type="text" class="form-control" id="totalCount"
+																				placeholder="Total Value (INR)" >
+																		</div>
+																	</div>
+
+
+																</div>
+																<div class="col-md-2"></div>
+
+
+															</div>
+
+														</div>
+
+													</div>
+													<!--end  detail -->
+
+
+
+
+													<!--</div>-->
+													<!--end main div content-->
+
+
+
 												</div>
-												<!--end  detail -->
-
-
-
-
-												<!--</div>-->
-												<!--end main div content-->
-
 
 
 											</div>
 
-
-										</div>
-
-										<div class="box-footer">
-											<button type="submit" class="btn btn-primary">Submit</button>
-											<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
-										</div>
-
+											<div class="box-footer">
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</div>
 								</form>
 
 
 								<div class="box-footer">
-									<div style="width: parent; text-align-last: right; margin:8px">
-										<a th:href="@{/quotationdetail/list}">View All Quotation Detail</a>
+									<div style="width: parent; text-align-last: right; margin: 8px">
+										<a th:href="@{/quotationdetail/list}">View All Quotation
+											Detail</a>
 									</div>
 
 								</div>
@@ -604,12 +603,204 @@
 	</div>
 
 	<div th:replace="fragments/footer :: footer">...</div>
+
+
+	<script>
+		function changeRequestForQuotation() {
+
+			console.log("get Item function calling");
+			var rfqNumber = document.getElementById("rfqNum").value;
+			console.log("emp code : " + rfqNumber);
+
+			$.ajax({
+				type : "GET",
+				url : "rfqdetail/" + rfqNumber,
+
+				success : function(data) {
+					console.log("ite data is : " + data)
+
+					$("#rfqDate").val(data.rfqDate)
+
+					//supplierList(rfqNumber)
+
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
+
+		function supplierList(rfqNumber) {
+
+			//var supplierId = document.getElementById("supplierId").value;
+			console.log("supplier id in supplier list: " + rfqNumber)
+
+			$
+					.ajax({
+						type : "GET",
+						url : "supplierlist/" + rfqNumber,
+
+						success : function(data) {
+							console.log("ite data is : " + data)
+
+							var options = '<option value=""><strong>Select</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : party code /supplier "
+														+ value.partyCode)
+												console.log("item info : party name"
+														+ value.partyName)
+
+												options += '<option value="' + value.partyCode + '">'
+														+ value.partyName
+														+ '</option>';
+
+											});
+
+							$('.suppContainer').html(options);
+
+							indentList(rfqNumber)
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
+		}
+		function supplierInfo1() {
+
+			var supplierId = document.getElementById("supplierId").value;
+			console.log("supplier id is in supplier info: " + supplierId)
+
+			$.ajax({
+				type : "GET",
+				url : "supplierinfo/" + supplierId,
+
+				success : function(data) {
+					console.log("ite data is : " + data)
+
+					//$("#supplierAdd").val(data.partyAddr1)
+					$("#supplierCity").val(data.cityCode)
+					$("#supplierState").val(data.stateCode)
+					$("#supplierName").val(data.partyName)
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
+
+		function indentList(rfqNumber) {
+
+			console.log("indent list ====> ")
+			$
+					.ajax({
+						type : "GET",
+						url : "indentlist/" + rfqNumber,
+
+						success : function(data) {
+							console.log("indent list   is : "
+									+ JSON.stringify(data))
+
+							var options = '<option value=""><strong>Select</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.indentNumber)
+												console.log("item info : "
+														+ value.indentNumber)
+
+												options += '<option value="' + value.indentNumber + '">'
+														+ value.indentNumber
+														+ '</option>';
+
+											});
+
+							$('.indentContainer0').html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
+		}
+
+		//total value in inr against single row 
+		function totalInrValueCal() {
+
+			var itemRate = document.getElementById("itemRate0").value;
+			console.log("item rate value is : " + itemRate)
+			var itemQty = document.getElementById("itemQty0").value;
+			console.log("item qty is : " + itemQty)
+
+			totalInrValue = itemRate * itemQty;
+
+			document.getElementById("totalInrValue0").value = totalInrValue;
+			
+			calculationOfTotalValue();
+
+		}
+		
+		
+		
+		window.addEventListener("load", myInit, true); 
+		function myInit(){ 
+			changeRequestForQuotation();
+			//getIndentDetailByIndentNumber();
+			
+			//supplierInfo1()
+			//changeItem();
+			
+		}; 
+		
+		
+		function changeItem() {
+
+			var itemCode = document.getElementById("item").value;
+			console.log("ItemCode is : " + itemCode)
+
+			$.ajax({
+				type: "GET",
+				url: "itemInfo/" + itemCode,
+
+				success: function(data) {
+					console.log("Item Info behalf of Indent Number  : " + data)
+
+					$("#itemDescriptin").val(data.description)
+					$("#uomCode0").val(data.uom);
+					$("#itemRate0").val(data.itemRate);
+
+					$("#itemQty0").val('0');
+
+
+
+
+
+				}, error: function() {
+					console.log("Error");
+				}
+			});
+
+		}
+		
+		
+	</script>
 	<!--   <section class="content">
         
         </section>-->
-	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
 	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
 	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
