@@ -55,8 +55,8 @@ public class PurchaseOrderController {
 		List<QuotationDetail> lsitQuotationDetail = quotationDetailRepo.findAll();
 		model.addAttribute("lsitQuotationDetail", lsitQuotationDetail);
 
-		List<SupplierMaster> listSupplier = supplierRepo.findAll();
-		model.addAttribute("listSupplier", listSupplier);
+		//List<SupplierMaster> listSupplier = supplierRepo.findAll();
+		//model.addAttribute("listSupplier", listSupplier);
 
 		List<CurrencyMaster> listCurrency = currencyRepo.findAll();
 		model.addAttribute("listCurrency", listCurrency);

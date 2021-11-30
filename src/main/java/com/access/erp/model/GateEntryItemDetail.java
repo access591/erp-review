@@ -76,7 +76,7 @@ public class GateEntryItemDetail {
 	@Column(name="UOM_NET_QTY",length=6)
 	private String uomNetQty;
 	
-	@Column(name="SORTAGE_QTY_ACC",length=14)
+	@Column(name="SORTAGE_QTY_ACCC",length=14)
 	private int sortageQtyAcc;
 
 	@Column(name="GROSS_QTY",length=14)

@@ -10,16 +10,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import com.access.erp.model.master.CurrencyMaster;
-import com.access.erp.model.master.SupplierMaster;
+
+
 
 
 @Entity
@@ -27,7 +24,7 @@ import com.access.erp.model.master.SupplierMaster;
 public class PurchaseOrder {
 
 	@Id
-	@Column(name = "PO_NO", length = 15)
+	@Column(name = "PO_NO", length = 30)
 	private String poNumber;
 
 	@Column(name = "PO_DATE")
@@ -45,21 +42,21 @@ public class PurchaseOrder {
 	@Column(name = "PO_TYPE", length = 10)
 	private String poType;
 	
-	@ManyToOne
-	@JoinColumn(name = "QUOT_NO")
-	private QuotationDetail quotationDetail;
+	//@ManyToOne
+	//@JoinColumn(name = "QUOT_NO")
+	@Column(name = "QUOT_NO", length = 40)
+	private String quotationDetail;
 
 	@Column(name = "QUOT_DATE")
 	private Date quotationDate;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "SUPP_CODE")
-	private SupplierMaster supplier;
 	
-	@ManyToOne
-	@JoinColumn(name = "CURRENCY_CODE")
-	private CurrencyMaster currency;
+	@Column(name = "SUPP_CODE",length = 30)
+	private String  supplier;
+	
+	@Column(name = "CURRENCY", length=2)
+	private String  currency;
 
 	@Column(name = "SUPPLY_DATE")
 	private Date supplyDate;
@@ -77,17 +74,6 @@ public class PurchaseOrder {
 	//14,2
 	@Column(name = "TOTAL_VALUE", length = 10)
 	private String totalValue;
-	
-	
-
-	
-	
-	
-	
-
-	
-
-
 
 	@Column(name = "RECD_DATE")
 	private Date recdDate;
@@ -95,8 +81,6 @@ public class PurchaseOrder {
 	@Column(name = "WORKER_CODE", length = 10)
 	private String workerCode;
 
-	
-	
 
 	//5,2
 	@Column(name = "EXCISE", length = 6)
@@ -181,8 +165,8 @@ public class PurchaseOrder {
 	private String productionUnder;
 
 	//5,2
-	@Column(name = "CARTAGE", length = 50)
-	private int cartage;
+	@Column(name = "CAR_TAGE")
+	private Long cartage;
 
 	
 
@@ -277,7 +261,7 @@ public class PurchaseOrder {
 	@Column(name = "REMARK", length = 100)
 	private String remark;
 
-	@Column(name = "PO_REMARKS", length = 5000)
+	@Column(name = "PO_REMARKS", length = 500)
 	private String poRemarks;
 
 	@Column(name = "AMEND_REMARKS2", length = 500)
@@ -291,7 +275,7 @@ public class PurchaseOrder {
 	@Column(name = "NATURE", length = 2)
 	private String nature;
 
-	@Column(name = "PO_REMARK", length = 1000)
+	@Column(name = "PO_REMARK", length = 500)
 	private String poRemark;
 
 	@Column(name = "APPROVAL_DATE")
@@ -439,7 +423,7 @@ public class PurchaseOrder {
 	
 	
 	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-	@Fetch(value = FetchMode.SUBSELECT)
+	//@Fetch(value = FetchMode.SUBSELECT)
 	private List<PurchaseOrderItem> listPurchaseOrderItem = new ArrayList<>();
 
 
@@ -509,12 +493,14 @@ public class PurchaseOrder {
 	}
 
 
-	public QuotationDetail getQuotationDetail() {
+	
+
+	public String getQuotationDetail() {
 		return quotationDetail;
 	}
 
 
-	public void setQuotationDetail(QuotationDetail quotationDetail) {
+	public void setQuotationDetail(String quotationDetail) {
 		this.quotationDetail = quotationDetail;
 	}
 
@@ -529,22 +515,28 @@ public class PurchaseOrder {
 	}
 
 
-	public SupplierMaster getSupplier() {
+	
+
+
+	
+
+
+	public String getSupplier() {
 		return supplier;
 	}
 
 
-	public void setSupplier(SupplierMaster supplier) {
+	public void setSupplier(String supplier) {
 		this.supplier = supplier;
 	}
 
 
-	public CurrencyMaster getCurrency() {
+	public String getCurrency() {
 		return currency;
 	}
 
 
-	public void setCurrency(CurrencyMaster currency) {
+	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 
@@ -849,12 +841,14 @@ public class PurchaseOrder {
 	}
 
 
-	public int getCartage() {
+	
+
+	public Long getCartage() {
 		return cartage;
 	}
 
 
-	public void setCartage(int cartage) {
+	public void setCartage(Long cartage) {
 		this.cartage = cartage;
 	}
 
