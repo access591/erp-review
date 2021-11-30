@@ -22,7 +22,7 @@ public class PurchaseOrderItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PURCHASE_ORDER_ITEM", length = 50)
+	@Column(name = "PURCHASE_ORDER_ITEM", length = 30)
 	private Long purchaseOrderItem;
 	
 	
@@ -52,18 +52,10 @@ public class PurchaseOrderItem {
 	private String itemStatus = "P";
 	
 	
-	@Column(name = "ITEM_REMARKS" ,length = 1000)
+	@Column(name = "ITEM_REMARKS" ,length = 500)
 	private String itemRemarks;
 
 	
-	
-	
-	
-	
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "PO_NO")
-	private PurchaseOrder purchaseOrder;
 	
 
 	@Column(name = "PO_DATE")
@@ -291,11 +283,17 @@ public class PurchaseOrderItem {
 	
 	@Column(name = "COST_CENTRE_CODE",length=10)
 	private int costCenterCode;
+	
+	 @ManyToOne(optional = false)
+	 @JoinColumn(name="PO_NO")
+	private PurchaseOrder purchaseOrder;
 
 	public PurchaseOrderItem() {
 		super();
 		
 	}
+	
+	
 
 	public Long getPurchaseOrderItem() {
 		return purchaseOrderItem;
