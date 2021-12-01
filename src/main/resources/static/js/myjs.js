@@ -465,11 +465,11 @@ function getItemInfoInPo() {
 
 	var itemNumber = document.getElementById("itemPo").value;
 	var indentNumber = document.getElementById("indentNumberPo").value;
-	console.log("get item detail : "+indentNumber+" : " +itemNumber)
+	console.log("get item detail : " + indentNumber + " : " + itemNumber)
 
 	$.ajax({
 		type: "GET",
-		url: "itemInfo/" + itemNumber+"/"+indentNumber,
+		url: "itemInfo/" + itemNumber + "/" + indentNumber,
 
 		success: function(data) {
 			console.log("item info detail " + data)
@@ -486,14 +486,51 @@ function getItemInfoInPo() {
 	});
 }
 
-function totalCostCal(){
-	
+function totalCostCal() {
+
 	var itemRate = document.getElementById("itemRate0").value;
 	var qtyOrderrate = document.getElementById("qtyOrder0").value;
-	
-	document.getElementById("totalCost0").value = itemRate*qtyOrderrate;
-	document.getElementById("totalCostInr0").value = itemRate*qtyOrderrate;
-	
+
+	var freight = document.getElementById("freight0").value;
+
+
+	document.getElementById("totalCost0").value = itemRate * qtyOrderrate;
+	document.getElementById("totalCostInr0").value = itemRate * qtyOrderrate;
+
+}
+function calulationOfCgst() {
+
+	var totalCost = document.getElementById("totalCost0").value;
+
+	var cgstInPer = document.getElementById("cgstInPer0").value;
+	document.getElementById("cgstInValue0").value = totalCost * cgstInPer / 100;
+}
+
+function calulationOfSgst() {
+	var totalCost = document.getElementById("totalCost0").value;
+
+	var sgstInPer = document.getElementById("sgstInPer0").value;
+	//var sgstInValue =  document.getElementById("sgstInValue0").value;
+	document.getElementById("sgstInValue0").value = totalCost * sgstInPer / 100;
+
+
+}
+
+function calulationOfIgst() {
+	var totalCost = document.getElementById("totalCost0").value;
+
+	var igstInPer = document.getElementById("igstInPer0").value;
+	//var igstInValue = document.getElementById("igstInValue0").value;
+	document.getElementById("igstInValue0").value = totalCost * igstInPer / 100;
+
+}
+
+function calulationOfDiscount() {
+	var totalCost = document.getElementById("totalCost0").value;
+
+	var descountInPer = document.getElementById("descountInPer0").value;
+	//var descountInValue = document.getElementById("descountInValue0").value;
+	document.getElementById("descountInValue0").value = totalCost * descountInPer / 100;
 }
 
 
