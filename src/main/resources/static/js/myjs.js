@@ -619,15 +619,16 @@ function getRCityOnState() {
 function getOrderIndentDetailPo() {
 
 	var indentNumber = document.getElementById("orderIndentNumberPo").value;
+	console.log("order indent number is : " + indentNumber)
 
 	$.ajax({
 		type: "GET",
 		url: "indentdetailinpo/" + indentNumber,
 
 		success: function(data) {
-			console.log("ite data is : " + data)
+			console.log("order indent response  : " + data)
 
-			console.log("indent data is : " + data.poDate)
+			console.log("order indent date   : " + convertDate(data.poDate))
 			$("#orderIndentDatePo").val(data.poDate)
 			//$("#empName").val(data.employee.empName);
 			//$("#empCode").val(data.employee.empCode);
@@ -645,6 +646,14 @@ function getOrderIndentDetailPo() {
 		}
 	});
 }
+
+function convertDate(inputFormat) {
+  function pad(s) { return (s < 10) ? '0' + s : s; }
+  var d = new Date(inputFormat)
+  return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/')
+}
+
+
 
 function getOrderItemList(indentNumber) {
 

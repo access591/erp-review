@@ -81,8 +81,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 		
 		String approvalStatus = "Y";
 		
-		purchaseOrderRepo.findByApprovalStatus(approvalStatus);
-		return null;
+		
+		return purchaseOrderRepo.findByApprovalStatus("Y");
 	}
 
 }

@@ -288,6 +288,7 @@ public class PurchaseOrderItem {
 	
 	 @ManyToOne(optional = false)
 	 @JoinColumn(name="PO_NO")
+	 @JsonIgnore
 	private PurchaseOrder purchaseOrder;
 
 	public PurchaseOrderItem() {
