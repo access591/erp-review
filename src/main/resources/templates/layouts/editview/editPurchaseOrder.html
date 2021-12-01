@@ -1,35 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 
-<head >
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
-	<style>
-		.form-control-sm {
-			height: 30px;
-			width: 120px;
 
-		}
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+}
 
-		.select {
-			width: 130px;
-			font-size: 10px;
-		}
-	</style>
+.select {
+	width: 130px;
+	font-size: 10px;
+}
+</style>
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini"
+	onload="againstPurchaseThrough()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -67,12 +81,18 @@
 
 
 
-									<div class="col-md-12 shadow bg-white rounded" style="margin-top: 20px;">
+									<div class="col-md-12 shadow bg-white rounded"
+										style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
+
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
+
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
-											</div><!-- /.box-header -->
+											</div>
+											<!-- /.box-header -->
 											<!-- form start -->
 											<form role="form" th:action="@{/purchaseorder/}"
 												th:object="${purchaseOrder}" method="POST">
@@ -89,248 +109,244 @@
 															</div>
 															<div class="form-group col-md-3">
 																<label for="inputPassword4">PO Date</label> <input
-																	type="date" class="form-control" id="inputPassword4"
-																	placeholder="po date" th:field="*{poDate}">
+																	type="date" class="form-control" placeholder="po date"
+																	id="poDate" th:field="*{poDate}">
 															</div>
 
 														</div>
 
 														<div class="form-row">
 															<div class="form-group col-md-3">
-																<label class="form-label">Gst</label> <label
+																<label class="form-label">GST</label> <label
 																	style="color: red">*</label> <select
 																	class="form-control" id="" title="gst" required>
-																	<option value="gst" selected>GST</option>
-																	<option value="nongst">Non-GST</option>
+																	<option value="G" selected>GST</option>
+																	<option value="N">Non-GST</option>
 
 																</select>
 															</div>
 
 															<div class="form-group col-md-3">
-																<label for="inputAddress">Cancellation Status</label>
-																<select class="form-control" id=""
-																	title="cancellation status" th:field="*{cancStatus}"
-																	required>
-																	<option value="yes">Yes</option>
-																	<option value="no" selected>No</option>
+																<label for="inputAddress">Cancellation Status</label> <select
+																	class="form-control" id="" title="cancellation status"
+																	th:field="*{cancStatus}" required>
+																	<option value="Y">Yes</option>
+																	<option value="N" selected>No</option>
 
 																</select>
-															</div>
-
-														</div><!-- /.box-body -->
-
-													</div>
-													<!--end box-1-->
-
-													<!--box2-->
-
-													<div class="box">
-														<h5 class="box-title">Nature of Purchase</h5>
-														<div class="box-body">
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Nature of
-																	Purchase</label><select class="form-control" id=""
-																	title="urgency" th:field="*{natureOfPur}" required>
-
-																	<option value="yes">Capital</option>
-																	<option value="non" selected>Non-Capital</option>
-																</select>
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Open PO</label> <select
-																	class="form-control" id="" title="urgency"
-																	th:field="*{openPo}" required>
-
-																	<option value="yes" selected>Yes</option>
-																	<option value="non">No</option>
-																</select>
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">PO Type</label> <select
-																	class="form-control" id="" title="urgency"
-																	th:field="*{poType}" required>
-
-																	<option value="InterState" selected>Inter State
-																	</option>
-																	<option value="IntraState">Intra State</option>
-																</select>
-															</div>
-
-
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Purchase Through</label>
-																<select class="form-control" id="purchaseThrough"
-																	title="urgency" required
-																	onchange="againstPurchaseThrough()">
-																	<option value="quotation" selected>Quotation
-																	</option>
-																	<option value="indent">Indent</option>
-																</select>
-															</div>
-
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Quotation Number</label>
-																<select class="form-control" id="quotationNumber"
-																	title="" onchange="quotationNumberInfo()"
-																	th:field="*{quotationDetail}" required>
-																	<option value="">Select</option>
-																	<option
-																		th:each="quotationDetal :  ${lsitQuotationDetail}"
-																		th:text="${quotationDetal.quotNo}"
-																		th:value=" ${quotationDetal.quotNo}"></option>
-																</select>
-															</div>
-
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Date</label> <input
-																	type="date" class="form-control" id="quotationDate"
-																	placeholder="cancelbutton status"
-																	th:field="*{quotationDate}">
 															</div>
 
 														</div>
 													</div>
-													<!--end box-2-->
+													<!-- /.box-body -->
 
-													<!--box-3-->
-													<div class="box">
-														<h5>Supplier Info</h5>
-														<div class="box-body">
+												</div>
+												<!--end box-1-->
 
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Supplier</label>
-																<select id="supplierId" class="form-control" required
-																	title="supplier code" onchange="supplierInfo()"
-																	th:field="*{supplier}">
-																	<option value=" ">Select</option>
-																	<option th:each="supplier :  ${listSupplier}"
-																		th:text="${supplier.supplierName}"
-																		th:value=" ${supplier.supplierId}">
-																	</option>
+												<!--box2-->
+
+												<div class="box">
+													<h5 class="box-title">Nature of Purchase</h5>
+													<div class="box-body">
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Nature of Purchase</label><select
+																class="form-control" id="" title="urgency"
+																th:field="*{natureOfPur}" required>
+
+																<option value="C">Capital</option>
+																<option value="N" selected>Non-Capital</option>
+															</select>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Open PO</label> <select
+																class="form-control" id="" title="urgency"
+																th:field="*{openPo}" required>
+
+																<option value="Y" selected>Yes</option>
+																<option value="N">No</option>
+															</select>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">PO Type</label> <select
+																class="form-control" id="" title="urgency"
+																th:field="*{poType}" required>
+
+																<option value="Ir" selected>Inter State</option>
+																<option value="Ia">Intra State</option>
+															</select>
+														</div>
 
 
-																</select>
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Purchase Through</label> <select
+																class="form-control" id="purchaseThrough"
+																title="urgency" required
+																onchange="againstPurchaseThrough()">
+																<option value="Q" selected>Quotation</option>
+																<option value="I">Indent</option>
+															</select>
+														</div>
 
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Supplier State</label>
-																<input type="text" class="form-control"
-																	id="supplierState" placeholder="supplier state">
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Quotation Number</label> <select
+																class="form-control" id="quotationNumber" title=""
+																onchange="quotationNumberInfo()"
+																th:field="*{quotationDetail}" required>
+																<option value="">Select</option>
+																<option
+																	th:each="quotationDetal :  ${lsitQuotationDetail}"
+																	th:text="${quotationDetal.quotNo}"
+																	th:value=" ${quotationDetal.quotNo}"></option>
+															</select>
+														</div>
 
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Currency</label>
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Date</label> <input type="date"
+																class="form-control" id="quotationDate"
+																placeholder="cancelbutton status"
+																th:field="*{quotationDate}">
+														</div>
 
-																<select id="currencyId" class="form-control" required
-																	title="currency" th:field="*{currency}">
-																	<option value=" ">Select</option>
-																	<option th:each="currency :  ${listCurrency}"
-																		th:text="${currency.currencyValue}"
-																		th:value=" ${currency.currencyCode}">
-																	</option>
+													</div>
+												</div>
+												<!--end box-2-->
+
+												<!--box-3-->
+												<div class="box">
+													<h5>Supplier Info</h5>
+													<div class="box-body">
+
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Supplier</label> <select
+																id="supplierId" class="form-control" required
+																title="supplier code" onchange="supplierInfo()"
+																th:field="*{supplier}">
+																<option value=" ">Select</option>
+																<option th:each="party :  ${listParty}"
+																	th:text="${party.partyName}"
+																	th:value=" ${party.partyCode}"></option>
 
 
-																</select>
-															</div>
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Supplier State</label> <select
+																id="supplierState" class="form-control" required
+																title="supplier state">
+																<option value=" ">Select</option>
+																<option th:each="state :  ${stateList}"
+																	th:text="${state.stateName}"
+																	th:value=" ${state.stateCode}"></option>
+
+
+															</select>
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Currency</label> <select
+																id="currency" class="form-control" required
+																title="currency" th:field="*{currency}">
+																<option value=" ">Select</option>
+																<option value=" I">INR</option>
+																<option value=" U">USD</option>
+
+
+
+															</select>
 														</div>
 													</div>
-													<!--end box-3-->
+												</div>
+												<!--end box-3-->
 
-													<!--box-4-->
-													<div class="box">
-														<h5>Execution Detail</h5>
-														<div class="box-body">
+												<!--box-4-->
+												<div class="box">
+													<h5>Execution Detail</h5>
+													<div class="box-body">
 
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Supply Date</label> <input
-																	type="date" class="form-control" id="inputEmail4"
-																	placeholder="supply date" th:field="*{supplyDate}">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Delivery Date</label> <input
-																	type="date" class="form-control" id="inputPassword4"
-																	placeholder="po date" th:field="*{deliveryDate}">
-															</div>
-
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Conversion Value</label>
-																<input type="number" class="form-control"
-																	id="inputPassword4" placeholder="gst"
-																	th:field="*{conversionValue}">
-															</div>
-
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Remarks</label> <input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="gst" th:field="*{remarks}">
-															</div>
-
-															<div class="form-group col-md-4">
-																<label for="inputAddress">Invoice Address</label> <input
-																	type="text" class="form-control" id="inputAddress"
-																	placeholder="Invoce Address">
-															</div>
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Supply Date</label> <input
+																type="date" class="form-control" id="inputEmail4"
+																placeholder="supply date" th:field="*{supplyDate}">
 														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Delivery Date</label> <input
+																type="date" class="form-control" id="inputPassword4"
+																placeholder="po date" th:field="*{deliveryDate}">
+														</div>
+
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Conversion Value</label> <input
+																type="number" class="form-control" id="inputPassword4"
+																placeholder="gst" th:field="*{conversionValue}">
+														</div>
+
+														<div class="form-group col-md-6">
+															<label for="inputAddress">Invoice Address</label> <input
+																type="text" class="form-control" id="inputAddress"
+																placeholder="Invoce Address">
+														</div>
+
+														<div class="form-group col-md-6">
+															<label for="inputPassword4">Remarks</label>
+															<textarea type="text" class="form-control"
+																id="inputPassword4" placeholder="gst"
+																th:field="*{remarks}"></textarea>
+														</div>
+
+
 													</div>
-													<!--end box-4-->
+												</div>
+												<!--end box-4-->
 
 
-													<!--detail box-->
-													<div class="box">
-														<div class="box-body">
+												<!--detail box-->
+												<div class="box">
 
-															<input id="_cr" name="_cr" type="hidden" value="1">
+													<h5>Item Details</h5>
+													<div class="box-body">
+
+														<input id="_cr" name="_cr" type="hidden" value="1">
 
 
 
-															<div class="table-responsive">
-																<table id="example" aria-describedby="example"
-																	class="table table-striped display">
-																	<thead>
-																		<tr>
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display">
+																<thead>
+																	<tr>
 
-																			<th scope="col" class="text-center"
-																				style="width: 130px;">Type</th>
-																			<th scope="col" class="text-center"
-																				style="width: 100px;">Indent
-																				Number</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Indent
-																				Date</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Item
-																				Number</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Item
-																				Rate</th>
-																			<th scope="col" class="text-center"
-																				style="width: 10px;">Effective
-																				Date</th>
-																			<th scope="col" class="text-center"
-																				style="width: 120px;">Qty
-																				Order</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Status</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Total
-																				Item Cost</th>
-																			<th scope="col" class="text-center"
-																				style="width: 120px;">otal
-																				Item Cost(INR)</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Remarks</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Rate
-																				History</th>
-																			<th scope="col" class="text-center"
-																				style="width: 90px;">Tax
-																				Detail</th>
+																		<th scope="col" class="text-center"
+																			style="width: 130px;">Type</th>
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">Indent Number</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Indent Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Number</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Item Rate</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">Effective Date</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Qty Order</th>
+																			
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Status</th>
 
-																		</tr>
-																	</thead>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Total Item Cost</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Total Item Cost(INR)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Remarks</th>
 
-																	<tbody>
-																		<tr id="addr0"
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0"
 																			th:each="row, stat :${purchaseOrder.listPurchaseOrderItem}">
 
 																			<input type="hidden" th:field="*{listPurchaseOrderItem[__${stat.index}__].purchaseOrderItem}">
@@ -426,75 +442,182 @@
 																					th:field="*{listPurchaseOrderItem[__${stat.index}__].itemRemarks}">
 																			</td>
 
-																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					title="rate history">
-																			</td>
+																		
 
-																			<td><input type="text"
-																					class="form-control form-control-sm"
-																					id="technicalQualification"
-																					title="Tax detail"
-																					th:field="*{listPurchaseOrderItem[__${stat.index}__].openIndent}">
-																			</td>
-
+																			
 
 
 
 																		</tr>
-																		<tr id='addr1' />
+																	<tr id='addr1' />
 
-																	</tbody>
+																</tbody>
 
 
-																</table>
-															</div>
+															</table>
+														</div>
 
-															<input type="hidden" id="hidden_field"
-																th:value="${length}" />
+														<input type="hidden" id="hidden_field"
+															th:value="${length}" />
+													</div>
+												</div>
+
+
+												<!--end detail box-->
+
+
+												<!-- detail tax block  -->
+
+												<div class="box">
+
+													<h5>Tax Info</h5>
+													<div class="box-body">
+
+														<input id="_cr" name="_cr" type="hidden" value="1">
+
+
+
+														<div class="table-responsive">
+															<table id="example" aria-describedby="example"
+																class="table table-striped display">
+																<thead>
+																	<tr>
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">Freight</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 100px;">CGST in(%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">CGST Value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">SGST in(%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">SGST value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 10px;">IGST in (%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">IGST Value</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Discount(%)</th>
+																		<th scope="col" class="text-center"
+																			style="width: 90px;">Discount Value</th>
+
+
+
+
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0" th:each="row, stat :${purchaseOrder.listPurchaseOrderItem}">
+
+
+
+																		<!-- item code -->
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="freight0" title="order date"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].freight}"></td>
+
+																		<!-- item name -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="cgstInPer0" title="item name"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].cgst}"onkeyup="calulationOfCgst()"></td>
+
+																		<!-- UOM -->
+																		<td><input type="number" title="uom"
+																			class="form-control form-control-sm" id="cgstInValue0"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].cgstValue}"></td>
+																		<!-- po qty   -->
+																		<td><input type="number"id="sgstInPer0"
+																			class="form-control form-control-sm" title="po qty"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].sgst}" onkeyup="calulationOfSgst()"></td>
+																		<!-- inr qty -->
+																		<td><input type="number" 
+																			class="form-control form-control-sm"
+																			id="sgstInValue0" title="inv qty"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].sgstValue}"></td>
+
+																		<!-- rec qty  -->
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="igstInPer0" title="rec qty"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].igst}" onkeyup="calulationOfIgst()"></td>
+
+
+																		<!-- po rate curr -->
+
+																		<td><input type="number" 
+																			class="form-control form-control-sm"
+																			id="igstInValue0" title="po rate curr"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].igstValue}"></td>
+
+																		<!-- po rate  -->
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="descountInPer0" title="po rate"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].discPer}" onkeyup="calulationOfDiscount()"></td>
+
+																		<td><input type="number"
+																			class="form-control form-control-sm"
+																			id="descountInValue0" title="po rate"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].discValue}"></td>
+
+
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+
+															</table>
 														</div>
 													</div>
+												</div>
+												<!--  detail tax block -->
 
 
-													<!--end detail box-->
+												<!--final div -->
 
 
-													<!--final div -->
+												<div class="box">
+													<h5>Total value</h5>
+													<div class="box-body">
 
-
-													<div class="box">
-														<h5>Total value</h5>
-														<div class="box-body">
-
-															<div class="form-group col-md-4">
-																<label for="inputEmail4">Total Cost(Excluding
-																	tax)</label> <input type="number"
-																	class="form-control" id="inputEmail4"
-																	placeholder="supplier" th:field="*{totalValue}">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="inputPassword4">Total Cost(Including
-																	tax)</label> <input type="number"
-																	class="form-control" id="inputPassword4"
-																	placeholder="supplier state">
-															</div>
-
-
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Total Cost(Excluding
+																tax)</label> <input type="number" class="form-control"
+																id="inputEmail4" placeholder="supplier"
+																th:field="*{totalValue}">
 														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Total Cost(Including
+																tax)</label> <input type="number" class="form-control"
+																id="inputPassword4" placeholder="supplier state">
+														</div>
+
+
 													</div>
-													<!--end final div-->
+												</div>
+												<!--end final div-->
 
-													<div class="box-footer" style="margin: 10px">
-														<input type="submit" value="Submit" class="btn btn-primary" />
-														<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
-													</div>
-
-
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="reset" value="Reset" class="btn btn-danger" />
+												</div>
 											</form>
 
 
-										</div><!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin:8px">
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
 											<a th:href="@{/purchaseorder/list}">View All PO</a>
 										</div>
 									</div>
@@ -510,85 +633,103 @@
 				</section>
 			</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
 
 
-			<script>
+	<script>
+		$(document).ready(function() {
 
-				window.addEventListener("load", myInit, true); function myInit() {
+			document.getElementById('poDate').valueAsDate = new Date();
 
-					againstPurchaseThrough();
-					quotationNumberInfo();
-
-				};
-				$(document).ready(function () {
+		});
+	</script>
 
 
+	<script>
+		function againstPurchaseThrough() {
+
+			let purchaseThrough = document.getElementById("purchaseThrough").value;
+			console.log("purchase through value : " + purchaseThrough);
+
+			//do all value clear on click selection 
+
+			$('#quotationDate').val('');
+
+			if (purchaseThrough == "Q") {
+				console.log("quotation ")
+				// enable field
+				$("#quotationNumber").prop('disabled', false);
+				$("#quotationDate").prop('disabled', false);
+
+				//get indent detail against quotation detail 
+
+				//getIndentAgainstQuotationDetail()
+
+			} else {
+				console.log(" is not")
+				//disabled and do blank 
+				$("#quotationNumber").prop('disabled', true);
+				$("#quotationDate").prop('disabled', true);
+				$('#quotationNumber').val('');
+				$('#quotationDate').val('');
+
+				//call api in case of purchase through is indent
+
+				indentDetailInCaseOfIndent();
+
+			}
+
+		}
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
 				});
-			</script>
+			} else {
+				console.log("ajax request : " + message);
+			}
 
-
-			<script>
-				function againstPurchaseThrough() {
-
-					let purchaseThrough = document.getElementById("purchaseThrough").value;
-					console.log("purchase through value : " + purchaseThrough);
-
-					//do all value clear on click selection 
-
-					$('#quotationDate').val('');
-
-					if (purchaseThrough == "quotation") {
-						console.log("quotation ")
-						// enable field
-						$("#quotationNumber").prop('disabled', false);
-						$("#quotationDate").prop('disabled', false);
-
-
-
-
-						//get indent detail against quotation detail 
-
-						//getIndentAgainstQuotationDetail()
-
-					} else {
-						console.log(" is not")
-						//disabled and do blank 
-						$("#quotationNumber").prop('disabled', true);
-						$("#quotationDate").prop('disabled', true);
-						$('#quotationNumber').val('');
-						$('#quotationDate').val('');
-
-
-
-						//call api in case of purchase through is indent
-
-						indentDetailInCaseOfIndent();
-
-
-
-
-
-
-
-					}
-
-
-				}
-			</script>
-			<!--   <section class="content">
+		});
+		
+		
+		
+		
+		window.addEventListener("load", myInit, true); 
+		function myInit(){  
+			
+			againstPurchaseThrough()
+			
+			quotationNumberInfo()
+			
+		}; 
+		
+	</script>
+	<!--   <section class="content">
         
         
         </section>-->
 
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
 
 
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>

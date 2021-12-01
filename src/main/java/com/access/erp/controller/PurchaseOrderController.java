@@ -114,12 +114,13 @@ public class PurchaseOrderController {
 
 		List<QuotationDetail> lsitQuotationDetail = quotationDetailRepo.findAll();
 		model.addAttribute("lsitQuotationDetail", lsitQuotationDetail);
+		
+		List<PartyMaster> partyMasterList = partyMasterService.getAllpartyMaster();
+		model.addAttribute("listParty", partyMasterList);
+		
+		List<State> stateList = stateService.getAllState();
+		model.addAttribute("stateList", stateList);
 
-		List<SupplierMaster> listSupplier = supplierRepo.findAll();
-		model.addAttribute("listSupplier", listSupplier);
-
-		List<CurrencyMaster> listCurrency = currencyRepo.findAll();
-		model.addAttribute("listCurrency", listCurrency);
 
 		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poCode).get();
 
@@ -295,5 +296,58 @@ public class PurchaseOrderController {
 		// QuotationDetail quotation =
 		return null;
 	}
+	
+	
+	
+	// Ajax for edit mode 
+	
+	@ResponseBody
+	@GetMapping("/edit/quotationDetail/{id}")
+	public QuotationPartyState getQuotationInfoEdit(@PathVariable(value = "id") String quotId, Model model) {
+
+		QuotationDetail quotationDetail = quotationDetailRepo.findById(quotId).get();
+		System.out.println("quotation detail : " + quotationDetail.getQuotDate());
+		PartyMaster party = null;
+		if (quotationDetail.getSuplierCode() != null || quotationDetail.getSuplierCode() != "") {
+
+			party = partyMasterService.editPartyMaster(quotationDetail.getSuplierCode()).get();
+
+		}
+		QuotationPartyState quotationPartyState = new QuotationPartyState();
+		quotationPartyState.setQuotationDetail(quotationDetail);
+		quotationPartyState.setPartyMaster(party);
+
+		return quotationPartyState;
+
+	}
+	
+	
+	
+	@ResponseBody
+	@GetMapping("/edit/indentlist/{id}")
+	public List<String> getIndentListEdit(@PathVariable(value = "id") String quotationId, Model model) {
+
+		System.out.println("get indent detail info");
+		QuotationDetail quotationDetail = quotationDetailRepo.findById(quotationId).get();
+
+		// get RFQ from quotationdetail
+
+		System.out.println("rfq from quotation detauil : " + quotationDetail.getRfqNo());
+		String rfqCode = quotationDetail.getRfqNo();
+
+		RfQuotation rfQuotation = rfQuotationRepo.findById(rfqCode).get();
+
+		List<String> listRfQuotationItem = new ArrayList<>();
+
+		for (RfQuotationItem rfquotationItem : rfQuotation.getListRFQuotation()) {
+
+			listRfQuotationItem.add(rfquotationItem.getOpenIndent().getIndentNumber());
+			// System.out.println("item spec : " + rfquotationItem.getItemSpec());
+		}
+
+		return listRfQuotationItem;
+
+	}
+
 
 }
