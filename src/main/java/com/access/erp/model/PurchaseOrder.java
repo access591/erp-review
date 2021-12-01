@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 
@@ -27,6 +29,7 @@ public class PurchaseOrder {
 	@Column(name = "PO_NO", length = 30)
 	private String poNumber;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "PO_DATE")
 	private Date poDate;
 	

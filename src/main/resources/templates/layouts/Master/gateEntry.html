@@ -42,8 +42,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini"
-	onload="againstPurchaseThrough()">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -258,7 +257,7 @@
 
 
 																		<th scope="col" class="text-center"
-																			style="width: 100px;">Order/Indent No</th>
+																			style="width: 100px;">PO Number</th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Date</th>
 																		<th scope="col" class="text-center"
@@ -402,42 +401,7 @@
 	</script>
 
 
-	<script>
-		function againstPurchaseThrough() {
-
-			let purchaseThrough = document.getElementById("purchaseThrough").value;
-			console.log("purchase through value : " + purchaseThrough);
-
-			//do all value clear on click selection 
-
-			$('#quotationDate').val('');
-
-			if (purchaseThrough == "quotation") {
-				console.log("quotation ")
-				// enable field
-				$("#quotationNumber").prop('disabled', false);
-				$("#quotationDate").prop('disabled', false);
-
-				//get indent detail against quotation detail 
-
-				//getIndentAgainstQuotationDetail()
-
-			} else {
-				console.log(" is not")
-				//disabled and do blank 
-				$("#quotationNumber").prop('disabled', true);
-				$("#quotationDate").prop('disabled', true);
-				$('#quotationNumber').val('');
-				$('#quotationDate').val('');
-
-				//call api in case of purchase through is indent
-
-				indentDetailInCaseOfIndent();
-
-			}
-
-		}
-	</script>
+	
 
 	<script>
 		$(document).ready(function() {

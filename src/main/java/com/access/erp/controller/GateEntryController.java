@@ -48,6 +48,8 @@ public class GateEntryController {
 		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
 		model.addAttribute("listPO", listPurchaseOrder);
 		
+		
+		
 		List<PartyMaster> partyMasterList = partyMasterService.findByPartyCodeContaining("S");
 		model.addAttribute("partyMasterList", partyMasterList);
 		
