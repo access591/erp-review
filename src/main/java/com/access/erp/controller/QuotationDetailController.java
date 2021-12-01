@@ -96,7 +96,7 @@ public class QuotationDetailController {
 		model.addAttribute("listIndentInRfq", listIndentInRfq);
 
 		model.addAttribute("quotation", new QuotationDetail());
-		return "layouts/Master/quotationDetail";
+		return "layouts/Master/QuotationDetail";
 	}
 	
 	
