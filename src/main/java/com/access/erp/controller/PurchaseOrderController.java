@@ -131,6 +131,33 @@ public class PurchaseOrderController {
 
 		return "layouts/editview/editPurchaseOrder";
 	}
+	
+	
+	@GetMapping("/view/{id}")
+	public String viewPurchaseOrder(@PathVariable("id") String poCode, Model model) {
+
+		System.out.println("po code is : " + poCode);
+
+		List<QuotationDetail> lsitQuotationDetail = quotationDetailRepo.findAll();
+		model.addAttribute("lsitQuotationDetail", lsitQuotationDetail);
+		
+		List<PartyMaster> partyMasterList = partyMasterService.getAllpartyMaster();
+		model.addAttribute("listParty", partyMasterList);
+		
+		List<State> stateList = stateService.getAllState();
+		model.addAttribute("stateList", stateList);
+
+
+		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poCode).get();
+
+		// System.out.println("get item list : " +
+		// po.get().getListPurchaseOrderItem().get(0).getPacking());
+
+		model.addAttribute("purchaseOrder", po);
+
+		return "layouts/editview/editPurchaseOrder";
+	}
+	
 
 	@GetMapping("/delete/{id}")
 	public String deletePurchaseOrder(@PathVariable("id") String purchaseOrderCode, Model model) {
@@ -326,6 +353,60 @@ public class PurchaseOrderController {
 	@ResponseBody
 	@GetMapping("/edit/indentlist/{id}")
 	public List<String> getIndentListEdit(@PathVariable(value = "id") String quotationId, Model model) {
+
+		System.out.println("get indent detail info");
+		QuotationDetail quotationDetail = quotationDetailRepo.findById(quotationId).get();
+
+		// get RFQ from quotationdetail
+
+		System.out.println("rfq from quotation detauil : " + quotationDetail.getRfqNo());
+		String rfqCode = quotationDetail.getRfqNo();
+
+		RfQuotation rfQuotation = rfQuotationRepo.findById(rfqCode).get();
+
+		List<String> listRfQuotationItem = new ArrayList<>();
+
+		for (RfQuotationItem rfquotationItem : rfQuotation.getListRFQuotation()) {
+
+			listRfQuotationItem.add(rfquotationItem.getOpenIndent().getIndentNumber());
+			// System.out.println("item spec : " + rfquotationItem.getItemSpec());
+		}
+
+		return listRfQuotationItem;
+
+	}
+
+	
+	
+	/// Ajax for view mode 
+	
+	
+	
+	@ResponseBody
+	@GetMapping("/view/quotationDetail/{id}")
+	public QuotationPartyState getQuotationInfoView(@PathVariable(value = "id") String quotId, Model model) {
+
+		QuotationDetail quotationDetail = quotationDetailRepo.findById(quotId).get();
+		System.out.println("quotation detail : " + quotationDetail.getQuotDate());
+		PartyMaster party = null;
+		if (quotationDetail.getSuplierCode() != null || quotationDetail.getSuplierCode() != "") {
+
+			party = partyMasterService.editPartyMaster(quotationDetail.getSuplierCode()).get();
+
+		}
+		QuotationPartyState quotationPartyState = new QuotationPartyState();
+		quotationPartyState.setQuotationDetail(quotationDetail);
+		quotationPartyState.setPartyMaster(party);
+
+		return quotationPartyState;
+
+	}
+	
+	
+	
+	@ResponseBody
+	@GetMapping("/view/indentlist/{id}")
+	public List<String> getIndentListView(@PathVariable(value = "id") String quotationId, Model model) {
 
 		System.out.println("get indent detail info");
 		QuotationDetail quotationDetail = quotationDetailRepo.findById(quotationId).get();
