@@ -30,7 +30,7 @@ public class Item {
 
     @ManyToOne(optional = false)
     @JoinColumn(name="CATEGORY_CODE")
-    @JsonIgnore
+    //@JsonIgnore
 	private Category category;
 	
 	@Column(name="PART_NO",length = 15)
@@ -92,7 +92,7 @@ public class Item {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="UOM_CODE")
-	@JsonIgnore
+	//@JsonIgnore
 	private UOM uom;
 	
 	@Column(name="ACC_LEDGER_CODE",length = 10)
