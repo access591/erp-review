@@ -224,24 +224,24 @@ function igstInPercentFun() {
 function total_totalInr_calc() {
 
 	document.getElementById("totalRs").value = totalValue;
-	
+
 }
 
-function total_totalInr_calc_discount(){
-	
+function total_totalInr_calc_discount() {
+
 	var totalDiscountInvalue = document.getElementById("totalDiscountInValue").value;
 	var discountInvalue = document.getElementById("discountInValue").value;
-	var sgstInValue = document.getElementById("sgstInValue").value ;
+	var sgstInValue = document.getElementById("sgstInValue").value;
 	var cgstInValue = document.getElementById("cgstInValue").value;
 	var igstInValue = document.getElementById("igstInValue").value;
-	
-	var totalValueWithDiscount =totalValue - (totalDiscountInvalue+discountInvalue+sgstInValue+cgstInValue+igstInValue)
-	
-	if(totalValueWithDiscount>=0){
+
+	var totalValueWithDiscount = totalValue - (totalDiscountInvalue + discountInvalue + sgstInValue + cgstInValue + igstInValue)
+
+	if (totalValueWithDiscount >= 0) {
 		document.getElementById("totalCount").value = totalValueWithDiscount;
 	}
-	
-	
+
+
 }
 
 
@@ -293,11 +293,15 @@ function quotationNumberInfo() {
 		success: function(data) {
 			console.log("Data From quotaionInfo : " + data)
 
-			$("#quotationDate").val(data.quotDate)
-			//$("#uomCode").val(data.uom.uomCode);
+			$("#quotationDate").val(data.quotationDetail.quotDate)
+
+			$("#supplierId").val(data.partyMaster.partyCode);
+			$("#supplierState").val(data.partyMaster.stateCode);
+			$("#currency").val(data.quotationDetail.currencyCode);
+
+			console.log("currency code value : " + data.quotationDetail.currencyCode)
 
 			getIndentAgainstQuotationDetail()
-
 
 		}, error: function() {
 			console.log("Error");
@@ -305,6 +309,8 @@ function quotationNumberInfo() {
 	});
 
 }
+
+
 
 
 function getIndentAgainstQuotationDetail() {
@@ -319,7 +325,7 @@ function getIndentAgainstQuotationDetail() {
 
 	$.ajax({
 		type: "GET",
-		url: "indentdetail/" + quotationNumber,
+		url: "indentlist/" + quotationNumber,
 
 		success: function(data) {
 			console.log("Data From quotaionInfo : " + data)
@@ -336,8 +342,8 @@ function getIndentAgainstQuotationDetail() {
 			var options = '<option value=""><strong>Select Indent</strong></option>';
 			$(data).each(function(index, value) {
 
-				console.log("data in loop : ")
-				console.log("data in loop : " + value)
+
+				console.log("getIndentListAgainstQuotation : Response " + value)
 
 				options += '<option value="' + value + '">' + value + '</option>';
 
@@ -353,7 +359,7 @@ function getIndentAgainstQuotationDetail() {
 	});
 }
 
-
+/*
 function indentDetailInCaseOfIndent() {
 
 
@@ -392,7 +398,7 @@ function indentDetailInCaseOfIndent() {
 		}
 	});
 
-}
+}*/
 
 
 
@@ -405,7 +411,7 @@ function getIndentDetailPo() {
 		url: "indentdetail/" + indentNumber,
 
 		success: function(data) {
-			console.log("ite data is : " + data)
+			console.log("Indent Detail data is : " + data)
 
 			console.log("indent data is : " + data.indentDate)
 			$("#indentDatePo").val(data.indentDate)
@@ -441,7 +447,7 @@ function getItemList(indentNumber) {
 				console.log("item info : " + value.itemCode)
 				console.log("item info : " + value.itemName)
 
-				options += '<option value="' + value.itemCode + '">' + value.itemName + '</option>';
+				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
 
 			});
 
@@ -452,6 +458,42 @@ function getItemList(indentNumber) {
 		}
 	});
 
+}
+
+
+function getItemInfoInPo() {
+
+	var itemNumber = document.getElementById("itemPo").value;
+	var indentNumber = document.getElementById("indentNumberPo").value;
+	console.log("get item detail : "+indentNumber+" : " +itemNumber)
+
+	$.ajax({
+		type: "GET",
+		url: "itemInfo/" + itemNumber+"/"+indentNumber,
+
+		success: function(data) {
+			console.log("item info detail " + data)
+
+			$("#itemRate0").val(data.itemRate)
+			$("#qtyOrder0").val(data.indQty)
+
+
+			totalCostCal();
+
+		}, error: function() {
+			console.log("Error");
+		}
+	});
+}
+
+function totalCostCal(){
+	
+	var itemRate = document.getElementById("itemRate0").value;
+	var qtyOrderrate = document.getElementById("qtyOrder0").value;
+	
+	document.getElementById("totalCost0").value = itemRate*qtyOrderrate;
+	document.getElementById("totalCostInr0").value = itemRate*qtyOrderrate;
+	
 }
 
 

@@ -222,28 +222,35 @@
 																title="supplier code" onchange="supplierInfo()"
 																th:field="*{supplier}">
 																<option value=" ">Select</option>
-																<option th:each="supplier :  ${listSupplier}"
-																	th:text="${supplier.supplierName}"
-																	th:value=" ${supplier.supplierId}"></option>
+																<option th:each="party :  ${listParty}"
+																	th:text="${party.partyName}"
+																	th:value=" ${party.partyCode}"></option>
 
 
 															</select>
 														</div>
 
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Supplier State</label> <input
-																type="text" class="form-control" id="supplierState"
-																placeholder="supplier state">
+															<label for="inputPassword4">Supplier State</label> <select
+																id="supplierState" class="form-control" required
+																title="supplier state">
+																<option value=" ">Select</option>
+																<option th:each="state :  ${stateList}"
+																	th:text="${state.stateName}"
+																	th:value=" ${state.stateCode}"></option>
+
+
+															</select>
 														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Currency</label> <select
-																id="currencyId" class="form-control" required
+																id="currency" class="form-control" required
 																title="currency" th:field="*{currency}">
 																<option value=" ">Select</option>
-																<option th:each="currency :  ${listCurrency}"
-																	th:text="${currency.currencyValue}"
-																	th:value=" ${currency.currencyCode}"></option>
+																	<option value=" I">INR</option>
+																		<option value=" U">USD</option>
+																
 
 
 															</select>
@@ -281,9 +288,10 @@
 														</div>
 
 														<div class="form-group col-md-6">
-															<label for="inputPassword4">Remarks</label> <textarea
-																type="text" class="form-control" id="inputPassword4"
-																placeholder="gst" th:field="*{remarks}"></textarea>
+															<label for="inputPassword4">Remarks</label>
+															<textarea type="text" class="form-control"
+																id="inputPassword4" placeholder="gst"
+																th:field="*{remarks}"></textarea>
 														</div>
 
 
@@ -294,7 +302,7 @@
 
 												<!--detail box-->
 												<div class="box">
-												
+
 													<h5>Item Details</h5>
 													<div class="box-body">
 
@@ -322,18 +330,14 @@
 																			style="width: 10px;">Effective Date</th>
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Qty Order</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Status</th>
+																	
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Total Item Cost</th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">otal Item Cost(INR)</th>
+																			style="width: 120px;">Total Item Cost(INR)</th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Remarks</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Rate History</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Tax Detail</th>
+																	
 
 																	</tr>
 																</thead>
@@ -344,9 +348,9 @@
 																		<td><select id="supplierId"
 																			class="form-control form-control-sm select"
 																			title="type" onchange="supplierInfo()">
-																				<option value="">Select</option>
-																				<option value="">Material</option>
-																				<option value="">Service</option>
+																			
+																				<option value="M" selected>Material</option>
+																				<option value="S">Service</option>
 
 
 
@@ -370,14 +374,14 @@
 
 																		<td><select id="itemPo"
 																			class="form-control form-control-sm select itemContainerPo"
-																			required title="item" onchange="getItemDetailForPo()"
+																			required title="item" onchange="getItemInfoInPo()"
 																			name="listPurchaseOrderItem[0].item">
 																				<option value="">Select</option>
 																		</select></td>
 
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			id="contactPerson" title="item rate"
+																			id="itemRate0" title="item rate"
 																			name="listPurchaseOrderItem[0].itemRate"></td>
 
 																		<td><input type="date" title="effective date"
@@ -387,34 +391,24 @@
 
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			title="qty order"
+																			title="qty order" id="qtyOrder0"
 																			name="listPurchaseOrderItem[0].qtyOrder"></td>
 
+																	
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="technicalQualification" title="status"
-																			name="listPurchaseOrderItem[0].itemStatus"></td>
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="supplierState" title="total item cost"></td>
+																			id="totalCost0" title="total item cost"></td>
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="contactPerson" title="total item cost(inr)"></td>
+																			id="totalCostInr0" title="total item cost(inr)"></td>
 
 																		<td><input type="text" title="remarks"
 																			class="form-control form-control-sm" id="email"
 																			name="listPurchaseOrderItem[0].itemRemarks">
 																		</td>
 
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			title="rate history"></td>
-
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="technicalQualification" title="Tax detail"
-																			name="listPurchaseOrderItem[0].openIndent"></td>
+																		
 
 
 
@@ -493,81 +487,68 @@
 
 
 	<script>
+		$(document).ready(function() {
 
-				$(document).ready(function () {
+			document.getElementById('poDate').valueAsDate = new Date();
 
-					document.getElementById('poDate').valueAsDate = new Date();
-
-				});
-			</script>
+		});
+	</script>
 
 
 	<script>
-				function againstPurchaseThrough() {
+		function againstPurchaseThrough() {
 
-					let purchaseThrough = document.getElementById("purchaseThrough").value;
-					console.log("purchase through value : " + purchaseThrough);
+			let purchaseThrough = document.getElementById("purchaseThrough").value;
+			console.log("purchase through value : " + purchaseThrough);
 
-					//do all value clear on click selection 
+			//do all value clear on click selection 
 
-					$('#quotationDate').val('');
+			$('#quotationDate').val('');
 
-					if (purchaseThrough == "quotation") {
-						console.log("quotation ")
-						// enable field
-						$("#quotationNumber").prop('disabled', false);
-						$("#quotationDate").prop('disabled', false);
+			if (purchaseThrough == "quotation") {
+				console.log("quotation ")
+				// enable field
+				$("#quotationNumber").prop('disabled', false);
+				$("#quotationDate").prop('disabled', false);
 
+				//get indent detail against quotation detail 
 
+				//getIndentAgainstQuotationDetail()
 
+			} else {
+				console.log(" is not")
+				//disabled and do blank 
+				$("#quotationNumber").prop('disabled', true);
+				$("#quotationDate").prop('disabled', true);
+				$('#quotationNumber').val('');
+				$('#quotationDate').val('');
 
-						//get indent detail against quotation detail 
+				//call api in case of purchase through is indent
 
-						//getIndentAgainstQuotationDetail()
+				indentDetailInCaseOfIndent();
 
-					} else {
-						console.log(" is not")
-						//disabled and do blank 
-						$("#quotationNumber").prop('disabled', true);
-						$("#quotationDate").prop('disabled', true);
-						$('#quotationNumber').val('');
-						$('#quotationDate').val('');
+			}
 
-
-
-						//call api in case of purchase through is indent
-
-						indentDetailInCaseOfIndent();
-
-
-
-
-
-
-					}
-
-
-				}
-			</script>
+		}
+	</script>
 
 	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
 
-				$(document).ready(function () {
-					var message = document.getElementById('mess').value
-					if (message != null && message !== "") {
-
-						swal(message, "", "success", {
-							button: "OK",
-							hideClass: {
-								popup: 'animate__animated animate__fadeOutUp'
-							},
-						});
-					} else {
-						console.log("ajax request : " + message);
-					}
-
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
 				});
-			</script>
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
 	<!--   <section class="content">
         
         
