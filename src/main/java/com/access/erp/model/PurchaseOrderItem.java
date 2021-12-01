@@ -39,14 +39,15 @@ public class PurchaseOrderItem {
 	@JsonIgnore
 	private Item item;
 	
-	@Column(name = "ITEM_RATE", length = 10)
-	private int itemRate;
+	//@Column(precision=10, scale=2)
+	@Column(name = "ITEM_RATE",length = 40)
+	private String itemRate;
 	
 	@Column(name = "RATE_EFFECTIVE_DATE")
 	private Date rateEffectiveDate;
 	
-	@Column(name = "QTY_ORDER", length = 50)
-	private int qtyOrder;
+	@Column(name = "QTY_ORDER", length = 40)
+	private String qtyOrder;
 	
 	@Column(name = "ITEM_STATUS",length=5)
 	private String itemStatus = "P";
@@ -62,10 +63,10 @@ public class PurchaseOrderItem {
 	private Date poDate;
 
 	
-	@Column(name = "PO_SEQ_NO", length = 5)
+	@Column(name = "PO_SEQ_NO", precision=12, scale=3)
 	private int poSeqNo;
 	
-	@Column(name = "EXCISE", length = 10)
+	@Column(name = "EXCISE", precision=10, scale=3)
 	private int excise;
 
 	@Column(name = "PACKING",length = 10)
@@ -79,7 +80,7 @@ public class PurchaseOrderItem {
 	@Column(name = "CAR_TAG", length = 10)
 	private int carTag;
 	
-	@Column(name = "SALES_TAX", length = 10)
+	@Column(name = "SALES_TAX",precision=10, scale=3)
 	private int salesTax;
 
 	@Column(name = "CST",length = 10)
@@ -91,8 +92,9 @@ public class PurchaseOrderItem {
 	@Column(name = "SURCHARGE", length = 10)
 	private int surCharge;
 	
-	@Column(name = "FREIGHT", length = 15)
-	private int freight;
+	
+	@Column(name = "FREIGHT",precision=16, scale=3,nullable = true)
+	private int freight = 0;
 
 	@Column(name = "OCTROI",length = 15)
 	private int octroi;
@@ -327,21 +329,36 @@ public class PurchaseOrderItem {
 		this.item = item;
 	}
 
-	public int getItemRate() {
+	
+	
+
+
+	public String getItemRate() {
 		return itemRate;
 	}
 
-	public void setItemRate(int itemRate) {
+
+
+	public void setItemRate(String itemRate) {
 		this.itemRate = itemRate;
 	}
 
-	public int getQtyOrder() {
+
+
+	
+
+
+	public String getQtyOrder() {
 		return qtyOrder;
 	}
 
-	public void setQtyOrder(int qtyOrder) {
+
+
+	public void setQtyOrder(String qtyOrder) {
 		this.qtyOrder = qtyOrder;
 	}
+
+
 
 	public String getItemStatus() {
 		return itemStatus;
