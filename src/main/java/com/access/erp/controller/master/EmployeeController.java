@@ -83,11 +83,11 @@ public class EmployeeController {
 		List<Designation> listDesigNation = designationService.getAllDesignation();
 		
 		
-		Department dp = new Department();
-		dp.setDeptCode("DEP-002");
+		//Department dp = new Department();
+		//dp.setDeptCode("DEP-002");
 		
-		employee.setDepartment(listDepartment.get(0));
-		employee.setDesignation(listDesigNation.get(0));
+		//employee.setDepartment(listDepartment.get(0));
+		//employee.setDesignation(listDesigNation.get(0));
 		
 		employeeService.addEmployee(employee);
 		
@@ -109,7 +109,7 @@ public class EmployeeController {
 	@GetMapping("/edit/{id}")
 	public String editEmployee(@PathVariable("id") String empCode,Model model) {
 		
-		Optional<Employee> employee = employeeService.editEmployee(empCode);
+		Employee employee = employeeService.editEmployee(empCode).get();
 		model.addAttribute("employee", employee);
 		return "layouts/editview/editEmployee";
 	}

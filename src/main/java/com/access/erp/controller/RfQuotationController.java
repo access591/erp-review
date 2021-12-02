@@ -107,7 +107,7 @@ public class RfQuotationController {
 		if (rfqList != null) {
 			model.addAttribute("rfqList", rfqList);
 		}
-		return "layouts/listview/listofRequestForQuotation";
+		return "layouts/listview/listofrequestForQuotation"; //listofrequestForQuotation.html
 	}
 
 	@GetMapping("/edit/{id}")

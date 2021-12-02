@@ -19,9 +19,6 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -35,7 +32,7 @@ public class OpenIndent {
 	@Column(name = "INDENT_NUMBER", length = 20)
 	private String indentNumber;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "INDENTS_DATE")
 	private Date indentDate;
 
