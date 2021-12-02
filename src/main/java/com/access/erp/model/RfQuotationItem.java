@@ -18,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.access.erp.model.master.Item;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -63,8 +64,9 @@ public class RfQuotationItem {
 	
 	
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "INDENT_NUMBER")
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private OpenIndent openIndent;
 	
 	
