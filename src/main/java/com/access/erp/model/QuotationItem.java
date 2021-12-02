@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Employee;
 
 
@@ -49,6 +51,7 @@ public class QuotationItem {
 	@Column(name="INDENT_NUM",length=50)
 	private String indentNum;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="INDENT_DATE")
 	private Date indentDate;
 	
@@ -160,12 +163,14 @@ public class QuotationItem {
 	@Column(name="APPROVAL_STATUS",length=2)
 	private String approvalStatus;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="DATE_OF_APPROVAL")
 	private Date dateOfApproval;
 	
 	@Column(name="APPROVED_BY",length=10)
 	private String approvedBy;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="DATE_OF_CANCEL")
 	private Date dateOfCancel;
 	

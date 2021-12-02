@@ -50,6 +50,7 @@ public class PurchaseOrder {
 	@Column(name = "QUOT_NO", length = 40)
 	private String quotationDetail;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "QUOT_DATE")
 	private Date quotationDate;
 	
@@ -61,9 +62,11 @@ public class PurchaseOrder {
 	@Column(name = "CURRENCY", length=2)
 	private String  currency;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "SUPPLY_DATE")
 	private Date supplyDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DELIVERY_DATE")
 	private Date deliveryDate;
 	
@@ -78,6 +81,7 @@ public class PurchaseOrder {
 	@Column(name = "TOTAL_VALUE", length = 10)
 	private String totalValue;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "RECD_DATE")
 	private Date recdDate;
 
@@ -137,6 +141,7 @@ public class PurchaseOrder {
 	@Column(name = "UCODE", length = 50)
 	private String uCode;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "UDATE", length = 50)
 	private Date uDate;
 
@@ -238,6 +243,7 @@ public class PurchaseOrder {
 	@Column(name = "FORM_NO", length = 20)
 	private String fromNum;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "FORM_DATE")
 	private Date fromDate;
 
@@ -281,6 +287,7 @@ public class PurchaseOrder {
 	@Column(name = "PO_REMARK", length = 500)
 	private String poRemark;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "APPROVAL_DATE")
 	private Date approvalDate;
 
@@ -367,12 +374,15 @@ public class PurchaseOrder {
 	@Column(name = "INSP_REMARKS", length = 50)
 	private String inspRemarks;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "TIME_BASE_DT")
 	private Date timeBaseDt;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "WARRANTY_START_DT")
 	private Date warrantyStartDt;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "WARRANTY_END_DT")
 	private Date warrantyEndDt;
 
@@ -415,6 +425,7 @@ public class PurchaseOrder {
 	@Column(name = "REPEAT_ORDER_NO", length = 15)
 	private String repetOrderNum;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "REPEAT_ORDER_DATE")
 	private Date repetOrderDate;
 

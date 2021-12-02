@@ -46,7 +46,7 @@ public class Employee {
 	private Character maritalStatus;
 	
 	@Column(name = "HEIGHT", length = 50)
-	private int height;
+	private Integer height;
 	
 	@Column(name = "ID_MARK", length = 50)
 	private String idMark;
@@ -364,11 +364,11 @@ public class Employee {
 		this.permState = permState;
 	}
 
-	public int getPermPin() {
+	public Integer getPermPin() {
 		return permPin;
 	}
 
-	public void setPermPin(int permPin) {
+	public void setPermPin(Integer permPin) {
 		this.permPin = permPin;
 	}
 
@@ -404,11 +404,11 @@ public class Employee {
 		this.localState = localState;
 	}
 
-	public int getLocalPin() {
+	public Integer getLocalPin() {
 		return localPin;
 	}
 
-	public void setLocalPin(int localPin) {
+	public void setLocalPin(Integer localPin) {
 		this.localPin = localPin;
 	}
 
@@ -668,19 +668,19 @@ public class Employee {
 		this.regCode = regCode;
 	}
 
-	public int getRestDay1() {
+	public Integer getRestDay1() {
 		return restDay1;
 	}
 
-	public void setRestDay1(int restDay1) {
+	public void setRestDay1(Integer restDay1) {
 		this.restDay1 = restDay1;
 	}
 
-	public int getRestDay2() {
+	public Integer getRestDay2() {
 		return restDay2;
 	}
 
-	public void setRestDay2(int restDay2) {
+	public void setRestDay2(Integer restDay2) {
 		this.restDay2 = restDay2;
 	}
 
@@ -796,6 +796,7 @@ public class Employee {
 		this.offerLeftNumber = offerLeftNumber;
 	}
 
+	
 	
 
 	

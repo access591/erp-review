@@ -29,7 +29,7 @@ public class QuotationDetail {
 	private String quotNo;
 	
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="QUOT_DATE")
 	private Date quotDate;
 	
@@ -171,6 +171,7 @@ public class QuotationDetail {
 	@Column(name="RFQ_NUM",length = 30)
 	private String rfqNo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RFQ_DATE")
 	private Date rfqDate;
 	
