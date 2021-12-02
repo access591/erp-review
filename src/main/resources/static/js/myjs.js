@@ -628,7 +628,8 @@ function getOrderIndentDetailPo() {
 		success: function(data) {
 			console.log("order indent response  : " + data)
 
-			console.log("order indent date   : " + convertDate(data.poDate))
+			console.log("order indent date   : " + convertDate(data.poDate)) 
+			
 			$("#orderIndentDatePo").val(data.poDate)
 			//$("#empName").val(data.employee.empName);
 			//$("#empCode").val(data.employee.empCode);
