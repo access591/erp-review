@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.Item;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,6 +33,7 @@ public class PurchaseOrderItem {
 	@JsonIgnore
 	private OpenIndent openIndent;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "INDENT_DATE", length = 50)
 	private Date indentDate;
 	
@@ -43,6 +46,7 @@ public class PurchaseOrderItem {
 	@Column(name = "ITEM_RATE",length = 40)
 	private String itemRate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "RATE_EFFECTIVE_DATE")
 	private Date rateEffectiveDate;
 	
@@ -58,7 +62,7 @@ public class PurchaseOrderItem {
 
 	
 	
-
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "PO_DATE")
 	private Date poDate;
 
@@ -193,9 +197,11 @@ public class PurchaseOrderItem {
 	@Column(name = "EXCESS_QTY_PER",length = 15)
 	private int excessQtyPer;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "EXP_DATE")
 	private Date expDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "MFG_DATE")
 	private Date mfgDate;
 
@@ -259,6 +265,7 @@ public class PurchaseOrderItem {
 	@Column(name = "INDENT_NO_TEMP",length=50)
 	private String indentNoTemp;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "INDENT_DATE_TEMP")
 	private Date indentDateTemp;
 
