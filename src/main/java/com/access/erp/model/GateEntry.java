@@ -14,10 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.SupplierMaster;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "GATE_ENTRY")
@@ -27,6 +30,8 @@ public class GateEntry {
 	@Column(name = "GATE_SR_NO", length = 20)
 	private String gateSrNo;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "GATE_ENTRY_DATE")
 	private Date gateEntryDate;
 

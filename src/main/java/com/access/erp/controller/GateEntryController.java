@@ -1,5 +1,8 @@
 package com.access.erp.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,6 +133,16 @@ public class GateEntryController {
 		System.out.println("item  iinfo : " + poNumber);
 
 		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poNumber).get();
+		
+		String pattern = "MM/dd/yyyy HH:mm:ss";
+		DateFormat df = new SimpleDateFormat(pattern);
+		String todayAsString = df.format(po.getPoDate());
+		
+		System.out.println("today as date : " + todayAsString);
+		
+		
+		//po.setPoDate(new Date(po.getPoDate().toString().substring(10)));
+		System.out.println("purchase order date type is : " + po.getPoDate());
 		
 		//Item item = itemService.editItem(itemCode).get();
 		

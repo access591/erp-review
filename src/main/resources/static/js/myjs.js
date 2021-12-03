@@ -628,9 +628,13 @@ function getOrderIndentDetailPo() {
 		success: function(data) {
 			console.log("order indent response  : " + data)
 
-			console.log("order indent date   : " + convertDate(data.poDate)) 
+			console.log("order indent date   : " + convertDate(data.poDate))
+			console.log("order indent date   : " + data.poDate)
+
 			
-			$("#orderIndentDatePo").val(data.poDate)
+			
+			
+			$("#orderIndentDatePo0").val(data.poDate)
 			//$("#empName").val(data.employee.empName);
 			//$("#empCode").val(data.employee.empCode);
 
@@ -649,23 +653,23 @@ function getOrderIndentDetailPo() {
 }
 
 function convertDate(inputFormat) {
-  function pad(s) { return (s < 10) ? '0' + s : s; }
-  var d = new Date(inputFormat)
-  return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/')
+	function pad(s) { return (s < 10) ? '0' + s : s; }
+	var d = new Date(inputFormat)
+	return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/')
 }
 
 
 
-function getOrderItemList(indentNumber) {
+function getOrderItemList(poNumber) {
 
 
 	//Get Item lIst in purchase order item detail using po number (FK)
 
-	console.log("get Item List Function is : " + indentNumber)
+	console.log("get Item List Function is : " + poNumber)
 
 	$.ajax({
 		type: "GET",
-		url: "itemList/" + indentNumber,
+		url: "itemList/" + poNumber,
 
 		success: function(data) {
 			console.log("Item Info behalf of Indent Number  : " + data)
@@ -674,9 +678,9 @@ function getOrderItemList(indentNumber) {
 			$(data).each(function(index, value) {
 
 				console.log("item info : " + value.item.itemCode)
-				console.log("item info : " + value.item.itemName)
+				console.log("item info : " + value.item.description)
 
-				options += '<option value="' + value.item.itemCode + '">' + value.item.itemName + '</option>';
+				options += '<option value="' + value.item.itemCode + '">' + value.item.description + '</option>';
 
 			});
 
@@ -699,8 +703,9 @@ function getOrderItemDetailForPo() {
 		url: "itemInfo/" + itemNumber,
 
 		success: function(data) {
-
-			$("#orderItemDescription").val(data.description)
+			
+			console.log("getOrderItemDetailForPo item description  :" + data.description)
+			$("#orderItemCode0").val(data.itemCode)
 			$("#orderItemuom").val(data.uom.uomCode)
 
 		}, error: function() {
