@@ -25,11 +25,11 @@ import com.access.erp.model.master.Employee;
 
 
 @Entity
-@Table(name = "OPEN_INDENT")
+@Table(name = "PR_INDENT_MAST")
 public class OpenIndent {
 
 	@Id
-	@Column(name = "INDENT_NUMBER", length = 20)
+	@Column(name = "INDENT_NO", length = 15)
 	private String indentNumber;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -58,6 +58,7 @@ public class OpenIndent {
 	private Date dateOfApproval;
 	
 	//employee code 
+	// final approval 
 	@Column(name = "AUTH_EMP_CODE", length = 10)
 	private String authEmpCode;
 	
@@ -72,11 +73,11 @@ public class OpenIndent {
 	private String indPurStatus;
 	
 	//fk
-	@Column(name = "COMPANY_CODE", length = 50)
+	@Column(name = "CCODE", length = 50)
 	private String company;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "UP_DATE", length = 50)
+	@Column(name = "UDATE", length = 50)
 	private Date update;
 	
 	@Column(name = "URGENCY", length = 20)
@@ -96,12 +97,12 @@ public class OpenIndent {
 
 	
 	//fk
-	@Column(name = "FY_CODE", length = 20)
+	@Column(name = "FYCODE", length = 20)
 	private String fyCode;
 
 	
 	//fk
-	@Column(name = "USER_CODE", length = 50)
+	@Column(name = "UCODE", length = 50)
 	private String user;
 	
 	@Column(name = "CONVERSION_VALUE", length = 16)
@@ -117,14 +118,14 @@ public class OpenIndent {
 	private String idOrSo;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "SALES_ORDER_DATE", length = 100)
+	@Column(name = "SALES_ORDER_DATE")
 	private Date salesOrderDate;
 	
 	@Column(name = "REMARKS", length = 500)
 	private String remarks;
 
 
-	@Column(name = "USER_NAME", length = 50)
+	@Column(name = "UNAME", length = 50)
 	private String uName;
 
 	@Column(name = "EXCISEABLE", length = 2)
@@ -144,7 +145,7 @@ public class OpenIndent {
 	@Column(name = "DATE_OF_CANCEL")
 	private Date dateOfCancel;
 
-	@Column(name = "REMARKS_CANCE", length = 100)
+	@Column(name = "REMARKS_CANCEL", length = 100)
 	private String remarkCancel;
 
 	@Column(name = "OP_IND_YN", length = 2)

@@ -32,7 +32,7 @@ import com.access.erp.service.PurchaseOrderService;
 import com.access.erp.utility.PurchaseOrderItem_Item;
 
 @Controller
-@RequestMapping("gateentry")
+@RequestMapping("/gateentry")
 public class GateEntryController {
 	
 	@Autowired PurchaseOrderService purchaseOrderService;
@@ -89,7 +89,7 @@ public class GateEntryController {
 		
 		redirectAttributes.addFlashAttribute("message", "Gate Entry  has been saved successfully!");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-		return "redirect:/gateEntry/";
+		return "redirect:/gateentry/";
 	}
 	
 	
@@ -110,11 +110,15 @@ public class GateEntryController {
 		System.out.println("edit item opening form is running ");
 		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryCode).get();
 		model.addAttribute("gateEntry", gateEntry);
+		
+		List<PartyMaster> partyMasterList = partyMasterService.findByPartyCodeContaining("S");
+		model.addAttribute("partyMasterList", partyMasterList);
+		
 
 		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
 		model.addAttribute("listPO", listPurchaseOrder);
 
-		return "layouts/editview/editItemOpening";
+		return "layouts/editview/editGateEntry";
 	}
 	
 	@GetMapping("/delete/{id}")

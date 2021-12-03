@@ -118,6 +118,10 @@ public class PurchaseOrder {
 	// 5,2
 	@Column(name = "DISCOUNT", length = 10)
 	private int discount;
+	
+	//DISC_PER
+	@Column(name = "DISC_PER", length = 10)
+	private int discPer;
 
 	// 5,2
 	@Column(name = "AMEND_NO", length = 3)
@@ -1371,6 +1375,14 @@ public class PurchaseOrder {
 
 	public Date getRepetOrderDate() {
 		return repetOrderDate;
+	}
+
+	public int getDiscPer() {
+		return discPer;
+	}
+
+	public void setDiscPer(int discPer) {
+		this.discPer = discPer;
 	}
 
 	public void setRepetOrderDate(Date repetOrderDate) {

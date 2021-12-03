@@ -50,7 +50,7 @@ public class PurchaseOrderItem {
 	@Column(name = "RATE_EFFECTIVE_DATE")
 	private Date rateEffectiveDate;
 	
-	@Column(name = "QTY_ORDER", length = 40)
+	@Column(name = "QTY_ORD", length = 40)
 	private String qtyOrder;
 	
 	@Column(name = "ITEM_STATUS",length=5)

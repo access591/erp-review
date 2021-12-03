@@ -91,7 +91,7 @@ public class GateEntryItemDetail {
 	@Column(name="DED_MOISTURE",length=20)
 	private String dedMoisture;
 	
-	@Column(name="SHORT_QTY_UOM)",length=20)
+	@Column(name="SHORT_QTY_UOM",length=20)
 	private String shortQtyUom;
 	
 	@Column(name="ACTUAL_DEDUCTION",length=5)
