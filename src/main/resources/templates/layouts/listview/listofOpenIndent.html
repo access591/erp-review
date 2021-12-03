@@ -48,14 +48,7 @@
 															<th scope="col">#</th>
 															<th scope="col">Indent Number</th>
 															<th scope="col">Indent Date</th>
-															<th scope="col">Employee Name</th>
 														
-															<th scope="col">Urgency</th>
-															<th scope="col">Indent Type</th>
-															<th scope="col">Purchase Type</th>
-															<th scope="col">Approval Status</th>
-															<th scope="col">Date of Approval</th>
-															<th scope="col">Purchase Status</th>
 															<th scope="col">Action</th>
 
 														</tr>
@@ -65,17 +58,10 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${indent.indentNumber}">Garrett Winters</td>
 															<td th:text="${indent.indentDate}">Garrett Winters</td>
-															<td th:text="${indent.employee.empName}">Garrett Winters
-															</td>
 														
-															<td th:text="${indent.urgency}">Garrett Winters</td>
-															<td th:text="${indent.indentType}">Good Guys</td>
-															<td>Purchase Type</td>
-															<td th:text="${indent.approvalStatus1}">Garrett Winters</td>
-															<td th:text="${indent.approvalDate1}">Good Guys</td>
-															<td>Good Guys</td>
+														
 
-															<td><span class="badge bg-success">Active</span></td>
+															<!-- <td><span class="badge bg-success">Active</span></td> -->
 
 															<td><span> <a
 																		th:href="@{/openindent/edit/{id}(id=${indent.indentNumber})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span>

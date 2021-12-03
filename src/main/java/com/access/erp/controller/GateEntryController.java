@@ -29,6 +29,7 @@ import com.access.erp.service.GateEntryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
+import com.access.erp.utility.PurchaseOrderItem_Item;
 
 @Controller
 @RequestMapping("gateentry")
@@ -43,9 +44,10 @@ public class GateEntryController {
 	@Autowired PartyMasterService partyMasterService;
 	
 	
+	
 	@GetMapping("/")
 	public String gateEntryPage(Model model) {
-		
+		//strin nam = req.getpara("name")
 		model.addAttribute("gateEntry", new GateEntry());
 		
 		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
@@ -171,13 +173,23 @@ public class GateEntryController {
 	
 	
 	@ResponseBody
-	@GetMapping("/itemInfo/{poNumber}")
-	public Item itemInfo(@PathVariable(value = "poNumber") String itemNumber, Model model) {
+	@GetMapping("/itemInfo/{itemNumber}/{poNumber}")
+	public PurchaseOrderItem_Item itemInfo(@PathVariable(value = "itemNumber") String itemNumber,@PathVariable(value = "poNumber") String poNumber, Model model) {
 
+		
+		PurchaseOrderItem_Item purchaseOrderItem_item = new PurchaseOrderItem_Item();
+		
+		PurchaseOrder purchaseOrder = purchaseOrderService.editPurchaseOrder(poNumber).get();
 		Item item = itemService.editItem(itemNumber).get();
 		
+		PurchaseOrderItem purchaseOrderItem = purchaseOrderItemRepo.findByItemAndPurchaseOrder(item, purchaseOrder);
+		
+		purchaseOrderItem_item.setPurchaseOrderItem(purchaseOrderItem);
+		purchaseOrderItem_item.setItem(item);
+		//Item item = itemService.editItem(itemNumber).get();
+		
 	
-		return item;
+		return purchaseOrderItem_item;
 
 	}
 	

@@ -19,6 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
+import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.SupplierMaster;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -42,7 +43,7 @@ public class GateEntry {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "SUPPLIER_CODE")
-	private SupplierMaster supplier;
+	private PartyMaster partyMaster;
 
 	@Column(name = "GR_NUMBER", length = 25)
 	private String grNumber;
@@ -208,12 +209,14 @@ public class GateEntry {
 		this.timeIn = timeIn;
 	}
 
-	public SupplierMaster getSupplier() {
-		return supplier;
+
+
+	public PartyMaster getPartyMaster() {
+		return partyMaster;
 	}
 
-	public void setSupplier(SupplierMaster supplier) {
-		this.supplier = supplier;
+	public void setPartyMaster(PartyMaster partyMaster) {
+		this.partyMaster = partyMaster;
 	}
 
 	public String getVehicleNumber() {

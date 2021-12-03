@@ -7,15 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.access.erp.model.GateEntry;
+import com.access.erp.model.master.SupplierMaster;
 import com.access.erp.repo.GateEntryRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.GateEntryService;
+import com.access.erp.service.PartyMasterService;
 
 @Service
 public class GateEntryServiceImpl implements GateEntryService{
 
 	@Autowired GateEntryRepo gateEntryRepo;
 	@Autowired SeqMainRepo seqMainRepo;
+	@Autowired PartyMasterService partyMasterService;
 	
 	
 	@Override
@@ -25,6 +28,7 @@ public class GateEntryServiceImpl implements GateEntryService{
 			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("GEN", "20-21", "EB");
 			gateEntry.setGateSrNo("EB"+ maxCode);
 		}
+		
 		
 		gateEntryRepo.save(gateEntry);
 		

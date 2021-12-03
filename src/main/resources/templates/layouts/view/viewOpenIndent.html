@@ -1,30 +1,49 @@
+
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 
-	<style>
-		.form-control-sm {
-			height: 30px;
-			width: 120px;
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
-		}
+<script type="text/javascript" th:src="@{/JS/myjs.js}"></script>
 
-		.select {
-			width: 130px;
-			font-size: 10px;
-		}
-	</style>
+
+
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+}
+
+.select {
+	width: 130px;
+	font-size: 12px;
+}
+</style>
 
 </head>
 
@@ -45,9 +64,9 @@
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i>Purchase</a></li>
+							<li><a href="#">Material</a></li>
+							<li class="active">Open Indent</li>
 						</ol>
 					</section>
 
@@ -63,13 +82,18 @@
 							<div class="row">
 								<!-- left column -->
 
-								<div class="col-md-12 shadow bg-white rounded" style="margin-top: 20px;">
+								<div class="col-md-12 shadow bg-white rounded"
+									style="margin-top: 20px;">
 									<!-- general form elements -->
 									<div class="box box-primary">
+										<input type="hidden" id="mess" name="mess"
+											th:value="${message}">
+
 										<div class="box-header with-border">
 
-											<h4 class="box-title">Indent Detail</h4>
-										</div><!-- /.box-header -->
+											<h6 class="box-title">Indent Detail</h6>
+										</div>
+										<!-- /.box-header -->
 
 
 
@@ -79,105 +103,348 @@
 											<div class="box-body">
 
 												<div class="form-group col-md-4">
-													<label for="inputEmail4">Indent Number</label> <input type="text"
-														class="form-control" id="inputEmail4"
-														placeholder="indent number" th:field="*{indentNumber}">
+													<label for="inputEmail4">Indent Number</label> <input
+														type="text" class="form-control" id="inputEmail4"
+														title="indent number" placeholder="Indent Number"
+														th:field="*{indentNumber}">
 												</div>
 												<div class="form-group col-md-4">
-													<label for="inputPassword4">Indent Date</label> <input type="date"
-														class="form-control" id="" placeholder="indent date"
-														th:field="*{indentDate}">
+													<label for="inputPassword4">Indent Date</label> <input
+														type="date" class="form-control" id="indentDate"
+														placeholder="Indent Date" title="indent date"
+														th:field="*{indentDate}" readonly>
 												</div>
 
+
+
+
+												<!-- <div class="form-group col-md-4">
+													<label for="inputAddress">Employee Code</label> <input
+														type="text" class="form-control" id="employeename"
+														title="employee name" placeholder="Employee Name">
+												</div> -->
+
 												<div class="form-group col-md-4">
-													<label class="form-label">Employee Code</label> <label
+													<label class="form-label">Employee Name</label> <label
 														style="color: red">*</label> <select class="form-control"
 														title="employee code" id="employee" required
 														onchange="indentGetEmployee()" th:field="*{employee}">
 														<option value="">Select Employee</option>
 														<option th:each="employee :  ${employeeList}"
-															th:text="${employee.empCode}"
+															th:text="${employee.empName}"
 															th:value=" ${employee.empCode}"></option>
 													</select>
 												</div>
 
+												<div class="form-group col-md-4">
+													<label for="inputAddress">Department Name</label> <select
+														class="form-control" title="employee code" id="employee"
+														required th:field="*{deptCode}">
+														<option value="">Select Department</option>
+														<option th:each="department :  ${departmentList}"
+															th:text="${department.deptName}"
+															th:value=" ${department.deptCode}"></option>
+													</select>
+												</div>
+
 
 												<div class="form-group col-md-4">
-													<label for="inputAddress">Employee Name</label> <input type="text"
-														class="form-control" id="employeename"
-														placeholder="employee name">
-												</div>
-												<div class="form-group col-md-4">
-													<label for="inputAddress">Department Code</label> <input type="text"
-														class="form-control" id="departmentcode"
-														placeholder="department code" th:field="*{deptCode}">
-												</div>
+													<label class="form-label">Urgency</label> <select
+														class="form-control" id="" title="urgency"
+														th:field="*{urgency}" required>
+														<option value="N" selected>Normal</option>
+														<option value="M">Most Urgent</option>
 
-												<div class="form-group col-md-4">
-													<label for="inputAddress">Department Name</label> <input type="text"
-														class="form-control" id="departmentname"
-														placeholder="department name" th:field="*{deptName}">
-												</div>
-												<div class="form-group col-md-4">
-													<label class="form-label">Urgency</label> <label
-														style="color: red">*</label> <select class="form-control" id=""
-														title="urgency" required>
-														<option value="">Select</option>
-														<option value="Most">Most Urgent</option>
-														<option value="Normal">Normal</option>
-														<option value="Ondate">As On Date</option>
+														<option value="O">As On Date</option>
 													</select>
 												</div>
 
 												<div class="form-group col-md-4">
-													<label class="form-label">Indent Type</label> <label
-														style="color: red">*</label> <select class="form-control" id=""
-														title="urgency" required>
-														<option value="">Select</option>
-														<option value="Capex">Capex</option>
-														<option value="NonCapex">Non-Capex</option>
-														<option value="PettyRaw">Petty/Raw Material</option>
-														<option value="Trading">Trading</option>
+													<label class="form-label">Purchase Type</label> <label
+														style="color: red">*</label> <select class="form-control"
+														id="" title="purchase type" th:field="*{idOrSo}" required>
+														<option value="N">Non-Capex</option>
+														<option value="C">Capex</option>
+
+														<option value="P">Petty/Raw Material</option>
+														<option value="O">Others</option>
 													</select>
 												</div>
 
 												<div class="form-group col-md-4">
-													<label for="inputAddress">Purchase Type</label> <input type="text"
-														class="form-control" id="inputAddress"
-														placeholder="purchase type">
+													<label for="inputAddress">Indent Type</label> <select
+														class="form-control" id="" title="indent type"
+														th:field="*{indentsStatus}" required>
+
+														<option value="G" selected>General</option>
+
+
+													</select>
 												</div>
-												<div class="form-group col-md-4">
-													<label for="inputAddress">Remarks</label> <input type="text"
-														class="form-control" id="inputAddress" placeholder="remarks"
-														th:field="*{remarks}">
+												<div class="form-group col-md-8">
+													<label for="inputAddress">Remarks</label>
+													<textarea class="form-control" id="inputAddress"
+														placeholder="Remarks" th:field="*{remarks}"
+														title="remarks"></textarea>
 												</div>
 
-											</div><!-- /.box-body -->
+											</div>
+											<!-- /.box-body -->
+
+
+
+
+
+											<div class="box">
+												<div style="padding-left: 12px">
+													<h5>Indent Item Detail</h5>
+												</div>
+
+												<div class="box-body"
+													style="padding-left: 20px; padding-right: 25px">
+
+													<div class="col-sm-12" style="text-align: right">
+
+														<a id="add_row" class="fa fa-plus" aria-hidden="true"
+															style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+														<a id='delete_row' class="fa fa-trash"
+															style="font-size: 24px; color: #399490fc"
+															aria-hidden="true"></a>
+													</div>
+
+
+													<div class="table-responsive" style="margin-top: 40px">
+														<div class="table table-striped display">
+															<table id="example" aria-describedby="example1">
+
+																<thead>
+																	<tr>
+
+																		<th scope="col" class="text-center">Item Code</th>
+																		<th scope="col" class="text-center">Item
+																			Description<span style="color: red">*</span>
+																		</th>
+
+																		<th scope="col" class="text-center">Indented Qty</th>
+
+																		<th scope="col" class="text-center">Approved Qty</th>
+
+																		<th scope="col" class="text-center">Qty.(In
+																			Stock)</th>
+																		<th scope="col" class="text-center">Qty to be
+																			Procured</th>
+																		<th scope="col" class="text-center">Pipeline Qty<span
+																			style="color: red">*</span>
+																		</th>
+
+
+
+																		<th scope="col" class="text-center">Currency Code</th>
+																		<th scope="col" class="text-center">Item Rate</th>
+																		<th scope="col" class="text-center">Units</th>
+																		<th scope="col" class="text-center">Total value</th>
+																		<th scope="col" class="text-center">Total
+																			Value(INR)</th>
+
+																		<th scope="col" class="text-center">Requisition
+																			Date<span style="color: red">*</span>
+																		</th>
+
+
+																		<th scope="col" class="text-center">Indent
+																			Purpose</th>
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr id="addr0"
+																		th:each="row, stat :${openIndent.opeIndentDetail}">
+
+
+
+
+																	
+																		<td>
+																		<input type="hidden"
+																			th:field="*{opeIndentDetail[__${stat.index}__].id}" />
+																			<input type="text" id="indItemDescription0"
+																			title="item description"
+																			class="form-control form-control-sm" readonly></td>
+
+
+																		<!-- item description -->
+																		<td><select
+																			class="select form-control form-control-sm itemContainer0"
+																			id="indItemCode0" title="item code"
+																			th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}"
+																			onchange="selectItem()" required style="width: 250px">
+																				<option value="">Select Item</option>
+																				<option th:each="item :  ${itemList}"
+																					th:text="${item.description}"
+																					th:value=" ${item.itemCode}"></option>
+																		</select></td>
+
+																		<!-- ind qty -->
+																		<td><input type="text"
+																			class="form-control form-control-sm floatNumberField"
+																			id="indQty0" min="18" title="ind qty" required
+																			th:field="*{opeIndentDetail[__${stat.index}__].indQty}"
+																			style="text-align: right" onkeyup="indentQtyValue()"></td>
+
+																		<!-- approved indent qty -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm floatNumberField"
+																			id="approvedQty0" title="approvaed qty" required
+																			th:field="*{opeIndentDetail[__${stat.index}__].approvedQty}"
+																			style="text-align: right"></td>
+
+																		<!-- qty in stock -->
+																		<td><input type="text"
+																			class="form-control form-control-sm" id="qtyInStock0"
+																			title="qty"
+																			th:field="*{opeIndentDetail[__${stat.index}__].qtyInStock}"
+																			style="text-align: right" readonly></td>
+
+																		<!-- qt to procured -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm floatNumberField"
+																			id="qtyProcured0" title="qty"
+																			th:field="*{opeIndentDetail[__${stat.index}__].qtyProcured}"
+																			style="text-align: right" readonly></td>
+
+
+
+
+
+																		<!-- pipeline indent qty  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm floatNumberField"
+																			id="pipelineIndQty0" title="pipline" required
+																			th:field="*{opeIndentDetail[__${stat.index}__].pipelineQty}"
+																			style="text-align: right" readonly></td>
+
+
+
+																		<!-- currency code -->
+
+																		<td><select class="form-control form-control-sm"
+																			title="currency code" id="indCurrencyCode0"
+																			th:field="*{opeIndentDetail[__${stat.index}__].currencyCode}"
+																			required>
+
+																				<option value="I">INR</option>
+																				<option value="U">USD</option>
+
+																		</select></td>
+
+
+
+
+
+																		<!-- item rate -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm floatNumberField"
+																			id="itemRate0" required title="item rate"
+																			th:field="*{opeIndentDetail[__${stat.index}__].itemRate}"
+																			style="text-align: right" onkeyup="indentItemRate()"></td>
+
+
+
+
+
+
+																		<!-- units  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm" title=""
+																			id="salaryTo" required></td>
+																		<!-- total value inr-total value  -->
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="totalValueInr0" title="Salary"
+																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
+																			style="text-align: right" readonly></td>
+
+
+
+
+																		<!--total value - inr -->
+																		<td><input type="text"
+																			class="form-control form-control-sm floatNumberField"
+																			id="totalValue0" required title="total value"
+																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
+																			style="text-align: right" readonly></td>
+
+																		<!-- requisition date -->
+																		<td><input type="date"
+																			class="form-control form-control-sm" id="salaryTo"
+																			style="width: 145px"
+																			name="opeIndentDetail[0].indReqDate" required></td>
+
+
+
+																		<!-- indent purpose -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm" id="indPurpose0"
+																			required title="ind purpose"
+																			th:field="*{opeIndentDetail[__${stat.index}__].indPurpose}"></td>
+
+
+
+
+
+
+
+
+
+
+																	</tr>
+																	<tr id='addr1' />
+
+																</tbody>
+
+
+															</table>
+														</div>
+													</div>
+
+													<input type="hidden" id="hidden_field" th:value="${length}" />
+
+												</div>
+											</div>
+
+
 
 
 											<!--2nd div -->
 											<div class="box">
-												<h5>Indent Status</h5>
+												<div style="padding-left: 12px;">
+													<h5>Indent Status</h5>
+												</div>
+
 												<div class="box-body">
 
 													<div class="form-row">
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="approval status"
-																th:field="*{approvalStatus1}">
+																placeholder="Approval Status" title="approval status"
+																th:field="*{approvalStatus1}" readonly>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Date of Approval</label> <input
 																type="date" class="form-control" id="inputPassword4"
-																placeholder="date of approval"
-																th:field="*{approvalDate1}">
+																placeholder="Date of Approval" title="date of approval"
+																th:field="*{approvalDate1}" readonly>
 														</div>
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Purchase Status</label> <input
+															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
-																placeholder="purchase status"
-																th:field="*{indPurStatus}">
+																placeholder="Purchase Status" title="purchase status"
+																readonly>
 														</div>
 
 													</div>
@@ -188,150 +455,21 @@
 											<!--end 2nd div -->
 
 
-											<div class="box">
-												<h5>Indent Item Detail</h5>
-												<div class="box-body">
-													<input id="_cr" name="_cr" type="hidden" value="1">
-													<div class="table-responsive">
-														<table id="example" aria-describedby="example"
-															class="table table-striped display">
-															<thead>
-																<tr>
-
-																	<th scope="col" class="text-center">Item Code</th>
-																	<th scope="col" class="text-center">Item Description
-																	</th>
-																	<th scope="col" class="text-center">Qty.(In Stock)
-																	</th>
-																	<th scope="col" class="text-center">Qty to be
-																		Procured</th>
-																	<th scope="col" class="text-center">Pipeline indent
-																		Qty</th>
-																	<th scope="col" class="text-center">Indented Qty
-																	</th>
-																	<th scope="col" class="text-center">Approved
-																		Indented Qty</th>
-																	<th scope="col" class="text-center">Status</th>
-																	<th scope="col" class="text-center">Currency Code
-																	</th>
-																	<th scope="col" class="text-center">Conversion Value
-																	</th>
-																	<th scope="col" class="text-center">Item Rate</th>
-																	<th scope="col" class="text-center">Units</th>
-																	<th scope="col" class="text-center">Total value</th>
-																	<th scope="col" class="text-center">Total Value(INR)
-																	</th>
-
-																	<th scope="col" class="text-center">Requisition Date
-																	</th>
-																	<th scope="col" class="text-center">Status</th>
-
-																	<th scope="col" class="text-center">Indent Purpose
-																	</th>
-																</tr>
-															</thead>
-
-															<tbody>
-																<tr id="addr0" th:each="row, stat :${openIndent.opeIndentDetail}">
-
-
-
-
-								<td>
-									<input type="hidden" th:field="*{opeIndentDetail[__${stat.index}__].id}" />
-									<input type="text" style="width: 90px;" id="indItemCode0" readonly title=""
-										th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}">
-								</td>
-								<!-- item description -->
-								<td><input type="text" style="width: 120px;" id="salaryFrom" required title=""
-										></td>
-
-								<td><input type="text" style="width: 90px;" id="qtyInStock0" title="" required
-										th:field="*{opeIndentDetail[__${stat.index}__].qtyInStock}"></td>
-
-
-
-
-
-								<td><input type="text" style="width: 90px;" id="qtyProcured0" title="" required
-										th:field="*{opeIndentDetail[__${stat.index}__].qtyProcured}"></td>
-
-								<td><input type="text" style="width: 90px;" id="qtyProcured0" title="" required
-										th:field="*{opeIndentDetail[__${stat.index}__].pipelineQty}"></td>
-
-
-								<td><input type="text" style="width: 90px;" id="indQty0" min="18" title="Age from"
-										required th:field="*{opeIndentDetail[__${stat.index}__].indQty}"></td>
-
-								<td><input type="text" max="45" style="width: 90px;" id="ageTo" required
-										th:field="*{opeIndentDetail[__${stat.index}__].approvedQty}"></td>
-
-								<!-- gor status -->
-								<td><input type="text" style="width: 120px;" id="accademicQualificatio" required
-										title=""></td>
-
-								<td><input type="text" style="width: 90px;" id="expMaxMonth" required
-										title="max experience"
-										th:field="*{opeIndentDetail[__${stat.index}__].currencyCode}"></td>
-
-								<td><input type="text" style="width: 90px;" id="expMaxMonth" required
-										title="max experience"
-										th:field="*{opeIndentDetail[__${stat.index}__].conversionvalue}"></td>
-
-
-								<td><input type="text" style="width: 120px;" id="technicalQualification" required
-										title="Technical Qualification"
-										th:field="*{opeIndentDetail[__${stat.index}__].itemRate}"></td>
-
-								<!--unit  -->
-								<td><input type="text" style="width: 120px;" id="salaryTo"></td>
-
-								<td><input type="text" style="width: 120px;" id="salaryTo" required
-										name="opeIndentDetail[0].totalValue"></td>
-
-								<!-- total value (INR)  -->
-								<td><input type="text" style="width: 120px;" id="salaryTo"></td>
-
-								<!-- for requisition date  -->
-								<td><input type="text" style="width: 120px;" id="salaryFrom" required title=""></td>
-
-								<td><input type="text" style="width: 90px;" id="purStatusItemWise" required
-										title="minimum experience"
-										th:field="*{opeIndentDetail[__${stat.index}__].purStatusItemWise}"></td>
-
-
-								<td><input type="text" style="width: 120px;" id="indPurpose0" required
-										th:field="*{opeIndentDetail[__${stat.index}__].indPurpose}"></td>
-
-								<td></td>
-							</tr>
-																<tr id='addr1' />
-
-															</tbody>
-
-
-														</table>
-													</div>
-													<input type="hidden" id="hidden_field" th:value="${length}" />
-												</div>
-
-											</div>
-
-
 
 											<div class="box-footer" style="margin: 10px">
-												
-												<input type="reset" value="Reset" class="btn btn-danger" />
+												<input type="submit" value="Submit" class="btn btn-primary" />
+											<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
 											</div>
 
 
 										</form>
 
 
-									</div><!-- /.box -->
-									<div style="width: parent; text-align-last: right; margin:8px">
-										<a th:href="@{/openindent/list}">View all Records</a>
 									</div>
+									<!-- /.box -->
+									<!-- <div style="width: parent; text-align-last: right; margin: 8px">
+										<a th:href="@{/openindent/list}">View all Records</a>
+									</div> -->
 
 
 
@@ -345,20 +483,890 @@
 				</section>
 			</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
 
-			<script>
-				let txt = $("#editDistName option:selected").text();
-				$("#employeename").val(data.empName);
-			</script>
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+
+
+	<script>
+		document.getElementById('indentDate').valueAsDate = new Date();
+
+		var idIndex = 0;
+		$(document)
+				.ready(
+						function() {
+							console.log("open indent detail is ready!");
+							var i = 1;
+
+							$('#add_row')
+									.click(
+											function() {
+												idIndex++;
+
+												$('#addr' + i)
+														.html(
+
+																"<td><input type='text' readonly id='indItemDescription"+idIndex+"' title=''class='form-control form-control-sm'required></td>"
+
+																		+ "<td><select class='select form-control form-control-sm itemContainer"
+																		+ idIndex
+																		+ "' id='indItemCode"
+																		+ idIndex
+																		+ "' title='item Name'name='opeIndentDetail["
+																		+ idIndex
+																		+ "].indItemCode'required onchange='selectItem()'style='width:250px'></select></td>"
+
+																		/*  ind qty */
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='indQty"
+																		+ idIndex
+																		+ "' min='18' title='Age from'required name='opeIndentDetail["
+																		+ idIndex
+																		+ "].indQty' style='text-align: right'  onkeyup='indentQtyValue()'>"
+
+																		/* approved qty  */
+																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty' style='text-align: right' ></td>"
+
+																		/*  qty in stock  */
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock"+idIndex+"' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' style='text-align: right' readonly></td>"
+
+																		/*  qty to be procured */
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='qtyProcured"+idIndex+"' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' style='text-align: right'  readonly></td>"
+
+																		/* pipeline qty  */
+																		+ "<td><input type='text'class='form-control form-control-sm' id='pipelineIndQty"+idIndex+"' title='' requiredname='opeIndentDetail[" +  idIndex + "].pipelineQty' style='text-align: right' readonly></td>"
+																		/* currency code  */
+																		+ "<td><select class='form-control form-control-sm' title='currency code id='indCurrencyCode0' name='opeIndentDetail[" + idIndex + "].currencyCode' required><option value='I'>INR</option><option value='U'>USD</option></select></td>" //currency code 
+																		/*  item rate */
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='itemRate"
+																		+ idIndex
+																		+ "' title='Technical Qualification' name='opeIndentDetail["
+																		+ idIndex
+																		+ "].itemRate' onkeyup='indentItemRate()' style='text-align: right' ></td>"
+
+																		/* units  */
+																		+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo'></td>" //units 
+
+																		/*  total value  */
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' required  style='text-align: right'  readonly></td>"
+																		/*  total value inr */
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"'  name='opeIndentDetail[" + idIndex + "].totalValue' style='text-align: right'  readonly></td>" //total value int
+																		/*  requisition date */
+																		+ "<td><input type='date' class='form-control form-control-sm' id='salaryTo' style='width: 150px' name='opeIndentDetail[" + idIndex + "].indReqDate' required></td>"
+																		/* indent purpose  */
+																		+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' required name='opeIndentDetail[" + idIndex + "].indPurpose'></td>");
+
+												$('#example').append(
+														'<tr id="addr'
+																+ (i + 1)
+																+ '"></tr>');
+												ajaxForItemDescription();
+
+												i++;
+											});
+
+							$("#delete_row").click(function() {
+								if (i > 1) {
+									$("#addr" + (i - 1)).html('');
+
+									i--;
+									idIndex--;
+								}
+							});
+
+						});
+	</script>
+
+
+	<script>
+		function ajaxForItemDescription() {
+
+			$
+					.ajax({
+						type : "GET",
+						url : "iteminfo/",
+
+						success : function(data) {
+
+							console.log("response data : " + data);
+							$("#employeename").val(data.empName);
+
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.itemCode)
+												console.log("item info : "
+														+ value.description)
+
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
+
+											});
+
+							$('.itemContainer' + idIndex).html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+		}
+	</script>
+
+
+	<script>
+		function selectItem() {
+
+			console.log("id index value is : " + idIndex)
+			var itemCode = document.getElementById("indItemCode" + idIndex).value;
+
+			console.log("Item code : " + itemCode);
+
+			document.getElementById("indItemDescription" + idIndex).value = itemCode
+
+			$
+					.ajax({
+						type : "GET",
+						url : "itemdetail/" + itemCode,
+
+						success : function(data) {
+
+							document.getElementById("qtyProcured" + idIndex).value = 0;
+							document.getElementById("approvedQty" + idIndex).value = 0;
+							document.getElementById("totalValueInr" + idIndex).value = 0;
+							document.getElementById("totalValue" + idIndex).value = 0;
+							document.getElementById("pipelineIndQty" + idIndex).value = 0;
+							//pipelineIndQty
+							$("#indQty" + idIndex).val(0);
+							$("#itemRate" + idIndex).val(0);
+							$("#qtyInStock" + idIndex).val(0);
+
+							console.log("response data : " + data);
+							console.log("data value is : "
+									+ data.item.description)
+
+							$("#indItemDescription" + idIndex).val(
+									data.item.itemCode);
+							$("#qtyInStock" + idIndex).val(
+									data.itemOpening.currentStock)
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
+		}
+
+		function indentQtyValue() {
+
+			var indQty = document.getElementById("indQty" + idIndex).value;
+			console.log("indent qty : " + indQty)
+
+			document.getElementById("qtyProcured" + idIndex).value = indQty;
+			document.getElementById("approvedQty" + idIndex).value = indQty;
+		}
+
+		function indentItemRate() {
+
+			var itemRate = document.getElementById("itemRate" + idIndex).value;
+			var indQty = document.getElementById("indQty" + idIndex).value;
+
+			total = itemRate * indQty;
+			console.log("total value is : " + total)
+
+			document.getElementById("totalValueInr" + idIndex).value = total;
+			document.getElementById("totalValue" + idIndex).value = total;
+		}
+
+		$(document).ready(function() {
+
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+
+	<!-- for decimal only  -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".floatNumberField").change(function() {
+				$(this).val(parseFloat($(this).val()).toFixed(2));
+			});
+		});
+	</script>
+
+
+	<script>
+		//let txt = $("#editDistName option:selected").text();
+		//$("#employeename").val(data.empName);
+	</script>
+
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+</body>
+
+</html>
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+
+
+<style>
+.form-control-sm {
+	height: 30px;
+	width: 120px;
+}
+
+.select {
+	width: 130px;
+	font-size: 10px;
+}
+</style>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Open Indent
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i>Purchase</a></li>
+							<li><a href="#">Material</a></li>
+							<li class="active">Open Indent</li>
+						</ol>
+					</section>
+
+
+					<!-- Main content -->
+					<section class="content">
+
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+
+								<div class="col-md-12 shadow bg-white rounded"
+									style="margin-top: 20px;">
+									<!-- general form elements -->
+									<div class="box box-primary">
+										<input type="hidden" id="mess" name="mess"
+											th:value="${message}">
+
+										<div class="box-header with-border">
+
+											<h6 class="box-title">Indent Detail</h6>
+										</div>
+										<!-- /.box-header -->
+
+
+
+										<!-- form start -->
+										<form role="form" th:action="@{/openindent/}" method="POST"
+											th:object="${openIndent}">
+											<div class="box-body">
+
+												<div class="form-group col-md-4">
+													<label for="inputEmail4">Indent Number</label> <input
+														type="text" class="form-control" id="inputEmail4"
+														title="indent number" placeholder="Indent Number"
+														th:field="*{indentNumber}">
+												</div>
+												<div class="form-group col-md-4">
+													<label for="inputPassword4">Indent Date</label> <input
+														type="date" class="form-control" id="indentDate"
+														placeholder="Indent Date" title="indent date"
+														th:field="*{indentDate}" readonly>
+												</div>
+
+
+
+
+												<!-- <div class="form-group col-md-4">
+													<label for="inputAddress">Employee Code</label> <input
+														type="text" class="form-control" id="employeename"
+														title="employee name" placeholder="Employee Name">
+												</div> -->
+
+												<div class="form-group col-md-4">
+													<label class="form-label">Employee Name</label> <label
+														style="color: red">*</label> <select class="form-control"
+														title="employee code" id="employee" required
+														onchange="indentGetEmployee()" th:field="*{employee}">
+														<option value="">Select Employee</option>
+														<option th:each="employee :  ${employeeList}"
+															th:text="${employee.empName}"
+															th:value=" ${employee.empCode}"></option>
+													</select>
+												</div>
+
+												<div class="form-group col-md-4">
+													<label for="inputAddress">Department Name</label> <select
+														class="form-control" title="employee code" id="employee"
+														required th:field="*{deptCode}">
+														<option value="">Select Department</option>
+														<option th:each="department :  ${departmentList}"
+															th:text="${department.deptName}"
+															th:value=" ${department.deptCode}"></option>
+													</select>
+												</div>
+
+
+												<div class="form-group col-md-4">
+													<label class="form-label">Urgency</label> <label
+														style="color: red">*</label> <select class="form-control"
+														id="" title="urgency" th:field="*{urgency}" required>
+														<option value="">Select</option>
+														<option value="Most">Most Urgent</option>
+														<option value="Normal">Normal</option>
+														<option value="Ondate">As On Date</option>
+													</select>
+												</div>
+
+												<div class="form-group col-md-4">
+													<label class="form-label">Purchase Type</label> <label
+														style="color: red">*</label> <select class="form-control"
+														id="" title="purchase type" th:field="*{idOrSo}" required>
+														<option value="">Select</option>
+														<option value="c">Capex</option>
+														<option value="n">Non-Capex</option>
+														<option value="p">Petty/Raw Material</option>
+														<option value="o">Others</option>
+													</select>
+												</div>
+
+												<div class="form-group col-md-4">
+													<label for="inputAddress">Indent Type</label> <select
+														class="form-control" id="" title="indent type"
+														th:field="*{indentsStatus}" required>
+
+														<option value="g" selected>General</option>
+
+
+													</select>
+												</div>
+												<div class="form-group col-md-8">
+													<label for="inputAddress">Remarks</label>
+													<textarea class="form-control" id="inputAddress"
+														placeholder="Remarks" th:field="*{remarks}"
+														title="remarks"></textarea>
+												</div>
+
+											</div>
+											<!-- /.box-body -->
+
+
+											<!--2nd div -->
+											<div class="box">
+												<div style="padding-left: 12px;">
+													<h5>Indent Status</h5>
+												</div>
+
+												<div class="box-body">
+
+													<div class="form-row">
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">Approval Status</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Approval Status" title="approval status"
+																th:field="*{approvalStatus1}" readonly>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Date of Approval</label> <input
+																type="date" class="form-control" id="inputPassword4"
+																placeholder="Date of Approval" title="date of approval"
+																th:field="*{approvalDate1}" readonly>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="inputPassword4">Purchase Status</label> <input
+																type="text" class="form-control" id="inputPassword4"
+																placeholder="Purchase Status" title="purchase status"
+																th:field="*{indPurStatus}" readonly>
+														</div>
+
+													</div>
+
+												</div>
+
+											</div>
+											<!--end 2nd div -->
+
+
+											<div class="box">
+												<div style="padding-left: 12px">
+													<h5>Indent Item Detail</h5>
+												</div>
+
+												<div class="col-sm-12" style="text-align: right">
+
+													<a id="add_row" class="fa fa-plus" aria-hidden="true"
+														style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+													<a id='delete_row' class="fa fa-trash"
+														style="font-size: 24px; color: #399490fc"
+														aria-hidden="true"></a>
+												</div>
+
+												hello
+
+												<div class="table-responsive table table-sm">
+													<table id="example" aria-describedby="example1">
+
+														<thead>
+															<tr>
+
+																<th scope="col" class="text-center">Item Code</th>
+																<th scope="col" class="text-center">Item
+																	Description</th>
+																<th scope="col" class="text-center">Qty.(In Stock)
+																</th>
+																<th scope="col" class="text-center">Qty to be
+																	Procured</th>
+																<th scope="col" class="text-center">Pipeline indent<span
+																	style="color: red">*</span> Qty
+																</th>
+																<th scope="col" class="text-center">Indented Qty</th>
+																<th scope="col" class="text-center">Approved
+																	Indented Qty</th>
+
+																<th scope="col" class="text-center">Currency Code</th>
+																<th scope="col" class="text-center">Item Rate</th>
+																<th scope="col" class="text-center">Units</th>
+																<th scope="col" class="text-center">Total value</th>
+																<th scope="col" class="text-center">Total
+																	Value(INR)</th>
+
+																<th scope="col" class="text-center">Requisition
+																	Date<span style="color: red">*</span>
+																</th>
+
+
+																<th scope="col" class="text-center">Indent Purpose
+																</th>
+															</tr>
+														</thead>
+
+														<tbody>
+															<tr id="addr0"
+																th:each="row, stat :${openIndent.opeIndentDetail}">
+
+
+
+
+																<td><input type="hidden"
+																	th:field="*{opeIndentDetail[__${stat.index}__].id}" />
+																	<input type="text" style="width: 90px;"
+																	id="indItemCode0" readonly title=""></td>
+
+
+																<!-- item description -->
+																<td><select
+																	class="select form-control form-control-sm itemContainer0"
+																	id="indItemCode0" title="item code"
+																	th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}"
+																	onchange="selectItem()" required style="width: 250px">
+																		<option value="">Select Item</option>
+																		<option th:each="item :  ${itemList}"
+																			th:text="${item.description}"
+																			th:value=" ${item.itemCode}"></option>
+																</select></td>
+
+
+																<td><input type="text" style="width: 90px;"
+																	id="qtyInStock0" title="" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].qtyInStock}"></td>
+
+
+
+
+
+																<td><input type="text" style="width: 90px;"
+																	id="qtyProcured0" title="" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].qtyProcured}"></td>
+
+																<td><input type="text" style="width: 90px;"
+																	id="qtyProcured0" title="" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].pipelineQty}"></td>
+
+
+																<td><input type="text" style="width: 90px;"
+																	id="indQty0" min="18" title="Age from" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].indQty}"></td>
+
+																<td><input type="text" max="45"
+																	style="width: 90px;" id="ageTo" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].approvedQty}"></td>
+
+
+
+																<td><select class="form-control form-control-sm"
+																	title="currency code" id="indCurrencyCode0"
+																	th:field="*{opeIndentDetail[__${stat.index}__].currencyCode}"
+																	required>
+																		<option value="">Select</option>
+																		<option value="I">INR</option>
+																		<option value="U">USD</option>
+
+																</select></td>
+
+
+
+
+
+
+																<td><input type="text" style="width: 120px;"
+																	id="technicalQualification" required
+																	title="Technical Qualification"
+																	th:field="*{opeIndentDetail[__${stat.index}__].itemRate}"></td>
+
+																<!--unit  -->
+																<td><input type="text" style="width: 120px;"
+																	id="salaryTo"></td>
+
+																<td><input type="text" style="width: 120px;"
+																	id="salaryTo" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"></td>
+
+																<!-- total value (INR)  -->
+																<td><input type="text" style="width: 120px;"
+																	id="salaryTo"
+																	th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"></td>
+
+																<!-- for requisition date  -->
+																<td><input type="date" style="width: 120px;"
+																	id="salaryFrom" required title=""
+																	th:field="*{opeIndentDetail[__${stat.index}__].indReqDate}"></td>
+
+
+
+
+																<td><input type="text" style="width: 120px;"
+																	id="indPurpose0" required
+																	th:field="*{opeIndentDetail[__${stat.index}__].indPurpose}"></td>
+
+
+															</tr>
+															<tr id='addr1' />
+
+														</tbody>
+
+
+													</table>
+												</div>
+
+												<input type="hidden" id="hidden_field" th:value="${length}" />
+
+
+											</div>
+
+
+
+											<div class="box-footer" style="margin: 10px">
+												<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
+											</div>
+
+
+										</form>
+
+
+									</div>
+									
+
+
+
+
+								</div>
+								<!--end left column-->
+							</div>
+
+						</div>
+					</section>
+				</section>
+			</div>
+
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
+        
+        </section>-->
+
+
+
+	<script>
+		document.getElementById('indentDate').valueAsDate = new Date();
+
+		var idIndex = 0;
+		$(document)
+				.ready(
+						function() {
+							console.log("open indent detail is ready!");
+							var i = 1;
+
+							$('#add_row')
+									.click(
+											function() {
+												idIndex++;
+
+												$('#addr' + i)
+														.html(
+
+																"<td><input type='text' readonly id='indItemDescription"+idIndex+"' title=''class='form-control form-control-sm'required></td>"
+
+																		+ "<td><select class='select form-control form-control-sm itemContainer"
+																		+ idIndex
+																		+ "' id='indItemCode"
+																		+ idIndex
+																		+ "' title='item Name'name='opeIndentDetail["
+																		+ idIndex
+																		+ "].indItemCode'required onchange='selectItem()'></select></td>"
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock"+idIndex+"' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' readonly></td>"
+
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='qtyProcured"+idIndex+"' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' readonly></td>"
+
+																		+ "<td><input type='text'class='form-control form-control-sm' id='pipelineIndQty"+idIndex+"' title='' requiredname='opeIndentDetail[" +  idIndex + "].pipelineQty'></td>"
+
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='indQty"
+																		+ idIndex
+																		+ "' min='18' title='Age from'required name='opeIndentDetail["
+																		+ idIndex
+																		+ "].indQty' onkeyup='indentQtyValue()'>"
+
+																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty'></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'id='indCurrencyCode"+idIndex+"' requiredtitle='max experience'name='opeIndentDetail[" + idIndex + "].currencyCode'></td>" //currency code 
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='itemRate"
+																		+ idIndex
+																		+ "' title='Technical Qualification' name='opeIndentDetail["
+																		+ idIndex
+																		+ "].itemRate' onkeyup='indentItemRate()'></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo'></td>" //units 
+
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' requiredname='opeIndentDetail[" + idIndex + "].totalValue' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"' readonly></td>" //total value int
+																		+ "<td><input type='date' class='form-control form-control-sm' id='salaryTo' style='width: 145px' required></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' required name='opeIndentDetail[" + idIndex + "].indPurpose'></td>");
+
+												$('#example').append(
+														'<tr id="addr'
+																+ (i + 1)
+																+ '"></tr>');
+												ajaxForItemDescription();
+
+												i++;
+											});
+
+							$("#delete_row").click(function() {
+								if (i > 1) {
+									$("#addr" + (i - 1)).html('');
+
+									i--;
+									idIndex--;
+								}
+							});
+
+						});
+	</script>
+
+
+	<script>
+		function ajaxForItemDescription() {
+
+			$
+					.ajax({
+						type : "GET",
+						url : "iteminfo/",
+
+						success : function(data) {
+
+							console.log("response data : " + data);
+							$("#employeename").val(data.empName);
+
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.itemCode)
+												console.log("item info : "
+														+ value.description)
+
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
+
+											});
+
+							$('.itemContainer' + idIndex).html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+		}
+	</script>
+
+
+	<script>
+		function selectItem() {
+
+			console.log("id index value is : " + idIndex)
+			var itemCode = document.getElementById("indItemCode" + idIndex).value;
+
+			console.log("Item code : " + itemCode);
+
+			document.getElementById("indItemDescription" + idIndex).value = itemCode
+
+			$
+					.ajax({
+						type : "GET",
+						url : "itemdetail/" + itemCode,
+
+						success : function(data) {
+
+							document.getElementById("qtyProcured" + idIndex).value = 0;
+							document.getElementById("approvedQty" + idIndex).value = 0;
+							document.getElementById("totalValueInr" + idIndex).value = 0;
+							document.getElementById("totalValue" + idIndex).value = 0;
+							$("#indQty" + idIndex).val(0);
+							$("#itemRate" + idIndex).val(0);
+							$("#qtyInStock" + idIndex).val(0);
+
+							console.log("response data : " + data);
+							console.log("data value is : "
+									+ data.item.description)
+
+							$("#indItemDescription" + idIndex).val(
+									data.item.itemCode);
+							$("#qtyInStock" + idIndex).val(
+									data.itemOpening.currentStock)
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
+		}
+
+		function indentQtyValue() {
+
+			var indQty = document.getElementById("indQty" + idIndex).value;
+			console.log("indent qty : " + indQty)
+
+			document.getElementById("qtyProcured" + idIndex).value = indQty;
+			document.getElementById("approvedQty" + idIndex).value = indQty;
+		}
+
+		function indentItemRate() {
+
+			var itemRate = document.getElementById("itemRate" + idIndex).value;
+			var indQty = document.getElementById("indQty" + idIndex).value;
+
+			total = itemRate * indQty;
+			console.log("total value is : " + total)
+
+			document.getElementById("totalValueInr" + idIndex).value = total;
+			document.getElementById("totalValue" + idIndex).value = total;
+		}
+
+		$(document).ready(function() {
+
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+
+	<!-- for decimal only  -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".floatNumberField").change(function() {
+				$(this).val(parseFloat($(this).val()).toFixed(2));
+			});
+		});
+
+		window.addEventListener("load", myInit, true);
+		function myInit() {
+			selectItem();
+		};
+	</script>
+
+
+	<script>
+		//let txt = $("#editDistName option:selected").text();
+		//$("#employeename").val(data.empName);
+	</script>
+
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>

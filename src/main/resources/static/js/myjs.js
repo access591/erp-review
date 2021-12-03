@@ -618,6 +618,7 @@ function getRCityOnState() {
 
 function getOrderIndentDetailPo() {
 
+// this po 
 	var indentNumber = document.getElementById("orderIndentNumberPo").value;
 	console.log("order indent number is : " + indentNumber)
 
@@ -697,16 +698,20 @@ function getOrderItemList(poNumber) {
 function getOrderItemDetailForPo() {
 
 	var itemNumber = document.getElementById("orderItemPo").value;
+	var poNumber = document.getElementById("orderIndentNumberPo").value;
 
 	$.ajax({
 		type: "GET",
-		url: "itemInfo/" + itemNumber,
+		url: "itemInfo/" + itemNumber + "/"+poNumber,
 
 		success: function(data) {
 			
 			console.log("getOrderItemDetailForPo item description  :" + data.description)
-			$("#orderItemCode0").val(data.itemCode)
-			$("#orderItemuom").val(data.uom.uomCode)
+			$("#orderItemCode0").val(data.item.description)
+			//orderItemCode0
+			//$("#orderItemCode0").val(data.itemCode)
+			$("#orderItemuom").val(data.item.uom.uomCode)
+			$("#qtyOrder0").val(data.purchaseOrderItem.qtyOrder)
 
 		}, error: function() {
 			console.log("Error");
