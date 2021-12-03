@@ -39,7 +39,7 @@ public class PurchaseOrderItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "ITEM_CODE")
-	@JsonIgnore
+	//@JsonIgnore
 	private Item item;
 	
 	//@Column(precision=10, scale=2)

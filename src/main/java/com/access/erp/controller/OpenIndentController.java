@@ -87,6 +87,9 @@ public class OpenIndentController {
 		
 		List<Department> listDepartment = departmentService.getAllDepartment();
 		model.addAttribute("departmentList", listDepartment);
+		
+		List<Item> itemList = itemService.getAllItem();
+		model.addAttribute("itemList", itemList);
 
 		return "layouts/editview/editOpenIndent";
 	}
