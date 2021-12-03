@@ -27,7 +27,7 @@ public class Employee {
 	
 	@ManyToOne
 	@JoinColumn(name="DEPT_CODE")
-	@JsonIgnore
+	//@JsonIgnore
 	private Department department;
 	
 	@Column(name = "EMP_NAME", length = 100)

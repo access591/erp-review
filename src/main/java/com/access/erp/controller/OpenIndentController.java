@@ -178,7 +178,37 @@ public class OpenIndentController {
 		return itemService.getAllItem();
 	}
 	
+	@ResponseBody
+	@GetMapping("employeeinfo/{empCode}")
+	public Employee getEmployeInfo(@PathVariable("empCode") String empCode){
+		
+		Employee employee = employeeService.editEmployee(empCode).get();
+		return employee;
+	}
 	
+	
+	
+	// Ajax for edit mode 
+	
+	@ResponseBody
+	@GetMapping("/edit/itemdetail/{id}")
+	public Item_itemOpening itemDetailEdit(@PathVariable("id") String itemCode) {
+		
+		Item_itemOpening itemItemOpening = new Item_itemOpening();
+		
+		Item item = itemService.editItem(itemCode).get();
+		
+		ItemOpening itemOpening = null;
+		try {
+			itemOpening = itemOpeningService.editItemOpening(itemCode).get();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		itemItemOpening.setItem(item);
+		itemItemOpening.setItemOpening(itemOpening);
+		return itemItemOpening;
+	}
 	
 
 }

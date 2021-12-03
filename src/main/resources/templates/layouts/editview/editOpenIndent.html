@@ -47,7 +47,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="selectItem()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -128,7 +128,8 @@
 													<label class="form-label">Employee Name</label> <label
 														style="color: red">*</label> <select class="form-control"
 														title="employee code" id="employee" required
-														onchange="indentGetEmployee()" th:field="*{employee}">
+														onchange="indentGetEmployee()" th:field="*{employee}"
+														readonly>
 														<option value="">Select Employee</option>
 														<option th:each="employee :  ${employeeList}"
 															th:text="${employee.empName}"
@@ -203,7 +204,7 @@
 												<div class="box-body"
 													style="padding-left: 20px; padding-right: 25px">
 
-													
+
 
 													<div class="table-responsive" style="margin-top: 40px">
 														<div class="table table-striped display">
@@ -255,9 +256,8 @@
 
 
 
-																	
-																		<td>
-																		<input type="hidden"
+
+																		<td><input type="hidden"
 																			th:field="*{opeIndentDetail[__${stat.index}__].id}" />
 																			<input type="text" id="indItemDescription0"
 																			title="item description"
@@ -351,10 +351,10 @@
 																		<!-- units  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" title=""
-																			id="salaryTo" required></td>
+																			id="uomCode0" required></td>
 																		<!-- total value inr-total value  -->
 																		<td><input type="text"
-																			class="form-control form-control-sm"
+																			class="form-control form-control-sm floatNumberField"
 																			id="totalValueInr0" title="Salary"
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
 																			style="text-align: right" readonly></td>
@@ -373,7 +373,8 @@
 																		<td><input type="date"
 																			class="form-control form-control-sm" id="salaryTo"
 																			style="width: 145px"
-																			name="opeIndentDetail[0].indReqDate" required></td>
+																			th:field="*{opeIndentDetail[__${stat.index}__].indReqDate}"
+																			required></td>
 
 
 
@@ -450,7 +451,8 @@
 
 											<div class="box-footer" style="margin: 10px">
 												<input type="submit" value="Submit" class="btn btn-primary" />
-											<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
+												<input type="button" value="Go back!" class="btn btn-danger"
+													onclick="history.back()">
 											</div>
 
 
@@ -514,7 +516,7 @@
 																		+ "].indItemCode'required onchange='selectItem()'style='width:250px'></select></td>"
 
 																		/*  ind qty */
-																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='indQty"
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField' id='indQty"
 																		+ idIndex
 																		+ "' min='18' title='Age from'required name='opeIndentDetail["
 																		+ idIndex
@@ -542,7 +544,7 @@
 																		+ "].itemRate' onkeyup='indentItemRate()' style='text-align: right' ></td>"
 
 																		/* units  */
-																		+ "<td><input type='text' class='form-control form-control-sm' id='salaryTo'></td>" //units 
+																		+ "<td><input type='text' class='form-control form-control-sm'  id='uomCode"+idIndex+"'></td>" //units 
 
 																		/*  total value  */
 																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' required  style='text-align: right'  readonly></td>"
@@ -632,15 +634,7 @@
 
 						success : function(data) {
 
-							document.getElementById("qtyProcured" + idIndex).value = 0;
-							document.getElementById("approvedQty" + idIndex).value = 0;
-							document.getElementById("totalValueInr" + idIndex).value = 0;
-							document.getElementById("totalValue" + idIndex).value = 0;
-							document.getElementById("pipelineIndQty" + idIndex).value = 0;
-							//pipelineIndQty
-							$("#indQty" + idIndex).val(0);
-							$("#itemRate" + idIndex).val(0);
-							$("#qtyInStock" + idIndex).val(0);
+						
 
 							console.log("response data : " + data);
 							console.log("data value is : "
@@ -648,8 +642,16 @@
 
 							$("#indItemDescription" + idIndex).val(
 									data.item.itemCode);
-							$("#qtyInStock" + idIndex).val(
-									data.itemOpening.currentStock)
+							
+							$("#uomCode" + idIndex).val(
+									data.item.uom.uomCode);
+							
+							//$("#qtyInStock" + idIndex).val(
+							//		data.itemOpening.currentStock)
+							//	$("#qtyInStock" + idIndex).val(
+							//		data.itemOpening.currentStock)
+									
+									//floatNumberField()
 
 						},
 						error : function() {
@@ -666,6 +668,8 @@
 
 			document.getElementById("qtyProcured" + idIndex).value = indQty;
 			document.getElementById("approvedQty" + idIndex).value = indQty;
+			
+			floatNumberField()
 		}
 
 		function indentItemRate() {
@@ -678,6 +682,8 @@
 
 			document.getElementById("totalValueInr" + idIndex).value = total;
 			document.getElementById("totalValue" + idIndex).value = total;
+			
+			floatNumberField()
 		}
 
 		$(document).ready(function() {
@@ -701,6 +707,14 @@
 
 	<!-- for decimal only  -->
 	<script type="text/javascript">
+		function floatNumberField() {
+
+			$(".floatNumberField").change(function() {
+				$(this).val(parseFloat($(this).val()).toFixed(2));
+			});
+
+		}
+		
 		$(document).ready(function() {
 			$(".floatNumberField").change(function() {
 				$(this).val(parseFloat($(this).val()).toFixed(2));
