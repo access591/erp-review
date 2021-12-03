@@ -1,4 +1,4 @@
-//1.**************************************************END OPEN INDENT********************************************** */
+//1.**************************************************OPEN INDENT********************************************** */
 
 
 function indentGetEmployee() {
@@ -18,7 +18,7 @@ function indentGetEmployee() {
 			console.log("response data : " + data);
 			$("#employeename").val(data.empName);
 			$("#departmentcode").val(data.department.deptCode)
-			$("#departmentname").val(data.department.deptName)
+			//$("#departmentname").val(data.department.deptName)
 		}, error: function() {
 			console.log("Error");
 		}
