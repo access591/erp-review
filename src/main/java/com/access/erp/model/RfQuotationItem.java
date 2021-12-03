@@ -65,16 +65,32 @@ public class RfQuotationItem {
 	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "INDENT_NUMBER")
+	@JoinColumn(name = "INDENT_NO")
 	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private OpenIndent openIndent;
 	
+	// indent date 
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "INDENT_DATE")
+	private Date indentDate;
+	
+	
+	public Date getIndentDate() {
+		return indentDate;
+	}
+
+	public void setIndentDate(Date indentDate) {
+		this.indentDate = indentDate;
+	}
+
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "RFQ_NUM")
+	@JoinColumn(name = "RFQ_NO")
 	@JsonIgnore
 	private RfQuotation rfQuotations;
-
+	
+	
+	
 	public RfQuotationItem() {
 		super();
 		

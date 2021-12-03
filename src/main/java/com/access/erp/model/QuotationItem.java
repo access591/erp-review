@@ -48,7 +48,7 @@ public class QuotationItem {
 	private String quality;
 	
 	//fk from inent master
-	@Column(name="INDENT_NUM",length=50)
+	@Column(name="INDENT_NO",length=50)
 	private String indentNum;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -56,7 +56,7 @@ public class QuotationItem {
 	private Date indentDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="EMP_CODE")
+    @JoinColumn(name="EMPLOYEE_CODE")
 	private Employee employee;
 	
 	@Column(name="WORKER_CODE",length=10)
@@ -210,6 +210,8 @@ public class QuotationItem {
 	
 	@Column(name="SHCESS",length=10)
 	private int shcess;
+	
+	
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "QUOTATION_DETAIL_CODE")

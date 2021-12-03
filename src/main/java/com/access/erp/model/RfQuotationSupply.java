@@ -14,71 +14,64 @@ import com.access.erp.model.master.Item;
 import com.access.erp.model.master.SupplierMaster;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-@Table(name="RFQ_SUPP_DETAIL")
+@Table(name = "RFQ_SUPP_DETAIL")
 public class RfQuotationSupply {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long rfQuoSupplyID;
-	
+
 	/*
 	 * @Column(name="SUPPLIER_CODE",length = 50) private Long suppCode;
 	 */
-	//@ManyToOne(optional = false,fetch=FetchType.EAGER)
-	//@JoinColumn(name = "SUPPLIER_CODE")
-	//@JsonIgnore
-	@Column(name="SUPP_CODE",length = 40)
+	// @ManyToOne(optional = false,fetch=FetchType.EAGER)
+	// @JoinColumn(name = "SUPPLIER_CODE")
+	// @JsonIgnore
+	@Column(name = "SUPP_CODE", length = 40)
 	private String suppCode;
-	
-	
-	@Column(name="SUPP_NAME",length = 50)
+
+	@Column(name = "SUPP_NAME", length = 50)
 	private String suppName;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM_CODE")
 	private Item item;
-	
-	@Column(name="SUPP_ADDR",length = 200)
+
+	@Column(name = "SUPP_ADDR", length = 200)
 	private String suppAdd;
-	
+
 // fk
-	@Column(name="SUPP_CITY",length = 50)
+	@Column(name = "SUPP_CITY", length = 50)
 	private String suppCity;
-	
-	@Column(name="SUPP_STATE",length = 50)
+
+	@Column(name = "SUPP_STATE", length = 50)
 	private String suppState;
-	
-	@Column(name="SR_NO",length = 4)
+
+	@Column(name = "SR_NO", length = 4)
 	private String srNum;
-	
-	
-	/*
-	 * @ManyToOne(fetch=FetchType.LAZY)
-	 * 
-	 * @JoinColumn(name = "INDENT_NUMBER") private OpenIndent openIndent;
-	 */
-	
-	
-	@Column(name="CONTACT_PERSON",length = 50)
+
+	//new field 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "INDENT_NUMBER")
+	private OpenIndent openIndent;
+
+	@Column(name = "CONTACT_PERSON", length = 50)
 	private String contactPerson;
-	
-	@Column(name="PHONE_NUMBER",length = 50)
+
+	@Column(name = "PHONE_NO", length = 50)
 	private String phoneNumber;
-	
-	@Column(name="FAX_NUMBER",length = 50)
+
+	@Column(name = "FAX_NO", length = 50)
 	private String faxNum;
-	
-	@Column(name="EMAIL",length = 50)
+
+	@Column(name = "EMAIL", length = 50)
 	private String email;
-	
-	@ManyToOne(optional = false,fetch=FetchType.LAZY)
+
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "RFQ_NO")
 	@JsonIgnore
 	private RfQuotation rfQuotation;
-
-	
 
 	public String getSuppCode() {
 		return suppCode;
@@ -86,6 +79,14 @@ public class RfQuotationSupply {
 
 	public void setSuppCode(String suppCode) {
 		this.suppCode = suppCode;
+	}
+
+	public OpenIndent getOpenIndent() {
+		return openIndent;
+	}
+
+	public void setOpenIndent(OpenIndent openIndent) {
+		this.openIndent = openIndent;
 	}
 
 	public String getSuppName() {
@@ -189,7 +190,5 @@ public class RfQuotationSupply {
 	public void setRfQuoSupplyID(Long rfQuoSupplyID) {
 		this.rfQuoSupplyID = rfQuoSupplyID;
 	}
-	
-	
 
 }

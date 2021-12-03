@@ -282,13 +282,16 @@
 
 																<tbody>
 																	<tr id="addr0">
+																	<tr id="addr0"
+																		th:each="row, stat :${gateEntry.gateEntryItemDetails}">
+
 
 																		<!--   po number  -->
 
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
 																			id="orderIndentNumberPo"
-																			name="gateEntryItemDetails[0].purchaseOrder"
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].purchaseOrder}"
 																			title="indent number"
 																			onchange='getOrderIndentDetailPo()' required>
 																				<option value="">Select Indent</option>
@@ -301,7 +304,7 @@
 																		<td><input type="date"
 																			class="form-control form-control-sm"
 																			id="orderIndentDatePo0" title="order date"
-																			name="gateEntryItemDetails[0].orderDate"></td>
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].orderDate}"></td>
 
 																		<!-- item code  -->
 
@@ -309,7 +312,7 @@
 																			class="form-control form-control-sm select orderItemContainerPo"
 																			required title="item"
 																			onchange="getOrderItemDetailForPo()"
-																			name="gateEntryItemDetails[0].item">
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].itemCode.item}">
 																				<option value="">Select</option>
 																		</select></td>
 
@@ -318,26 +321,26 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderItemCode0" title="item description"
-																			name="gateEntryItemDetails[0].itemDescription"></td>
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].itemDescription}"></td>
 
 																		<!-- pending qty  -->
 
 																		<td><input type="number" title="pending qty"
 																			class="form-control form-control-sm"
-																			name="gateEntryItemDetails[0].pendingQty"></td>
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].pendingQty}"></td>
 
 																		<!-- qty  -->
 
 																		<td><input type="number" id="qtyOrder0"
 																			class="form-control form-control-sm" title="net qty"
-																			name="gateEntryItemDetails[0].netQty"></td>
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].netQty}"></td>
 
 																		<!-- uom  -->
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="status"
-																			name="gateEntryItemDetails[0].uom"></td>
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].uom}"></td>
 
 																		<!-- incoming part sr no  -->
 
@@ -355,6 +358,8 @@
 
 
 																	</tr>
+
+
 																	<tr id='addr1' />
 
 																</tbody>

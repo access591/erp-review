@@ -38,7 +38,7 @@ public class QuotationDetail {
 	private Date receivedOn;
 	
 	// employee code fk
-	@Column(name="EMPLOYEE",length = 30)
+	@Column(name="EMPLOYEE_CODE",length = 30)
 	private String employee;
 	
 	
@@ -46,7 +46,7 @@ public class QuotationDetail {
 	@Column(name="WORKER_CODE",length = 10)
 	private String workerCode;
 	
-	@Column(name="INDENR_N0",length = 15)
+	@Column(name="INDENR_NO",length = 15)
 	private String indentNu;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -58,7 +58,7 @@ public class QuotationDetail {
 	private String quotSub;
 	
 	//fk party master 
-	@Column(name="SUPPL_CODE",length = 30)
+	@Column(name="SUPP_CODE",length = 30)
 	private String suplierCode;
 	
 	//5,2
@@ -109,7 +109,7 @@ public class QuotationDetail {
 	private String delMode;
 	
 	//fk
-	@Column(name="CC0DE",length = 30)
+	@Column(name="CCODE",length = 30)
 	private String cCode;
 	
 	
@@ -121,7 +121,7 @@ public class QuotationDetail {
 	@Column(name="UCODE",length = 30)
 	private String uCode;
 	
-	@Column(name="uDATE")
+	@Column(name="UDATE")
 	private Date uDate;
 	
 	@Column(name="CESS",length = 30)
@@ -143,21 +143,21 @@ public class QuotationDetail {
 	@Column(name="CAPITAL_YN",length = 2)
 	private String capitalYn;
 	
-	@Column(name="TEMP_SUP_NAME",length = 30)
+	@Column(name="TEMP_SUPP_NAME",length = 30)
 	private String tempSupName;
 	
-	@Column(name="SUP_ADD_1",length = 30)
+	@Column(name="SUPP_ADD1",length = 30)
 	private String supAdd1;
 	
-	@Column(name="TEMP_SUP_ADD2",length = 30)
+	@Column(name="TEMP_SUPP_ADD2",length = 30)
 	private String temSupAdd2;
 	
 	//fk
-	@Column(name="SUP_CITY_CODE",length = 30)
+	@Column(name="SUPP_CITY_CODE",length = 30)
 	private String supCityCode;
 	
 	//fk
-	@Column(name="SUP_COUNTRY",length = 30)
+	@Column(name="SUPP_COUNTRY",length = 30)
 	private String supCountry;
 	
 	@Column(name="FROM_CODE",length = 8)
@@ -168,60 +168,70 @@ public class QuotationDetail {
 	
 	
 	//fk
-	@Column(name="RFQ_NUM",length = 30)
+	@Column(name="RFQ_NO",length = 30)
 	private String rfqNo;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RFQ_DATE")
 	private Date rfqDate;
 	
-	@Column(name="APPROVAL_STATUS_1",length = 5)
+	@Column(name="APPROVAL_STATUS1",length = 5)
 	private String approvalStatus1 = "N";
 	
-	@Column(name="APPROVAL_STATUS_2",length = 5)
+	@Column(name="APPROVAL_STATUS2",length = 5)
 	private String approvalStatus2;
 	
-	@Column(name="APPROVAL_STATUS_3",length = 5)
+	@Column(name="APPROVAL_STATUS3",length = 5)
 	private String approvalStatus3;
 	
-	@Column(name="APPROVAL_STATUS_4",length = 5)
+	@Column(name="APPROVAL_STATUS4",length = 5)
 	private String approvalStatus4;
 	
-	@Column(name="APPROVAL_DATE_1")
+	@Column(name="APPROVAL_DATE1")
 	private Date approvalDate1;
 	
-	@Column(name="APPROVAL_DATE_2")
+	@Column(name="APPROVAL_DATE2")
 	private Date approvalDate2;
 	
-	@Column(name="APPROVAL_DATE_3")
+	@Column(name="APPROVAL_DATE3")
 	private Date approvalDate3;
 	
-	@Column(name="APPROVAL_DATE_4")
+	@Column(name="APPROVAL_DATE4")
 	private Date approvalDate4;
 	
-	@Column(name="APPROVED_BY_1",length = 10)
+	@Column(name="APPROVED_BY1",length = 10)
 	private String approvedBy1;
 	
-	@Column(name="APPROVED_BY_2",length = 10)
+	@Column(name="APPROVED_BY2",length = 10)
 	private String approvedBy2;
 	
-	@Column(name="APPROVED_BY_3",length = 10)
+	@Column(name="APPROVED_BY3",length = 10)
 	private String approvedBy3;
 	
-	@Column(name="APPROVED_BY_4",length = 10)
+	@Column(name="APPROVED_BY4",length = 10)
 	private String approvedBy4;
 	
-	@Column(name="REMARKS_1",length = 500)
+	@Column(name="REMARKS1",length = 500)
 	private String remarks1;
 	
-	@Column(name="REMARKS_2",length = 500)
+	@Column(name="REMARKS2",length = 500)
 	private String remarks2;
 	
-	@Column(name="REMARKS_3",length = 500)
+	@Column(name="REMARKS3",length = 500)
 	private String remarks3;
 	
-	@Column(name="REMARKS_4",length = 500)
+	@Column(name="REMARKS4",length = 500)
 	private String remarks4;
+	
+	
+	//discount 
+	@Column(name="DISCOUNT",length = 20)
+	private String discount;
+	
+	
+	
+	
+	
 	
 	@OneToMany(mappedBy = "quotationDetail", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -233,6 +243,14 @@ public class QuotationDetail {
 	public QuotationDetail() {
 		super();
 		
+	}
+
+	public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
 	}
 
 	public String getQuotNo() {

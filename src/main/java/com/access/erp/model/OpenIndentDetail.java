@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
-@Table(name="")
+@Table(name="PR_INDENT_DET")
 public class OpenIndentDetail {
 
 	@Id
@@ -30,7 +30,7 @@ public class OpenIndentDetail {
 	@Column(name = "ITEM_CODE", length = 40)
 	private String indItemCode;
 	
-	@Column(name = "INN_QTY", length = 16)
+	@Column(name = "IND_QTY", length = 16)
 	private String indQty;
 	
 	@Column(name = "QTY_IN_STOCK", length = 16)
@@ -81,7 +81,7 @@ public class OpenIndentDetail {
 	
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name="INDENT_NUMBER")
+	@JoinColumn(name="INDENT_NO")
 	private OpenIndent openIndent;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

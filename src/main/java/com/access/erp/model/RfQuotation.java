@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class RfQuotation {
 
 	@Id
-	@Column(name = "RFQ_NUM", length = 15)
+	@Column(name = "RFQ_NO", length = 15)
 	private String rfqNo;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -35,18 +35,18 @@ public class RfQuotation {
 	private String rfqType;
 
 	//fk
-	@Column(name = "C_CODE", length = 50)
+	@Column(name = "CCODE", length = 50)
 	private String cCode;
 
 	//fk
-	@Column(name = "FY_CODE", length = 50)
+	@Column(name = "FYCODE", length = 50)
 	private String fyCode;
 
 	//fk
-	@Column(name = "u_CODE", length = 50)
+	@Column(name = "UCODE", length = 50)
 	private String uCode;
 
-	@Column(name = "u_DATE")
+	@Column(name = "UDATE")
 	private Date uDate;
 
 	@Column(name = "RFQ_TERM_CONDITION", length = 1000)
