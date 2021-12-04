@@ -99,7 +99,7 @@
 														<label for="inputEmail4">Request for Quotation No</label>
 														<input type="text" class="form-control"
 															placeholder="Quotation Number" title="quotation number"
-															th:field="*{rfqNo}">
+															th:field="*{rfqNo}" readonly>
 													</div>
 													<div class="form-group col-md-4">
 														<label class="form-label">Request For Quotation
@@ -115,7 +115,7 @@
 
 													<div class="form-group col-md-4">
 														<label for="inputEmail4">Request for Quotation
-															Date</label> <input type="date" class="form-control"
+															Date</label><label style="color: red">*</label> <input type="date" class="form-control"
 															title="quotation date" th:field="*{rfqDate}"
 															id="requestForQuotationDate">
 													</div>

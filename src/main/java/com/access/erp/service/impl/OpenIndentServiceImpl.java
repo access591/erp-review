@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.persistence.TypedQuery;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -115,9 +116,31 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 	@Override
 	public void updateOpenIndent(OpenIndent openIndent) {
 
-		Optional<OpenIndent> open = openIndentRepo.findById(openIndent.getIndentNumber());
+		//Optional<OpenIndent> open = openIndentRepo.findById(openIndent.getIndentNumber());
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			OpenIndent indent = session.find(OpenIndent.class, openIndent.getIndentNumber());
+			
+			indent.getOpeIndentDetail().clear();
+			
+			indent.getOpeIndentDetail().addAll(openIndent.getOpeIndentDetail());
+			
+			session.merge(openIndent);
+			
+			tx.commit();
+		} catch (HibernateException e) {
+			
+			e.printStackTrace();
 
-		openIndent.getOpeIndentDetail().addAll(openIndent.getOpeIndentDetail());
+		} finally {
+			session.close();
+		}
+		
+
+	//	openIndent.getOpeIndentDetail().addAll(openIndent.getOpeIndentDetail());
 
 	}
 
