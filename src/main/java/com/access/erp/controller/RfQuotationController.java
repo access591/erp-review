@@ -64,7 +64,8 @@ public class RfQuotationController {
 	StateService stateService;
 	@Autowired
 	CityService cityService;
-	@Autowired OpenIndentDetailRepo openIndentDetailRepo;
+	@Autowired
+	OpenIndentDetailRepo openIndentDetailRepo;
 
 	@GetMapping("/")
 	public String requestQuotation(Model model) {
@@ -107,7 +108,7 @@ public class RfQuotationController {
 		if (rfqList != null) {
 			model.addAttribute("rfqList", rfqList);
 		}
-		return "layouts/listview/listofrequestForQuotation"; //listofrequestForQuotation.html
+		return "layouts/listview/listofrequestForQuotation"; // listofrequestForQuotation.html
 	}
 
 	@GetMapping("/edit/{id}")
@@ -118,7 +119,6 @@ public class RfQuotationController {
 		List<OpenIndent> aprovedOpenIndentList = openIndentService.approvedOpenIndent();
 		model.addAttribute("aprovedOpenIndentList", aprovedOpenIndentList);
 
-	
 		List<PartyMaster> listSupplierMaster = partyMasterService.findByPartyCodeContaining("S");
 		model.addAttribute("listSupplier", listSupplierMaster);
 
@@ -127,9 +127,7 @@ public class RfQuotationController {
 		// openIndent.ifPresent(indent -> model.addAttribute("openIndent", indent));
 
 		rFQuotation.ifPresent(quotation -> model.addAttribute("rFQuotation", quotation));
-		
-		
-		
+
 		List<City> listCity = cityService.getAllCity();
 		model.addAttribute("listCity", listCity);
 
@@ -182,18 +180,20 @@ public class RfQuotationController {
 
 	@ResponseBody
 	@GetMapping("/itemdetail1/{itemCode}/{indentNumber}")
-	public ItemUom getItemDetail(@PathVariable(value = "itemCode") String itemCode, @PathVariable(value = "indentNumber") String indentNumber,Model model) {
+	public ItemUom getItemDetail(@PathVariable(value = "itemCode") String itemCode,
+			@PathVariable(value = "indentNumber") String indentNumber, Model model) {
 
-		System.out.println("item iinfo : " + itemCode +"and indent number : "+ indentNumber);
+		System.out.println("item iinfo : " + itemCode + "and indent number : " + indentNumber);
 
 		Item item = itemRepo.findByItemCode(itemCode);
 
 		UOM uom = uomService.editUOM(item.getUom().getUomCode()).get();
-		
-		//OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCode(itemCode);
-		
+
+		// OpenIndentDetail openIndentDetail =
+		// openIndentDetailRepo.findByIndItemCode(itemCode);
+
 		OpenIndent openIndent = openIndentService.editOpenIndent(indentNumber).get();
-		
+
 		OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCodeAndOpenIndent(itemCode, openIndent);
 
 		ItemUom itemUom = new ItemUom();
@@ -209,7 +209,7 @@ public class RfQuotationController {
 
 	@ResponseBody
 	@GetMapping("/supplierdetail/{supplierCode}")
-	public PartyMaster supplierDetail(@PathVariable(value = "supplierCode") String supplierCode, Model model) {
+	public PartyStateCity supplierDetail(@PathVariable(value = "supplierCode") String supplierCode, Model model) {
 
 		System.out.println("supplierCode iinfo : belongs to party master which has pk containing 'S' " + supplierCode);
 
@@ -218,14 +218,14 @@ public class RfQuotationController {
 		// SupplierMaster supllier =
 		// supplierRepo.findBySupplierId(Long.valueOf(supplierCode).longValue());
 		PartyMaster partyMaster = partyMasterService.editPartyMaster(supplierCode).get();
-		// State state = stateService.editState(partyMaster.getStateCode()).get();
-		// City city = cityService.editCity(partyMaster.getLclAddrCityCode()).get();
+		State state = stateService.editState(partyMaster.getStateCode()).get();
+		City city = cityService.editCity(partyMaster.getLclAddrCityCode()).get();
 
 		partStateCity.setPartyMaster(partyMaster);
-		// partStateCity.setState(state);
-		// partStateCity.setCity(city);
+		partStateCity.setState(state);
+		partStateCity.setCity(city);
 
-		return partyMaster;
+		return partStateCity;
 
 	}
 
@@ -240,11 +240,11 @@ public class RfQuotationController {
 
 	@ResponseBody
 	@GetMapping("/supplierlist")
-	public List<SupplierMaster> supplierList(Model model) {
+	public List<PartyMaster> supplierList(Model model) {
 
-		List<SupplierMaster> listSupplier = supplierRepo.findAll();
-		System.out.println("list of supplier size is : " + listSupplier.size());
-		return listSupplier;
+		List<PartyMaster> listSupplierMaster = partyMasterService.findByPartyCodeContaining("S");
+		System.out.println("list of supplier size is : " + listSupplierMaster.size());
+		return listSupplierMaster;
 
 	}
 }
