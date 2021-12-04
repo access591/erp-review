@@ -115,9 +115,9 @@
 
 													<div class="form-group col-md-4">
 														<label for="inputEmail4">Request for Quotation
-															Date</label><label style="color: red">*</label> <input type="date" class="form-control"
-															title="quotation date" th:field="*{rfqDate}"
-															id="requestForQuotationDate">
+															Date</label><label style="color: red">*</label> <input
+															type="date" class="form-control" title="quotation date"
+															th:field="*{rfqDate}" id="requestForQuotationDate">
 													</div>
 
 												</div>
@@ -205,8 +205,8 @@
 																			name="listRFQuotation[0].uom"></td>
 
 																		<td><input type="text" title="city"
-																			class="form-control form-control-sm"id="qty0"
-																			name="listRFQuotation[0].city"></td>
+																			class="form-control form-control-sm" id="qty0"
+																			name="listRFQuotation[0].qty"></td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
 																			class="form-control form-control-sm" title="rfq date"
@@ -286,6 +286,7 @@
 																<tbody>
 																	<tr id="spr0">
 
+																		<!--  supplier name -->
 																		<td><select id="supplierId0"
 																			class="form-control form-control-sm select" required
 																			title="supplier code" onchange="supplierInfo()"
@@ -298,14 +299,22 @@
 
 																		</select></td>
 
+																		<!-- Supplier Address  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="supplierAdd0" title="supplier address"
 																			name="listRFQuotationSupply[0].suppAdd"></td>
 
 
-
-																		<td><select
+																		<!--  Supplier city -->
+																		
+																			<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="supplierCity0" title="supplier city"
+																				name="listRFQuotationSupply[0].suppCity"></td>
+																			
+																			
+																	<!-- 	<td><select
 																			class="form-control form-control-sm select" required
 																			title="supplier city" id="supplierCity0"
 																			name="listRFQuotationSupply[0].suppCity">
@@ -315,11 +324,19 @@
 																					th:value=" ${city.cityCode}"></option>
 
 
-																		</select></td>
+																		</select></td> -->
 
 
-
-																		<td><select
+																		<!-- Supplier state  -->
+																		
+																			<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="supplierState0" title="supplier city"
+																				name="listRFQuotationSupply[0].suppState"></td>
+																			
+																			
+																			
+																	<!-- 	<td><select
 																			class="form-control form-control-sm select" required
 																			id="supplierState0" title="supplier State"
 																			name="listRFQuotationSupply[0].suppState">
@@ -329,24 +346,31 @@
 																					th:value=" ${state.stateCode}"></option>
 
 
-																		</select></td>
+																		</select></td> -->
 
+
+																		<!-- contact person   -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="contactPerson" title="contact person"
 																			name="listRFQuotationSupply[0].contactPerson">
 																		</td>
 
+
+																		<!-- email  -->
 																		<td><input type="text" title="email"
 																			class="form-control form-control-sm" id="email"
 																			name="listRFQuotationSupply[0].email"></td>
 
+
+																		<!-- Phone Number  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="accademicQualificatio" title="phone number"
 																			name="listRFQuotationSupply[0].phoneNumber">
 																		</td>
 
+																		<!--  fax Number -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="fax number"
@@ -403,7 +427,7 @@
 
 	<script th:inline="javascript">
 		var idIndex1 = 0;
-		var idIndex2 = 0;
+		
 
 		$(document)
 				.ready(
@@ -424,6 +448,8 @@
 																+ idIndex1)
 												$('#inr' + i)
 														.html(
+
+																/*  indent number*/
 																"<td><select class='select form-control form-control-sm indentContainer"
 																		+ idIndex1
 																		+ "' id='indentNumber"
@@ -435,7 +461,10 @@
 																		+ " Indent Number"
 																		+ "</select></td>"
 
+																		/*  indent date */
 																		+ "<td><input type='date' style='font-size: 0.95rem'title='indent date' class='form-control form-control-sm' id='indentDate"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].indentDate' required></td>"
+
+																		/*  item name */
 																		+ "<td><select class='form-control form-control-sm select itemContainer"
 																		+ idIndex1
 																		+ "' onchange='getItemDetail()'  title='Location' id='item"
@@ -443,11 +472,23 @@
 																		+ "' name='listRFQuotation["
 																		+ idIndex1
 																		+ "].item' required><option value=''>Select Item Name</option></select></td>"
+
+																		/*  uom */
 																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom"+idIndex1+"' name='listRFQuotation[" + idIndex1 + "].uom'> </td>"
-																		+ "<td><input type='text' title='city' class='form-control form-control-sm' name='listRFQuotation[" + idIndex1 + "].city'></td>"
+
+																		/* qty  */
+																		+ "<td><input type='text' title='city'  id='qty"+idIndex1+"' class='form-control form-control-sm' name='listRFQuotation[" + idIndex1 + "].qty'></td>"
+
+																		/* required date  */
 																		+ "<td><input type='date'style='font-size: 0.95rem'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].rfqDate'required></td>"
+
+																		/*  item specification  */
 																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].itemSpec'required title=''></td>"
+
+																		/*  term and condition  */
 																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].termCondition'required title=''></td>"
+
+																		/*  remarks */
 																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].remarks'required title=''></td>"
 
 														);
@@ -471,10 +512,14 @@
 							});
 						});
 
+		
+		var idIndex2 = 0;
 		$(document)
 				.ready(
 						function() {
 							console.log("ready!");
+
+							listOfSupplierInfo();
 
 							var j = 1;
 
@@ -484,22 +529,51 @@
 												idIndex2++;
 												$('#spr' + j)
 														.html(
-																"<td><select id='supplierId"
+
+																/*  supplier name  */
+															/* 	"<td><select id='supplierId"
 																		+ idIndex2
 																		+ "' class='form-control form-control-sm select supplierContainer"
 																		+ idIndex2
 																		+ "' required "
-																		+ +"title='supplier code' onchange='supplierInfo()'name='listRFQuotationSupply[0].suppCode'><option value=''>"
-																		+ "Select</option><optionth:each='supplier :  ${listSupplier}'th:text='${supplier.supplierName}'th:value='${supplier.supplierId}'></option></select></td>"
+																		+ +"title='supplier code' onchange='supplierInfo()' name='listRFQuotationSupply["+idIndex2+"].suppCode'></select></td>" */
+																		
+																		"<td><select id='supplierId"+idIndex2+"' class='form-control form-control-sm select supplierContainer"+idIndex2  +"' required title='supplier code' onchange='supplierInfo()'  name='listRFQuotationSupply["+idIndex2+"].suppCode'></select></td>'"
 
-																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierAdd"+idIndex2+"' name='listRFQuotationSupply[0].suppAdd'> </td>"
+																		/* supplier address */
+																		+"<td><input type='text' class='form-control form-control-sm' id='supplierAdd'"+idIndex2+"'  title='supplier address' name='listRFQuotationSupply["+idIndex2+"].suppAdd'></td>"
+																	
 
-																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='supplierCity"+idIndex2+"' name='listRFQuotationSupply[0].suppCity'> </td>"
-																		+ "<td><input type='text' title='city' class='form-control form-control-sm'id='supplierState"+idIndex2+"' name='listRFQuotationSupply[0].suppState'></td>"
-																		+ "<td><input type='text'class='form-control form-control-sm' name='listRFQuotationSupply[0].contactPerson'required title=''></td>"
-																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].email'required title=''></td>"
-																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].phoneNumber'required title=''></td>"
-																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply[0].fax'required title=''></td>"
+																		/*  supplier city */
+																		
+																			+"<td><input type='text' class='form-control form-control-sm' id='supplierCity'"+idIndex2+"'  title='supplier address' name='listRFQuotationSupply["+idIndex2+"].suppCity'></td>"
+																		
+																	/* 	+"<td><select class='form-control form-control-sm select' required title='supplier city' id='supplierCity"+idIndex2+"' name='listRFQuotationSupply["+idIndex2+"].suppCity'>"
+																		+"<option value=''>Select</option><option th:each='city :  ${listCity}' th:text='${city.cityName}' th:value=' ${city.cityCode}''></option> </select></td>" */
+																	
+
+																		/* supplier state  */
+																		
+																			+"<td><input type='text' class='form-control form-control-sm' id='supplierState'"+idIndex2+"'  title='supplier address' name='listRFQuotationSupply["+idIndex2+"].suppState'></td>"
+
+																	
+																		/* +"<td><select class='form-control form-control-sm select' required  id='supplierState"+idIndex2+"' title='supplier State'  name='listRFQuotationSupply["+idIndex2+"].suppState'> "+
+																		"<option value=''>Select</option>"+
+																		 "<option th:each='state :  ${listStates}'  th:text='${state.stateName}' th:value=' ${state.stateCode}''></option> </select></td>" */
+																		 
+																		 
+																		
+																		/*  Contact person  */
+																		+ "<td><input type='text'class='form-control form-control-sm' name='listRFQuotationSupply["+idIndex2+"].contactPerson'required title=''></td>"
+
+																		/*  Email */
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply["+idIndex2+"].email'required title=''></td>"
+
+																		/*  phone number */
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply["+idIndex2+"].phoneNumber'required title=''></td>"
+
+																		/*  fax number  */
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotationSupply["+idIndex2+"].fax'required title=''></td>"
 
 														);
 												$('#supplierTable').append(
@@ -576,7 +650,7 @@
 						url : "itemdetail/" + indentNumber,
 
 						success : function(data) {
-							//$("#resultarea").text(data);
+
 							console.log("response data : "
 									+ $(this.data).addClass('show'));
 
@@ -608,13 +682,13 @@
 
 		function getItemDetail() {
 
-			var indent =  document.getElementById("indentNumber"+ idIndex1).value;
+			var indent = document.getElementById("indentNumber" + idIndex1).value;
 			var item = document.getElementById("item" + idIndex1).value;
 			console.log("item number is " + item)
 
 			$.ajax({
 				type : "GET",
-				url : "itemdetail1/" + item +"/"+ indent,
+				url : "itemdetail1/" + item + "/" + indent,
 
 				success : function(data) {
 					console.log("ite data is : " + data)
@@ -635,6 +709,7 @@
 
 		function supplierInfo() {
 
+			console.log("Supplier info ")
 			var supplierId = document.getElementById("supplierId" + idIndex2).value;
 			console.log("supplier id is : " + supplierId)
 
@@ -643,14 +718,14 @@
 				url : "supplierdetail/" + supplierId,
 
 				success : function(data) {
-					
+
 					console.log("response text object : "
 							+ JSON.stringify(data))
-					console.log("ite data is : " + data)
+					console.log("ite data is : " + data.state.stateCode)
 
-					$("#supplierAdd0").val(data.lclAddr1)
-					$("#supplierCity0").val(data.cityCode)
-					$("#supplierState0").val(data.stateCode)
+					$("#supplierAdd" + idIndex2).val(data.partyMaster.lclAddr1)
+					$("#supplierCity" + idIndex2).val(data.city.cityCode)
+					$("#supplierState" + idIndex2).val(data.state.stateCode)
 					// $("#departmentname").val(data.department.deptName)
 				},
 				error : function() {
@@ -682,8 +757,8 @@
 
 												console.log("item info : "
 														+ value.supplierId)
-												options += '<option value="' + value.supplierId + '">'
-														+ value.supplierName
+												options += '<option value="' + value.partyId + '">'
+														+ value.partyName
 														+ '</option>';
 
 											});

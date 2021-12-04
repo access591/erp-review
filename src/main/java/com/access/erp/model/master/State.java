@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="M_STATE")
 public class State {
@@ -31,6 +33,7 @@ public class State {
 	
 	@ManyToOne
 	@JoinColumn(name="COUNTRY_CODE")
+	@JsonIgnore
 	private Country country;
 	
 	@Column(name = "INS_BY",length = 50)
@@ -49,7 +52,8 @@ public class State {
 	private String activeYn;
 
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "state",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state",cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<City> cities;
 
 	public State() {
