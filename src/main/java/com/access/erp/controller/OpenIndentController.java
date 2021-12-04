@@ -62,6 +62,20 @@ public class OpenIndentController {
 
 		return "redirect:/openindent/";
 	}
+	
+	@PostMapping("/update")
+	public String updateOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent) {
+
+		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
+		
+		System.out.println("open indent  : ");
+		
+		openIndentService.updateOpenIndent(openIndent);
+
+		return "redirect:/openindent/";
+	}
+	
+	
 
 	@GetMapping("/list")
 	public String viewOpenIndentList(Model model) {
@@ -78,9 +92,9 @@ public class OpenIndentController {
 	public String editOpenIndent(@PathVariable("id") String indentCode, Model model) {
 
 		System.out.println("edit open indent form is running ");
-		Optional<OpenIndent> openIndent = openIndentService.editOpenIndent(indentCode);
+		OpenIndent openIndent = openIndentService.editOpenIndent(indentCode).get();
 
-		openIndent.ifPresent(indent -> model.addAttribute("openIndent", indent));
+		model.addAttribute("openIndent", openIndent);
 		
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		model.addAttribute("employeeList", employeeList);
@@ -90,6 +104,8 @@ public class OpenIndentController {
 		
 		List<Item> itemList = itemService.getAllItem();
 		model.addAttribute("itemList", itemList);
+		
+		model.addAttribute("length", openIndent.getOpeIndentDetail().size());
 
 		return "layouts/editview/editOpenIndent";
 	}
@@ -98,12 +114,20 @@ public class OpenIndentController {
 	public String viewOpenIndent(@PathVariable("id") String indentCode, Model model) {
 
 		System.out.println("edit open indent form is running ");
-		Optional<OpenIndent> openIndent = openIndentService.editOpenIndent(indentCode);
+		OpenIndent openIndent = openIndentService.editOpenIndent(indentCode).get();
 
-		openIndent.ifPresent(indent -> model.addAttribute("openIndent", indent));
+		model.addAttribute("openIndent", openIndent);
 		
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		model.addAttribute("employeeList", employeeList);
+		
+		List<Department> listDepartment = departmentService.getAllDepartment();
+		model.addAttribute("departmentList", listDepartment);
+		
+		List<Item> itemList = itemService.getAllItem();
+		model.addAttribute("itemList", itemList);
+		
+		model.addAttribute("length", openIndent.getOpeIndentDetail().size());
 
 		return "layouts/view/viewOpenIndent";
 	}
@@ -193,6 +217,29 @@ public class OpenIndentController {
 	@ResponseBody
 	@GetMapping("/edit/itemdetail/{id}")
 	public Item_itemOpening itemDetailEdit(@PathVariable("id") String itemCode) {
+		
+		Item_itemOpening itemItemOpening = new Item_itemOpening();
+		
+		Item item = itemService.editItem(itemCode).get();
+		
+		ItemOpening itemOpening = null;
+		try {
+			itemOpening = itemOpeningService.editItemOpening(itemCode).get();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		itemItemOpening.setItem(item);
+		itemItemOpening.setItemOpening(itemOpening);
+		return itemItemOpening;
+	}
+	
+	
+	//Ajax for view mode 
+	
+	@ResponseBody
+	@GetMapping("/view/itemdetail/{id}")
+	public Item_itemOpening itemDetailView(@PathVariable("id") String itemCode) {
 		
 		Item_itemOpening itemItemOpening = new Item_itemOpening();
 		

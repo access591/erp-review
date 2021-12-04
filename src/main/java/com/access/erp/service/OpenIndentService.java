@@ -22,5 +22,8 @@ public interface OpenIndentService {
 	public void approval(String indentNumber,String approvalStatus,String level);
 	
 	public List<OpenIndent> approvedOpenIndent();
+	
+	
+	//public void updateOpenIndent(OpenIndent openIndent)
 
 }

@@ -418,7 +418,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
-																placeholder="Purchase Status" title="purchase status"
+																placeholder="Approved By" title="purchase status"
 																readonly>
 														</div>
 
@@ -514,7 +514,7 @@
 																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='qtyProcured"+idIndex+"' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' style='text-align: right'  readonly></td>"
 
 																		/* pipeline qty  */
-																		+ "<td><input type='text'class='form-control form-control-sm' id='pipelineIndQty"+idIndex+"' title='' requiredname='opeIndentDetail[" +  idIndex + "].pipelineQty' style='text-align: right' readonly></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm' id='pipelineIndQty"+idIndex+"' title=''  name='opeIndentDetail[" + idIndex + "].pipelineQty' style='text-align: right' readonly></td>"
 																		/* currency code  */
 																		+ "<td><select class='form-control form-control-sm' title='currency code id='indCurrencyCode0' name='opeIndentDetail[" + idIndex + "].currencyCode' required><option value='I'>INR</option><option value='U'>USD</option></select></td>" //currency code 
 																		/*  item rate */
@@ -683,6 +683,37 @@
 			}
 
 		});
+		
+		
+		
+		
+
+		function indentGetEmployee() {
+
+			console.log("select..");
+
+			var empCode = document.getElementById("employee").value;
+			console.log("emp code : " + empCode);
+
+
+			$.ajax({
+				type: "GET",
+				url: "employeeinfo/" + empCode,
+
+				success: function(data) {
+					//$("#resultarea").text(data);
+					console.log("response data : " + data);
+					$("#employeename").val(data.empName);
+					$("#departmentcode").val(data.department.deptCode)
+					//$("#departmentname").val(data.department.deptName)
+				}, error: function() {
+					console.log("Error");
+				}
+			});
+
+		}
+		
+		
 	</script>
 
 
