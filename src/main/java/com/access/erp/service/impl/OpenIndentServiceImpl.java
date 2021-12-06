@@ -44,7 +44,10 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 		if (openIndent.getIndentNumber() == "" || openIndent.getIndentNumber() == null) {
 			System.out.println("country code is : " + openIndent.getIndentNumber());
 			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("IND", "20-21", "EB");
-			openIndent.setIndentNumber("EB-IND"+maxCode.substring(2));
+			
+			System.out.println("Max Code is : " + maxCode);
+			
+			openIndent.setIndentNumber("EB-"+maxCode);
 
 			for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
 				// openIndent.getOpeIndentDetail().add(indent);
@@ -55,7 +58,7 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 				//System.out.println("indent item code : " + indent.getItem().getItemCode());
 				//indent.setItem(indent.getItem());
 				indent.setOpenIndent(openIndent);
-				// indentDetailRepo.save(indent);
+				//indentDetailRepo.save(indent);
 			}
 
 			openIndentRepo.save(openIndent);
