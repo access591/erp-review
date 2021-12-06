@@ -43,6 +43,10 @@
 	width: 130px;
 	font-size: 12px;
 }
+
+.yelow-bg{
+	background: #fafab9;
+}
 </style>
 
 </head>
@@ -233,7 +237,7 @@
 
 
 																		<th scope="col" class="text-center">Currency Code</th>
-																		<th scope="col" class="text-center">Item Rate</th>
+																		<th scope="col" class="text-center">Item Rate<span style="color: red">*</span></th>
 																		<th scope="col" class="text-center">Units</th>
 																		<th scope="col" class="text-center">Total value</th>
 																		<th scope="col" class="text-center">Total
@@ -290,7 +294,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="approvedQty0" title="approvaed qty" required
 																			th:field="*{opeIndentDetail[__${stat.index}__].approvedQty}"
-																			style="text-align: right"></td>
+																			style="text-align: right" readonly></td>
 
 																		<!-- qty in stock -->
 																		<td><input type="text"
@@ -357,10 +361,10 @@
 																			
 																		<!-- total value inr-total value  -->
 																		<td><input type="text"
-																			class="form-control form-control-sm floatNumberField"
+																			class="form-control form-control-sm floatNumberField yelow-bg"
 																			id="totalValueInr0" title="Salary"
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
-																			style="text-align: right" readonly></td>
+																			style="text-align: right; background-color:#fafab9; "  readonly></td>
 
 
 
@@ -368,9 +372,9 @@
 																		<!--total value - inr -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="totalValue0" required title="total value"
+																			id="totalValue0" required title="total value" 
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
-																			style="text-align: right" readonly></td>
+																			style="text-align: right; background-color:#fafab9; "  readonly></td>
 
 																		<!-- requisition date -->
 																		<td><input type="date"
@@ -424,24 +428,63 @@
 												<div class="box-body">
 
 													<div class="form-row">
-														<div class="form-group col-md-4">
+															<div th:if="${openIndent.approvalStatus=='N'}" class="form-group col-md-4">
+														<!--  approvalStatus --> 
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
-																th:field="*{approvalStatus1}" readonly>
+																value="Pending" readonly>
+														
 														</div>
+														
+														<div th:if="${openIndent.approvalStatus=='Y'}"  class="form-group col-md-4">
+														<!--  approvalStatus --> 
+															<label for="inputEmail4">Approval Status</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Approval Status" title="approval status"
+																value="Approved" readonly>
+														</div>
+														
+														<div th:unless="${openIndent.approvalStatus!='Y' || openIndent.approvalStatus!='N' }"  class="form-group col-md-4">
+														<!--  approvalStatus --> 
+															<label for="inputEmail4">Approval Status</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Approval Status" title="approval status"
+																readonly>
+														</div>
+														
+														
+														
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Date of Approval</label> <input
 																type="date" class="form-control" id="inputPassword4"
 																placeholder="Date of Approval" title="date of approval"
 																th:field="*{approvalDate1}" readonly>
 														</div>
-														<div class="form-group col-md-4">
+														
+														
+														<div th:if="${openIndent.authEmpCode != null}"class="form-group col-md-4">
+															<label for="inputPassword4">Approved By</label> <input
+																type="text" class="form-control" id="inputPassword4"
+																placeholder="Approved By" title="purchase status"
+																th:field="*{authEmpCode.empName}" readonly>
+														</div>
+														
+														
+														<div th:if="${openIndent.authEmpCode == null}"class="form-group col-md-4">
 															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
 																placeholder="Approved By" title="purchase status"
 																readonly>
 														</div>
+														
+														<div th:if="${openIndent.authEmpCode == '  '}"class="form-group col-md-4">
+															<label for="inputPassword4">Approved By</label> <input
+																type="text" class="form-control" id="inputPassword4"
+																placeholder="Approved By" title="purchase status"
+																readonly>
+														</div>
+														
 
 													</div>
 

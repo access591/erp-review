@@ -360,7 +360,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalValueInr0" title="Salary"
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
-																			style="text-align: right" readonly></td>
+																			style="text-align: right; background-color:#fafab9; "  readonly></td>
 
 
 
@@ -370,7 +370,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalValue0" required title="total value"
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
-																			style="text-align: right" readonly></td>
+																			style="text-align: right; background-color:#fafab9; "  readonly></td>
 
 																		<!-- requisition date -->
 																		<td><input type="date"
@@ -415,6 +415,7 @@
 
 
 
+										
 											<!--2nd div -->
 											<div class="box">
 												<div style="padding-left: 12px;">
@@ -424,24 +425,63 @@
 												<div class="box-body">
 
 													<div class="form-row">
-														<div class="form-group col-md-4">
+															<div th:if="${openIndent.approvalStatus=='N'}" class="form-group col-md-4">
+														<!--  approvalStatus --> 
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
-																th:field="*{approvalStatus1}" readonly>
+																value="Pending" readonly>
+														
 														</div>
+														
+														<div th:if="${openIndent.approvalStatus=='Y'}"  class="form-group col-md-4">
+														<!--  approvalStatus --> 
+															<label for="inputEmail4">Approval Status</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Approval Status" title="approval status"
+																value="Approved" readonly>
+														</div>
+														
+														<div th:unless="${openIndent.approvalStatus!='Y' || openIndent.approvalStatus!='N' }"  class="form-group col-md-4">
+														<!--  approvalStatus --> 
+															<label for="inputEmail4">Approval Status</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="Approval Status" title="approval status"
+																readonly>
+														</div>
+														
+														
+														
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Date of Approval</label> <input
 																type="date" class="form-control" id="inputPassword4"
 																placeholder="Date of Approval" title="date of approval"
 																th:field="*{approvalDate1}" readonly>
 														</div>
-														<div class="form-group col-md-4">
+														
+														
+														<div th:if="${openIndent.authEmpCode != null}"class="form-group col-md-4">
+															<label for="inputPassword4">Approved By</label> <input
+																type="text" class="form-control" id="inputPassword4"
+																placeholder="Approved By" title="purchase status"
+																th:field="*{authEmpCode.empName}" readonly>
+														</div>
+														
+														
+														<div th:if="${openIndent.authEmpCode == null}"class="form-group col-md-4">
 															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
 																placeholder="Approved By" title="purchase status"
 																readonly>
 														</div>
+														
+														<div th:if="${openIndent.authEmpCode == '  '}"class="form-group col-md-4">
+															<label for="inputPassword4">Approved By</label> <input
+																type="text" class="form-control" id="inputPassword4"
+																placeholder="Approved By" title="purchase status"
+																readonly>
+														</div>
+														
 
 													</div>
 

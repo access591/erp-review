@@ -59,8 +59,11 @@ public class OpenIndent {
 	
 	//employee code 
 	// final approval 
-	@Column(name = "AUTH_EMP_CODE", length = 10)
-	private String authEmpCode;
+	
+	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "AUTH_EMP_CODE",nullable = true)
+	private Employee authEmpCode;
 	
 	@Column(name = "DEPT_CODE", length = 50)
 	private String deptCode;
@@ -208,7 +211,7 @@ public class OpenIndent {
 	private String remarks4;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "openIndent")
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "openIndent")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<OpenIndentDetail> opeIndentDetail = new ArrayList<>();
 
@@ -304,12 +307,14 @@ public class OpenIndent {
 	}
 
 
-	public String getAuthEmpCode() {
+	
+
+	public Employee getAuthEmpCode() {
 		return authEmpCode;
 	}
 
 
-	public void setAuthEmpCode(String authEmpCode) {
+	public void setAuthEmpCode(Employee authEmpCode) {
 		this.authEmpCode = authEmpCode;
 	}
 

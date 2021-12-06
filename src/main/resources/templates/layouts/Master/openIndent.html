@@ -105,13 +105,14 @@
 													<label for="inputEmail4">Indent Number</label> <input
 														type="text" class="form-control" id="inputEmail4"
 														title="indent number" placeholder="Indent Number"
-														th:field="*{indentNumber}">
+														th:field="*{indentNumber}" readonly>
 												</div>
 												<div class="form-group col-md-4">
-													<label for="inputPassword4">Indent Date</label> <input
+													<label for="inputPassword4">Indent Date</label><label
+														style="color: red">*</label> <input
 														type="date" class="form-control" id="indentDate"
 														placeholder="Indent Date" title="indent date"
-														th:field="*{indentDate}" readonly>
+														th:field="*{indentDate}" required>
 												</div>
 
 
@@ -292,7 +293,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="approvedQty0" title="approvaed qty" required
 																			name="opeIndentDetail[0].approvedQty"
-																			style="text-align: right"></td>
+																			style="text-align: right" readonly></td>
 
 
 																		<!-- qty in stock -->
@@ -350,14 +351,14 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="totalValueInr0" title="Salary"
-																			style="text-align: right" readonly></td>
+																			style="text-align: right; background-color:#fafab9; "  readonly></td>
 
 																		<!--total value - inr -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalValue0" required title="total value"
 																			name="opeIndentDetail[0].totalValue"
-																			style="text-align: right" readonly></td>
+																			style="text-align: right; background-color:#fafab9; "  readonly></td>
 
 
 																		<!-- requisition date -->
@@ -403,12 +404,20 @@
 												<div class="box-body">
 
 													<div class="form-row">
-														<div class="form-group col-md-4">
+														<div class="form-row">
+															
+													
+														
+														<div  class="form-group col-md-4">
+														<!--  approvalStatus --> 
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
-																th:field="*{approvalStatus1}" readonly>
+																readonly>
 														</div>
+														
+														
+														
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Date of Approval</label> <input
 																type="date" class="form-control" id="inputPassword4"
@@ -504,7 +513,7 @@
 																		+ "].indQty' style='text-align: right'  onkeyup='indentQtyValue()'>"
 
 																		/* approved qty  */
-																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty' style='text-align: right' ></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty' style='text-align: right'  readonly></td>"
 
 																		/*  qty in stock  */
 
@@ -528,9 +537,9 @@
 																		+ "<td><input type='text' class='form-control form-control-sm' id='uomCode"+idIndex+"' readonly></td>" //units 
 
 																		/*  total value  */
-																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' required  style='text-align: right'  readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' required  style='text-align: right; background-color:#fafab9; '  readonly></td>"
 																		/*  total value inr */
-																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"'  name='opeIndentDetail[" + idIndex + "].totalValue' style='text-align: right'  readonly></td>" //total value int
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"'  name='opeIndentDetail[" + idIndex + "].totalValue' style='text-align: right; background-color:#fafab9; '  readonly></td>" //total value int
 																		/*  requisition date */
 																		+ "<td><input type='date' class='form-control form-control-sm' id='salaryTo' style='width: 150px' name='opeIndentDetail[" + idIndex + "].indReqDate' required></td>"
 																		/* indent purpose  */
