@@ -38,8 +38,8 @@ public class QuotationDetailServiceImpl implements QuotationDetailService {
 
 		if (quotationDetail.getQuotNo() == "" || quotationDetail.getQuotNo() == null) {
 			System.out.println("quotation detail/item  code is : " + quotationDetail.getQuotNo());
-			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("QUT", "20-21", "EB");
-			quotationDetail.setQuotNo(maxCode);
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("QUO", "20-21", "EB");
+			quotationDetail.setQuotNo("EB-"+maxCode);
 		}
 
 		for (QuotationItem qItem : quotationDetail.getQuotationItem()) {

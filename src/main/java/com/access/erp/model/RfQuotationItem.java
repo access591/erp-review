@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Item;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -41,6 +41,7 @@ public class RfQuotationItem {
 	@Column(name="CITY",length = 50)
 	private String city;
 	
+	//@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RFQ_DATE")
 	private Date rfqDate;

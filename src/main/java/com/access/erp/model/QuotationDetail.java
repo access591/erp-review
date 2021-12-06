@@ -33,6 +33,7 @@ public class QuotationDetail {
 	@Column(name="QUOT_DATE")
 	private Date quotDate;
 	
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RECEIVED_ON")
 	private Date receivedOn;
@@ -163,6 +164,9 @@ public class QuotationDetail {
 	@Column(name="FROM_CODE",length = 8)
 	private String fromCode;
 	
+	@Column(name="FROM_TYPE",length = 8)
+	private String fromType;
+	
 	@Column(name="QUOT_TYPE",length = 2)
 	private String quotType;
 	
@@ -263,6 +267,14 @@ public class QuotationDetail {
 
 	public Date getQuotDate() {
 		return quotDate;
+	}
+
+	public String getFromType() {
+		return fromType;
+	}
+
+	public void setFromType(String fromType) {
+		this.fromType = fromType;
 	}
 
 	public void setQuotDate(Date quotDate) {

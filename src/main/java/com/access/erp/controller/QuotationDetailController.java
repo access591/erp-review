@@ -42,6 +42,7 @@ import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.QuotationDetailService;
 import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
+import com.access.erp.utility.OpenIndentEmployee;
 
 @Controller
 @RequestMapping("/quotationdetail")
@@ -272,18 +273,26 @@ public class QuotationDetailController {
 
 	@ResponseBody
 	@GetMapping("/indentdetail/{indentNumber}")
-	public OpenIndent indentDetailByIndentNumber(@PathVariable(value = "indentNumber") String indentNumber,
+	public OpenIndentEmployee indentDetailByIndentNumber(@PathVariable(value = "indentNumber") String indentNumber,
 			Model model) {
 
 		System.out.println("supplierCode iinfo : " + indentNumber);
 
-		OpenIndent openIndent = openIndentRepo.findByIndentNumber(indentNumber);
+		OpenIndentEmployee openIndentEmployee = new OpenIndentEmployee();
 
+		OpenIndent openIndent = openIndentRepo.findByIndentNumber(indentNumber);
+		openIndentEmployee.setOpenIndent(openIndent);
+		
+		System.out.println(" Employee code is : "  + openIndent.getEmployee().getEmpCode());
+
+		Employee employee = employeeService.editEmployee(openIndent.getEmployee().getEmpCode()).get();
+		openIndentEmployee.setEmployee(employee);
+		
 		System.out.println("indent date is : " + openIndent.getIndentDate());
 
 		// OpenIndent openIndent = openIndentRepo.findById(indentNumber).get();
 
-		return openIndent;
+		return openIndentEmployee;
 
 	}
 
