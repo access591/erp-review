@@ -19,6 +19,9 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -42,6 +45,8 @@ public class OpenIndent {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="EMP_CODE")
+	//@JsonBackReference
+	@JsonIgnore
 	private Employee employee;
 
 	@Column(name = "WORKER_CODE", length = 10)
@@ -61,8 +66,10 @@ public class OpenIndent {
 	// final approval 
 	
 	
-	@ManyToOne(optional = true)
+	@ManyToOne( optional = true)
 	@JoinColumn(name = "AUTH_EMP_CODE",nullable = true)
+	//@JsonManagedReference
+	@JsonIgnore
 	private Employee authEmpCode;
 	
 	@Column(name = "DEPT_CODE", length = 50)
@@ -211,8 +218,9 @@ public class OpenIndent {
 	private String remarks4;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "openIndent")
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "openIndent")
 	@Fetch(value = FetchMode.SUBSELECT)
+	//@JsonManagedReference
 	private List<OpenIndentDetail> opeIndentDetail = new ArrayList<>();
 
 

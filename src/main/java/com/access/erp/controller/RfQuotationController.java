@@ -144,6 +144,8 @@ public class RfQuotationController {
 		return "redirect:/requestquotation/list";
 	}
 
+	
+	
 	@ResponseBody
 	@GetMapping("/itemdetail/{indentNumber}")
 	public ItemListOfIndent getItemListBehalfOfIndentNumber(@PathVariable(value = "indentNumber") String indentNumber,
@@ -192,9 +194,16 @@ public class RfQuotationController {
 		// OpenIndentDetail openIndentDetail =
 		// openIndentDetailRepo.findByIndItemCode(itemCode);
 
-		OpenIndent openIndent = openIndentService.editOpenIndent(indentNumber).get();
-
-		OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCodeAndOpenIndent(itemCode, openIndent);
+		
+		OpenIndentDetail openIndentDetail = null;
+		
+		if(!indentNumber.equals("IND")) {
+			
+			OpenIndent openIndent = openIndentService.editOpenIndent(indentNumber).get();		
+			openIndentDetail = openIndentDetailRepo.findByIndItemCodeAndOpenIndent(itemCode, openIndent);
+			
+		}
+		
 
 		ItemUom itemUom = new ItemUom();
 		itemUom.setItem(item);
@@ -231,10 +240,11 @@ public class RfQuotationController {
 
 	@ResponseBody
 	@GetMapping("/indentinfo")
-	public List<OpenIndent> indentInfo(Model model) {
+	public List<OpenIndent> indentInfo() {
 
-		List<OpenIndent> listOpenIndent = openIndentRepo.findAll();
-		return listOpenIndent;
+		System.out.println("indent info handler ");
+		List<OpenIndent> aprovedOpenIndentList = openIndentService.approvedOpenIndent();
+		return aprovedOpenIndentList;
 
 	}
 
@@ -245,6 +255,17 @@ public class RfQuotationController {
 		List<PartyMaster> listSupplierMaster = partyMasterService.findByPartyCodeContaining("S");
 		System.out.println("list of supplier size is : " + listSupplierMaster.size());
 		return listSupplierMaster;
+
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/itemlist")
+	public List<Item> itemList(Model model) {
+
+		List<Item> itemList = itemRepo.findAll();
+		System.out.println("list of supplier size is : " + itemList.size());
+		return itemList;
 
 	}
 }
