@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
 	th:href="@{/css/skins/_all-skins.min.css}">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 
 <style>
 .form-control-sm {
@@ -92,7 +95,8 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Quotation No.</label> <input
 																			type="text" class="form-control" id="inputEmail4"
-																			placeholder="quotation no" th:field="*{quotNo}">
+																			placeholder="quotation no" th:field="*{quotNo}"
+																			readonly>
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Quotation Date</label> <input
@@ -101,9 +105,14 @@
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Nature of Purchase</label>
-																		<input type="text" class="form-control"
-																			id="inputPassword4" placeholder="nature of purchase">
+																		//capitalYn <select class="form-control"
+																			 title="nature of purchase"
+																			required id="" th:field="*{capitalYn}">
+																			<option value="">Select</option>
+																			<option value="C">Capital</option>
+																			<option value="N">Non-Capital</option>	</select>
 																	</div>
+																
 
 																	<div class="form-group col-md-4">
 																		<label for="inputAddress">Received On</label> <input
@@ -115,7 +124,7 @@
 																		<label class="form-label">RFQ Number </label> <label
 																			style="color: red">*</label> <select
 																			class="form-control"
-																			onchange="changeRequestForQuotation()"  
+																			onchange="changeRequestForQuotation()"
 																			title="RFQ Number" id="rfqNum" th:field="*{rfqNo}">
 																			<option value="">Select RFQ</option>
 																			<option th:each="rfq :  ${listRfQuotation}"
@@ -166,7 +175,7 @@
 																<div class="form-group col-md-4">
 																	<label for="inputPassword4">SupplierState</label> <select
 																		class="form-control" required id="supplierState"
-																		title="supplier State" th:field="*{supCityCode}">
+																		title="supplier State" th:field="*{supCityCode}" readonly>
 																		<option value=" ">Select</option>
 																		<option th:each="state :  ${listStates}"
 																			th:text="${state.stateName}"
@@ -178,13 +187,13 @@
 
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Form Code</label> <input
-																		type="text" class="form-control" id="inputAddress"
-																		placeholder="received on" th:field="*{fromCode}">
+																		type="text" class="form-control" id="fromCode"
+																		placeholder="received on" th:field="*{fromCode}" readonly>
 																</div>
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Supplier City</label> <select
 																		class="form-control" required id="supplierCity"
-																		title="supplier State" th:field="*{supCountry}">
+																		title="supplier State" th:field="*{supCountry}" readonly>
 																		<option value=" ">Select</option>
 																		<option th:each="city :  ${listCity}"
 																			th:text="${city.cityName}"
@@ -195,8 +204,8 @@
 																</div>
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Form Type</label> <input
-																		type="text" class="form-control" id="inputAddress"
-																		placeholder="from type"> //
+																		type="text" class="form-control" id="fromType"
+																		placeholder="from type" th:field="*{fromType}" readonly>
 																	<!-- th:field="*{quotType}" -->
 																</div>
 															</div>
@@ -223,7 +232,7 @@
 																</div>
 
 																<div class="form-group col-md-6">
-																	<label for="inputPassword4">Currency Value</label> <input
+																	<label for="inputPassword4">Conversion Value</label> <input
 																		type="text" class="form-control" id="currencyValue"
 																		placeholder="currency value"
 																		th:field="*{conversionValue}">
@@ -280,8 +289,8 @@
 																<thead>
 																	<tr>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Indent Number</th> 
-																			 
+																			style="width: 90px;">Indent Number</th>
+
 																		<th scope="col" class="text-center"
 																			style="width: 130px;">Indent Date</th>
 																		<th scope="col" class="text-center"
@@ -693,6 +702,8 @@
 					$("#supplierCity").val(data.cityCode)
 					$("#supplierState").val(data.stateCode)
 					$("#supplierName").val(data.partyName)
+					$("#fromCode").val(data.fromCode)
+					$("#fromType").val(data.partyType)
 				},
 				error : function() {
 					console.log("Error");
@@ -755,11 +766,9 @@
 
 		}
 
-		$(document)
-				.ready(
-						function() {
-							document.getElementById("quotationDate").valueAsDate = new Date();
-						});
+		$(document).ready(function() {
+			document.getElementById("quotationDate").valueAsDate = new Date();
+		});
 	</script>
 	<!--   <section class="content">
         
