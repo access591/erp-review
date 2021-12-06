@@ -12,11 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "M_EMPLOYEE")
+
 public class Employee {
 	
 	
@@ -28,6 +33,7 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name="DEPT_CODE")
 	//@JsonIgnore
+	//@JsonBackReference
 	private Department department;
 	
 	@Column(name = "EMP_NAME", length = 100)

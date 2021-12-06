@@ -64,8 +64,8 @@ public class RfQuotationItem {
 	
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "INDENT_NO")
+	@ManyToOne(optional = true,fetch=FetchType.EAGER)
+	@JoinColumn(name = "INDENT_NO",nullable = true)
 	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private OpenIndent openIndent;
 	

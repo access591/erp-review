@@ -127,7 +127,7 @@
 																		<th scope="col" class="text-center">Indent Date</th>
 																		<th scope="col" class="text-center">Item Name</th>
 																		<th scope="col" class="text-center">UOM</th>
-																		<th scope="col" class="text-center">City</th>
+																		<th scope="col" class="text-center">Qty</th>
 																		<th scope="col" class="text-center">Required Date</th>
 																		<th scope="col" class="text-center">Item
 																			Specification</th>
@@ -159,8 +159,8 @@
 																		<td><input type="date" style="font-size: 0.95rem"
 																			title="indent date"
 																			class="form-control form-control-sm" id="indentDate"
-																			th:field="*{listRFQuotation[__${stat.index}__].rfqDate}"
-																			required></td>
+																			th:field="*{listRFQuotation[__${stat.index}__].indentDate}"
+																			readonly></td>
 
 
 
@@ -181,13 +181,12 @@
 
 																		<td><input type="text" title="uom"
 																			class="form-control form-control-sm" id="uom"
-																			th:field="*{listRFQuotation[__${stat.index}__].uom}">
+																			th:field="*{listRFQuotation[__${stat.index}__].uom}" readonly>
 																		</td>
 
 																		<td><input type="text" title="city"
-																			class="form-control form-control-sm"
-																			th:field="*{listRFQuotation[__${stat.index}__].city}">
-																		</td>
+																			class="form-control form-control-sm" id="qty0"
+																			th:field="*{listRFQuotation[__${stat.index}__].qty}"></td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
 																			class="form-control form-control-sm"

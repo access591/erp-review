@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -80,8 +81,9 @@ public class OpenIndentDetail {
 	private String pipelineQty;
 	
 	@ManyToOne
-	@JsonIgnore
+	//@JsonBackReference
 	@JoinColumn(name="INDENT_NO")
+	@JsonIgnore
 	private OpenIndent openIndent;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
