@@ -55,33 +55,6 @@ function changeCurrency() {
 }
 
 
-function getIndentDetailByIndentNumber() {
-
-	var indentNumber = document.getElementById("indentNumber0").value;
-
-	$.ajax({
-		type: "GET",
-		url: "indentdetail/" + indentNumber,
-
-		success: function(data) {
-			console.log("ite data is : " + data)
-
-			console.log("indent data is : " + data.indentDate)
-			$("#indentDate0").val(data.indentDate)
-			$("#empName0").val(data.employee.empName);
-			$("#empCode0").val(data.employee.empCode);
-
-			getItemListByIndentNumber(indentNumber);
-
-
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
-
 
 //Get Object length
 Object.size = function(obj) {
@@ -94,67 +67,8 @@ Object.size = function(obj) {
 };
 
 
-// dynamic drop down 
-function getItemListByIndentNumber(indentNumber) {
 
 
-	console.log("get Item List Function is : " + indentNumber)
-
-	$.ajax({
-		type: "GET",
-		url: "itemList/" + indentNumber,
-
-		success: function(data) {
-			console.log("Item Info behalf of Indent Number  : " + data)
-
-			var options = '<option value=""><strong>Select Item</strong></option>';
-			$(data).each(function(index, value) {
-
-				console.log("item info : " + value.itemCode)
-				console.log("item info : " + value.description)
-
-				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
-
-			});
-
-			$('.itemContainer').html(options);
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
-
-
-function changeItemInQuotationDetail() {
-
-	var itemCode = document.getElementById("item").value;
-	console.log("ItemCode is : " + itemCode)
-
-	$.ajax({
-		type: "GET",
-		url: "itemInfo/" + itemCode,
-
-		success: function(data) {
-			console.log("Item Info behalf of Indent Number  : " + data)
-
-			$("#itemDescriptin").val(data.description)
-			$("#uomCode0").val(data.uom);
-			$("#itemRate0").val(data.itemRate);
-
-			$("#itemQty0").val('0');
-
-
-
-
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
 
 var totalValue = 0;
 

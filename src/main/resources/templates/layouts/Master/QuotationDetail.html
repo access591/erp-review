@@ -105,14 +105,15 @@
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Nature of Purchase</label>
-																		//capitalYn <select class="form-control"
-																			 title="nature of purchase"
-																			required id="" th:field="*{capitalYn}">
+																		<select class="form-control"
+																			title="nature of purchase" required id=""
+																			th:field="*{capitalYn}">
 																			<option value="">Select</option>
 																			<option value="C">Capital</option>
-																			<option value="N">Non-Capital</option>	</select>
+																			<option value="N">Non-Capital</option>
+																		</select>
 																	</div>
-																
+
 
 																	<div class="form-group col-md-4">
 																		<label for="inputAddress">Received On</label> <input
@@ -135,8 +136,8 @@
 
 																	<div class="form-group col-md-4">
 																		<label for="inputAddress">RFQ Date</label> <input
-																			type="date" class="form-control" id="rfqDate"
-																			placeholder="rfq date" th:field=*{rfqDate}>
+																			type="date" class="form-control" id="rfDate"
+																			th:field=*{rfqDate}>
 																	</div>
 																</div>
 
@@ -170,12 +171,13 @@
 																	<label for="inputPassword4">Supplier Name</label> <input
 																		type="text" class="form-control"
 																		placeholder="quotation date" id="supplierName"
-																		th:field="*{tempSupName}">
+																		th:field="*{tempSupName}" readonly>
 																</div>
 																<div class="form-group col-md-4">
 																	<label for="inputPassword4">SupplierState</label> <select
 																		class="form-control" required id="supplierState"
-																		title="supplier State" th:field="*{supCityCode}" readonly>
+																		title="supplier State" th:field="*{supCityCode}"
+																		readonly>
 																		<option value=" ">Select</option>
 																		<option th:each="state :  ${listStates}"
 																			th:text="${state.stateName}"
@@ -188,12 +190,14 @@
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Form Code</label> <input
 																		type="text" class="form-control" id="fromCode"
-																		placeholder="received on" th:field="*{fromCode}" readonly>
+																		placeholder="received on" th:field="*{fromCode}"
+																		readonly>
 																</div>
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Supplier City</label> <select
 																		class="form-control" required id="supplierCity"
-																		title="supplier State" th:field="*{supCountry}" readonly>
+																		title="supplier State" th:field="*{supCountry}"
+																		readonly>
 																		<option value=" ">Select</option>
 																		<option th:each="city :  ${listCity}"
 																			th:text="${city.cityName}"
@@ -205,7 +209,8 @@
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Form Type</label> <input
 																		type="text" class="form-control" id="fromType"
-																		placeholder="from type" th:field="*{fromType}" readonly>
+																		placeholder="from type" th:field="*{fromType}"
+																		readonly>
 																	<!-- th:field="*{quotType}" -->
 																</div>
 															</div>
@@ -219,10 +224,9 @@
 																<div class="form-group col-md-6">
 																	<label class="form-label">Currency Code</label> <label
 																		style="color: red">*</label> <select
-																		class="form-control" onchange="changeCurrency()"
-																		title="currency Name" required id="currencyCode"
-																		th:field="*{currencyCode}">
-																		<option value="">Select</option>
+																		class="form-control" title="currency Name" required
+																		id="currencyCode" th:field="*{currencyCode}">
+
 																		<option value="I">INR</option>
 																		<option value="U">USD</option>
 																		<!-- <option th:each="currency :  ${listCurrencyMaster}"
@@ -304,13 +308,15 @@
 																		<th scope="col" class="text-center"
 																			style="width: 10px;">UOM</th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">Rate</th>
+																			style="width: 120px;">Rate <span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Negotiable Cost</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Qty</th>
+																			style="width: 90px;">Qty  <span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">Total INR Value</th>
+																			style="width: 120px;">Total INR Value </th>
 
 
 
@@ -336,18 +342,18 @@
 																			title="indent date"
 																			class="form-control form-control-sm"
 																			name="quotationItem[0].indentDate" id="indentDate0"
-																			required></td>
+																			readonly></td>
 
 
 
 																		<td><input type="text" title="employee name"
 																			name="quotationItem[0].employee"
-																			class="form-control form-control-sm" id="empCode0">
-																		</td>
+																			class="form-control form-control-sm" id="empCode0"
+																			readonly></td>
 
 																		<td><input type="text" title="uom"
-																			class="form-control form-control-sm" id="empName0">
-																		</td>
+																			class="form-control form-control-sm" id="empName0"
+																			readonly></td>
 
 
 																		<td><select
@@ -361,29 +367,29 @@
 																		</select></td>
 
 																		<td><input type="text" id="itemDescriptin"
-																			class="form-control form-control-sm" required></td>
+																			class="form-control form-control-sm" readonly></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" required
+																			class="form-control form-control-sm" readonly
 																			id="uomCode0" title=""></td>
 
 																		<td><input type="text" id="itemRate0"
-																			class="form-control form-control-sm" required
+																			class="form-control form-control-sm numbersOnly" required
 																			name="quotationItem[0].rate" title=""
 																			onkeyup="totalInrValueCal()"></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" required
+																			class="form-control form-control-sm numbersOnly" required
 																			title=""></td>
 
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" required
+																			class="form-control form-control-sm numbersOnly" required
 																			id="itemQty0" name="quotationItem[0].qtItemQty"
 																			onkeyup="totalInrValueCal()" title=""></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" required
+																			class="form-control form-control-sm numbersOnly" required
 																			name="quotationItem[0].totalValue"
 																			id="totalInrValue0" title=""></td>
 
@@ -427,7 +433,7 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
 																			id="totalDiscountInValue"
-																			placeholder="Total Discount">
+																			placeholder="Total Discount" readonly>
 																	</div>
 																</div>
 															</div>
@@ -445,7 +451,7 @@
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="discountInValue" placeholder="Discount">
+																			id="discountInValue" placeholder="Discount" readonly>
 																	</div>
 																</div>
 															</div>
@@ -492,7 +498,7 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
 																			id="sgstInValue" placeholder="Sgst"
-																			name="quotationItem[0].sgstValue">
+																			name="quotationItem[0].sgstValue" readonly>
 																	</div>
 																</div>
 															</div>
@@ -510,7 +516,7 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
 																			id="cgstInValue" placeholder="Cgst"
-																			name="quotationItem[0].cgstValue">
+																			name="quotationItem[0].cgstValue" readonly>
 																	</div>
 																</div>
 															</div>
@@ -528,7 +534,7 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
 																			id="igstInValue" placeholder="Igst"
-																			name="quotationItem[0].igstValue">
+																			name="quotationItem[0].igstValue" readonly>
 																	</div>
 																</div>
 															</div>
@@ -622,6 +628,98 @@
 
 
 	<script>
+		function getIndentDetailByIndentNumber() {
+
+			var indentNumber = document.getElementById("indentNumber0").value;
+
+			$.ajax({
+				type : "GET",
+				url : "indentdetail/" + indentNumber,
+
+				success : function(data) {
+					console.log("ite data is : " + data)
+
+					console.log("indent data is : " + data.indentDate)
+					$("#indentDate0").val(data.openIndent.indentDate)
+					$("#empName0").val(data.employee.empName);
+					$("#empCode0").val(data.employee.empCode);
+
+					getItemListByIndentNumber(indentNumber);
+
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
+
+		// dynamic drop down 
+		function getItemListByIndentNumber(indentNumber) {
+
+			console.log("get Item List Function is : " + indentNumber)
+
+			$
+					.ajax({
+						type : "GET",
+						url : "itemList/" + indentNumber,
+
+						success : function(data) {
+							console.log("Item Info behalf of Indent Number  : "
+									+ data)
+
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.itemCode)
+												console.log("item info : "
+														+ value.description)
+
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
+
+											});
+
+							$('.itemContainer').html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
+		}
+
+		function changeItemInQuotationDetail() {
+
+			var itemCode = document.getElementById("item").value;
+			console.log("ItemCode is : " + itemCode)
+
+			$.ajax({
+				type : "GET",
+				url : "itemInfo/" + itemCode,
+
+				success : function(data) {
+					console.log("Item Info behalf of Indent Number  : " + data)
+
+					$("#itemDescriptin").val(data.description)
+					$("#uomCode0").val(data.uom.uomCode);
+					$("#itemRate0").val(data.itemRate);
+
+					$("#itemQty0").val('0');
+
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
+
 		function changeRequestForQuotation() {
 
 			console.log("get Item function calling");
@@ -635,7 +733,8 @@
 				success : function(data) {
 					console.log("ite data is : " + data)
 
-					$("#rfqDate").val(data.rfqDate)
+					console.log("rfq date is : " + data.rfqDate)
+					$("#rfDate").val(data.rfqDate)
 
 					supplierList(rfqNumber)
 
@@ -768,6 +867,10 @@
 
 		$(document).ready(function() {
 			document.getElementById("quotationDate").valueAsDate = new Date();
+		});
+
+		jQuery('.numbersOnly').keyup(function() {
+			this.value = this.value.replace(/[^0-9\.]/g, '');
 		});
 	</script>
 	<!--   <section class="content">
