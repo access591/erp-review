@@ -400,7 +400,7 @@
 																		<!--  item rate -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="itemRate0"
-																			title="item rate"
+																			title="item rate"step='0.01'
 																			name="listPurchaseOrderItem[0].itemRate" onkeyup="calculateItemNRate()"></td>
 
 
@@ -420,13 +420,13 @@
 																		<!--  total item cost -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="totalCost0"
-																			title="total item cost"></td>
+																			title="total item cost" step='0.01'></td>
 
 
 																		<!-- total cost inr  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="totalCostInr0" title="total item cost(inr)"></td>
+																			id="totalCostInr0" title="total item cost(inr)"step='0.01'></td>
 
 																		<!--  remarks -->
 																		<td><input type="text" title="remarks"
@@ -521,8 +521,8 @@
 
 																		<!-- cgst in value  -->
 																		<td><input type="number" title="uom"
-																			class="form-control form-control-sm"
-																			id="cgstInValue0"
+																			class="form-control form-control-sm setTwoNumberDecimal"
+																			id="cgstInValue0" step='0.01'
 																			name="listPurchaseOrderItem[0].cgstValue"></td>
 
 																		<!-- sgst in percent  -->
@@ -534,8 +534,8 @@
 
 																		<!-- sgst in value  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm"
-																			id="sgstInValue0" title="inv qty"
+																			class="form-control form-control-sm setTwoNumberDecimal"
+																			id="sgstInValue0" title="inv qty"step='0.01'
 																			name="listPurchaseOrderItem[0].sgstValue"></td>
 
 																		<!-- igst in percent  -->
@@ -548,8 +548,8 @@
 																		<!-- igst in value  -->
 
 																		<td><input type="number"
-																			class="form-control form-control-sm"
-																			id="igstInValue0" title="po rate curr"
+																			class="form-control form-control-sm setTwoNumberDecimal"
+																			id="igstInValue0" title="po rate curr"step='0.01'
 																			name="listPurchaseOrderItem[0].igstValue"></td>
 
 																		<!-- discount in percent  -->
@@ -562,7 +562,7 @@
 																		<!-- discount  in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			id="descountInValue0" title="po rate"
+																			id="descountInValue0" title="po rate"step='0.01'
 																			name="listPurchaseOrderItem[0].discValue"></td>
 
 
@@ -1169,6 +1169,20 @@ function supplierInfo(){
 							});
 						});
 		
+		
+		
+	
+		function setTwoNumberDecimal(event) {
+		    this.value = parseFloat(this.value).toFixed(2);
+		}
+		
+		/* $( document ).ready(function() {
+			 this.value = parseFloat(this.value).toFixed(2);
+		}); */
+		
+		$(document).on("input", ".setTwoNumberDecimal", function() {
+			 this.value = parseFloat(this.value).toFixed(2);
+		});
 		
 		
 		/*  tax info block  */
