@@ -221,89 +221,13 @@ function indentDetailInCaseOfIndent() {
 
 
 
-function getIndentDetailPo() {
-
-	var indentNumber = document.getElementById("indentNumberPo").value;
-
-	$.ajax({
-		type: "GET",
-		url: "indentdetail/" + indentNumber,
-
-		success: function(data) {
-			console.log("Indent Detail data is : " + data)
-
-			console.log("indent data is : " + data.indentDate)
-			$("#indentDatePo").val(data.indentDate)
-			//$("#empName").val(data.employee.empName);
-			//$("#empCode").val(data.employee.empCode);
-
-			getItemList(indentNumber);
 
 
 
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-}
 
 
-function getItemList(indentNumber) {
 
 
-	console.log("get Item List Function is : " + indentNumber)
-
-	$.ajax({
-		type: "GET",
-		url: "itemList/" + indentNumber,
-
-		success: function(data) {
-			console.log("Item Info behalf of Indent Number  : " + data)
-
-			var options = '<option value=""><strong>Select Item</strong></option>';
-			$(data).each(function(index, value) {
-
-				console.log("item info : " + value.itemCode)
-				console.log("item info : " + value.itemName)
-
-				options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
-
-			});
-
-			$('.itemContainerPo').html(options);
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
-
-
-function getItemInfoInPo() {
-
-	var itemNumber = document.getElementById("itemPo").value;
-	var indentNumber = document.getElementById("indentNumberPo").value;
-	console.log("get item detail : " + indentNumber + " : " + itemNumber)
-
-	$.ajax({
-		type: "GET",
-		url: "itemInfo/" + itemNumber + "/" + indentNumber,
-
-		success: function(data) {
-			console.log("item info detail " + data)
-
-			$("#itemRate0").val(data.itemRate)
-			$("#qtyOrder0").val(data.indQty)
-
-
-			totalCostCal();
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-}
 
 function totalCostCal() {
 
