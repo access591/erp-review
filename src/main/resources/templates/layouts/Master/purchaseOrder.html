@@ -1127,8 +1127,32 @@ function supplierInfo(){
 												//listOfSupplierInfo()
 												
 												
+												// for open po == YES 
 												
-												openPoFun()
+												
+												var openPoType = document.getElementById("openPo").value;
+												var purchaseThrough = document.getElementById("purchaseThrough").value;
+												
+												//indentDetailInCaseOfIndent
+												
+												
+												if(openPoType ==='N'){
+													
+													if(purchaseThrough==='I'){
+														indentDetailInCaseOfIndent()
+													}else{
+														getIndentAgainstQuotationDetail()
+													}
+													
+													
+												}else{
+													openPoFun()
+												}
+												
+												
+												
+												
+												
 
 												j++;
 
