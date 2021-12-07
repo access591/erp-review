@@ -20,6 +20,7 @@ import com.access.erp.model.PurchaseOrder;
 import com.access.erp.model.QuotationDetail;
 import com.access.erp.model.RfQuotation;
 import com.access.erp.model.RfQuotationItem;
+import com.access.erp.model.master.City;
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Item;
@@ -32,12 +33,14 @@ import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.repo.QuotationDetailRepo;
 import com.access.erp.repo.RFQuotationRepo;
 import com.access.erp.repo.SupplierRepo;
+import com.access.erp.service.CityService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
 import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
+import com.access.erp.utility.PartyStateCity;
 import com.access.erp.utility.QuotationPartyState;
 
 @Controller
@@ -64,6 +67,7 @@ public class PurchaseOrderController {
 	@Autowired OpenIndentRepo openIndentRepo;
 	@Autowired ItemService itemService;
 	@Autowired OpenIndentDetailRepo openIndentDetailRepo;
+	@Autowired CityService cityService;
 	
 
 	@GetMapping("/")
@@ -273,6 +277,22 @@ public class PurchaseOrderController {
 	}
 	
 	
+	// item list for in case of without indent and without quotation 
+	
+	@ResponseBody
+	@GetMapping("/itemList")
+	public List<Item> itemList() {
+
+		System.out.println("item list handler  : ");
+
+		List<Item> itemList = itemService.getAllItem();
+
+		return itemList;
+
+	}
+	
+	
+	
 	
 	// item info which is in open indent detail table...
 	
@@ -290,6 +310,16 @@ public class PurchaseOrderController {
 		
 		
 		return openIndentDetail;
+
+	}
+	
+	// in case of po == 'YES'
+	
+	@ResponseBody
+	@GetMapping("/itemInfo/{id}")
+	public Item itemInfo(@PathVariable("id") String itemCode) {
+		
+		return itemService.editItem(itemCode).get();
 
 	}
 	
@@ -315,13 +345,31 @@ public class PurchaseOrderController {
 	}
 
 	// get sipplier list/ party against quotation which is approved
+	
+	//get supplier info by id 
 
 	@ResponseBody
-	@GetMapping("/supplierlist/{id}")
-	public List<PartyMaster> getPartyMasterAgainstQuotation(@PathVariable(value = "id") String quotationId) {
+	@GetMapping("/supplierInfo/{id}")
+	public PartyStateCity getPartyMasterAgainstQuotation(@PathVariable(value = "id") String partyId) {
 
 		// QuotationDetail quotation =
-		return null;
+		PartyMaster partyMaster = partyMasterService.editPartyMaster(partyId).get();
+		State state = null;
+		City city = null;
+		if(partyMaster.getStateCode()!=null || partyMaster.getStateCode()!="") {
+			state = stateService.editState(partyMaster.getStateCode()).get();
+		}
+		
+		if(partyMaster.getCityCode()!=null|| partyMaster.getCityCode()!="") {
+			city = cityService.editCity(partyMaster.getCityCode()).get();
+		}
+		
+		PartyStateCity partyStateCity = new PartyStateCity();
+		partyStateCity.setPartyMaster(partyMaster);
+		partyStateCity.setState(state);
+		partyStateCity.setCity(city);
+		
+		return partyStateCity;
 	}
 	
 	
