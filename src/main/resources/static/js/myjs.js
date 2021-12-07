@@ -171,83 +171,12 @@ function supplierInfoPurchase() {
 
 }
 
-function quotationNumberInfo() {
-
-	var quotationNumber = document.getElementById("quotationNumber").value;
-	console.log("quotation number is : " + quotationNumber)
-
-	$.ajax({
-		type: "GET",
-		url: "quotationDetail/" + quotationNumber,
-
-		success: function(data) {
-			console.log("Data From quotaionInfo : " + data)
-
-			$("#quotationDate").val(data.quotationDetail.quotDate)
-
-			$("#supplierId").val(data.partyMaster.partyCode);
-			$("#supplierState").val(data.partyMaster.stateCode);
-			$("#currency").val(data.quotationDetail.currencyCode);
-
-			console.log("currency code value : " + data.quotationDetail.currencyCode)
-
-			getIndentAgainstQuotationDetail()
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-
-}
 
 
 
 
-function getIndentAgainstQuotationDetail() {
-
-	//do all value clear on click selection 
-
-	/*$('#quotationDate').val('');*/
 
 
-	var quotationNumber = document.getElementById("quotationNumber").value;
-	console.log("quotation number is/ getIndent against quotation detail  : " + quotationNumber)
-
-	$.ajax({
-		type: "GET",
-		url: "indentlist/" + quotationNumber,
-
-		success: function(data) {
-			console.log("Data From quotaionInfo : " + data)
-
-			//$("#quotationDate").val(data.quotDate)
-			//$("#uomCode").val(data.uom.uomCode);
-
-			console.log(" result : " + JSON.stringify(data))
-
-			console.log(" result : " + data[0])
-
-			//console.log(" result : " + data.listRfQuotationItem[0].item.itemCode)
-
-			var options = '<option value=""><strong>Select Indent</strong></option>';
-			$(data).each(function(index, value) {
-
-
-				console.log("getIndentListAgainstQuotation : Response " + value)
-
-				options += '<option value="' + value + '">' + value + '</option>';
-
-			});
-
-			$('.indentContainer').html(options);
-
-
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-}
 
 /*
 function indentDetailInCaseOfIndent() {

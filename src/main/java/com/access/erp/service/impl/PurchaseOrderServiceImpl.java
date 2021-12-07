@@ -24,8 +24,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 		
 		if (purchaseOrder.getPoNumber() == "" || purchaseOrder.getPoNumber() == null) {
 			System.out.println("po code is : "+ purchaseOrder.getPoNumber() );
-			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PO", "20-21", "EB");
-			purchaseOrder.setPoNumber(maxCode);
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PUR", "20-21", "EB");
+			purchaseOrder.setPoNumber("EB"+maxCode);
 		}
 		
 		for(PurchaseOrderItem orderItem : purchaseOrder.getListPurchaseOrderItem()) {
