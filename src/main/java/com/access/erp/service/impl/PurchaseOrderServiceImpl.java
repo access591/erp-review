@@ -1,5 +1,6 @@
 package com.access.erp.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,8 +31,11 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 		
 		for(PurchaseOrderItem orderItem : purchaseOrder.getListPurchaseOrderItem()) {
 			
+			
+			//orderItem.setSgstValue(orderItem.getSgstValue());
 			orderItem.setPurchaseOrder(purchaseOrder);
 		}
+		
 		
 		purchaseOrderRepo.save(purchaseOrder);
 	}

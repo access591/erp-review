@@ -1,5 +1,6 @@
 package com.access.erp.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
@@ -28,8 +30,8 @@ public class PurchaseOrderItem {
 	private Long purchaseOrderItem;
 	
 	
-	@ManyToOne()
-	@JoinColumn(name = "INDENT_NO",nullable=false) 
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "INDENT_NO",nullable=true) 
 	@JsonIgnore
 	private OpenIndent openIndent;
 	
@@ -150,8 +152,11 @@ public class PurchaseOrderItem {
 	private int exciseValue;
 
 
-	@Column(name = "DISC_VALUE", length = 12)
-	private int discValue;
+	//@Column(precision = 5, scale = 4)
+	
+	@Column(name = "DISC_VALUE",precision=12, scale=3)
+	@Type(type = "big_decimal")
+	private double discValue;
 	
 	@Column(name = "TRD_DISC_VALUE", length = 15)
 	private int trdDiscValue;
@@ -275,20 +280,30 @@ public class PurchaseOrderItem {
 	@Column(name = "CGST", length = 10)
 	private int cgst;
 
-	@Column(name = "CGST_VALUE",length=15)
-	private int cgstValue;
+	
+	//@Column(precision = 5, scale = 4)
+	//@Type(type = "big_decimal")
+	//private double similarity;
+	
+	
+	@Column(name = "CGST_VALUE",precision=15, scale=3)
+	@Type(type = "big_decimal")
+	private double cgstValue;
 	
 	@Column(name = "SGST", length = 10)
 	private int sgst;
 
-	@Column(name = "SGST_VALUE",length = 15)
-	private int sgstValue;
+	@Column(name = "SGST_VALUE",precision=15, scale=3)
+	@Type(type = "big_decimal")
+	private double sgstValue;
 	
 	@Column(name = "IGST", length = 10)
 	private int igst;
 
-	@Column(name = "IGST_VALUE",length=15)
-	private int igstValue;
+	
+	@Column(name = "IGST_VALUE",precision=15, scale=3)
+	@Type(type = "big_decimal")
+	private double igstValue;
 	
 	@Column(name = "COST_CENTRE_CODE",length=10)
 	private int costCenterCode;
@@ -302,6 +317,7 @@ public class PurchaseOrderItem {
 		super();
 		
 	}
+
 	
 	
 
@@ -309,24 +325,30 @@ public class PurchaseOrderItem {
 		return purchaseOrderItem;
 	}
 
+
+
+
 	public void setPurchaseOrderItem(Long purchaseOrderItem) {
 		this.purchaseOrderItem = purchaseOrderItem;
 	}
 
-	public PurchaseOrder getPurchaseOrder() {
-		return purchaseOrder;
+
+
+
+	public OpenIndent getOpenIndent() {
+		return openIndent;
 	}
 
-	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
-		this.purchaseOrder = purchaseOrder;
+	public void setOpenIndent(OpenIndent openIndent) {
+		this.openIndent = openIndent;
 	}
 
-	public Date getPoDate() {
-		return poDate;
+	public Date getIndentDate() {
+		return indentDate;
 	}
 
-	public void setPoDate(Date poDate) {
-		this.poDate = poDate;
+	public void setIndentDate(Date indentDate) {
+		this.indentDate = indentDate;
 	}
 
 	public Item getItem() {
@@ -337,36 +359,29 @@ public class PurchaseOrderItem {
 		this.item = item;
 	}
 
-	
-	
-
-
 	public String getItemRate() {
 		return itemRate;
 	}
-
-
 
 	public void setItemRate(String itemRate) {
 		this.itemRate = itemRate;
 	}
 
+	public Date getRateEffectiveDate() {
+		return rateEffectiveDate;
+	}
 
-
-	
-
+	public void setRateEffectiveDate(Date rateEffectiveDate) {
+		this.rateEffectiveDate = rateEffectiveDate;
+	}
 
 	public String getQtyOrder() {
 		return qtyOrder;
 	}
 
-
-
 	public void setQtyOrder(String qtyOrder) {
 		this.qtyOrder = qtyOrder;
 	}
-
-
 
 	public String getItemStatus() {
 		return itemStatus;
@@ -382,6 +397,14 @@ public class PurchaseOrderItem {
 
 	public void setItemRemarks(String itemRemarks) {
 		this.itemRemarks = itemRemarks;
+	}
+
+	public Date getPoDate() {
+		return poDate;
+	}
+
+	public void setPoDate(Date poDate) {
+		this.poDate = poDate;
 	}
 
 	public int getPoSeqNo() {
@@ -512,22 +535,6 @@ public class PurchaseOrderItem {
 		this.totalValue = totalValue;
 	}
 
-	public OpenIndent getOpenIndent() {
-		return openIndent;
-	}
-
-	public void setOpenIndent(OpenIndent openIndent) {
-		this.openIndent = openIndent;
-	}
-
-	public Date getIndentDate() {
-		return indentDate;
-	}
-
-	public void setIndentDate(Date indentDate) {
-		this.indentDate = indentDate;
-	}
-
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -568,14 +575,6 @@ public class PurchaseOrderItem {
 		this.vatCstSt = vatCstSt;
 	}
 
-	public Date getRateEffectiveDate() {
-		return rateEffectiveDate;
-	}
-
-	public void setRateEffectiveDate(Date rateEffectiveDate) {
-		this.rateEffectiveDate = rateEffectiveDate;
-	}
-
 	public int getTds() {
 		return tds;
 	}
@@ -608,11 +607,11 @@ public class PurchaseOrderItem {
 		this.exciseValue = exciseValue;
 	}
 
-	public int getDiscValue() {
+	public double getDiscValue() {
 		return discValue;
 	}
 
-	public void setDiscValue(int discValue) {
+	public void setDiscValue(double discValue) {
 		this.discValue = discValue;
 	}
 
@@ -695,7 +694,6 @@ public class PurchaseOrderItem {
 	public void setModVatValue(int modVatValue) {
 		this.modVatValue = modVatValue;
 	}
-
 
 	public int getToleranceDays() {
 		return toleranceDays;
@@ -921,11 +919,11 @@ public class PurchaseOrderItem {
 		this.cgst = cgst;
 	}
 
-	public int getCgstValue() {
+	public double getCgstValue() {
 		return cgstValue;
 	}
 
-	public void setCgstValue(int cgstValue) {
+	public void setCgstValue(double cgstValue) {
 		this.cgstValue = cgstValue;
 	}
 
@@ -937,11 +935,11 @@ public class PurchaseOrderItem {
 		this.sgst = sgst;
 	}
 
-	public int getSgstValue() {
+	public double getSgstValue() {
 		return sgstValue;
 	}
 
-	public void setSgstValue(int sgstValue) {
+	public void setSgstValue(double sgstValue) {
 		this.sgstValue = sgstValue;
 	}
 
@@ -953,11 +951,11 @@ public class PurchaseOrderItem {
 		this.igst = igst;
 	}
 
-	public int getIgstValue() {
+	public double getIgstValue() {
 		return igstValue;
 	}
 
-	public void setIgstValue(int igstValue) {
+	public void setIgstValue(double igstValue) {
 		this.igstValue = igstValue;
 	}
 
@@ -968,5 +966,16 @@ public class PurchaseOrderItem {
 	public void setCostCenterCode(int costCenterCode) {
 		this.costCenterCode = costCenterCode;
 	}
+
+	public PurchaseOrder getPurchaseOrder() {
+		return purchaseOrder;
+	}
+
+	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+		this.purchaseOrder = purchaseOrder;
+	}
+
+	
+	
 
 }
