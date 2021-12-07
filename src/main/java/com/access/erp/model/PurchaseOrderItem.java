@@ -28,8 +28,8 @@ public class PurchaseOrderItem {
 	private Long purchaseOrderItem;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "INDENT_NO") 
+	@ManyToOne()
+	@JoinColumn(name = "INDENT_NO",nullable=false) 
 	@JsonIgnore
 	private OpenIndent openIndent;
 	
