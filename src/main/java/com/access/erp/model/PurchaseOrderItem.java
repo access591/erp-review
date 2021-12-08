@@ -154,7 +154,7 @@ public class PurchaseOrderItem {
 
 	//@Column(precision = 5, scale = 4)
 	
-	@Column(name = "DISC_VALUE",precision=12, scale=3)
+	@Column(name = "DISC_VALUE",precision=12, scale=3,nullable = true)
 	//@Type(type = "big_decimal")
 	private double discValue;
 	
@@ -214,7 +214,7 @@ public class PurchaseOrderItem {
 	private int shelfLife;
 	
 	
-	@Column(name = "DISC_PER",length = 10)
+	@Column(name = "DISC_PER",length = 10,nullable = true)
 	private double discPer;
 
 
@@ -277,7 +277,7 @@ public class PurchaseOrderItem {
 	@Column(name = "ITEM_CANC",length = 4)
 	private char itemCanc = 'N';
 	
-	@Column(name = "CGST", length = 10)
+	@Column(name = "CGST", length = 10,nullable = true)
 	private double cgst;
 
 	
@@ -286,22 +286,22 @@ public class PurchaseOrderItem {
 	//private double similarity;
 	
 	
-	@Column(name = "CGST_VALUE",precision=15, scale=3)
+	@Column(name = "CGST_VALUE",precision=15, scale=3,nullable = true)
 	//@Type(type = "big_decimal")
 	private double cgstValue;
 	
-	@Column(name = "SGST", length = 10)
+	@Column(name = "SGST", length = 10,nullable = true)
 	private double sgst;
 
-	@Column(name = "SGST_VALUE",precision=15, scale=3)
+	@Column(name = "SGST_VALUE",precision=15, scale=3,nullable = true)
 	//@Type(type = "big_decimal")
 	private double sgstValue;
 	
-	@Column(name = "IGST", length = 10)
+	@Column(name = "IGST", length = 10,nullable = true)
 	private double igst;
 
 	
-	@Column(name = "IGST_VALUE",precision=15, scale=3)
+	@Column(name = "IGST_VALUE",precision=15, scale=3,nullable = true)
 	//@Type(type = "big_decimal")
 	private double igstValue;
 	
