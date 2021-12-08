@@ -28,6 +28,12 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
 
+
+
+
+
+
+
 <style>
 .form-control-sm {
 	height: 30px;
@@ -400,8 +406,12 @@
 																		<!--  item rate -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="itemRate0"
-																			title="item rate"step='0.01'
-																			name="listPurchaseOrderItem[0].itemRate" onkeyup="calculateItemNRate()"></td>
+																			title="item rate"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
+																			min="0"step="0.25" value="0.00"
+																			name="listPurchaseOrderItem[0].itemRate"
+																			style="text-align: right"
+																			onkeyup="calculateItemNRate()"></td>
 
 
 																		<!--  efective date -->
@@ -415,18 +425,26 @@
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			title="qty order" id="qtyOrder0"
-																			name="listPurchaseOrderItem[0].qtyOrder" onkeyup="calculateItemNRate()"></td>
+																			name="listPurchaseOrderItem[0].qtyOrder"
+																			onkeyup="calculateItemNRate()"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
+																			min="0"step="0.25" value="0.00"
+																			style="text-align: right"></td>
 
 																		<!--  total item cost -->
-																		<td><input type="text"
+																		<td><input type="number"
 																			class="form-control form-control-sm" id="totalCost0"
-																			title="total item cost" step='0.01'></td>
+																			title="total item cost" step='0.01' value='0.00'
+																			placeholder='0.00'
+																			style="text-align: right"></td>
 
 
 																		<!-- total cost inr  -->
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="totalCostInr0" title="total item cost(inr)"step='0.01'></td>
+																		<td><input type="number"
+																			class="form-control form-control-sm floatNumberField"
+																			id="totalCostInr0" title="total item cost(inr)"
+																			step='0.01'
+																			style="text-align: right"></td>
 
 																		<!--  remarks -->
 																		<td><input type="text" title="remarks"
@@ -510,60 +528,67 @@
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="freight0"
 																			title="order date"
-																			name="listPurchaseOrderItem[0].freight"></td>
+																			name="listPurchaseOrderItem[0].freight"style="text-align: right"></td>
 
 																		<!-- cgst in percent  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="cgstInPer0"
 																			title="item name"
 																			name="listPurchaseOrderItem[0].cgst"
-																			onkeyup="calulationOfCgst()"></td>
+																			onkeyup="calulationOfCgst()"style="text-align: right"></td>
 
 																		<!-- cgst in value  -->
 																		<td><input type="number" title="uom"
 																			class="form-control form-control-sm setTwoNumberDecimal"
 																			id="cgstInValue0" step='0.01'
-																			name="listPurchaseOrderItem[0].cgstValue"></td>
+																			name="listPurchaseOrderItem[0].cgstValue" readonly
+																			style="text-align: right"></td>
 
 																		<!-- sgst in percent  -->
 																		<td><input type="number" id="sgstInPer0"
 																			class="form-control form-control-sm" title="po qty"
 																			name="listPurchaseOrderItem[0].sgst"
-																			onkeyup="calulationOfSgst()"></td>
+																			onkeyup="calulationOfSgst()"
+																			style="text-align: right"></td>
 
 
 																		<!-- sgst in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="sgstInValue0" title="inv qty"step='0.01'
-																			name="listPurchaseOrderItem[0].sgstValue"></td>
+																			id="sgstInValue0" title="inv qty" step='0.01'
+																			name="listPurchaseOrderItem[0].sgstValue" readonly
+																			style="text-align: right"></td>
 
 																		<!-- igst in percent  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="igstInPer0"
 																			title="rec qty" name="listPurchaseOrderItem[0].igst"
-																			onkeyup="calulationOfIgst()"></td>
+																			onkeyup="calulationOfIgst()"
+																			style="text-align: right"></td>
 
 
 																		<!-- igst in value  -->
 
 																		<td><input type="number"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="igstInValue0" title="po rate curr"step='0.01'
-																			name="listPurchaseOrderItem[0].igstValue"></td>
+																			id="igstInValue0" title="po rate curr" step='0.01'
+																			name="listPurchaseOrderItem[0].igstValue" readonly
+																			style="text-align: right"></td>
 
 																		<!-- discount in percent  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="descountInPer0" title="po rate"
 																			name="listPurchaseOrderItem[0].discPer"
-																			onkeyup="calulationOfDiscount()"></td>
+																			onkeyup="calulationOfDiscount()"
+																			style="text-align: right"></td>
 
 																		<!-- discount  in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			id="descountInValue0" title="po rate"step='0.01'
-																			name="listPurchaseOrderItem[0].discValue"></td>
+																			id="descountInValue0" title="po rate" step='0.01'
+																			name="listPurchaseOrderItem[0].discValue" readonly
+																			style="text-align: right"></td>
 
 
 
@@ -594,12 +619,12 @@
 															<label for="inputEmail4">Total Cost(Excluding
 																tax)</label> <input type="number" class="form-control"
 																id="inputEmail4" placeholder="supplier"
-																th:field="*{totalValue}">
+																th:field="*{totalValue}"style="text-align: right">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Total Cost(Including
 																tax)</label> <input type="number" class="form-control"
-																id="inputPassword4" placeholder="supplier state">
+																id="inputPassword4" placeholder="supplier state" style="text-align: right">
 														</div>
 
 
@@ -648,8 +673,7 @@
 
 
 	<script>
-	
-	var idIndex1 = 0;
+		var idIndex1 = 0;
 		function openPoFun() {
 
 			console.log("calling open po function ")
@@ -665,7 +689,7 @@
 				$('#quotationNumber').val('');
 				$('#quotationDate').val('');
 				$('#purchaseThrough').val('');
-				
+
 				disabledIndentBlock()
 
 			} else {
@@ -675,49 +699,58 @@
 				$("#quotationDate").prop('disabled', false);
 			}
 		}
-		
-		function disabledIndentBlock(){
-			
+
+		function disabledIndentBlock() {
+
 			console.log("disabled indent detail block ")
 			//var indentNumber = document.getElementById("indentNumberPo"+idIndex1).value;
 			//var indentdate = document.getElementById("indentDatePo"+idIndex1).value;
-			
-			$("#indentNumberPo"+idIndex1).prop('disabled', true);
-			
-			$("#indentDatePo"+idIndex1).prop('disabled', true);
-			
+
+			$("#indentNumberPo" + idIndex1).prop('disabled', true);
+
+			$("#indentDatePo" + idIndex1).prop('disabled', true);
+
 			getItemListWithoutIndentAndQuotation();
 		}
-		
-		function getItemListWithoutIndentAndQuotation(){
-			
-			
-			console.log("<============   get Item List in case : of witout indent and quotation ========> " )
 
-			$.ajax({
-				type: "GET",
-				url: "itemList/" ,
+		function getItemListWithoutIndentAndQuotation() {
 
-				success: function(data) {
-					console.log("Item Info behalf of Indent Number  : " + data)
+			console
+					.log("<============   get Item List in case : of witout indent and quotation ========> ")
 
-					var options = '<option value=""><strong>Select Item</strong></option>';
-					$(data).each(function(index, value) {
+			$
+					.ajax({
+						type : "GET",
+						url : "itemList/",
 
-						console.log("item code : " + value.itemCode)
-						console.log("item name  : " + value.description)
+						success : function(data) {
+							console.log("Item Info behalf of Indent Number  : "
+									+ data)
 
-						options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
 
+												console.log("item code : "
+														+ value.itemCode)
+												console.log("item name  : "
+														+ value.description)
+
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
+
+											});
+
+							$('.itemContainerPo' + idIndex1).html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
 					});
 
-					$('.itemContainerPo'+idIndex1).html(options);
-
-				}, error: function() {
-					console.log("Error");
-				}
-			});
-			
 		}
 
 		function againstPurchaseThrough() {
@@ -786,7 +819,7 @@
 
 											});
 
-							$('.indentContainer'+idIndex1).html(options);
+							$('.indentContainer' + idIndex1).html(options);
 
 						},
 						error : function() {
@@ -869,7 +902,7 @@
 											});
 
 							console.log("id index value is : " + idIndex1)
-							$('.indentContainer'+idIndex1).html(options);
+							$('.indentContainer' + idIndex1).html(options);
 
 						},
 						error : function() {
@@ -877,146 +910,153 @@
 						}
 					});
 		}
-		
-		
+
 		function getIndentDetailPo() {
 
-			var indentNumber = document.getElementById("indentNumberPo"+idIndex1).value;
+			var indentNumber = document.getElementById("indentNumberPo"
+					+ idIndex1).value;
 
 			$.ajax({
-				type: "GET",
-				url: "indentdetail/" + indentNumber,
+				type : "GET",
+				url : "indentdetail/" + indentNumber,
 
-				success: function(data) {
+				success : function(data) {
 					console.log("Indent Detail data is : " + data)
 
 					console.log("indent data is : " + data.indentDate)
-					$("#indentDatePo"+idIndex1).val(data.indentDate)
+					$("#indentDatePo" + idIndex1).val(data.indentDate)
 					//$("#empName").val(data.employee.empName);
 					//$("#empCode").val(data.employee.empCode);
 
 					getItemList(indentNumber);
 
-
-
-				}, error: function() {
+				},
+				error : function() {
 					console.log("Error");
 				}
 			});
 		}
-		
-		
-		function getItemList(indentNumber) {
 
+		function getItemList(indentNumber) {
 
 			console.log("get Item List Function is : " + indentNumber)
 
-			$.ajax({
-				type: "GET",
-				url: "itemList/" + indentNumber,
+			$
+					.ajax({
+						type : "GET",
+						url : "itemList/" + indentNumber,
 
-				success: function(data) {
-					console.log("Item Info behalf of Indent Number  : " + data)
+						success : function(data) {
+							console.log("Item Info behalf of Indent Number  : "
+									+ data)
 
-					var options = '<option value=""><strong>Select Item</strong></option>';
-					$(data).each(function(index, value) {
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
 
-						console.log("item code : " + value.itemCode)
-						console.log("item name  : " + value.description)
+												console.log("item code : "
+														+ value.itemCode)
+												console.log("item name  : "
+														+ value.description)
 
-						options += '<option value="' + value.itemCode + '">' + value.description + '</option>';
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
 
+											});
+
+							$('.itemContainerPo' + idIndex1).html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
 					});
 
-					$('.itemContainerPo'+idIndex1).html(options);
-
-				}, error: function() {
-					console.log("Error");
-				}
-			});
-
 		}
-		
+
 		function getItemInfoInPo() {
 
 			console.log("get item info ")
 			console.log("id index value is  ; " + idIndex1)
-			var itemNumber = document.getElementById("itemPo"+idIndex1).value;
-			var indentNumber = document.getElementById("indentNumberPo"+idIndex1).value;
-			console.log("get item detail : " + indentNumber + " : " + itemNumber)
+			var itemNumber = document.getElementById("itemPo" + idIndex1).value;
+			var indentNumber = document.getElementById("indentNumberPo"
+					+ idIndex1).value;
+			console.log("get item detail : " + indentNumber + " : "
+					+ itemNumber)
 
-			if(itemNumber  === " " && indentNumber===" "){
-				
+			if (itemNumber === " " && indentNumber === " ") {
+
 				$.ajax({
-					type: "GET",
-					url: "itemInfo",
+					type : "GET",
+					url : "itemInfo",
 
-					success: function(data) {
+					success : function(data) {
 						console.log("item info detail on po = YES " + data)
 
-						$("#itemRate"+idIndex1).val(data.itemRate)
+						$("#itemRate" + idIndex1).val(data.itemRate)
 						//$("#qtyOrder"+idIndex1).val(data.indQty)
 
-
 						totalCostCal();
 
-					}, error: function() {
+					},
+					error : function() {
 						console.log("Error");
 					}
 				});
-				
-			}else{
-				
-				$.ajax({
-					type: "GET",
-					url: "itemInfo/" + itemNumber + "/" + indentNumber,
 
-					success: function(data) {
+			} else {
+
+				$.ajax({
+					type : "GET",
+					url : "itemInfo/" + itemNumber + "/" + indentNumber,
+
+					success : function(data) {
 						console.log("item info detail " + data)
 
-						$("#itemRate"+idIndex1).val(data.itemRate)
-						$("#qtyOrder"+idIndex1).val(data.indQty)
-
+						$("#itemRate" + idIndex1).val(data.itemRate)
+						$("#qtyOrder" + idIndex1).val(data.indQty)
 
 						totalCostCal();
 
-					}, error: function() {
+					},
+					error : function() {
 						console.log("Error");
 					}
 				});
-				
+
 			}
-			
+
 		}
 	</script>
-	
-	
-	
-<script>
-
-function supplierInfo(){
-	
-	var supplierId = document.getElementById("supplierId").value;
-	$.ajax({
-		type: "GET",
-		url: "supplierInfo/" + supplierId ,
-
-		success: function(data) {
-			console.log("item info detail " + data)
-
-			$("#supplierState").val(data.state.stateCode)
-			//$("#qtyOrder").val(data.indQty)
 
 
-			totalCostCal();
 
-		}, error: function() {
-			console.log("Error");
+	<script>
+		function supplierInfo() {
+
+			var supplierId = document.getElementById("supplierId").value;
+			$.ajax({
+				type : "GET",
+				url : "supplierInfo/" + supplierId,
+
+				success : function(data) {
+					console.log("item info detail " + data)
+
+					$("#supplierState").val(data.state.stateCode)
+					//$("#qtyOrder").val(data.indQty)
+
+					totalCostCal();
+
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
 		}
-	});
-	
-}
-</script>
+	</script>
 
 
 
@@ -1039,30 +1079,83 @@ function supplierInfo(){
 	</script>
 
 	<script>
-	
-	function calculateItemNRate(){
-		
-		var itemRate = document.getElementById("itemRate"+idIndex1).value;
-		var qty = document.getElementById("qtyOrder"+idIndex1).value;
-		
-		if(itemRate){
-			if(qty){
-				var result = itemRate * qty ;
-				document.getElementById("totalCost"+idIndex1).value = result;
-				document.getElementById("totalCostInr"+idIndex1).value = result;
+		function calculateItemNRate() {
+
+			var itemRate = document.getElementById("itemRate" + idIndex1).value;
+			var qty = document.getElementById("qtyOrder" + idIndex1).value;
+
+			if (itemRate) {
+				if (qty) {
+					var result = itemRate * qty;
+					document.getElementById("totalCost" + idIndex1).value =parseFloat(result).toFixed(2);
+					document.getElementById("totalCostInr" + idIndex1).value = parseFloat(result).toFixed(2);
+				}
 			}
 		}
-	}
-	
-	
+		
+		
+		
+		function calulationOfCgst() {
+
+			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+
+			var cgstInPer = document.getElementById("cgstInPer"+idIndex1).value;
+			var result = totalCost * cgstInPer / 100;
+			document.getElementById("cgstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
+		}
+
+		function calulationOfSgst() {
+			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+
+			var sgstInPer = document.getElementById("sgstInPer"+idIndex1).value;
+			//var sgstInValue =  document.getElementById("sgstInValue0").value;
+			var result = totalCost * sgstInPer / 100;
+			document.getElementById("sgstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
+
+
+		}
+
+		function calulationOfIgst() {
+			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+
+			var igstInPer = document.getElementById("igstInPer"+idIndex1).value;
+			//var igstInValue = document.getElementById("igstInValue0").value;
+			var result = totalCost * igstInPer / 100;
+			document.getElementById("igstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
+
+		}
+
+		function calulationOfDiscount() {
+			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+
+			var descountInPer = document.getElementById("descountInPer"+idIndex1).value;
+			//var descountInValue = document.getElementById("descountInValue0").value;
+			var result =  totalCost * descountInPer / 100;
+			document.getElementById("descountInValue"+idIndex1).value =parseFloat(result).toFixed(2);
+		}
+
+		
+		
+		
+		function setTwoNumberDecimal(event) {
+			console.log("se two decimal number")
+			this.value = parseFloat(this.value).toFixed(2);
+		}
+
+		$(document).ready(function () {
+	        $(".floatNumberField").change(function() {
+	            $(this).val(parseFloat($(this).val()).toFixed(2));
+	        });
+	    });
+		
+		
+		
 	</script>
 
 
 	<script>
-	
-	/* item detail block  */
-	
-	
+		/* item detail block  */
+
 		$(document)
 				.ready(
 						function() {
@@ -1079,80 +1172,87 @@ function supplierInfo(){
 												idIndex1++;
 												$('#addr' + j)
 														.html(
-																
+
 																/*  material type */
-																"<td><select class='form-control form-control-sm select' id='supplierId"+j+"' ><option value='M' selected>Material</option><option value='S'>Service</option></select></td>'" 
+																"<td><select class='form-control form-control-sm select' id='supplierId"+j+"' ><option value='M' selected>Material</option><option value='S'>Service</option></select></td>'"
 
-																/*  indent number  */
-																		+ "<td><select class='form-control indentContainer"+j+" form-control-sm select'  id='indentNumberPo"+j+"' name='listPurchaseOrderItem["+j+"].openIndent' title='indent number' onchange='getIndentDetailPo()' required><option value=''>Select Indent</option></select></td>" 
+																		/*  indent number  */
+																		+ "<td><select class='form-control indentContainer"
+																		+ j
+																		+ " form-control-sm select'  id='indentNumberPo"
+																		+ j
+																		+ "' name='listPurchaseOrderItem["
+																		+ j
+																		+ "].openIndent' title='indent number' onchange='getIndentDetailPo()' required><option value=''>Select Indent</option></select></td>"
 
-																		
 																		/*  indent date */
-																		+ "<td><input type='text'class='form-control form-control-sm'id='indentDatePo"+j+"' title='indent date'name='listPurchaseOrderItem["+j+"].indentDate'></td>" 
+																		+ "<td><input type='text'class='form-control form-control-sm'id='indentDatePo"+j+"' title='indent date'name='listPurchaseOrderItem["+j+"].indentDate'></td>"
 
-																		
 																		/*  item number  */
-																		+ "<td><select id='itemPo"+j+"' class='form-control form-control-sm select itemContainerPo"+j+"' required title='item' onchange='getItemInfoInPo()'' name='listPurchaseOrderItem["+j+"].item'><option value=''>Select</option></select></td>" 
+																		+ "<td><select id='itemPo"
+																		+ j
+																		+ "' class='form-control form-control-sm select itemContainerPo"
+																		+ j
+																		+ "' required title='item' onchange='getItemInfoInPo()'' name='listPurchaseOrderItem["
+																		+ j
+																		+ "].item'><option value=''>Select</option></select></td>"
 
-																		
 																		/* item rate  */
-																		+ "<td><input type='number'class='form-control form-control-sm' id='itemRate"+j+"'title='item rate'name='listPurchaseOrderItem["+j+"].itemRate' onkeyup='calculateItemNRate()'></td>" 
+																		+ "<td><input type='number'class='form-control form-control-sm' id='itemRate"
+																		+ j
+																		+ "'title='item rate'name='listPurchaseOrderItem["
+																		+ j
+																		+ "].itemRate' onkeyup='calculateItemNRate()' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'min='0'  step='0.25' value='0.00' style='text-align: right'></td>"
 
-																		
 																		/* effective rate  */
-																		+ "<td><input type='date' title='effective date' class='form-control form-control-sm' id='email"+j+"' name='listPurchaseOrderItem["+j+"].rateEffectiveDate'></td>" 
+																		+ "<td><input type='date' title='effective date' class='form-control form-control-sm' id='email"+j+"' name='listPurchaseOrderItem["+j+"].rateEffectiveDate'></td>"
 
-																		
 																		/*  qty order */
-																		+ "<td><input type='number'class='form-control form-control-sm'title='qty order' id='qtyOrder"+j+"'name='listPurchaseOrderItem["+j+"].qtyOrder' onkeyup='calculateItemNRate()'></td>" 
+																		+ "<td><input type='number'class='form-control form-control-sm'title='qty order' id='qtyOrder"
+																		+ j
+																		+ "'name='listPurchaseOrderItem["
+																		+ j
+																		+ "].qtyOrder' onkeyup='calculateItemNRate()' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'min='0'  step='0.25' value='0.00'style='text-align: right'></td>"
 
-																		
 																		/* total item cost  */
-																		+ "<td><input type='text'class='form-control form-control-sm' id='totalCost"+j+"'title='total item cost'></td>" 
+																		+ "<td><input type='text'class='form-control form-control-sm' id='totalCost"+j+"'title='total item cost'style='text-align: right'></td>"
 
-																		
 																		/* total cost inr  */
-																		+ "<td><input type='text' class='form-control form-control-sm' id='totalCostInr"+j+"' title='total item cost(inr)''></td>" 
+																		+ "<td><input type='text' class='form-control form-control-sm' id='totalCostInr"
+																		+ j
+																		+ "' title='total item cost(inr)''style='text-align: right'></td>"
 
-																		
 																		/*  remarks  */
-																		+ "<td><input type='text' title='remarks' class='form-control form-control-sm' id='email"+j+"'name='listPurchaseOrderItem["+j+"].itemRemarks'></td>" 
-																	
+																		+ "<td><input type='text' title='remarks' class='form-control form-control-sm' id='email"+j+"'name='listPurchaseOrderItem["+j+"].itemRemarks'></td>"
 
 														);
 												$('#example').append(
-														'<tr id="addr' + (j + 1)
+														'<tr id="addr'
+																+ (j + 1)
 																+ '"></tr>');
 
 												//listOfSupplierInfo()
-												
-												
+
 												// for open po == YES 
-												
-												
-												var openPoType = document.getElementById("openPo").value;
-												var purchaseThrough = document.getElementById("purchaseThrough").value;
-												
+
+												var openPoType = document
+														.getElementById("openPo").value;
+												var purchaseThrough = document
+														.getElementById("purchaseThrough").value;
+
 												//indentDetailInCaseOfIndent
-												
-												
-												if(openPoType ==='N'){
-													
-													if(purchaseThrough==='I'){
+
+												if (openPoType === 'N') {
+
+													if (purchaseThrough === 'I') {
 														indentDetailInCaseOfIndent()
-													}else{
+													} else {
 														getIndentAgainstQuotationDetail()
 													}
-													
-													
-												}else{
+
+												} else {
 													openPoFun()
 												}
-												
-												
-												
-												
-												
 
 												j++;
 
@@ -1168,93 +1268,91 @@ function supplierInfo(){
 								}
 							});
 						});
-		
-		
-		
+
 	
-		function setTwoNumberDecimal(event) {
-		    this.value = parseFloat(this.value).toFixed(2);
-		}
-		
-		/* $( document ).ready(function() {
-			 this.value = parseFloat(this.value).toFixed(2);
-		}); */
-		
-		$(document).on("input", ".setTwoNumberDecimal", function() {
-			 this.value = parseFloat(this.value).toFixed(2);
-		});
-		
-		
+
 		/*  tax info block  */
-		
+
 		$(document)
-		.ready(
-				function() {
-					console.log("ready!");
+				.ready(
+						function() {
+							console.log("ready!");
 
-					var i = 1;
+							var i = 1;
 
-					$('#add_row')
-							.click(
-									function() {
+							$('#add_row')
+									.click(
+											function() {
 
-										console
-												.log("add clickk function J")
-										//idIndex2++;
-										$('#adr' + i)
-												.html(
-														
-														/* freight  */
-														"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date'name='listPurchaseOrderItem[" +i+"].freight'></td>'"
+												console
+														.log("add clickk function J")
+												//idIndex2++;
+												$('#adr' + i)
+														.html(
 
-														
-														/*  cgst  */
-																+ "<td><input type='text'class='form-control form-control-sm' id='cgstInPer" +i+"' title='item name'name='listPurchaseOrderItem[" +i+"].cgst'onkeyup='calulationOfCgst()''></td>" 
+																/* freight  */
+																"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date'name='listPurchaseOrderItem[" +i+"].freight'style='text-align: right'></td>'"
 
-																/*   cgst value */
-																+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='listPurchaseOrderItem[" +i+"].cgstValue'></td>" 
+																		/*  cgst  */
+																		+ "<td><input type='text'class='form-control form-control-sm' id='cgstInPer"
+																		+ i
+																		+ "' title='item name'name='listPurchaseOrderItem["
+																		+ i
+																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right'></td>"
 
-																/*  sgst  */
-																+ "<td><input type='number' id='sgstInPer" +i+"' class='form-control form-control-sm' title='po qty'name='listPurchaseOrderItem[" +i+"].sgst'onkeyup='calulationOfSgst()''></td>"
+																		/*   cgst value */
+																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='listPurchaseOrderItem[" +i+"].cgstValue' step='0.01' readonly style='text-align: right'></td>"
 
-																/* sgst value */
-																+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='listPurchaseOrderItem[" +i+"].sgstValue'></td>" 
+																		/*  sgst  */
+																		+ "<td><input type='number' id='sgstInPer"
+																		+ i
+																		+ "' class='form-control form-control-sm' title='po qty'name='listPurchaseOrderItem["
+																		+ i
+																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.01'style='text-align: right'></td>"
 
-																/* igst  */
-																+ "<td><input type='number'class='form-control form-control-sm' id='igstInPer" +i+"' title='rec qty' name='listPurchaseOrderItem[" +i+"].igst'onkeyup='calulationOfIgst()''></td>" 
+																		/* sgst value */
+																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='listPurchaseOrderItem[" +i+"].sgstValue'step='0.01' readonly style='text-align: right'></td>"
 
-																
-																/*  igst value  */
-																+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='listPurchaseOrderItem[" +i+"].igstValue'></td>" 
+																		/* igst  */
+																		+ "<td><input type='number'class='form-control form-control-sm' id='igstInPer"
+																		+ i
+																		+ "' title='rec qty' name='listPurchaseOrderItem["
+																		+ i
+																		+ "].igst'onkeyup='calulationOfIgst()'step='0.01'' style='text-align: right'></td>"
 
-																/* discount  */
-																+ "<td><input type='number'class='form-control form-control-sm'id='descountInPer" +i+"' title='po rate'name='listPurchaseOrderItem[" +i+"].discPer'onkeyup='calulationOfDiscount()''></td>" 
+																		/*  igst value  */
+																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='listPurchaseOrderItem[" +i+"].igstValue'step='0.01' readonly style='text-align: right'></td>"
 
-																/*  discount value */
-																+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='listPurchaseOrderItem[" +i+"].discValue'></td>" 
+																		/* discount  */
+																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInPer"
+																		+ i
+																		+ "' title='po rate'name='listPurchaseOrderItem["
+																		+ i
+																		+ "].discPer'onkeyup='calulationOfDiscount()''step='0.01' style='text-align: right'></td>"
 
-															
+																		/*  discount value */
+																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='listPurchaseOrderItem[" +i+"].discValue'step='0.01' readonly style='text-align: right'></td>"
 
-												);
-										$('#example1').append(
-												'<tr id="adr' + (i + 1)
-														+ '"></tr>');
+														);
+												$('#example1').append(
+														'<tr id="adr' + (i + 1)
+																+ '"></tr>');
 
-										//listOfSupplierInfo()
+												//listOfSupplierInfo()
 
-										i++;
+												i++;
 
-									});
+											});
 
-					$("#delete_row").click(function() {
-						if (i > 1) {
-							$("#adr" + (i - 1)).html('');
+							$("#delete_row").click(function() {
+								if (i > 1) {
+									$("#adr" + (i - 1)).html('');
 
-							i--;
+									i--;
 
-						}
-					});
-				});
+								}
+							});
+						});
 	</script>
 
 

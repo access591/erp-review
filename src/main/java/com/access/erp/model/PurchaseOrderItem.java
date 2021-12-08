@@ -1,6 +1,6 @@
 package com.access.erp.model;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
@@ -155,7 +155,7 @@ public class PurchaseOrderItem {
 	//@Column(precision = 5, scale = 4)
 	
 	@Column(name = "DISC_VALUE",precision=12, scale=3)
-	@Type(type = "big_decimal")
+	//@Type(type = "big_decimal")
 	private double discValue;
 	
 	@Column(name = "TRD_DISC_VALUE", length = 15)
@@ -215,7 +215,7 @@ public class PurchaseOrderItem {
 	
 	
 	@Column(name = "DISC_PER",length = 10)
-	private int discPer;
+	private double discPer;
 
 
 	@Column(name = "NET_OF_MODVAT", length = 12)
@@ -278,7 +278,7 @@ public class PurchaseOrderItem {
 	private char itemCanc = 'N';
 	
 	@Column(name = "CGST", length = 10)
-	private int cgst;
+	private double cgst;
 
 	
 	//@Column(precision = 5, scale = 4)
@@ -287,22 +287,22 @@ public class PurchaseOrderItem {
 	
 	
 	@Column(name = "CGST_VALUE",precision=15, scale=3)
-	@Type(type = "big_decimal")
+	//@Type(type = "big_decimal")
 	private double cgstValue;
 	
 	@Column(name = "SGST", length = 10)
-	private int sgst;
+	private double sgst;
 
 	@Column(name = "SGST_VALUE",precision=15, scale=3)
-	@Type(type = "big_decimal")
+	//@Type(type = "big_decimal")
 	private double sgstValue;
 	
 	@Column(name = "IGST", length = 10)
-	private int igst;
+	private double igst;
 
 	
 	@Column(name = "IGST_VALUE",precision=15, scale=3)
-	@Type(type = "big_decimal")
+	//@Type(type = "big_decimal")
 	private double igstValue;
 	
 	@Column(name = "COST_CENTRE_CODE",length=10)
@@ -318,22 +318,13 @@ public class PurchaseOrderItem {
 		
 	}
 
-	
-	
-
 	public Long getPurchaseOrderItem() {
 		return purchaseOrderItem;
 	}
 
-
-
-
 	public void setPurchaseOrderItem(Long purchaseOrderItem) {
 		this.purchaseOrderItem = purchaseOrderItem;
 	}
-
-
-
 
 	public OpenIndent getOpenIndent() {
 		return openIndent;
@@ -751,11 +742,11 @@ public class PurchaseOrderItem {
 		this.shelfLife = shelfLife;
 	}
 
-	public int getDiscPer() {
+	public double getDiscPer() {
 		return discPer;
 	}
 
-	public void setDiscPer(int discPer) {
+	public void setDiscPer(double discPer) {
 		this.discPer = discPer;
 	}
 
@@ -911,11 +902,11 @@ public class PurchaseOrderItem {
 		this.itemCanc = itemCanc;
 	}
 
-	public int getCgst() {
+	public double getCgst() {
 		return cgst;
 	}
 
-	public void setCgst(int cgst) {
+	public void setCgst(double cgst) {
 		this.cgst = cgst;
 	}
 
@@ -927,11 +918,11 @@ public class PurchaseOrderItem {
 		this.cgstValue = cgstValue;
 	}
 
-	public int getSgst() {
+	public double getSgst() {
 		return sgst;
 	}
 
-	public void setSgst(int sgst) {
+	public void setSgst(double sgst) {
 		this.sgst = sgst;
 	}
 
@@ -943,11 +934,11 @@ public class PurchaseOrderItem {
 		this.sgstValue = sgstValue;
 	}
 
-	public int getIgst() {
+	public double getIgst() {
 		return igst;
 	}
 
-	public void setIgst(int igst) {
+	public void setIgst(double igst) {
 		this.igst = igst;
 	}
 
@@ -975,6 +966,7 @@ public class PurchaseOrderItem {
 		this.purchaseOrder = purchaseOrder;
 	}
 
+	
 	
 	
 

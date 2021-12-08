@@ -231,49 +231,20 @@ function indentDetailInCaseOfIndent() {
 
 function totalCostCal() {
 
+console.log("total cost function")
 	var itemRate = document.getElementById("itemRate0").value;
 	var qtyOrderrate = document.getElementById("qtyOrder0").value;
 
 	var freight = document.getElementById("freight0").value;
 
 
-	document.getElementById("totalCost0").value = itemRate * qtyOrderrate;
-	document.getElementById("totalCostInr0").value = itemRate * qtyOrderrate;
+	// parseFloat(ele.value).toFixed(2)
+	var result = itemRate * qtyOrderrate;
+	
+	
+	document.getElementById("totalCost0").value = parseFloat(result).toFixed(2);
+	document.getElementById("totalCostInr0").value =  parseFloat(result).toFixed(2);
 
-}
-function calulationOfCgst() {
-
-	var totalCost = document.getElementById("totalCost0").value;
-
-	var cgstInPer = document.getElementById("cgstInPer0").value;
-	document.getElementById("cgstInValue0").value = totalCost * cgstInPer / 100;
-}
-
-function calulationOfSgst() {
-	var totalCost = document.getElementById("totalCost0").value;
-
-	var sgstInPer = document.getElementById("sgstInPer0").value;
-	//var sgstInValue =  document.getElementById("sgstInValue0").value;
-	document.getElementById("sgstInValue0").value = totalCost * sgstInPer / 100;
-
-
-}
-
-function calulationOfIgst() {
-	var totalCost = document.getElementById("totalCost0").value;
-
-	var igstInPer = document.getElementById("igstInPer0").value;
-	//var igstInValue = document.getElementById("igstInValue0").value;
-	document.getElementById("igstInValue0").value = totalCost * igstInPer / 100;
-
-}
-
-function calulationOfDiscount() {
-	var totalCost = document.getElementById("totalCost0").value;
-
-	var descountInPer = document.getElementById("descountInPer0").value;
-	//var descountInValue = document.getElementById("descountInValue0").value;
-	document.getElementById("descountInValue0").value = totalCost * descountInPer / 100;
 }
 
 
