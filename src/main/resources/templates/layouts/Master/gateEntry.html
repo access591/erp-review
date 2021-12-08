@@ -104,7 +104,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Gate Sr No</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No" th:field="*{gateSrNo}">
+																placeholder="Gate Sr No" th:field="*{gateSrNo}" readonly>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Gate Entry Date</label> <input
@@ -262,7 +262,7 @@
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Date</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Item Code</th>
+																			style="width: 90px;">Item Code<span style="color:red">*</span></th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Item Description</th>
 																		<th scope="col" class="text-center"
@@ -301,7 +301,7 @@
 																		<td><input type="date"
 																			class="form-control form-control-sm"
 																			id="orderIndentDatePo0" title="order date"
-																			name="gateEntryItemDetails[0].orderDate"></td>
+																			name="gateEntryItemDetails[0].orderDate" readonly></td>
 
 																		<!-- item code  -->
 
@@ -318,7 +318,7 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderItemCode0" title="item description"
-																			name="gateEntryItemDetails[0].itemDescription"></td>
+																			name="gateEntryItemDetails[0].itemDescription" readonly></td>
 
 																		<!-- pending qty  -->
 

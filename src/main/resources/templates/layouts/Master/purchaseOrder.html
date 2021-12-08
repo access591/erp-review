@@ -255,7 +255,7 @@
 															<label for="inputPassword4">Currency</label> <select
 																id="currency" class="form-control" required
 																title="currency" th:field="*{currency}">
-																<option value=" ">Select</option>
+															
 																<option value=" I">INR</option>
 																<option value=" U">USD</option>
 
@@ -274,19 +274,19 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Supply Date</label> <input
-																type="date" class="form-control" id="inputEmail4"
+																type="date" class="form-control" id="supplyDate"
 																placeholder="supply date" th:field="*{supplyDate}">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Delivery Date</label> <input
-																type="date" class="form-control" id="inputPassword4"
+																type="date" class="form-control" id="deliveryDate"
 																placeholder="po date" th:field="*{deliveryDate}">
 														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Conversion Value</label> <input
-																type="number" class="form-control" id="inputPassword4"
-																placeholder="gst" th:field="*{conversionValue}">
+																type="number" class="form-control"  value="42"
+																placeholder="Conversion Value" th:field="*{conversionValue}">
 														</div>
 
 														<div class="form-group col-md-6">
@@ -345,7 +345,7 @@
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Item Rate</th>
 																		<th scope="col" class="text-center"
-																			style="width: 10px;">Effective Date</th>
+																			style="width: 10px;">Effective Date<span style="color:red">*</span></th>
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Qty Order</th>
 
@@ -436,7 +436,7 @@
 																			class="form-control form-control-sm" id="totalCost0"
 																			title="total item cost" step='0.01' value='0.00'
 																			placeholder='0.00'
-																			style="text-align: right"></td>
+																			style="text-align: right" readonly></td>
 
 
 																		<!-- total cost inr  -->
@@ -444,7 +444,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalCostInr0" title="total item cost(inr)"
 																			step='0.01'
-																			style="text-align: right"></td>
+																			style="text-align: right" readonly></td>
 
 																		<!--  remarks -->
 																		<td><input type="text" title="remarks"
@@ -528,28 +528,28 @@
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="freight0"
 																			title="order date"
-																			name="listPurchaseOrderItem[0].freight"style="text-align: right"></td>
+																			name="listPurchaseOrderItem[0].freight"style="text-align: right" value="0"></td>
 
 																		<!-- cgst in percent  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="cgstInPer0"
 																			title="item name"
 																			name="listPurchaseOrderItem[0].cgst"
-																			onkeyup="calulationOfCgst()"style="text-align: right"></td>
+																			onkeyup="calulationOfCgst()"style="text-align: right" value="0"></td>
 
 																		<!-- cgst in value  -->
 																		<td><input type="number" title="uom"
 																			class="form-control form-control-sm setTwoNumberDecimal"
 																			id="cgstInValue0" step='0.01'
 																			name="listPurchaseOrderItem[0].cgstValue" readonly
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 																		<!-- sgst in percent  -->
 																		<td><input type="number" id="sgstInPer0"
 																			class="form-control form-control-sm" title="po qty"
 																			name="listPurchaseOrderItem[0].sgst"
 																			onkeyup="calulationOfSgst()"
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 
 																		<!-- sgst in value  -->
@@ -557,14 +557,14 @@
 																			class="form-control form-control-sm setTwoNumberDecimal"
 																			id="sgstInValue0" title="inv qty" step='0.01'
 																			name="listPurchaseOrderItem[0].sgstValue" readonly
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 																		<!-- igst in percent  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="igstInPer0"
 																			title="rec qty" name="listPurchaseOrderItem[0].igst"
 																			onkeyup="calulationOfIgst()"
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 
 																		<!-- igst in value  -->
@@ -573,7 +573,7 @@
 																			class="form-control form-control-sm setTwoNumberDecimal"
 																			id="igstInValue0" title="po rate curr" step='0.01'
 																			name="listPurchaseOrderItem[0].igstValue" readonly
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 																		<!-- discount in percent  -->
 																		<td><input type="number"
@@ -581,14 +581,14 @@
 																			id="descountInPer0" title="po rate"
 																			name="listPurchaseOrderItem[0].discPer"
 																			onkeyup="calulationOfDiscount()"
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 																		<!-- discount  in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="descountInValue0" title="po rate" step='0.01'
 																			name="listPurchaseOrderItem[0].discValue" readonly
-																			style="text-align: right"></td>
+																			style="text-align: right" value="0"></td>
 
 
 
@@ -618,13 +618,13 @@
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Total Cost(Excluding
 																tax)</label> <input type="number" class="form-control"
-																id="inputEmail4" placeholder="supplier"
-																th:field="*{totalValue}"style="text-align: right">
+																id="totalValueEx" placeholder="supplier"
+																th:field="*{totalValue}"style="text-align: right" value="0">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Total Cost(Including
 																tax)</label> <input type="number" class="form-control"
-																id="inputPassword4" placeholder="supplier state" style="text-align: right">
+																id="totalValueIn" placeholder="supplier state" style="text-align: right" value="0">
 														</div>
 
 
@@ -667,6 +667,9 @@
 		$(document).ready(function() {
 
 			document.getElementById('poDate').valueAsDate = new Date();
+			
+			document.getElementById("supplyDate").valueAsDate = new Date();
+			document.getElementById("deliveryDate").valueAsDate = new Date()
 
 		});
 	</script>
@@ -846,6 +849,8 @@
 					$("#supplierId").val(data.partyMaster.partyCode);
 					$("#supplierState").val(data.partyMaster.stateCode);
 					$("#currency").val(data.quotationDetail.currencyCode);
+					//$("#pets").prop("selectedIndex", 3);
+					$("#currency").prop("selectedIndex", data.quotationDetail.currencyCode);
 
 					console.log("currency code value : "
 							+ data.quotationDetail.currencyCode)
@@ -1089,6 +1094,9 @@
 					var result = itemRate * qty;
 					document.getElementById("totalCost" + idIndex1).value =parseFloat(result).toFixed(2);
 					document.getElementById("totalCostInr" + idIndex1).value = parseFloat(result).toFixed(2);
+					
+					totalCalculation()
+					
 				}
 			}
 		}
@@ -1102,6 +1110,8 @@
 			var cgstInPer = document.getElementById("cgstInPer"+idIndex1).value;
 			var result = totalCost * cgstInPer / 100;
 			document.getElementById("cgstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
+			
+			
 		}
 
 		function calulationOfSgst() {
@@ -1111,7 +1121,8 @@
 			//var sgstInValue =  document.getElementById("sgstInValue0").value;
 			var result = totalCost * sgstInPer / 100;
 			document.getElementById("sgstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
-
+			
+		
 
 		}
 
@@ -1122,6 +1133,8 @@
 			//var igstInValue = document.getElementById("igstInValue0").value;
 			var result = totalCost * igstInPer / 100;
 			document.getElementById("igstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
+			
+			
 
 		}
 
@@ -1132,10 +1145,49 @@
 			//var descountInValue = document.getElementById("descountInValue0").value;
 			var result =  totalCost * descountInPer / 100;
 			document.getElementById("descountInValue"+idIndex1).value =parseFloat(result).toFixed(2);
+			
+			
 		}
 
 		
 		
+		/* totalValueWithoutTax = 0;
+		totalValueWithTax = 0 ; */
+		
+		function totalCalculation(){
+			
+			totalValueWithoutTax = 0;
+			totalValueWithTax = 0 ;
+			
+			totalCost = document.getElementById("totalCost"+idIndex1).value;
+			totalCostInr = document.getElementById("totalCostInr"+idIndex1).value;
+			
+			cgstValue = document.getElementById("cgstInValue"+idIndex1).value;
+			sgstValue = document.getElementById("sgstInValue"+idIndex1).value;
+			
+			igstValue = document.getElementById("igstInValue"+idIndex1).value;
+			discountValue  = document.getElementById("descountInValue"+idIndex1).value;
+			
+			console.log("totaCost : "+totalCost+ " : totalCost : "+totalCostInr+ ": cgstvalue : "+cgstValue + " : igstValue :   " +igstValue+ " ; discountValue ; " + discountValue)
+			
+			totalValueWithoutTax = +totalValueWithoutTax +  +totalCost;
+			
+			totalValueWithTax = +totalValueWithoutTax +  +cgstValue + +sgstValue + +igstValue;
+			
+			console.log("total value without tax : " + totalValueWithoutTax)
+			console.log("total value with tax : " + totalValueWithTax)
+			
+			document.getElementById("totalValueEx").value = "";
+			 document.getElementById("totalValueIn").value = "";
+			
+			document.getElementById("totalValueEx").value = totalValueWithoutTax;
+			 document.getElementById("totalValueIn").value = totalValueWithTax;
+			
+			
+			
+			
+			
+		}
 		
 		function setTwoNumberDecimal(event) {
 			console.log("se two decimal number")
@@ -1215,12 +1267,12 @@
 																		+ "].qtyOrder' onkeyup='calculateItemNRate()' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'min='0'  step='0.25' value='0.00'style='text-align: right'></td>"
 
 																		/* total item cost  */
-																		+ "<td><input type='text'class='form-control form-control-sm' id='totalCost"+j+"'title='total item cost'style='text-align: right'></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm' id='totalCost"+j+"'title='total item cost'style='text-align: right' readonly></td>"
 
 																		/* total cost inr  */
 																		+ "<td><input type='text' class='form-control form-control-sm' id='totalCostInr"
 																		+ j
-																		+ "' title='total item cost(inr)''style='text-align: right'></td>"
+																		+ "' title='total item cost(inr)''style='text-align: right' readonly></td>"
 
 																		/*  remarks  */
 																		+ "<td><input type='text' title='remarks' class='form-control form-control-sm' id='email"+j+"'name='listPurchaseOrderItem["+j+"].itemRemarks'></td>"
@@ -1253,6 +1305,9 @@
 												} else {
 													openPoFun()
 												}
+												
+												var tempValue = document.getElementByid("totalCost").value;
+												
 
 												j++;
 
