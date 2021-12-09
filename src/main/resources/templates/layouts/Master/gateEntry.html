@@ -341,9 +341,10 @@
 
 																		<!-- qty  -->
 
-																		<td><input type="number" id="qtyOrder0"
+																		<td><input type="number" id="qtyOrder0"onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
+																		
 																			class="form-control form-control-sm" title="net qty"
-																			name="gateEntryItemDetails[0].netQty"></td>
+																			name="gateEntryItemDetails[0].netQty" step="0.25" value="0.00"></td>
 
 																		<!-- uom  -->
 
@@ -609,7 +610,7 @@
 																		+ "<td><input type='number' title='pending qty'class='form-control form-control-sm'name='gateEntryItemDetails["+i+"].pendingQty'></td>"
 
 																		/*  qty */
-																		+ "<td><input type='number' id='qtyOrder"+i+"' class='form-control form-control-sm' title='net qty'name='gateEntryItemDetails["+i+"].netQty'></td>"
+																		+ "<td><input type='number' id='qtyOrder"+i+"' class='form-control form-control-sm' title='net qty'name='gateEntryItemDetails["+i+"].netQty' onchange=''(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)''  step='0.25' value='0.00'></td>"
 
 																		/*  uom*/
 																		+ "<td><input type='text'class='form-control form-control-sm'id='orderItemuom"+i+"' title='status'name='gateEntryItemDetails["+i+"].uom'></td>"

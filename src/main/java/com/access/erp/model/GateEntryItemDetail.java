@@ -51,8 +51,9 @@ public class GateEntryItemDetail {
 	@Column(name="PENDING_QTY",length=12)
 	private int pendingQty;
 	
-	@Column(name="NET_QTY",length=14)
-	private int netQty;
+
+	@Column(name = "NET_QTY",precision=14, scale=3)
+	private double netQty;
 	
 	@Column(name="UOM_CODE",length=50)
 	private String uom;
@@ -225,13 +226,18 @@ public class GateEntryItemDetail {
 		this.uomQtyWoTrp = uomQtyWoTrp;
 	}
 
-	public int getNetQty() {
+
+	public double getNetQty() {
 		return netQty;
 	}
 
-	public void setNetQty(int netQty) {
+
+
+	public void setNetQty(double netQty) {
 		this.netQty = netQty;
 	}
+
+
 
 	public String getUomNetQty() {
 		return uomNetQty;
