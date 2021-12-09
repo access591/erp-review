@@ -197,6 +197,18 @@ public class GateEntryController {
 
 	}
 	
+	
+	@ResponseBody
+	@GetMapping("/approved/polist")
+	public List<PurchaseOrder> getApprovedPo() {
+		
+		
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
+		
+		return  listPurchaseOrder;
+		
+	}
+	
 
 
 }
