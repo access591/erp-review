@@ -120,9 +120,11 @@ iframe {
 
 
 														<div class="form-group col-md-3">
-															<label for="inputAddress">Gate Entry No</label> <span style="color: red">*</span><select
-																class="form-control" id="gateEntryNumber" title="entry type" onchange="getGateEntryInfo()"
-																th:field="*{gateEntryNo}" required>
+															<label for="inputAddress">Gate Entry No</label> <span
+																style="color: red">*</span><select class="form-control"
+																id="gateEntryNumber" title="entry type"
+																onchange="getGateEntryInfo()" th:field="*{gateEntryNo}"
+																required>
 																<option value="">Select</option>
 																<option th:each="gateEntry :  ${gateEntryList}"
 																	th:text="${gateEntry.gateSrNo}"
@@ -135,7 +137,7 @@ iframe {
 														<div class="form-group col-md-3">
 															<label class="form-label">Gate Entry Date</label> <input
 																type="date" class="form-control" id="gateEntryDate"
-																th:field="*{gateEntryDate}"  readonly>
+																th:field="*{gateEntryDate}" readonly>
 														</div>
 
 
@@ -157,7 +159,7 @@ iframe {
 														</div>
 
 
-													<!-- 	<div class="form-group col-md-3">
+														<!-- 	<div class="form-group col-md-3">
 															<label for="inputPassword4">Supplier Name</label> <input
 																type="text" class="form-control " id="supplierName"
 																placeholder="Supplier Name" title="supplier name">
@@ -180,8 +182,9 @@ iframe {
 														</div>
 
 														<div class="form-group col-md-3">
-															<label for="inputPassword4">Bill No</label><span style="color:red">*</span> <input
-																type="text" class="form-control" th:field="*{billNo}"
+															<label for="inputPassword4">Bill No</label><span
+																style="color: red">*</span> <input type="text"
+																class="form-control" th:field="*{billNo}"
 																placeholder="Bill Number" title="bill number" required>
 														</div>
 
@@ -207,7 +210,8 @@ iframe {
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Currency </label> <select
-																class="form-control" id="currency" title="currency type ">
+																class="form-control" id="currency"
+																title="currency type ">
 																<option value='I'>INR</option>
 																<option value='U'>USD</option>
 
@@ -215,7 +219,7 @@ iframe {
 														</div>
 
 
-										
+
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Material Type</label> <select
@@ -228,8 +232,9 @@ iframe {
 
 
 														<div class="form-group col-md-3">
-															<label for="inputPassword4">Date of Bill</label> <span style="color:red">*</span><input
-																type="date" class="form-control" title="date of bill"
+															<label for="inputPassword4">Date of Bill</label> <span
+																style="color: red">*</span><input type="date"
+																class="form-control" title="date of bill"
 																th:field="*{billDate}">
 														</div>
 
@@ -267,12 +272,23 @@ iframe {
 
 													<h5>Item Details</h5>
 													<div class="box-body">
+													
+													
+													<div class="col-sm-12" style="text-align: right">
+
+															<a id="add_row" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+														
 
 														<input id="_cr" name="_cr" type="hidden" value="1">
 
 
 
-														<div class="table-responsive">
+														<div class="table-responsive" style="margin-top: 40px">
 															<table id="example" aria-describedby="example"
 																class="table table-striped display">
 																<thead>
@@ -321,7 +337,7 @@ iframe {
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">DOL</th>
 
-																		
+
 
 
 																	</tr>
@@ -337,9 +353,9 @@ iframe {
 																			id="orderIndentNumberPo"
 																			name="mrnDetails[0].matServType"
 																			title="indent number">
-																			
-																				<option value="m">M</option>
-																				<option value="s">S</option>
+
+																				<option value="M">Material</option>
+																				<option value="S">Supplier</option>
 
 
 																		</select></td>
@@ -347,12 +363,16 @@ iframe {
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderIndentDatePo" title="order date"
-																			name="mrnDetails[0].item"></td>
+																			name="mrnDetails[0].item" readonly></td>
 
 																		<!-- item name -->
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="orderIndentDatePo" title="item name"></td>
+																		<td><select type="text"
+																			class="form-control  form-control-sm select itemContainer0"
+																			id="item0" title="item name" onchange="getItemInfo()">
+																				
+
+																		</select></td>
+
 																		<!-- Account Name -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
@@ -366,64 +386,64 @@ iframe {
 																		</select></td>
 																		<!-- UOM -->
 																		<td><input type="number" title="uom"
-																			class="form-control form-control-sm"></td>
+																			class="form-control form-control-sm" readonly></td>
 																		<!-- po qty   -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" title="po qty"></td>
+																			class="form-control form-control-sm" title="po qty" readonly></td>
 																		<!-- inr qty -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="inv qty"
-																			name="mrnDetails[0].itemInv"></td>
+																			name="mrnDetails[0].itemInv" readonly></td>
 
 																		<!-- rec qty  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="rec qty"
-																			name="mrnDetails[0].itemRec"></td>
+																			name="mrnDetails[0].itemRec" readonly></td>
 
 
 																		<!-- po rate curr -->
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="technicalQualification" title="po rate curr"></td>
+																			id="technicalQualification" title="po rate curr" readonly></td>
 
 																		<!-- po rate  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="po rate"
-																			name="mrnDetails[0].itemRate"></td>
+																			name="mrnDetails[0].itemRate" readonly></td>
 
 																		<!-- bill rate  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="bill rate"
-																			name="mrnDetails[0].itemrateOnBill"></td>
+																			name="mrnDetails[0].itemrateOnBill" readonly></td>
 
 																		<!-- total cost   -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="total cost"
-																			name="mrnDetails[0].totalvalue"></td>
+																			name="mrnDetails[0].totalvalue" readonly></td>
 
 																		<!-- net cost  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="net cost"
-																			name="mrnDetails[0].itemNetVal"></td>
+																			name="mrnDetails[0].itemNetVal" readonly></td>
 
 
 																		<!-- total pur cost  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="total pur cost"
-																			name="mrnDetails[0].totalPurCost"></td>
+																			name="mrnDetails[0].totalPurCost" readonly></td>
 
 																		<!-- total inr cost  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="technicalQualification" title="total inr cost"></td>
+																			id="technicalQualification" title="total inr cost" readonly></td>
 
 																		<!-- remarks   -->
 																		<td><input type="number"
@@ -436,13 +456,13 @@ iframe {
 																			class="form-control indentContainer form-control-sm select"
 																			id="orderIndentNumberPo" title="dol">
 																				<option value="">Select</option>
-																				<option value="y">YES</option>
-																				<option value="n">NO</option>
+																				<option value="Y">YES</option>
+																				<option value="N">NO</option>
 
 
 																		</select></td>
 
-																		
+
 
 
 
@@ -472,13 +492,17 @@ iframe {
 
 													<h5>Tax Info</h5>
 													<div class="box-body">
+													
+													
+													
+														
 
 														<input id="_cr" name="_cr" type="hidden" value="1">
 
 
 
-														<div class="table-responsive">
-															<table id="example" aria-describedby="example"
+														<div class="table-responsive" >
+															<table id="example1" aria-describedby="example1"
 																class="table table-striped display">
 																<thead>
 																	<tr>
@@ -500,19 +524,19 @@ iframe {
 																			style="width: 90px;">Discount(%)</th>
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Discount Value</th>
-																		
 
-																		
+
+
 
 
 																	</tr>
 																</thead>
 
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="adr0">
 
 
-																	
+
 																		<!-- item code -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
@@ -523,7 +547,7 @@ iframe {
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderIndentDatePo" title="item name"></td>
-																	
+
 																		<!-- UOM -->
 																		<td><input type="number" title="uom"
 																			class="form-control form-control-sm"></td>
@@ -555,13 +579,13 @@ iframe {
 																			id="technicalQualification" title="po rate"
 																			name="mrnDetails[0].itemRate"></td>
 
-																		
+
 
 
 
 
 																	</tr>
-																	<tr id='addr1' />
+																	<tr id='adr1' />
 
 																</tbody>
 
@@ -626,64 +650,142 @@ iframe {
 							document.getElementById('mrnGateEntryDate').valueAsDate = new Date();
 
 						});
-		
-		
-		function getGateEntryInfo() {
 
+		function getGateEntryInfo() {
 
 			var gateEntryNumber = document.getElementById("gateEntryNumber").value;
 
-			//console.log("get Item List Function is : " + indentNumber)
+		
+			$
+					.ajax({
+						type : "GET",
+						url : "gateentryinfo/" + gateEntryNumber,
 
-			$.ajax({
-				type: "GET",
-				url: "gateentryinfo/" + gateEntryNumber,
+						success : function(data) {
+							console.log("Item Info behalf of Indent Number  : "
+									+ JSON.stringify(data))
 
-				success: function(data) {
-					console.log("Item Info behalf of Indent Number  : " +JSON.stringify(data))
+							console.log("gate entry detail : "
+									+ data.conversionValue)
+							$("#gateEntryDate").val(
+									data.gateEntry.gateEntryDate)
 
-					
-					console.log("gate entry detail : " + data.conversionValue)
-					$("#gateEntryDate").val( data.gateEntry.gateEntryDate)
-					
-					$("#gst").val( data.poGst)
-					$("#currency").val(data.currency)
-					$("#conversionValue").val(data.conversionValue)
-					
-					
-					
-				//	$("#suupplierCode").val(data.mrnUtility.gateEntry.supplier)
-					//$("#mrnCurrencyCode").val(data.mrnUtility.gateEntry.currency)
+							$("#gst").val(data.poGst)
+							$("#currency").val(data.currency)
+							$("#conversionValue").val(data.conversionValue)
 
 
-					// add dynamic drop down in item list in mrn detail form 
+							$(data)
+									.each(
+											function(index, value) {
 
-					//var options = '<option value=""><strong>Select</strong></option>';
+											
+												console
+														.log("supplier  info : "
+																+ value.gateEntry.partyMaster.partyCode)
 
-					$(data).each(function(index, value) {
+												var options;
+												options += '<option value="' + value.gateEntry.partyMaster.partyCode + '">'
+														+ value.gateEntry.partyMaster.partyName
+														+ '</option>';
+											
+												$('.supplierContainer').html(
+														options);
 
-						//console.log("item info : " + value.item.itemCode)
-						console.log("supplier  info : " + value.gateEntry.partyMaster.partyCode)
+											});
 
-						var options; 
-						options += '<option value="' + value.gateEntry.partyMaster.partyCode + '">' + value.gateEntry.partyMaster.partyName + '</option>';
-						//options += '<option value="' + value.itemList.itemCode + '">' + value.item.itemName + '</option>';
-						$('.supplierContainer').html(options);
+							getItemList();
 
+						},
+						error : function() {
+							console.log("Error");
+						}
 					});
 
+			function getItemList() {
+
+				console
+						.log("=====================get Item List =============================")
+				var gateEntryNumber = document
+						.getElementById("gateEntryNumber").value;
+
+				$
+						.ajax({
+							type : "GET",
+							url : "itemlist/againstgateentry/"
+									+ gateEntryNumber,
+
+							success : function(data) {
+								console
+										.log("list of item against gate entry   : "
+												+ JSON.stringify(data))
+
+								
+
+								var options = '<option value=""><strong>Select</strong></option>';
+
+								$(data)
+										.each(
+												function(index, value) {
+
+													
+													console
+															.log("item  info  : "
+																	+ value.itemCode)
+
+													options += '<option value="' + value.itemCode + '">'
+															+value.description
+															+ '</option>';
+												
+												});
+
+								$('.itemContainer0').html(options);
+
+							},
+							error : function() {
+								console.log("Error");
+							}
+						});
+			}
+
+		}
+		
+		
+		
+		function getItemInfo(){
+			
+			var itemCode = document.getElementById("item"+idIndex).value;
+			
+			var gateEntryCode = document.getElementById("gateEntryNumber").value;
+			
+			
+			
+			
+			
+			$.ajax({
+				type: "GET",
+				url: "iteminfo/againstgateentry/" + itemCode + "/" + gateEntryCode ,
+
+				success: function(data) {
 					
+					console.log("item info  : " + JSON.stringfy( data))
+
+					//$("#supplierState").val(data.supplierState)
+					//$("#uomCode").val(data.uom.uomCode);
+
 
 
 				}, error: function() {
 					console.log("Error");
 				}
 			});
+			
+			
 		}
 	</script>
-	
-	
-	
+
+
+
 
 
 	<script>
@@ -707,6 +809,190 @@ iframe {
 
 		});
 	</script>
+
+
+
+
+
+<script>
+		/* item detail block  */
+
+		var idIndex = 0;
+		
+		$(document)
+				.ready(
+						function() {
+							console.log("ready!");
+
+							var j = 1;
+
+							$('#add_row')
+									.click(
+											function() {
+
+												console
+														.log("add clickk function I")
+											idIndex1++;
+												$('#addr' + j)
+														.html(
+
+														 
+																
+																/*  material type */
+																
+																
+																"<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='mrnDetails[0].matServType' title='indent number'><option value='M'>Material</option><option value='S'>S</option></select></td>'"
+
+																		/*  indent code   */
+																		+ "<td><input type='text'class='form-control form-control-sm'id='orderIndentDatePo' title='order date' name='mrnDetails[0].item' readonly></td>"
+
+																		/*  item name  */
+																		+ "<td><select type='text' class='form-control  form-control-sm select itemContainer0' id='item0' title='item name'></select></td>"
+
+																		/*  account name   */
+																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='mrnDetails[0].itemAccCode' title='account name'><option value=''>Select</option><option value='ac-1'>Ac01</option><option value='ac-2'>Ac02</option></select></td>"
+
+																		/* uom  */
+																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom'"+j+" readonly></td>"
+
+																		/* po qty   */
+																		+ "<td><input type='number' class='form-control form-control-sm' title='po qty' id='poQty'"+j+" readonly></td>"
+
+																		/*  int qty  */
+																		+ "<td><input type='number' class='form-control form-control-sm' id='inrQty'"+j+" title='inv qty' name='mrnDetails[0].itemInv' readonly></td>"
+
+																		/* rec qty   */
+																		+ "<td><input type='number' class='form-control form-control-sm' id='recQty'"+j+" title='rec qty' name='mrnDetails[0].itemRec' readonly></td>"
+
+																		/* po rate curr   */
+																		+ "<td><input type='text' class='form-control form-control-sm' id='porateCurr'"+j+" title='po rate curr' readonly></td>"
+																		
+																		/*  po rate  */
+																		
+																		+"<td><input type='number' class='form-control form-control-sm' id='poRate'"+j+" title='po rate' name='mrnDetails[0].itemRate'  readonly></td>"
+																		
+																		/*  bill rate  */
+																		
+																		+"<td><input type='number' class='form-control form-control-sm' id='billRate'"+j+" title='bill rate'name='mrnDetails[0].itemrateOnBill' readonly></td>"
+																		
+																		/* total cost  */
+																		
+																		
+																		+"<td><input type='number' class='form-control form-control-sm' id='totalCost'"+j+" title='total cost' name='mrnDetails[0].totalvalue' readonly></td>"
+																		
+																		/*  net cost  */
+																		
+																		+"<td><input type='number' class='form-control form-control-sm' id='netCost'"+j+" title='net cost' name='mrnDetails[0].itemNetVal' readonly></td>"
+																		
+																		/*  total per cost  */
+																		
+																		+"<td><input type='number' class='form-control form-control-sm' id='totalPerCost'"+j+" title='total pur cost' name='mrnDetails[0].totalPurCost' readonly></td>"
+																		
+																		/*  total inr cost  */
+																		
+																		+"<td><input type='text' class='form-control form-control-sm' id='totalInrCost' "+j+ " title='total inr cost' readonly></td>"
+																		
+																		/*  remarks  */
+																		
+																		+"<td><input type='number' class='form-control form-control-sm' id='remarks'"+j+" title='remarks' name='mrnDetails[0].totalPurCost'></td>"
+																		
+																		
+																		/*  dol */
+																		
+																		+"<td><select class='form-control indentContainer form-control-sm select' id='dol'"+j+" title='dol'><option value=''>Select</option><option value='y'>YES</option><option value='n'>NO</option></select></td>"
+
+														);
+												$('#example').append(
+														'<tr id="addr'
+																+ (j + 1)
+																+ '"></tr>');
+
+											
+
+												j++;
+
+											});
+
+							$("#delete_row").click(function() {
+								if (j > 1) {
+									$("#addr" + (j - 1)).html('');
+
+									j--;
+									idIndex--;
+								
+								}
+							});
+						});
+
+	
+
+		/*  tax info block  */
+
+		$(document)
+				.ready(
+						function() {
+							console.log("ready!");
+
+							var i = 1;
+
+							$('#add_row')
+									.click(
+											function() {
+
+												console
+														.log("add clickk function J")
+												//idIndex2++;
+												$('#adr' + i)
+														.html(
+
+																/* item code  */
+																"<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo'  title='order date' name='mrnDetails[0].item'></td>"
+																
+																/* item name  */
+																
+																+"<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name'></td>"
+																
+																+"<td><input type='number' title='uom' class='form-control form-control-sm'></td>"
+																
+																+"<td><input type='number' class='form-control form-control-sm' title='po qty'></td>"
+																
+																
+																+"<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='inv qty' name='mrnDetails[0].itemInv'></td>"
+																
+																
+																+"<td><input type='number' class='form-control form-control-sm' id='orderItemuom'  title='rec qty' name='mrnDetails[0].itemRec'></td>"
+																
+																+"<td><input type='text' class='form-control form-control-sm' id='technicalQualification' title='po rate curr'></td>"
+																
+																+"<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='po rate' name=''mrnDetails[0].itemRate'></td>"
+																
+																
+																
+																
+														);
+												$('#example1').append(
+														'<tr id="adr' + (i + 1)
+																+ '"></tr>');
+
+												//listOfSupplierInfo()
+
+												i++;
+
+											});
+
+							$("#delete_row").click(function() {
+								if (i > 1) {
+									$("#adr" + (i - 1)).html('');
+
+									i--;
+
+								}
+							});
+						});
+	</script>
+
+
+
 
 
 	<script>
