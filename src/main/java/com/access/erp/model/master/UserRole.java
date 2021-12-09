@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "USER_ROLE")
 public class UserRole {
@@ -18,10 +20,14 @@ public class UserRole {
 	@Column(name = "USER_ROLE")
 	private Long userRoleId;
 
+	
+	@JsonBackReference
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "USER_CODE")
 	private MyUser myUSer;
 	
+	
+	@JsonBackReference
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "ROLE_CODE")
 	private Role role;

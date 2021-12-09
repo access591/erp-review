@@ -54,6 +54,9 @@ public class PurchaseOrder {
 
 	@Column(name = "SUPP_CODE", length = 30)
 	private String supplier;
+	
+	@Column(name = "GST", length = 3)
+	private String gst;
 
 	@Column(name = "CURRENCY", length = 2)
 	private String currency;
@@ -1215,6 +1218,14 @@ public class PurchaseOrder {
 
 	public String getApprovalAttach() {
 		return approvalAttach;
+	}
+
+	public String getGst() {
+		return gst;
+	}
+
+	public void setGst(String gst) {
+		this.gst = gst;
 	}
 
 	public void setApprovalAttach(String approvalAttach) {
