@@ -10,6 +10,13 @@ public class MrnUtility {
 	private GateEntry gateEntry;
 	private List<Item> itemList;
 	
+	// from po 
+	private String poGst;
+	private String currency;
+	private String conversionValue;
+	
+	
+	
 	
 	public GateEntry getGateEntry() {
 		return gateEntry;
@@ -23,6 +30,27 @@ public class MrnUtility {
 	public void setItemList(List<Item> itemList) {
 		this.itemList = itemList;
 	}
+	public String getPoGst() {
+		return poGst;
+	}
+	public void setPoGst(String poGst) {
+		this.poGst = poGst;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	public String getConversionValue() {
+		return conversionValue;
+	}
+	public void setConversionValue(String conversionValue) {
+		this.conversionValue = conversionValue;
+	}
+	
+	
+	
 	
 	
 

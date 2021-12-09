@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="Role")
 public class Role {
@@ -31,6 +33,7 @@ public class Role {
 	@JoinColumn(name="HOME_ADDRESS_ID")
 	private Program program;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<UserRole> userRoleList = new ArrayList<>();
 

@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.UOM;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -133,6 +134,8 @@ public class GateEntryItemDetail {
 	@Column(name="CLAIM_SR_NO",length=20)
 	private String claimSrNo;
 	
+	
+	@JsonBackReference
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "GATE_SR_NO")
 	private GateEntry gateEntry;

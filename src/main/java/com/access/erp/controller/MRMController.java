@@ -116,6 +116,10 @@ public class MRMController {
 		
 		return "layouts/Master/mrnTaxInfo";
 	}
+
+	
+	//AJAX  
+	
 	
 	@ResponseBody
 	@GetMapping("/gateentryinfo/{id}")
@@ -134,8 +138,13 @@ public class MRMController {
 
 		for (GateEntryItemDetail gateEntryDetail : gateEntryDetailList) {
 
+			
+		
 			Item item = gateEntryDetail.getItem();
 			itemList.add(item);
+			mrnUtility.setPoGst(gateEntryDetail.getPurchaseOrder().getGst());
+			mrnUtility.setCurrency (gateEntryDetail.getPurchaseOrder().getCurrency());
+			mrnUtility.setConversionValue(String.valueOf( gateEntryDetail.getPurchaseOrder().getConversionValue()));
 		}
 		mrnUtility.setItemList(itemList);
 		return mrnUtility;

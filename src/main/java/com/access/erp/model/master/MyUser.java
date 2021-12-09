@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "M_MY_USER")
 @Component
@@ -35,6 +37,8 @@ public class MyUser {
 	@JoinColumn(name = "EMP_CODE")
 	private Employee employee;
 
+	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<UserRole> listUserRole = new ArrayList<>();
 

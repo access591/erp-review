@@ -343,46 +343,7 @@ function getRCityOnState() {
 //***********************************MRN ************************************************* */
 
 
-function getGateEntryInfo() {
 
-
-	var gateEntryNumber = document.getElementById("gateEntryNumber").value;
-
-	//console.log("get Item List Function is : " + indentNumber)
-
-	$.ajax({
-		type: "GET",
-		url: "gateentryinfo/" + gateEntryNumber,
-
-		success: function(data) {
-			console.log("Item Info behalf of Indent Number  : " + data)
-
-			$("#mrnGateEntryDate").val(data.mrnUtility.gateEntry.gateEntryDate)
-			$("#mrnSupplierCode").val(data.mrnUtility.gateEntry.supplier)
-			$("#mrnCurrencyCode").val(data.mrnUtility.gateEntry.currency)
-
-
-			// add dynamic drop down in item list in mrn detail form 
-
-			var options = '<option value=""><strong>Select Item</strong></option>';
-
-			$(data.itemList).each(function(index, value) {
-
-				//console.log("item info : " + value.item.itemCode)
-				//console.log("item info : " + value.item.itemName)
-
-				options += '<option value="' + value.itemList.itemCode + '">' + value.item.itemName + '</option>';
-
-			});
-
-			$('.orderItemContainerPo').html(options);
-
-
-		}, error: function() {
-			console.log("Error");
-		}
-	});
-}
 
 
 

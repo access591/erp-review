@@ -47,8 +47,7 @@ iframe {
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini"
-	onload="againstPurchaseThrough()">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -110,21 +109,21 @@ iframe {
 														<div class="form-group col-md-3">
 															<label for="inputEmail4">MRN No</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No" th:field="*{mrnNo}">
+																placeholder="Gate Sr No" th:field="*{mrnNo}" readonly>
 														</div>
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">MRN Date</label> <input
 																type="date" class="form-control" id="mrnGateEntryDate"
-																th:field="*{mrnDate}">
+																th:field="*{mrnDate}" readonly>
 														</div>
 
 
 
 														<div class="form-group col-md-3">
-															<label for="inputAddress">Gate Entry No</label> <select
-																class="form-control" id="" title="entry type"
-																th:field="*{gateEntryNo}">
-																<option value="">Select Department</option>
+															<label for="inputAddress">Gate Entry No</label> <span style="color: red">*</span><select
+																class="form-control" id="gateEntryNumber" title="entry type" onchange="getGateEntryInfo()"
+																th:field="*{gateEntryNo}" required>
+																<option value="">Select</option>
 																<option th:each="gateEntry :  ${gateEntryList}"
 																	th:text="${gateEntry.gateSrNo}"
 																	th:value=" ${gateEntry.gateSrNo}"></option>
@@ -135,8 +134,8 @@ iframe {
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Gate Entry Date</label> <input
-																type="date" class="form-control" id="mrnGateEntryDate"
-																th:field="*{gateEntryDate}">
+																type="date" class="form-control" id="gateEntryDate"
+																th:field="*{gateEntryDate}"  readonly>
 														</div>
 
 
@@ -146,7 +145,7 @@ iframe {
 														<div class="form-group col-md-3">
 															<label class="form-label">Supplier Code</label> <label
 																style="color: red">*</label> <select
-																class="form-control" id="mrnSupplierCode"
+																class="form-control supplierContainer" id="supplierCode"
 																title="supplier code" th:field="*{supplierMaster}">
 																<option value="">Select</option>
 																<option th:each="supplier :  ${supplierList}"
@@ -158,40 +157,40 @@ iframe {
 														</div>
 
 
-														<div class="form-group col-md-3">
+													<!-- 	<div class="form-group col-md-3">
 															<label for="inputPassword4">Supplier Name</label> <input
-																type="text" class="form-control"
+																type="text" class="form-control " id="supplierName"
 																placeholder="Supplier Name" title="supplier name">
 														</div>
-
+ -->
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Received By</label> <input
 																type="text" class="form-control"
-																placeholder="Supplier Name" title="supplier name">
+																placeholder="Received By" title="received by">
 														</div>
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Bill Type</label> <select
-																class="form-control" id="" title="gst type"
+																class="form-control" id="" title="bill type"
 																th:field="*{billType}">
-																<option value="b" selected>Bill</option>
-																<option value="t">Trading</option>
+																<option value="B" selected>Bill</option>
+																<option value="T">Trading</option>
 
 															</select>
 														</div>
 
 														<div class="form-group col-md-3">
-															<label for="inputPassword4">Bill No</label> <input
+															<label for="inputPassword4">Bill No</label><span style="color:red">*</span> <input
 																type="text" class="form-control" th:field="*{billNo}"
-																placeholder="Supplier Name" title="supplier name">
+																placeholder="Bill Number" title="bill number" required>
 														</div>
 
 
 														<div class="form-group col-md-3">
 															<label class="form-label">GST</label> <select
-																class="form-control" id="" title="gst type">
-																<option value="g" selected>GST</option>
-																<option value="n">NON-GST</option>
+																class="form-control" id="gst" title="gst type">
+																<option value="G" selected>GST</option>
+																<option value="N">NON-GST</option>
 
 															</select>
 														</div>
@@ -207,24 +206,16 @@ iframe {
 														</div>
 
 														<div class="form-group col-md-3">
-															<label class="form-label">Currency Code</label> <select
-																class="form-control" id="mrnCurrencyCode"
-																title="gst type" th:field="*{currency}">
-																<option value="" selected>select</option>
-																<option th:each="currency :  ${currencyList}"
-																	th:text="${currency.currencyValue}"
-																	th:value=" ${currency.currencyCode}"></option>
-
+															<label class="form-label">Currency </label> <select
+																class="form-control" id="currency" title="currency type ">
+																<option value='I'>INR</option>
+																<option value='U'>USD</option>
 
 															</select>
 														</div>
 
 
-														<div class="form-group col-md-3">
-															<label for="inputPassword4">Currency Name</label> <input
-																type="text" class="form-control"
-																placeholder="Currency Name" title="currency name">
-														</div>
+										
 
 														<div class="form-group col-md-3">
 															<label class="form-label">Material Type</label> <select
@@ -237,7 +228,7 @@ iframe {
 
 
 														<div class="form-group col-md-3">
-															<label for="inputPassword4">Date of Bill</label> <input
+															<label for="inputPassword4">Date of Bill</label> <span style="color:red">*</span><input
 																type="date" class="form-control" title="date of bill"
 																th:field="*{billDate}">
 														</div>
@@ -250,7 +241,7 @@ iframe {
 
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Conversion Value</label> <input
-																type="text" class="form-control"
+																type="text" class="form-control" id="conversionValue"
 																placeholder="Conversion Value" title="conversion value"
 																th:field="*{conversionvalue}">
 														</div>
@@ -346,7 +337,7 @@ iframe {
 																			id="orderIndentNumberPo"
 																			name="mrnDetails[0].matServType"
 																			title="indent number">
-																				<option value="">Select</option>
+																			
 																				<option value="m">M</option>
 																				<option value="s">S</option>
 
@@ -635,7 +626,64 @@ iframe {
 							document.getElementById('mrnGateEntryDate').valueAsDate = new Date();
 
 						});
+		
+		
+		function getGateEntryInfo() {
+
+
+			var gateEntryNumber = document.getElementById("gateEntryNumber").value;
+
+			//console.log("get Item List Function is : " + indentNumber)
+
+			$.ajax({
+				type: "GET",
+				url: "gateentryinfo/" + gateEntryNumber,
+
+				success: function(data) {
+					console.log("Item Info behalf of Indent Number  : " +JSON.stringify(data))
+
+					
+					console.log("gate entry detail : " + data.conversionValue)
+					$("#gateEntryDate").val( data.gateEntry.gateEntryDate)
+					
+					$("#gst").val( data.poGst)
+					$("#currency").val(data.currency)
+					$("#conversionValue").val(data.conversionValue)
+					
+					
+					
+				//	$("#suupplierCode").val(data.mrnUtility.gateEntry.supplier)
+					//$("#mrnCurrencyCode").val(data.mrnUtility.gateEntry.currency)
+
+
+					// add dynamic drop down in item list in mrn detail form 
+
+					//var options = '<option value=""><strong>Select</strong></option>';
+
+					$(data).each(function(index, value) {
+
+						//console.log("item info : " + value.item.itemCode)
+						console.log("supplier  info : " + value.gateEntry.partyMaster.partyCode)
+
+						var options; 
+						options += '<option value="' + value.gateEntry.partyMaster.partyCode + '">' + value.gateEntry.partyMaster.partyName + '</option>';
+						//options += '<option value="' + value.itemList.itemCode + '">' + value.item.itemName + '</option>';
+						$('.supplierContainer').html(options);
+
+					});
+
+					
+
+
+				}, error: function() {
+					console.log("Error");
+				}
+			});
+		}
 	</script>
+	
+	
+	
 
 
 	<script>
@@ -671,7 +719,7 @@ iframe {
         
         </section>-->
 
-	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
+	<!-- <script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script> -->
 
 
 	<script src="../../js/jQuery-2.1.4.min.js"

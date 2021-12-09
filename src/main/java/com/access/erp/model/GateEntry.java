@@ -22,6 +22,7 @@ import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.SupplierMaster;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "GATE_ENTRY")
@@ -169,6 +170,8 @@ public class GateEntry {
 	@Column(name = "BAR_CODE", length = 14)
 	private int barCode;
 
+	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "gateEntry", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<GateEntryItemDetail> gateEntryItemDetails = new ArrayList<>();
 

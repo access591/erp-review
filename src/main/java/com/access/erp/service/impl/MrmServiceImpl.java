@@ -19,6 +19,7 @@ public class MrmServiceImpl implements MRMService {
 	@Override
 	public void addMrm(MRN mrm) {
 
+		// pk EB-MRN-0001
 		
 	}
 
