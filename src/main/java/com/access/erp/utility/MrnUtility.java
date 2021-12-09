@@ -8,7 +8,7 @@ import com.access.erp.model.master.Item;
 public class MrnUtility {
 	
 	private GateEntry gateEntry;
-	private List<Item> itemList;
+	//private List<Item> itemList;
 	
 	// from po 
 	private String poGst;
@@ -24,12 +24,7 @@ public class MrnUtility {
 	public void setGateEntry(GateEntry gateEntry) {
 		this.gateEntry = gateEntry;
 	}
-	public List<Item> getItemList() {
-		return itemList;
-	}
-	public void setItemList(List<Item> itemList) {
-		this.itemList = itemList;
-	}
+	
 	public String getPoGst() {
 		return poGst;
 	}

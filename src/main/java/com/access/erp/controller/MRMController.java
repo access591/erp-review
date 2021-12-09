@@ -24,6 +24,7 @@ import com.access.erp.repo.GateEntryDetailRepo;
 import com.access.erp.repo.MRMRepo;
 import com.access.erp.repo.SupplierRepo;
 import com.access.erp.service.GateEntryService;
+import com.access.erp.service.ItemService;
 import com.access.erp.service.MRMService;
 import com.access.erp.utility.MrnUtility;
 
@@ -44,6 +45,8 @@ public class MRMController {
 	CurrencyRepo currencyRepo;
 	@Autowired
 	GateEntryDetailRepo gateEntryDetailRepo;
+	@Autowired ItemService itemService;
+	
 
 	@GetMapping("/")
 	public String mrmPage(Model model) {
@@ -123,7 +126,7 @@ public class MRMController {
 	
 	@ResponseBody
 	@GetMapping("/gateentryinfo/{id}")
-	public MrnUtility getItemInfoAgainstGateEntry(@PathVariable(value = "id") String id, Model model) {
+	public MrnUtility getGateEntryInfoAgainstGateEntry(@PathVariable(value = "id") String id, Model model) {
 
 		// GateEntryNumber
 
@@ -146,8 +149,51 @@ public class MRMController {
 			mrnUtility.setCurrency (gateEntryDetail.getPurchaseOrder().getCurrency());
 			mrnUtility.setConversionValue(String.valueOf( gateEntryDetail.getPurchaseOrder().getConversionValue()));
 		}
-		mrnUtility.setItemList(itemList);
+		//mrnUtility.setItemList(itemList);
 		return mrnUtility;
 
 	}
+	
+	@ResponseBody
+	@GetMapping("itemlist/againstgateentry/{gateEntry}")
+	public List<Item> getItemListAgainstGateEntry(@PathVariable(value = "gateEntry") String gateEntryNo){
+		
+		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryNo).get();
+		List<GateEntryItemDetail> gateEntryDetailList = gateEntryDetailRepo.findByGateEntry(gateEntry);
+		List<Item> itemList = new ArrayList<>();
+		
+		for (GateEntryItemDetail gateEntryDetail : gateEntryDetailList) {
+		
+			Item item = gateEntryDetail.getItem();
+			itemList.add(item);
+	
+		}
+		
+		return itemList;
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("iteminfo/againstgateentry/{itemCode}/{gateEntry}")
+	public GateEntryItemDetail getItemInfoAgainstGateEntry(@PathVariable(value = "itemCode") String itemCode , @PathVariable(value="gateEntry") String gateEntryNo){
+		
+		System.out.println("hello ");
+		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryNo).get();
+		
+		Item item = itemService.editItem(itemCode).get();
+		
+		// find against item code and gate entry code 
+		List<GateEntryItemDetail> gateEntryDetailList = gateEntryDetailRepo.findByGateEntryAndItem(gateEntry, item);
+		
+		if(gateEntryDetailList.size()>=1) {
+			
+			return gateEntryDetailList.get(0);
+		}
+		
+		return null;
+		//return gateEntryDetailList;
+	}
+	
+	
+	
 }
