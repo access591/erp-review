@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -41,27 +42,30 @@ public class MRNDetail {
 	private int mrnSeqNo;
 	
 	
+	@Column(name = "ITEM_REC",precision=14, scale=3,nullable = true)
+	private double itemRec; // rec qty 
 	
-	@Column(name="ITEM_REC",length = 12)
-	private int itemRec; // rec qty 
+	@Column(name = "ITEM_RATE",precision=14, scale=3,nullable = true)
+	private double itemRate;  //po rate 
 	
-	@Column(name="ITEM_RATE",length = 15)
-	private int itemRate;  //po rate 
 	
-	@Column(name="ITEM_INV",length = 12)
-	private int itemInv;  //invQty
+	@Column(name = "ITEM_INV",precision=12, scale=3,nullable = true)
+	private double itemInv;  //invQty
 	
-	@Column(name="ITEM_RATE_ON_BILL",length = 16)
-	private int itemrateOnBill; // bill rate
 	
-	@Column(name="ITEM_NET_VAL",length = 15)
-	private int itemNetVal;  //net cost
+	@Column(name = "ITEM_RATE_ON_BILL",precision=14, scale=3,nullable = true)
+	private double itemrateOnBill; // bill rate
 	
-	@Column(name="TOTAL_PUR_COST",length = 15)
-	private int totalPurCost; // total pur cost 
 	
-	@Column(name="TOTAL_VALUE",length = 15)
-	private int totalvalue; // total cost
+	@Column(name = "ITEM_NET_VAL",precision=12, scale=3,nullable = true)
+	private Double itemNetVal;  //net cost
+	
+	@Column(name = "TOTAL_PUR_COST",precision=12, scale=3,nullable = true)
+	private double totalPurCost  ; // total pur cost 
+	
+	
+	@Column(name = "TOTAL_VALUE",precision=12, scale=3,nullable = true)
+	private double totalvalue; // total cost
 	
 	
 	@Column(name="CAPITALYN",length = 2)
@@ -364,23 +368,23 @@ public class MRNDetail {
 	@Column(name="AED_VALUE",length = 14)
 	private int aedValue;
 	
-	@Column(name="CGST",length = 14)
-	private int cgst;
+	@Column(name = "CGST",precision=12, scale=2,nullable = true)
+	private double cgst;
 	
-	@Column(name="CGST_VALUE",length = 14)
-	private int cgstValue;
+	@Column(name = "CGST_VALUE",precision=12, scale=3,nullable = true)
+	private double cgstValue;
 	
-	@Column(name="SGST",length = 5)
-	private int sgst;
+	@Column(name = "SGST",precision=12, scale=3,nullable = true)
+	private double sgst;
 	
-	@Column(name="SGST_VALUE",length = 14)
-	private int sgstvalue;
+	@Column(name = "SGST_VALUE",precision=12, scale=3,nullable = true)
+	private double sgstvalue;
 	
-	@Column(name="IGST",length = 5)
-	private int igst;
+	@Column(name = "IGST",precision=12, scale=3,nullable = true)
+	private double igst;
 	
-	@Column(name="IGST_VALUE",length = 14)
-	private int igstValue;
+	@Column(name = "IGST_VALUE",precision=12, scale=3,nullable = true)
+	private double igstValue;
 	
 	
 	
@@ -410,6 +414,7 @@ public class MRNDetail {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "MRN_NO")
+	@JsonBackReference
 	private MRN mrn;
 	
 	@Column(name="MRN_DATE")
@@ -428,12 +433,12 @@ public class MRNDetail {
 		this.mrnDetailId = mrnDetailId;
 	}
 
-	public int getMrnSeqNo() {
-		return mrnSeqNo;
+	public String getMatServType() {
+		return matServType;
 	}
 
-	public void setMrnSeqNo(int mrnSeqNo) {
-		this.mrnSeqNo = mrnSeqNo;
+	public void setMatServType(String matServType) {
+		this.matServType = matServType;
 	}
 
 	public Item getItem() {
@@ -444,36 +449,96 @@ public class MRNDetail {
 		this.item = item;
 	}
 
-	public int getItemRec() {
-		return itemRec;
+	public String getItemAccCode() {
+		return itemAccCode;
 	}
 
-	public void setItemRec(int itemRec) {
-		this.itemRec = itemRec;
+	public void setItemAccCode(String itemAccCode) {
+		this.itemAccCode = itemAccCode;
 	}
 
-	public int getItemRate() {
-		return itemRate;
+	public String getRemarks() {
+		return remarks;
 	}
 
-	public void setItemRate(int itemRate) {
-		this.itemRate = itemRate;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
-	public int getItemInv() {
+	public int getMrnSeqNo() {
+		return mrnSeqNo;
+	}
+
+	public void setMrnSeqNo(int mrnSeqNo) {
+		this.mrnSeqNo = mrnSeqNo;
+	}
+
+	
+
+	public double getItemInv() {
 		return itemInv;
 	}
 
-	public void setItemInv(int itemInv) {
+	public void setItemInv(double itemInv) {
 		this.itemInv = itemInv;
 	}
 
-	public int getItemrateOnBill() {
+	public Double getItemNetVal() {
+		return itemNetVal;
+	}
+
+	public void setItemNetVal(Double itemNetVal) {
+		
+		 if(null != itemNetVal){
+		        this.itemNetVal = itemNetVal;
+
+		    }else{
+		        this.itemNetVal = (double) 0;
+		    }
+		 
+		 
+		this.itemNetVal = itemNetVal;
+	}
+
+
+	public double getItemRec() {
+		return itemRec;
+	}
+
+	public void setItemRec(double itemRec) {
+		this.itemRec = itemRec;
+	}
+
+	public double getItemRate() {
+		return itemRate;
+	}
+
+	public void setItemRate(double itemRate) {
+		this.itemRate = itemRate;
+	}
+
+	public double getItemrateOnBill() {
 		return itemrateOnBill;
 	}
 
-	public void setItemrateOnBill(int itemrateOnBill) {
+	public void setItemrateOnBill(double itemrateOnBill) {
 		this.itemrateOnBill = itemrateOnBill;
+	}
+
+	public double getTotalPurCost() {
+		return totalPurCost;
+	}
+
+	public void setTotalPurCost(double totalPurCost) {
+		this.totalPurCost = totalPurCost;
+	}
+
+	public double getTotalvalue() {
+		return totalvalue;
+	}
+
+	public void setTotalvalue(double totalvalue) {
+		this.totalvalue = totalvalue;
 	}
 
 	public String getCapitalYn() {
@@ -594,14 +659,6 @@ public class MRNDetail {
 
 	public void setdAddress(String dAddress) {
 		this.dAddress = dAddress;
-	}
-
-	public int getTotalvalue() {
-		return totalvalue;
-	}
-
-	public void setTotalvalue(int totalvalue) {
-		this.totalvalue = totalvalue;
 	}
 
 	public int getAirFreight() {
@@ -740,14 +797,6 @@ public class MRNDetail {
 		this.gateEntryDate = gateEntryDate;
 	}
 
-	public int getItemNetVal() {
-		return itemNetVal;
-	}
-
-	public void setItemNetVal(int itemNetVal) {
-		this.itemNetVal = itemNetVal;
-	}
-
 	public int getCustomDuty() {
 		return customDuty;
 	}
@@ -874,14 +923,6 @@ public class MRNDetail {
 
 	public void setNonVatValue(int nonVatValue) {
 		this.nonVatValue = nonVatValue;
-	}
-
-	public int getTotalPurCost() {
-		return totalPurCost;
-	}
-
-	public void setTotalPurCost(int totalPurCost) {
-		this.totalPurCost = totalPurCost;
 	}
 
 	public int getNonExcise() {
@@ -1036,14 +1077,6 @@ public class MRNDetail {
 		this.nonSalesTaxValue = nonSalesTaxValue;
 	}
 
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
 	public String getAssvalue() {
 		return assvalue;
 	}
@@ -1164,14 +1197,6 @@ public class MRNDetail {
 		this.devCharges = devCharges;
 	}
 
-	public String getItemAccCode() {
-		return itemAccCode;
-	}
-
-	public void setItemAccCode(String itemAccCode) {
-		this.itemAccCode = itemAccCode;
-	}
-
 	public int getItemRecieved() {
 		return itemRecieved;
 	}
@@ -1276,60 +1301,52 @@ public class MRNDetail {
 		this.aedValue = aedValue;
 	}
 
-	public int getCgst() {
+	public double getCgst() {
 		return cgst;
 	}
 
-	public void setCgst(int cgst) {
+	public void setCgst(double cgst) {
 		this.cgst = cgst;
 	}
 
-	public int getCgstValue() {
+	public double getCgstValue() {
 		return cgstValue;
 	}
 
-	public void setCgstValue(int cgstValue) {
+	public void setCgstValue(double cgstValue) {
 		this.cgstValue = cgstValue;
 	}
 
-	public int getSgst() {
+	public double getSgst() {
 		return sgst;
 	}
 
-	public void setSgst(int sgst) {
+	public void setSgst(double sgst) {
 		this.sgst = sgst;
 	}
 
-	public int getSgstvalue() {
+	public double getSgstvalue() {
 		return sgstvalue;
 	}
 
-	public void setSgstvalue(int sgstvalue) {
+	public void setSgstvalue(double sgstvalue) {
 		this.sgstvalue = sgstvalue;
 	}
 
-	public int getIgst() {
+	public double getIgst() {
 		return igst;
 	}
 
-	public void setIgst(int igst) {
+	public void setIgst(double igst) {
 		this.igst = igst;
 	}
 
-	public int getIgstValue() {
+	public double getIgstValue() {
 		return igstValue;
 	}
 
-	public void setIgstValue(int igstValue) {
+	public void setIgstValue(double igstValue) {
 		this.igstValue = igstValue;
-	}
-
-	public String getMatServType() {
-		return matServType;
-	}
-
-	public void setMatServType(String matServType) {
-		this.matServType = matServType;
 	}
 
 	public int getEdHcessCustomPer() {
@@ -1411,7 +1428,8 @@ public class MRNDetail {
 	public void setMrnDate(Date mrnDate) {
 		this.mrnDate = mrnDate;
 	}
-	
+
+
 	
 	
 	

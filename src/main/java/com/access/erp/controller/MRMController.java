@@ -64,6 +64,8 @@ public class MRMController {
 
 			//SupplierMaster supplier = gateEntry.getSupplier();
 			//supplierList.add(supplierRepo.findBySupplierId(supplier.getSupplierId()));
+			
+			
 		}
 
 		model.addAttribute("supplierList", supplierList);

@@ -18,7 +18,9 @@ import com.access.erp.model.master.Company;
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.MyUser;
+import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.SupplierMaster;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -41,7 +43,7 @@ public class MRN {
 	
 	@ManyToOne
 	@JoinColumn(name="SUPP_CODE")
-	public SupplierMaster supplierMaster;
+	public PartyMaster partyMaster;
 	
 	@Column(name="BILL_TYPE",length = 2)
 	public String billType;
@@ -278,6 +280,8 @@ public class MRN {
 	@Column(name="ITC_ELIGIABLE",length = 1)
 	public String itcEligiable;
 	
+	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "mrn", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<MRNDetail> mrnDetails = new ArrayList<>();
 	
@@ -312,12 +316,14 @@ public class MRN {
 		this.mrnval = mrnval;
 	}
 
-	public SupplierMaster getSupplierMaster() {
-		return supplierMaster;
+	
+
+	public PartyMaster getPartyMaster() {
+		return partyMaster;
 	}
 
-	public void setSupplierMaster(SupplierMaster supplierMaster) {
-		this.supplierMaster = supplierMaster;
+	public void setPartyMaster(PartyMaster partyMaster) {
+		this.partyMaster = partyMaster;
 	}
 
 	public String getBillNo() {
