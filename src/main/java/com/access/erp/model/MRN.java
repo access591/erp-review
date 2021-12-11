@@ -14,12 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.SupplierMaster;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -31,6 +34,9 @@ public class MRN {
 	@Column(name="MRN_NO",length = 15)
 	public String mrnNo;
 	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="MRN_DATE" )
 	public Date mrnDate;
 	

@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.access.erp.model.ItemOpening;
 import com.access.erp.model.MaterialRequisitionMaster;
 import com.access.erp.model.master.Department;
 import com.access.erp.model.master.Employee;
+import com.access.erp.model.master.Item;
 import com.access.erp.model.master.Store;
 import com.access.erp.service.DepartmentService;
 import com.access.erp.service.EmployeeService;
+import com.access.erp.service.ItemOpeningService;
+import com.access.erp.service.ItemService;
 import com.access.erp.service.MaterialRequisitionMasterService;
 import com.access.erp.service.StoreService;
+import com.access.erp.utility.Item_itemOpening;
 
 @Controller
 @RequestMapping("/materialrequisition")
@@ -30,6 +35,8 @@ public class MaterialRequisitionController {
 	@Autowired StoreService storeService;
 	@Autowired DepartmentService departmentService;
 	@Autowired MaterialRequisitionMasterService materialRequisitionMasterService;
+	@Autowired ItemService itemService;
+	@Autowired ItemOpeningService itemOpeningService;
 	
 	
 	@GetMapping("/")
@@ -40,6 +47,9 @@ public class MaterialRequisitionController {
 		
 		List<Store> storeList = storeService.getAllStore();
 		model.addAttribute("storeList", storeList);
+		
+		List<Item> itemList = itemService.getAllItem();
+		model.addAttribute("itemList", itemList);
 		
 		model.addAttribute("materialRequisition", new MaterialRequisitionMaster());
 		return "layouts/Master/materialRequisition";
@@ -68,7 +78,7 @@ public class MaterialRequisitionController {
 		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
 		 */
 		
-		
+		materialRequisitionMasterService.addMaterialRequisitionMaster(materialRequisition);
 
 		return "redirect:/materialrequisition/";
 	}
@@ -130,6 +140,19 @@ public class MaterialRequisitionController {
 		}
 		
 		return department;
+	}
+	
+	@ResponseBody
+	@GetMapping("/itemInfo/{id}")
+	public Item_itemOpening getItemInfo(@PathVariable(value="id") String itemCode) {
+		
+		Item item = itemService.editItem(itemCode).get();
+		ItemOpening itemOpening = itemOpeningService.editItemOpening(itemCode).get();
+		
+		Item_itemOpening itemItemOpening = new Item_itemOpening();
+		itemItemOpening.setItem(item);
+		itemItemOpening.setItemOpening(itemOpening);
+		return itemItemOpening;
 	}
 
 }

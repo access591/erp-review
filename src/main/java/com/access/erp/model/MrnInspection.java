@@ -95,6 +95,14 @@ public class MrnInspection {
 		return inspNo;
 	}
 
+	public List<MrnInspectionItemDetail> getMrnInspectionItems() {
+		return mrnInspectionItems;
+	}
+
+	public void setMrnInspectionItems(List<MrnInspectionItemDetail> mrnInspectionItems) {
+		this.mrnInspectionItems = mrnInspectionItems;
+	}
+
 	public void setInspNo(String inspNo) {
 		this.inspNo = inspNo;
 	}

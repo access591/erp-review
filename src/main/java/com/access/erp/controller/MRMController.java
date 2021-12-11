@@ -106,7 +106,7 @@ public class MRMController {
 		System.out.println("edit mrn indent form is running ");
 		
 		MRN mrn = mrmService.editMrm(mrnNo).get();
-		model.addAttribute("MRN", mrn);
+		model.addAttribute("mrn", mrn);
 		
 
 		return "layouts/editview/editMrn";

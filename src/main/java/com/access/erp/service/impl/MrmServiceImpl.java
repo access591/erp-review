@@ -33,11 +33,13 @@ public class MrmServiceImpl implements MRMService {
 			
 			System.out.println("max code is : " + maxCode);
 			
-			mrm.setMrmCode(maxCode);
+			mrm.setMrnNo("EB-"+maxCode);
 		}
 
 		for(MRNDetail mrnDetail : mrm.getMrnDetails()) {
 			
+			mrnDetail.setGateEntryNo(mrm.gateEntryNo);
+			mrnDetail.setGateEntryDate(mrm.getGateEntryDate());
 			mrnDetail.setMrn(mrm);
 		}
 		

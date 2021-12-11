@@ -2,8 +2,11 @@ package com.access.erp.model;
 
 import java.util.Date;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +22,8 @@ public class MrnInspectionItemDetail {
 	
 	@Id
 	@Column(name="INSP_ITEM_NO",length = 20)
-	private String inspItemNo;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long inspItemNo;
 	
 	@Column(name="REP_OUT_NO",length = 20)
 	private String repOutNo;
@@ -32,31 +36,31 @@ public class MrnInspectionItemDetail {
 	private Item item;
 	
 	@Column(name="MRN_RATE",length = 12)
-	private int mrnRate;
+	private double mrnRate;
 	
 	@Column(name="QTY_REJECTED",length = 12)
-	private int qtyRejected;
+	private double qtyRejected;
 	
 	@Column(name="INSPECTED_QTY",length = 15)
-	private int inspectedQty;
+	private double inspectedQty;
 	
 	@Column(name="QTY_PENDING",length = 12)
-	private int qtyPending;
+	private double qtyPending;
 	
 	@Column(name="INSP_STATUS",length = 2)
 	private String inspStatus;
 	
 	@Column(name="QTY_ACCEPT_DEV",length = 12)
-	private int qtyAcceptDev;
+	private double qtyAcceptDev;
 	
 	@Column(name="QTY_ACCEPT_DEV_RATE",length = 12)
-	private int qtyAcceptDevRate;
+	private double qtyAcceptDevRate;
 	
 	@Column(name="QTY_UD",length = 12)
-	private int qtyUd;
+	private double qtyUd;
 	
 	@Column(name="ITEM_REC1",length = 12)
-	private int itemRec1;
+	private double itemRec1;
 	
 	
 	@Column(name="INSP_DATE")
@@ -89,7 +93,7 @@ public class MrnInspectionItemDetail {
 	
 	
 	@Column(name="QTY_ACCEPT_REW",length = 12)
-	private int qtyAcceptRew;
+	private double qtyAcceptRew;
 	
 	@Column(name="PAN_NO",length = 20)
 	private String panNo;
@@ -134,16 +138,16 @@ public class MrnInspectionItemDetail {
 	
 	
 	@Column(name="ACC_INSP_QTY",length = 12)
-	private int accInspQty;
+	private double accInspQty;
 	
 	@Column(name="QTY_REJECTED1",length = 12)
-	private int qtyRejected1;
+	private double qtyRejected1;
 	
 	@Column(name="SEG_COST",length = 14)
-	private int segCost;
+	private double segCost;
 	
 	@Column(name="REC_COST",length = 14)
-	private int recCost;
+	private double recCost;
 	
 	
 	@ManyToOne(optional = false)
@@ -157,14 +161,23 @@ public class MrnInspectionItemDetail {
 	}
 
 
-	public String getInspItemNo() {
+	
+
+
+	public Long getInspItemNo() {
 		return inspItemNo;
 	}
 
 
-	public void setInspItemNo(String inspItemNo) {
+
+
+
+	public void setInspItemNo(Long inspItemNo) {
 		this.inspItemNo = inspItemNo;
 	}
+
+
+
 
 
 	public String getRepOutNo() {
@@ -197,42 +210,42 @@ public class MrnInspectionItemDetail {
 	}
 
 
-	public int getMrnRate() {
+	public double getMrnRate() {
 		return mrnRate;
 	}
 
 
-	public void setMrnRate(int mrnRate) {
+	public void setMrnRate(double mrnRate) {
 		this.mrnRate = mrnRate;
 	}
 
 
-	public int getQtyRejected() {
+	public double getQtyRejected() {
 		return qtyRejected;
 	}
 
 
-	public void setQtyRejected(int qtyRejected) {
+	public void setQtyRejected(double qtyRejected) {
 		this.qtyRejected = qtyRejected;
 	}
 
 
-	public int getInspectedQty() {
+	public double getInspectedQty() {
 		return inspectedQty;
 	}
 
 
-	public void setInspectedQty(int inspectedQty) {
+	public void setInspectedQty(double inspectedQty) {
 		this.inspectedQty = inspectedQty;
 	}
 
 
-	public int getQtyPending() {
+	public double getQtyPending() {
 		return qtyPending;
 	}
 
 
-	public void setQtyPending(int qtyPending) {
+	public void setQtyPending(double qtyPending) {
 		this.qtyPending = qtyPending;
 	}
 
@@ -247,42 +260,42 @@ public class MrnInspectionItemDetail {
 	}
 
 
-	public int getQtyAcceptDev() {
+	public double getQtyAcceptDev() {
 		return qtyAcceptDev;
 	}
 
 
-	public void setQtyAcceptDev(int qtyAcceptDev) {
+	public void setQtyAcceptDev(double qtyAcceptDev) {
 		this.qtyAcceptDev = qtyAcceptDev;
 	}
 
 
-	public int getQtyAcceptDevRate() {
+	public double getQtyAcceptDevRate() {
 		return qtyAcceptDevRate;
 	}
 
 
-	public void setQtyAcceptDevRate(int qtyAcceptDevRate) {
+	public void setQtyAcceptDevRate(double qtyAcceptDevRate) {
 		this.qtyAcceptDevRate = qtyAcceptDevRate;
 	}
 
 
-	public int getQtyUd() {
+	public double getQtyUd() {
 		return qtyUd;
 	}
 
 
-	public void setQtyUd(int qtyUd) {
+	public void setQtyUd(double qtyUd) {
 		this.qtyUd = qtyUd;
 	}
 
 
-	public int getItemRec1() {
+	public double getItemRec1() {
 		return itemRec1;
 	}
 
 
-	public void setItemRec1(int itemRec1) {
+	public void setItemRec1(double itemRec1) {
 		this.itemRec1 = itemRec1;
 	}
 
@@ -357,12 +370,12 @@ public class MrnInspectionItemDetail {
 	}
 
 
-	public int getQtyAcceptRew() {
+	public double getQtyAcceptRew() {
 		return qtyAcceptRew;
 	}
 
 
-	public void setQtyAcceptRew(int qtyAcceptRew) {
+	public void setQtyAcceptRew(double qtyAcceptRew) {
 		this.qtyAcceptRew = qtyAcceptRew;
 	}
 
@@ -447,42 +460,42 @@ public class MrnInspectionItemDetail {
 	}
 
 
-	public int getAccInspQty() {
+	public double getAccInspQty() {
 		return accInspQty;
 	}
 
 
-	public void setAccInspQty(int accInspQty) {
+	public void setAccInspQty(double accInspQty) {
 		this.accInspQty = accInspQty;
 	}
 
 
-	public int getQtyRejected1() {
+	public double getQtyRejected1() {
 		return qtyRejected1;
 	}
 
 
-	public void setQtyRejected1(int qtyRejected1) {
+	public void setQtyRejected1(double qtyRejected1) {
 		this.qtyRejected1 = qtyRejected1;
 	}
 
 
-	public int getSegCost() {
+	public double getSegCost() {
 		return segCost;
 	}
 
 
-	public void setSegCost(int segCost) {
+	public void setSegCost(double segCost) {
 		this.segCost = segCost;
 	}
 
 
-	public int getRecCost() {
+	public double getRecCost() {
 		return recCost;
 	}
 
 
-	public void setRecCost(int recCost) {
+	public void setRecCost(double recCost) {
 		this.recCost = recCost;
 	}
 
@@ -495,41 +508,6 @@ public class MrnInspectionItemDetail {
 	public void setMrnInspection(MrnInspection mrnInspection) {
 		this.mrnInspection = mrnInspection;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	
 }

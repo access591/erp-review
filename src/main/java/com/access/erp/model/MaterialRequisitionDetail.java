@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +20,7 @@ import com.access.erp.model.master.UOM;
 public class MaterialRequisitionDetail { 
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="MATE_REQ_ID",length = 20)
 	private Long matReqDetId;
 	
@@ -38,7 +41,7 @@ public class MaterialRequisitionDetail {
 	private int qtyRequired;
 	
 	@ManyToOne
-	@JoinColumn(name="CCODE",nullable = false)
+	@JoinColumn(name="CCODE",nullable = true)
 	private Company company;
 	
 	@Column(name="SR_NO",length = 3)

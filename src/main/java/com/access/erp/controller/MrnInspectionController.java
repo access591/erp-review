@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.MRN;
+import com.access.erp.model.MRNDetail;
 import com.access.erp.model.MrnInspection;
 import com.access.erp.model.master.Employee;
+import com.access.erp.model.master.Item;
+import com.access.erp.repo.MrnDetailRepo;
 import com.access.erp.service.EmployeeService;
+import com.access.erp.service.ItemService;
 import com.access.erp.service.MRMService;
 import com.access.erp.service.MrnInspectionService;
 
@@ -28,6 +32,9 @@ public class MrnInspectionController {
 	@Autowired MRMService mrmService;
 	@Autowired EmployeeService employeeService;
 	@Autowired MrnInspectionService mrnInspectionService;
+	@Autowired MrnDetailRepo mrnDetailRepo;
+	@Autowired ItemService itemService;
+	
 	
 
 	@GetMapping("/")
@@ -66,9 +73,14 @@ public class MrnInspectionController {
 		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
 		 */
 
+		mrnInspectionService.addMrnInspection(inspection);
 		return "redirect:/inspection/";
 	}
 
+	
+	
+	
+	
 	@GetMapping("/list")
 	public String viewInspectionList(Model model) {
 
@@ -77,7 +89,7 @@ public class MrnInspectionController {
 		if (listInspection != null) {
 			model.addAttribute("listInspection", listInspection);
 		}
-		return "layouts/listview/listofInspection";
+		return "layouts/listview/listofMrnInspection";
 	}
 
 	@GetMapping("/edit/{id}")
@@ -91,11 +103,14 @@ public class MrnInspectionController {
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		model.addAttribute("employeeList", employeeList);
 		
+		List<Item> itemList = itemService.getAllItem();
+		model.addAttribute("itemList", itemList);
+		
 		MrnInspection inspection = mrnInspectionService.editMrnInspection(inspCode).get();
 		model.addAttribute("inspection", inspection);
 
 		
-		return "layouts/editview/editInspection";
+		return "layouts/editview/editMrnInspection";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -114,6 +129,7 @@ public class MrnInspectionController {
 	}
 	
 	
+	//AJAX FOR ADD PAGE 
 	
 	@ResponseBody
 	@GetMapping("/mrninfo/{id}")
@@ -125,4 +141,98 @@ public class MrnInspectionController {
 		return mrn;
 
 	}
+	
+	//itemlist/againstmrn/
+	
+	@ResponseBody
+	@GetMapping("/itemlist/againstmrn/{id}")
+	public List<Item> getItemListAgainstMrn(@PathVariable(value = "id") String mrnCode, Model model) {
+
+		MRN mrn = mrmService.editMrm(mrnCode).get();
+		
+		List<MRNDetail> mrnDetail = mrnDetailRepo.findByMrn(mrn);
+		
+		//mrnDetail.stream().distinct().collect(Collectors.toList());
+		
+		List<Item> itemList = new ArrayList<>();
+		
+		for(MRNDetail mDetail : mrnDetail) {
+			if(!itemList.contains(mDetail.getItem())) {
+				itemList.add(mDetail.getItem());
+			}
+		}
+		
+		return itemList;
+
+	}
+	
+	
+	//get item info against mrno 
+	
+	@ResponseBody
+	@GetMapping("/iteminfo/againstmrn//{itemCode}/{mrnNo}")
+	public MRNDetail getItemInfoAgainstMrn(@PathVariable(value = "mrnNo") String mrnCode,@PathVariable(value = "itemCode") String itemCode) {
+
+		MRN mrn = mrmService.editMrm(mrnCode).get();
+		Item item = itemService.editItem(itemCode).get();
+		
+		List<MRNDetail> mrnDetail = mrnDetailRepo.findByMrnAndItem(mrn, item);
+		
+		if(mrnDetail.size()>0) {
+			return mrnDetail.get(0);
+		}
+		
+		return null;
+
+	}
+	
+	
+	
+	// Ajax for in edit mode 
+	
+	@ResponseBody
+	@GetMapping("edit/itemlist/againstmrn/{id}")
+	public List<Item> getItemListAgainstMrnEdit(@PathVariable(value = "id") String mrnCode, Model model) {
+
+		MRN mrn = mrmService.editMrm(mrnCode).get();
+		
+		List<MRNDetail> mrnDetail = mrnDetailRepo.findByMrn(mrn);
+		
+		//mrnDetail.stream().distinct().collect(Collectors.toList());
+		
+		List<Item> itemList = new ArrayList<>();
+		
+		for(MRNDetail mDetail : mrnDetail) {
+			if(!itemList.contains(mDetail.getItem())) {
+				itemList.add(mDetail.getItem());
+			}
+		}
+		
+		return itemList;
+
+	}
+	
+	
+	//get item info against mrno 
+	
+	@ResponseBody
+	@GetMapping("edit/iteminfo/againstmrn//{itemCode}/{mrnNo}")
+	public MRNDetail getItemInfoAgainstMrnEdit(@PathVariable(value = "mrnNo") String mrnCode,@PathVariable(value = "itemCode") String itemCode) {
+
+		MRN mrn = mrmService.editMrm(mrnCode).get();
+		Item item = itemService.editItem(itemCode).get();
+		
+		List<MRNDetail> mrnDetail = mrnDetailRepo.findByMrnAndItem(mrn, item);
+		
+		if(mrnDetail.size()>0) {
+			return mrnDetail.get(0);
+		}
+		
+		return null;
+
+	}
+	
+	
+	
+	
 }

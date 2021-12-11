@@ -642,7 +642,7 @@ iframe {
 										<!-- /.box -->
 										<div
 											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/gateentry/list}">View All Gate-Entry</a>
+											<a th:href="@{/mrn/list}">View All MRN</a>
 										</div>
 									</div>
 
@@ -905,40 +905,40 @@ iframe {
 																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom"+j+"' readonly></td>"
 
 																		/* po qty   */
-																		+ "<td><input type='number' class='form-control form-control-sm' title='po qty' id='poQty"+j+"' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' title='po qty' id='poQty"+j+"' step='0.25'readonly></td>"
 
 																		/*  int qty  */
-																		+ "<td><input type='number' class='form-control form-control-sm' id='invQty"+j+"'  title='inv qty' name='mrnDetails["+j+"].itemInv' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='invQty"+j+"'  title='inv qty' name='mrnDetails["+j+"].itemInv' step='0.25' readonly></td>"
 
 																		/* rec qty   */
-																		+ "<td><input type='number' class='form-control form-control-sm'  id='recQty"+j+"''  title='rec qty' name='mrnDetails["+j+"].itemRec' ></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm'  id='recQty"+j+"''  title='rec qty' name='mrnDetails["+j+"].itemRec'step='0.25' ></td>"
 
 																		/* po rate curr   */
-																		+ "<td><input type='text' class='form-control form-control-sm' id='poRateCur"+j+"' title='po rate curr' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='poRateCur"+j+"' title='po rate curr' step='0.25' readonly></td>"
 
 																		/*  po rate  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='poRate"+j+"'  title='po rate' name='mrnDetails["+j+"].itemRate'  readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='poRate"+j+"'  title='po rate' name='mrnDetails["+j+"].itemRate' step='0.25' readonly></td>"
 
 																		/*  bill rate  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='billRate"+j+"' title='bill rate'name='mrnDetails["+j+"].itemrateOnBill' ></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='billRate"+j+"' title='bill rate'name='mrnDetails["+j+"].itemrateOnBill' step='0.25' ></td>"
 
 																		/* total cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='totalCost"+j+" '  title='total cost' name='mrnDetails["+j+"].totalvalue' ></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='totalCost"+j+" '  title='total cost' name='mrnDetails["+j+"].totalvalue' step='0.25' value='0.00'></td>"
 
 																		/*  net cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='netCost"+j+"'  title='net cost' name='mrnDetails["+j+"].itemNetVal' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='netCost"+j+"'  title='net cost' name='mrnDetails["+j+"].itemNetVal' step='0.25' value='0.00'readonly></td>"
 
 																		/*  total per cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='totalPerCost'"+j+" title='total pur cost' name='mrnDetails["+j+"].totalPurCost' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='totalPerCost'"+j+" title='total pur cost' name='mrnDetails["+j+"].totalPurCost' step='0.25' value='0.00' readonly></td>"
 
 																		/*  total inr cost  */
 
-																		+ "<td><input type='text' class='form-control form-control-sm' id='totalInrCost"+j+"' title='total inr cost' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm' id='totalInrCost"+j+"' title='total inr cost'step='0.25' value='0.00' readonly></td>"
 
 																		/*  remarks  */
 
@@ -991,47 +991,47 @@ iframe {
 														.html(
 
 																/* freight  */
-																"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date' name='mrnDetails[" +i+"].freight'style='text-align: right'></td>'"
+																"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date' name='mrnDetails[" +i+"].freight'style='text-align: right' value='0'></td>'"
 
 																		/*  cgst  */
 																		+ "<td><input type='text'class='form-control form-control-sm' id='cgstInPer"
 																		+ i
 																		+ "' title='item name'name='listPurchaseOrderItem["
 																		+ i
-																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right'></td>"
+																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right' value='0'></td>"
 
 																		/*   cgst value */
-																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='mrnDetails[" +i+"].cgstValue' step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='mrnDetails[" +i+"].cgstValue' step='0.01' readonly style='text-align: right'value='0'></td>"
 
 																		/*  sgst  */
 																		+ "<td><input type='number' id='sgstInPer"
 																		+ i
 																		+ "' class='form-control form-control-sm' title='po qty'name='mrnDetails["
 																		+ i
-																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.01'style='text-align: right'></td>"
+																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.01'style='text-align: right'value='0'></td>"
 
 																		/* sgst value */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='mrnDetails[" +i+"].sgstValue'step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='mrnDetails[" +i+"].sgstValue'step='0.01' readonly style='text-align: right'value='0'></td>"
 
 																		/* igst  */
 																		+ "<td><input type='number'class='form-control form-control-sm' id='igstInPer"
 																		+ i
 																		+ "' title='rec qty' name='mrnDetails["
 																		+ i
-																		+ "].igst'onkeyup='calulationOfIgst()'step='0.01'' style='text-align: right'></td>"
+																		+ "].igst'onkeyup='calulationOfIgst()'step='0.01'' style='text-align: right'value='0'></td>"
 
 																		/*  igst value  */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='mrnDetails[" +i+"].igstValue'step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='mrnDetails[" +i+"].igstValue'step='0.01' readonly style='text-align: right'value='0'></td>"
 
 																		/* discount  */
 																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInPer"
 																		+ i
 																		+ "' title='po rate'name='mrnDetails["
 																		+ i
-																		+ "].discPer'onkeyup='calulationOfDiscount()''step='0.01' style='text-align: right'></td>"
+																		+ "].discPer'onkeyup='calulationOfDiscount()''step='0.01' style='text-align: right'value='0'></td>"
 
 																		/*  discount value */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='mrnDetails[" +i+"].discValue'step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='mrnDetails[" +i+"].discValue'step='0.01' readonly style='text-align: right'value='0'></td>"
 
 														);
 												$('#example1').append(
