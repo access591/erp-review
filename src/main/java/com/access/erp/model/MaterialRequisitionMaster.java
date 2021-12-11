@@ -24,7 +24,7 @@ import com.access.erp.model.master.Store;
 public class MaterialRequisitionMaster {
 
 	@Id
-	@Column(name="REQUISITION_NO", length = 10)
+	@Column(name="REQUISITION_NO", length = 15)
 	private String requisitionNo;  
 	
 	@Column(name="REQUISITION_DATE")
@@ -59,7 +59,7 @@ public class MaterialRequisitionMaster {
 	private String REQUISITION_NO;  
 	
 	@ManyToOne
-	@JoinColumn(name="UCODE",nullable = false)
+	@JoinColumn(name="UCODE",nullable = true)
 	private MyUser myUser;  
 	
 	@Column(name="UDATE")
@@ -80,14 +80,14 @@ public class MaterialRequisitionMaster {
 	private String location;  
 	
 	@ManyToOne
-	@JoinColumn(name="FYCODE",nullable = false)
+	@JoinColumn(name="FYCODE",nullable = true)
 	private FinancialActiveYear fyYear;  
 	
 	@Column(name="PLANNING_DATE")
 	private Date planningDate;  
 	
 	@ManyToOne
-	@JoinColumn(name="INDENT_NO",nullable = false)
+	@JoinColumn(name="INDENT_NO",nullable = true)
 	private OpenIndent openIndent;  
 	
 	@Column(name="INDENT_DATE")
