@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,36 +23,37 @@ import com.access.erp.model.master.UOM;
 public class IssueSlipDetail {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ISSUE_SLIP_DETAIL",length = 30)
 	private Long issueDetail;
 		
 	@ManyToOne
-	@JoinColumn(name="STORE_CODE",nullable = false)
+	@JoinColumn(name="STORE_CODE",nullable = true)
 	private Store store;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="ITEM_CODE",nullable = false)
+	@JoinColumn(name="ITEM_CODE",nullable = true)
 	private Item item;
 	
 	@ManyToOne
-	@JoinColumn(name="UOM_CODE",nullable = false)
+	@JoinColumn(name="UOM_CODE",nullable = true)
 	private UOM uom;
 	
-	@Column(name="QTY_REQ",length = 12)
-	private int qtyReq;
+	@Column(name="QTY_REQ",length = 12,nullable = true)
+	private double qtyReq;
 	
-	@Column(name="QTY_ISS",length = 12)
-	private int qtyIssue;
+	@Column(name="QTY_ISS",length = 12,nullable = true)
+	private double qtyIssue;
 	
-	@Column(name="QTY_ISS_CONV",length = 16)
+	@Column(name="QTY_ISS_CONV",length = 16,nullable = true)
 	private String qtyIssueConv;
 	
-	@Column(name="ISS_SEQ_NO",length = 2)
+	@Column(name="ISS_SEQ_NO",length = 2,nullable = true)
 	private int issueSeqNo;
 	
-	@Column(name="ISS_RATE",length = 15)
-	private int issueRate;
+	@Column(name="ISS_RATE",length = 15,nullable = true)
+	private double issueRate;
 	
 	@Column(name="LOT_NO",length = 20)
 	private String lotNo;
@@ -58,7 +61,7 @@ public class IssueSlipDetail {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="TO_STORE",nullable = false)
+	@JoinColumn(name="TO_STORE",nullable = true)
 	private Store toStore;
 	
 	
@@ -115,44 +118,20 @@ public class IssueSlipDetail {
 		this.issueDetail = issueDetail;
 	}
 
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
 	public Item getItem() {
 		return item;
 	}
 
 	public void setItem(Item item) {
 		this.item = item;
-	}
-
-	public int getQtyReq() {
-		return qtyReq;
-	}
-
-	public void setQtyReq(int qtyReq) {
-		this.qtyReq = qtyReq;
-	}
-
-	public int getQtyIssue() {
-		return qtyIssue;
-	}
-
-	public void setQtyIssue(int qtyIssue) {
-		this.qtyIssue = qtyIssue;
-	}
-
-	public int getIssueSeqNo() {
-		return issueSeqNo;
-	}
-
-	public void setIssueSeqNo(int issueSeqNo) {
-		this.issueSeqNo = issueSeqNo;
-	}
-
-	public int getIssueRate() {
-		return issueRate;
-	}
-
-	public void setIssueRate(int issueRate) {
-		this.issueRate = issueRate;
 	}
 
 	public UOM getUom() {
@@ -163,20 +142,44 @@ public class IssueSlipDetail {
 		this.uom = uom;
 	}
 
-	public Store getStore() {
-		return store;
+	public double getQtyReq() {
+		return qtyReq;
 	}
 
-	public void setStore(Store store) {
-		this.store = store;
+	public void setQtyReq(double qtyReq) {
+		this.qtyReq = qtyReq;
 	}
 
-	public Store getToStore() {
-		return toStore;
+	public double getQtyIssue() {
+		return qtyIssue;
 	}
 
-	public void setToStore(Store toStore) {
-		this.toStore = toStore;
+	public void setQtyIssue(double qtyIssue) {
+		this.qtyIssue = qtyIssue;
+	}
+
+	public String getQtyIssueConv() {
+		return qtyIssueConv;
+	}
+
+	public void setQtyIssueConv(String qtyIssueConv) {
+		this.qtyIssueConv = qtyIssueConv;
+	}
+
+	public int getIssueSeqNo() {
+		return issueSeqNo;
+	}
+
+	public void setIssueSeqNo(int issueSeqNo) {
+		this.issueSeqNo = issueSeqNo;
+	}
+
+	public double getIssueRate() {
+		return issueRate;
+	}
+
+	public void setIssueRate(double issueRate) {
+		this.issueRate = issueRate;
 	}
 
 	public String getLotNo() {
@@ -185,6 +188,14 @@ public class IssueSlipDetail {
 
 	public void setLotNo(String lotNo) {
 		this.lotNo = lotNo;
+	}
+
+	public Store getToStore() {
+		return toStore;
+	}
+
+	public void setToStore(Store toStore) {
+		this.toStore = toStore;
 	}
 
 	public String getProduct() {
@@ -235,14 +246,6 @@ public class IssueSlipDetail {
 		this.itemCodeIssue = itemCodeIssue;
 	}
 
-	public String getQtyIssueConv() {
-		return qtyIssueConv;
-	}
-
-	public void setQtyIssueConv(String qtyIssueConv) {
-		this.qtyIssueConv = qtyIssueConv;
-	}
-
 	public String getItemCodeNew() {
 		return itemCodeNew;
 	}
@@ -282,10 +285,6 @@ public class IssueSlipDetail {
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
-
-	
-	
-	
 	
 	
 

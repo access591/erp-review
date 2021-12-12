@@ -20,6 +20,7 @@ import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.Store;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -31,6 +32,7 @@ public class IssueSlip {
 	private String issueNo;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="ISS_DT")
 	private Date issueDate;
 	
@@ -69,15 +71,15 @@ public class IssueSlip {
 
 	
 	@ManyToOne
-	@JoinColumn(name="CCODE",nullable = false)
+	@JoinColumn(name="CCODE",nullable = true)
 	private Company company;
 	
 	@ManyToOne
-	@JoinColumn(name="FYCODE",nullable = false)
+	@JoinColumn(name="FYCODE",nullable = true)
 	private FinancialActiveYear fycode;
 	
 	@ManyToOne
-	@JoinColumn(name="UCODE",nullable = false)
+	@JoinColumn(name="UCODE",nullable = true)
 	private MyUser muUser;
 	
 	
@@ -87,11 +89,11 @@ public class IssueSlip {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="STORE_CODE",nullable = false)
+	@JoinColumn(name="STORE_CODE",nullable = true)
 	private Store store;
 	
 	@ManyToOne 
-	@JoinColumn(name="TO_STORE_CODE",nullable = false)
+	@JoinColumn(name="TO_STORE_CODE",nullable = true)
 	private Store toStoreCode;
 	
 	
