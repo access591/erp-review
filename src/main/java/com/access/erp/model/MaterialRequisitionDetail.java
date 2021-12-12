@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.UOM;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="MATERIAL_REQUISITION_DETAIL")
@@ -79,6 +80,7 @@ public class MaterialRequisitionDetail {
 	
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="REQUISITION_NO")
 	private MaterialRequisitionMaster materialRequisitionMaster;
 

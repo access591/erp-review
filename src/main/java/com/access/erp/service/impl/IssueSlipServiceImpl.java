@@ -24,8 +24,8 @@ public class IssueSlipServiceImpl implements IssueSlipService{
 		
 		if(issueSlip.getIssueNo()==null || issueSlip.getIssueNo()=="") {
 			
-			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("ISU", "20-21", "EB");
-			issueSlip.setIssueNo(maxCode);
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("ISS", "20-21", "EB");
+			issueSlip.setIssueNo("EB-"+maxCode);
 		}
 		
 		for(IssueSlipDetail issueSlipDetail : issueSlip.getIssueSlipDetails()) {

@@ -1,13 +1,18 @@
 package com.access.erp.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.access.erp.model.MaterialRequisitionDetail;
 import com.access.erp.model.MaterialRequisitionMaster;
+import com.access.erp.model.QuotationDetail;
 import com.access.erp.repo.MaterialRequisitionMasterRepo;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.MaterialRequisitionMasterService;
@@ -17,6 +22,8 @@ public class MaterialRequisitionMasterServiceImpl implements MaterialRequisition
 
 	@Autowired MaterialRequisitionMasterRepo materialRequisitionMasterRepo;
 	@Autowired SeqMainRepo seqMainRepo;
+	@Autowired SessionFactory sessionFactory;
+	
 	
 	@Override
 	public void addMaterialRequisitionMaster(MaterialRequisitionMaster materialRequisitionMaster) {
@@ -57,6 +64,36 @@ public class MaterialRequisitionMasterServiceImpl implements MaterialRequisition
 	public void deleteMaterialRequisitionMaster(String matReqNo) {
 		
 		materialRequisitionMasterRepo.deleteById(matReqNo);
+		
+	}
+
+	@Override
+	public void materialRequisitionApproval(String reqNum, String approvalStatus) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			MaterialRequisitionMaster requisition = session.find(MaterialRequisitionMaster.class, reqNum);
+			
+			if(approvalStatus.equals("Y")) {
+				requisition.setApprovalStatus(approvalStatus);
+				requisition.setDateOfApproval(new Date());
+			}
+			else if (approvalStatus.equals("C")) {
+				requisition.setDateOfCancel(new Date());
+				requisition.setApprovalStatus(approvalStatus);
+			}
+			
+			
+			
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		
 	}
 

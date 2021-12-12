@@ -118,7 +118,27 @@ public class MaterialRequisitionController {
 	public String materialRequisitionApproval( Model model) {
 		
 		//materialRequisitionMasterService.deleteMaterialRequisitionMaster(requisitionNo);
+		
+		List<MaterialRequisitionMaster> materialRequisition = materialRequisitionMasterService.getAllMaterialRequisitionMaster();
+		model.addAttribute("requisition", materialRequisition);
+		
 		return "layouts/Master/materialRequisitionApproval";
+	}
+	
+	@GetMapping("/approved/{reqNum}/{status}")
+	public String approvedMaterialRequisition(@PathVariable(value="reqNum") String reqNum,@PathVariable(value="status") String status, Model model) {
+		
+		
+		System.out.println("requisition number : "+ reqNum);
+		
+		System.out.println("status is : "+ status);
+		
+		materialRequisitionMasterService.materialRequisitionApproval(reqNum, status);
+		
+		//List<MaterialRequisitionMaster> materialRequisition = materialRequisitionMasterService.getAllMaterialRequisitionMaster();
+		//model.addAttribute("requisition", materialRequisition);
+		
+		return "redirect:/materialrequisition/approval";
 	}
 	
 	

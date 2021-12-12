@@ -8,6 +8,8 @@ public class Item_itemOpening {
 	private Item item;
 	private ItemOpening itemOpening;
 	
+	
+	
 	public Item getItem() {
 		return item;
 	}
