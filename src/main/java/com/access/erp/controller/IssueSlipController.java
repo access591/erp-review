@@ -36,7 +36,7 @@ import com.access.erp.service.StoreService;
 import com.access.erp.utility.RequisitionDetailItemOpening;
 
 @Controller
-@RequestMapping("/issuslip")
+@RequestMapping("/issueslip")
 public class IssueSlipController {
 
 	@Autowired EmployeeService employeeService;
@@ -94,7 +94,7 @@ public class IssueSlipController {
 		 */
 
 		issueSlipService.addIssueSlip(issueSlip);
-		return "redirect:/issuslip/";
+		return "redirect:/issueslip/";
 	}
 
 	@GetMapping("/list")
@@ -125,7 +125,7 @@ public class IssueSlipController {
 	@GetMapping("/delete/{id}")
 	public String deleteIssueSlip(@PathVariable("id") String issueSlipCode, Model model) {
 		issueSlipService.deleteIssueSlip(issueSlipCode);
-		return "redirect:/issuslip/list";
+		return "redirect:/issueslip/list";
 	}
 	
 	
@@ -175,6 +175,13 @@ public class IssueSlipController {
 		reqDetailItemOpening.setMaterialRequisitionDetail(requisitionDetail);
 		
 		return reqDetailItemOpening;
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/storelist")
+	public List<Store> getStoreList() {
+		return storeService.getAllStore();
 	}
 
 	
