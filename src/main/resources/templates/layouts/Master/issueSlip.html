@@ -55,7 +55,7 @@
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
-							Material Requisition
+							Issue Slip
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
@@ -106,12 +106,13 @@
 															<label for="inputEmail4">Issue No</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Requisition No" title="requisition no"
-																th:field="*{issueNo}">
+																th:field="*{issueNo}" readonly>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issue Date</label> <input
-																type="date" class="form-control" id="gateEntryDate"
-																title="requisition date" th:field="*{issueDate}">
+																type="date" class="form-control" id="issueDate"
+																title="requisition date" th:field="*{issueDate}"
+																readonly>
 
 														</div>
 
@@ -134,26 +135,30 @@
 															<label for="inputPassword4">Requisition Type</label> <select
 																class="form-control" id="employee" title="employee name"
 																onchange="selectEmployee()" th:field="*{reqType}">
-																<option value="">Select</option>
-																<option th:each="employee :  ${employeeList}"
+																<option value="G">General</option>
+																<!-- <option th:each="employee :  ${employeeList}"
 																	th:text="${employee.empName}"
-																	th:value=" ${employee.empCode}"></option>
+																	th:value=" ${employee.empCode}"></option> -->
 															</select>
 														</div>
 
 														<div class="form-group col-md-4">
-															<label for="inputAddress">Requisition No</label> <input
-																type="text" class="form-control" id="departmentCode"
-																title="department code" placeholder="Department Code"
-																th:field="*{requisition}">
+															<label for="inputAddress">Requisition No</label> <select
+																class="form-control" id="reqNum" title="employee name"
+																onchange="selectRequisition()" th:field="*{requisition}">
+																<option value="">Select</option>
+																<option th:each="requisition :  ${requisitionMaster}"
+																	th:text="${requisition.requisitionNo}"
+																	th:value=" ${requisition.requisitionNo}"></option>
+															</select>
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Requisition Date</label> <input
-																type="date" class="form-control" id="departmentName"
+																type="date" class="form-control" id="reqDate"
 																title="department name" placeholder="Department Name"
-																th:field="*{requisitionDate}">
+																th:field="*{requisitionDate}" readonly>
 														</div>
 
 														<div class="form-group col-md-4">
@@ -180,10 +185,14 @@
 
 
 														<div class="form-group col-md-4">
-															<label for="inputEmail4">Transaction Type</label> <input
-																type="text" class="form-control" id="inputEmail4"
-																placeholder="Requisition No" title="requisition no"
+															<label for="inputEmail4">Transaction Type</label> <select
+																class="form-control" id="" title="requisition type"
 																th:field="*{tranType}">
+
+																<option value="D">Department</option>
+
+
+															</select>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Issue To</label> <select
@@ -263,7 +272,7 @@
 																	<tr>
 
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Description</th>
+																			style="width: 90px;">Store Description</th>
 
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Stock Detail</th>
@@ -306,19 +315,26 @@
 																	<tr id="addr0">
 
 																		<!-- store description  -->
-																		<td><input type="number" title="sno."
-																			class="form-control form-control-sm"
-																			style="width: 70px;" name="issueSlipDetails[0].store"></td>
+
+																		<td><select
+																			class="form-control indentContainer form-control-sm select"
+																			id="storeNAme0" name="issueSlipDetails[0].store"
+																			title="item" required>
+																				<option value="">Select</option>
+																				<option th:each="store :  ${storeList}"
+																					th:text="${store.description}"
+																					th:value=" ${store.storeCode}"></option>
+
+																		</select></td>
 
 																		<!-- stock detail  -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
-																			id="orderIndentNumberPo"
-																			name="issueSlipDetails[0].store" title="item"
-																			onchange='getOrderIndentDetailPo()' required>
-																				<option value="">Select Indent</option>
-																				<option th:each="po :  ${listPO}"
-																					th:text="${po.poNumber}" th:value=" ${po.poNumber}"></option>
+																			id="storeNAme0" title="item" required>
+																				<option value="">Select</option>
+																				<!-- <option th:each="store :  ${storeList}"
+																					th:text="${store.description}"
+																					th:value=" ${store.storeCode}"></option> -->
 
 																		</select></td>
 																		<!-- item code -->
@@ -328,23 +344,18 @@
 																		<!-- item description  -->
 
 																		<td><select
-																			class="form-control indentContainer form-control-sm select"
-																			id="orderIndentNumberPo"
-																			name="issueSlipDetails[0].item" title="item"
-																			onchange='getOrderIndentDetailPo()' required>
-																				<option value="">Select Indent</option>
+																			class="form-control itemContainer0 form-control-sm select"
+																			id="itemCode0" name="issueSlipDetails[0].item"
+																			title="item" onchange='getItemInfo()' required>
+																				<option value="">Select</option>
 
 																		</select></td>
 
 																		<!-- UOM -->
-																		<td><select
-																			class="form-control indentContainer form-control-sm select"
-																			id="orderIndentNumberPo"
-																			name="issueSlipDetails[0].uom" title="item"
-																			onchange='getOrderIndentDetailPo()' required>
-																				<option value="">Select Indent</option>
+																		<td><input type="text" id="uom0"
+																			class="form-control form-control-sm" title="net qty"
+																			name="issueSlipDetails[0].uom"></td>
 
-																		</select></td>
 																		<!-- Qty Required  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" title="net qty"
@@ -432,8 +443,113 @@
 	</div>
 	<div th:replace="fragments/footer :: footer">...</div>
 
+	<script>
+		$(document).ready(function() {
+
+			document.getElementById('issueDate').valueAsDate = new Date();
+
+		});
+	</script>
 
 	<script>
+		function selectRequisition() {
+
+			var reqNum = document.getElementById("reqNum").value;
+
+			$.ajax({
+				type : "GET",
+				url : "requisitioninfo/" + reqNum,
+
+				success : function(data) {
+
+					console.log("response data : " + JSON.stringify(data));
+
+					$("#reqDate").val(data.requisitionDate);
+					//$("#departmentName").val(data.deptName)
+					//$("#departmentname").val(data.department.deptName)
+
+					getItemListAgainstReq()
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
+
+		function getItemListAgainstReq() {
+
+			var reqNum = document.getElementById("reqNum").value;
+
+			$
+					.ajax({
+						type : "GET",
+						url : "itelist/againstreq/" + reqNum,
+
+						success : function(data) {
+
+							console.log("response data : "
+									+ JSON.stringify(data));
+
+							//$("#reqDate").val(data.requisitionDate);
+							//$("#departmentName").val(data.deptName)
+							//$("#departmentname").val(data.department.deptName)
+
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.itemCode)
+												console.log("item info : "
+														+ value.description)
+
+												options += '<option value="' + value.itemCode + '">'
+														+ value.description
+														+ '</option>';
+
+											});
+
+							$('.itemContainer0').html(options);
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
+		}
+
+		function getItemInfo() {
+
+			var itemCode = document.getElementById("itemCode0").value;
+			var reqNum = document.getElementById("reqNum").value;
+
+			$.ajax({
+				type : "GET",
+				url : "iteminfo/againstreq/" + reqNum + "/" + itemCode,
+
+				success : function(data) {
+
+					console.log("response data : " + JSON.stringify(data));
+					//materialRequisitionDetail
+
+					console.log("uom required : " + data.materialRequisitionDetail.item.uom.uomCode)
+					console.log("qty required : " + data.materialRequisitionDetail.qtyRequired)
+					
+					console.log("qty in stock : " + data.itemOpening.currentStock)
+					//$("#reqDate").val(data.item.uom.uomCode);
+					//$("#departmentName").val(data.deptName)
+					//$("#departmentname").val(data.department.deptName)
+
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
+
 		function selectEmployee() {
 
 			var employee = document.getElementById("employee").value;
@@ -458,16 +574,11 @@
 				}
 			});
 		}
-		$(document).ready(function() {
-
-			document.getElementById('gateEntryDate').valueAsDate = new Date();
-
-		});
 	</script>
 
 
 	<script>
-		function againstPurchaseThrough() {
+		/* function againstPurchaseThrough() {
 
 			let purchaseThrough = document.getElementById("purchaseThrough").value;
 			console.log("purchase through value : " + purchaseThrough);
@@ -500,7 +611,7 @@
 
 			}
 
-		}
+		} */
 	</script>
 
 	<script>
@@ -544,15 +655,13 @@
 																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='materialRequisitionDetails[0].item' title='item' onchange='getOrderIndentDetailPo()' required><option value=''>Select Indent</option><option th:each='po :  ${listPO}' th:text='${po.poNumber}' th:value=' ${po.poNumber}'></option></select></td>"
 
 																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
-																		
+
 																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='materialRequisitionDetails[0].item' title='item' onchange='getOrderIndentDetailPo()' required><option value=''>Select Indent</option><option th:each='po :  ${listPO}' th:text='${po.poNumber}' th:value=' ${po.poNumber}'></option></select></td>"
 
-																		
 																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' name='materialRequisitionDetails[0].item' title='item' onchange='getOrderIndentDetailPo()' required><option value=''>Select Indent</option><option th:each='po :  ${listPO}' th:text='${po.poNumber}' th:value=' ${po.poNumber}'></option></select></td>"
-
 
 																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
-																		
+
 																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code
 
 																		+ "<td><input type='text' class='form-control form-control-sm' id='orderIndentDatePo'   style='width: 150px' title='item name' name='mrnInspectionItems[0].item'> </td>" // Item Code

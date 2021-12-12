@@ -12,4 +12,5 @@ public interface MaterialRequisitionMasterService {
 	public Optional<MaterialRequisitionMaster> editMaterialRequisitionMaster(String matReqNo);
 	public void deleteMaterialRequisitionMaster(String matReqNo);
 
+	public void materialRequisitionApproval(String reqNum,String approvalStatus);
 }

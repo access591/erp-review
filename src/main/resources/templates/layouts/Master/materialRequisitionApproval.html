@@ -55,7 +55,7 @@
 													<th scope="col" class="text-center">Requisition Number</th>
 													<th scope="col" class="text-center">Requisition Date</th>
 													<th scope="col" class="text-center">Employee Name</th>
-													<th scope="col" class="text-center">Approved Status</th>
+													
 													<th scope="col" class="text-center">Remarks</th>
 													
 													<th scope="col" class="text-center">Action</th>
@@ -65,20 +65,20 @@
 											</thead>
 											<tbody>
 
-												<!-- <tr th:each="quotation : ${listQuotationDetail}">
-													<td><label th:text="${quotation.quotNo}"></label></td>
+												<tr th:each="req : ${requisition}">
+													<td class="text-center"><label th:text="${req.requisitionNo}"></label></td>
 
-													<td><label th:text="${quotation.quotDate}"></label></td>
+													<td class="text-center"><label th:text="${req.requisitionDate}"></label></td>
 
-													<td><label th:text="${quotation.quotType}"></label></td>
+													<td class="text-center"><label th:text="${req.employee.empName}"></label></td>
 
-													<td><label th:text="${quotation.indentNu}"></label></td> -->
-
-													
+													<td class="text-center"><label th:text="${req.remarks}"></label></td> 
 
 													
 
 													
+
+													
 													
 
 
@@ -87,8 +87,8 @@
 
 
 
-													<!-- <td class="text-center"
-														th:if="${quotation.approvalStatus1 == 'Y'}">
+													 <td class="text-center"
+														th:if="${req.approvalStatus == 'Y'}">
 														<div class="dropdown show">
 															<a class="btn btn-primary dropdown-toggle" href="#"
 																role="button" id="dropdownMenuLink"
@@ -98,16 +98,16 @@
 															<div class="dropdown-menu"
 																aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item"
-																	th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'Y'})}">Approved</a>
-																<a class="dropdown-item"
-																	th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'C'})}">Cancel</a>
+																	th:href="@{approved/{reqNum}/{status}/(reqNum=${req.requisitionNo},status=${'Y'})}">Approved</a>
+																<!-- <a class="dropdown-item"
+																	th:href="@{/approved/{reqNum}/{status}/(quotNum=${req.requisitionNo},status=${'C'})}">Cancel</a> -->
 
 															</div>
 														</div>
-													</td> -->
+													</td> 
 
-													<!-- <td class="text-center"
-														th:if="${quotation.approvalStatus1 == 'N'}">
+													<td class="text-center"
+														th:if="${req.approvalStatus == 'N'}">
 														<div class="dropdown show">
 															<a class="btn btn-primary dropdown-toggle" href="#"
 																role="button" id="dropdownMenuLink"
@@ -117,16 +117,16 @@
 															<div class="dropdown-menu"
 																aria-labelledby="dropdownMenuLink">
 																<a class="dropdown-item"
-																	th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'Y'})}">Approved</a>
+																	th:href="@{approved/{reqNum}/{status}/(reqNum=${req.requisitionNo},status=${'Y'})}">Approved</a>
 																<a class="dropdown-item"
-																	th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'C'})}">Cancel</a>
+																	th:href="@{approved/{reqNum}/{status}/(reqNum=${req.requisitionNo},status=${'C'})}">Cancel</a>
 
 															</div>
 														</div>
-													</td> -->
-<!-- 
+													</td>  
+
 													<td class="text-center"
-														th:if="${quotation.approvalStatus1 == 'C'}">
+														th:if="${req.approvalStatus == 'C'}">
 														<div class="dropdown show">
 															<a class="btn btn-primary dropdown-toggle" href="#"
 																role="button" id="dropdownMenuLink"
@@ -135,21 +135,21 @@
 
 															<div class="dropdown-menu"
 																aria-labelledby="dropdownMenuLink">
+																<!-- <a class="dropdown-item"
+																	th:href="@{/approved/{reqNum}/{status}/(quotNum=${req.requisitionNo},status=${'Y'})}">Approved</a> -->
 																<a class="dropdown-item"
-																	th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'Y'})}">Approved</a>
-																<a class="dropdown-item"
-																	th:href="@{/approvalquotationdetail/{quotNum}/{status}/(quotNum=${quotation.quotNo},status=${'C'})}">Cancel</a>
+																	th:href="@{approved/{reqNum}/{status}/(reqNum=${req.requisitionNo},status=${'C'})}">Cancel</a>
 
 															</div>
 														</div>
-													</td>
- -->
+													</td> 
 
 
 
-													<!-- <td class="text-center"><a class="btn btn-primary"
-														th:href="@{/approvalquotationdetail/view/{id}/(id=${quotation.quotNo})}">
-															View</a></td> -->
+
+												<td class="text-center"><a class="btn btn-primary"
+														th:href="@{/approvalquotationdetail/view/{id}/(id=${req.requisitionNo})}">
+															View</a></td> 
 
 
 												</tr>

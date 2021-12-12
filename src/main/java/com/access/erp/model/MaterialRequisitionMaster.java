@@ -14,10 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.Store;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="MATERIAL_REQUISITION_MASTER")
@@ -27,6 +31,8 @@ public class MaterialRequisitionMaster {
 	@Column(name="REQUISITION_NO", length = 15)
 	private String requisitionNo;  
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="REQUISITION_DATE")
 	private Date requisitionDate;  
 	
@@ -56,7 +62,7 @@ public class MaterialRequisitionMaster {
 	private String lotNo;  
 	
 	@Column(name="CCODE")
-	private String REQUISITION_NO;  
+	private String cCode;  
 	
 	@ManyToOne
 	@JoinColumn(name="UCODE",nullable = true)
@@ -106,7 +112,7 @@ public class MaterialRequisitionMaster {
 	private Date lotDate; 
 	
 	@Column(name="APPROVAL_STATUS", length = 2)
-	private String approvalStatus;  
+	private String approvalStatus = "N";  
 	
 	@Column(name="DATE_OF_APPROVAL")
 	private Date dateOfApproval;  
@@ -136,7 +142,7 @@ public class MaterialRequisitionMaster {
 	private Date jobDate;  
 	
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "materialRequisitionMaster", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	List<MaterialRequisitionDetail> materialRequisitionDetails = new ArrayList<>();
 
@@ -185,12 +191,14 @@ public class MaterialRequisitionMaster {
 		this.lotNo = lotNo;
 	}
 
-	public String getREQUISITION_NO() {
-		return REQUISITION_NO;
+	
+
+	public String getcCode() {
+		return cCode;
 	}
 
-	public void setREQUISITION_NO(String rEQUISITION_NO) {
-		REQUISITION_NO = rEQUISITION_NO;
+	public void setcCode(String cCode) {
+		this.cCode = cCode;
 	}
 
 	public MyUser getMyUser() {
