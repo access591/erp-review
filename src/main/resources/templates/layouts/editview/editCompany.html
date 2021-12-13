@@ -39,6 +39,8 @@
 	color: red;
 	font-size: 11px;
 }
+
+
 </style>
 
 </head>
@@ -108,15 +110,15 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Company Code</label><span
 																			style="color: red">*</span> <input type="text"
-																			class="form-control" id="companyCode"
+																			class="form-control uppercase" id="companyCode"
 																			name="companyCode" placeholder="Company Code"
 																			th:field="*{compCode}" title="This field is required"
-																			onkeyup="getCompanyCode()" required>
+																			maxlength="2" onkeyup="getCompanyCode()" required>
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Company Name</label><span
 																			style="color: red">*</span> <input type="text"
-																			class="form-control" id="companyName"
+																			class="form-control capitalize" id="companyName"
 																			name="companyName" placeholder="Company Name"
 																			th:field="*{compName}" title="This field is required"
 																			required onkeyup=getCompanyName()>
@@ -126,9 +128,8 @@
 																			class="form-control" th:field="*{compType}" id=""
 																			title="company type" required>
 
-																			<option value="dependent">Dependent</option>
-																			<option value="independent" selected>
-																				Independent</option>
+																			<option value="D">Dependent</option>
+																			<option value="I" selected>Independent</option>
 
 																		</select>
 
@@ -139,38 +140,40 @@
 
 																	<div class="form-group col-md-4">
 																		<label>Director Name</label> <input type="text"
-																			class="form-control" th:field="*{dirName}"
-																			placeholder"Director Name" title="director name" />
+																			class="form-control textOnly capitalize" 
+																			th:field="*{dirName}" placeholder="Director Name"
+																			title="director name" />
 																	</div>
 
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">PF Number</label> <input
-																			type="text" class="form-control"
+																			type="text" class="form-control" pattern="[a-zA-Z0-9-]+"
 																			placeholder="Pf Number" th:field="*{pfNumber}"
-																			title="pf number">
+																			title="pf number" onkeypress="return alpha(event)">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Parent Code</label> <input
-																			type="text" class="form-control" title="parent code"
-																			placeholder="Parent Code" th:field="*{parentCode}">
+																			type="text" class="form-control uppercase" title="parent code"
+																			placeholder="Parent Code" th:field="*{parentCode}" maxlength='2' >
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Calculate ESI</label> <select
-																			class="form-control" th:field="*{calculateEsi}" id=""
-																			title="calculate esi" required>
+																			class="form-control" th:field="*{calculateEsi}" id="calculateEsi"
+																			title="calculate esi" required onchange='selectCalculateEsi()' >
 
-																			<option value="yes" selected>Yes</option>
-																			<option value="no">No</option>
+																			<option value="Y">Yes</option>
+																			<option value="N">No</option>
 
 																		</select>
 
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">ESI Number</label> <input
+																		<label for="inputPassword4">ESI Number</label><span style='color:red' >*</span> <input
 																			type="text" class="form-control" title="esi number"
-																			id="inputPassword4" placeholder="Esi Number"
-																			th:field="*{esiNo}">
+																			id="esiNumber" placeholder="Esi Number"
+																			onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
+																			th:field="*{esiNo}" required>
 																	</div>
 
 																	<div class="form-group col-md-4">
@@ -239,9 +242,9 @@
 
 																	<div class="form-group row">
 
-																		<div class="required">
+																		<div>
 
-																			<label class="col-md-2 control-label">Address-1</label>
+																			<label class="col-md-2 control-label">Address-1<span style='color:red' >*</span></label>
 
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
@@ -266,7 +269,7 @@
 																	<div class="form-group row">
 
 																		<div>
-																			<label for="" class="col-md-2 control-label">Road/street/lane</label>
+																			<label for="" class="col-md-2 control-label">Road/Street/Lane</label>
 																			<div class="col-md-4">
 																				<input type="text" class="form-control" id=""
 																					th:field="*{cStreet}" title="road/street/lane"
@@ -301,9 +304,6 @@
 																				<select class="form-control cityContainer"
 																					title="city" id="cityCode" th:field="*{cCity}">
 																					<option value="">Select City</option>
-																					<option th:each="city :  ${listCity}"
-																						th:text="${city.cityName}"
-																						th:value="${city.cityCode}"></option>
 
 																				</select>
 																			</div>
@@ -315,8 +315,9 @@
 																			<div class="col-md-4">
 																				<input type="number" class="form-control"
 																					th:field="*{cPin}" id="pin1" name="pin1"
-																					title="pin" placeholder="Pin Code"
-																					onkeyup="pin1Validation()"> <span
+																					title="pin" placeholder="Pin Code" maxlength="6"
+																					onkeyup="pin1Validation()"
+																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
 																					class="error" id="pin1Error" style='display: none'>Pin
 																					Should be 6 digit</span>
 																			</div>
@@ -339,7 +340,7 @@
 																			<label for="" class="col-md-2 control-label">WebSite</label>
 																			<div class="col-md-4">
 
-																				<input type="text" class="form-control" id=""
+																				<input type="url" class="form-control" id=""
 																					placeholder="Website" title="website"
 																					th:field="*{cWebsite}">
 																			</div>
@@ -369,7 +370,7 @@
 																			<div class="col-md-4">
 																				<input type="text" class="form-control" id="phone1"
 																					name="phone1"
-																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																					onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
 																					placeholder="Phone-1" value="0" title="phone-1"
 																					maxlength="12" th:field="*{cPhone1}"> <span
 																					class="error" id="phone1Error"
@@ -384,7 +385,7 @@
 																				<input type="text" class="form-control"
 																					placeholder="Phone-2" id="phone2" name="phone2"
 																					title="phone-2"
-																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																					onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
 																					th:field="*{cPhone2}" maxlength="12"> <span
 																					class="error" id="phone2Error"
 																					style='display: none'>Phone nubmer is in
@@ -412,7 +413,7 @@
 													<div class="box-footer">
 														<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 
-														<input type="button" value="Go back!"
+													<input type="button" value="Go back!"
 															class="btn btn-danger" onclick="history.back()">
 													</div>
 												</div>
@@ -429,7 +430,7 @@
 														<h5>Particular of the Person Responsible for
 															deduction of tax</h5>
 														<div class="row">
-															<div class="form-group col-md-12">
+															<div class="form-group col-md-12 textOnly capitalize">
 																<label for="inputAddress">Name</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="name" name="name"
@@ -461,7 +462,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Designation</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="designation"
+																	class="form-control textOnly uppercase" id="designation"
 																	name="designation" placeholder="Designation"
 																	th:field="*{rDesig}" title="This field is required"
 																	required>
@@ -506,9 +507,6 @@
 																	title="town/city/district" id="cityCode"
 																	th:field="*{rCity}">
 																	<option value="">Select City</option>
-																	<option th:each="city :  ${listCity}"
-																		th:text="${city.cityName}" th:value="${city.cityCode}">
-																	</option>
 
 																</select>
 															</div>
@@ -523,7 +521,8 @@
 																<label for="inputAddress">Pin</label> <input
 																	type="number" class="form-control" id="pin2"
 																	name="pin2" placeholder="Pin" th:field="*{rPin}"
-																	title="pin" onkeyup="pin2Validation()"> <span
+																	title="pin" onkeyup="pin2Validation()"maxlength="6"
+																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
 																	class="error" id="pin2Error" style='display: none'>Pin
 																	Should be 6 digit</span>
 															</div>
@@ -559,21 +558,22 @@
 																<label for="inputAddress">PAN Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="panNumber" name="panNumber"
-																	placeholder="Pan Number" th:field="*{panNumber}"
-																	title="This field is required" required>
+																	placeholder="Pan Number" th:field="*{panNumber}" onkeyup="ValidatePAN()"
+																	title="This field is required" required><span id="lblPANCard" class="error" style="display:none ">Invalid PAN
+														Number</span>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="gstNumber" name="gstNumber"
-																	placeholder="Gst Number" th:field="*{tGstNo}"
+																	placeholder="Gst Number" th:field="*{tGstNo}" maxlength="15"
 																	title="This field is required" required>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Legal
 																	Number</label> <input type="text" class="form-control"
 																	id="inputPassword4" placeholder="Taxpayer Legal"
-																	title="taxpayer legal number"
+																	title="taxpayer legal number" 
 																	th:field="*{taxPayerLegalName}">
 															</div>
 															<div class="form-group col-md-6">
@@ -668,7 +668,14 @@
 														<h5>Insurance Details</h5>
 
 
+														<div class="col-sm-12" style="text-align: right">
 
+															<a id="add_row_ins" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_ins' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
 
 														<table class="table table-sm" id="example">
 															<thead>
@@ -736,94 +743,8 @@
 																		</fieldset>
 																	</td>
 																</tr>
-																<tr>
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																</tr>
-																<tr>
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																</tr>
+
+																<tr id="addr1"></tr>
 
 															</tbody>
 														</table>
@@ -840,7 +761,15 @@
 														<h5>Site Offices</h5>
 
 
+														<div class="col-sm-12" style="text-align: right">
 
+															<a id="add_row_site" class="fa fa-plus"
+																aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_site' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
 
 														<table class="table table-sm" id="example2">
 															<thead>
@@ -853,7 +782,7 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr th:each="row, stat :${company.siteOffice}">
+															<tr th:each="row, stat :${company.siteOffice}">
 																	<th scope="row">
 
 
@@ -892,70 +821,8 @@
 																		</fieldset>
 																	</td>
 																</tr>
-																<tr>
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																</tr>
-																<tr>
-																	<th scope="row">
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</th>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																	<td>
-																		<fieldset>
-																			<input type="text" class="form-control"
-																				placeholder="">
-																		</fieldset>
-																	</td>
-																</tr>
+
+																<tr id="ad1"></tr>
 
 															</tbody>
 														</table>
@@ -984,7 +851,9 @@
 
 								</form>
 
-								<div class="box-footer"></div>
+								<!-- <div class="box-footer">
+									<a th:href="@{/companydetail/list}">view company list</a>
+								</div> -->
 								<!-- end form -->
 							</div>
 
@@ -1008,6 +877,23 @@
 
 	<script>
 
+	
+	function selectCalculateEsi(){
+		console.log("select calculate esi ");
+		var calculateEsi = document.getElementById("calculateEsi").value;
+		console.log("calculate esi value is : " + calculateEsi )
+		if(calculateEsi === "Y"){
+			console.log("if block ")
+			$("#esiNumber").removeAttr('disabled');
+			$('#esiNumber').prop('required',true);
+		}else{
+			console.log("else block")
+			$("#esiNumber").attr('disabled','disabled');
+			$('#esiNumber').prop('required',false);
+		}
+	}
+	
+	
 		var idIndex = 0;
 		var idIndex2 = 0;
 		$(document).ready(function () {
@@ -1112,13 +998,6 @@
 			console.log("company name is : " + companyName);
 			document.getElementById("insCompanyName0").value = companyName
 		}
-		
-		
-		window.addEventListener("load", myInit, true); function myInit(){ 
-			
-			//getCityOnState();
-			//getRCityOnState();
-		}; 
 
 	</script>
 
@@ -1159,6 +1038,8 @@
 			var pin_code = document.getElementById("pin1");
 			var pin_error = document.getElementById("pin1Error").value;
 
+			console.log("pin code is : "+ pin_code.value )
+			
 			var pat1 = /^\d{6}$/;
 			var pattern = /^\d{10}$/;
 			var filter = /^([a-z A-Z 0-9 _\.\-])+\@(([a-z A-Z 0-9\-])+\.)+([a-z A-z 0-9]{3,3})+$/;
@@ -1172,6 +1053,9 @@
 			} else {
 				$('#pin1Error').hide();
 			}
+			
+			
+			
 
 		}
 
@@ -1209,6 +1093,48 @@
 
 
 
+	</script>
+
+
+	<script>
+	
+	/*  field validation  */
+	
+	
+	/* for only alphabet  */
+	$( document ).ready(function() {
+                $( ".textOnly" ).keypress(function(e) {
+                    var key = e.keyCode;
+                    if (key >= 48 && key <= 57) {
+                        e.preventDefault();
+                    }
+                });
+            });
+	
+	
+	/*  for only number and alphabet  */
+	function alpha(e) {
+	    var k;
+	    document.all ? k = e.keyCode : k = e.which;
+	    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+	}
+	
+	
+	
+	
+	function ValidatePAN() {
+		var txtPANCard = document.getElementById("panNumber");
+		var lblPANCard = document.getElementById("lblPANCard")
+		var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+		if (regex.test(txtPANCard.value.toUpperCase())) {
+			lblPANCard.style.display = "none";
+			return true;
+		} else {
+			lblPANCard.style.display = "block";
+			return false;
+		}
+	}
+	
 	</script>
 
 

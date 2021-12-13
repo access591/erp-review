@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.JoinFormula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -145,6 +146,7 @@ public class Company {
 	@Column(name = "R_STD", length = 5)
 	private String rStd;
 
+	@JoinFormula(value="CASE the0isNullColumn WHEN 0 THEN NULL ELSE the0isNullColumn END")
 	@Column(name = "R_TEL", length = 10)
 	private Long rTel;
 
