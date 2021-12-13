@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -87,14 +87,14 @@
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">Sub Module Code</label> <input
-															type="text" class="form-control" placeholder="store code"
-															th:field="*{subModuleCode}">
+														<label for="inputEmail4">Sub Module Code</label><span style="color:red" >*</span> <input
+															type="text" class="form-control" placeholder="Sub Module Code"
+															th:field="*{subModuleCode}" title=" sub module code">
 													</div>
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">SubModule Name</label><span
+														<label for="inputEmail4">Sub Module Name</label><span
 															style="color: red">*</span> <input type="text"
-															class="form-control" placeholder="location"
+															class="form-control" placeholder="Sub Module Name"
 															title="This field is required"
 															th:field="*{subModuleName}" required>
 													</div>
@@ -116,7 +116,7 @@
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">Sequence Number</label><span
 															style="color: red">*</span> <input type="text"
-															class="form-control" placeholder="location"
+															class="form-control" placeholder="Sequence Number"
 															th:field="*{seqNoSubModule}">
 													</div>
 
@@ -124,8 +124,8 @@
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="inlineRadioOptions">Active <input
-														type="radio" value="N" name="inlineRadioOptions">In-Active
+														value="Y" name="active" checked>Active <input
+														type="radio" value="N" name="active">In-Active
 													</label>
 
 												</div>

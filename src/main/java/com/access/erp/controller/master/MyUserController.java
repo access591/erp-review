@@ -57,7 +57,7 @@ public class MyUserController {
 		if(userList != null) {
 			model.addAttribute("listMyUser", userList);
 		}
-		return "layouts/listview/listofuser";
+		return "layouts/listview/listofUser";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -68,7 +68,7 @@ public class MyUserController {
 
 		Optional<MyUser> user = userService.editMyUser(userCode);
 		model.addAttribute("user", user);
-		return "layouts/editview/editUser";
+		return "layouts/editview/editUserMaster";
 	}
 	
 	@GetMapping("/delete/{id}")

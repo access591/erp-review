@@ -39,7 +39,7 @@ public class SubModuleMaster {
 	
 	
 	@Column(name = "ACTIVE_YN",length = 10)
-	private String acitveSubModule;
+	private String active;
 	
 	@Column(name = "SEQ_NO",length = 50)
 	private int seqNoSubModule;
@@ -99,12 +99,13 @@ public class SubModuleMaster {
 		this.updatedDateSubModule = updatedDateSubModule;
 	}
 
-	public String getAcitveSubModule() {
-		return acitveSubModule;
+	
+	public String getActive() {
+		return active;
 	}
 
-	public void setAcitveSubModule(String acitveSubModule) {
-		this.acitveSubModule = acitveSubModule;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 	public int getSeqNoSubModule() {

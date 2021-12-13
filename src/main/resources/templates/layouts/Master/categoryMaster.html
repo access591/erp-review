@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
 	th:href="@{/css/skins/_all-skins.min.css}">
 
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -112,10 +115,9 @@
 													</div>
 
 													<div class="form-group col-md-6">
-														<label class="form-label">Acount Head</label> <label
+														<label class="form-label">Account Head</label> <label
 															style="color: red">*</label> <select class="form-control"
-															id="" th:field="*{accountHead}"
-															placeholder="Account Head" title="account head" required>
+															id="" th:field="*{accountHead}"  title="account head" required>
 															<option value="">Select</option>
 															<option value="1">type-1</option>
 															<option value="2">type-2</option>
@@ -133,14 +135,14 @@
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Parent Code</label> <input
-															type="text" class="form-control"
+															type="text" class="form-control uppercase  textOnly" maxlength="2" 
 															placeholder="Parent Code" th:field="*{parentCode}"
 															title="parent code">
 													</div>
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Parent Name</label> <input
-															type="text" class="form-control"
+															type="text" class="form-control " 
 															placeholder="Parent Name" th:field="*{parentName}"
 															title="parent name">
 													</div>
@@ -210,6 +212,18 @@
 					ignoreTitle: true
 				});
 
+				
+				
+				 $( document ).ready(function() {
+		                $( ".textOnly" ).keypress(function(e) {
+		                    var key = e.keyCode;
+		                    if (key >= 48 && key <= 57) {
+		                        e.preventDefault();
+		                    }
+		                });
+		            });
+				 
+				 
 			</script>
 
 	<!--   <section class="content">
