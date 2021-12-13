@@ -2,33 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
-		rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 
-	<style>
-		.error {
-			color: red;
-			font-size: 11px;
-		}
-	</style>
+<style>
+.error {
+	color: red;
+	font-size: 11px;
+}
+
+
+</style>
 
 </head>
 
@@ -57,21 +70,26 @@
 									<h3 class="box-title">Company Details</h3>
 								</div>
 								<!-- form start -->
-								<form id="companyDetail" class="wizard wizard-primary" role="form"
-									th:action="@{/companydetail/}" th:object="${company}" method="POST">
+								<form id="companyDetail" class="wizard wizard-primary"
+									role="form" th:action="@{/companydetail/}"
+									th:object="${company}" method="POST">
 									<div class="box-body">
 
 										<div class="container-fluid">
 
 											<ul class="nav nav-pills">
-												<li class="active"><a data-toggle="tab" href="#companydetail">Company
+												<li class="active"><a data-toggle="tab"
+													href="#companydetail">Company Detail</a></li>
+												<li><a data-toggle="tab" href="#tdsinfo">TDS
+														Information</a></li>
+												<li><a data-toggle="tab" href="#taxreg">Tax
+														Registration No</a></li>
+												<li><a data-toggle="tab" href="#importdetail">Import
 														Detail</a></li>
-												<li><a data-toggle="tab" href="#tdsinfo">TDS Information</a></li>
-												<li><a data-toggle="tab" href="#taxreg">Tax Registration No</a></li>
-												<li><a data-toggle="tab" href="#importdetail">Import Detail</a></li>
 												<li><a data-toggle="tab" href="#insurancedetail">Insurance
 														Detail</a></li>
-												<li><a data-toggle="tab" href="#siteoffices">Site Offices</a></li>
+												<li><a data-toggle="tab" href="#siteoffices">Site
+														Offices</a></li>
 
 
 											</ul>
@@ -90,36 +108,28 @@
 															<div class="col-md-8">
 																<div class="form-row">
 																	<div class="form-group col-md-4">
-																		<label for="inputEmail4">Company
-																			Code</label><span
-																			style="color: red">*</span>
-																		<input type="text" class="form-control"
-																			id="companyCode" name="companyCode"
-																			placeholder="Company Code"
-																			th:field="*{compCode}"
-																			title="This field is required"
-																			onkeyup="getCompanyCode()" required>
+																		<label for="inputEmail4">Company Code</label><span
+																			style="color: red">*</span> <input type="text"
+																			class="form-control uppercase" id="companyCode"
+																			name="companyCode" placeholder="Company Code"
+																			th:field="*{compCode}" title="This field is required"
+																			maxlength="2" onkeyup="getCompanyCode()" required>
 																	</div>
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Company
-																			Name</label><span
-																			style="color: red">*</span>
-																		<input type="text" class="form-control"
-																			id="companyName" name="companyName"
-																			placeholder="Company Name"
-																			th:field="*{compName}"
-																			title="This field is required" required
-																			onkeyup=getCompanyName()>
+																		<label for="inputPassword4">Company Name</label><span
+																			style="color: red">*</span> <input type="text"
+																			class="form-control capitalize" id="companyName"
+																			name="companyName" placeholder="Company Name"
+																			th:field="*{compName}" title="This field is required"
+																			required onkeyup=getCompanyName()>
 																	</div>
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Company Type</label>
-																		<select class="form-control"
-																			th:field="*{compType}" id=""
+																		<label for="inputPassword4">Company Type</label> <select
+																			class="form-control" th:field="*{compType}" id=""
 																			title="company type" required>
 
 																			<option value="D">Dependent</option>
-																			<option value="I" selected>
-																				Independent</option>
+																			<option value="I" selected>Independent</option>
 
 																		</select>
 
@@ -129,32 +139,29 @@
 
 
 																	<div class="form-group col-md-4">
-																		<label>Director Name</label>
-																		<input type="text" class="form-control"
-																			th:field="*{dirName}" placeholder"Director
-																			Name" title="director name" />
+																		<label>Director Name</label> <input type="text"
+																			class="form-control textOnly capitalize" 
+																			th:field="*{dirName}" placeholder="Director Name"
+																			title="director name" />
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">PF Number</label>
-																		<input type="text" class="form-control"
-																			placeholder="Pf Number"
-																			th:field="*{pfNumber}" title="pf number">
+																		<label for="inputPassword4">PF Number</label> <input
+																			type="text" class="form-control" pattern="[a-zA-Z0-9-]+"
+																			placeholder="Pf Number" th:field="*{pfNumber}"
+																			title="pf number" onkeypress="return alpha(event)">
 																	</div>
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Parent Code</label>
-																		<input type="text" class="form-control"
-																			title="parent code"
-																			placeholder="Parent Code"
-																			th:field="*{parentCode}">
+																		<label for="inputPassword4">Parent Code</label> <input
+																			type="text" class="form-control uppercase" title="parent code"
+																			placeholder="Parent Code" th:field="*{parentCode}" maxlength='2' >
 																	</div>
 																	<div class="form-group col-md-4">
-																		<label for="inputEmail4">Calculate ESI</label>
-																		<select class="form-control"
-																			th:field="*{calculateEsi}" id=""
-																			title="calculate esi" required>
+																		<label for="inputEmail4">Calculate ESI</label> <select
+																			class="form-control" th:field="*{calculateEsi}" id="calculateEsi"
+																			title="calculate esi" required onchange='selectCalculateEsi()' >
 
-																			<option value="Y" selected>Yes</option>
+																			<option value="Y">Yes</option>
 																			<option value="N">No</option>
 
 																		</select>
@@ -162,39 +169,36 @@
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">ESI Number</label>
-																		<input type="text" class="form-control"
-																			title="esi number" id="inputPassword4"
-																			placeholder="Esi Number"
-																			th:field="*{esiNo}">
+																		<label for="inputPassword4">ESI Number</label><span style='color:red' >*</span> <input
+																			type="text" class="form-control" title="esi number"
+																			id="esiNumber" placeholder="Esi Number"
+																			onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
+																			th:field="*{esiNo}" required>
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputAddress">Import Data</label>
-																		<input type="text" class="form-control"
-																			title="import data" id="inputAddress"
-																			placeholder="Import Data">
+																		<label for="inputAddress">Import Data</label> <input
+																			type="text" class="form-control" title="import data"
+																			id="inputAddress" placeholder="Import Data">
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Tax
-																			Account(Sale)</label> <input type="text"
-																			class="form-control" id="inputPassword4"
-																			placeholder="Tax" title="tax"
+																		<label for="inputPassword4">Tax Account(Sale)</label>
+																		<input type="text" class="form-control"
+																			id="inputPassword4" placeholder="Tax" title="tax"
 																			th:field="*{acountTaxSale}">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Tax
 																			Account(Purchase)</label> <input type="text"
-																			class="form-control" id="inputPassword4"
-																			title="tax" placeholder="Tax Account"
+																			class="form-control" id="inputPassword4" title="tax"
+																			placeholder="Tax Account"
 																			th:field="*{accountTaxPurchase}">
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">Ddn Form
-																			Emp(y/n)</label> <select
-																			class="form-control" id=""
+																		<label for="inputPassword4">Ddn Form Emp(y/n)</label>
+																		<select class="form-control" id=""
 																			title="Deduction From Employee" required
 																			th="*{deductionFromEmp}">
 
@@ -238,28 +242,25 @@
 
 																	<div class="form-group row">
 
-																		<div class="required">
+																		<div>
 
-																			<label
-																				class="col-md-2 control-label">Address-1</label>
+																			<label class="col-md-2 control-label">Address-1<span style='color:red' >*</span></label>
 
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
 																					id="address1" name="address1"
 																					placeholder="Address-1"
-																					title="This field is required"
-																					th:field="*{cAddr1}" required>
+																					title="This field is required" th:field="*{cAddr1}"
+																					required>
 																			</div>
 																		</div>
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Address-2</label>
+																			<label for="" class="col-md-2 control-label">Address-2</label>
 																			<div class="col-md-4">
 
-																				<input type="text" class="form-control"
-																					id="" placeholder="Address-2"
-																					title="address-2"
+																				<input type="text" class="form-control" id=""
+																					placeholder="Address-2" title="address-2"
 																					th:field="*{cAddr2}">
 																			</div>
 																		</div>
@@ -268,12 +269,10 @@
 																	<div class="form-group row">
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Road/street/lane</label>
+																			<label for="" class="col-md-2 control-label">Road/Street/Lane</label>
 																			<div class="col-md-4">
-																				<input type="text" class="form-control"
-																					id="" th:field="*{cStreet}"
-																					title="road/street/lane"
+																				<input type="text" class="form-control" id=""
+																					th:field="*{cStreet}" title="road/street/lane"
 																					placeholder="Road / Street / Lane">
 																			</div>
 																		</div>
@@ -283,15 +282,12 @@
 																				class="col-md-2 control-label">State</label>
 																			<div class="col-md-4">
 																				<select class="form-control" id="state"
-																					onchange="getCityOnState()"
-																					title="state" th:field="*{cState}">
-																					<option value="">Select State
-																					</option>
-																					<option
-																						th:each="state :  ${listState}"
+																					onchange="getCityOnState()" title="state"
+																					th:field="*{cState}">
+																					<option value="">Select State</option>
+																					<option th:each="state :  ${listState}"
 																						th:text="${state.stateName}"
-																						th:value=" ${state.stateCode}">
-																					</option>
+																						th:value=" ${state.stateCode}"></option>
 																				</select>
 																			</div>
 																		</div>
@@ -303,34 +299,27 @@
 
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">City</label>
+																			<label for="" class="col-md-2 control-label">City</label>
 																			<div class="col-md-4">
-																				<select
-																					class="form-control cityContainer"
-																					title="city" id="cityCode"
-																					th:field="*{cCity}">
-																					<option value="">Select City
-																					</option>
+																				<select class="form-control cityContainer"
+																					title="city" id="cityCode" th:field="*{cCity}">
+																					<option value="">Select City</option>
 
 																				</select>
 																			</div>
 																		</div>
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Pin
+																			<label for="" class="col-md-2 control-label">Pin
 																				Code</label>
 																			<div class="col-md-4">
-																				<input type="number"
-																					class="form-control"
-																					th:field="*{cPin}" id="pin1"
-																					name="pin1" title="pin"
-																					placeholder="Pin Code"
-																					onkeyup="pin1Validation()">
-																				<span class="error" id="pin1Error"
-																					style='display:none'>Pin Should be 6
-																					digit</span>
+																				<input type="number" class="form-control"
+																					th:field="*{cPin}" id="pin1" name="pin1"
+																					title="pin" placeholder="Pin Code" maxlength="6"
+																					onkeyup="pin1Validation()"
+																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
+																					class="error" id="pin1Error" style='display: none'>Pin
+																					Should be 6 digit</span>
 																			</div>
 																		</div>
 
@@ -340,23 +329,19 @@
 
 																	<div class="form-group row">
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Fax</label>
+																			<label for="" class="col-md-2 control-label">Fax</label>
 																			<div class="col-md-4">
-																				<input type="text" class="form-control"
-																					id="" placeholder="Fax" title="fax"
-																					th:field="*{cFax}">
+																				<input type="text" class="form-control" id=""
+																					placeholder="Fax" title="fax" th:field="*{cFax}">
 																			</div>
 																		</div>
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">WebSite</label>
+																			<label for="" class="col-md-2 control-label">WebSite</label>
 																			<div class="col-md-4">
 
-																				<input type="text" class="form-control"
-																					id="" placeholder="Website"
-																					title="website"
+																				<input type="url" class="form-control" id=""
+																					placeholder="Website" title="website"
 																					th:field="*{cWebsite}">
 																			</div>
 																		</div>
@@ -367,12 +352,11 @@
 
 																	<div class="form-group row">
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Email</label>
+																			<label for="" class="col-md-2 control-label">Email</label>
 																			<div class="col-md-10">
-																				<input type="email" class="form-control"
-																					id="" placeholder="Email"
-																					title="email" th:field="*{cEmail}">
+																				<input type="email" class="form-control" id=""
+																					placeholder="Email" title="email"
+																					th:field="*{cEmail}">
 																			</div>
 																		</div>
 																	</div>
@@ -381,35 +365,31 @@
 																	<div class="form-group row">
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Phone
+																			<label for="" class="col-md-2 control-label">Phone
 																				1</label>
 																			<div class="col-md-4">
-																				<input type="text" class="form-control"
-																					id="phone1" name="phone1"
-																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																					placeholder="Phone-1" value="0"
-																					title="phone-1" maxlength="12"
-																					th:field="*{cPhone1}">
-																				<span class="error" id="phone1Error"
-																					style='display:none'>Phone nubmer is
-																					in 0123456789 format</span>
+																				<input type="text" class="form-control" id="phone1"
+																					name="phone1"
+																					onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
+																					placeholder="Phone-1" value="0" title="phone-1"
+																					maxlength="12" th:field="*{cPhone1}"> <span
+																					class="error" id="phone1Error"
+																					style='display: none'>Phone nubmer is in
+																					0123456789 format</span>
 																			</div>
 																		</div>
 
 																		<div>
-																			<label for=""
-																				class="col-md-2 control-label">Phone-2</label>
+																			<label for="" class="col-md-2 control-label">Phone-2</label>
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
-																					placeholder="Phone-2" id="phone2"
-																					name="phone2" title="phone-2"
-																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																					th:field="*{cPhone2}"
-																					maxlength="12">
-																				<span class="error" id="phone2Error"
-																					style='display:none'>Phone nubmer is
-																					in 0123456789 format</span>
+																					placeholder="Phone-2" id="phone2" name="phone2"
+																					title="phone-2"
+																					onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
+																					th:field="*{cPhone2}" maxlength="12"> <span
+																					class="error" id="phone2Error"
+																					style='display: none'>Phone nubmer is in
+																					0123456789 format</span>
 																			</div>
 																		</div>
 
@@ -417,7 +397,8 @@
 																	</div>
 
 
-																</div><!-- /.box-body -->
+																</div>
+																<!-- /.box-body -->
 
 																<!-- 
 														REMOVE DIB -->
@@ -428,15 +409,13 @@
 													</div>
 
 													<!-- ADD -->
-													
-													<div class="box-footer">
-												<button type="submit" class="btn btn-primary"
-													id="submit">Submit</button>
 
-												<button type="reset" class="btn btn-danger" value="Reset">
-													&nbsp;Reset
-												</button>
-											</div>
+													<div class="box-footer">
+														<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+
+														<button type="reset" class="btn btn-danger" value="Reset">
+															&nbsp;Reset</button>
+													</div>
 												</div>
 												<!-- end company detail tab -->
 
@@ -448,11 +427,10 @@
 													<p></p>
 													<div class="box">
 
-														<h5>Particular of the Person Responsible for deduction of
-															tax
-														</h5>
+														<h5>Particular of the Person Responsible for
+															deduction of tax</h5>
 														<div class="row">
-															<div class="form-group col-md-12">
+															<div class="form-group col-md-12 textOnly capitalize">
 																<label for="inputAddress">Name</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="name" name="name"
@@ -460,9 +438,8 @@
 																	title="This field is required" required>
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputEmail4">Type of Deductor</label>
-																<select class="form-control" id=""
-																	title="type of deductor"
+																<label for="inputEmail4">Type of Deductor</label> <select
+																	class="form-control" id="" title="type of deductor"
 																	th:field="*{rTypeOfDeductor}">
 
 																	<option value="other">Other</option>
@@ -476,17 +453,16 @@
 																	title="branch">
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Excise Devison</label>
-																<input type="text" class="form-control"
-																	id="inputPassword4" placeholder="Excise Devision"
-																	th:field="*{rExciseDivision}"
-																	title="excise devison">
+																<label for="inputPassword4">Excise Devison</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Excise Devision"
+																	th:field="*{rExciseDivision}" title="excise devison">
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Designation</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control" id="designation"
+																	class="form-control textOnly uppercase" id="designation"
 																	name="designation" placeholder="Designation"
 																	th:field="*{rDesig}" title="This field is required"
 																	required>
@@ -504,11 +480,10 @@
 																	title="building">
 															</div>
 															<div class="form-group col-md-12">
-																<label for="inputAddress">Road/street/lane</label>
-																<input type="text" class="form-control"
+																<label for="inputAddress">Road/street/lane</label> <input
+																	type="text" class="form-control"
 																	title="road/street/lane" id="inputAddress"
-																	placeholder="Road/Street/Lane"
-																	th:field="*{rStreet}">
+																	placeholder="Road/Street/Lane" th:field="*{rStreet}">
 															</div>
 
 
@@ -523,13 +498,12 @@
 																	<option value="">Select State</option>
 																	<option th:each="state :  ${listState}"
 																		th:text="${state.stateName}"
-																		th:value=" ${state.stateCode}">
-																	</option>
+																		th:value=" ${state.stateCode}"></option>
 																</select>
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputAddress">Town/City/District</label>
-																<select class="form-control rCityContainer"
+																<label for="inputAddress">Town/City/District</label> <select
+																	class="form-control rCityContainer"
 																	title="town/city/district" id="cityCode"
 																	th:field="*{rCity}">
 																	<option value="">Select City</option>
@@ -538,36 +512,34 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputAddress">Area/Location</label>
-																<input type="text" class="form-control"
-																	title="area location" id="inputAddress"
-																	placeholder="Area/Location" th:field="*{rLocation}">
+																<label for="inputAddress">Area/Location</label> <input
+																	type="text" class="form-control" title="area location"
+																	id="inputAddress" placeholder="Area/Location"
+																	th:field="*{rLocation}">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Pin</label> <input
 																	type="number" class="form-control" id="pin2"
 																	name="pin2" placeholder="Pin" th:field="*{rPin}"
-																	title="pin" onkeyup="pin2Validation()">
-																<span class="error" id="pin2Error"
-																	style='display:none'>Pin Should be 6
-																	digit</span>
+																	title="pin" onkeyup="pin2Validation()"maxlength="6"
+																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
+																	class="error" id="pin2Error" style='display: none'>Pin
+																	Should be 6 digit</span>
 															</div>
 															<div class="form-group col-md-4">
-																<label for="inputAddress">Telephone Number</label>
-																<input type="number" class="form-control" id="telephone"
+																<label for="inputAddress">Telephone Number</label> <input
+																	type="number" class="form-control" id="telephone"
 																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 																	name="telephone" placeholder="Telephone Number"
 																	th:field="*{rTel}" title="telephone number"
-																	maxlength="12">
-																<span class="error" id="phone3Error"
-																	style='display:none'>Phone nubmer is
-																	in 0123456789 format</span>
+																	maxlength="12"> <span class="error"
+																	id="phone3Error" style='display: none'>Phone
+																	nubmer is in 0123456789 format</span>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Email</label> <input
 																	type="email" class="form-control" id="inputAddress"
-																	placeholder="Email" th:field="*{rEmail}"
-																	title="email">
+																	placeholder="Email" th:field="*{rEmail}" title="email">
 															</div>
 														</div>
 													</div>
@@ -586,37 +558,36 @@
 																<label for="inputAddress">PAN Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="panNumber" name="panNumber"
-																	placeholder="Pan Number" th:field="*{panNumber}"
-																	title="This field is required" required>
+																	placeholder="Pan Number" th:field="*{panNumber}" onkeyup="ValidatePAN()"
+																	title="This field is required" required><span id="lblPANCard" class="error" style="display:none ">Invalid PAN
+														Number</span>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="gstNumber" name="gstNumber"
-																	placeholder="Gst Number" th:field="*{tGstNo}"
+																	placeholder="Gst Number" th:field="*{tGstNo}" maxlength="15"
 																	title="This field is required" required>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Legal
-																	Number</label> <input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Taxpayer Legal"
-																	title="taxpayer legal number"
+																	Number</label> <input type="text" class="form-control"
+																	id="inputPassword4" placeholder="Taxpayer Legal"
+																	title="taxpayer legal number" 
 																	th:field="*{taxPayerLegalName}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Trade
-																	Number</label> <input type="password"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Taxpayer Trade Number"
+																	Number</label> <input type="password" class="form-control"
+																	id="inputPassword4" placeholder="Taxpayer Trade Number"
 																	title="taxpayer trade number"
 																	th:field="*{taxPayerTradeName}">
 															</div>
 
 															<div class="form-group col-md-6">
-																<label for="inputAddress">Date of Filling</label>
-																<input type="date" class="form-control"
-																	id="inputAddress" placeholder="Date of Filling"
+																<label for="inputAddress">Date of Filling</label> <input
+																	type="date" class="form-control" id="inputAddress"
+																	placeholder="Date of Filling"
 																	th:field="*{tFillingDate}" title="date of filling">
 															</div>
 
@@ -638,50 +609,42 @@
 																<div class="form-row">
 																	<div class="form-group col-md-6">
 																		<label for="inputAddress">Import License
-																			Number</label>
-																		<input type="text" class="form-control"
-																			id="inputAddress"
-																			placeholder="Import License Number"
+																			Number</label> <input type="text" class="form-control"
+																			id="inputAddress" placeholder="Import License Number"
 																			th:field="*{importLicenseNumber}"
 																			title="import license number">
 																	</div>
 																	<div class="form-group col-md-6">
-																		<label for="inputEmail4">B17 Bond Number</label>
-																		<input type="text" class="form-control"
+																		<label for="inputEmail4">B17 Bond Number</label> <input
+																			type="text" class="form-control"
 																			title="b17 bond number" id="inputEmail4"
 																			placeholder="B17 Bond Number"
 																			th:field="*{b17BondNumber}">
 																	</div>
 																	<div class="form-group col-md-6">
-																		<label for="inputPassword4">B17 Bond
-																			Date</label> <input type="date"
-																			class="form-control" id="inputPassword4"
-																			placeholder="B17 Bond Date"
-																			title="b17 bond date"
+																		<label for="inputPassword4">B17 Bond Date</label> <input
+																			type="date" class="form-control" id="inputPassword4"
+																			placeholder="B17 Bond Date" title="b17 bond date"
 																			th:field="*{b17BondDate}">
 																	</div>
 																	<div class="form-group col-md-6">
-																		<label for="inputPassword4">Exporter RCMC
-																			No</label> <input type="text"
-																			class="form-control" id="inputPassword4"
+																		<label for="inputPassword4">Exporter RCMC No</label> <input
+																			type="text" class="form-control" id="inputPassword4"
 																			placeholder="Exporter Rcmc No"
-																			title="exporter rcmc no"
-																			th:field="*{rcmcNo}">
+																			title="exporter rcmc no" th:field="*{rcmcNo}">
 																	</div>
 
 																	<div class="form-group col-md-6">
-																		<label for="inputAddress">Export
-																			Performance</label> <input type="text"
-																			class="form-control" id="inputAddress"
+																		<label for="inputAddress">Export Performance</label> <input
+																			type="text" class="form-control" id="inputAddress"
 																			placeholder="Export Performance"
 																			title="export performance"
 																			th:field="*{expPerformance}">
 																	</div>
 
 																	<div class="form-group col-md-6">
-																		<label for="inputAddress">Certificate
-																			No.</label> <input type="text"
-																			class="form-control" id="inputAddress"
+																		<label for="inputAddress">Certificate No.</label> <input
+																			type="text" class="form-control" id="inputAddress"
 																			placeholder="Certificate Number"
 																			title="certificate number"
 																			th:field="*{expCertiificateNo}">
@@ -705,7 +668,7 @@
 														<h5>Insurance Details</h5>
 
 
-														<div class="col-sm-12" style="text-align:right">
+														<div class="col-sm-12" style="text-align: right">
 
 															<a id="add_row_ins" class="fa fa-plus" aria-hidden="true"
 																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
@@ -733,21 +696,21 @@
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyCode0"
-																				readonly title="company code">
+																				placeholder="Company Code" id="insCompanyCode0" readonly
+																				title="company code">
 																		</fieldset>
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyName0"
-																				readonly title="company name">
+																				placeholder="Company name" id="insCompanyName0" readonly
+																				title="company name">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="customer code"
+																				placeholder="Customer Code" title="customer code"
 																				name="insuranceDetail[0].custCode">
 																		</fieldset>
 																	</td>
@@ -761,21 +724,21 @@
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="version"
+																				placeholder="Version" title="version"
 																				name="insuranceDetail[0].version">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="description"
+																				placeholder="Description -1"   title="description"
 																				name="insuranceDetail[0].desc1">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="description"
+																				placeholder="Description -2" title="description"
 																				name="insuranceDetail[0].desc2">
 																		</fieldset>
 																	</td>
@@ -798,9 +761,10 @@
 														<h5>Site Offices</h5>
 
 
-														<div class="col-sm-12" style="text-align:right">
+														<div class="col-sm-12" style="text-align: right">
 
-															<a id="add_row_site" class="fa fa-plus" aria-hidden="true"
+															<a id="add_row_site" class="fa fa-plus"
+																aria-hidden="true"
 																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
 															<a id='delete_row_site' class="fa fa-trash"
 																style="font-size: 24px; color: #399490fc"
@@ -822,37 +786,36 @@
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="site code"
+																				placeholder="Site Code" title="site code"
 																				name="siteOffice[0].siteCode">
 																		</fieldset>
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="site location"
+																				placeholder="Site Location" title="site location"
 																				name="siteOffice[0].siteLocation">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="site incharge"
+																				placeholder="Site Incharge" title="site incharge"
 																				name="siteOffice[0].siteIncharge">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="site address"
+																				placeholder="Site Address" title="site address"
 																				name="siteOffice[0].siteAddress">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="number" class="form-control"
-																				placeholder="" title="approval budget"
-																				name="siteOffice[0].approvedBudget"
-																				value="0">
+																				placeholder="Approved Budget" title="approval budget"
+																				name="siteOffice[0].approvedBudget" value="0">
 																		</fieldset>
 																	</td>
 																</tr>
@@ -874,7 +837,7 @@
 											<!--end main div content-->
 
 
-											
+
 
 
 
@@ -912,6 +875,23 @@
 
 	<script>
 
+	
+	function selectCalculateEsi(){
+		console.log("select calculate esi ");
+		var calculateEsi = document.getElementById("calculateEsi").value;
+		console.log("calculate esi value is : " + calculateEsi )
+		if(calculateEsi === "Y"){
+			console.log("if block ")
+			$("#esiNumber").removeAttr('disabled');
+			$('#esiNumber').prop('required',true);
+		}else{
+			console.log("else block")
+			$("#esiNumber").attr('disabled','disabled');
+			$('#esiNumber').prop('required',false);
+		}
+	}
+	
+	
 		var idIndex = 0;
 		var idIndex2 = 0;
 		$(document).ready(function () {
@@ -1056,6 +1036,8 @@
 			var pin_code = document.getElementById("pin1");
 			var pin_error = document.getElementById("pin1Error").value;
 
+			console.log("pin code is : "+ pin_code.value )
+			
 			var pat1 = /^\d{6}$/;
 			var pattern = /^\d{10}$/;
 			var filter = /^([a-z A-Z 0-9 _\.\-])+\@(([a-z A-Z 0-9\-])+\.)+([a-z A-z 0-9]{3,3})+$/;
@@ -1069,6 +1051,9 @@
 			} else {
 				$('#pin1Error').hide();
 			}
+			
+			
+			
 
 		}
 
@@ -1109,13 +1094,57 @@
 	</script>
 
 
+	<script>
+	
+	/*  field validation  */
+	
+	
+	/* for only alphabet  */
+	$( document ).ready(function() {
+                $( ".textOnly" ).keypress(function(e) {
+                    var key = e.keyCode;
+                    if (key >= 48 && key <= 57) {
+                        e.preventDefault();
+                    }
+                });
+            });
+	
+	
+	/*  for only number and alphabet  */
+	function alpha(e) {
+	    var k;
+	    document.all ? k = e.keyCode : k = e.which;
+	    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+	}
+	
+	
+	
+	
+	function ValidatePAN() {
+		var txtPANCard = document.getElementById("panNumber");
+		var lblPANCard = document.getElementById("lblPANCard")
+		var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+		if (regex.test(txtPANCard.value.toUpperCase())) {
+			lblPANCard.style.display = "none";
+			return true;
+		} else {
+			lblPANCard.style.display = "block";
+			return false;
+		}
+	}
+	
+	</script>
+
+
 
 	<!--   <section class="content">
         
         </section>-->
 	<!--	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>-->
-	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
 	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
 	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
