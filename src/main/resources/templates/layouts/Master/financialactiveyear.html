@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -142,9 +142,10 @@
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="inlineRadioOptions">Active <input
-														type="radio" value="N" name="inlineRadioOptions">In-Active
+														value="Y" name="active" checked>Active <input
+														type="radio" value="N" name="active">In-Active
 													</label>
+													
 												</div>
 												<!-- /.box-body -->
 
@@ -185,31 +186,29 @@
 
 
 	<script>
+		$(document).ready(function() {
 
-				$(document).ready(function () {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
 
-					var message = document.getElementById('mess').value
-					if (message != null && message !== "") {
-
-						swal(message, "", "success", {
-							button: "OK",
-							hideClass: {
-								popup: 'animate__animated animate__fadeOutUp'
-							},
-						});
-					} else {
-						console.log("ajax request : " + message);
-					}
-
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
 				});
+			} else {
+				console.log("ajax request : " + message);
+			}
 
-				function changeUserCode() {
-					var userCode = document.getElementById("userCode").value;
-					document.getElementById("userName").value = userCode;
+		});
 
-				}
+		function changeUserCode() {
+			var userCode = document.getElementById("userCode").value;
+			document.getElementById("userName").value = userCode;
 
-			</script>
+		}
+	</script>
 
 
 	<!--   <section class="content">

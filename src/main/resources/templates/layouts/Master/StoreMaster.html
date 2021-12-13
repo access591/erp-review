@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -88,8 +88,8 @@
 
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">Store Code</label> <input
-															type="text" class="form-control" placeholder="Store Code"
-															th:field="*{storeCode}">
+															title="store code" type="text" class="form-control"
+															placeholder="Store Code" th:field="*{storeCode}">
 													</div>
 
 													<div class="form-group col-md-12">
@@ -100,16 +100,6 @@
 													</div>
 
 
-													<div class="form-group col-md-12">
-														<label class="form-label">Status</label> <label
-															style="color: red">*</label> <select class="form-control"
-															id="" title="status" th:field="*{storeStatus}" required>
-
-
-															<option value="F" selected>Functional</option>
-															<option value="N">Non-Functioanl</option>
-														</select>
-													</div>
 
 													<div class="form-group col-md-12">
 														<label class="form-label">Type</label> <label
@@ -127,19 +117,24 @@
 															title="location" th:field="*{location}">
 													</div>
 
+													<div class="form-group col-md-12">
+														<label class="form-label">Status</label> <label
+															style="color: red">*</label> <select class="form-control"
+															id="" title="status" th:field="*{storeStatus}" required>
 
-													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="radio"
-															name="inlineRadioOptions" id="inlineRadio1" value="Y">
-														<label class="form-check-label" for="inlineRadio1">Active</label>
+
+															<option value="F" selected>Functional</option>
+															<option value="N">Non-Functioanl</option>
+														</select>
 													</div>
 
-													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="radio"
-															name="inlineRadioOptions" id="inlineRadio1" value="N">
-														<label class="form-check-label" for="inlineRadio1">In-Active</label>
-													</div>
 
+
+													<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked style="margin-left: 5px">Active
+														<input type="radio" value="N" name="active"
+														style="margin-left: 5px">In-Active
+													</label>
 												</div>
 												<!-- /.box-body -->
 
@@ -176,12 +171,10 @@
 	<div th:replace="fragments/footer :: footer">...</div>
 
 	<script>
-
-				$("#storeMasterForm").validate({
-					ignoreTitle: true
-				});
-
-			</script>
+		$("#storeMasterForm").validate({
+			ignoreTitle : true
+		});
+	</script>
 	<!--   <section class="content">
         
         </section>-->

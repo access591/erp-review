@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class MyUser {
 
 	@Id
-	@Column(name = "UCODE", length = 6)
+	@Column(name = "UCODE", length = 30)
 	private String userCode;
 
 	@Column(name = "UNAME", length = 50)
@@ -36,7 +36,7 @@ public class MyUser {
 	@OneToOne
 	@JoinColumn(name = "EMP_CODE")
 	private Employee employee;
-
+	
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "myUSer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -60,7 +60,7 @@ public class MyUser {
 	private Date updDate = new Date();
 
 	@Column(name = "UACTIVE", length = 2)
-	private String uActive;
+	private String active;
 	
 	@Column(name = "USER_TYPE", length = 2)
 	private String userType;
@@ -74,12 +74,13 @@ public class MyUser {
 		return listUserRole;
 	}
 
-	public String getuActive() {
-		return uActive;
+	
+	public String getActive() {
+		return active;
 	}
 
-	public void setuActive(String uActive) {
-		this.uActive = uActive;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 	public void setListUserRole(List<UserRole> listUserRole) {

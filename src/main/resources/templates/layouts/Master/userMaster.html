@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -121,21 +121,13 @@
 
 
 
-													<div class="form-group" style="margin: 10px;">
 
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="Y">
-															<label class="form-check-label" for="inlineRadio1">Active</label>
-														</div>
 
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="N">
-															<label class="form-check-label" for="inlineRadio1">In-Active</label>
-														</div>
+													<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked>Active <input
+														type="radio" value="N" name="active">In-Active
+													</label>
 
-													</div>
 
 												</div>
 												<!-- /.box-body -->
@@ -173,12 +165,10 @@
 
 
 	<script>
-
-				$("#userMasterForm").validate({
-					ignoreTitle: true
-				});
-
-			</script>
+		$("#userMasterForm").validate({
+			ignoreTitle : true
+		});
+	</script>
 	<!--   <section class="content">
         
         </section>-->

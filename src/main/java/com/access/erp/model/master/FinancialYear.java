@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -32,6 +30,10 @@ public class FinancialYear {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="FYTO")
 	private Date toDate;
+
+
+	@Column(name = "ACTIVE_YN",length = 2)
+	private String active;
 
 
 	public FinancialYear() {
@@ -69,6 +71,20 @@ public class FinancialYear {
 
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
+	}
+
+
+
+
+	public String getActive() {
+		return active;
+	}
+
+
+
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 

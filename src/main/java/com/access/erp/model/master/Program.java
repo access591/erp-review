@@ -1,13 +1,10 @@
 package com.access.erp.model.master;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -36,7 +33,7 @@ public class Program {
 	private String insertedBy;
 	
 	@Column(name = "ACTIVE_YN",length = 2)
-	private String activeYn;
+	private String active;
 	
 	
 	@ManyToOne
@@ -94,13 +91,16 @@ public class Program {
 	}
 
 
-	public String getActiveYn() {
-		return activeYn;
+	
+
+
+	public String getActive() {
+		return active;
 	}
 
 
-	public void setActiveYn(String activeYn) {
-		this.activeYn = activeYn;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 

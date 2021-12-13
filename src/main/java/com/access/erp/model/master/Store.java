@@ -43,6 +43,10 @@ public class Store {
 	private Date updatedDate=new Date();
 	
 	
+	@Column(name = "ACTIVE_YN", length = 2)
+	private String active;
+	
+	
 	//code add
 
 	public Store() {
@@ -120,6 +124,14 @@ public class Store {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 	
 	
