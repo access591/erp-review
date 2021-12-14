@@ -21,79 +21,99 @@ import com.access.erp.service.FinancialYearService;
 @Controller
 @RequestMapping("/financialyear")
 public class FinancialYearController {
-	
-	@Autowired FinancialYearService financialYearService;
-	
-	
-	
+
+	@Autowired
+	FinancialYearService financialYearService;
+
 	@GetMapping("/")
 	public String financialYear(Model model) {
-		
+
 		model.addAttribute("financialYear", new FinancialYear());
 		return "layouts/Master/financialyear";
 	}
-	
+
 	@PostMapping("/")
-	public String addFinancialYear(@ModelAttribute("financialYear") FinancialYear financialYear,RedirectAttributes redirectAttributes) {
-		
+	public String addFinancialYear(@ModelAttribute("financialYear") FinancialYear financialYear,
+			RedirectAttributes redirectAttributes) {
+
 		String lastDigitFromDat = financialYear.getFromDate().toString().substring(26);
 		String lastDigitToDate = financialYear.getToDate().toString().substring(26);
 		System.out.println(" date is : " + lastDigitFromDat);
 		System.out.println(" date is : " + lastDigitToDate);
-		
-		//String lastDigitFromDate = financialYear.getFromDate().substring(Math.max(financialYear.getFromDate().length() - 2, 0));
-		
-		//String lastDigitToDate = financialYear.getToDate().substring(Math.max(financialYear.getToDate().length() - 2, 0));
-		
-		
-		financialYear.setFinancialYearCode(lastDigitFromDat+"-"+lastDigitToDate);
-		
+
+		// String lastDigitFromDate =
+		// financialYear.getFromDate().substring(Math.max(financialYear.getFromDate().length()
+		// - 2, 0));
+
+		// String lastDigitToDate =
+		// financialYear.getToDate().substring(Math.max(financialYear.getToDate().length()
+		// - 2, 0));
+
+		financialYear.setFinancialYearCode(lastDigitFromDat + "-" + lastDigitToDate);
+
 		boolean fYear = financialYearService.isFinancialYearExists(financialYear.getFinancialYearCode());
-		System.out.println("fyear is : "+ fYear);
-		
-		if(fYear == false) {
+		System.out.println("fyear is : " + fYear);
+
+		if (fYear == false) {
 			financialYearService.addFinancialYear(financialYear);
 			redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
 			redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-		}
-		else {
+		} else {
 			redirectAttributes.addFlashAttribute("message", "Financial Year Already Exists..");
 			redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 		}
-		
-		
-		
-		
+
 		return "redirect:/financialyear/";
 	}
-	
+
 	@GetMapping("/list")
 	public String viewFinancialYear(Model model) {
-		
+
 		List<FinancialYear> financialYearList = financialYearService.getAllFinancialYear();
-		if(financialYearList != null) {
+		if (financialYearList != null) {
 			model.addAttribute("financialYearList", financialYearList);
 		}
 		return "layouts/listview/listofFinancialyear";
 	}
-	
+
 	@GetMapping("/edit/{id}")
-	public String editFinancialYear(@PathVariable("id") String id,Model model) {
-		
-		
-		
+	public String editFinancialYear(@PathVariable("id") String id, Model model) {
+
 		Optional<FinancialYear> financialYear = financialYearService.editFinancialYear(id);
 		model.addAttribute("financialYear", financialYear);
 		return "layouts/editview/editFinancialyear";
 	}
-	
+
 	@GetMapping("/delete/{id}")
-	public String deleteFianncialYear(@PathVariable("id") String id,Model model) {
+	public String deleteFianncialYear(@PathVariable("id") String id, Model model) {
 		financialYearService.deleteFinancialYear(id);
 		return "redirect:/financialyear/list";
 	}
 
+	@PostMapping("/update")
+	public String updateFinancialYear(@ModelAttribute("financialYear") FinancialYear financialYear,
+			RedirectAttributes redirectAttributes) {
+
+		String lastDigitFromDat = financialYear.getFromDate().toString().substring(26);
+		String lastDigitToDate = financialYear.getToDate().toString().substring(26);
+		System.out.println(" date is : " + lastDigitFromDat);
+		System.out.println(" date is : " + lastDigitToDate);
+
+		// String lastDigitFromDate =
+		// financialYear.getFromDate().substring(Math.max(financialYear.getFromDate().length()
+		// - 2, 0));
+
+		// String lastDigitToDate =
+		// financialYear.getToDate().substring(Math.max(financialYear.getToDate().length()
+		// - 2, 0));
+
+		financialYear.setFinancialYearCode(lastDigitFromDat + "-" + lastDigitToDate);
+
+		financialYearService.addFinancialYear(financialYear);
+		redirectAttributes.addFlashAttribute("message", "Record  has been updated successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
+		return "redirect:/financialyear/";
+	}
+
 }
-
-
-

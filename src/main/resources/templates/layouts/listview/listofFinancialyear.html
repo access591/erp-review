@@ -58,6 +58,8 @@
 																<th scope="col">From Date</th>
 																<th scope="col">To date</th>
 
+																<th scope="col">Status</th>
+
 
 																<th scope="col">Action</th>
 															</tr>
@@ -68,7 +70,7 @@
 																<td th:text="${financialyear.financialYearCode}">Garrett
 																	Winters</td>
 
-<!--  ${#dates.format(list.advtDate, 'dd-MM-yyyy')} -->
+																<!--  ${#dates.format(list.advtDate, 'dd-MM-yyyy')} -->
 
 																<td
 																	th:text=" ${#dates.format(financialyear.fromDate, 'dd-MM-yyyy')}"></td>
@@ -76,6 +78,10 @@
 																	th:text="${#dates.format(financialyear.toDate, 'dd-MM-yyyy')}"></td>
 
 
+																<td th:if="${financialyear.active=='Y' }"><span
+																	class="badge bg-success">Active</span></td>
+																<td th:if="${financialyear.active=='N' }"><span
+																	class="badge bg-success">In Active</span></td>
 
 																<td><span> <a
 																		th:href="@{/financialyear/edit/{id}(id=${financialyear.financialYearCode})}"><em

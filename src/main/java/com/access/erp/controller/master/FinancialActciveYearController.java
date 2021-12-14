@@ -124,5 +124,19 @@ public class FinancialActciveYearController {
 		return "redirect:/financialactiveyear/list";
 
 	}
+	
+	
+	@PostMapping("/update")
+	public String updateFinancialActiveYear(
+			@ModelAttribute("financialActiveYear") FinancialActiveYear financialActiveYear,RedirectAttributes redirectAttributes) {
+		
+		
+			financialActiveYearService.addFinancialActiveYear(financialActiveYear);
+			redirectAttributes.addFlashAttribute("message", "Record  has been updated successfully!");
+			redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
+	
+		return "redirect:/financialactiveyear/";
+	}
+
 
 }
