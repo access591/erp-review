@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +37,11 @@ public class SubModuleController {
 	}
 
 	@PostMapping("/")
-	public String addSubModule(@ModelAttribute("subModule") SubModuleMaster subModule) {
+	public String addSubModule(@ModelAttribute("subModule") SubModuleMaster subModule,Principal principal) {
 
+		
+		subModule.setInsertedBySubModule(principal.getName());
+		subModule.setInsertedDateSubModule(new Date());
 		 subModuleMasterService.addSubModule(subModule);
 
 		return "redirect:/sub-module/";
@@ -68,6 +73,17 @@ public class SubModuleController {
 	public String deleteSubModule(@PathVariable("id") String subModuleCode, Model model) {
 		subModuleMasterService.deleteSubModuleMaster(subModuleCode);
 		return "redirect:/sub-module/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateSubModule(@ModelAttribute("subModule") SubModuleMaster subModule,Principal principal) {
+
+		
+		subModule.setUpdateBySubModule(principal.getName());
+		subModule.setUpdatedDateSubModule(new Date());
+		 subModuleMasterService.addSubModule(subModule);
+
+		return "redirect:/sub-module/";
 	}
 
 }

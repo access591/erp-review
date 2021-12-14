@@ -1,6 +1,7 @@
 package com.access.erp.controller.master;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,7 @@ public class ModuleController {
 		
 		
 		moduleMaster.setInsertedBy(principal.getName());
+		moduleMaster.setInsertedDate(new Date());
 		moduleMasterService.addModule(moduleMaster);
 		
 		return "redirect:/module/";
@@ -65,6 +67,17 @@ public class ModuleController {
 	public String deleteModule(@PathVariable("id") String moduleCode,Model model) {
 		moduleMasterService.deleteModuleMaster(moduleCode);
 		return "redirect:/module/list";
+	}
+	
+	
+	@PostMapping("/update")
+	public String updateModule(@ModelAttribute("module") ModuleMaster moduleMaster,Principal principal) {
+		
+		
+		moduleMaster.setUpdateBy(principal.getName());
+		moduleMasterService.addModule(moduleMaster);
+		
+		return "redirect:/module/";
 	}
 
 }

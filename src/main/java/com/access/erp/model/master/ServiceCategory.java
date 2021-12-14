@@ -38,7 +38,7 @@ public class ServiceCategory {
 	private Date updatedDate=new Date();
 	
 	@Column(name = "ACTIVE_YN",length = 10)
-	private String activeYn;
+	private String active;
 	
 	@Column(name = "UCODE",length = 50)
 	private String uCode;
@@ -113,12 +113,13 @@ public class ServiceCategory {
 		this.updatedDate = updatedDate;
 	}
 
-	public String getActiveYn() {
-		return activeYn;
+	
+	public String getActive() {
+		return active;
 	}
 
-	public void setActiveYn(String activeYn) {
-		this.activeYn = activeYn;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 	public String getuCode() {

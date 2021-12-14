@@ -286,7 +286,7 @@
 																</div>
 
 																<div class="form-group col-md-4">
-																	<label for="inputPassword4">Recorder level</label> <input
+																	<label for="inputPassword4">Reorder level</label> <input
 																		type="number" class="form-control form-control-sm"
 																		placeholder="Recorder Level" title="recorder level"
 																		th:field="*{reOrderLevel}" style='text-align: right;'>
@@ -355,9 +355,8 @@
 																	<label class="form-label">Account Name</label> <select
 																		class="form-control" id="departmentDropdown"
 																		title="account name">
-																		<option value="">Select</option>
-																		<option value="1">acc-1</option>
-																		<option value="2">acc-2</option>
+																		<option value="A">Active</option>
+																	
 																		<!-- <option th:each="department :  ${departmentList}"
 												th:text="${department.deptName}"
 												th:value=" ${department.departmentCode}"></option> -->
@@ -524,14 +523,14 @@
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" title="packing code"
-																				class="form-control" placeholder="" 
+																				class="form-control" placeholder="packing Code" 
 																				name="packingDetails[0].packingCode">
 																		</fieldset>
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="packing name"
+																				placeholder="Packing Name" title="packing name"
 																				name="packingDetails[0].packingName">
 																		</fieldset>
 																	</td>
@@ -557,7 +556,7 @@
 																	<td>
 																		<fieldset>
 																			<input type="number" class="form-control"
-																				placeholder="" title="qty"
+																				placeholder="Qty" title="qty"
 																				name="packingDetails[0].qty"
 																				oninput="limitDecimalPlaces(event, 2)"
 																				style="text-align: right;">
@@ -566,7 +565,7 @@
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="bar code"
+																				placeholder="Bar-Code" title="bar code"
 																				name="packingDetails[0].barCode">
 																		</fieldset>
 																	</td>

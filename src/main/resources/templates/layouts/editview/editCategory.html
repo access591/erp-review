@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 </head>
 
@@ -49,18 +56,19 @@
 							<div class="row">
 								<!-- left column -->
 								<div class="col-md-12">
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 
 
-									<div class="col-md-8 shadow bg-white rounded" style="margin-top: 20px;">
+									<div class="col-md-8 shadow bg-white rounded"
+										style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
-											</div><!-- /.box-header -->
+											</div>
+											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/category/}" method="POST"
+											<form role="form" th:action="@{/category/update/}" method="POST"
 												th:object="${category}">
 												<div class="box-body">
 
@@ -70,9 +78,9 @@
 															th:field="*{categCode}">
 													</div>
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">Description</label> <input type="text"
-															class="form-control" placeholder="Discription"
-															th:field="*{description}">
+														<label for="inputEmail4">Description</label> <input
+															type="text" class="form-control"
+															placeholder="Discription" th:field="*{description}">
 													</div>
 
 													<div class="form-group col-md-6">
@@ -88,32 +96,34 @@
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Account Description</label> <input
-															type="text" class="form-control" placeholder="description"  th:field="*{accountDescription}">
+															type="text" class="form-control"
+															placeholder="description"
+															th:field="*{accountDescription}">
 													</div>
 
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">Parent Code</label> <input type="text"
-															class="form-control" placeholder="parent code"
-															th:field="*{parentCode}">
+														<label for="inputEmail4">Parent Code</label> <input
+															type="text" class="form-control"
+															placeholder="parent code" th:field="*{parentCode}">
 													</div>
 
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">Parent Name</label> <input type="text"
-															class="form-control" placeholder="parent name"
-															th:field="*{parentName}">
+														<label for="inputEmail4">Parent Name</label> <input
+															type="text" class="form-control"
+															placeholder="parent name" th:field="*{parentName}">
 													</div>
-													<label class="checkbox-inline">
-														<input type="radio" value="Y" name="inlineRadioOptions">Active
-														<input type="radio" value="N"
-															name="inlineRadioOptions">In-Active
+													<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked style="margin-left: 5px">Active
+														<input type="radio" value="N" name="active"
+														style="margin-left: 5px">In-Active
 													</label>
-
-												</div><!-- /.box-body -->
+												</div>
+												<!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Apply Changes"
-														class="btn btn-primary" />
-													<input type="button" value="Go back!" class="btn btn-danger"
+														class="btn btn-primary" /> <input type="button"
+														value="Go back!" class="btn btn-danger"
 														onclick="history.back()">
 												</div>
 
@@ -121,15 +131,15 @@
 											</form>
 
 
-										</div><!-- /.box -->
+										</div>
+										<!-- /.box -->
 										<!-- <div style="width: parent; text-align-last: right; margin:8px">
 											<a th:href="@{/category/list}">view category</a>
 										</div> -->
 									</div>
 
 
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 								</div>
 
 							</div>
@@ -138,16 +148,20 @@
 					</section>
 				</section>
 			</div>
-
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>

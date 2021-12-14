@@ -115,7 +115,7 @@ public class FinancialActciveYearController {
 				.editFinancialActiveYear(id).get();
 		model.addAttribute("financialActiveYear", financialActiveYear);
 		
-		return "layouts/editview/editfinancialActiveyear";
+		return "layouts/editview/editFinancialActiveYear";  //editFinancialActiveYear.html
 	}
 
 	@GetMapping("/delete/{id}")

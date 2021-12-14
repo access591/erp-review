@@ -39,6 +39,8 @@ public class CategoryMasterController {
 		category.setInsertedBy(principal.getName());
 		category.setInsertedDate(new Date());
 		
+		category.setCompCode("EB");
+		
 		categoryService.addCategory(category);
 		redirectAttributes.addFlashAttribute("message", "Category  has been saved successfully!");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
@@ -75,5 +77,23 @@ public class CategoryMasterController {
 		
 		return "redirect:/category/list";
 	}
+	
+	
+	
+	@PostMapping("/update")
+	public String updateCategory(@ModelAttribute("category") Category category,RedirectAttributes redirectAttributes,Principal principal) {
+		
+		category.setUpdateBy(principal.getName());
+		category.setUpdatedDate(new Date());
+		
+		category.setCompCode("EB");
+		
+		categoryService.addCategory(category);
+		redirectAttributes.addFlashAttribute("message", "Category  has been Updated successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		
+		return "redirect:/category/";
+	}
+	
 
 }

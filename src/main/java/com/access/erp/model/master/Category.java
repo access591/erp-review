@@ -46,6 +46,9 @@ public class Category {
 	@Column(name = "UPDATE_DATE")
 	private Date updatedDate=new Date();
 	
+	@Column(name = "ACTIVE_YN")
+	private String active;
+	
 	//CCODE 
 	@Column(name="CCODE", updatable=false, insertable=false)
 	private String compCode;

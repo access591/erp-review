@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 </head>
 
@@ -49,8 +56,7 @@
 							<div class="row">
 								<!-- left column -->
 								<div class="col-md-12">
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 
 
 									<div class="col-md-8">
@@ -58,10 +64,11 @@
 										<div class="box box-primary ">
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
-											</div><!-- /.box-header -->
+											</div>
+											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/servicecategory/}" method="POST"
-												th:object="${serviceCategory}">
+											<form role="form" th:action="@{/servicecategory/}"
+												method="POST" th:object="${serviceCategory}">
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
@@ -77,14 +84,14 @@
 													</div>
 													<div class="form-group col-md-6">
 														<label for="inputPassword4">Category Type</label> <input
-															type="text" class="form-control" placeholder="category type"
-															th:field="*{categoryType}">
+															type="text" class="form-control"
+															placeholder="category type" th:field="*{categoryType}">
 													</div>
 
 													<div class="form-group col-md-6">
 														<label for="inputPassword4">Description</label> <input
-															type="text" class="form-control" placeholder="description"
-															th:field="*{description}">
+															type="text" class="form-control"
+															placeholder="description" th:field="*{description}">
 													</div>
 
 
@@ -92,44 +99,36 @@
 
 
 
-													<div class="form-group" style="margin: 10px;">
+													<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked style="margin-left: 5px">Active
+														<input type="radio" value="N" name="active"
+														style="margin-left: 5px">In-Active
+													</label>
 
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="Y">
-															<label class="form-check-label"
-																for="inlineRadio1">Active</label>
-														</div>
-
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="inlineRadioOptions" id="inlineRadio1" value="N">
-															<label class="form-check-label"
-																for="inlineRadio1">In-Active</label>
-														</div>
-
-													</div>
-
-												</div><!-- /.box-body -->
+												</div>
+												<!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="button" value="Go back!" class="btn btn-danger"onclick="history.back()">
+													<input type="button" value="Go back!"
+														class="btn btn-danger" onclick="history.back()">
 												</div>
 
 
 											</form>
 
 
-										</div><!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin:8px">
-											<a th:href="@{/servicecategory/list}">View Service Category List</a>
+										</div>
+										<!-- /.box -->
+										<div
+											style="width: parent; text-align-last: right; margin: 8px">
+											<a th:href="@{/servicecategory/list}">View Service
+												Category List</a>
 										</div>
 									</div>
 
 
-									<div class="col-md-2">
-									</div>
+									<div class="col-md-2"></div>
 								</div>
 
 							</div>
@@ -138,16 +137,21 @@
 					</section>
 				</section>
 			</div>
-
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+		</div>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>

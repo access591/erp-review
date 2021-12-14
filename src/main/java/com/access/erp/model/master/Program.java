@@ -1,6 +1,8 @@
 package com.access.erp.model.master;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,6 +33,15 @@ public class Program {
 	
 	@Column(name = "INS_BY",length = 50)
 	private String insertedBy;
+	
+	@Column(name = "INS_DATE")
+	private Date insertedDate;
+	
+	@Column(name = "UPDATE_BY",length = 50)
+	private String updateBy;
+
+	@Column(name = "UPDATE_DATE")
+	private Date updatedDate;
 	
 	@Column(name = "ACTIVE_YN",length = 2)
 	private String active;
@@ -133,6 +144,37 @@ public class Program {
 		this.insertedBy = insertedBy;
 	}
 
+
+	public Date getInsertedDate() {
+		return insertedDate;
+	}
+
+
+	public void setInsertedDate(Date insertedDate) {
+		this.insertedDate = insertedDate;
+	}
+
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	
 
 	
 	
