@@ -32,6 +32,7 @@ public class SubModuleController {
 
 		List<ModuleMaster> moduleList = moduleService.getAllModule();
 		model.addAttribute("moduleList", moduleList);
+		
 		model.addAttribute("subModule", new SubModuleMaster());
 		return "layouts/Master/subModule";
 	}

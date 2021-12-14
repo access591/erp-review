@@ -52,8 +52,24 @@ public class Program {
 	private SubModuleMaster subModuleMaster;
 	
 	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "MCODE",nullable = true)
+	private ModuleMaster  module;
 	
 	
+	
+	
+	
+
+
+	public ModuleMaster getModule() {
+		return module;
+	}
+
+
+	public void setModule(ModuleMaster module) {
+		this.module = module;
+	}
 
 
 	public Program() {
