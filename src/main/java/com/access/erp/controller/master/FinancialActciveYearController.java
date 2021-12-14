@@ -18,6 +18,8 @@ import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
+import com.access.erp.repo.FinnancialActiveYearRepo;
+import com.access.erp.repo.FinnancialYearRepo;
 import com.access.erp.service.CompanyService;
 import com.access.erp.service.FinancialActiveYearService;
 import com.access.erp.service.FinancialYearService;
@@ -33,6 +35,8 @@ public class FinancialActciveYearController {
 	@Autowired MyUserService myUserService;
 	@Autowired CompanyService companyService;
 	@Autowired FinancialYearService financialYearService;
+	//@Autowired  FinnancialActiveYearRepo financialActiveYearRepo;
+	@Autowired FinnancialYearRepo finnancialYearRepo;
 	
 	
 
@@ -42,7 +46,7 @@ public class FinancialActciveYearController {
 		List<MyUser> listMyUser = myUserService.getAllMyUser();
 		model.addAttribute("listMyUser", listMyUser);
 		
-		List<FinancialYear> listFinancialyear = financialYearService.getAllFinancialYear();
+		List<FinancialYear> listFinancialyear =finnancialYearRepo.findByActive("Y");
 		model.addAttribute("listFinancialyear", listFinancialyear);
 		
 		
