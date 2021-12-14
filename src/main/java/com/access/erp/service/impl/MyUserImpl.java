@@ -28,8 +28,7 @@ public class MyUserImpl implements MyUserService{
 		 * seqMainRepo.findByTranType(""); city.setCityCode(maxCode); }
 		 */
 		
-		
-		
+				
 		userRepo.save(myUser);
 		
 	}

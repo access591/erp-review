@@ -29,13 +29,13 @@ public class SubModuleMaster {
 	private String insertedBySubModule;
 
 	@Column(name = "INS_DATE")
-	private Date insertedDateSubModule =  new Date();
+	private Date insertedDateSubModule;
 	
 	@Column(name = "UPDATE_BY",length = 50)
 	private String updateBySubModule;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updatedDateSubModule = new Date();
+	private Date updatedDateSubModule;
 	
 	
 	@Column(name = "ACTIVE_YN",length = 10)

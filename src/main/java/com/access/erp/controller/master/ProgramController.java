@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +38,10 @@ public class ProgramController {
 	}
 
 	@PostMapping("/")
-	public String addProgram(@ModelAttribute("program") Program program) {
+	public String addProgram(@ModelAttribute("program") Program program,Principal principal) {
 
+		program.setInsertedBy(principal.getName());
+		program.setInsertedDate(new Date());
 		programService.addProgram(program);
 
 		return "redirect:/program/";
@@ -69,6 +73,16 @@ public class ProgramController {
 	public String deleteProgram(@PathVariable("id") String programCode, Model model) {
 		programService.deleteProgram(programCode);
 		return "redirect:/program/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateProgram(@ModelAttribute("program") Program program,Principal principal) {
+
+		program.setUpdateBy(principal.getName());
+		program.setUpdatedDate(new Date());
+		programService.addProgram(program);
+
+		return "redirect:/program/";
 	}
 
 }

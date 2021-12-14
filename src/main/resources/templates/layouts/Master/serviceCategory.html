@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -90,8 +90,8 @@
 
 													<div class="form-group col-md-6">
 														<label>Category Code</label><span style="color: red">*</span>
-														<input type="text" class="form-control"
-															placeholder="category code" th:field="*{categoryCode}">
+														<input type="text" class="form-control" title="category code"
+															placeholder="Category Code" th:field="*{categoryCode}">
 													</div>
 
 
@@ -105,8 +105,8 @@
 
 													<div class="form-group col-md-6">
 														<label>Account Code</label> <input type="text"
-															class="form-control" placeholder="account code"
-															th:field="*{accountCode}">
+															class="form-control" placeholder="Account Code"
+															title="account code" th:field="*{accountCode}">
 													</div>
 													<div class="form-group col-md-6">
 														<label class="form-label">Category Type</label> <label
@@ -126,8 +126,8 @@
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="inlineRadioOptions">Active <input
-														type="radio" value="N" name="inlineRadioOptions">In-Active
+														value="Y" name="active" checked style="margin-left: 5px" >Active <input
+														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
 													</label>
 
 												</div>

@@ -80,7 +80,7 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form id="userMasterForm" role="form" th:action="@{/user/}"
+											<form id="userMasterForm" role="form" th:action="@{/user/update}"
 												method="POST" th:object="${user}">
 												<div class="box-body">
 
@@ -123,9 +123,9 @@
 
 
 
-													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="active" checked>Active <input
-														type="radio" value="N" name="active">In-Active
+												<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked style="margin-left: 5px" >Active <input
+														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
 													</label>
 
 

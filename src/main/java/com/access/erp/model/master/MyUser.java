@@ -51,13 +51,13 @@ public class MyUser {
 	private String insBy;
 
 	@Column(name = "ins_date", updatable = false)
-	private Date insDate = new Date();
+	private Date insDate;
 
 	@Column(name = "upd_by", insertable = false, length = 50)
 	private String updBy;
 
 	@Column(name = "upd_date", insertable = false)
-	private Date updDate = new Date();
+	private Date updDate;
 
 	@Column(name = "UACTIVE", length = 2)
 	private String active;

@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +34,7 @@ public class MyUserController {
 		//model.addAttribute("userList", userList);
 		
 		List<Employee> listEmployee = employeeService.getAllEmployee();
-		
-		
+
 		model.addAttribute("listEmployee", listEmployee);
 		
 		model.addAttribute("user", new MyUser());
@@ -41,9 +42,13 @@ public class MyUserController {
 	}
 	
 	@PostMapping("/")
-	public String addUser(@ModelAttribute("user") MyUser user) {
+	public String addUser(@ModelAttribute("user") MyUser user,Principal principal) {
 		
 		System.out.println("add method of my user controller");
+		
+		user.setInsBy(principal.getName());
+		user.setInsDate(new Date());
+		
 		userService.addMyUSer(user);
 		
 		return "redirect:/user/";
@@ -64,7 +69,9 @@ public class MyUserController {
 	public String editUser(@PathVariable("id") String userCode,Model model) {
 		
 		System.out.println("module code is : "+ userCode);
-		
+		List<Employee> listEmployee = employeeService.getAllEmployee();
+
+		model.addAttribute("listEmployee", listEmployee);
 
 		Optional<MyUser> user = userService.editMyUser(userCode);
 		model.addAttribute("user", user);
@@ -75,6 +82,19 @@ public class MyUserController {
 	public String deleteUser(@PathVariable("id") String userCode,Model model) {
 		userService.deleteMyUser(userCode);
 		return "redirect:/user/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateUser(@ModelAttribute("user") MyUser user,Principal principal) {
+		
+		System.out.println("add method of my user controller");
+		
+		user.setUpdBy(principal.getName());
+		user.setUpdDate(new Date());
+		
+		userService.addMyUSer(user);
+		
+		return "redirect:/user/";
 	}
 
 }

@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 
 </head>
@@ -42,44 +49,63 @@
 									<form role="form">
 										<div class="box-body">
 											<div class="table-responsive-sm">
-									<table class="table table-striped" style="width: 80%">
-										<thead>
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">Category Code</th>
-												<th scope="col">Category Type</th>
-												<th scope="col">Account Code</th>
-												<th scope="col">Description</th>
-												
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:each="serviceCategory,iter  : ${serviceCategoryList}">
-												<td th:text="${iter.index}">1</td>
-												<td th:text="${serviceCategory.categoryCode}">Garrett Winters</td>
-												<td th:text="${serviceCategory.categoryType}">Garrett Winters</td>
-												<td th:text="${serviceCategory.accountCode}">Garrett Winters</td>
-												<td th:text="${serviceCategory.description}">Garrett Winters</td>
-												
-												
+												<table class="table table-striped" style="width: 80%">
+													<thead>
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">Category Code</th>
+															<th scope="col">Category Type</th>
+															<th scope="col">Account Code</th>
+															<th scope="col">Description</th>
+															<th scope="col">Status</th>
+															<th scope="col">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr
+															th:each="serviceCategory,iter  : ${serviceCategoryList}">
+															<td th:text="${iter.index}">1</td>
+															<td th:text="${serviceCategory.categoryCode}">Garrett
+																Winters</td>
+															<td th:text="${serviceCategory.categoryType}">Garrett
+																Winters</td>
+															<td th:text="${serviceCategory.accountCode}">Garrett
+																Winters</td>
+															<td th:text="${serviceCategory.description}">Garrett
+																Winters</td>
+																
+															
+															
+															<td th:if="${serviceCategory.active=='Y'}"><span
+																class="badge bg-success">Active</span></td>
 
-												<td><span> <a th:href="@{/servicecategory/edit/{id}(id=${serviceCategory.categoryCode})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span> <a
-														th:href="@{/servicecategory/delete/{id}(id=${serviceCategory.categoryCode})}"><em class="fa fa-times" style="color: red"> Remove</em></a></a></span></td>
-											</tr>
+															<td th:if="${serviceCategory.active=='N'}"><span
+																class="badge bg-success">
+																	In Active</span></td>
+
+
+
+															<td><span> <a
+																	th:href="@{/servicecategory/edit/{id}(id=${serviceCategory.categoryCode})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
+																	<a
+																	th:href="@{/servicecategory/delete/{id}(id=${serviceCategory.categoryCode})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a>
+															</span></td>
+														</tr>
 
 
 
 
-										</tbody>
-									</table>
-								
-							</div>
+													</tbody>
+												</table>
 
-							<div class="row" style="margin: 10px">
-								<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
-							</div>
+											</div>
 
+											<div class="row" style="margin: 10px">
+												<input type="button" value="Go back!" class="btn btn-link"
+													onclick="history.back()">
+											</div>
 									</form>
 								</div>
 							</div>
@@ -91,16 +117,20 @@
 					</div>
 				</section>
 			</div>
-
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 </body>
 
