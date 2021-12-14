@@ -1,125 +1,164 @@
 <!DOCTYPE html>
-
-<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layouts/main-layout :: main-fragment(  
-                                                ~{::title},
-                                                ~{:: #home-static-resources},
-                                                ~{:: #home-header},
-                                                ~{:: #home-nav},
-                                                ~{:: #home-main-content},  
-                                                ~{:: #home-footer}
-                                               )}">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Title of Home Page</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-<th:block id="home-static-resources">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-	<script type="text/javascript" src="../static/home.js"
-		th:src="@{/home.js}"></script>
-	<link rel="stylesheet" type="text/css" href="../static/home.css"
-		th:href="@{/home.css}" />
-
-</th:block>
 
 </head>
-<body>
 
-	<div id="home-header">ERP WhareHouse</div>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
 
-	<div id="home-nav"
-		th:replace="~{fragments/app-fragments :: nav-default}">Home Nav
-	</div>
+			<div class="wrapper">
 
-	<div id="home-main-content">
-		<h2>State List</h2>
+				<section class="content-wrapper">
 
 
+					<div class="row">
+						<!-- left column -->
+						<div class="col-md-12">
 
-		<div class="container">
-			<div class="container-fluid p-0">
-				<h1 class="h3 mb-3">Clients</h1>
-				<div class="row">
-					<div class="col-xl-8">
-						<div class="card">
-							<div class="card-header pb-0">
-								<div class="card-actions float-right">
-									<div class="dropdown show">
-										<a href="#" data-toggle="dropdown" data-display="static">
 
-										</a>
 
-										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item" href="#">Action</a> <a
-												class="dropdown-item" href="#">Another action</a> <a
-												class="dropdown-item" href="#">Something else here</a>
-										</div>
+							<div class="col-md-12" style="margin-top: 20px;">
+
+								<div class="box box-primary">
+
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
+
+									<div class="box-header with-border">
+										<h3 class="box-title">List of State</h3>
 									</div>
+									<!-- form start -->
+									<form role="form">
+										<div class="box-body">
+											<div class="table-responsive-sm">
+												<table class="table table-striped" style="width: 80%">
+													<thead>
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">State Code</th>
+															<th scope="col">State Name</th>
+															<th scope="col">State GST Code</th>
+															<th scope="col">Country Name</th>
+															<th scope="col">Inserted By</th>
+															<th scope="col">Status</th>
+															<th scope="col">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="state,iter  : ${stateList}">
+															<td th:text="${iter.index}">1</td>
+															<td th:text="${state.stateCode}">Garrett Winters</td>
+															<td th:text="${state.stateName}">Garrett Winters</td>
+															<td th:text="${state.gstStateCode}">Garrett Winters</td>
+															<td th:text="${state.country.countryName}">Garrett
+																Winters</td>
+															<td th:text="${state.insertedBy}">Good Guys</td>
+
+															<td th:if="${state.active=='Y'}"><span
+																class="badge bg-success">Active</span></td>
+
+															<td th:if="${state.active=='N'}"><span
+																class="badge bg-success"> In
+																	Active</span></td>
+
+															<td><span> <a
+																	th:href="@{/state/edit/{id}(id=${state.stateCode})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
+																	<a
+																	th:href="@{/state/delete/{id}(id=${state.stateCode})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a>
+															</span></td>
+														</tr>
+
+
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+										<div class="box-footer">
+											<input type="button" value="Go back!" class="btn btn-link"
+												onclick="history.back()">
+										</div>
+
+									</form>
 								</div>
-								<h5 class="card-title mb-0">Clients</h5>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive-sm">
-									<table class="table table-striped" style="width: 80%">
-										<thead>
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">State Code</th>
-												<th scope="col">State Name</th>
-												<th scope="col">State GST Code</th>
-												<th scope="col">Country Name</th>
-												<th scope="col">Inserted By</th>
-												<th scope="col">Status</th>
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:each="state,iter  : ${stateList}">
-												<td th:text="${iter.index}">1</td>
-												<td th:text="${state.stateCode}">Garrett Winters</td>
-												<td th:text="${state.stateName}">Garrett Winters</td>
-												<td th:text="${state.gstStateCode}">Garrett Winters</td>
-												<td th:text="${state.country.countryName}">Garrett Winters</td>
-												<td th:text="${state.insertedBy}">Good Guys</td>
-
-												<td><span class="badge bg-success"
-													th:text="${state.activeYn}">Active</span></td>
-
-												<td><span> <a th:href="@{/state/edit/{id}(id=${state.stateCode})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span> <a
-														th:href="@{/state/delete/{id}(id=${state.stateCode})}"><em class="fa fa-times" style="color: red"> Remove</em></a></a></span></td>
-											</tr>
-
-
-
-
-										</tbody>
-									</table>
-								</div>
 							</div>
 
-							<div class="row" style="margin: 10px">
-								<input type="submit" value="Back"  onclick='javascript:window.history.back()'
-									class="btn btn-link" /> 
-							</div>
+
+
 						</div>
+
 					</div>
-
-
-				</div>
-
+				</section>
 			</div>
 		</div>
-
-
-
 	</div>
 
+	<div th:replace="fragments/footer :: footer">...</div>
 
-	<!-- <div id="home-footer" th:replace="~{/fragments/app-fragments :: copyright}">
-        Footer
-    </div> -->
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
 
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+	<!--   <section class="content">
+        
+        </section>-->
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 </body>
+
 </html>

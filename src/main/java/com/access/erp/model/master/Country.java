@@ -38,7 +38,7 @@ public class Country {
 	private Date updatedDate=new Date();
 	
 	@Column(name = "ACTIVE_YN",length = 10)
-	private String activeYn;
+	private String active;
 
 	public Country() {
 		super();
@@ -70,12 +70,14 @@ public class Country {
 		this.states = states;
 	}
 
-	public String getActiveYn() {
-		return activeYn;
+	
+
+	public String getActive() {
+		return active;
 	}
 
-	public void setActiveYn(String activeYn) {
-		this.activeYn = activeYn;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 	public String getInsertedBy() {
