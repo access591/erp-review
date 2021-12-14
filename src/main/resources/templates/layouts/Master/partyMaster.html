@@ -41,7 +41,6 @@
 	font-size: 11px;
 }
 
-
 .form-control-sm {
 	height: 30px;
 	width: 120px;
@@ -52,7 +51,6 @@
 	width: 77px;
 	font-size: 11px;
 }
-
 </style>
 
 
@@ -129,32 +127,32 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Type</label><span
 																	style="color: red">*</span> <select
-																	class="form-control" title="type"  th:field="*{custType}"
-																	required>
+																	class="form-control" title="type"
+																	th:field="*{custType}" required>
 																	<option value="">Select</option>
 																	<option value="S">Supplier</option>
 																	<option value="C">Customer</option>
 																	<option value="B">Both</option>
-																	
+
 																</select>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Person Through</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Person Through" title="person through" th:field="*{pthruCode}">
+																	placeholder="Person Through" title="person through"
+																	th:field="*{pthruCode}">
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Representative Code</label>
 																<input type="text" class="form-control"
 																	id="inputPassword4" placeholder="Representative Code"
-																	title="representative code">
+																	title="representative code" >
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Representative Name</label>
-																<select
-																	class="form-control" id="departmentDropdown"
-																	title="Department Name" required>
+																<select class="form-control" id="departmentDropdown"
+																	title="representative name"  th:field="*{repCode}" required>
 																	<option value="">Select</option>
 																	<option th:each="employee :  ${listEmployee}"
 																		th:text="${employee.empName}"
@@ -166,14 +164,15 @@
 																<label for="inputPassword4">work Address</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="Work Address" title="work address" th:field="*{partyAddr1}">
+																	placeholder="Work Address" title="work address"
+																	th:field="*{partyAddr1}">
 															</div>
 
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">City</label> <select
 																	class="form-control" id="departmentDropdown"
-																	title="Department Name" th:field="*{cityCode}"required>
+																	title="Department Name" th:field="*{cityCode}" required>
 																	<option value="">Select</option>
 																	<option th:each="city :  ${listCity}"
 																		th:text="${city.cityName}"
@@ -185,7 +184,8 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">State</label> <select
 																	class="form-control" id="departmentDropdown"
-																	title="Department Name" th:field="*{stateCode}" required>
+																	title="Department Name" th:field="*{stateCode}"
+																	required>
 																	<option value="">Select</option>
 																	<option th:each="state :  ${listState}"
 																		th:text="${state.stateName}"
@@ -196,8 +196,8 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Country</label><span
 																	style="color: red">*</span><select class="form-control"
-																	id="departmentDropdown" title="Department Name" th:field="*{countryCode}"
-																	required>
+																	id="departmentDropdown" title="Department Name"
+																	th:field="*{countryCode}" required>
 																	<option value="">Select</option>
 																	<option th:each="country :  ${listCountry}"
 																		th:text="${country.countryName}"
@@ -209,19 +209,23 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Pin</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Pin" title="pin" th:field="*{pinCode}">
+																	placeholder="Pin" title="pin"
+																	onkeypress="return alpha(event)" th:field="*{pinCode}"
+																	maxlength="6">
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Phone</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Phone" title="phone">
+																	placeholder="Phone" title="phone"
+																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Mobile</label><span
 																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Mobile" title="mobile">
+																	class="form-control" id="inputPassword4" required
+																	placeholder="Mobile" title="mobile"
+																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
 
 															<div class="form-group col-md-4">
@@ -231,14 +235,15 @@
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Email</label> <input
-																	type="text" class="form-control" id="inputPassword4"
+																	type="email" class="form-control" id="inputPassword4"
 																	placeholder="Email" title="email"
+																	pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
 																	th:field="*{partyEmail}">
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Website</label><span
-																	style="color: red">*</span><input type="text"
+																	style="color: red">*</span><input type="url"
 																	class="form-control" id="inputPassword4"
 																	placeholder="website" title="website"
 																	th:field="*{partyWebsite}">
@@ -254,7 +259,8 @@
 																<label for="inputPassword4">Phone No</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4"
-																	placeholder="Phone No" title="phone no">
+																	onkeypress="return alpha(event)" placeholder="Phone No"
+																	title="phone no" maxlength="10">
 															</div>
 
 														</div>
@@ -273,32 +279,35 @@
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Registered Office
-																	Address-1</label><span style="color: red">*</span><input
-																	type="text" class="form-control" id="inputPassword4"
+																	Address-1</label><input type="text" class="form-control"
+																	id="inputPassword4"
 																	placeholder="Registered Office Address"
-																	title="Registered Office Address" th:field="*{regAddr1}">
+																	title="Registered Office Address"
+																	th:field="*{regAddr1}">
 															</div>
-															
+
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Registered Office
-																	Address-2</label><span style="color: red">*</span><input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Registered Office Address"th:field="*{regAddr2}"
+																	Address-2</label><input type="text" class="form-control"
+																	id="inputPassword4"
+																	placeholder="Registered Office Address"
+																	th:field="*{regAddr2}"
 																	title="Registered Office Address">
 															</div>
-															
+
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Registered Office
-																	Address-3</label><span style="color: red">*</span><input
-																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Registered Office Address"th:field="*{regAddr3}"
+																	Address-3</label><input type="text" class="form-control"
+																	id="inputPassword4"
+																	placeholder="Registered Office Address"
+																	th:field="*{regAddr3}"
 																	title="Registered Office Address">
 															</div>
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">City</label> <select
 																	class="form-control" id="departmentDropdown"
-																	title="Department Name" th:field="*{regAddrCityCode}" required>
+																	title="city" th:field="*{regAddrCityCode}">
 																	<option value="">Select</option>
 																	<option th:each="city :  ${listCity}"
 																		th:text="${city.cityName}"
@@ -310,7 +319,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">State</label> <select
 																	class="form-control" id="departmentDropdown"
-																	title="Department Name" th:field="*{regAddrStateCode}" required>
+																	title="state" th:field="*{regAddrStateCode}">
 																	<option value="">Select</option>
 																	<option th:each="state :  ${listState}"
 																		th:text="${state.stateName}"
@@ -319,10 +328,9 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><select class="form-control"
-																	id="departmentDropdown" th:field="*{regAddrCntCode}" title="Department Name"
-																	required>
+																<label for="inputPassword4">Country</label><select
+																	class="form-control" id="departmentDropdown"
+																	th:field="*{regAddrCntCode}" title="country">
 																	<option value="">Select</option>
 																	<option th:each="country :  ${listCountry}"
 																		th:text="${country.countryName}"
@@ -344,31 +352,31 @@
 														<div class="box-body">
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Local Address-1</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Local Address" title="Local Address" th:field="*{lclAddr1}">
+																<label for="inputPassword4">Local Address-1</label><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Local Address" title="Local Address"
+																	th:field="*{lclAddr1}">
 															</div>
-															
+
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Local Address-2</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Local Address" title="Local Address" th:field="*{lclAddr2}">
+																<label for="inputPassword4">Local Address-2</label><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Local Address" title="Local Address"
+																	th:field="*{lclAddr2}">
 															</div>
-															
+
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Local Address-3</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
-																	placeholder="Local Address" title="Local Address" th:field="*{lclAddr3}">
+																<label for="inputPassword4">Local Address-3</label><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Local Address" title="Local Address"
+																	th:field="*{lclAddr3}">
 															</div>
 
 
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">City</label> <select
 																	class="form-control" id="departmentDropdown"
-																	title="Department Name" th:field="*{lclAddrCityCode}" required>
+																	title="city" th:field="*{lclAddrCityCode}">
 																	<option value="">Select</option>
 																	<option th:each="city :  ${listCity}"
 																		th:text="${city.cityName}"
@@ -380,7 +388,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">State</label> <select
 																	class="form-control" id="departmentDropdown"
-																	title="Department Name" th:field="*{lclAddrStateCode}" required>
+																	title="state" th:field="*{lclAddrStateCode}">
 																	<option value="">Select</option>
 																	<option th:each="state :  ${listState}"
 																		th:text="${state.stateName}"
@@ -389,10 +397,9 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><select class="form-control"
-																	id="departmentDropdown" th:field="*{lclAddrCntCode}" title="Department Name"
-																	required>
+																<label for="inputPassword4">Country</label><select
+																	class="form-control" id="departmentDropdown"
+																	th:field="*{lclAddrCntCode}" title="country">
 																	<option value="">Select</option>
 																	<option th:each="country :  ${listCountry}"
 																		th:text="${country.countryName}"
@@ -445,8 +452,11 @@
 																	<label for="" class="col-md-2 control-label">PAN
 																		Number</label>
 																	<div class="col-md-8">
-																		<input type="text" class="form-control" id=""
-																			placeholder="Pan Number" title="pan number" th:field="*{partyPanno}">
+																		<input type="text" class="form-control" id="panNumber"
+																			placeholder="Pan Number" title="pan number"
+																			th:field="*{partyPanno}" onkeyup="ValidatePAN()">
+																		<span id="lblPANCard" class="error"
+																			style='display: none'>Invalid PAN Number</span>
 																	</div>
 																</div>
 															</div>
@@ -457,7 +467,8 @@
 																		Amount</label>
 																	<div class="col-md-8">
 																		<input type="email" class="form-control" id=""
-																			placeholder="Credit Amount" title="credit amount" th:field="*{creditAmount}">
+																			placeholder="Credit Amount" title="credit amount"
+																			th:field="*{creditAmount}">
 																	</div>
 																</div>
 															</div>
@@ -468,7 +479,8 @@
 																		Period (No of days)</label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
-																			placeholder="Credit Period " title="credit period" th:field="*{creditPeriod}">
+																			placeholder="Credit Period " title="credit period"
+																			th:field="*{creditPeriod}">
 																	</div>
 																</div>
 															</div>
@@ -479,7 +491,8 @@
 																		No.</label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
-																			placeholder="GST No." title="gst no" th:field="*{gstNo}">
+																			placeholder="GST No." title="gst no" maxlength="15" 
+																			th:field="*{gstNo}" onkeypress="return alphaNumeric(event)">
 																	</div>
 																</div>
 															</div>
@@ -492,7 +505,8 @@
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
 																			placeholder="TaxtPayer Legal name"
-																			title="taxpayer legal name" th:field="*{taxpayerLegalName}">
+																			title="taxpayer legal name"
+																			th:field="*{taxpayerLegalName}">
 																	</div>
 																</div>
 															</div>
@@ -504,7 +518,8 @@
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
 																			placeholder="TaxtPayer Trade name"
-																			title="taxpayer trade name" th:field="*{taxpayerTradeName}">
+																			title="taxpayer trade name"
+																			th:field="*{taxpayerTradeName}">
 																	</div>
 																</div>
 															</div>
@@ -556,16 +571,16 @@
 														<table class="table table-sm" id="example">
 															<thead>
 																<tr>
-																	<th scope="col">Billing Code</th>
-																	<th scope="col">Billing Name</th>
-																	<th scope="col">Billing GST No</th>
-																	<th scope="col">Billing Addr1</th>
-																	<th scope="col">Billing Addr2</th>
-																	<th scope="col">Billing Addr3</th>
-																	<th scope="col">City</th>
-																	<th scope="col">State</th>
-																	<th scope="col">Pin Code</th>
-																	<th scope="col">Country</th>
+																	<th scope="col" class="text-center">Billing Code</th>
+																	<th scope="col" class="text-center">Billing Name</th>
+																	<th scope="col" class="text-center">Billing GST No</th>
+																	<th scope="col" class="text-center">Billing Addr1</th>
+																	<th scope="col" class="text-center">Billing Addr2</th>
+																	<th scope="col" class="text-center">Billing Addr3</th>
+																	<th scope="col" class="text-center">City</th>
+																	<th scope="col" class="text-center">State</th>
+																	<th scope="col" class="text-center">Pin Code</th>
+																	<th scope="col" class="text-center">Country</th>
 
 
 																</tr>
@@ -575,47 +590,53 @@
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyCode0"
-																				title="Billing Name">
+																				placeholder="Billing Code" id="insCompanyCode0"
+																				title="billing code">
 																		</fieldset>
-																		
+
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyCode0" name="listPartyBilling[0].billingName"
-																				title="Billing Name">
+																				placeholder="Billing Name" id="insCompanyCode0"
+																				name="listPartyBilling[0].billingName"
+																				title="billing name">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyName0"
-																				title="Billing GST No" name="listPartyBilling[0].billingGstNo">
+																				placeholder="Billing GST No" id="insCompanyName0"
+																				title="billing GST no"
+																				name="listPartyBilling[0].billingGstNo">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr1" name="listPartyBilling[0].billingAddr1">
+																				placeholder="Billing Address1" title="billing addr1"
+																				name="listPartyBilling[0].billingAddr1">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr2" name="listPartyBilling[0].billingAddr2">
+																				placeholder="Billing Address2" title="billing addr2"
+																				name="listPartyBilling[0].billingAddr2">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" title="Billing Addr3" name="listPartyBilling[0].billingAddr3">
+																				placeholder="Billing Address3" title="billing addr3"
+																				name="listPartyBilling[0].billingAddr3">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
-																			<select class="form-control form-control-sm select" id="departmentDropdown"
-																				title="Department Name" name="listPartyBilling[0].billingAddr3" required>
+																			<select class="form-control form-control-sm select"
+																				id="departmentDropdown" title="city"
+																				name="listPartyBilling[0].billingCityCode" required>
 																				<option value="">Select</option>
 																				<option th:each="city :  ${listCity}"
 																					th:text="${city.cityName}"
@@ -625,8 +646,9 @@
 																	</td>
 																	<td>
 																		<fieldset>
-																			<select class="form-control form-control-sm select" id="departmentDropdown"
-																				title="Department Name" name="listPartyBilling[0].billingAddr3" required>
+																			<select class="form-control form-control-sm select"
+																				id="departmentDropdown" title="state code"
+																				name="listPartyBilling[0].billingStateCode" required>
 																				<option value="">Select</option>
 																				<option th:each="state :  ${listState}"
 																					th:text="${state.stateName}"
@@ -637,14 +659,15 @@
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="" id="insCompanyName0"
-																				title="pin code" name="listPartyBilling[0].billingAddr3">
+																				placeholder="Pin" id="insCompanyName0" title="pin code"
+																				name="listPartyBilling[0].billingPinCode" onkeypress="return alpha(event)" maxlength="6">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
-																			<select class="form-control form-control-sm select" 
-																				title="Country Name" name="listPartyBilling[0].billingAddr3" required>
+																			<select class="form-control form-control-sm select"
+																				title="Country Name"
+																				name="listPartyBilling[0].billingCountryCode" required>
 																				<option value="">Select</option>
 																				<option th:each="country :  ${listCountry}"
 																					th:text="${country.countryName}"
@@ -681,14 +704,14 @@
 															<table class="table table-sm" id="example">
 																<thead>
 																	<tr>
-																		<th scope="col">Code</th>
-																		<th scope="col">Name</th>
-																		<th scope="col">Address1</th>
-																		<th scope="col">Address2</th>
-																		<th scope="col">Address3</th>
-																		<th scope="col">City</th>
-																		<th scope="col">Country</th>
-																		<th scope="col">Pin Code</th>
+																		<th scope="col" class="text-center">Code</th>
+																		<th scope="col" class="text-center">Name</th>
+																		<th scope="col" class="text-center">Address1</th>
+																		<th scope="col" class="text-center">Address2</th>
+																		<th scope="col" class="text-center">Address3</th>
+																		<th scope="col" class="text-center">City</th>
+																		<th scope="col" class="text-center">Country</th>
+																		<th scope="col" class="text-center">Pin Code</th>
 
 
 																	</tr>
@@ -698,39 +721,45 @@
 																		<th scope="row">
 																			<fieldset>
 																				<input type="text" class="form-control"
-																					placeholder="" id="insCompanyCode0"
-																					title="Billing Name" name="listPartyConsignee[0].conSigneeCode">
+																					placeholder="Code" id="insCompanyCode0"
+																					title="code"
+																					name="listPartyConsignee[0].conSigneeCode">
 																			</fieldset>
 																		</th>
 																		<td>
 																			<fieldset>
 																				<input type="text" class="form-control"
-																					placeholder="" id="insCompanyName0" 
-																					title="Billing GST No" name="listPartyConsignee[0].conSigneeName">
+																					placeholder="Name" id="insCompanyName0"
+																					title="name"
+																					name="listPartyConsignee[0].conSigneeName">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="text" class="form-control" name="listPartyConsignee[0].consigneeAddr1"
-																					placeholder="" title="Billing Addr1">
+																				<input type="text" class="form-control"
+																					name="listPartyConsignee[0].consigneeAddr1"
+																					placeholder="Address1" title="ddr1">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="text" class="form-control" name="listPartyConsignee[0].consigneeAddr2"
-																					placeholder="" title="Billing Addr2">
+																				<input type="text" class="form-control"
+																					name="listPartyConsignee[0].consigneeAddr2"
+																					placeholder="Address2" title="addr2">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<input type="text" class="form-control" name="listPartyConsignee[0].consigneeAddr3"
-																					placeholder="" title="Billing Addr3">
+																				<input type="text" class="form-control"
+																					name="listPartyConsignee[0].consigneeAddr3"
+																					placeholder="Address3" title=" addr3">
 																			</fieldset>
 																		</td>
 																		<td>
 																			<fieldset>
-																				<select class="form-control form-control-sm select" id="departmentDropdown"
-																					title="Department Name" name="listPartyConsignee[0].city" required>
+																				<select class="form-control form-control-sm select"
+																					id="departmentDropdown" title="city"
+																					name="listPartyConsignee[0].city" required>
 																					<option value="">Select</option>
 																					<option th:each="city :  ${listCity}"
 																						th:text="${city.cityName}"
@@ -740,8 +769,9 @@
 																		</td>
 																		<td>
 																			<fieldset>
-																				<select class="form-control form-control-sm select" id="departmentDropdown"
-																					title="Department Name" name="listPartyConsignee[0].country" required>
+																				<select class="form-control form-control-sm select"
+																					id="departmentDropdown" title="country"
+																					name="listPartyConsignee[0].country" required>
 																					<option value="">Select</option>
 																					<option th:each="country :  ${listCountry}"
 																						th:text="${country.countryName}"
@@ -752,8 +782,8 @@
 																		<td>
 																			<fieldset>
 																				<input type="text" class="form-control"
-																					placeholder="" id="insCompanyName0" name="listPartyConsignee[0].pin"
-																					title="pin code">
+																					placeholder="Pin" id="insCompanyName0"
+																					name="listPartyConsignee[0].pin" title="pin code" onkeypress="return alpha(event)" maxlength="6">
 																			</fieldset>
 																		</td>
 
@@ -808,84 +838,111 @@
 
 
 	<script>
-				var idIndex = 0;
-				$(document).ready(function () {
-					console.log("item master is ready!");
-					var i = 1;
-					$('#add_row').click(function () {
-						idIndex++;
-						$('#addr' + i).html(
-							"<th scope='row'><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingCode'></fieldset></th>"
-							+ "<td><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingName'></fieldset></td>"
-							+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].unitName'></fieldset></td>"
-							+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].qty'></fieldset></td>"
-							+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].barCode'></fieldset></td>"
-						);
+		var idIndex = 0;
+		$(document)
+				.ready(
+						function() {
+							console.log("item master is ready!");
+							var i = 1;
+							$('#add_row')
+									.click(
+											function() {
+												idIndex++;
+												$('#addr' + i)
+														.html(
+																"<th scope='row'><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingCode'></fieldset></th>"
+																		+ "<td><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingName'></fieldset></td>"
+																		+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].unitName'></fieldset></td>"
+																		+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].qty'></fieldset></td>"
+																		+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].barCode'></fieldset></td>");
 
-						$('#example').append(
-							'<tr id="addr'
-							+ (i + 1)
-							+ '"></tr>');
+												$('#example').append(
+														'<tr id="addr'
+																+ (i + 1)
+																+ '"></tr>');
 
-						i++;
+												i++;
 
-					});
+											});
 
-					$("#delete_row").click(function () {
-						if (i > 1) {
-							$("#addr" + (i - 1)).html('');
-							$('#_cr').val(i - 1);
-							i--;
-							idIndex--;
-						}
-					});
+							$("#delete_row").click(function() {
+								if (i > 1) {
+									$("#addr" + (i - 1)).html('');
+									$('#_cr').val(i - 1);
+									i--;
+									idIndex--;
+								}
+							});
 
-				});
-
-			</script>
-
-	<script>
-
-				$(document).ready(function () {
-					var message = document.getElementById('mess').value
-					if (message != null && message !== "") {
-
-						swal(message, "", "success", {
-							button: "OK",
-							hideClass: {
-								popup: 'animate__animated animate__fadeOutUp'
-							},
 						});
-					} else {
-						console.log("ajax request : " + message);
-					}
-
-				});
-
-
-				function getUomNameInfo() {
-
-					var uomName = document.getElementById("uomName").value;
-					document.getElementById("uomCode").value = uomName;
-				}
-
-
-
-				function limitDecimalPlaces(e, count) {
-					if (e.target.value.indexOf('.') == -1) {return;}
-					if ((e.target.value.length - e.target.value.indexOf('.')) > count) {
-						e.target.value = parseFloat(e.target.value).toFixed(count);
-					}
-				}
-			</script>
+	</script>
 
 	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
 
-				$("#itemMasterForm").validate({
-					ignoreTitle: true
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
 				});
+			} else {
+				console.log("ajax request : " + message);
+			}
 
-			</script>
+		});
+
+		function getUomNameInfo() {
+
+			var uomName = document.getElementById("uomName").value;
+			document.getElementById("uomCode").value = uomName;
+		}
+
+		function limitDecimalPlaces(e, count) {
+			if (e.target.value.indexOf('.') == -1) {
+				return;
+			}
+			if ((e.target.value.length - e.target.value.indexOf('.')) > count) {
+				e.target.value = parseFloat(e.target.value).toFixed(count);
+			}
+		}
+	</script>
+
+	<script>
+		$("#itemMasterForm").validate({
+			ignoreTitle : true
+		});
+
+		/* for only number  */
+		function alpha(e) {
+			var k;
+			document.all ? k = e.keyCode : k = e.which;
+			return ((k >= 48 && k <= 57));
+		}
+
+		/*  for alphanumeric  */
+		function alphaNumeric(e) {
+			var k;
+			document.all ? k = e.keyCode : k = e.which;
+			return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8
+					|| k == 32 || (k >= 48 && k <= 57));
+		}
+
+		function ValidatePAN() {
+			var txtPANCard = document.getElementById("panNumber");
+			var lblPANCard = document.getElementById("lblPANCard")
+			var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+			if (regex.test(txtPANCard.value.toUpperCase())) {
+				lblPANCard.style.display = "none";
+				return true;
+			} else {
+				lblPANCard.style.display = "block";
+				return false;
+			}
+		}
+	</script>
 
 
 

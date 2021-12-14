@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.access.erp.model.master.ModuleMaster;
 import com.access.erp.model.master.Program;
 import com.access.erp.model.master.SubModuleMaster;
+import com.access.erp.service.ModuleMasterService;
 import com.access.erp.service.ProgramService;
 import com.access.erp.service.SubModuleMasterService;
 
@@ -26,6 +28,7 @@ public class ProgramController {
 	@Autowired
 	ProgramService programService;
 	@Autowired SubModuleMasterService subModuleService;
+	@Autowired ModuleMasterService moduleService;
 	
 
 	@GetMapping("/")
@@ -33,6 +36,11 @@ public class ProgramController {
 
 		List<SubModuleMaster> listSubModule = subModuleService.getAllSubModule();
 		model.addAttribute("listSubModule", listSubModule);
+		
+		List<ModuleMaster> moduleList = moduleService.getAllModule();
+		model.addAttribute("moduleList", moduleList);
+		
+		
 		model.addAttribute("program", new Program());
 		return "layouts/Master/program";
 	}
