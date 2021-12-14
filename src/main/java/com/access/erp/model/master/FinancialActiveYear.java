@@ -42,7 +42,7 @@ public class FinancialActiveYear {
 	
 	
 	@Column(name="FACTIVE",length=2)
-	private String fActive;
+	private String active;
 
 
 	public FinancialActiveYear() {
@@ -92,15 +92,17 @@ public class FinancialActiveYear {
 	}
 
 
-	public String getfActive() {
-		return fActive;
+	public String getActive() {
+		return active;
 	}
 
 
-	public void setfActive(String fActive) {
-		this.fActive = fActive;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
+
+	
 
 
 	

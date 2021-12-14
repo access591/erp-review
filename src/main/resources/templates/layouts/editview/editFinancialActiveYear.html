@@ -69,10 +69,12 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/financialactiveyear/}"
+											<form role="form" th:action="@{/financialactiveyear/update}"
 												method="POST" th:object="${financialActiveYear}">
 												<div class="box-body">
 
+													<input type='hidden' th:field="*{id}">
+													
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">User</label> <select
 															class="form-control" id="userCode" th:field="*{myUser}"
@@ -124,8 +126,8 @@
 														value="Y" name="active" checked>Active <input
 														type="radio" value="N" name="active">In-Active
 													</label>
-													
-													
+
+
 												</div>
 												<!-- /.box-body -->
 
