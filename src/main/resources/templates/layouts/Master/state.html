@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -75,8 +75,8 @@
 
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">State Code</label> <input
-												type="text" class="form-control" placeholder="state code"
-												th:field="*{stateCode}">
+												type="text" class="form-control" placeholder="State Code"
+												title="state code" th:field="*{stateCode}">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="inputPassword4">State Name</label><span
@@ -89,7 +89,7 @@
 
 
 										<div class="form-group col-md-12">
-											<label for="inputEmail4">Gst State Code</label> <input
+											<label for="inputEmail4">State GST Code</label> <input
 												type="text" class="form-control"
 												placeholder="State Gst Code" title="state gst code"
 												th:field="*{gstStateCode}">
@@ -109,8 +109,9 @@
 
 
 										<label class="checkbox-inline"> <input type="radio"
-											value="Y" name="inlineRadioOptions">Active <input
-											type="radio" value="N" name="inlineRadioOptions">In-Active
+											value="Y" name="active" checked style="margin-left: 5px">Active
+											<input type="radio" value="N" name="active"
+											style="margin-left: 5px">In-Active
 										</label>
 
 									</div>
@@ -138,32 +139,29 @@
 	<div th:replace="fragments/footer :: footer">...</div>
 
 	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
 
-				$(document).ready(function () {
-					var message = document.getElementById('mess').value
-					if (message != null && message !== "") {
-
-						swal(message, "", "success", {
-							button: "OK",
-							hideClass: {
-								popup: 'animate__animated animate__fadeOutUp'
-							},
-						});
-					} else {
-						console.log("ajax request : " + message);
-					}
-
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
 				});
-			</script>
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
 
 
 	<script>
-
-				$("#stateForm").validate({
-					ignoreTitle: true
-				});
-
-			</script>
+		$("#stateForm").validate({
+			ignoreTitle : true
+		});
+	</script>
 
 	<!--   <section class="content">
         

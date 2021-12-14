@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,11 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.access.erp.model.master.City;
+
 import com.access.erp.model.master.Country;
-import com.access.erp.model.master.ModuleMaster;
 import com.access.erp.service.CountryService;
-import com.access.erp.service.ModuleMasterService;
 
 @Controller
 @RequestMapping("/country")
@@ -33,7 +33,10 @@ public class CountryController {
 	}
 	
 	@PostMapping("/")
-	public String addCountry(@ModelAttribute("country") Country country) {
+	public String addCountry(@ModelAttribute("country") Country country,Principal principal) {
+		
+		country.setInsertedBy(principal.getName());
+		country.setInsertedDate(new Date());
 		
 		countryService.addCountry(country);
 		
@@ -66,5 +69,16 @@ public class CountryController {
 		countryService.deleteCountry(countryCode);
 		return "redirect:/country/list";
 	}
+	
+	@PostMapping("/update")
+	public String updateCountry(@ModelAttribute("country") Country country,Principal principal) {
+		
+		country.setUpdateBy(principal.getName());
+		country.setUpdatedDate(new Date());
+		countryService.addCountry(country);
+		
+		return "redirect:/country/";
+	}
+	
 
 }

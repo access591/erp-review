@@ -49,7 +49,7 @@ public class State {
 	private Date updatedDate=new Date();
 	
 	@Column(name = "ACTIVE_YN",length = 10)
-	private String activeYn;
+	private String active;
 
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state",cascade = CascadeType.ALL)
@@ -133,14 +133,14 @@ public class State {
 		this.updatedDate = updatedDate;
 	}
 
-	public String getActiveYn() {
-		return activeYn;
+	public String getActive() {
+		return active;
 	}
 
-	public void setActiveYn(String activeYn) {
-		this.activeYn = activeYn;
+	public void setActive(String active) {
+		this.active = active;
 	}
-	
+
 	
 
 	

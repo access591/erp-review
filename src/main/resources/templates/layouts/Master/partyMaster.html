@@ -128,7 +128,7 @@
 																<label for="inputPassword4">Type</label><span
 																	style="color: red">*</span> <select
 																	class="form-control" title="type"
-																	th:field="*{custType}" required>
+																	th:field="*{partyTypCode}" required>
 																	<option value="">Select</option>
 																	<option value="S">Supplier</option>
 																	<option value="C">Customer</option>
@@ -213,10 +213,11 @@
 																	onkeypress="return alpha(event)" th:field="*{pinCode}"
 																	maxlength="6">
 															</div>
+															
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Phone</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Phone" title="phone"
+																	placeholder="Phone" title="phone" th:field="*{partyPhone}"
 																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
 
@@ -224,7 +225,7 @@
 																<label for="inputPassword4">Mobile</label><span
 																	style="color: red">*</span><input type="text"
 																	class="form-control" id="inputPassword4" required
-																	placeholder="Mobile" title="mobile"
+																	placeholder="Mobile" title="mobile" th:field="*{partyMobNo}"
 																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
 
@@ -252,7 +253,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Contact Person</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Contact Person" title="contact person">
+																	placeholder="Contact Person" title="contact person">  <!-- partyConp -->
 															</div>
 
 															<div class="form-group col-md-4">

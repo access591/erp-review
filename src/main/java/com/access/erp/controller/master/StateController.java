@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +36,11 @@ public class StateController {
 	}
 	
 	@PostMapping("/")
-	public String addState(@ModelAttribute("state") State state) {
+	public String addState(@ModelAttribute("state") State state,Principal principal) {
 		
+		
+		state.setInsertedBy(principal.getName());
+		state.setInsertedDate(new Date());
 		stateService.addState(state);
 		
 		return "redirect:/state/";
@@ -69,5 +74,19 @@ public class StateController {
 		stateService.deleteState(stateCode);
 		return "redirect:/state/list";
 	}
+	
+	
+	@PostMapping("/update")
+	public String updateState(@ModelAttribute("state") State state,Principal principal) {
+		
+		state.setUpdateBy(principal.getName());
+		state.setUpdatedDate(new Date());
+		
+		stateService.addState(state);
+		
+		return "redirect:/state/";
+	}
+	
+	
 
 }
