@@ -21,5 +21,7 @@ public interface FinnancialActiveYearRepo extends JpaRepository<FinancialActiveY
 	//boolean existsByRegnoAndName(String regno, String name);
 	
 	boolean existsByFinancialYearAndMyUserAndCompany(FinancialYear ff,MyUser user, Company company);
+	
+	List<FinancialActiveYear> findByActive(String active);
 
 }
