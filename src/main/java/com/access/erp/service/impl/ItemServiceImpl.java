@@ -29,10 +29,12 @@ public class ItemServiceImpl implements ItemService{
 			  System.out.println("item code is : "+ item.getItemCode()); 
 			 
 			  System.out.println("item max code is : " + maxCode);
+			  
+			  System.out.println("category code is : " +  item.getCategory().getCategCode() );
 			 
+			  System.out.println("generate item code : " + "EB" + item.getCategory().getCategCode().substring(3) + maxCode.substring(3));
 			
-			
-			item.setItemCode("EB"+item.getCategory().getCategCode()+maxCode.substring(2));
+			item.setItemCode("EB" + item.getCategory().getCategCode().substring(3) + maxCode.substring(3));
 			
 			
 		}
@@ -52,7 +54,7 @@ public class ItemServiceImpl implements ItemService{
 			p.setItem(item);
 		}
 		
-		itemRepo.save(item);
+		//itemRepo.save(item);
 		
 	}
 

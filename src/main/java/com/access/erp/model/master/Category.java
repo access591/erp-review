@@ -37,7 +37,7 @@ public class Category {
 	@Column(name = "INS_BY",length = 50)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
+	@Column(name = "INS_DATE",updatable = false)
 	private Date insertedDate=new Date();
 	
 	@Column(name = "UPDATE_BY",length = 50)
@@ -50,7 +50,7 @@ public class Category {
 	private String active;
 	
 	//CCODE 
-	@Column(name="CCODE", updatable=false, insertable=false)
+	@Column(name="CCODE", updatable=true, insertable=true)
 	private String compCode;
 
 	public Category() {
@@ -155,6 +155,18 @@ public class Category {
 
 	public void setCompCode(String compCode) {
 		this.compCode = compCode;
+	}
+
+
+
+	public String getActive() {
+		return active;
+	}
+
+
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 	
 	

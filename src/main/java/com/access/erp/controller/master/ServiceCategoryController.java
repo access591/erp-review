@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +31,13 @@ public class ServiceCategoryController {
 	}
 	
 	@PostMapping("/")
-	public String addServiceCategory(@ModelAttribute("servicecategory") ServiceCategory servicecategory) {
+	public String addServiceCategory(@ModelAttribute("servicecategory") ServiceCategory servicecategory,Principal principal) {
 		
+		
+		servicecategory.setInsertedBy(principal.getName());
+		servicecategory.setInsertedDate(new Date());
+		
+		servicecategory.setuCode("EB");
 		serviceCategoryService.addServiceCategory(servicecategory);
 		
 		return "redirect:/servicecategory/";
@@ -62,6 +69,17 @@ public class ServiceCategoryController {
 	public String deleteCategoryService(@PathVariable("id") String serviceCategoryCode,Model model) {
 		serviceCategoryService.deleteServiceCategory(serviceCategoryCode);
 		return "redirect:/servicecategory/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateServiceCategory(@ModelAttribute("servicecategory") ServiceCategory servicecategory,Principal principal) {
+		
+		
+		servicecategory.setUpdateBy(principal.getName());
+		servicecategory.setUpdatedDate(new Date());
+		serviceCategoryService.addServiceCategory(servicecategory);
+		
+		return "redirect:/servicecategory/";
 	}
 
 }

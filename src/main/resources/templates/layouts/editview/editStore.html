@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -68,7 +68,7 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/store/}" method="POST"
+											<form role="form" th:action="@{/store/update/}" method="POST"
 												th:object="${store}">
 												<div class="box-body">
 
@@ -77,16 +77,7 @@
 															type="text" class="form-control" placeholder="store code"
 															th:field="*{storeCode}">
 													</div>
-													<div class="form-group col-md-12">
-														<label class="form-label">Status</label> <label
-															style="color: red">*</label> <select class="form-control"
-															id="" title="status" th:field="*{storeStatus}" required>
-															<option value="">Select</option>
 
-															<option value="F" selected>Functional</option>
-															<option value="Nl">Non-Functioanl</option>
-														</select>
-													</div>
 
 													<div class="form-group col-md-12">
 														<label class="form-label">Type</label> <label
@@ -115,6 +106,18 @@
 														<input type="radio" value="N" name="active"
 														style="margin-left: 5px">In-Active
 													</label>
+
+
+													<div class="form-group col-md-12">
+														<label class="form-label">Status</label> <select
+															class="form-control" id="" title="status"
+															th:field="*{storeStatus}">
+															<option value="">Select</option>
+
+															<option value="F" selected>Functional</option>
+															<option value="Nl">Non-Functioanl</option>
+														</select>
+													</div>
 
 												</div>
 												<!-- /.box-body -->
@@ -148,19 +151,21 @@
 					</section>
 				</section>
 			</div>
+		</div>
+	</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js"
-				th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js"
-				th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js"
-				th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 </body>
 
 </html>
