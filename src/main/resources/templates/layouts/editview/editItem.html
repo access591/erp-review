@@ -95,7 +95,7 @@
 																	<label for="inputEmail4">UOM Code</label> <input
 																		type="email" title="uom code" id="uomCode"
 																		class="form-control form-control-sm"
-																		placeholder="Uom Code">
+																		placeholder="Uom Code" readonly>
 																</div>
 																<div class="form-group col-md-4">
 																	<label class="form-label">UOM Name</label> <label
@@ -193,15 +193,14 @@
 														</div>
 
 
-														<div class="form-group col-md-3">
-															<label class="form-label">Category</label> <label
-																style="color: red">*</label> <select
+															<div class="form-group col-md-3">
+															<label class="form-label">Category</label><span style="color:red">*</span> <select
 																class="form-control" title="category"
-																th:field="*{category}">
+																th:field="*{category}" required>
 																<option value="">Select Category</option>
 
 																<option th:each="category :  ${listCategory}"
-																	th:text="${category.categCode}"
+																	th:text="${category.description}"
 																	th:value=" ${category.categCode}"></option>
 															</select>
 														</div>

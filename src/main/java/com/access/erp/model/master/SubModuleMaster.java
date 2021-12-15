@@ -25,10 +25,10 @@ public class SubModuleMaster {
 	@Column(name = "SMNAME",length = 50)
 	private String subModuleName;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY",length = 50,updatable = false,insertable = true)
 	private String insertedBySubModule;
 
-	@Column(name = "INS_DATE")
+	@Column(name = "INS_DATE",updatable = false,insertable = true)
 	private Date insertedDateSubModule;
 	
 	@Column(name = "UPDATE_BY",length = 50)

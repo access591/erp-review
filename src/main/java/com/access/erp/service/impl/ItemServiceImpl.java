@@ -39,22 +39,27 @@ public class ItemServiceImpl implements ItemService{
 			
 		}
 
-		for(PackingDetail p : item.getPackingDetails()) {
+		if(item.getPackingDetails().get(0).getPackingName()!=null) {
 			
-			if(p.getPackingCode() == "" || p.getPackingCode() == null) {
+			for(PackingDetail p : item.getPackingDetails()) {
 				
-				String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAC", "20-21", "EB");
-				System.out.println("max code 1 is : " + maxCode1);
+				if(p.getPackingCode() == "" || p.getPackingCode() == null) {
+					
+					String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAC", "20-21", "EB");
+					System.out.println("max code 1 is : " + maxCode1);
+					
+					p.setPackingCode(maxCode);
+					
+				}
 				
-				p.setPackingCode(maxCode);
-				
+				item.getPackingDetails().add(p);
+				p.setItem(item);
 			}
 			
-			//item.getPackingDetails().add(p);
-			p.setItem(item);
 		}
+	
 		
-		//itemRepo.save(item);
+		itemRepo.save(item);
 		
 	}
 

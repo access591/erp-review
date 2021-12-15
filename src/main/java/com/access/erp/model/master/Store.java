@@ -30,10 +30,10 @@ public class Store {
 	@Column(name = "STORE_DESCRIPTION", length = 40)
 	private String description;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY",length = 50,updatable = false)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
+	@Column(name = "INS_DATE",updatable = false)
 	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)

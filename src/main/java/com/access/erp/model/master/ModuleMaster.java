@@ -25,10 +25,10 @@ public class ModuleMaster {
 	@Column(name = "ACTIVE_YN",length = 2)
 	private String active;
 	
-	@Column(name = "INS_BY")
+	@Column(name = "INS_BY",updatable = false,insertable = true)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
+	@Column(name = "INS_DATE",updatable = false,insertable = true)
 	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)

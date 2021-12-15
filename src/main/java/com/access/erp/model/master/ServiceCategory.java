@@ -25,10 +25,10 @@ public class ServiceCategory {
 	@Column(name = "DESCRIPTION", length = 50)
 	private String description;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY",length = 50,updatable = false,insertable = true)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
+	@Column(name = "INS_DATE",updatable = false,insertable = true)
 	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)

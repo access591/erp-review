@@ -52,6 +52,9 @@ public class loginContoller {
 
 		System.out.println("###################### Verify Page #####################");
 		
+		
+		System.out.println("principal : " + principal.getName());
+		
 		MyUser myUser = myUserService.editMyUser(principal.getName()).get();
 		
 		List<FinancialActiveYear> fyYearList =  finnancialActiveYearRepo.findByMyUser(myUser);
