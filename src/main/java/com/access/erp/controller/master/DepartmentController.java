@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,9 +33,12 @@ public class DepartmentController {
 	}
 	
 	@PostMapping("/")
-	public String addDepartment(@ModelAttribute("department") Department department) {
+	public String addDepartment(@ModelAttribute("department") Department department,Principal principal) {
 		
 		System.out.println("add deepartmet methiod");
+		
+		department.setInsertedBy(principal.getName());
+		department.setInsertedDate(new Date());
 		departmentService.addDepartment(department);
 		
 		return "redirect:/department/";
@@ -64,6 +69,19 @@ public class DepartmentController {
 	public String deleteDepartment(@PathVariable("id") String deptCode,Model model) {
 		departmentService.deleteDepartment(deptCode);
 		return "redirect:/department/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateDepartment(@ModelAttribute("department") Department department,Principal principal) {
+		
+		System.out.println("add deepartmet methiod");
+		
+		department.setUpdateBy(principal.getName());
+		department.setUpdatedDate(new Date());
+		
+		departmentService.addDepartment(department);
+		
+		return "redirect:/department/";
 	}
 
 }

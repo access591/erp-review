@@ -52,6 +52,17 @@ public class Designation {
 	@Column(name = "UPDATE_DATE")
 	private Date updatedDate=new Date();
 	
+	@Column(name = "ACTIVE_YN",length = 2)
+	private String active;
+	
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "designation",cascade = CascadeType.ALL)
 	List<Employee> employees;
 

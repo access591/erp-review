@@ -35,13 +35,18 @@ public class Department {
 	private String insertedBy;
 
 	@Column(name = "INS_DATE")
-	private Date insertedDate=new Date();
+	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)
 	private String updateBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updatedDate=new Date();
+	private Date updatedDate;
+	
+	@Column(name = "ACTIVE_YN")
+	private String active;
+	
+	
 	
 
 	public Department() {
@@ -120,6 +125,14 @@ public class Department {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 	

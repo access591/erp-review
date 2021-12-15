@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +32,10 @@ public class DesignationController {
 	}
 	
 	@PostMapping("/")
-	public String addDesignation(@ModelAttribute("designation") Designation designation) {
+	public String addDesignation(@ModelAttribute("designation") Designation designation,Principal principal) {
 		
+		designation.setInsertedBy(principal.getName());
+		designation.setInsertedDate(new Date());
 		designationService.addDesignation(designation);
 		
 		return "redirect:/designation/";
@@ -62,6 +66,17 @@ public class DesignationController {
 	public String deleteDesignation(@PathVariable("id") String desigCode,Model model) {
 		designationService.deleteDesignation(desigCode);
 		return "redirect:/designation/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateDesignation(@ModelAttribute("designation") Designation designation,Principal principal) {
+		
+		designation.setUpdateBy(principal.getName());
+		designation.setUpdatedDate(new Date());
+		
+		designationService.addDesignation(designation);
+		
+		return "redirect:/designation/";
 	}
 
 }
