@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -150,6 +150,12 @@
 															placeholder="Increement 2" th:field="*{increment2}">
 													</div>
 
+<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked style="margin-left: 5px" >Active <input
+														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
+													</label>
+													
+													
 												</div>
 												<!-- /.box-body -->
 

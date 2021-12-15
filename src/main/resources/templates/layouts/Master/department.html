@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>EBS</title>
@@ -99,35 +99,18 @@
 
 
 
-													<div class="form-group col-md-12">
-														<label for="inputEmail4">Department Sr Code</label> <input
-															type="text" class="form-control"
-															placeholder="Department Sr Code" th:field="*{deptSrCode}">
-													</div>
-													<div class="form-group col-md-6">
-														<label for="inputPassword4">Department Head Code</label> <input
-															type="text" class="form-control"
-															placeholder="Department Head Code" th:field="*{depHead}">
-													</div>
+													
 
 
 
-													<div class="form-group col-md-6">
-														<label for="inputEmail4">Department Head Name</label><span
-															style="color: red">*</span>
-														<select class="form-control" id="" title="This field is required" required>
-															<option value="">Select</option>
-															<option value="Most">head-1</option>
-															<option value="Normal">head 2</option>
-															<option value="Ondate">head 3</option>
-														</select>
-													</div>
+												
 
-													<label class="checkbox-inline">
-														<input type="radio" value="Y" name="inlineRadioOptions">Active
-														<input type="radio" value="N"
-															name="inlineRadioOptions">In-Active
+												<label class="checkbox-inline"> <input type="radio"
+														value="Y" name="active" checked style="margin-left: 5px" >Active <input
+														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
 													</label>
+													
+													
 												</div><!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
