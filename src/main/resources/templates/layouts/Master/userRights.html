@@ -117,7 +117,7 @@
 														<label class="form-label">Sub-Module</label><span
 															style="color: red">*</span> <select class="form-control"
 															id="" title="This field is required"
-															th:field="*{subModule}" required>
+															th:field="*{subModule}" >
 															<option value="">Select Module</option>
 															<option th:each="subModule :  ${listSubModule}"
 																th:text="${subModule.subModuleName}"

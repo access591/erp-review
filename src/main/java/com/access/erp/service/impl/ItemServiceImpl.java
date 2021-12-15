@@ -29,28 +29,35 @@ public class ItemServiceImpl implements ItemService{
 			  System.out.println("item code is : "+ item.getItemCode()); 
 			 
 			  System.out.println("item max code is : " + maxCode);
+			  
+			  System.out.println("category code is : " +  item.getCategory().getCategCode() );
 			 
+			  System.out.println("generate item code : " + "EB" + item.getCategory().getCategCode().substring(3) + maxCode.substring(3));
 			
-			
-			item.setItemCode("EB"+item.getCategory().getCategCode()+maxCode.substring(2));
+			item.setItemCode("EB" + item.getCategory().getCategCode().substring(3) + maxCode.substring(3));
 			
 			
 		}
 
-		for(PackingDetail p : item.getPackingDetails()) {
+		if(item.getPackingDetails().get(0).getPackingName()!=null) {
 			
-			if(p.getPackingCode() == "" || p.getPackingCode() == null) {
+			for(PackingDetail p : item.getPackingDetails()) {
 				
-				String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAC", "20-21", "EB");
-				System.out.println("max code 1 is : " + maxCode1);
+				if(p.getPackingCode() == "" || p.getPackingCode() == null) {
+					
+					String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAC", "20-21", "EB");
+					System.out.println("max code 1 is : " + maxCode1);
+					
+					p.setPackingCode(maxCode);
+					
+				}
 				
-				p.setPackingCode(maxCode);
-				
+				item.getPackingDetails().add(p);
+				p.setItem(item);
 			}
 			
-			//item.getPackingDetails().add(p);
-			p.setItem(item);
 		}
+	
 		
 		itemRepo.save(item);
 		

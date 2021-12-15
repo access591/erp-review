@@ -59,7 +59,7 @@ public class CustomUser implements UserDetails {
 	@Override
 	public String getUsername() {
 
-		return myUser.getUserName();
+		return myUser.getUserCode();
 	}
 
 	@Override

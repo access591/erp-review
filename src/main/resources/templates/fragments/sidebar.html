@@ -50,22 +50,29 @@
 
 
 
-					<li><a th:href="@{/financialyear/}"><i
+					<li th:if="${#request.isUserInRole('FINANCIALYEAR') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/financialyear/}"><i
 							class="fa fa-circle-o"></i>Financial year</a></li>
-					<li><a th:href="@{/financialactiveyear/}"><i
+							
+							
+					<li th:if="${#request.isUserInRole('ACTIVEFINANCIALYEAR') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/financialactiveyear/}"><i
 							class="fa fa-circle-o"></i> Active Financial Year</a></li>
 
 					<li
-						th:if="${#request.isUserInRole('USER') or #request.isUserInRole('ADMIN')}"><a
+						th:if="${#request.isUserInRole('USERS') or #request.isUserInRole('ADMIN')}"><a
 						th:href="@{/user/}"><i class="fa fa-circle-o"></i>Users</a></li>
 
-					<li><a th:href="@{/userrights/}"><i class="fa fa-circle-o"></i>User
+					<li th:if="${#request.isUserInRole('USERRIGHTS') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/userrights/}"><i class="fa fa-circle-o"></i>User
 							Rights</a></li>
-					<li><a th:href="@{/module/}"><i class="fa fa-circle-o"></i>Module</a></li>
-					<li><a th:href="@{/sub-module/}"><i class="fa fa-circle-o"></i>Sub
+							
+							
+					<li th:if="${#request.isUserInRole('MODULE') or #request.isUserInRole('ADMIN')}"><a th:href="@{/module/}"><i class="fa fa-circle-o"></i>Module</a></li>
+				
+					<li th:if="${#request.isUserInRole('SUBMODULE') or #request.isUserInRole('ADMIN')}"><a th:href="@{/sub-module/}"><i class="fa fa-circle-o"></i>Sub
 							Module</a></li>
-					<li><a th:href="@{/program/}"><i class="fa fa-circle-o"></i>Program</a></li>
+					<li th:if="${#request.isUserInRole('PROGRAM') or #request.isUserInRole('ADMIN')}"><a th:href="@{/program/}"><i class="fa fa-circle-o"></i>Program</a></li>
 				</ul></li>
+				
+				
 			<!--<li class="treeview">
 				<a href="#">
 					<i class="fa fa-files-o"></i>

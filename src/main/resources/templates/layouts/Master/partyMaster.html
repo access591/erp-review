@@ -116,7 +116,7 @@
 																<label for="inputAddress">Party Code</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" placeholder="Party Code"
-																	title="party code" th:field="*{partyCode}">
+																	title="party code" th:field="*{partyTypCode}" readonly>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Name</label><span
@@ -194,10 +194,9 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><select class="form-control"
+																<label for="inputPassword4">Country</label><select class="form-control"
 																	id="departmentDropdown" title="Department Name"
-																	th:field="*{countryCode}" required>
+																	th:field="*{countryCode}">
 																	<option value="">Select</option>
 																	<option th:each="country :  ${listCountry}"
 																		th:text="${country.countryName}"
@@ -222,9 +221,8 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Mobile</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4" required
+																<label for="inputPassword4">Mobile</label><input type="text"
+																	class="form-control" id="inputPassword4" 
 																	placeholder="Mobile" title="mobile" th:field="*{partyMobNo}"
 																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
@@ -243,8 +241,7 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Website</label><span
-																	style="color: red">*</span><input type="url"
+																<label for="inputPassword4">Website</label><input type="url"
 																	class="form-control" id="inputPassword4"
 																	placeholder="website" title="website"
 																	th:field="*{partyWebsite}">
@@ -257,8 +254,7 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Phone No</label><span
-																	style="color: red">*</span><input type="text"
+																<label for="inputPassword4">Phone No</label><input type="text"
 																	class="form-control" id="inputPassword4"
 																	onkeypress="return alpha(event)" placeholder="Phone No"
 																	title="phone no" maxlength="10">

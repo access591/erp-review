@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +33,10 @@ public class StoreController {
 	}
 
 	@PostMapping("/")
-	public String addStore(@ModelAttribute("store") Store store) {
+	public String addStore(@ModelAttribute("store") Store store,Principal principal) {
 
+	 store.setInsertedBy(principal.getName());
+	 store.setInsertedDate(new Date());
 		storeService.addStore(store);
 
 		return "redirect:/store/";
@@ -64,6 +68,16 @@ public class StoreController {
 	public String deleteStore(@PathVariable("id") String storeCode, Model model) {
 		storeService.deleteStore(storeCode);
 		return "redirect:/store/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateStore(@ModelAttribute("store") Store store,Principal principal) {
+
+	 store.setUpdateBy(principal.getName());
+	 store.setUpdatedDate(new Date());
+		storeService.addStore(store);
+
+		return "redirect:/store/";
 	}
 
 }

@@ -55,6 +55,8 @@ public class UserRightsServiceImpl implements UserRightsService {
 		MyUser user = userRights.getMyUser();
 		
 		addOrUpdateRole(program.getProgramCode(),user.getUserCode());
+		
+		userRightRepo.save(userRights);
 
 	}
 
@@ -84,7 +86,10 @@ public class UserRightsServiceImpl implements UserRightsService {
 		String rolename;
 		MyUser u = userRepo.findByUserCode(userCode);		
 		if (program != null) {
-			rolename = program.getProgramHrefName().replaceAll("\\s", "").toUpperCase().substring(2);
+			
+			//rolename = program.getProgramHrefName().replaceAll("\\s", "").toUpperCase().substring(2);
+			
+			rolename = program.getProgramName().toUpperCase().trim();
 			System.out.println("role name " + rolename);
 
 			Role r = roleService.isRoleExistOrNot(rolename); // null == data not found (role is not exists)

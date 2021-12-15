@@ -40,11 +40,11 @@ public class Designation {
 	@Column(name = "INCREMENT2")
 	private long increment2;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY",length = 50,updatable = false,insertable = true)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
-	private Date insertedDate=new Date();
+	@Column(name = "INS_DATE",updatable = false,insertable = true)
+	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)
 	private String updateBy;

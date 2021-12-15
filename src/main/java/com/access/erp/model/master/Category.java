@@ -34,23 +34,23 @@ public class Category {
 	@Column(name = "A_DESCRIPTION", length = 100)
 	private String accountDescription;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY",length = 50,updatable = false,insertable = true)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
-	private Date insertedDate=new Date();
+	@Column(name = "INS_DATE",updatable = false,insertable = true)
+	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)
 	private String updateBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updatedDate=new Date();
+	private Date updatedDate;
 	
 	@Column(name = "ACTIVE_YN")
 	private String active;
 	
 	//CCODE 
-	@Column(name="CCODE", updatable=false, insertable=false)
+	@Column(name="CCODE", updatable=true, insertable=true)
 	private String compCode;
 
 	public Category() {
@@ -155,6 +155,18 @@ public class Category {
 
 	public void setCompCode(String compCode) {
 		this.compCode = compCode;
+	}
+
+
+
+	public String getActive() {
+		return active;
+	}
+
+
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 	
 	

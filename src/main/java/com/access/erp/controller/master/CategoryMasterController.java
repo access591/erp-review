@@ -39,6 +39,8 @@ public class CategoryMasterController {
 		category.setInsertedBy(principal.getName());
 		category.setInsertedDate(new Date());
 		
+		
+		//
 		category.setCompCode("EB");
 		
 		categoryService.addCategory(category);
