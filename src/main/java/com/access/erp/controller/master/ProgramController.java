@@ -71,8 +71,14 @@ public class ProgramController {
 
 		System.out.println("module code is : " + programCode);
 		List<SubModuleMaster> listSubModule = subModuleService.getAllSubModule();
+		
+		List<ModuleMaster> moduleList = moduleService.getAllModule();
+		model.addAttribute("moduleList", moduleList);
+		
+		
 		model.addAttribute("listSubModule", listSubModule);
 		Optional<Program> program = programService.editProgram(programCode);
+		
 		model.addAttribute("program", program);
 		return "layouts/editview/editProgram";
 	}

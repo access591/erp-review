@@ -7,6 +7,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,8 @@ import com.access.erp.service.CompanyService;
 import com.access.erp.service.FinancialActiveYearService;
 import com.access.erp.service.FinancialYearService;
 import com.access.erp.service.MyUserService;
+import com.access.erp.singleton.GlobalParameter;
+import com.access.erp.singleton.SingletonDummy;
 
 @Controller
 public class loginContoller {
@@ -42,6 +45,7 @@ public class loginContoller {
 	FinnancialActiveYearRepo finnancialActiveYearRepo;
 	@Autowired
 	FinancialYearService financialYearService;
+	@Autowired GlobalParameter globalParameter;
 
 	@GetMapping("/verify")
 	public String indexPage(Model model,Principal principal) {
@@ -66,6 +70,8 @@ public class loginContoller {
 		return "layouts/loginPopup";
 	}
 
+	
+	
 	@PostMapping("/index")
 	public String loginPopupPage(Model model, @ModelAttribute("") FinancialActiveYear financialActiveYear,
 			Principal principal) {
@@ -90,6 +96,12 @@ public class loginContoller {
 		System.out.println("isExist or Not :" + isExist);
 		
 		if(isExist) {
+			globalParameter.setGlobaluser(aUser.getUserCode());
+			globalParameter.setGlobalCompany(aCompany.getCompCode());
+			globalParameter.setGlobalFinanceYear(aFy.getFinancialYearCode());
+			
+			
+			//AnnotationConfigApplicationContext context =  new AnnotationConfigApplicationContext(AppConfig.class);
 			return "layouts/index";
 		}else {
 			return "layouts/login";

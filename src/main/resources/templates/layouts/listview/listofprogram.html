@@ -55,8 +55,11 @@
 															<th scope="col">#</th>
 															<th scope="col">Program Code</th>
 															<th scope="col">Program Name</th>
+															
+																<th scope="col">Module Name</th>
+																
 															<th scope="col">Sub-Module Name</th>
-															<th scope="col">Inserted By</th>
+														
 															<th scope="col">Status</th>
 															<th scope="col">Action</th>
 														</tr>
@@ -66,9 +69,17 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${program.programCode}">Garrett Winters</td>
 															<td th:text="${program.programName}">Garrett Winters</td>
-															<td th:text="${program.subModuleMaster.subModuleName}">Garrett
+															
+															<td th:if="${program.module!=null}" th:text="${program.module.moduleName}">Garrett
 																Winters</td>
-															<td th:text="${program.insertedBy}">Good Guys</td>
+															<td th:if="${program.module==null}">-</td>
+															
+															<td th:if="${program.subModuleMaster!=null}" th:text="${program.subModuleMaster.subModuleName}">Garrett
+																Winters</td>
+															<td th:if="${program.subModuleMaster==null}">-</td>
+																
+																
+														
 
 															<td th:if="${program.active=='Y'}"><span class="badge bg-success"
 																>Active</span></td>

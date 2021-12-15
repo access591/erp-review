@@ -116,7 +116,7 @@ public class UserRightsServiceImpl implements UserRightsService {
 			else {
 				Role role = new Role();
 				role.setRoleName(rolename);
-				role.setProgram(program);
+				//role.setProgram(program);
 				roleRepo.save(role);
 				Role r2 = roleService.isRoleExistOrNot(rolename);
 
