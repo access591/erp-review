@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.access.erp.model.master.Country;
 import com.access.erp.model.master.State;
 import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.repo.StateRepo;
@@ -48,6 +49,13 @@ public class StateServiceImpl implements StateService{
 	public void deleteState(String stateCode) {
 		stateRepo.deleteById(stateCode);
 		
+	}
+
+	@Override
+	public List<State> findByCountry(Country country) {
+	
+		
+		return stateRepo.findByCountry(country);
 	}
 
 }

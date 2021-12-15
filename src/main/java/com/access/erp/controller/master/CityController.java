@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.master.City;
-import com.access.erp.model.master.ModuleMaster;
 import com.access.erp.model.master.State;
 import com.access.erp.service.CityService;
-import com.access.erp.service.ModuleMasterService;
 import com.access.erp.service.StateService;
 
 @Controller
@@ -38,8 +38,10 @@ public class CityController {
 	}
 	
 	@PostMapping("/")
-	public String addCity(@ModelAttribute("city") City city) {
+	public String addCity(@ModelAttribute("city") City city,Principal principal) {
 		
+		city.setInsertedBy(principal.getName());
+		city.setInsertedDate(new Date());
 		cityService.addCity(city);
 		
 		return "redirect:/city/";
@@ -71,7 +73,20 @@ public class CityController {
 	@GetMapping("/delete/{id}")
 	public String deleteCity(@PathVariable("id") String cityCode,Model model) {
 		cityService.deleteCity(cityCode);
+		
+		
 		return "redirect:/city/list";
+	}
+	
+	
+	@PostMapping("/update")
+	public String updateCity(@ModelAttribute("city") City city,Principal principal) {
+		
+		city.setUpdateBy(principal.getName());
+		city.setUpdatedDate(new Date());
+		cityService.addCity(city);
+		
+		return "redirect:/city/";
 	}
 
 }

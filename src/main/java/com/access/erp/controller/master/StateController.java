@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.access.erp.model.master.City;
 import com.access.erp.model.master.Country;
 import com.access.erp.model.master.State;
+import com.access.erp.service.CityService;
 import com.access.erp.service.CountryService;
 import com.access.erp.service.StateService;
 
@@ -25,6 +27,7 @@ public class StateController {
 	
 	@Autowired StateService stateService;
 	@Autowired CountryService countryService;
+	@Autowired CityService cityService;
 	
 	@GetMapping("/")
 	public String state(Model model) {
@@ -82,6 +85,24 @@ public class StateController {
 		state.setUpdateBy(principal.getName());
 		state.setUpdatedDate(new Date());
 		
+		if(state.getActive().equals("N")) {
+			
+			List<City> cityList = cityService.findByState(state);
+
+			for (City city : cityList) {
+				city.setActive("N");
+				cityService.addCity(city);
+			}
+			
+		}else {
+			
+			List<City> cityList = cityService.findByState(state);
+
+			for (City city : cityList) {
+				city.setActive("Y");
+				cityService.addCity(city);
+			}
+		}
 		stateService.addState(state);
 		
 		return "redirect:/state/";

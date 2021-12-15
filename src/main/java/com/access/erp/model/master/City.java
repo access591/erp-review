@@ -36,16 +36,16 @@ public class City {
 	private String insertedBy;
 
 	@Column(name = "INS_DATE")
-	private Date insertedDate=new Date();
+	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)
 	private String updateBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updatedDate=new Date();
+	private Date updatedDate;
 	
 	@Column(name = "ACTIVE_YN",length = 10)
-	private String activeYn;
+	private String active;
 	
 	@ManyToOne
 	@JoinColumn(name="STATE_CODE")
@@ -138,14 +138,15 @@ public class City {
 		this.updatedDate = updatedDate;
 	}
 
-	public String getActiveYn() {
-		return activeYn;
+	public String getActive() {
+		return active;
 	}
 
-	public void setActiveYn(String activeYn) {
-		this.activeYn = activeYn;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
+	
 	
 
 }

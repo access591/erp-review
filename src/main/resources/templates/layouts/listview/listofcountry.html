@@ -69,10 +69,10 @@
 
 															<td th:text="${country.insertedBy}">Good Guys</td>
 
-															<td><span class="badge bg-success"
-																th:if="${country.active=='Y'}">Active</span></td>
-															<td><span class="badge bg-success"
-																th:if="${country.active=='N'}">In Active</span></td>
+															<td th:if="${country.active=='Y'}"><span class="badge bg-success"
+																>Active</span></td>
+															<td th:if="${country.active=='N'}"><span class="badge bg-success"
+																>In Active</span></td>
 
 															<td><span> <a
 																	th:href="@{/country/edit/{id}(id=${country.countryCode})}"><em
