@@ -19,6 +19,27 @@
 <link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
 	th:href="@{/css/skins/_all-skins.min.css}">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<style>
+.error {
+	color: red;
+	font-size: 11px;
+}
+</style>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -63,32 +84,46 @@
 										style="margin-top: 20px;">
 										<!-- general form elements -->
 										<div class="box box-primary">
+
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/program/update/}" method="POST"
-												th:object="${program}">
+											<form id="programForm" role="form" th:action="@{/program/}"
+												method="POST" th:object="${program}">
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
 														<label>Program Code</label> <input type="text"
-															class="form-control" placeholder="program code"
-															th:field="*{programCode}">
+															class="form-control" placeholder="Program Code"
+															th:field="*{programCode}" title="program code">
 													</div>
 
 													<div class="form-group col-md-6">
-														<label>Program Name</label> <input type="text"
-															class="form-control" placeholder="program name"
-															th:field="*{programName}">
+														<label>Program Name</label><span style="color: red">*</span>
+														<input type="text" class="form-control"
+															placeholder="Program Name" th:field="*{programName}"
+															title="This field is required" required>
 													</div>
 
-													<div class="form-group col-md-12">
-														<label class="form-label">Sub Module Name</label> <label
-															style="color: red">*</label> <select class="form-control"
-															title="Department Name" th:field="*{subModuleMaster}"
-															required>
+													<div class="form-group col-md-6">
+														<label class="form-label">Select Module</label> <label
+															style="color: red">*</label> <select title="Module Name"
+															class="form-control" th:field="*{module}" required>
+															<option value="">Select</option>
+															<option th:each="module :  ${moduleList}"
+																th:text="${module.moduleName}"
+																th:value=" ${module.moduleCode}"></option>
+														</select>
+													</div>
+
+													<div class="form-group col-md-6">
+														<label class="form-label">Sub Module Name</label> <select
+															class="form-control" th:field="*{subModuleMaster}"
+															title="This field is required">
 															<option value="">Select Sub Module</option>
 															<option th:each="subModule :  ${listSubModule}"
 																th:text="${subModule.subModuleName}"
@@ -97,30 +132,30 @@
 													</div>
 
 													<div class="form-group col-md-6">
-														<label for="inputPassword4">Program Type</label> <input
-															type="text" class="form-control"
-															placeholder="program type" th:field="*{programType}">
+														<label for="inputPassword4">Program Type</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="Program Type"
+															th:field="*{programType}" title="This field is required">
 													</div>
 
 													<div class="form-group col-md-6">
 														<label for="inputPassword4">Program Href</label> <input
 															type="text" class="form-control"
-															placeholder="program href" th:field="*{programHrefName}">
+															placeholder="Program Href" th:field="*{programHrefName}"
+															title="program href">
 													</div>
 
-													<div class="form-group col-md-6">
+													<div class="form-group col-md-12">
 														<label for="inputPassword4">Sequence Number</label> <input
-															type="text" class="form-control"
-															placeholder="sequence number" th:field="*{seqNo}">
+															type="text" class="form-control" title="sequence number"
+															placeholder="Sequence Number" th:field="*{seqNo}">
 													</div>
-
 
 
 													<label class="checkbox-inline"> <input type="radio"
 														value="Y" name="active" checked>Active <input
 														type="radio" value="N" name="active">In-Active
 													</label>
-
 												</div>
 												<!-- /.box-body -->
 
@@ -136,10 +171,10 @@
 
 										</div>
 										<!-- /.box -->
-										<div
+									<!-- 	<div
 											style="width: parent; text-align-last: right; margin: 8px">
 											<a th:href="@{/program/list}">View All Program</a>
-										</div>
+										</div> -->
 									</div>
 
 
@@ -152,9 +187,34 @@
 					</section>
 				</section>
 			</div>
+
 		</div>
 	</div>
 	<div th:replace="fragments/footer :: footer">...</div>
+
+	<script>
+		$(document).ready(function() {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+	<script>
+		$("#programForm").validate({
+			ignoreTitle : true
+		});
+	</script>
 	<!--   <section class="content">
         
         </section>-->

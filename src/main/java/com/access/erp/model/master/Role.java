@@ -29,9 +29,11 @@ public class Role {
 	@Column(name="ROLE_NAME")
 	private String roleName;
 	
-	@OneToOne
-	@JoinColumn(name="HOME_ADDRESS_ID")
-	private Program program;
+	/*
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name="HOME_ADDRESS_ID") private Program program;
+	 */
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
@@ -58,13 +60,7 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	public Program getProgram() {
-		return program;
-	}
-
-	public void setProgram(Program program) {
-		this.program = program;
-	}
+	
 
 	public List<UserRole> getUserRoleList() {
 		return userRoleList;

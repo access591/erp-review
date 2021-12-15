@@ -18,6 +18,7 @@ import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.service.EmployeeService;
 import com.access.erp.service.MyUserService;
+import com.access.erp.singleton.SingletonDummy;
 
 @Controller
 @RequestMapping("/user")
@@ -26,13 +27,15 @@ public class MyUserController {
 	@Autowired EmployeeService employeeService;
 	@Autowired MyUserService userService;
 	
+	@Autowired  SingletonDummy singleton;
+	
 	
 	@GetMapping("/")
 	public String user(Model model) { 
 		
 		//List<MyUser> userList = userService.getAllMyUser();
 		//model.addAttribute("userList", userList);
-		
+		System.out.println("single ton value is : " + singleton.getUserName());;
 		List<Employee> listEmployee = employeeService.getAllEmployee();
 
 		model.addAttribute("listEmployee", listEmployee);

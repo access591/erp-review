@@ -47,8 +47,8 @@ public class Program {
 	private String active;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "SMCODE")
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "SMCODE",nullable = true)
 	private SubModuleMaster subModuleMaster;
 	
 	
