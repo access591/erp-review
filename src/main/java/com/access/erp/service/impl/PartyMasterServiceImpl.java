@@ -24,7 +24,16 @@ public class PartyMasterServiceImpl implements PartyMasterService{
 	public void addPartyMaster(PartyMaster partyMaster) {
 		
 		String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PRT", "20-21", "EB");
-		partyMaster.setPartyCode("EB-" + partyMaster.getPartyTypCode() .charAt(0) + maxCode.substring(4));
+		
+		System.out.println("party type code : " + partyMaster.getPartyTypCode());
+		
+		System.out.println("max sequence number : " + maxCode);
+		
+		System.out.println("max sub  sequence number : " + maxCode.substring(4));
+		
+		System.out.println("party master code : " + "EB" +"-" + partyMaster.getPartyTypCode().charAt(1)  + maxCode.substring(4));
+		
+		partyMaster.setPartyCode("EB" +"-" + partyMaster.getPartyTypCode().charAt(1)  + maxCode.substring(4));
 		
 		for(PartyBilling party : partyMaster.getListPartyBilling()) {
 			

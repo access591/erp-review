@@ -101,17 +101,17 @@
 							<i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 
-							<li><a th:href="@{/store/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('STORE') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/store/}"><i class="fa fa-circle-o"></i>
 									Store</a></li>
-							<li><a th:href="@{/category/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('CATEGORY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/category/}"><i class="fa fa-circle-o"></i>
 									Category</a></li>
-							<li><a th:href="@{/item/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('ITEM') or #request.isUserInRole('ADMIN')}"><a th:href="@{/item/}"><i class="fa fa-circle-o"></i>
 									Item</a></li>
-							<li><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('UOM(UNITOFMEASUREMENT)') or #request.isUserInRole('ADMIN')}"><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i>
 									UOM(Unit of Measurement)</a></li>
-							<li><a th:href="@{/servicecategory/}"><i
+							<li th:if="${#request.isUserInRole('SERVICECATEGORY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/servicecategory/}"><i
 									class="fa fa-circle-o"></i> Service Category</a></li>
-							<li><a th:href="@{/party/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('PARTYMASTER') or #request.isUserInRole('ADMIN')}"><a th:href="@{/party/}"><i class="fa fa-circle-o"></i>
 									Party Master</a></li>
 
 
@@ -127,16 +127,16 @@
 							Info <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 
-							<li><a th:href="@{/country/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('COUNTRY') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/country/}"><i class="fa fa-circle-o"></i>
 									Country</a></li>
-							<li><a th:href="@{/state/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('STATE') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/state/}"><i class="fa fa-circle-o"></i>
 									State</a></li>
-							<li><a th:href="@{/city/}"><i class="fa fa-circle-o"></i>
+							<li th:if="${#request.isUserInRole('CITY') or #request.isUserInRole('ADMIN')}" ><a th:href="@{/city/}"><i class="fa fa-circle-o"></i>
 									City</a></li>
 
-							<li><a th:href="@{/department/}"><i
+							<li th:if="${#request.isUserInRole('DEPARTMENT') or #request.isUserInRole('ADMIN')}"><a th:href="@{/department/}"><i
 									class="fa fa-circle-o"></i> Department</a></li>
-							<li><a th:href="@{/designation/}"><i
+							<li th:if="${#request.isUserInRole('DESIGNATION') or #request.isUserInRole('ADMIN')}"><a th:href="@{/designation/}"><i
 									class="fa fa-circle-o"></i> Designation</a></li>
 
 
@@ -163,21 +163,21 @@
 							class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 
-							<li><a th:href="@{/openindent/}"><i
+							<li th:if="${#request.isUserInRole('INDENT') or #request.isUserInRole('ADMIN')}"><a th:href="@{/openindent/}"><i
 									class="fa fa-circle-o"></i> Indent</a></li>
-							<li><a th:href="@{/openindent/approve}"><i
+							<li th:if="${#request.isUserInRole('INDENTAPPROVAL') or #request.isUserInRole('ADMIN')}"><a th:href="@{/openindent/approve}"><i
 									class="fa fa-circle-o"></i> Indent Approval</a></li>
-							<li><a th:href="@{/requestquotation/}"><i
+							<li th:if="${#request.isUserInRole('REQUESTFORQUOTATION') or #request.isUserInRole('ADMIN')}"><a th:href="@{/requestquotation/}"><i
 									class="fa fa-circle-o"></i> Request For Quotation</a></li>
-							<li><a th:href="@{/quotationdetail/}"><i
+							<li th:if="${#request.isUserInRole('QUOTATIONDETAIL') or #request.isUserInRole('ADMIN')}"><a th:href="@{/quotationdetail/}"><i
 									class="fa fa-circle-o"></i> Quotation Detail</a></li>
-							<li><a th:href="@{/approvalquotationdetail/}"><i
+							<li th:if="${#request.isUserInRole('QUOTATIONCOMPARITIVE&APPROVAL') or #request.isUserInRole('ADMIN')}"><a th:href="@{/approvalquotationdetail/}"><i
 									class="fa fa-circle-o"></i> Quotation Comparitive <br>and
 									approval</a></li>
-							<li><a th:href="@{/purchaseorder/}"><i
+							<li th:if="${#request.isUserInRole('PURCHASEORDER') or #request.isUserInRole('ADMIN')}"><a th:href="@{/purchaseorder/}"><i
 									class="fa fa-circle-o"></i>Purchase Order</a></li>
 
-							<li><a th:href="@{/poapproval/}"><i
+							<li th:if="${#request.isUserInRole('POAPPROVAL') or #request.isUserInRole('ADMIN')}"><a th:href="@{/poapproval/}"><i
 									class="fa fa-circle-o"></i>PO Approval</a></li>
 
 
@@ -196,24 +196,24 @@
 				<ul class="treeview-menu">
 
 
-					<li><a th:href="@{/itemopening/}"><i
+					<li th:if="${#request.isUserInRole('ITEMOPENING') or #request.isUserInRole('ADMIN')}"><a th:href="@{/itemopening/}"><i
 							class="fa fa-circle-o"></i> Item-Opening</a></li>
-					<li><a th:href="@{/gateentry/}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('GATEENTRY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/gateentry/}"><i class="fa fa-circle-o"></i>
 							Gate Entry</a></li>
 					
-					<li><a th:href="@{/gatepass/}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('GATEPASS') or #request.isUserInRole('ADMIN')}"><a th:href="@{/gatepass/}"><i class="fa fa-circle-o"></i>
 							Gate Pass</a></li>
 							
-					<li><a th:href="@{/mrn/}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('MATERIALRECEIPTNOTE') or #request.isUserInRole('ADMIN')}"><a th:href="@{/mrn/}"><i class="fa fa-circle-o"></i>
 							Material Receipt Master</a></li>
-					<li><a th:href="@{/inspection/}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('MATERIALRECEIPTINSPECTION') or #request.isUserInRole('ADMIN')}"><a th:href="@{/inspection/}"><i class="fa fa-circle-o"></i>
 							Material Receipt Inspection</a></li>
-					<li><a th:href="@{/materialrequisition/}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('MATERIALREQUISITION') or #request.isUserInRole('ADMIN')}"><a th:href="@{/materialrequisition/}"><i class="fa fa-circle-o"></i>
 							Material Requisition</a></li>
-					<li><a th:href="@{/materialrequisition/approval}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('MATERIALREQUISITIONAPPROVAL') or #request.isUserInRole('ADMIN')}"><a th:href="@{/materialrequisition/approval}"><i class="fa fa-circle-o"></i>
 							Material Requisition Approval</a></li>
 							
-					<li><a th:href="@{/issueslip/}"><i class="fa fa-circle-o"></i>
+					<li th:if="${#request.isUserInRole('MATERIALISSUESLIP') or #request.isUserInRole('ADMIN')}"><a th:href="@{/issueslip/}"><i class="fa fa-circle-o"></i>
 							Material Issue Slip</a></li>
 				</ul></li>
 

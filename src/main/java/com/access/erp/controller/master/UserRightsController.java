@@ -18,6 +18,8 @@ import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.Program;
 import com.access.erp.model.master.SubModuleMaster;
 import com.access.erp.model.master.UserRights;
+import com.access.erp.repo.MyUserRepo;
+import com.access.erp.repo.UserRightRepo;
 import com.access.erp.repo.UserRoleRepo;
 import com.access.erp.service.ModuleMasterService;
 import com.access.erp.service.MyUserService;
@@ -35,6 +37,8 @@ public class UserRightsController {
 	@Autowired SubModuleMasterService subModuleService;
 	@Autowired ProgramService programService;
 	@Autowired UserRightsService userRightsservice;
+	@Autowired UserRightRepo userRightRepo;
+	
 	
 	
 	@GetMapping("/")
@@ -66,7 +70,18 @@ public class UserRightsController {
 	@PostMapping("/")
 	public String addUserRights(@ModelAttribute("userRights") UserRights userRights) {
 		
-		userRightsservice.addUserRights(userRights);
+		
+		MyUser myUser = myUserService.editMyUser(userRights.getMyUser().getUserCode()).get();
+		Program program = programService.editProgram(userRights.getPrgCode().getProgramCode()).get();
+		
+		boolean isUserRightExist = userRightRepo.existsByMyUserAndPrgCode(myUser, program);
+		
+		System.out.println("is user rights exists : " + isUserRightExist);
+		
+		if(!isUserRightExist) {
+			userRightsservice.addUserRights(userRights);
+		}
+	
 		
 		
 		return "redirect:/userrights/";
