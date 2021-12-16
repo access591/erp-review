@@ -45,6 +45,7 @@ public class UserRightsServiceImpl implements UserRightsService {
 	@Override
 	public void addUserRights(UserRights userRights) {
 
+		
 		userRightRepo.save(userRights);
 
 		// 1. save user role
@@ -89,10 +90,14 @@ public class UserRightsServiceImpl implements UserRightsService {
 			
 			//rolename = program.getProgramHrefName().replaceAll("\\s", "").toUpperCase().substring(2);
 			
-			rolename = program.getProgramName().toUpperCase().trim();
+			rolename =  program.getProgramName();
+			 rolename = rolename.replaceAll("\\s", "").toUpperCase();
+			//rolename1 = program.getProgramName().toUpperCase();
 			System.out.println("role name " + rolename);
+			
+			System.out.println("role name 1  " + rolename);
 
-			Role r = roleService.isRoleExistOrNot(rolename); // null == data not found (role is not exists)
+			Role r = roleService.isRoleExistOrNot(rolename);  // null == data not found (role is not exists)
 
 			
 
