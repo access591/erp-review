@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "M_SUB_MODULE")
 public class SubModuleMaster {
@@ -44,10 +47,13 @@ public class SubModuleMaster {
 	@Column(name = "SEQ_NO",length = 50)
 	private int seqNoSubModule;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="MODULE_CODE")
 	private ModuleMaster moduleMaster;
 	
+	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "subModuleMaster",cascade = CascadeType.ALL)
 	private Set<Program> program;
 

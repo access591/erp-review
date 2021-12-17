@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "M_MODULE")
 public class ModuleMaster {
@@ -40,6 +42,8 @@ public class ModuleMaster {
 	@Column(name = "SEQ_NO")
 	private int seqNo;
 	
+	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "moduleMaster",cascade = CascadeType.ALL)
 	private Set<SubModuleMaster> subModule;
 
