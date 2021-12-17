@@ -1,5 +1,7 @@
 package com.access.erp.controller.master;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,20 +18,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.access.erp.model.master.Category;
 import com.access.erp.model.master.ModuleMaster;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.Program;
+import com.access.erp.model.master.Role;
 import com.access.erp.model.master.SubModuleMaster;
 import com.access.erp.model.master.UserRights;
+import com.access.erp.model.master.UserRole;
 import com.access.erp.repo.ModuleMasterRepo;
 import com.access.erp.repo.MyUserRepo;
 import com.access.erp.repo.ProgramRepo;
+import com.access.erp.repo.RoleRepo;
 import com.access.erp.repo.SubModuleRepo;
 import com.access.erp.repo.UserRightRepo;
 import com.access.erp.repo.UserRoleRepo;
 import com.access.erp.service.ModuleMasterService;
 import com.access.erp.service.MyUserService;
 import com.access.erp.service.ProgramService;
+import com.access.erp.service.RoleService;
 import com.access.erp.service.SubModuleMasterService;
 import com.access.erp.service.UserRightsService;
 import com.access.erp.utility.SubModuleProgram;
@@ -60,6 +67,7 @@ public class UserRightsController {
 	SubModuleRepo subModuleRepo;
 	@Autowired
 	ProgramRepo programRepo;
+	@Autowired RoleRepo roleRepo;
 
 	@GetMapping("/")
 	public String userRights(Model model) {
@@ -94,6 +102,9 @@ public class UserRightsController {
 		String subModuleCode = request.getParameter("subModuleCode");
 		String programCode = request.getParameter("programCode");
 
+		//
+		//String active = request.getParameter("active");
+
 		System.out.println("user  typ : " + userCode);
 		System.out.println("module typ : " + moduleCode);
 		System.out.println("sub module  typ : " + subModuleCode);
@@ -104,8 +115,6 @@ public class UserRightsController {
 
 		if (subModuleCode == "all" || subModuleCode.equals("all")) {
 			System.out.println("all submodule from a module ");
-
-			
 
 			List<Program> programList = programRepo.findByModuleAndActive(moduleMaster, "Y");
 
@@ -127,9 +136,9 @@ public class UserRightsController {
 
 		else if (programCode == "all" || programCode.equals("all")) {
 			System.out.println("all program from a sub-module ");
-			
-			if(subModuleCode.equals("a")) {
-				
+
+			if (subModuleCode.equals("a")) {
+
 				List<Program> programList = programRepo.findByModuleAndActive(moduleMaster, "Y");
 
 				for (Program prog : programList) {
@@ -146,10 +155,9 @@ public class UserRightsController {
 
 					}
 				}
-				
-			
-			}else {
-				
+
+			} else {
+
 				SubModuleMaster subModuleMaster = subModuleRepo.findById(subModuleCode).get();
 
 				List<Program> programList = programRepo.findBySubModuleMasterAndActive(subModuleMaster, "Y");
@@ -168,30 +176,28 @@ public class UserRightsController {
 
 					}
 				}
-				
-			}
 
-			
+			}
 
 		}
 
 		else {
 			System.out.println("single program code ");
-			
+
 			Program program = programRepo.findById(programCode).get();
-			
+
 			boolean isUserRightExist = userRightRepo.existsByMyUserAndPrgCode(myUser, program);
-			
-			if(!isUserRightExist) {
-				
+
+			if (!isUserRightExist) {
+
 				UserRights uRight = new UserRights();
 				uRight.setMyUser(myUser);
-				
-				
+
 				uRight.setModule(moduleMaster);
 				uRight.setPrgCode(program);
+
 				userRightsservice.addUserRights(uRight);
-				
+
 			}
 		}
 
@@ -252,6 +258,45 @@ public class UserRightsController {
 		return "redirect:/userrights/list";
 	}
 
+	@PostMapping("/update")
+	public String updateUserRights(@ModelAttribute("userRights") UserRights userRights, RedirectAttributes redirectAttributes,
+			Principal principal,HttpServletRequest httpServletRequest) {
+
+		///category.setUpdateBy(principal.getName());
+		//category.setUpdatedDate(new Date());
+
+		//	category.setCompCode("EB");
+		
+		String activeStatus = httpServletRequest.getParameter("active");
+		System.out.println( " active status is : " + activeStatus );
+		System.out.println("user rights : upfdate " + userRights.getPrgCode());
+		
+		Program programMaster = programService.editProgram( userRights.getPrgCode().getProgramCode()).get();
+		
+		
+		System.out.println("program name is : " + programMaster.getProgramName());
+		
+		Role role =  roleRepo.findByRoleName(programMaster.getProgramName().replaceAll("\\s", "").toUpperCase());
+		
+		System.out.println("role name from rometable : " + role.getRoleName() );
+		
+		System.out.println(" user code is : " + userRights.getMyUser().getUserCode());
+		
+		UserRole userRole = userRoleRepo.findByMyUSerAndRole(userRights.getMyUser(), role);
+		
+		userRole.setActive(activeStatus);
+		
+		userRoleRepo.save(userRole);
+		
+
+		userRightRepo.save(userRights);
+		
+		redirectAttributes.addFlashAttribute("message", "User Right  has been Updated successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
+		return "redirect:/userrights/";
+	}
+
 	// AJAX
 
 	@ResponseBody
@@ -287,15 +332,13 @@ public class UserRightsController {
 
 		return programList;
 	}
-	
-	
-	
+
 	@ResponseBody
 	@GetMapping("/getprogam/{moduleCode}")
 	public List<Program> getProgramAgainstModule(@PathVariable("moduleCode") String moduleCode) {
-	
+
 		ModuleMaster module = moduleMasterRepo.findById(moduleCode).get();
-		
+
 		List<Program> programMasterList = programRepo.findByModuleAndActive(module, "Y");
 
 		return programMasterList;

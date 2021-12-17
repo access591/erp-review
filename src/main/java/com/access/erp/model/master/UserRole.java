@@ -20,21 +20,22 @@ public class UserRole {
 	@Column(name = "USER_ROLE")
 	private Long userRoleId;
 
-	
 	@JsonBackReference
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "USER_CODE")
 	private MyUser myUSer;
-	
-	
+
 	@JsonBackReference
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "ROLE_CODE")
 	private Role role;
 
+	@Column(name = "ACTIVE_YN")
+	private String active = "Y";
+
 	public UserRole() {
 		super();
-		
+
 	}
 
 	public Long getUserRoleId() {
@@ -60,13 +61,14 @@ public class UserRole {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
 	
 	
 

@@ -146,13 +146,14 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Representative Code</label>
 																<input type="text" class="form-control"
-																	id="inputPassword4" placeholder="Representative Code"
-																	title="representative code">
+																	id="representCode" placeholder="Representative Code"
+																	title="representative code" readonly>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Representative Name</label>
-																<select class="form-control" id="departmentDropdown"
-																	title="Department Name" required>
+																<select class="form-control" id="representName"
+																	title="representative name" th:field="*{repCode}"
+																	onchange="selectRepresent()" required>
 																	<option value="">Select</option>
 																	<option th:each="employee :  ${listEmployee}"
 																		th:text="${employee.empName}"
@@ -194,10 +195,9 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Country</label><span
-																	style="color: red">*</span><select class="form-control"
-																	id="departmentDropdown" title="Department Name"
-																	th:field="*{countryCode}" required>
+																<label for="inputPassword4">Country</label><select
+																	class="form-control" id="departmentDropdown"
+																	title="Department Name" th:field="*{countryCode}">
 																	<option value="">Select</option>
 																	<option th:each="country :  ${listCountry}"
 																		th:text="${country.countryName}"
@@ -213,18 +213,20 @@
 																	onkeypress="return alpha(event)" th:field="*{pinCode}"
 																	maxlength="6">
 															</div>
+
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Phone</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Phone" title="phone" th:field="*{partyPhone}"
+																	placeholder="Phone" title="phone"
+																	th:field="*{partyPhone}"
 																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Mobile</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4" required
-																	placeholder="Mobile" title="mobile" th:field="*{partyMobNo}"
+																<label for="inputPassword4">Mobile</label><input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Mobile" title="mobile"
+																	th:field="*{partyMobNo}"
 																	onkeypress="return alpha(event)" maxlength="10">
 															</div>
 
@@ -242,9 +244,8 @@
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Website</label><span
-																	style="color: red">*</span><input type="url"
-																	class="form-control" id="inputPassword4"
+																<label for="inputPassword4">Website</label><input
+																	type="url" class="form-control" id="inputPassword4"
 																	placeholder="website" title="website"
 																	th:field="*{partyWebsite}">
 															</div>
@@ -253,12 +254,12 @@
 																<label for="inputPassword4">Contact Person</label> <input
 																	type="text" class="form-control" id="inputPassword4"
 																	placeholder="Contact Person" title="contact person">
+																<!-- partyConp -->
 															</div>
 
 															<div class="form-group col-md-4">
-																<label for="inputPassword4">Phone No</label><span
-																	style="color: red">*</span><input type="text"
-																	class="form-control" id="inputPassword4"
+																<label for="inputPassword4">Phone No</label><input
+																	type="text" class="form-control" id="inputPassword4"
 																	onkeypress="return alpha(event)" placeholder="Phone No"
 																	title="phone no" maxlength="10">
 															</div>
@@ -425,8 +426,8 @@
 														<div class="box-body">
 
 															<label>Registered</label> <label class="checkbox-inline">
-																<input type="radio" value="Y" name="inlineRadioOptions">Yes
-																<input type="radio" value="N" name="inlineRadioOptions"
+																<input type="radio" value="Y" name="gstRegistered">Yes
+																<input type="radio" value="N" name="gstRegistered"
 																style="margin-left: 20px">No
 															</label>
 															<div class="form-group row">
@@ -491,8 +492,9 @@
 																		No.</label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" id=""
-																			placeholder="GST No." title="gst no" maxlength="15" 
-																			th:field="*{gstNo}" onkeypress="return alphaNumeric(event)">
+																			placeholder="GST No." title="gst no" maxlength="15"
+																			th:field="*{gstNo}"
+																			onkeypress="return alphaNumeric(event)">
 																	</div>
 																</div>
 															</div>
@@ -636,7 +638,7 @@
 																		<fieldset>
 																			<select class="form-control form-control-sm select"
 																				id="departmentDropdown" title="city"
-																				name="listPartyBilling[0].billingCityCode" required>
+																				name="listPartyBilling[0].billingCityCode" >
 																				<option value="">Select</option>
 																				<option th:each="city :  ${listCity}"
 																					th:text="${city.cityName}"
@@ -648,7 +650,7 @@
 																		<fieldset>
 																			<select class="form-control form-control-sm select"
 																				id="departmentDropdown" title="state code"
-																				name="listPartyBilling[0].billingStateCode" required>
+																				name="listPartyBilling[0].billingStateCode">
 																				<option value="">Select</option>
 																				<option th:each="state :  ${listState}"
 																					th:text="${state.stateName}"
@@ -659,15 +661,18 @@
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="Pin" id="insCompanyName0" title="pin code"
-																				name="listPartyBilling[0].billingPinCode" onkeypress="return alpha(event)" maxlength="6">
+																				placeholder="Pin" id="insCompanyName0"
+																				title="pin code"
+																				name="listPartyBilling[0].billingPinCode"
+																				onkeypress="return alpha(event)" maxlength="6">
 																		</fieldset>
 																	</td>
 																	<td>
 																		<fieldset>
 																			<select class="form-control form-control-sm select"
 																				title="Country Name"
-																				name="listPartyBilling[0].billingCountryCode" required>
+																				name="listPartyBilling[0].billingCountryCode"
+																				>
 																				<option value="">Select</option>
 																				<option th:each="country :  ${listCountry}"
 																					th:text="${country.countryName}"
@@ -759,7 +764,7 @@
 																			<fieldset>
 																				<select class="form-control form-control-sm select"
 																					id="departmentDropdown" title="city"
-																					name="listPartyConsignee[0].city" required>
+																					name="listPartyConsignee[0].city" >
 																					<option value="">Select</option>
 																					<option th:each="city :  ${listCity}"
 																						th:text="${city.cityName}"
@@ -771,7 +776,7 @@
 																			<fieldset>
 																				<select class="form-control form-control-sm select"
 																					id="departmentDropdown" title="country"
-																					name="listPartyConsignee[0].country" required>
+																					name="listPartyConsignee[0].country" >
 																					<option value="">Select</option>
 																					<option th:each="country :  ${listCountry}"
 																						th:text="${country.countryName}"
@@ -783,7 +788,8 @@
 																			<fieldset>
 																				<input type="text" class="form-control"
 																					placeholder="Pin" id="insCompanyName0"
-																					name="listPartyConsignee[0].pin" title="pin code" onkeypress="return alpha(event)" maxlength="6">
+																					name="listPartyConsignee[0].pin" title="pin code"
+																					onkeypress="return alpha(event)" maxlength="6">
 																			</fieldset>
 																		</td>
 
@@ -941,6 +947,16 @@
 				lblPANCard.style.display = "block";
 				return false;
 			}
+		}
+
+		function selectRepresent() {
+			var representName = document.getElementById("representName").value;
+			document.getElementById("representCode").value = representName
+		}
+
+		window.onload = function() {
+			selectRepresent()
+
 		}
 	</script>
 

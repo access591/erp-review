@@ -43,7 +43,7 @@
 
 								<div class="box box-primary">
 									<div class="box-header with-border">
-										<h3 class="box-title">List of Designation</h3>
+										<h3 class="box-title">List of Country</h3>
 									</div>
 									<!-- form start -->
 									<form role="form">
@@ -53,38 +53,30 @@
 													<thead>
 														<tr>
 															<th scope="col">#</th>
-															<th scope="col">Designation Code</th>
-															<th scope="col">Designation Name</th>
+															<th scope="col">City Code</th>
+															<th scope="col">Country Name</th>
 															
-
 															<th scope="col">Status</th>
-
 															<th scope="col">Action</th>
-
 														</tr>
 													</thead>
 													<tbody>
-														<tr th:each="desig,iter  : ${designationList}">
+														<tr th:each="country,iter  : ${countryList}">
 															<td th:text="${iter.index}">1</td>
-															<td th:text="${desig.desigCode}">Garrett Winters</td>
-															<td th:text="${desig.desigName}">Garrett Winters</td>
+															<td th:text="${country.countryCode}">Garrett Winters</td>
+															<td th:text="${country.countryName}">Garrett Winters</td>
 															
-
-
-															<td th:if="${desig.active=='Y' }"><span
-																class="badge bg-success">Active</span></td>
-
-															<td th:if="${desig.active=='N' }"><span
-																class="badge bg-success">In Active</span></td>
-
+															<td th:if="${country.active=='Y'}"><span class="badge bg-success">Active</span></td>
+															<td th:if="${country.active=='N'}"><span class="badge bg-success">In Active</span></td>
 
 															<td><span> <a
-																	th:href="@{/designation/edit/{id}(id=${desig.desigCode})}"><em
+																	th:href="@{/country/edit/{id}(id=${country.countryCode})}"><em
 																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
-																	<!-- <a
-																	th:href="@{/designation/delete/{id}(id=${desig.desigCode})}"><em
-																		class="fa fa-times" style="color: red"> Remove</em></a>
-															</span></td> -->
+																	<a th:href="@{/country/delete/{id}(id=${country.countryCode})}">
+																		<em class="fa fa-times" style="color: red">
+																			Remove</em>
+																</a>
+															</span></td>
 														</tr>
 
 

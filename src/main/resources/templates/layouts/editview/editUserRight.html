@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head >
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -83,12 +83,12 @@
 											<!-- /.box-header -->
 											<!-- form start -->
 											<form id="userRightForm" role="form"
-												th:action="@{/userrights/}" method="POST"
+												th:action="@{/userrights/update}" method="POST"
 												th:object="${userRights}">
 
 												<div class="box-body">
 
-													<div class="form-group col-md-6">
+													<!-- 	<div class="form-group col-md-6">
 														<label for="inputEmail4">User Name</label><span
 															style="color: red">*</span> <select class="form-control"
 															id="" title="This Field is required"
@@ -99,9 +99,18 @@
 															</option>
 														</select>
 													</div>
-
+													 -->
 
 													<div class="form-group col-md-6">
+														<label for="inputEmail4">User Name</label> <input
+															class="form-control" th:field="*{myUser.userCode}"
+															readonly>
+													</div>
+
+
+
+
+													<!-- <div class="form-group col-md-6">
 														<label for="inputEmail4">Module</label><span
 															style="color: red">*</span> <select class="form-control"
 															id="" title="This field is required" th:field="*{module}"
@@ -111,9 +120,15 @@
 																th:text="${module.moduleName}"
 																th:value=" ${module.moduleCode}"></option>
 														</select>
-													</div>
+													</div> -->
 
 													<div class="form-group col-md-6">
+														<label for="inputEmail4">User Name</label> <input
+															class="form-control" th:field="*{module}" readonly>
+													</div>
+
+
+													<!-- <div class="form-group col-md-6">
 														<label class="form-label">Sub-Module</label><span
 															style="color: red">*</span> <label style="color: red">*</label>
 														<select class="form-control" id=""
@@ -125,9 +140,16 @@
 																th:value=" ${subModule.subModuleCode}"></option>
 														</select>
 													</div>
+ -->
 
 
 													<div class="form-group col-md-6">
+														<label for="inputEmail4">User Name</label> <input
+															class="form-control" th:field="*{subModule}" readonly>
+													</div>
+
+
+													<!-- <div class="form-group col-md-6">
 														<label class="form-label">Program</label><span
 															style="color: red">*</span> <label style="color: red">*</label>
 														<select class="form-control" id=""
@@ -138,21 +160,26 @@
 																th:text="${program.programName}"
 																th:value=" ${program.programCode}"></option>
 														</select>
+													</div> -->
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">User Name</label> <input
+															class="form-control" th:field="*{prgCode}" readonly>
 													</div>
 
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="inlineRadioOptions">Active <input
-														type="radio" value="N" name="inlineRadioOptions">In-Active
+														value="Y" name="active" checked>Active <input
+														type="radio" value="N" name="active">In-Active
 													</label>
 												</div>
 												<!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
 													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="button" value="Go back!" class="btn btn-danger"
-														onclick="history.back()">
+													<input type="button" value="Go back!"
+														class="btn btn-danger" onclick="history.back()">
 												</div>
 
 
@@ -161,7 +188,7 @@
 
 										</div>
 										<!-- /.box -->
-										
+
 									</div>
 
 
@@ -181,12 +208,10 @@
 	function myFun(){ alert("under construction") }
 
 	<script>
-
-				$("#userRightForm").validate({
-					ignoreTitle: true
-				});
-
-			</script>
+		$("#userRightForm").validate({
+			ignoreTitle : true
+		});
+	</script>
 
 
 	<!--   <section class="content">

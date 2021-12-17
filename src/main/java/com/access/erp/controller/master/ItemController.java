@@ -16,6 +16,7 @@ import com.access.erp.model.master.Category;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.Store;
 import com.access.erp.model.master.UOM;
+import com.access.erp.repo.CategoryRepo;
 import com.access.erp.service.CategoryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.StoreService;
@@ -29,6 +30,7 @@ public class ItemController {
 	@Autowired UOMService uomService;
 	@Autowired StoreService storeService;
 	@Autowired CategoryService categoryService;
+	@Autowired CategoryRepo categoryRepo;
 	
 	
 	@GetMapping("/")
@@ -40,7 +42,7 @@ public class ItemController {
 		List<Store> listStore = storeService.getAllStore();
 		model.addAttribute("listStore", listStore);
 		
-		List<Category> listcategory = categoryService.getAllCategory();
+		List<Category> listcategory = categoryRepo.findByActive("Y");
 		model.addAttribute("listCategory",listcategory);
 		
 		model.addAttribute("item", new Item());

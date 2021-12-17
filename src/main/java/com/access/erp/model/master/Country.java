@@ -25,17 +25,17 @@ public class Country {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "country",cascade = CascadeType.ALL)
 	private Set<State> states;
 	
-	@Column(name = "INS_BY",length = 50)
+	@Column(name = "INS_BY",length = 50,updatable = false)
 	private String insertedBy;
 
-	@Column(name = "INS_DATE")
-	private Date insertedDate=new Date();
+	@Column(name = "INS_DATE",updatable = false)
+	private Date insertedDate;
 	
 	@Column(name = "UPDATE_BY",length = 50)
 	private String updateBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updatedDate=new Date();
+	private Date updatedDate;
 	
 	@Column(name = "ACTIVE_YN",length = 10)
 	private String active;

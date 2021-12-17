@@ -46,7 +46,7 @@ public class UserRights implements Serializable {
 	private Program prgCode;
 
 	@Column(name = "ACTIVE_YN",length = 2)
-	private String active;
+	private String active= "Y";
 	
 	
 	@Column(name = "INS_BY", updatable = false)

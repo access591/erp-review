@@ -44,7 +44,7 @@ public class PartyMasterServiceImpl implements PartyMasterService{
 			
 			partyConsignee.setPartyMaster(partyMaster);
 		}
-		
+		partyMaster.setPartyTypCode(String.valueOf( partyMaster.getPartyTypCode().charAt(1)));
 		partyMasterRepo.save(partyMaster);
 		
 	}

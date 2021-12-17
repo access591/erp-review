@@ -53,9 +53,11 @@
 													<thead>
 														<tr>
 															<th scope="col">#</th>
-															<th scope="col">User Code</th>
+
 															<th scope="col">User Name</th>
 															<th scope="col">Employee</th>
+															
+															<th scope="col">Rights</th>
 
 															<th scope="col">Status</th>
 															<th scope="col">Action</th>
@@ -64,13 +66,20 @@
 													<tbody>
 														<tr th:each="user,iter  : ${userRightsyList}">
 															<td th:text="${iter.index}">1</td>
-															<td th:text="${user.myUser.userCode}">Garrett Winters</td>
-															<td th:text="${user.myUser.userName}">Garrett Winters</td>
+
+															<td th:text="${user.myUser.userName}">Garrett
+																Winters</td>
 															<td th:text="${user.myUser.employee.empName}">Garrett
 																Winters</td>
 
+															<td th:text="${user.prgCode.programName}">Garrett
+																Winters</td>
 
-															<td><span class="badge bg-success">Active</span></td>
+															<td  th:if="${user.active=='Y'}"><span class="badge bg-success">Active</span></td>
+															
+															<td  th:if="${user.active=='N'}"><span class="badge bg-success">Inactive</span></td>
+															
+															
 
 															<td><span> <a
 																	th:href="@{/userrights/edit/{id}(id=${user.id})}"><em
