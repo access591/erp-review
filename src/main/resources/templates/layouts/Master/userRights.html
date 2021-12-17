@@ -83,16 +83,14 @@
 											<!-- /.box-header -->
 											<!-- form start -->
 											<form id="userRightForm" role="form"
-												th:action="@{/userrights/}" method="POST"
-												th:object="${userRights}">
+												th:action="@{/userrights/}" method="POST">
 
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">User Name</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="" title="This Field is required"
-															th:field="*{myUser.userCode}" required>
+															id="" title="This Field is required"  name="userCode" required>
 															<option value="">Select User</option>
 															<option th:each="user :  ${listMyUser}"
 																th:text="${user.userName}" th:value=" ${user.userCode}">
@@ -104,8 +102,8 @@
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Module</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="" title="This field is required" th:field="*{module}"
-															required>
+															id="moduleCode" title="This field is required" 
+															name="moduleCode"   onchange="selectModule()" required>
 															<option value="">Select Module</option>
 															<option th:each="module :  ${listModule}"
 																th:text="${module.moduleName}"
@@ -115,9 +113,10 @@
 
 													<div class="form-group col-md-6">
 														<label class="form-label">Sub-Module</label><span
-															style="color: red">*</span> <select class="form-control"
-															id="" title="This field is required"
-															th:field="*{subModule}" >
+															style="color: red">*</span> <select
+															class="form-control subModuleContainer"
+															id="subModuleCode" title="This field is required" 
+															name="subModuleCode"  onchange="selectSubModule()">
 															<option value="">Select Module</option>
 															<option th:each="subModule :  ${listSubModule}"
 																th:text="${subModule.subModuleName}"
@@ -128,9 +127,10 @@
 
 													<div class="form-group col-md-6">
 														<label class="form-label">Program</label><span
-															style="color: red">*</span> <select class="form-control"
-															id="" title="This field is required"
-															th:field="*{prgCode}" required>
+															style="color: red">*</span> <select
+															class="form-control programContainer" id="programCode"
+															title="This field is required"  name="programCode" 
+															required>
 															<option value="">Select</option>
 															<option th:each="program :  ${listProgram}"
 																th:text="${program.programName}"
@@ -180,9 +180,145 @@
 	</div>
 	<div th:replace="fragments/footer :: footer">...</div>
 
-	function myFun(){ alert("under construction") }
+	<!-- 	function myFun(){ alert("under construction") } 
+	 -->
+
 
 	<script>
+		function selectModule() {
+
+			var module = document.getElementById("moduleCode").value;
+
+			console.log("module code is : " + module);
+			$
+					.ajax({
+						type : "GET",
+						url : "getsubmodule/" + module,
+
+						success : function(data) {
+							console.log("list of  module detail  : "
+									+ JSON.stringify(data))
+
+							var programList = data.programList;
+							var subModuleList = data.subModuleList;
+
+							/* console.log("sub module list : " + JSON.stringify(subModuleList) )
+							console.log("program list data : " +JSON.stringify(companyList)); */
+
+							if(subModuleList.length==0){
+								console.log("submodule is not exists ")
+								var submodule = '<option value=""><strong>Select </strong></option>';
+								submodule += '<option value="a">All</option>';
+								$('.subModuleContainer').html(submodule);
+								}
+							else{
+								
+								var submodule = '<option value=""><strong>Select </strong></option>';
+								submodule += '<option value="all">All</option>';
+								
+								$(subModuleList)
+										.each(
+												function(index, value) {
+
+													
+													 
+													submodule += '<option value="' + value.subModuleCode + '">'
+															+ value.subModuleName
+															+ '</option>';
+
+												});
+
+								$('.subModuleContainer').html(submodule);
+							}
+							
+							
+						
+							
+							
+
+							// for program drop down
+							var program = '<option value=""><strong>Select </strong></option>';
+							program += '<option value="all" >All</option>';
+							$(programList)
+									.each(
+											function(index, value) {
+
+												
+												program += '<option value="' + value.programCode + '">'
+														+ value.programName
+														+ '</option>';
+
+											});
+
+							$('.programContainer').html(program);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+
+					});
+
+		}
+
+		function selectSubModule() {
+
+			var subModule = document.getElementById("subModuleCode").value;
+			
+			console.log("sub module code is : " + subModule);
+
+			
+			//getprogam
+			if(subModule==='all'){
+				
+				
+				var program = '<option value="all">All</option>';
+				$('.programContainer').html(program);
+				
+				
+			}
+			else if(subModule==='a'){
+				console.log("submodule is not exists ")
+			}	
+			else{
+				
+				$.ajax({
+					type : "GET",
+					url : "subModule/" + subModule,
+
+					success : function(data) {
+						console.log("list of  submodule detail   : " + JSON.stringify(data))
+						
+
+						// for program drop down
+						var program = '<option value=""><strong>Select </strong></option>';
+						$(data )
+								.each(
+										function(index, value) {
+
+											program += '<option value="all">All</option>';
+											program += '<option value="' + value.programCode + '">'
+													+ value.programName
+													+ '</option>';
+
+										});
+
+						$('.programContainer').html(program);
+					
+
+					},
+					error : function() {
+						console.log("Error");
+					}
+				});
+				
+				
+			}
+			
+			
+			
+		}
+
 		$("#userRightForm").validate({
 			ignoreTitle : true
 		});

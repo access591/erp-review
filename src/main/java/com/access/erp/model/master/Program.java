@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "PROGRAM_MASTER")
 public class Program {
@@ -47,11 +50,13 @@ public class Program {
 	private String active;
 	
 	
+	@JsonBackReference
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "SMCODE",nullable = true)
 	private SubModuleMaster subModuleMaster;
 	
 	
+	@JsonIgnore
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "MCODE",nullable = true)
 	private ModuleMaster  module;
