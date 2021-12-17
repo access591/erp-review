@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.access.erp.model.master.City;
 import com.access.erp.model.master.Country;
 import com.access.erp.model.master.State;
+import com.access.erp.repo.CountryRepo;
 import com.access.erp.service.CityService;
 import com.access.erp.service.CountryService;
 import com.access.erp.service.StateService;
@@ -28,12 +29,14 @@ public class StateController {
 	@Autowired StateService stateService;
 	@Autowired CountryService countryService;
 	@Autowired CityService cityService;
+	@Autowired CountryRepo countryRepo;
 	
 	@GetMapping("/")
 	public String state(Model model) {
 		
-		List<Country> countryList = countryService.getAllCountry();
+		List<Country> countryList = countryRepo.findByActive("Y");
 		model.addAttribute("countryList", countryList);
+		
 		model.addAttribute("state", new State());
 		return "layouts/Master/state";
 	}

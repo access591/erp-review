@@ -50,7 +50,7 @@ public class Designation {
 	private String updateBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updatedDate=new Date();
+	private Date updatedDate;
 	
 	@Column(name = "ACTIVE_YN",length = 2)
 	private String active;

@@ -41,10 +41,15 @@ public class ItemServiceImpl implements ItemService{
 
 		if(item.getPackingDetails().get(0).getPackingName()!=null) {
 			
+			
+			System.out.println("item packing size is more then zero ");
+			
 			for(PackingDetail p : item.getPackingDetails()) {
 				
+				System.out.println(" in packing detail loop ");
 				if(p.getPackingCode() == "" || p.getPackingCode() == null) {
 					
+					System.out.println("in packing loop if block ");
 					String maxCode1 = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PAC", "20-21", "EB");
 					System.out.println("max code 1 is : " + maxCode1);
 					

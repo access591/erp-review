@@ -90,7 +90,8 @@
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">User Name</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="" title="This Field is required"  name="userCode" required>
+															id="" title="This Field is required" name="userCode"
+															required>
 															<option value="">Select User</option>
 															<option th:each="user :  ${listMyUser}"
 																th:text="${user.userName}" th:value=" ${user.userCode}">
@@ -102,8 +103,8 @@
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Module</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="moduleCode" title="This field is required" 
-															name="moduleCode"   onchange="selectModule()" required>
+															id="moduleCode" title="This field is required"
+															name="moduleCode" onchange="selectModule()" required>
 															<option value="">Select Module</option>
 															<option th:each="module :  ${listModule}"
 																th:text="${module.moduleName}"
@@ -115,8 +116,8 @@
 														<label class="form-label">Sub-Module</label><span
 															style="color: red">*</span> <select
 															class="form-control subModuleContainer"
-															id="subModuleCode" title="This field is required" 
-															name="subModuleCode"  onchange="selectSubModule()">
+															id="subModuleCode" title="This field is required"
+															name="subModuleCode" onchange="selectSubModule()">
 															<option value="">Select Module</option>
 															<option th:each="subModule :  ${listSubModule}"
 																th:text="${subModule.subModuleName}"
@@ -129,7 +130,7 @@
 														<label class="form-label">Program</label><span
 															style="color: red">*</span> <select
 															class="form-control programContainer" id="programCode"
-															title="This field is required"  name="programCode" 
+															title="This field is required" name="programCode"
 															required>
 															<option value="">Select</option>
 															<option th:each="program :  ${listProgram}"
@@ -141,10 +142,10 @@
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="active" checked style="margin-left: 5px">Active
-														<input type="radio" value="N" name="active"
-														style="margin-left: 5px">In-Active
+														value="Y" name="active" checked>Active <input
+														type="radio" value="N" name="active">In-Active
 													</label>
+
 												</div>
 												<!-- /.box-body -->
 
@@ -205,23 +206,20 @@
 							/* console.log("sub module list : " + JSON.stringify(subModuleList) )
 							console.log("program list data : " +JSON.stringify(companyList)); */
 
-							if(subModuleList.length==0){
+							if (subModuleList.length == 0) {
 								console.log("submodule is not exists ")
 								var submodule = '<option value=""><strong>Select </strong></option>';
 								submodule += '<option value="a">All</option>';
 								$('.subModuleContainer').html(submodule);
-								}
-							else{
-								
+							} else {
+
 								var submodule = '<option value=""><strong>Select </strong></option>';
 								submodule += '<option value="all">All</option>';
-								
+
 								$(subModuleList)
 										.each(
 												function(index, value) {
 
-													
-													 
 													submodule += '<option value="' + value.subModuleCode + '">'
 															+ value.subModuleName
 															+ '</option>';
@@ -230,11 +228,6 @@
 
 								$('.subModuleContainer').html(submodule);
 							}
-							
-							
-						
-							
-							
 
 							// for program drop down
 							var program = '<option value=""><strong>Select </strong></option>';
@@ -243,7 +236,6 @@
 									.each(
 											function(index, value) {
 
-												
 												program += '<option value="' + value.programCode + '">'
 														+ value.programName
 														+ '</option>';
@@ -264,59 +256,52 @@
 		function selectSubModule() {
 
 			var subModule = document.getElementById("subModuleCode").value;
-			
+
 			console.log("sub module code is : " + subModule);
 
-			
 			//getprogam
-			if(subModule==='all'){
-				
-				
+			if (subModule === 'all') {
+
 				var program = '<option value="all">All</option>';
 				$('.programContainer').html(program);
-				
-				
-			}
-			else if(subModule==='a'){
+
+			} else if (subModule === 'a') {
 				console.log("submodule is not exists ")
-			}	
-			else{
-				
-				$.ajax({
-					type : "GET",
-					url : "subModule/" + subModule,
+			} else {
 
-					success : function(data) {
-						console.log("list of  submodule detail   : " + JSON.stringify(data))
-						
+				$
+						.ajax({
+							type : "GET",
+							url : "subModule/" + subModule,
 
-						// for program drop down
-						var program = '<option value=""><strong>Select </strong></option>';
-						$(data )
-								.each(
-										function(index, value) {
+							success : function(data) {
+								console.log("list of  submodule detail   : "
+										+ JSON.stringify(data))
 
-											program += '<option value="all">All</option>';
-											program += '<option value="' + value.programCode + '">'
-													+ value.programName
-													+ '</option>';
+								// for program drop down
+								var program = '<option value=""><strong>Select </strong></option>';
+								program += '<option value="all">All</option>';
+								$(data)
+										.each(
+												function(index, value) {
 
-										});
+												
+													program += '<option value="' + value.programCode + '">'
+															+ value.programName
+															+ '</option>';
 
-						$('.programContainer').html(program);
-					
+												});
 
-					},
-					error : function() {
-						console.log("Error");
-					}
-				});
-				
-				
+								$('.programContainer').html(program);
+
+							},
+							error : function() {
+								console.log("Error");
+							}
+						});
+
 			}
-			
-			
-			
+
 		}
 
 		$("#userRightForm").validate({

@@ -39,6 +39,8 @@ public class DepartmentController {
 		
 		department.setInsertedBy(principal.getName());
 		department.setInsertedDate(new Date());
+		
+		
 		departmentService.addDepartment(department);
 		
 		return "redirect:/department/";

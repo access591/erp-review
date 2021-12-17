@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.access.erp.model.master.MyUser;
+import com.access.erp.model.master.Role;
 import com.access.erp.model.master.UserRole;
 
 @Repository
@@ -25,4 +26,8 @@ public interface UserRoleRepo extends JpaRepository<UserRole, Long>{
 	
 	@Query("from UserRole ur where ur.role.roleName=:roleName and ur.myUSer.userCode=:userCode")
 	public boolean isUserRoleExist(String roleName,String userCode);
+	
+	public UserRole findByMyUSerAndRole(MyUser myUser , Role role);
+	
+	public List<UserRole> findByMyUSerAndActive(MyUser myUser , String active);
 }

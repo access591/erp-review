@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head >
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -98,10 +98,18 @@
 												th:object="${itemOpening}">
 												<div class="box-body">
 
+
 													<div class="form-group col-md-6">
-														<label for="inputEmail4">Item Code</label><span
+														<label for="inputEmail4">Item Code</label> <input
+															type="text" class="form-control" id="itemCode"
+															placeholder="Item Code" title="item code"
+															readonly>
+													</div>
+
+													<div class="form-group col-md-6">
+														<label for="inputEmail4">Item Description</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="" th:field="*{itemCode}" onchange='getItemDetail()'
+															id="itemDescription" th:field="*{itemCode}" onchange='getItemDetail()'
 															title="item code" required>
 															<option value="">Select</option>
 															<option th:each="item :  ${listItem}"
@@ -110,12 +118,7 @@
 
 														</select>
 													</div>
-													<div class="form-group col-md-6">
-														<label for="inputEmail4">Item Description</label> <input
-															type="text" class="form-control" id="itemDescription"
-															placeholder="Description" title="item description"
-															required>
-													</div>
+
 
 													<div class="form-group col-md-6">
 														<label class="form-label">Item Type</label> <input
@@ -204,7 +207,7 @@
 	<div th:replace="fragments/footer :: footer">...</div>
 
 
-<script>
+	<script>
 		$(document).ready(function() {
 
 			document.getElementById('openingDate').valueAsDate = new Date();
@@ -216,7 +219,6 @@
 
 
 	<script>
-	
 		// for two decimal number 
 		$(document).ready(function() {
 			$(".floatNumberField").change(function() {
@@ -240,30 +242,31 @@
 			}
 
 		});
-		
-		
-		// ajax for selected item code and populate record against item code 
-		
-		function getItemDetail(){
-			
-			var itemCode = document.getElementById("itemCode").value;
-			$.ajax({
-				type: "GET",
-				url: "/itemopening/itemdetail/" + itemCode,
 
-				success: function(data) {
+		// ajax for selected item code and populate record against item code 
+
+		function getItemDetail() {
+
+			var itemCode = document.getElementById("itemDescription").value;
+			
+			document.getElementById("itemCode").value = itemCode;
+			$.ajax({
+				type : "GET",
+				url : "/itemopening/itemdetail/" + itemCode,
+
+				success : function(data) {
 					//$("#resultarea").text(data);
 					console.log("response data : " + data);
-					$("#itemDescription").val(data.description);
+					//$("#itemDescription").val(data.description);
 					$("#itemType").val(data.itemType)
 					$("#category").val(data.category.categCode)
 					$("#itemUom").val(data.uom.uomCode)
-				}, error: function() {
+				},
+				error : function() {
 					console.log("Error");
 				}
 			});
-			
-			
+
 		}
 	</script>
 
