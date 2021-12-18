@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -116,7 +116,7 @@
 																<label for="inputAddress">Party Code</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" placeholder="Party Code"
-																	title="party code" th:field="*{partyTypCode}" readonly>
+																	title="party code" th:field="*{partyCode}" readonly>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputEmail4">Name</label><span
@@ -128,7 +128,7 @@
 																<label for="inputPassword4">Type</label><span
 																	style="color: red">*</span> <select
 																	class="form-control" title="type"
-																	th:field="*{partyTypCode}" required>
+																	th:field="*{partType}" required>
 																	<option value="">Select</option>
 																	<option value="S">Supplier</option>
 																	<option value="C">Customer</option>
@@ -805,7 +805,7 @@
 													</div>
 
 													<div class="box-footer">
-														<button type="submit" class="btn btn-primary">Submit</button>
+														<button type="submit" class="btn btn-primary">Apply Changes </button>
 														<input type="reset" value="Reset" class="btn btn-danger" />
 													</div>
 												</div>

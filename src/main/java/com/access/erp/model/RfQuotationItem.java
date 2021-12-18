@@ -197,7 +197,13 @@ public class RfQuotationItem {
 	}
 	
 	
-	
+	 public boolean equals(Object obj) {         
+	        if(obj != null && (obj instanceof RfQuotationItem)) {
+	        	RfQuotationItem other = (RfQuotationItem) obj;
+	            return this.openIndent.equals(other.getOpenIndent());
+	        }
+	        return false;
+	    }
 	
 	
 	

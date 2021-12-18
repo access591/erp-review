@@ -36,6 +36,14 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 			
 			System.out.println("rfq item detail ");
 			rfqItem.setRfQuotations(rfQuotation);
+			rfqItem.setRfqDate(rfQuotation.getRfqDate());
+			
+			//boolean result = rfqItem.equals(rfqItem);
+			
+			/*
+			 * if(result) { System.out.println("true "); }else {
+			 * System.out.println("false"); }
+			 */
 		}
 		
 
@@ -43,6 +51,7 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 			
 			System.out.println(" rfq suply detail ");
 			rqQSuply.setRfQuotation(rfQuotation);
+			
 			
 		}
 		rfQuotationRepo.save(rfQuotation);

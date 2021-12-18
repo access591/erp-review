@@ -78,7 +78,7 @@ public class PurchaseOrderController {
 		List<QuotationDetail> lsitQuotationDetail = quotationDetailRepo.findByApprovalStatus1("Y");
 		model.addAttribute("lsitQuotationDetail", lsitQuotationDetail);
 
-		List<PartyMaster> listParty = partyMasterService.getAllpartyMaster();
+		List<PartyMaster> listParty = partyMasterService.findByPartyCodeContaining("S");
 		model.addAttribute("listParty", listParty);
 
 		List<CurrencyMaster> listCurrency = currencyRepo.findAll();

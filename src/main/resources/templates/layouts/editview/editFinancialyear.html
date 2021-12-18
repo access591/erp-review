@@ -108,16 +108,18 @@
 															title="financial year code" readonly>
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputPassword4">From (Date)</label> <input
-															type="text" class="form-control" name="fromDate"
-															id="fromDate" placeholder='From Date'
-															th:field="*{fromDate}" />
+														<label for="inputPassword4">From (Date)</label><span
+															style="color: red">*</span> <input type="date"
+															class="form-control"
+															placeholder='From Date' title="This field is required"
+															th:field="*{fromDate}" required />
 													</div>
 													<div class="form-group col-md-12">
-														<label for="inputEmail4">To (Date)</label> <input
-															type="text" class="form-control" name="datepicker"
-															id="datepicker" placeholder='To Date'
-															th:field="*{toDate}" />
+														<label for="inputEmail4">To (Date)</label><span
+															style="color: red">*</span> <input type="date"
+															class="form-control"
+															placeholder='To Date' title="This field is required"
+															th:field="*{toDate}" required />
 													</div>
 
 
@@ -191,7 +193,7 @@
 
 		});
 
-		$("#datepicker").datepicker({
+	/* 	$("#datepicker").datepicker({
 			format : "yyyy",
 			viewMode : "years",
 			minViewMode : "years",
@@ -205,7 +207,9 @@
 			minViewMode : "years",
 			autoclose : true
 		//to close picker once year is selected
-		});
+		}); */
+		
+		
 	</script>
 	<!--   <section class="content">
         
