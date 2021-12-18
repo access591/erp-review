@@ -54,7 +54,7 @@
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
-							Request for Quotation Master
+							RFQ Master
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
@@ -101,6 +101,15 @@
 															placeholder="Quotation Number" title="quotation number"
 															th:field="*{rfqNo}" readonly>
 													</div>
+
+
+													<div class="form-group col-md-4">
+														<label for="inputEmail4">Request for Quotation
+															Date</label><label style="color: red">*</label> <input
+															type="date" class="form-control" title="quotation date"
+															th:field="*{rfqDate}" id="requestForQuotationDate">
+													</div>
+
 													<div class="form-group col-md-4">
 														<label class="form-label">Request For Quotation
 															Type</label> <label style="color: red">*</label> <select
@@ -114,20 +123,13 @@
 														</select>
 													</div>
 
-													<div class="form-group col-md-4">
-														<label for="inputEmail4">Request for Quotation
-															Date</label><label style="color: red">*</label> <input
-															type="date" class="form-control" title="quotation date"
-															th:field="*{rfqDate}" id="requestForQuotationDate">
-													</div>
-
 												</div>
 												<!-- /.box-body -->
 
 
 												<div class="box">
 
-													<h5>Indent Detail</h5>
+													<h5>RFQ Detail</h5>
 
 													<div class="box-body">
 
@@ -152,12 +154,14 @@
 																class="table table-striped display" style="width: 100%">
 																<thead>
 																	<tr>
-																		<th scope="col" class="text-center">Indent Number</th>
+																		<th scope="col" class="text-center">Indent Number<span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">Indent Date</th>
 																		<th scope="col" class="text-center">Item Name<span
 																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">UOM</th>
-																		<th scope="col" class="text-center">Qty</th>
+																		<th scope="col" class="text-center">Qty<span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">Required Date<span
 																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">Item
@@ -208,7 +212,7 @@
 
 																		<td><input type="text" title="city"
 																			class="form-control form-control-sm numbersOnly"
-																			id="qty0" name="listRFQuotation[0].qty"></td>
+																			id="qty0" name="listRFQuotation[0].qty" required></td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
 																			class="form-control form-control-sm" title="rfq date"
@@ -222,12 +226,12 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			name="listRFQuotation[0].termCondition" required
-																			title="term condition"></td>
+																			title="term condition" style="width: 170px"></td>
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			name="listRFQuotation[0].remarks" required
-																			title="remarks"></td>
+																			title="remarks" style="width: 170px"></td>
 
 
 
@@ -293,7 +297,7 @@
 																		<td><select id="supplierId0"
 																			class="form-control form-control-sm select" required
 																			title="supplier code" onchange="supplierInfo()"
-																			name="listRFQuotationSupply[0].suppCode">
+																			name="listRFQuotationSupply[0].suppCode" style="width: 190px">
 																				<option value=" ">Select</option>
 																				<option th:each="supplier :  ${listSupplier}"
 																					th:text="${supplier.partyName}"

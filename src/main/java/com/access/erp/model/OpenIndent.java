@@ -20,6 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,6 +37,7 @@ public class OpenIndent {
 	private String indentNumber;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "INDENTS_DATE")
 	private Date indentDate;
 

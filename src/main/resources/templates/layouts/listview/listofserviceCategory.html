@@ -67,8 +67,9 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${serviceCategory.categoryCode}">Garrett
 																Winters</td>
-															<td th:text="${serviceCategory.categoryType}">Garrett
-																Winters</td>
+															<td th:if="${serviceCategory.categoryType=='S'}">Sales</td>
+															
+																<td th:if="${serviceCategory.categoryType=='J'}">Journal</td>
 														
 															<td th:text="${serviceCategory.description}">Garrett
 																Winters</td>

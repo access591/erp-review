@@ -67,32 +67,43 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form role="form" th:action="@{/servicecategory/}"
+											<form role="form" th:action="@{/servicecategory/update/}"
 												method="POST" th:object="${serviceCategory}">
 												<div class="box-body">
 
-													<div class="form-group col-md-6">
-														<label>Category Code</label> <input type="text"
-															class="form-control" placeholder="category code"
-															th:field="*{categoryCode}">
+															<div class="form-group col-md-6">
+														<label>Category Code</label><span style="color: red">*</span>
+														<input type="text" class="form-control" title="category code"
+															placeholder="Category Code" th:field="*{categoryCode}">
 													</div>
 
+
 													<div class="form-group col-md-6">
+														<label for="inputPassword4">Description</label><span
+															style="color: red">*</span> <input type="text"
+															class="form-control" placeholder="Description"
+															th:field="*{description}" title="This field is required"
+															required>
+													</div>
+
+												<!-- 	<div class="form-group col-md-6">
 														<label>Account Code</label> <input type="text"
-															class="form-control" placeholder="account code"
-															th:field="*{accountCode}">
-													</div>
-													<div class="form-group col-md-6">
-														<label for="inputPassword4">Category Type</label> <input
-															type="text" class="form-control"
-															placeholder="category type" th:field="*{categoryType}">
+															class="form-control" placeholder="Account Code"
+															title="account code" th:field="*{accountCode}">
+													</div> -->
+													
+													
+													<div class="form-group col-md-12">
+														<label class="form-label">Category Type</label> <label
+															style="color: red">*</label> <select class="form-control"
+															id="" title="This field is required" th:field="*{categoryType}" required>
+
+															<option value="S">Sales</option>
+															<option value="J">Journal</option>
+
+														</select>
 													</div>
 
-													<div class="form-group col-md-6">
-														<label for="inputPassword4">Description</label> <input
-															type="text" class="form-control"
-															placeholder="description" th:field="*{description}">
-													</div>
 
 
 
@@ -100,16 +111,16 @@
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="active" checked style="margin-left: 5px">Active
-														<input type="radio" value="N" name="active"
-														style="margin-left: 5px">In-Active
+														value="Y" name="active" checked style="margin-left: 5px" >Active <input
+														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
 													</label>
+
 
 												</div>
 												<!-- /.box-body -->
 
 												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
+													<input type="submit" value="Apply Changes" class="btn btn-primary" />
 													<input type="button" value="Go back!"
 														class="btn btn-danger" onclick="history.back()">
 												</div>

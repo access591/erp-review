@@ -28,6 +28,7 @@ public class RfQuotation {
 	private String rfqNo;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "RFQ_DATE")
 	private Date rfqDate;
 

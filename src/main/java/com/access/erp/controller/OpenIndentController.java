@@ -18,6 +18,7 @@ import com.access.erp.model.OpenIndent;
 import com.access.erp.model.master.Department;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.Item;
+import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.service.DepartmentService;
 import com.access.erp.service.EmployeeService;
 import com.access.erp.service.ItemOpeningService;
@@ -34,6 +35,7 @@ public class OpenIndentController {
 	@Autowired ItemService itemService;
 	@Autowired DepartmentService departmentService;
 	@Autowired ItemOpeningService itemOpeningService;
+	@Autowired OpenIndentRepo openIndentRepo;
 	
 
 	@GetMapping("/")
@@ -143,7 +145,7 @@ public class OpenIndentController {
 	@GetMapping("/approve")
 	public String approvePage(Model model) {
 
-		List<OpenIndent> openIndentList = openIndentService.getAllOpenIndent();
+		List<OpenIndent> openIndentList = openIndentRepo.findByApprovalStatus("N");
 
 		if (openIndentList != null) {
 			model.addAttribute("openIndentList", openIndentList);

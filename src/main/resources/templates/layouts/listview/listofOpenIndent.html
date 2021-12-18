@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 
 </head>
@@ -48,7 +55,7 @@
 															<th scope="col">#</th>
 															<th scope="col">Indent Number</th>
 															<th scope="col">Indent Date</th>
-														
+
 															<th scope="col">Action</th>
 
 														</tr>
@@ -58,16 +65,31 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${indent.indentNumber}">Garrett Winters</td>
 															<td th:text="${indent.indentDate}">Garrett Winters</td>
-														
-														
+
+
 
 															<!-- <td><span class="badge bg-success">Active</span></td> -->
 
-															<td><span> <a
-																		th:href="@{/openindent/edit/{id}(id=${indent.indentNumber})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span>
-																<span> <a
-																		th:href="@{/openindent/delete/{id}(id=${indent.indentNumber})}"><em class="fa fa-times" style="color: red"> Remove</em></a></a></span>
-															</td>
+															<td>
+															<span th:if="${indent.approvalStatus1=='N'}"> <a
+																	th:href="@{/openindent/edit/{id}(id=${indent.indentNumber})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> 
+																		
+																<span th:if="${indent.approvalStatus1=='Y'}"> <a
+																	th:href="@{/openindent/view/{id}(id=${indent.indentNumber})}"><em
+																		class="fa fa-edit" style="color: blue;"> View</em></a></span> 
+																		
+																	
+																		
+																		
+																		
+																		<span>
+																		
+																		
+																	<a
+																	th:href="@{/openindent/delete/{id}(id=${indent.indentNumber})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a>
+															</span></td>
 														</tr>
 
 
@@ -79,7 +101,8 @@
 										</div>
 
 										<div class="box-footer">
-											<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
+											<input type="button" value="Go back!" class="btn btn-link"
+												onclick="history.back()">
 										</div>
 
 									</form>
@@ -93,16 +116,20 @@
 					</div>
 				</section>
 			</div>
-
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 </body>
 

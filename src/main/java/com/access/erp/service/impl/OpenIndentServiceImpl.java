@@ -127,6 +127,8 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 			tx = session.beginTransaction();
 			OpenIndent indent = session.find(OpenIndent.class, openIndent.getIndentNumber());
 			
+			indent.setIndentDate(openIndent.getIndentDate());
+			
 			indent.getOpeIndentDetail().clear();
 			
 			indent.getOpeIndentDetail().addAll(openIndent.getOpeIndentDetail());
