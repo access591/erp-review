@@ -30,6 +30,7 @@ public class QuotationDetail {
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="QUOT_DATE")
 	private Date quotDate;
 	

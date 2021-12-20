@@ -126,7 +126,8 @@
 															<div class="form-group col-md-3">
 																<label class="form-label">GST</label> <label
 																	style="color: red">*</label> <select
-																	class="form-control" id="" title="gst" th:field="*{gst}" required>
+																	class="form-control" id="" title="gst"
+																	th:field="*{gst}" required>
 																	<option value="G" selected>GST</option>
 																	<option value="N">Non-GST</option>
 
@@ -255,7 +256,7 @@
 															<label for="inputPassword4">Currency</label> <select
 																id="currency" class="form-control" required
 																title="currency" th:field="*{currency}">
-															
+
 																<option value=" I">INR</option>
 																<option value=" U">USD</option>
 
@@ -285,8 +286,9 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Conversion Value</label> <input
-																type="number" class="form-control"  value="42"
-																placeholder="Conversion Value" th:field="*{conversionValue}">
+																type="number" class="form-control" value="42"
+																placeholder="Conversion Value"
+																th:field="*{conversionValue}">
 														</div>
 
 														<div class="form-group col-md-6">
@@ -345,7 +347,8 @@
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Item Rate</th>
 																		<th scope="col" class="text-center"
-																			style="width: 10px;">Effective Date<span style="color:red">*</span></th>
+																			style="width: 10px;">Effective Date<span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Qty Order</th>
 
@@ -353,6 +356,11 @@
 																			style="width: 90px;">Total Item Cost</th>
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Total Item Cost(INR)</th>
+
+																		<th scope="col" class="text-center"
+																			style="width: 120px;">Inspection Required</th>
+
+
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Remarks</th>
 
@@ -408,7 +416,7 @@
 																			class="form-control form-control-sm" id="itemRate0"
 																			title="item rate"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																			min="0"step="0.25" value="0.00"
+																			min="0" step="0.25" value="0.00"
 																			name="listPurchaseOrderItem[0].itemRate"
 																			style="text-align: right"
 																			onkeyup="calculateItemNRate()"></td>
@@ -428,23 +436,31 @@
 																			name="listPurchaseOrderItem[0].qtyOrder"
 																			onkeyup="calculateItemNRate()"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																			min="0"step="0.25" value="0.00"
+																			min="0" step="0.25" value="0.00"
 																			style="text-align: right"></td>
 
 																		<!--  total item cost -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="totalCost0"
 																			title="total item cost" step='0.01' value='0.00'
-																			placeholder='0.00'
-																			style="text-align: right" readonly></td>
+																			placeholder='0.00' style="text-align: right" readonly></td>
 
 
 																		<!-- total cost inr  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalCostInr0" title="total item cost(inr)"
-																			step='0.01'
-																			style="text-align: right" readonly></td>
+																			step='0.01' style="text-align: right" readonly></td>
+
+																		<!--  dol -->
+																		<td><select class="form-control" title="dol"
+																			style="width: 130px" id="dol0"
+																			name="listPurchaseOrderItem[0].dol">
+																				<option value="">Select</option>
+																				<option value="Y">Yes</option>
+																				<option value="N">No</option>
+
+																		</select></td>
 
 																		<!--  remarks -->
 																		<td><input type="text" title="remarks"
@@ -528,14 +544,16 @@
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="freight0"
 																			title="order date"
-																			name="listPurchaseOrderItem[0].freight"style="text-align: right" value="0"></td>
+																			name="listPurchaseOrderItem[0].freight"
+																			style="text-align: right" value="0"></td>
 
 																		<!-- cgst in percent  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="cgstInPer0"
 																			title="item name"
 																			name="listPurchaseOrderItem[0].cgst"
-																			onkeyup="calulationOfCgst()"style="text-align: right" value="0"></td>
+																			onkeyup="calulationOfCgst()"
+																			style="text-align: right" value="0"></td>
 
 																		<!-- cgst in value  -->
 																		<td><input type="number" title="uom"
@@ -619,12 +637,14 @@
 															<label for="inputEmail4">Total Cost(Excluding
 																tax)</label> <input type="number" class="form-control"
 																id="totalValueEx" placeholder="supplier"
-																th:field="*{totalValue}"style="text-align: right" value="0">
+																th:field="*{totalValue}" style="text-align: right"
+																value="0">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Total Cost(Including
 																tax)</label> <input type="number" class="form-control"
-																id="totalValueIn" placeholder="supplier state" style="text-align: right" value="0">
+																id="totalValueIn" placeholder="supplier state"
+																style="text-align: right" value="0">
 														</div>
 
 
@@ -667,7 +687,7 @@
 		$(document).ready(function() {
 
 			document.getElementById('poDate').valueAsDate = new Date();
-			
+
 			document.getElementById("supplyDate").valueAsDate = new Date();
 			document.getElementById("deliveryDate").valueAsDate = new Date()
 
@@ -850,7 +870,8 @@
 					$("#supplierState").val(data.partyMaster.stateCode);
 					$("#currency").val(data.quotationDetail.currencyCode);
 					//$("#pets").prop("selectedIndex", 3);
-					$("#currency").prop("selectedIndex", data.quotationDetail.currencyCode);
+					$("#currency").prop("selectedIndex",
+							data.quotationDetail.currencyCode);
 
 					console.log("currency code value : "
 							+ data.quotationDetail.currencyCode)
@@ -988,20 +1009,26 @@
 			var itemNumber = document.getElementById("itemPo" + idIndex1).value;
 			var indentNumber = document.getElementById("indentNumberPo"
 					+ idIndex1).value;
-			console.log("get item detail : " + indentNumber + " : "
-					+ itemNumber)
+			console.log(" item detail : " + indentNumber
+					+ " : and item number : " + itemNumber)
 
-			if (itemNumber === " " && indentNumber === " ") {
+			//item info from master
+			if (!indentNumber) {
 
+				console.log("if block")
 				$.ajax({
 					type : "GET",
-					url : "itemInfo",
+					url : "itemInfo/" + itemNumber,
 
 					success : function(data) {
 						console.log("item info detail on po = YES " + data)
 
+						//$('#total').text( value.toFixed(2) );
+
+						console.log("item rate against item : "
+								+ data.itemRate.toFixed(2))
 						$("#itemRate" + idIndex1).val(data.itemRate)
-						//$("#qtyOrder"+idIndex1).val(data.indQty)
+						$("#dol" + idIndex1).val(data.dol);
 
 						totalCostCal();
 
@@ -1013,6 +1040,7 @@
 
 			} else {
 
+				console.log("else block ")
 				$.ajax({
 					type : "GET",
 					url : "itemInfo/" + itemNumber + "/" + indentNumber,
@@ -1020,8 +1048,14 @@
 					success : function(data) {
 						console.log("item info detail " + data)
 
-						$("#itemRate" + idIndex1).val(data.itemRate)
-						$("#qtyOrder" + idIndex1).val(data.indQty)
+						$("#itemRate" + idIndex1).val(
+								data.openIndentDetail.itemRate)
+						$("#qtyOrder" + idIndex1).val(
+								data.openIndentDetail.indQty)
+
+						console.log("dol value is : " + data.item.dol);
+
+						$("#dol" + idIndex1).val(data.item.dol);
 
 						totalCostCal();
 
@@ -1092,116 +1126,133 @@
 			if (itemRate) {
 				if (qty) {
 					var result = itemRate * qty;
-					document.getElementById("totalCost" + idIndex1).value =parseFloat(result).toFixed(2);
-					document.getElementById("totalCostInr" + idIndex1).value = parseFloat(result).toFixed(2);
-					
+					document.getElementById("totalCost" + idIndex1).value = parseFloat(
+							result).toFixed(2);
+					document.getElementById("totalCostInr" + idIndex1).value = parseFloat(
+							result).toFixed(2);
+
 					totalCalculation()
-					
+
 				}
 			}
 		}
-		
-		
-		
+
 		function calulationOfCgst() {
 
-			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+			var totalCost = document.getElementById("totalCost" + idIndex1).value;
 
-			var cgstInPer = document.getElementById("cgstInPer"+idIndex1).value;
+			var cgstInPer = document.getElementById("cgstInPer" + idIndex1).value;
 			var result = totalCost * cgstInPer / 100;
-			document.getElementById("cgstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
-			
-			
+			document.getElementById("cgstInValue" + idIndex1).value = parseFloat(
+					result).toFixed(2);
+
 		}
 
 		function calulationOfSgst() {
-			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+			var totalCost = document.getElementById("totalCost" + idIndex1).value;
 
-			var sgstInPer = document.getElementById("sgstInPer"+idIndex1).value;
+			var sgstInPer = document.getElementById("sgstInPer" + idIndex1).value;
 			//var sgstInValue =  document.getElementById("sgstInValue0").value;
 			var result = totalCost * sgstInPer / 100;
-			document.getElementById("sgstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
-			
-		
+			document.getElementById("sgstInValue" + idIndex1).value = parseFloat(
+					result).toFixed(2);
 
 		}
 
 		function calulationOfIgst() {
-			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+			var totalCost = document.getElementById("totalCost" + idIndex1).value;
 
-			var igstInPer = document.getElementById("igstInPer"+idIndex1).value;
+			var igstInPer = document.getElementById("igstInPer" + idIndex1).value;
 			//var igstInValue = document.getElementById("igstInValue0").value;
 			var result = totalCost * igstInPer / 100;
-			document.getElementById("igstInValue"+idIndex1).value = parseFloat(result).toFixed(2);
-			
-			
+			document.getElementById("igstInValue" + idIndex1).value = parseFloat(
+					result).toFixed(2);
 
 		}
 
 		function calulationOfDiscount() {
-			var totalCost = document.getElementById("totalCost"+idIndex1).value;
+			var totalCost = document.getElementById("totalCost" + idIndex1).value;
 
-			var descountInPer = document.getElementById("descountInPer"+idIndex1).value;
+			var descountInPer = document.getElementById("descountInPer"
+					+ idIndex1).value;
 			//var descountInValue = document.getElementById("descountInValue0").value;
-			var result =  totalCost * descountInPer / 100;
-			document.getElementById("descountInValue"+idIndex1).value =parseFloat(result).toFixed(2);
-			
-			
+			var result = totalCost * descountInPer / 100;
+			document.getElementById("descountInValue" + idIndex1).value = parseFloat(
+					result).toFixed(2);
+
 		}
 
-		
-		
 		/* totalValueWithoutTax = 0;
 		totalValueWithTax = 0 ; */
-		
-		function totalCalculation(){
-			
+
+		function totalCalculation() {
+
 			totalValueWithoutTax = 0;
-			totalValueWithTax = 0 ;
-			
-			totalCost = document.getElementById("totalCost"+idIndex1).value;
-			totalCostInr = document.getElementById("totalCostInr"+idIndex1).value;
-			
-			cgstValue = document.getElementById("cgstInValue"+idIndex1).value;
-			sgstValue = document.getElementById("sgstInValue"+idIndex1).value;
-			
-			igstValue = document.getElementById("igstInValue"+idIndex1).value;
-			discountValue  = document.getElementById("descountInValue"+idIndex1).value;
-			
-			console.log("totaCost : "+totalCost+ " : totalCost : "+totalCostInr+ ": cgstvalue : "+cgstValue + " : igstValue :   " +igstValue+ " ; discountValue ; " + discountValue)
-			
-			totalValueWithoutTax = +totalValueWithoutTax +  +totalCost;
-			
-			totalValueWithTax = +totalValueWithoutTax +  +cgstValue + +sgstValue + +igstValue;
-			
+			totalValueWithTax = 0;
+
+			totalCost = document.getElementById("totalCost" + idIndex1).value;
+			totalCostInr = document.getElementById("totalCostInr" + idIndex1).value;
+
+			cgstValue = document.getElementById("cgstInValue" + idIndex1).value;
+			sgstValue = document.getElementById("sgstInValue" + idIndex1).value;
+
+			igstValue = document.getElementById("igstInValue" + idIndex1).value;
+			discountValue = document.getElementById("descountInValue"
+					+ idIndex1).value;
+
+			console.log("totaCost : " + totalCost + " : totalCost : "
+					+ totalCostInr + ": cgstvalue : " + cgstValue
+					+ " : igstValue :   " + igstValue + " ; discountValue ; "
+					+ discountValue)
+
+			totalValueWithoutTax = +totalValueWithoutTax + +totalCost;
+
+			totalValueWithTax = +totalValueWithoutTax + +cgstValue + +sgstValue
+					+ +igstValue;
+
 			console.log("total value without tax : " + totalValueWithoutTax)
 			console.log("total value with tax : " + totalValueWithTax)
-			
+
 			document.getElementById("totalValueEx").value = "";
-			 document.getElementById("totalValueIn").value = "";
-			
+			document.getElementById("totalValueIn").value = "";
+
 			document.getElementById("totalValueEx").value = totalValueWithoutTax;
-			 document.getElementById("totalValueIn").value = totalValueWithTax;
-			
-			
-			
-			
-			
+			document.getElementById("totalValueIn").value = totalValueWithTax;
+
 		}
-		
+
 		function setTwoNumberDecimal(event) {
 			console.log("se two decimal number")
 			this.value = parseFloat(this.value).toFixed(2);
 		}
 
-		$(document).ready(function () {
-	        $(".floatNumberField").change(function() {
-	            $(this).val(parseFloat($(this).val()).toFixed(2));
-	        });
-	    });
-		
-		
-		
+		function totalCostCal() {
+
+			console.log("total cost function")
+			var itemRate = document.getElementById("itemRate" + idIndex1).value;
+			console.log("item rate value is : " + itemRate)
+			var qtyOrderrate = document.getElementById("qtyOrder" + idIndex1).value;
+			console.log("qty order value is : " + qtyOrderrate)
+
+			var freight = document.getElementById("freight" + idIndex1).value;
+			console.log("freight value is : " + freight)
+
+			// parseFloat(ele.value).toFixed(2)
+			var result = itemRate * qtyOrderrate;
+			console.log("result is : " + result)
+
+			document.getElementById("totalCost" + idIndex1).value = parseFloat(
+					result).toFixed(2);
+			document.getElementById("totalCostInr" + idIndex1).value = parseFloat(
+					result).toFixed(2);
+
+		}
+
+		$(document).ready(function() {
+			$(".floatNumberField").change(function() {
+				$(this).val(parseFloat($(this).val()).toFixed(2));
+			});
+		});
 	</script>
 
 
@@ -1252,7 +1303,7 @@
 																		/* item rate  */
 																		+ "<td><input type='number'class='form-control form-control-sm' id='itemRate"
 																		+ j
-																		+ "'title='item rate'name='listPurchaseOrderItem["
+																		+ "' title='item rate'name='listPurchaseOrderItem["
 																		+ j
 																		+ "].itemRate' onkeyup='calculateItemNRate()' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'min='0'  step='0.25' value='0.00' style='text-align: right'></td>"
 
@@ -1262,7 +1313,7 @@
 																		/*  qty order */
 																		+ "<td><input type='number'class='form-control form-control-sm'title='qty order' id='qtyOrder"
 																		+ j
-																		+ "'name='listPurchaseOrderItem["
+																		+ "' name='listPurchaseOrderItem["
 																		+ j
 																		+ "].qtyOrder' onkeyup='calculateItemNRate()' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'min='0'  step='0.25' value='0.00'style='text-align: right'></td>"
 
@@ -1273,6 +1324,8 @@
 																		+ "<td><input type='text' class='form-control form-control-sm' id='totalCostInr"
 																		+ j
 																		+ "' title='total item cost(inr)''style='text-align: right' readonly></td>"
+
+																		+ "<td><select class='form-control' title='dol' style='width: 130px'  id='dol"+j+"' name='listPurchaseOrderItem["+j+"].dol'> <option value=''>Select</option> <option value='Y'>Yes</option><option value=' N'>No</option> </select></td>"
 
 																		/*  remarks  */
 																		+ "<td><input type='text' title='remarks' class='form-control form-control-sm' id='email"+j+"'name='listPurchaseOrderItem["+j+"].itemRemarks'></td>"
@@ -1305,9 +1358,8 @@
 												} else {
 													openPoFun()
 												}
-												
+
 												//var tempValue = document.getElementByid("totalCost").value;
-												
 
 												j++;
 
@@ -1323,8 +1375,6 @@
 								}
 							});
 						});
-
-	
 
 		/*  tax info block  */
 
@@ -1346,47 +1396,47 @@
 														.html(
 
 																/* freight  */
-																"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date'name='listPurchaseOrderItem[" +i+"].freight'style='text-align: right'></td>'"
+																"<td><input type='number' class='form-control form-control-sm'  id='freight" +i+" ' title='order date' name='listPurchaseOrderItem[" +i+"].freight' style='text-align: right'  value='0'></td>'"
 
 																		/*  cgst  */
 																		+ "<td><input type='text'class='form-control form-control-sm' id='cgstInPer"
 																		+ i
 																		+ "' title='item name'name='listPurchaseOrderItem["
 																		+ i
-																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right'></td>"
+																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right' value='0'></td>"
 
 																		/*   cgst value */
-																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='listPurchaseOrderItem[" +i+"].cgstValue' step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='listPurchaseOrderItem[" +i+"].cgstValue' step='0.01' readonly style='text-align: right'value='0'></td>"
 
 																		/*  sgst  */
 																		+ "<td><input type='number' id='sgstInPer"
 																		+ i
 																		+ "' class='form-control form-control-sm' title='po qty'name='listPurchaseOrderItem["
 																		+ i
-																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.01'style='text-align: right'></td>"
+																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.01'style='text-align: right' value='0'></td>"
 
 																		/* sgst value */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='listPurchaseOrderItem[" +i+"].sgstValue'step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='listPurchaseOrderItem[" +i+"].sgstValue'step='0.01' readonly style='text-align: right' value='0'></td>"
 
 																		/* igst  */
 																		+ "<td><input type='number'class='form-control form-control-sm' id='igstInPer"
 																		+ i
 																		+ "' title='rec qty' name='listPurchaseOrderItem["
 																		+ i
-																		+ "].igst'onkeyup='calulationOfIgst()'step='0.01'' style='text-align: right'></td>"
+																		+ "].igst'onkeyup='calulationOfIgst()'step='0.01'' style='text-align: right' value='0'></td>"
 
 																		/*  igst value  */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='listPurchaseOrderItem[" +i+"].igstValue'step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='listPurchaseOrderItem[" +i+"].igstValue'step='0.01' readonly style='text-align: right' value='0' ></td>"
 
 																		/* discount  */
 																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInPer"
 																		+ i
 																		+ "' title='po rate'name='listPurchaseOrderItem["
 																		+ i
-																		+ "].discPer'onkeyup='calulationOfDiscount()''step='0.01' style='text-align: right'></td>"
+																		+ "].discPer'onkeyup='calulationOfDiscount()''step='0.01' style='text-align: right' value='0'></td>"
 
 																		/*  discount value */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='listPurchaseOrderItem[" +i+"].discValue'step='0.01' readonly style='text-align: right'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='listPurchaseOrderItem[" +i+"].discValue'step='0.01' readonly style='text-align: right' value='0'></td>"
 
 														);
 												$('#example1').append(

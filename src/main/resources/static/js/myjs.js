@@ -229,23 +229,7 @@ function indentDetailInCaseOfIndent() {
 
 
 
-function totalCostCal() {
 
-console.log("total cost function")
-	var itemRate = document.getElementById("itemRate0").value;
-	var qtyOrderrate = document.getElementById("qtyOrder0").value;
-
-	var freight = document.getElementById("freight0").value;
-
-
-	// parseFloat(ele.value).toFixed(2)
-	var result = itemRate * qtyOrderrate;
-	
-	
-	document.getElementById("totalCost0").value = parseFloat(result).toFixed(2);
-	document.getElementById("totalCostInr0").value =  parseFloat(result).toFixed(2);
-
-}
 
 
 

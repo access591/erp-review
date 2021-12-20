@@ -308,6 +308,9 @@ public class PurchaseOrderItem {
 	@Column(name = "COST_CENTRE_CODE",length=10)
 	private int costCenterCode;
 	
+	@Column(name = "DOL",length = 2)
+	private String dol;
+	
 	 @ManyToOne(optional = false)
 	 @JoinColumn(name="PO_NO")
 	 @JsonIgnore
@@ -317,6 +320,20 @@ public class PurchaseOrderItem {
 		super();
 		
 	}
+	
+	
+
+	public String getDol() {
+		return dol;
+	}
+
+
+
+	public void setDol(String dol) {
+		this.dol = dol;
+	}
+
+
 
 	public Long getPurchaseOrderItem() {
 		return purchaseOrderItem;
