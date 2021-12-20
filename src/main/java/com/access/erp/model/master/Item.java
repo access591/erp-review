@@ -28,8 +28,8 @@ public class Item {
 	
 	
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name="CATEGORY_CODE")
+    @ManyToOne(optional = true)
+    @JoinColumn(name="CATEGORY_CODE",nullable = true)
     //@JsonIgnore
 	private Category category;
 	
@@ -177,14 +177,17 @@ public class Item {
 	@Column(name="ITEM_TYPE",length = 5)
 	private String itemType;
 	
-	@Column(name="BULK_ISS_YN",length = 5)
+	@Column(name="BULK_ISS_YN",length = 20)
 	private String bulkIssYn;
 	
 	@Column(name="DUTY_YN",length = 5)
 	private String dutyYn;
 	
-	@Column(name="PETTY_ITEM",length = 5)
+	@Column(name="PETTY_ITEM",length = 20)
 	private String pettyItem;
+	
+	@Column(name="WARR_ITEM_YN",length = 20)
+	private String warItemYn;
 	
 	@Column(name="SHELF_LIFE_YN",length = 5)
 	private String shelfLifeYn;
@@ -219,8 +222,7 @@ public class Item {
 	@Column(name="TRADING_ITEM",length = 2)
 	private String tradingItem;
 	
-	@Column(name="WARR_ITEM_YN",length = 2)
-	private String warItemYn;
+
 	
 	@Column(name="SECTION_CODE",length = 7)
 	private String sectionCode;
