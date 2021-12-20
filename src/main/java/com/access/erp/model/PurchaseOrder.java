@@ -68,6 +68,9 @@ public class PurchaseOrder {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DELIVERY_DATE")
 	private Date deliveryDate;
+	
+
+
 
 	// 14,2
 	@Column(name = "CONVERSION_VALUE", length = 20)

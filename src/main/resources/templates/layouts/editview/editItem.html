@@ -298,13 +298,15 @@
 																<div class="form-group col-md-2">
 																	<label for="inputEmail4">Store Code</label> <input
 																		type="email" class="form-control form-control-sm"
+																		id="storeCode"
 																		placeholder="Store Code" title="store code">
 																</div>
 																<div class="form-group col-md-4">
 																	<label class="form-label">Store Name</label> <label
 																		style="color: red">*</label> <select
 																		class="form-control" title="store name"
-																		th:field="*{store}">
+																		id="storeName"
+																		th:field="*{store}" onchange="selectStore()"> 
 																		<option value="">Select</option>
 																		<option th:each="store :  ${listStore}"
 																			th:text="${store.storeCode}"
@@ -318,7 +320,7 @@
 																		th:field="*{binNum}">
 																</div>
 
-																<div class="form-group col-md-3">
+																<div class="form-group col-md-3"> 
 																	<label for="inputPassword4">Bin Location</label> <input
 																		type="text" class="form-control form-control-sm"
 																		title="bin location" placeholder="Bin Location"
@@ -603,6 +605,18 @@
 	</div>
 
 	<script>
+	
+	window.addEventListener("load", myInit, true); 
+	function myInit(){  
+		console.log("onload function ")
+		getUomNameInfo();
+		selectStore()
+		
+		}; 
+	
+	
+	
+	
 		var idIndex = 0;
 		$(document)
 				.ready(
@@ -664,6 +678,13 @@
 			var uomName = document.getElementById("uomName").value;
 			document.getElementById("uomCode").value = uomName;
 		}
+		
+		function selectStore(){
+			var storeCode = document.getElementById("storeName").value;
+			document.getElementById("storeCode").value = storeCode;
+		}
+		
+		
 	</script>
 
 

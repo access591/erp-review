@@ -40,6 +40,7 @@ import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
 import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
+import com.access.erp.utility.ItemOpenIndentDetail;
 import com.access.erp.utility.PartyStateCity;
 import com.access.erp.utility.QuotationPartyState;
 
@@ -298,7 +299,7 @@ public class PurchaseOrderController {
 	
 	@ResponseBody
 	@GetMapping("/itemInfo/{itemCode}/{indentCode}")
-	public OpenIndentDetail ItemInfoByItemCode(@PathVariable(value = "itemCode") String itemCode,@PathVariable(value = "indentCode") String indentCode, Model model) {
+	public ItemOpenIndentDetail ItemInfoByItemCode(@PathVariable(value = "itemCode") String itemCode,@PathVariable(value = "indentCode") String indentCode, Model model) {
 
 		System.out.println("item  iinfo : " + itemCode);
 		System.out.println("indent   iinfo : " + indentCode);
@@ -308,8 +309,15 @@ public class PurchaseOrderController {
 		//OpenIndentDetail findByIndItemCodeAndOpenIndent(String indentItemCode,OpenIndent openIndent);
 		OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCodeAndOpenIndent(itemCode, openIndent);
 		
+		Item item = itemService.editItem(itemCode).get();
 		
-		return openIndentDetail;
+		ItemOpenIndentDetail itemOpenIndentDetail = new ItemOpenIndentDetail();
+		
+		itemOpenIndentDetail.setItem(item);
+		itemOpenIndentDetail.setOpenIndentDetail(openIndentDetail);
+		
+		
+		return itemOpenIndentDetail;
 
 	}
 	
@@ -319,7 +327,11 @@ public class PurchaseOrderController {
 	@GetMapping("/itemInfo/{id}")
 	public Item itemInfo(@PathVariable("id") String itemCode) {
 		
-		return itemService.editItem(itemCode).get();
+		Item item =  itemService.editItem(itemCode).get();
+		
+		System.out.println("item rate against item : " + item.getItemRate());
+		System.out.println("item dol from master : " + item.getDol());
+		return item;
 
 	}
 	
