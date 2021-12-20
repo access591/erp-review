@@ -57,7 +57,7 @@ public class ItemServiceImpl implements ItemService{
 					
 				}
 				
-				item.getPackingDetails().add(p);
+			//	item.getPackingDetails().add(p);
 				p.setItem(item);
 			}
 			
