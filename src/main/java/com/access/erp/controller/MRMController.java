@@ -20,6 +20,7 @@ import com.access.erp.model.PurchaseOrder;
 import com.access.erp.model.PurchaseOrderItem;
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.Store;
 import com.access.erp.model.master.SupplierMaster;
 import com.access.erp.repo.CurrencyRepo;
 import com.access.erp.repo.GateEntryDetailRepo;
@@ -29,6 +30,7 @@ import com.access.erp.repo.SupplierRepo;
 import com.access.erp.service.GateEntryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.MRMService;
+import com.access.erp.service.StoreService;
 import com.access.erp.utility.MrnUtility;
 
 @Controller
@@ -50,6 +52,7 @@ public class MRMController {
 	GateEntryDetailRepo gateEntryDetailRepo;
 	@Autowired ItemService itemService;
 	@Autowired PurchaseOrderItemRepo purchaseOrderItemRepo;
+	@Autowired StoreService storeService;
 	
 	
 
@@ -72,6 +75,10 @@ public class MRMController {
 
 		List<CurrencyMaster> currencyList = currencyRepo.findAll();
 		model.addAttribute("currencyList", currencyList);
+		
+
+		List<Store> storeList = storeService.getAllStore();
+		model.addAttribute("storeList", storeList);
 
 		model.addAttribute("mrn", new MRN());
 
@@ -105,8 +112,17 @@ public class MRMController {
 
 		System.out.println("edit mrn indent form is running ");
 		
+		List<GateEntry> gateEntryList = gateEntryService.getAllGateEntry();
+		model.addAttribute("gateEntryList", gateEntryList);
+		
+		List<Item> itemList = itemService.getAllItem();
+		model.addAttribute("itemList", itemList);
+		
 		MRN mrn = mrmService.editMrm(mrnNo).get();
 		model.addAttribute("mrn", mrn);
+		
+		List<Store> storeList = storeService.getAllStore();
+		model.addAttribute("storeList", storeList);
 		
 
 		return "layouts/editview/editMrn";
@@ -183,6 +199,90 @@ public class MRMController {
 	@ResponseBody
 	@GetMapping("iteminfo/againstgateentry/{itemCode}/{gateEntry}")
 	public PurchaseOrderItem getItemInfoAgainstGateEntry(@PathVariable(value = "itemCode") String itemCode , @PathVariable(value="gateEntry") String gateEntryNo){
+		
+		System.out.println("hello ");
+		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryNo).get();
+		
+		Item item = itemService.editItem(itemCode).get();
+		
+		PurchaseOrderItem purchaseOrderItem = null  ;
+		
+		// find against item code and gate entry code 
+		List<GateEntryItemDetail> gateEntryDetailList = gateEntryDetailRepo.findByGateEntryAndItem(gateEntry, item);
+		
+		if(gateEntryDetailList.size()>0) {
+			PurchaseOrder purchaseOrder = gateEntryDetailList.get(0).getPurchaseOrder();
+			purchaseOrderItem  = purchaseOrderItemRepo.findByItemAndPurchaseOrder(item, purchaseOrder);
+		}
+		
+		// po from gate entry 
+		// get po detail by po id and item 
+		
+		
+				
+				
+	
+		return purchaseOrderItem;
+		//return gateEntryDetailList;
+	}
+	
+	
+	
+	//AJAX for EDIT MODE
+	
+	@ResponseBody
+	@GetMapping("/edit/gateentryinfo/{id}")
+	public MrnUtility getGateEntryInfoAgainstGateEntryEdit(@PathVariable(value = "id") String id, Model model) {
+
+		// GateEntryNumber
+
+		GateEntry gateEntry = gateEntryService.editGateEntry(id).get();
+
+		MrnUtility mrnUtility = new MrnUtility();
+		mrnUtility.setGateEntry(gateEntry);
+
+		List<GateEntryItemDetail> gateEntryDetailList = gateEntryDetailRepo.findByGateEntry(gateEntry);
+
+		List<Item> itemList = new ArrayList<>();
+
+		for (GateEntryItemDetail gateEntryDetail : gateEntryDetailList) {
+
+			
+		
+			Item item = gateEntryDetail.getItem();
+			itemList.add(item);
+			mrnUtility.setPoGst(gateEntryDetail.getPurchaseOrder().getGst());
+			mrnUtility.setCurrency (gateEntryDetail.getPurchaseOrder().getCurrency());
+			mrnUtility.setConversionValue(String.valueOf( gateEntryDetail.getPurchaseOrder().getConversionValue()));
+		}
+		//mrnUtility.setItemList(itemList);
+		return mrnUtility;
+
+	}
+	
+
+	@ResponseBody
+	@GetMapping("/edit/itemlist/againstgateentry/{gateEntry}")
+	public List<Item> getItemListAgainstGateEntryEdit(@PathVariable(value = "gateEntry") String gateEntryNo){
+		
+		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryNo).get();
+		List<GateEntryItemDetail> gateEntryDetailList = gateEntryDetailRepo.findByGateEntry(gateEntry);
+		List<Item> itemList = new ArrayList<>();
+		
+		for (GateEntryItemDetail gateEntryDetail : gateEntryDetailList) {
+		
+			Item item = gateEntryDetail.getItem();
+			itemList.add(item);
+	
+		}
+		
+		return itemList;
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/edit/iteminfo/againstgateentry/{itemCode}/{gateEntry}")
+	public PurchaseOrderItem getItemInfoAgainstGateEntryEdit(@PathVariable(value = "itemCode") String itemCode , @PathVariable(value="gateEntry") String gateEntryNo){
 		
 		System.out.println("hello ");
 		GateEntry gateEntry = gateEntryService.editGateEntry(gateEntryNo).get();
