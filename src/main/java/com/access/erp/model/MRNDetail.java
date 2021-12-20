@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
+import com.access.erp.model.master.Store;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
@@ -32,8 +33,10 @@ public class MRNDetail {
 	@JoinColumn(name="ITEM_CODE")
 	private Item item;
 	
-	@Column(name="ITEM_ACC_CODE",length = 9)
-	private String itemAccCode; 
+	@ManyToOne
+	@JoinColumn(name="STORE_CODE")
+	public Store  store;
+	
 	
 	@Column(name="REMARKS",length = 50)
 	private String remarks;
@@ -449,12 +452,14 @@ public class MRNDetail {
 		this.item = item;
 	}
 
-	public String getItemAccCode() {
-		return itemAccCode;
+	
+
+	public Store getStore() {
+		return store;
 	}
 
-	public void setItemAccCode(String itemAccCode) {
-		this.itemAccCode = itemAccCode;
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 	public String getRemarks() {

@@ -45,7 +45,7 @@ public class MrnInspectionController {
 		List<MRN> mrmList = mrmService.getAllMrm();
 		model.addAttribute("mrmList", mrmList);
 		
-		List<Employee> employeeList = employeeService.getAllEmployee();
+		List<Employee> employeeList = employeeService.getAllEmployee(); 
 		model.addAttribute("employeeList", employeeList);
 		
 		return "layouts/Master/mrnInspection";
@@ -57,6 +57,7 @@ public class MrnInspectionController {
 
 		
 
+		
 		/*
 		 * boolean exists = companyRepo.existsById(company.getCompCode()); if (!exists)
 		 * {

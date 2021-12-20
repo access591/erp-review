@@ -21,6 +21,7 @@ import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.PartyMaster;
+import com.access.erp.model.master.Store;
 import com.access.erp.model.master.SupplierMaster;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -285,6 +286,7 @@ public class MRN {
 	
 	@Column(name="ITC_ELIGIABLE",length = 1)
 	public String itcEligiable;
+	
 	
 	
 	@JsonManagedReference

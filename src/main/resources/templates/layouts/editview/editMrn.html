@@ -344,14 +344,15 @@ iframe {
 																</thead>
 
 																<tbody>
-																	<tr id="addr0">
+																	<tr id="addr0" th:each="row, stat :${mrn.mrnDetails}">
 
 
 																		<!-- matrial type  -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
 																			id="orderIndentNumberPo"
-																			name="mrnDetails[0].matServType"
+																			th:field="*{mrnDetails[__${stat.index}__].matServType}"
+																			
 																			title="indent number">
 
 																				<option value="M">Material</option>
@@ -362,12 +363,17 @@ iframe {
 																		<!-- item code -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="itemCode0"
-																			title="order date" name="mrnDetails[0].item" readonly></td>
+																			title="order date"  readonly></td>
 
 																		<!-- item name -->
 																		<td><select type="text"
 																			class="form-control  form-control-sm select itemContainer0"
-																			id="item0" title="item name" onchange="getItemInfo()">
+																				th:field="*{mrnDetails[__${stat.index}__].item}"
+																			id="item0" title="item name" onchange="getItemInfo()" readonly>
+																				<option value="">Select</option>
+																				<option th:each="item :  ${itemList}"
+																					th:text="${item.description}"
+																					th:value=" ${item.itemCode}"></option>
 
 
 																		</select></td>
@@ -375,17 +381,20 @@ iframe {
 																		<!-- Account Name -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
-																			id="orderIndentNumberPo"
-																			name="mrnDetails[0].itemAccCode" title="account name">
+																			id="orderIndentNumberPo" 
+																				th:field="*{mrnDetails[__${stat.index}__].store}"
+																			title="account name">
 																				<option value="">Select</option>
-																				<option value="1">Ac01</option>
-																				<option value="2">Ac02</option>
+																				<option th:each="store :  ${storeList}"
+																					th:text="${store.description}"
+																					th:value=" ${store.storeCode}"></option>
 
 
 																		</select></td>
 
 																		<!-- UOM -->
 																		<td><input type="text" title="uom" id="uom0"
+																		
 																			class="form-control form-control-sm" readonly></td>
 
 																		<!-- po qty   -->
@@ -397,12 +406,14 @@ iframe {
 																		<!-- inr qty -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="invQty0"
-																			title="inv qty" name="mrnDetails[0].itemInv" readonly></td>
+																				th:field="*{mrnDetails[__${stat.index}__].itemInv}"
+																			title="inv qty" readonly></td>
 
 																		<!-- rec qty  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="recQty0"
-																			title="rec qty" name="mrnDetails[0].itemRec"></td>
+																				th:field="*{mrnDetails[__${stat.index}__].itemRec}"
+																			title="rec qty" ></td>
 
 
 																		<!-- po rate curr -->
@@ -414,44 +425,49 @@ iframe {
 																		<!-- po rate  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="poRate0"
-																			title="po rate" name="mrnDetails[0].itemRate"
+																				th:field="*{mrnDetails[__${stat.index}__].itemRate}"
+																			title="po rate" 
 																			readonly></td>
 
 																		<!-- bill rate  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="billRate0"
-																			title="bill rate" name="mrnDetails[0].itemrateOnBill"></td>
+																				th:field="*{mrnDetails[__${stat.index}__].itemrateOnBill}"
+																			title="bill rate"></td>
 
 																		<!-- total cost   -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="totalCost0"
-																			step="0.25" value="0.00"
-																			title="total cost" name="mrnDetails[0].totalvalue"></td>
+																			step="0.25" value="0.00" title="total cost"
+																				th:field="*{mrnDetails[__${stat.index}__].totalvalue}"></td>
 
 																		<!-- net cost  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="netCost0"
-																			title="net cost" name="mrnDetails[0].itemNetVal"
-																			step="0.25" value="0.00"
-																			readonly></td>
+																				th:field="*{mrnDetails[__${stat.index}__].itemNetVal}"
+																			title="net cost" 
+																			step="0.25" value="0.00" readonly></td>
 
 
 																		<!-- total pur cost  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="totalPrCost0" title="total pur cost"
-																			name="mrnDetails[0].totalPurCost"step="0.25" value="0.00" readonly></td>
+																				th:field="*{mrnDetails[__${stat.index}__].totalPurCost}" step="0.25"
+																			value="0.00" readonly></td>
 
 																		<!-- total inr cost  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="totalInrCost0" title="total inr cost" step="0.25" value="0.00"readonly></td>
+																			id="totalInrCost0" title="total inr cost" step="0.25"
+																			value="0.00" readonly></td>
 
 																		<!-- remarks   -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="remarks0"
-																			title="remarks" name="mrnDetails[0].remarks"></td>
-  
+																				th:field="*{mrnDetails[__${stat.index}__].remarks}"
+																			title="remarks" ></td>
+
 																		<!-- dol -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
@@ -542,15 +558,13 @@ iframe {
 																		<!-- freight  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="freight0"
-																			title="order date"
-																			name="mrnDetails[0].freight"
+																			title="order date" name="mrnDetails[0].freight"
 																			style="text-align: right" value="0"></td>
 
 																		<!-- cgst in percent  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="cgstInPer0"
-																			title="item name"
-																			name="mrnDetails[0].cgst"
+																			title="item name" name="mrnDetails[0].cgst"
 																			onkeyup="calulationOfCgst()"
 																			style="text-align: right" value="0"></td>
 
@@ -632,8 +646,9 @@ iframe {
 
 
 												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Apply Changes " class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
+													<input type="submit" value="Apply Changes "
+														class="btn btn-primary" /> <input type="reset"
+														value="Reset" class="btn btn-danger" />
 												</div>
 											</form>
 
@@ -759,7 +774,7 @@ iframe {
 
 											});
 
-							$('.itemContainer' + idIndex).html(options);
+						//	$('.itemContainer' + idIndex).html(options);
 
 						},
 						error : function() {
@@ -1099,8 +1114,6 @@ iframe {
 					result).toFixed(2);
 
 		}
-		
-		
 	</script>
 
 
@@ -1108,6 +1121,14 @@ iframe {
 
 
 	<script>
+		window.addEventListener("load", myInit, true);
+
+		function myInit() {
+
+			getGateEntryInfo();
+			getItemInfo()
+		};
+
 		$(window).load(function() {
 			$('#exampleModal').modal('show');
 		});
