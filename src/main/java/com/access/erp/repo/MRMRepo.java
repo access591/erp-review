@@ -11,6 +11,7 @@ import com.access.erp.model.MRN;
 @Repository
 public interface MRMRepo extends JpaRepository<MRN, String> {
 	
+	//mrnDetails
 	List<MRN> findByMrnDetailsDol(String dol);
 
 }

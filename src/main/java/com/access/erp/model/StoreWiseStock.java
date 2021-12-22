@@ -1,6 +1,5 @@
 package com.access.erp.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,7 @@ import javax.persistence.Table;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.Store;
 
@@ -37,7 +37,7 @@ public class StoreWiseStock {
 	
 	@ManyToOne(optional = true)
     @JoinColumn(name="FYCODE",nullable = true)
-	private FinancialActiveYear fyYear;
+	private FinancialYear fyYear;
 	
 	@ManyToOne(optional = true)
     @JoinColumn(name="CCODE")
@@ -75,11 +75,13 @@ public class StoreWiseStock {
 		this.qty = qty;
 	}
 
-	public FinancialActiveYear getFyYear() {
+	
+
+	public FinancialYear getFyYear() {
 		return fyYear;
 	}
 
-	public void setFyYear(FinancialActiveYear fyYear) {
+	public void setFyYear(FinancialYear fyYear) {
 		this.fyYear = fyYear;
 	}
 
