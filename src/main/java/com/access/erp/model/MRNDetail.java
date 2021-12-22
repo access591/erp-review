@@ -200,8 +200,8 @@ public class MRNDetail {
 	@Column(name="CST_VALUE",length = 14)
 	private int cstValue;
 	
-	@Column(name="PO_NET_VAL",length = 15)
-	private int poNetVal;
+	@Column(name = "ITEM_NET_VAL", columnDefinition = "FLOAT(14,3)",nullable = true)
+	private double poNetVal;
 	
 	@Column(name="MISCELLANEOUS_CHARGES",length = 15)
 	private int miscellaneousCharges;
@@ -874,11 +874,13 @@ public class MRNDetail {
 		this.cstValue = cstValue;
 	}
 
-	public int getPoNetVal() {
+	
+
+	public double getPoNetVal() {
 		return poNetVal;
 	}
 
-	public void setPoNetVal(int poNetVal) {
+	public void setPoNetVal(double poNetVal) {
 		this.poNetVal = poNetVal;
 	}
 
@@ -1435,8 +1437,19 @@ public class MRNDetail {
 	}
 
 
-	
-	
+	@Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MRNDetail) {
+            return ((MRNDetail) obj).mrn == mrn;
+        }
+        return false;
+    }
+    
+	/*
+	 * @Override public int hashCode() {
+	 * 
+	 * int i = this.mrnDetailId.intValue(); return i; }
+	 */
 	
 	
 	

@@ -13,4 +13,8 @@ public interface MrnDetailRepo extends JpaRepository<MRNDetail, Long>{
 	public List<MRNDetail> findByMrn(MRN mrn);
 	
 	public List<MRNDetail> findByMrnAndItem(MRN mrn , Item item);
+	
+	public List<MRNDetail> findByDolStatus(String dol);
+	
+	List<MRNDetail> findDistinctByDolStatus(String dol);
 }

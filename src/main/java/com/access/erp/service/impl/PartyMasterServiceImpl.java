@@ -33,6 +33,7 @@ public class PartyMasterServiceImpl implements PartyMasterService{
 		
 		System.out.println("party master code : " + "EB" +"-" + partyMaster.getPartyTypCode().charAt(1)  + maxCode.substring(4));
 		
+		//check comma exist 
 		partyMaster.setPartyCode("EB" +"-" + partyMaster.getPartyTypCode().charAt(1)  + maxCode.substring(4));
 		
 		for(PartyBilling party : partyMaster.getListPartyBilling()) {

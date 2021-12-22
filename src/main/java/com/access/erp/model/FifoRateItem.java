@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.PartyMaster;
 
@@ -27,7 +28,7 @@ public class FifoRateItem {
 	
 	@ManyToOne(optional = true)
     @JoinColumn(name="FYCODE",nullable = true)
-	private FinancialActiveYear fyYear;
+	private FinancialYear fyYear;
 	
 	@ManyToOne(optional = true)
     @JoinColumn(name="MRN_NO",nullable = true)
@@ -77,11 +78,21 @@ public class FifoRateItem {
 	@Column(name = "NO_OF_BARS", columnDefinition = "FLOAT(12,2)",nullable = true)
 	private double noOfBars;
 
-	public FinancialActiveYear getFyYear() {
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public FinancialYear getFyYear() {
 		return fyYear;
 	}
 
-	public void setFyYear(FinancialActiveYear fyYear) {
+	public void setFyYear(FinancialYear fyYear) {
 		this.fyYear = fyYear;
 	}
 
