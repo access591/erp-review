@@ -18,6 +18,7 @@ import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.MyUser;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -54,16 +55,16 @@ public class MrnInspection {
 	@Column(name="WORKER_CODE",length = 40)
 	private String workerCode;
 	
-	@ManyToOne
-	@JoinColumn(name="FYCODE")
+	@ManyToOne(optional = true)
+	@JoinColumn(name="FYCODE",nullable = true)
 	private FinancialActiveYear fy;
 	
-	@ManyToOne
-	@JoinColumn(name="CCODE")
+	@ManyToOne(optional = true)
+	@JoinColumn(name="CCODE",nullable = true)
 	private Company company;
 	
-	@ManyToOne
-	@JoinColumn(name="UCODE")
+	@ManyToOne(optional = true)
+	@JoinColumn(name="UCODE",nullable = true)
 	private MyUser myUser;
 	
 	@Column(name="UDATE")
@@ -82,7 +83,7 @@ public class MrnInspection {
 	@Column(name="REP_IN_DATE" )
 	private Date repInDate;
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "mrnInspection", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<MrnInspectionItemDetail> mrnInspectionItems = new ArrayList<>();
 
