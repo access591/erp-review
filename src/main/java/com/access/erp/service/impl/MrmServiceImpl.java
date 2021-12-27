@@ -25,9 +25,9 @@ public class MrmServiceImpl implements MRMService {
 
 		// pk EB-MRN-0001
 		
-		if (mrm.getMrmCode() == "" || mrm.getMrmCode() == null) {
+		if (mrm.getMrnNo() == "" || mrm.getMrnNo() == null) {
 		
-			System.out.println("mrn  code is : "+mrm.getMrmCode());
+			System.out.println("mrn  code is : "+mrm.getMrnNo());
 			
 			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("MRN", "20-21", "EB");
 			

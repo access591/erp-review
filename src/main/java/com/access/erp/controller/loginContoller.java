@@ -103,6 +103,10 @@ public class loginContoller {
 			globalParameter.setGlobalCompany(aCompany.getCompCode());
 			globalParameter.setGlobalFinanceYear(aFy.getFinancialYearCode());
 			
+			globalParameter.setCompany(aCompany);
+			globalParameter.setMyUser(aUser);
+			globalParameter.setFyYear(aFy);
+			
 			
 			//AnnotationConfigApplicationContext context =  new AnnotationConfigApplicationContext(AppConfig.class);
 			return "layouts/index";

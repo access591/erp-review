@@ -13,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,7 +42,7 @@ public class ItemOpening {
 	//company code 
 	
 	@ManyToOne(optional = false)
-    @JoinColumn(name="CCODE")
+    @JoinColumn(name="CCODE",updatable = false,insertable = true)
 	@JsonIgnore
     private Company company;
 	
@@ -49,13 +50,13 @@ public class ItemOpening {
 	// fy code 
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="FYCODE")
+	@JoinColumn(name="FYCODE",updatable = false,insertable = true)
 	@JsonIgnore
-	private FinancialActiveYear financialActiveYear;
+	private FinancialYear financialYear;
 	
 	//ucode 
 	@ManyToOne(optional = false)
-	@JoinColumn(name="UCODE")
+	@JoinColumn(name="UCODE",updatable = false,insertable = true)
 	@JsonIgnore
 	private MyUser myUser;
 	
@@ -104,16 +105,12 @@ public class ItemOpening {
 
 	
 
-
-	public FinancialActiveYear getFinancialActiveYear() {
-		return financialActiveYear;
+	public FinancialYear getFinancialYear() {
+		return financialYear;
 	}
 
-
-	public void setFinancialActiveYear(FinancialActiveYear financialActiveYear) {
-		
-		
-		this.financialActiveYear = financialActiveYear;
+	public void setFinancialYear(FinancialYear financialYear) {
+		this.financialYear = financialYear;
 	}
 
 	public MyUser getMyUser() {

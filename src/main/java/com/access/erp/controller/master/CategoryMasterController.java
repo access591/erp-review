@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.master.Category;
 import com.access.erp.service.CategoryService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/category")
@@ -24,6 +25,7 @@ public class CategoryMasterController {
 	
 	
 	@Autowired CategoryService categoryService;
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	@GetMapping("/")
@@ -41,7 +43,7 @@ public class CategoryMasterController {
 		
 		
 		//
-		category.setCompCode("EB");
+		category.setCompCode(globalParameter.getGlobalCompany());
 		
 		categoryService.addCategory(category);
 		redirectAttributes.addFlashAttribute("message", "Category  has been saved successfully!");

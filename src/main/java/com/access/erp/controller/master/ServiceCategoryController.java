@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.master.ServiceCategory;
 import com.access.erp.service.ServiceCategoryMasterService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/servicecategory")
 public class ServiceCategoryController {
 
 	@Autowired ServiceCategoryMasterService serviceCategoryService;
+	@Autowired GlobalParameter globalParameter;
 	
 	@GetMapping("/")
 	public String serviceCategory(Model model) {
@@ -37,7 +39,7 @@ public class ServiceCategoryController {
 		servicecategory.setInsertedBy(principal.getName());
 		servicecategory.setInsertedDate(new Date());
 		
-		servicecategory.setuCode("EB");
+		servicecategory.setuCode(globalParameter.getGlobalCompany());
 		serviceCategoryService.addServiceCategory(servicecategory);
 		
 		return "redirect:/servicecategory/";

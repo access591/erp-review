@@ -19,6 +19,7 @@ import com.access.erp.service.FinancialActiveYearService;
 import com.access.erp.service.GateEntryService;
 import com.access.erp.service.MyUserService;
 import com.access.erp.service.PartyMasterService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Service
 public class GateEntryServiceImpl implements GateEntryService{
@@ -29,6 +30,7 @@ public class GateEntryServiceImpl implements GateEntryService{
 	@Autowired CompanyService companyService;
 	@Autowired MyUserService myUSerService;
 	@Autowired FinancialActiveYearService financialActiveYearService;
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	@Override
@@ -39,13 +41,12 @@ public class GateEntryServiceImpl implements GateEntryService{
 			gateEntry.setGateSrNo("EB"+ maxCode);
 		}
 		
-		Company company = companyService.editCompany("EB");
-		gateEntry.setCompany(company);
-		FinancialActiveYear financialActiveYear =  financialActiveYearService.editFinancialActiveYear(1L).get();
-		gateEntry.setFinancialActiveYear(financialActiveYear);
 		
-		MyUser myUser = myUSerService.editMyUser("admn").get();
-		gateEntry.setMyUser(myUser);
+		gateEntry.setCompany(globalParameter.getCompany());
+	
+		gateEntry.setFinancialYear(globalParameter.getFyYear());
+		
+		gateEntry.setMyUser(globalParameter.getMyUser());
 		
 		
 		for(GateEntryItemDetail gateEntryItemDetail : gateEntry.getGateEntryItemDetails()) {

@@ -43,6 +43,7 @@ import com.access.erp.service.MRMService;
 import com.access.erp.service.MrnInspectionService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.StoreService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/inspection")
@@ -74,6 +75,7 @@ public class MrnInspectionController {
 	@Autowired
 	StoreService storeService;
 	@Autowired ItemOpeningService itemOpeningService;
+	@Autowired GlobalParameter globalParameter;
 
 	// @Autowired FinancialActiveYearService fyActiveYearService;
 
@@ -197,7 +199,10 @@ public class MrnInspectionController {
 		}
 
 	
-
+		inspection.setCompany(globalParameter.getCompany());
+		inspection.setFy(globalParameter.getFyYear());
+		inspection.setMyUser(globalParameter.getMyUser());
+		
 		mrnInspectionService.addMrnInspection(inspection);
 		return "redirect:/inspection/";
 	}

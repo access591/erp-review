@@ -18,6 +18,7 @@ import com.access.erp.model.master.City;
 import com.access.erp.model.master.State;
 import com.access.erp.service.CityService;
 import com.access.erp.service.StateService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/city")
@@ -25,6 +26,7 @@ public class CityController {
 	
 	@Autowired CityService cityService;
 	@Autowired StateService stateService;
+	@Autowired GlobalParameter globalParameter;
 	
 	@GetMapping("/")
 	public String city(Model model) {

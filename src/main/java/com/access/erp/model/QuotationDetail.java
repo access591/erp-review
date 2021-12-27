@@ -111,16 +111,16 @@ public class QuotationDetail {
 	private String delMode;
 	
 	//fk
-	@Column(name="CCODE",length = 30)
+	@Column(name="CCODE",length = 30,updatable = false,insertable = true)
 	private String cCode;
 	
 	
 	//fk
-	@Column(name="FYCODE",length = 30)
+	@Column(name="FYCODE",length = 30,updatable = false,insertable = true)
 	private String fyCode;
 	
 	//fk
-	@Column(name="UCODE",length = 30)
+	@Column(name="UCODE",length = 30,updatable = false,insertable = true)
 	private String uCode;
 	
 	@Column(name="UDATE")

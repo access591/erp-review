@@ -40,6 +40,7 @@ import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
 import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.ItemOpenIndentDetail;
 import com.access.erp.utility.PartyStateCity;
 import com.access.erp.utility.QuotationPartyState;
@@ -69,6 +70,7 @@ public class PurchaseOrderController {
 	@Autowired ItemService itemService;
 	@Autowired OpenIndentDetailRepo openIndentDetailRepo;
 	@Autowired CityService cityService;
+	@Autowired GlobalParameter globalParameter;
 	
 
 	@GetMapping("/")
@@ -96,6 +98,11 @@ public class PurchaseOrderController {
 	@PostMapping("/")
 	public String addPurchaseOrder(@ModelAttribute("purchaseOrder") PurchaseOrder po) {
 
+		
+		po.setcCode(globalParameter.getGlobalCompany());
+		po.setuCode(globalParameter.getGlobaluser());
+		po.setFyCode(globalParameter.getGlobalFinanceYear());
+		
 		purchaseOrderService.addPurchaseOrder(po);
 		return "redirect:/purchaseorder/";
 

@@ -24,6 +24,7 @@ import com.access.erp.service.EmployeeService;
 import com.access.erp.service.ItemOpeningService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.Item_itemOpening;
 
 @Controller
@@ -36,6 +37,8 @@ public class OpenIndentController {
 	@Autowired DepartmentService departmentService;
 	@Autowired ItemOpeningService itemOpeningService;
 	@Autowired OpenIndentRepo openIndentRepo;
+	
+	@Autowired GlobalParameter globalParameter;
 	
 
 	@GetMapping("/")
@@ -60,6 +63,11 @@ public class OpenIndentController {
 	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent) {
 
 		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
+		
+		openIndent.setCompany(globalParameter.getGlobalCompany());
+		openIndent.setFyCode(globalParameter.getGlobalFinanceYear());
+		openIndent.setUser(globalParameter.getGlobaluser());
+		
 		openIndentService.addOpenIndent(openIndent);
 
 		return "redirect:/openindent/";

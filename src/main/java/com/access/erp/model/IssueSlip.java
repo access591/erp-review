@@ -18,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.Store;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -71,15 +72,15 @@ public class IssueSlip {
 
 	
 	@ManyToOne
-	@JoinColumn(name="CCODE",nullable = true)
+	@JoinColumn(name="CCODE",nullable = true,updatable = false,insertable = true)
 	private Company company;
 	
 	@ManyToOne
-	@JoinColumn(name="FYCODE",nullable = true)
-	private FinancialActiveYear fycode;
+	@JoinColumn(name="FYCODE",nullable = true,updatable = false,insertable = true)
+	private FinancialYear fycode;
 	
 	@ManyToOne
-	@JoinColumn(name="UCODE",nullable = true)
+	@JoinColumn(name="UCODE",nullable = true,updatable = false,insertable = true)
 	private MyUser muUser;
 	
 	
@@ -256,13 +257,17 @@ public class IssueSlip {
 
 
 
-	public FinancialActiveYear getFycode() {
+	
+
+
+
+	public FinancialYear getFycode() {
 		return fycode;
 	}
 
 
 
-	public void setFycode(FinancialActiveYear fycode) {
+	public void setFycode(FinancialYear fycode) {
 		this.fycode = fycode;
 	}
 

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -56,15 +57,15 @@ public class MrnInspection {
 	private String workerCode;
 	
 	@ManyToOne(optional = true)
-	@JoinColumn(name="FYCODE",nullable = true)
-	private FinancialActiveYear fy;
+	@JoinColumn(name="FYCODE",nullable = true,updatable = false,insertable = true)
+	private FinancialYear fy;
 	
 	@ManyToOne(optional = true)
-	@JoinColumn(name="CCODE",nullable = true)
+	@JoinColumn(name="CCODE",nullable = true,updatable = false,insertable = true)
 	private Company company;
 	
 	@ManyToOne(optional = true)
-	@JoinColumn(name="UCODE",nullable = true)
+	@JoinColumn(name="UCODE",nullable = true,updatable = false,insertable = true)
 	private MyUser myUser;
 	
 	@Column(name="UDATE")
@@ -172,11 +173,13 @@ public class MrnInspection {
 		this.workerCode = workerCode;
 	}
 
-	public FinancialActiveYear getFy() {
+	
+
+	public FinancialYear getFy() {
 		return fy;
 	}
 
-	public void setFy(FinancialActiveYear fy) {
+	public void setFy(FinancialYear fy) {
 		this.fy = fy;
 	}
 

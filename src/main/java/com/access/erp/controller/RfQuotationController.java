@@ -34,6 +34,7 @@ import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
 import com.access.erp.service.UOMService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.ItemListOfIndent;
 import com.access.erp.utility.ItemUom;
 import com.access.erp.utility.PartyStateCity;
@@ -66,6 +67,7 @@ public class RfQuotationController {
 	CityService cityService;
 	@Autowired
 	OpenIndentDetailRepo openIndentDetailRepo;
+	@Autowired GlobalParameter globalParameter;
 
 	@GetMapping("/")
 	public String requestQuotation(Model model) {
@@ -96,6 +98,10 @@ public class RfQuotationController {
 	public String addrFQuotation(@ModelAttribute("rFQuotation") RfQuotation rfQuotation) {
 
 		System.out.println(" add rf Quotation method ");
+		rfQuotation.setcCode(globalParameter.getGlobalCompany());
+		rfQuotation.setFyCode(globalParameter.getGlobalFinanceYear());
+		rfQuotation.setuCode(globalParameter.getGlobaluser());
+		
 		rfQuotationService.addRfQuotation(rfQuotation);
 		return "redirect:/requestquotation/";
 	}

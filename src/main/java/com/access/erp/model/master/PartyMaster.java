@@ -320,7 +320,7 @@ public class PartyMaster {
 	private String dealerType;
 		
 	//fk
-	@Column(name="CCODE",length=10)
+	@Column(name="CCODE",length=10,updatable = false,insertable = true)
 	private String cCode;
 	
 	@Column(name="PARTY_TYPE",length=2)

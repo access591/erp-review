@@ -42,6 +42,7 @@ import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.QuotationDetailService;
 import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.OpenIndentEmployee;
 
 @Controller
@@ -72,6 +73,8 @@ public class QuotationDetailController {
 	@Autowired OpenIndentService  openIndentService;
 	@Autowired EmployeeService employeeService;
 	@Autowired QuotationDetailService quotationDetailService;
+	
+	@Autowired GlobalParameter globalParameter;
 	
 
 	@GetMapping("/")
@@ -107,6 +110,11 @@ public class QuotationDetailController {
 	public String addQuotationDetail(@ModelAttribute("quotation") QuotationDetail quotation) {
 
 		System.out.println("Hello");
+		
+		quotation.setcCode(globalParameter.getGlobalCompany());
+		quotation.setuCode(globalParameter.getGlobaluser());
+		quotation.setFyCode(globalParameter.getGlobalFinanceYear());
+		
 		quotationService.addQuotationdetail(quotation);
 
 		return "redirect:/quotationdetail/";
@@ -121,6 +129,7 @@ public class QuotationDetailController {
 		
 		quotation.getQuotationItem().clear();
 		//for(QuotationItem quotationItem : )
+		
 		
 		quotationService.addQuotationdetail(quotation);
 

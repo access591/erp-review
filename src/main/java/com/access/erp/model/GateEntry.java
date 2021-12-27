@@ -18,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Company;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.SupplierMaster;
@@ -84,18 +85,18 @@ public class GateEntry {
 
 	// ccode
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "CCODE")
+	@JoinColumn(name = "CCODE",updatable = false,insertable = true)
 	private Company company;
 
 	// fycode
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "FY_CODE")
-	private FinancialActiveYear financialActiveYear;
+	@JoinColumn(name = "FY_CODE",updatable = false,insertable = true)
+	private FinancialYear financialYear;
 
 	// ucode
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "U_CODE")
+	@JoinColumn(name = "U_CODE",updatable = false,insertable = true)
 	private MyUser myUser;
 
 	@Column(name = "U_DATE")
@@ -270,12 +271,14 @@ public class GateEntry {
 		this.company = company;
 	}
 
-	public FinancialActiveYear getFinancialActiveYear() {
-		return financialActiveYear;
+	
+
+	public FinancialYear getFinancialYear() {
+		return financialYear;
 	}
 
-	public void setFinancialActiveYear(FinancialActiveYear financialActiveYear) {
-		this.financialActiveYear = financialActiveYear;
+	public void setFinancialYear(FinancialYear financialYear) {
+		this.financialYear = financialYear;
 	}
 
 	public MyUser getMyUser() {
