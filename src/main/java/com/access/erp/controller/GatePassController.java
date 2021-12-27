@@ -19,6 +19,7 @@ import com.access.erp.repo.GatePassRepo;
 import com.access.erp.repo.SupplierRepo;
 import com.access.erp.service.DepartmentService;
 import com.access.erp.service.EmployeeService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/gatepass")
@@ -28,6 +29,7 @@ public class GatePassController {
 	@Autowired DepartmentService departmentService;
 	@Autowired SupplierRepo supplierRepo;
 	@Autowired GatePassRepo gatePassRepo;
+	@Autowired GlobalParameter globalParameter;
 	
 	@GetMapping("/")
 	public String gatePass(Model model) {
@@ -52,6 +54,11 @@ public class GatePassController {
 	public String addGatePass(@ModelAttribute("gatePass") GatePass gatePass) {
 
 		System.out.println(" testing : ");
+		
+		gatePass.setMyUser(globalParameter.getMyUser());
+		gatePass.setCcode(globalParameter.getCompany());
+		gatePass.setFycode(globalParameter.getFyYear());
+		
 		gatePassRepo.save(gatePass);
 
 		return "redirect:/gatepass/";

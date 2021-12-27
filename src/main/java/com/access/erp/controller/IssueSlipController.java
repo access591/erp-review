@@ -33,6 +33,7 @@ import com.access.erp.service.ItemOpeningService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.MaterialRequisitionMasterService;
 import com.access.erp.service.StoreService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.RequisitionDetailItemOpening;
 
 @Controller
@@ -47,6 +48,7 @@ public class IssueSlipController {
 	@Autowired ItemService itemService;
 	@Autowired MaterialRequisitionDetailRepo requisitionDetailRepo;
 	@Autowired ItemOpeningService itemOpeningService;
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	
@@ -93,6 +95,10 @@ public class IssueSlipController {
 		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
 		 */
 
+		issueSlip.setCompany(globalParameter.getCompany());
+		issueSlip.setFycode(globalParameter.getFyYear());
+		issueSlip.setMuUser(globalParameter.getMyUser());
+		
 		issueSlipService.addIssueSlip(issueSlip);
 		return "redirect:/issueslip/";
 	}

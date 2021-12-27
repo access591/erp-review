@@ -29,6 +29,7 @@ import com.access.erp.service.GateEntryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.PurchaseOrderItem_Item;
 
 @Controller
@@ -42,6 +43,7 @@ public class GateEntryController {
 	@Autowired GateEntryService gateEntryService;
 	
 	@Autowired PartyMasterService partyMasterService;
+
 	
 	
 	
@@ -85,6 +87,9 @@ public class GateEntryController {
 		 * "Company Code Allready exists! Please try another One !!");
 		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
 		 */
+		
+		
+		
 		gateEntryService.addGateEntry(gateEntry);
 		
 		redirectAttributes.addFlashAttribute("message", "Gate Entry  has been saved successfully!");

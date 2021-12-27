@@ -36,15 +36,15 @@ public class RfQuotation {
 	private String rfqType;
 
 	//fk
-	@Column(name = "CCODE", length = 50)
+	@Column(name = "CCODE", length = 5,updatable = false,insertable = true)
 	private String cCode;
 
 	//fk
-	@Column(name = "FYCODE", length = 50)
+	@Column(name = "FYCODE", length = 8,updatable = false,insertable = true)
 	private String fyCode;
 
 	//fk
-	@Column(name = "UCODE", length = 50)
+	@Column(name = "UCODE", length = 10,updatable = false,insertable = true)
 	private String uCode;
 
 	@Column(name = "UDATE")

@@ -50,7 +50,7 @@ public class Category {
 	private String active;
 	
 	//CCODE 
-	@Column(name="CCODE", updatable=true, insertable=true)
+	@Column(name="CCODE", updatable=false, insertable=true)
 	private String compCode;
 
 	public Category() {

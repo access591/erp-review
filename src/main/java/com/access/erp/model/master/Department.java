@@ -21,7 +21,7 @@ public class Department {
 	@Column(name = "DEPT_NAME", length = 50)
 	private String deptName;
 	
-	@Column(name = "CCODE", length = 50)
+	@Column(name = "CCODE", length = 4,updatable = false,insertable = true)
 	private String compCode;
 	
 	@Column(name = "DEPT_HEAD_CODE", length = 50)

@@ -25,6 +25,7 @@ import com.access.erp.service.ItemOpeningService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.MaterialRequisitionMasterService;
 import com.access.erp.service.StoreService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.Item_itemOpening;
 
 @Controller
@@ -37,6 +38,7 @@ public class MaterialRequisitionController {
 	@Autowired MaterialRequisitionMasterService materialRequisitionMasterService;
 	@Autowired ItemService itemService;
 	@Autowired ItemOpeningService itemOpeningService;
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	@GetMapping("/")
@@ -77,6 +79,10 @@ public class MaterialRequisitionController {
 		 * "Company Code Allready exists! Please try another One !!");
 		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
 		 */
+		
+		materialRequisition.setFyYear(globalParameter.getFyYear());
+		materialRequisition.setMyUser(globalParameter.getMyUser());
+		materialRequisition.setcCode(globalParameter.getGlobalCompany());
 		
 		materialRequisitionMasterService.addMaterialRequisitionMaster(materialRequisition);
 

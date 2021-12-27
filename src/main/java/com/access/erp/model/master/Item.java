@@ -280,7 +280,7 @@ public class Item {
 	@Column(name="AREA",length = 100)
 	private String area;
 
-	@Column(name="CCODE", updatable=false, insertable=false)
+	@Column(name="CCODE", updatable=false, insertable=true)
 	private String compCode;
 	
 	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL,fetch=FetchType.LAZY)

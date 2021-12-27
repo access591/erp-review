@@ -18,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.Store;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -61,11 +62,11 @@ public class MaterialRequisitionMaster {
 	@Column(name="LOT_NO", length = 15)
 	private String lotNo;  
 	
-	@Column(name="CCODE")
+	@Column(name="CCODE",updatable = false,insertable = true)
 	private String cCode;  
 	
 	@ManyToOne
-	@JoinColumn(name="UCODE",nullable = true)
+	@JoinColumn(name="UCODE",nullable = true,updatable = false,insertable = true)
 	private MyUser myUser;  
 	
 	@Column(name="UDATE")
@@ -87,7 +88,7 @@ public class MaterialRequisitionMaster {
 	
 	@ManyToOne
 	@JoinColumn(name="FYCODE",nullable = true)
-	private FinancialActiveYear fyYear;  
+	private FinancialYear fyYear;  
 	
 	@Column(name="PLANNING_DATE")
 	private Date planningDate;  
@@ -265,11 +266,12 @@ public class MaterialRequisitionMaster {
 		this.location = location;
 	}
 
-	public FinancialActiveYear getFyYear() {
+	
+	public FinancialYear getFyYear() {
 		return fyYear;
 	}
 
-	public void setFyYear(FinancialActiveYear fyYear) {
+	public void setFyYear(FinancialYear fyYear) {
 		this.fyYear = fyYear;
 	}
 

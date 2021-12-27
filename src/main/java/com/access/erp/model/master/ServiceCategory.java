@@ -40,7 +40,7 @@ public class ServiceCategory {
 	@Column(name = "ACTIVE_YN",length = 10)
 	private String active;
 	
-	@Column(name = "UCODE",length = 50,updatable = false)
+	@Column(name = "UCODE",length = 50,updatable = false,insertable = true)
 	private String uCode;
 
 

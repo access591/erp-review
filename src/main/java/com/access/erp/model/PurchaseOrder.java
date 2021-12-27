@@ -137,13 +137,13 @@ public class PurchaseOrder {
 	private Date amendDate;
 
 	// fk
-	@Column(name = "CCODE", length = 50)
+	@Column(name = "CCODE", length = 50,updatable = false,insertable = true)
 	private String cCode;
 
-	@Column(name = "FYCODE", length = 50)
+	@Column(name = "FYCODE", length = 50,updatable = false,insertable = true)
 	private String fyCode;
 
-	@Column(name = "UCODE", length = 50)
+	@Column(name = "UCODE", length = 50,updatable = false,insertable = true)
 	private String uCode;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

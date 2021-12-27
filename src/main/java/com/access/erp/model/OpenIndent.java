@@ -85,7 +85,7 @@ public class OpenIndent {
 	private String indPurStatus;
 	
 	//fk
-	@Column(name = "CCODE", length = 50)
+	@Column(name = "CCODE", length = 5,updatable = false,insertable = true)
 	private String company;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -109,12 +109,12 @@ public class OpenIndent {
 
 	
 	//fk
-	@Column(name = "FYCODE", length = 20)
+	@Column(name = "FYCODE", length = 20,updatable = false,insertable = true)
 	private String fyCode;
 
 	
 	//fk
-	@Column(name = "UCODE", length = 50)
+	@Column(name = "UCODE", length = 50,updatable = false,insertable = true)
 	private String user;
 	
 	@Column(name = "CONVERSION_VALUE", length = 16)

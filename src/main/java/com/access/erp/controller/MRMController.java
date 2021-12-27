@@ -31,6 +31,7 @@ import com.access.erp.service.GateEntryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.MRMService;
 import com.access.erp.service.StoreService;
+import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.MrnUtility;
 
 @Controller
@@ -53,6 +54,8 @@ public class MRMController {
 	@Autowired ItemService itemService;
 	@Autowired PurchaseOrderItemRepo purchaseOrderItemRepo;
 	@Autowired StoreService storeService;
+	
+	@Autowired GlobalParameter globalParameter;
 	
 	
 
@@ -90,6 +93,11 @@ public class MRMController {
 
 		// System.out.println(" testing : " +
 		// openIndent.getOpeIndentDetail().get(0).getTotalValue());
+		
+		mrn.setCompany(globalParameter.getCompany());
+		mrn.setFyCode(globalParameter.getGlobalFinanceYear());
+		mrn.setMyUser(globalParameter.getMyUser());
+		
 		mrmService.addMrm(mrn);
 
 		return "redirect:/mrn/";

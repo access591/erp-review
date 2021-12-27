@@ -20,6 +20,7 @@ import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Department;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.FinancialActiveYear;
+import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.MyUser;
 import com.access.erp.model.master.PartyMaster;
 import com.access.erp.model.master.SupplierMaster;
@@ -96,15 +97,15 @@ public class GatePass {
 	
 
 	@ManyToOne
-	@JoinColumn(name = "CCODE",nullable=false)
+	@JoinColumn(name = "CCODE",nullable=false,updatable = false,insertable = true)
 	private Company ccode;
 
 	@ManyToOne
-	@JoinColumn(name = "FYCODE",nullable=false)
-	private FinancialActiveYear fycode;
+	@JoinColumn(name = "FYCODE",nullable=false,updatable = false,insertable = true)
+	private FinancialYear fycode;
 
 	@ManyToOne
-	@JoinColumn(name = "UCODE",nullable = false)
+	@JoinColumn(name = "UCODE",nullable = false,updatable = false,insertable = true)
 	private MyUser myUser;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -308,11 +309,13 @@ public class GatePass {
 		this.ccode = ccode;
 	}
 
-	public FinancialActiveYear getFycode() {
+	
+
+	public FinancialYear getFycode() {
 		return fycode;
 	}
 
-	public void setFycode(FinancialActiveYear fycode) {
+	public void setFycode(FinancialYear fycode) {
 		this.fycode = fycode;
 	}
 

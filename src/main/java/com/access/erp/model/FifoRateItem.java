@@ -11,8 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 import com.access.erp.model.master.Company;
-import com.access.erp.model.master.FinancialActiveYear;
 import com.access.erp.model.master.FinancialYear;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.PartyMaster;
@@ -21,6 +21,8 @@ import com.access.erp.model.master.PartyMaster;
 @Entity
 @Table(name="FIFORATE_ITEM")
 public class FifoRateItem {
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -24,17 +24,17 @@ public class FinancialActiveYear {
 	private Long id;
 	
 	@OneToOne
-    @JoinColumn(name="FYCODE")
+    @JoinColumn(name="FYCODE",updatable = false,insertable = true)
 	private FinancialYear financialYear;
 	
 	@OneToOne
-    @JoinColumn(name="UCODE")
+    @JoinColumn(name="UCODE",updatable = false,insertable = true)
 	@JsonIgnore
     private MyUser myUser;
 
 	
 	@OneToOne
-    @JoinColumn(name="CCODE")
+    @JoinColumn(name="CCODE",updatable = false,insertable = true)
 	@JsonIgnore
 	private Company company;
 	

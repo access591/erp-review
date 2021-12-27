@@ -25,6 +25,7 @@ import com.access.erp.service.CountryService;
 import com.access.erp.service.EmployeeService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.StateService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/party")
@@ -36,6 +37,7 @@ public class PartyMasterController {
 	
 	@Autowired EmployeeService employeeService;
 	@Autowired PartyMasterService partyMasterService;
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	
@@ -66,6 +68,8 @@ public class PartyMasterController {
 	public String addPartyMaster(@ModelAttribute("partyMaster") PartyMaster partyMaster) {
 
 		System.out.println(" partyMaster : " );
+		
+		partyMaster.setcCode(globalParameter.getGlobalCompany());
 		partyMasterService.addPartyMaster(partyMaster);
 
 		return "redirect:/party/";

@@ -21,6 +21,7 @@ import com.access.erp.service.CategoryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.StoreService;
 import com.access.erp.service.UOMService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/item")
@@ -31,6 +32,7 @@ public class ItemController {
 	@Autowired StoreService storeService;
 	@Autowired CategoryService categoryService;
 	@Autowired CategoryRepo categoryRepo;
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	@GetMapping("/")
@@ -53,6 +55,7 @@ public class ItemController {
 	public String addItem(@ModelAttribute("item") Item item) {
 		
 		
+		item.setCompCode(globalParameter.getGlobalCompany());
 		itemService.addItem(item);
 		return "redirect:/item/";
 	}

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.access.erp.model.master.Department;
 import com.access.erp.service.DepartmentService;
+import com.access.erp.singleton.GlobalParameter;
 
 
 @Controller
@@ -23,6 +24,7 @@ import com.access.erp.service.DepartmentService;
 public class DepartmentController {
 	
 	@Autowired DepartmentService departmentService;
+	@Autowired GlobalParameter globalParameter;
 
 	@GetMapping("/")
 	public String department(Model model) {
@@ -40,7 +42,9 @@ public class DepartmentController {
 		department.setInsertedBy(principal.getName());
 		department.setInsertedDate(new Date());
 		
+		department.setCompCode(globalParameter.getGlobalCompany());
 		
+		department.setCompCode(globalParameter.getGlobalCompany());
 		departmentService.addDepartment(department);
 		
 		return "redirect:/department/";

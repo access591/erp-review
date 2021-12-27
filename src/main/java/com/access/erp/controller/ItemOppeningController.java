@@ -22,6 +22,7 @@ import com.access.erp.model.master.MyUser;
 import com.access.erp.service.CategoryService;
 import com.access.erp.service.ItemOpeningService;
 import com.access.erp.service.ItemService;
+import com.access.erp.singleton.GlobalParameter;
 
 @Controller
 @RequestMapping("/itemopening")
@@ -30,6 +31,8 @@ public class ItemOppeningController {
 	@Autowired ItemService itemService;
 	@Autowired ItemOpeningService itemOpeningService;
 	@Autowired CategoryService categoryService;
+	
+	@Autowired GlobalParameter globalParameter;
 	
 	
 	@GetMapping("/")
@@ -50,18 +53,9 @@ public class ItemOppeningController {
 	public String addItemOpening(@ModelAttribute("itemOpening") ItemOpening itemOpening,RedirectAttributes redirectAttributes) {
 
 		
-		FinancialActiveYear f = new FinancialActiveYear();
-		f.setId(1L);
-		
-		MyUser m = new MyUser();
-		m.setUserCode("admn");
-		
-		Company c = new Company();
-		c.setCompCode("EB");
-		
-		itemOpening.setFinancialActiveYear(f);
-		itemOpening.setMyUser(m);
-		itemOpening.setCompany(c);
+		itemOpening.setFinancialYear(globalParameter.getFyYear());
+		itemOpening.setMyUser(globalParameter.getMyUser());
+		itemOpening.setCompany(globalParameter.getCompany());
 		
 		itemOpeningService.addItemOpening(itemOpening);
 		

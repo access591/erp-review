@@ -105,14 +105,14 @@ public class MRN {
 	public Employee employee;
 	
 	@ManyToOne
-	@JoinColumn(name="CCODE")
+	@JoinColumn(name="CCODE",updatable = false,insertable = true)
 	public Company company;
 	
-	@JoinColumn(name="FYCODE")
-	public String mrmCode;
+	@JoinColumn(name="FYCODE",updatable = false,insertable = true)
+	public String fyCode;
 	
 	@ManyToOne
-	@JoinColumn(name="UCODE")
+	@JoinColumn(name="UCODE",updatable = false,insertable = true)
 	public MyUser myUser;
 	
 	@Column(name="UDATE")
@@ -398,12 +398,14 @@ public class MRN {
 		this.company = company;
 	}
 
-	public String getMrmCode() {
-		return mrmCode;
+	
+
+	public String getFyCode() {
+		return fyCode;
 	}
 
-	public void setMrmCode(String mrmCode) {
-		this.mrmCode = mrmCode;
+	public void setFyCode(String fyCode) {
+		this.fyCode = fyCode;
 	}
 
 	public MyUser getMyUser() {
