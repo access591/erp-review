@@ -200,7 +200,7 @@ public class MRNDetail {
 	@Column(name="CST_VALUE",length = 14)
 	private int cstValue;
 	
-	@Column(name = "ITEM_NET_VAL", columnDefinition = "FLOAT(14,3)",nullable = true)
+	@Column(name = "ITEM_NET_VAL", columnDefinition = "FLOAT(14,3)",nullable = true,insertable =false,updatable = false)
 	private double poNetVal;
 	
 	@Column(name="MISCELLANEOUS_CHARGES",length = 15)

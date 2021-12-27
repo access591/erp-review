@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.access.erp.model.master.Item;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -150,6 +151,7 @@ public class MrnInspectionItemDetail {
 	private double recCost;
 	
 	
+	@JsonBackReference
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "INSP_NO")
 	private MrnInspection mrnInspection;

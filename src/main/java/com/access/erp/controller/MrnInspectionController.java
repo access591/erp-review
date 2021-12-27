@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.FifoRateItem;
+import com.access.erp.model.ItemOpening;
 import com.access.erp.model.MRN;
 import com.access.erp.model.MRNDetail;
 import com.access.erp.model.MrnInspection;
@@ -36,6 +37,7 @@ import com.access.erp.service.CompanyService;
 import com.access.erp.service.EmployeeService;
 import com.access.erp.service.FinancialActiveYearService;
 import com.access.erp.service.FinancialYearService;
+import com.access.erp.service.ItemOpeningService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.MRMService;
 import com.access.erp.service.MrnInspectionService;
@@ -71,6 +73,7 @@ public class MrnInspectionController {
 	PartyMasterService partyMasterService;
 	@Autowired
 	StoreService storeService;
+	@Autowired ItemOpeningService itemOpeningService;
 
 	// @Autowired FinancialActiveYearService fyActiveYearService;
 
@@ -124,7 +127,7 @@ public class MrnInspectionController {
 		List<Item> itemList = new ArrayList<>();
 
 		// if item == accepected
-
+		// int i = 0; i< inspection.getMrnInspectionItems().size() ;
 		for (MrnInspectionItemDetail inspectionItemDetail : inspection.getMrnInspectionItems()) {
 
 			// if item == accepected
@@ -184,6 +187,13 @@ public class MrnInspectionController {
 			
 			
 			
+			ItemOpening itemOpening = itemOpeningService.editItemOpening(item.getItemCode()).get();
+			
+			itemOpening.setCurrentStock(itemOpening.getCurrentStock()+mrnDetail.get(0).getItemRec());
+			itemOpeningService.addItemOpening(itemOpening);
+			
+			
+
 		}
 
 	
