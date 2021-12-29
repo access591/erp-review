@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,27 +29,30 @@ public class ItemStockController {
 	ItemStockReport repo;
 	@Autowired
 	ItemService itemService;
-	
+
 	@Autowired
 	ItemOpeningService itemopeningService;
 
-	@GetMapping("/itemStockReport")	
+	@GetMapping("/itemStockReport")
 	public String itemStock(Model model) {
 
 		return "layouts/reportview/itemStock";
 
 	}
-	/*
-	 * @PostMapping("/") public String addItemStock(@ModelAttributes("itemOpening")
-	 * ItemOpening itemOpening)
-	 * 
-	 * @GetMapping("/report5")
-	 * 
-	 * public String getItemStockReport(HttpServletRequest req, HttpServletResponse
-	 * res) throws IOException {
-	 * 
-	 * repo.createItemStockReport(res, req); return null;
-	 * 
-	 * }
-	 */
+
+	@PostMapping("/") 
+	public String addItemStock(@ModelAttribute("itemOpening")ItemOpening itemOpening) {
+		
+		return null;
+	}
+
+	
+	@GetMapping("/report5")
+	public String getItemStockReport(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+		repo.createItemStockReport(res, req);
+		return null;
+
+	}
+
 }
