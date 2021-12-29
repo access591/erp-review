@@ -58,6 +58,7 @@ public class ItemStockReport {
 			sourceFileName = request.getSession().getServletContext()
 					.getRealPath("/resources/" + reportFileName + ".jasper");
 			Map<String, Object> parameters = new HashMap<>();
+			
 			/*
 			 * parameters.put("compName", company.getCompName()); parameters.put("compCode",
 			 * company.getCompCode());
@@ -65,17 +66,17 @@ public class ItemStockReport {
 			 * parameters.put("dirName", company.getDirName()); parameters.put("caddr1",
 			 * company.getcAddr1()); parameters.put("tGstNo", company.gettGstNo());
 			 * parameters.put("panNumber", company.getPanNumber());
-			 */
-			/*
+			 * 
+			 * 
 			 * if (company.getcCity() == null) System.out.print("-"); else
 			 * parameters.put("City", company.getcCity().getCityName());
 			 * 
 			 * parameters.put("cPhone1", company.getcPhone1());
-			 */
-			/*
-			 * parameters.put("cstDate", company.getCstDate());
-			 *  parameters.put("tin", company.getTin());
-			 *                        
+			 * 
+			 * 
+			 * parameters.put("cstDate", company.getCstDate()); parameters.put("tin",
+			 * company.getTin());
+			 * 
 			 * 
 			 * parameters.put("tin", company.getTin());
 			 * 
