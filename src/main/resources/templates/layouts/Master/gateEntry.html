@@ -141,10 +141,10 @@
 
 
 														<div class="form-group col-md-4">
-															<label class="form-label">Supplier Code</label> <label
+															<label class="form-label">Supplier Name</label> <label
 																style="color: red">*</label> <select
-																class="form-control" id="" title="supplier code"
-																th:field="*{partyMaster}">
+																class="form-control" id="supplierName"
+																title="supplier code" th:field="*{partyMaster}">
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
 																	th:text="${party.partyName}"
@@ -156,8 +156,8 @@
 
 
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Supplier Name</label> <input
-																type="text" class="form-control"
+															<label for="inputPassword4">Supplier Code</label> <input
+																type="text" class="form-control" id="supplierCode"
 																placeholder="Supplier Name" title="supplier name">
 														</div>
 
@@ -189,7 +189,7 @@
 
 
 
-														<div class="form-group col-md-4">
+														<!-- <div class="form-group col-md-4">
 															<label for="inputAddress">Transporter Code</label><label
 																style="color: red">*</label> <select
 																class="form-control" id="" title="entry type"
@@ -197,7 +197,8 @@
 
 
 															</select>
-														</div>
+														</div> -->
+
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Transporter Name</label> <input
 																type="text" class="form-control"
@@ -341,10 +342,11 @@
 
 																		<!-- qty  -->
 
-																		<td><input type="number" id="qtyOrder0"onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																		
+																		<td><input type="number" id="qtyOrder0"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			class="form-control form-control-sm" title="net qty"
-																			name="gateEntryItemDetails[0].netQty" step="0.25" value="0.00"></td>
+																			name="gateEntryItemDetails[0].netQty" step="0.25"
+																			value="0.00"></td>
 
 																		<!-- uom  -->
 
@@ -356,12 +358,12 @@
 																		<!-- incoming part sr no  -->
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" id="" title=""></td>
+																			class="form-control form-control-sm" name="gateEntryItemdetail[0].incomingSrNo" id="" title=""></td>
 
 
 																		<!-- claim part   -->
 
-																		<td><input type="text"
+																		<td><input type="text" name="gateEntryItemdetail[0].claimSrNo"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title=""></td>
 
@@ -616,9 +618,9 @@
 																		+ "<td><input type='text'class='form-control form-control-sm'id='orderItemuom"+i+"' title='status'name='gateEntryItemDetails["+i+"].uom'></td>"
 
 																		/* incoming part sr no  */
-																		+ "<td><input type='text'class='form-control form-control-sm' id='' title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm' id='' title=''name='gateEntryItemDetails["+i+"].incomingSrNo'></td>"
 
-																		+ "<td><input type='text'class='form-control form-control-sm'id='technicalQualification' title=''></td>");
+																		+ "<td><input type='text'class='form-control form-control-sm'id='technicalQualification' title=''name='gateEntryItemDetails["+i+"].claimSrNo'></td>");
 
 												$('#example').append(
 														'<tr id="addr'
@@ -662,6 +664,11 @@
 			}
 
 		});
+		
+		
+		//getOrderItemList
+		
+		
 	</script>
 	<!--   <section class="content">
         
