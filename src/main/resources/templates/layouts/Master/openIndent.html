@@ -73,32 +73,54 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/openindent/}" method="POST"
+							th:object="${openIndent}">
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
+								<div class="row">
+									<!-- left column -->
 
-								<div class="col-md-12 shadow bg-white rounded"
-									style="margin-top: 20px;">
-									<!-- general form elements -->
-									<div class="box box-primary">
-										<input type="hidden" id="mess" name="mess"
-											th:value="${message}">
+									<div class="box-header with-border text-right">
 
-										<div class="box-header with-border">
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+										</button>
+										<button type="reset" value="reset"
+											class="btn btn-secondary btn-sm">
+											<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+										</button>
 
-											<h6 class="box-title">Indent Detail</h6>
-										</div>
-										<!-- /.box-header -->
+										<a th:href="@{/openindent/list}"
+											class="btn btn-success btn-sm"> <i class="fa fa-list"
+											aria-hidden="true"></i> View All
+										</a>
 
 
 
-										<!-- form start -->
-										<form role="form" th:action="@{/openindent/}" method="POST"
-											th:object="${openIndent}">
+									</div>
+
+									<div class="col-md-12 shadow bg-white rounded"
+										style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
+
+											<div class="box-header with-border">
+
+												<h6 class="box-title">Indent Detail</h6>
+											</div>
+											<!-- /.box-header -->
+
+
+
+
 											<div class="box-body">
 
 												<div class="form-group col-md-4">
@@ -109,8 +131,8 @@
 												</div>
 												<div class="form-group col-md-4">
 													<label for="inputPassword4">Indent Date</label><label
-														style="color: red">*</label> <input
-														type="date" class="form-control" id="indentDate"
+														style="color: red">*</label> <input type="date"
+														class="form-control" id="indentDate"
 														placeholder="Indent Date" title="indent date"
 														th:field="*{indentDate}" required>
 												</div>
@@ -138,8 +160,9 @@
 
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Department Name</label> <select
-														class="form-control" title="employee code" id="departmentcode"
-														required th:field="*{deptCode}" readonly>
+														class="form-control" title="employee code"
+														id="departmentcode" required th:field="*{deptCode}"
+														readonly>
 														<option value="">Select Department</option>
 														<option th:each="department :  ${departmentList}"
 															th:text="${department.deptName}"
@@ -200,7 +223,8 @@
 													<h5>Indent Item Detail</h5>
 												</div>
 
-												<div class="box-body" style="padding-left: 20px;padding-right: 25px">
+												<div class="box-body"
+													style="padding-left: 20px; padding-right: 25px">
 
 													<div class="col-sm-12" style="text-align: right">
 
@@ -226,15 +250,14 @@
 
 																		<th scope="col" class="text-center">Indented Qty</th>
 
-																		<th scope="col" class="text-center">Approved 
-																			Qty</th>
+																		<th scope="col" class="text-center">Approved Qty</th>
 
 																		<th scope="col" class="text-center">Qty.(In
 																			Stock)</th>
 																		<th scope="col" class="text-center">Qty to be
 																			Procured</th>
-																		<th scope="col" class="text-center">Pipeline 
-																			Qty<span style="color: red">*</span>
+																		<th scope="col" class="text-center">Pipeline Qty<span
+																			style="color: red">*</span>
 																		</th>
 
 
@@ -270,7 +293,7 @@
 																			class="select form-control form-control-sm itemContainer0"
 																			id="indItemCode0" title="item code"
 																			name="opeIndentDetail[0].indItemCode"
-																			onchange="selectItem()" required style="width:250px">
+																			onchange="selectItem()" required style="width: 250px">
 																				<option value="">Select Item</option>
 																				<option th:each="item :  ${itemList}"
 																					th:text="${item.description}"
@@ -351,14 +374,16 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="totalValueInr0" title="Salary"
-																			style="text-align: right; background-color:#fafab9; "  readonly></td>
+																			style="text-align: right; background-color: #fafab9;"
+																			readonly></td>
 
 																		<!--total value - inr -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalValue0" required title="total value"
 																			name="opeIndentDetail[0].totalValue"
-																			style="text-align: right; background-color:#fafab9; "  readonly></td>
+																			style="text-align: right; background-color: #fafab9;"
+																			readonly></td>
 
 
 																		<!-- requisition date -->
@@ -405,64 +430,56 @@
 
 													<div class="form-row">
 														<div class="form-row">
-															
-													
-														
-														<div  class="form-group col-md-4">
-														<!--  approvalStatus --> 
-															<label for="inputEmail4">Approval Status</label> <input
-																type="text" class="form-control" id="inputEmail4"
-																placeholder="Approval Status" title="approval status"
-																readonly>
-														</div>
-														
-														
-														
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Date of Approval</label> <input
-																type="date" class="form-control" id="inputPassword4"
-																placeholder="Date of Approval" title="date of approval"
-																th:field="*{approvalDate1}" readonly>
-														</div>
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Approved By</label> <input
-																type="text" class="form-control" id="inputPassword4"
-																placeholder="Approved By" title="purchase status"
-																readonly>
+
+
+
+															<div class="form-group col-md-4">
+																<!--  approvalStatus -->
+																<label for="inputEmail4">Approval Status</label> <input
+																	type="text" class="form-control" id="inputEmail4"
+																	placeholder="Approval Status" title="approval status"
+																	readonly>
+															</div>
+
+
+
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Date of Approval</label> <input
+																	type="date" class="form-control" id="inputPassword4"
+																	placeholder="Date of Approval" title="date of approval"
+																	th:field="*{approvalDate1}" readonly>
+															</div>
+															<div class="form-group col-md-4">
+																<label for="inputPassword4">Approved By</label> <input
+																	type="text" class="form-control" id="inputPassword4"
+																	placeholder="Approved By" title="purchase status"
+																	readonly>
+															</div>
+
 														</div>
 
 													</div>
 
 												</div>
+												<!--end 2nd div -->
+
+
+
+												
 
 											</div>
-											<!--end 2nd div -->
+											<!-- /.box -->
+											
 
 
 
-											<div class="box-footer" style="margin: 10px">
-												<input type="submit" value="Submit" class="btn btn-primary" />
-												<input type="reset" value="Reset" class="btn btn-danger" />
-											</div>
 
-
-										</form>
-
-
+										</div>
+										<!--end left column-->
 									</div>
-									<!-- /.box -->
-									<div style="width: parent; text-align-last: right; margin: 8px">
-										<a th:href="@{/openindent/list}">View all Records</a>
-									</div>
-
-
-
 
 								</div>
-								<!--end left column-->
-							</div>
-
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -640,10 +657,10 @@
 
 							$("#indItemDescription" + idIndex).val(
 									data.item.itemCode);
-							console.log("uom detail is : " +data.item.uom.uomCode)
-							$("#uomCode" + idIndex).val(
-									data.item.uom.uomCode);
-							
+							console.log("uom detail is : "
+									+ data.item.uom.uomCode)
+							$("#uomCode" + idIndex).val(data.item.uom.uomCode);
+
 							$("#qtyInStock" + idIndex).val(
 									data.itemOpening.currentStock)
 
@@ -692,10 +709,6 @@
 			}
 
 		});
-		
-		
-		
-		
 
 		function indentGetEmployee() {
 
@@ -704,25 +717,23 @@
 			var empCode = document.getElementById("employee").value;
 			console.log("emp code : " + empCode);
 
-
 			$.ajax({
-				type: "GET",
-				url: "employeeinfo/" + empCode,
+				type : "GET",
+				url : "employeeinfo/" + empCode,
 
-				success: function(data) {
+				success : function(data) {
 					//$("#resultarea").text(data);
 					console.log("response data : " + data);
 					$("#employeename").val(data.empName);
 					$("#departmentcode").val(data.department.deptCode)
 					//$("#departmentname").val(data.department.deptName)
-				}, error: function() {
+				},
+				error : function() {
 					console.log("Error");
 				}
 			});
 
 		}
-		
-		
 	</script>
 
 

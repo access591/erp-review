@@ -64,9 +64,10 @@ iframe {
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i>
+									Warehouse</a></li>
+							<li><a href="#">MR Inspection</a></li>
+							<li class="active">Add page</li>
 						</ol>
 					</section>
 
@@ -74,32 +75,54 @@ iframe {
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/inspection/}"
+							th:object="${inspection}" method="POST">
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
+								<div class="row">
+									<!-- left column -->
+									<div class="col-md-12">
+
+										
+
+										<div class="box-header with-border text-right">
+
+											<button type="submit" id="submit"
+												class="btn btn-primary btn-sm">
+												<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+											</button>
+											<button type="reset" value="reset"
+												class="btn btn-secondary btn-sm">
+												<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+											</button>
+
+											<a th:href="@{/inspection/list}"
+												class="btn btn-success btn-sm"> <i class="fa fa-list"
+												aria-hidden="true"></i> View All
+											</a>
 
 
 
-									<div class="col-md-12 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
+										</div>
 
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
+										<div class="col-md-12 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
 
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form role="form" th:action="@{/inspection/}"
-												th:object="${inspection}" method="POST">
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
+
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+												</div>
+												<!-- /.box-header -->
+
 
 												<div class="box">
 													<h5 class="box-title">Inspection</h5>
@@ -320,15 +343,15 @@ iframe {
 																			title="order date" readonly></td>
 
 																		<!-- item name -->
-																		<td><select 
-																			name="mrnInspectionItems[0].item" 
+																		<td><select name="mrnInspectionItems[0].item"
 																			class="form-control  form-control-sm select itemContainer0"
 																			id="item0" title="item name" onchange="getItemInfo()"></select></td>
 
 																		<!-- Item Received -->
 																		<td><input type="number" title="uom"
 																			class="form-control form-control-sm"
-																			id="mrnReceived0"onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
+																			id="mrnReceived0"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			name="mrnInspectionItems[0].itemRec1" step='0.01'
 																			readonly></td>
 
@@ -342,14 +365,16 @@ iframe {
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="inv qty"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																			name="mrnInspectionItems[0].qtyUd" step='0.01' value='0.00'></td>
+																			name="mrnInspectionItems[0].qtyUd" step='0.01'
+																			value='0.00'></td>
 
 																		<!-- Mrn rate -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="rec qty"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																			name="mrnInspectionItems[0].mrnRate" step='0.01' value='0.00'></td>
+																			name="mrnInspectionItems[0].mrnRate" step='0.01'
+																			value='0.00'></td>
 
 
 
@@ -358,7 +383,8 @@ iframe {
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="po rate curr"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																			name="mrnInspectionItems[0].qtyAcceptDev" step='0.01' value='0.00'></td>
+																			name="mrnInspectionItems[0].qtyAcceptDev" step='0.01'
+																			value='0.00'></td>
 
 																		<!-- RAte of der Qty  -->
 																		<td><input type="number"
@@ -373,20 +399,22 @@ iframe {
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="bill rate"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
-																			name="mrnInspectionItems[0].qtyRejected" step='0.01' value='0.00'></td>
+																			name="mrnInspectionItems[0].qtyRejected" step='0.01'
+																			value='0.00'></td>
 
 																		<!-- Inspection Qty -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="total cost"
-																			
-																			name="mrnInspectionItems[0].inspectedQty" step='0.01' value='0.00'></td>
+																			name="mrnInspectionItems[0].inspectedQty" step='0.01'
+																			value='0.00'></td>
 
 																		<!-- pending qty -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title="net cost"
-																			name="mrnInspectionItems[0].qtyPending" step='0.01'value='0.00'></td>
+																			name="mrnInspectionItems[0].qtyPending" step='0.01'
+																			value='0.00'></td>
 
 
 																		<!-- inspection status -->
@@ -437,28 +465,23 @@ iframe {
 
 
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
-											</form>
 
 
+
+
+											</div>
+											<!-- /.box -->
+
 										</div>
-										<!-- /.box -->
-										<div
-											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/inspection/list}">View All Inspection</a>
-										</div>
+
+
+
 									</div>
-
-
 
 								</div>
 
 							</div>
-
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -650,26 +673,40 @@ iframe {
 																		+ "<td><input type='text' id='uom"+j+"' class='form-control form-control-sm' title='po qty'  readonly></td>"
 
 																		/* mrn qty */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='technicalQualification' title='inv qty'name='mrnInspectionItems["+j+"].qtyUd' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='technicalQualification' title='inv qty'name='mrnInspectionItems["
+																		+ j
+																		+ "].qtyUd' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/* mrn rate */
-																		+ "<td><input type='number' class='form-control form-control-sm'id='orderItemuom' title='rec qty' name='mrnInspectionItems["+j+"].mrnRate' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm'id='orderItemuom' title='rec qty' name='mrnInspectionItems["
+																		+ j
+																		+ "].mrnRate' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/* devitation qty */
-																		+ "<td><input type='text' class='form-control form-control-sm'id='technicalQualification' title='po rate curr'name='mrnInspectionItems["+j+"].qtyAcceptDev' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm'id='technicalQualification' title='po rate curr'name='mrnInspectionItems["
+																		+ j
+																		+ "].qtyAcceptDev' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/* RAte of der Qty */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='technicalQualification' title='po rate'name='mrnInspectionItems["+j+"].qtyAcceptDevRate' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='technicalQualification' title='po rate'name='mrnInspectionItems["
+																		+ j
+																		+ "].qtyAcceptDevRate' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/* Rejected Qty */
-																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='bill rate' name='mrnInspectionItems["+j+"].qtyRejected' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='bill rate' name='mrnInspectionItems["
+																		+ j
+																		+ "].qtyRejected' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/* Inspection Qty */
-																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='total cost'name='mrnInspectionItems["+j+"].inspectedQty' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='total cost'name='mrnInspectionItems["
+																		+ j
+																		+ "].inspectedQty' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/*  pending qty */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='net cost' name='mrnInspectionItems["+j+"].qtyPending' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm' id='technicalQualification' title='net cost' name='mrnInspectionItems["
+																		+ j
+																		+ "].qtyPending' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/* inspection status */
 																		+ "<td><select class='form-control indentContainer form-control-sm select' id='orderIndentNumberPo' title='dol'  name='mrnInspectionItems["+j+"].inspStatus'><option value=''>Select</option><option value='A'>Accepted</option><option value='R'>Rejected</option></select></td>"

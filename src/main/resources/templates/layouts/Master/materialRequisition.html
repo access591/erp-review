@@ -61,7 +61,7 @@
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
 							<li><a href="#">Material Requisition</a></li>
-							<li class="active">Master</li>
+							<li class="active">Add Page</li>
 
 						</ol>
 					</section>
@@ -70,32 +70,53 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/materialrequisition/}"
+							th:object="${materialRequisition}" method="POST">
+
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
+								<div class="row">
+									<!-- left column -->
+									<div class="col-md-12">
+
+										<div class="box-header with-border text-right">
+
+											<button type="submit" id="submit"
+												class="btn btn-primary btn-sm">
+												<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+											</button>
+											<button type="reset" value="reset"
+												class="btn btn-secondary btn-sm">
+												<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+											</button>
+
+											<a th:href="@{/gatepass/list}"
+												class="btn btn-success btn-sm"> <i class="fa fa-list"
+												aria-hidden="true"></i> View All
+											</a>
 
 
 
-									<div class="col-md-12 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
+										</div>
 
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
 
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form role="form" th:action="@{/materialrequisition/}"
-												th:object="${materialRequisition}" method="POST">
+										<div class="col-md-12 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
+
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
+
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+												</div>
+												<!-- /.box-header -->
 
 												<div class="box">
 													<h5 class="box-title">General Registration</h5>
@@ -286,8 +307,7 @@
 
 																		<td><select id="itemName0"
 																			class="form-control form-control-sm select itemContainer0"
-																			required title="item"
-																			onchange="selectItem()"
+																			required title="item" onchange="selectItem()"
 																			name="materialRequisitionDetails[0].item">
 																				<option value="">Select</option>
 																				<option th:each="item :  ${itemList}"
@@ -297,13 +317,15 @@
 
 
 																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="uom0" title="uom" name='materialRequisitionDetails[0].uom' readonly></td>
+																			class="form-control form-control-sm" id="uom0"
+																			title="uom" name='materialRequisitionDetails[0].uom'
+																			readonly></td>
 
 																		<td><input type="number" title="qty"
 																			class="form-control form-control-sm"
 																			style="width: 70px;" id='qty0'
-																			name="materialRequisitionDetails[0].qty" step="0.25" readonly></td>
+																			name="materialRequisitionDetails[0].qty" step="0.25"
+																			readonly></td>
 
 																		<td><input type="number"
 																			class="form-control form-control-sm" title="net qty"
@@ -340,28 +362,22 @@
 
 
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
-											</form>
+												
+
+											</div>
+											<!-- /.box -->
+											
+										</div>
 
 
-										</div>
-										<!-- /.box -->
-										<div
-											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/gatepass/list}">View All Gate-Pass</a>
-										</div>
+
 									</div>
-
-
 
 								</div>
 
 							</div>
 
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -412,22 +428,21 @@
 			console.log("store code" + storeCode)
 			document.getElementById("storeCode").value = storeCode;
 		}
-		
-		function selectItem(){
+
+		function selectItem() {
 			var itemNumber = document.getElementById("itemName0").value;
 			document.getElementById("itemCode0").value = itemNumber;
-			
 
 			$.ajax({
 				type : "GET",
-				url : "itemInfo/" + itemNumber ,
+				url : "itemInfo/" + itemNumber,
 
 				success : function(data) {
 
-					console.log("item description  :"+ JSON.stringify(data))
-					
-					$("#uom0").val(data.item.uom.uomCode) 
-					$("#qty0").val(data.itemOpening.currentStock) 
+					console.log("item description  :" + JSON.stringify(data))
+
+					$("#uom0").val(data.item.uom.uomCode)
+					$("#qty0").val(data.itemOpening.currentStock)
 
 				},
 				error : function() {

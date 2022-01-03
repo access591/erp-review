@@ -59,9 +59,9 @@
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i>Warehouse</a></li>
+							<li><a href="#">Gate Entry</a></li>
+							<li class="active">Add page</li>
 						</ol>
 					</section>
 
@@ -69,32 +69,53 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/gateentry/}"
+							th:object="${gateEntry}" method="POST">
+
+
+							<div class="box-header with-border text-right">
+
+								<button type="submit" id="submit" class="btn btn-primary btn-sm">
+									<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+								</button>
+								<button type="reset" value="reset"
+									class="btn btn-secondary btn-sm">
+									<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+								</button>
+
+								<a th:href="@{/gateentry/list}"
+									class="btn btn-success btn-sm"> <i class="fa fa-list"
+									aria-hidden="true"></i> View All
+								</a>
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
+							</div>
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-									<div class="col-md-12 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
+								<div class="row">
+									<!-- left column -->
+									<div class="col-md-12">
 
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
 
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form role="form" th:action="@{/gateentry/}"
-												th:object="${gateEntry}" method="POST">
+
+										<div class="col-md-12 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
+
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
+
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+												</div>
+												<!-- /.box-header -->
 
 												<div class="box">
 													<h5 class="box-title">Gate Entry</h5>
@@ -144,6 +165,7 @@
 															<label class="form-label">Supplier Name</label> <label
 																style="color: red">*</label> <select
 																class="form-control" id="supplierName"
+																onchange="selectSupplier()"
 																title="supplier code" th:field="*{partyMaster}">
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
@@ -158,7 +180,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Supplier Code</label> <input
 																type="text" class="form-control" id="supplierCode"
-																placeholder="Supplier Name" title="supplier name">
+																placeholder="Supplier Name" title="supplier name" readonly>
 														</div>
 
 
@@ -358,12 +380,15 @@
 																		<!-- incoming part sr no  -->
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" name="gateEntryItemdetail[0].incomingSrNo" id="" title=""></td>
+																			class="form-control form-control-sm"
+																			name="gateEntryItemdetail[0].incomingSrNo" id=""
+																			title=""></td>
 
 
 																		<!-- claim part   -->
 
-																		<td><input type="text" name="gateEntryItemdetail[0].claimSrNo"
+																		<td><input type="text"
+																			name="gateEntryItemdetail[0].claimSrNo"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title=""></td>
 
@@ -390,28 +415,24 @@
 
 
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
-											</form>
 
 
+
+											</div>
+											<!-- /.box -->
+
 										</div>
-										<!-- /.box -->
-										<div
-											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/gateentry/list}">View All Gate-Entry</a>
-										</div>
+
+
+
 									</div>
-
-
 
 								</div>
 
 							</div>
 
-						</div>
+						</form>
+
 					</section>
 				</section>
 			</div>
@@ -422,6 +443,11 @@
 
 
 	<script>
+	
+	function selectSupplier(){
+		var supplierCode = document.getElementById("supplierName").value;
+		document.getElementById("supplierCode").value = supplierCode;
+	}
 		$(document).ready(function() {
 
 			document.getElementById('gateEntryDate').valueAsDate = new Date();
@@ -458,7 +484,7 @@
 											});
 
 							console.log(" id index value is :" + idIndex)
-							$('.poContainer' +idIndex).html(options);
+							$('.poContainer' + idIndex).html(options);
 
 						},
 						error : function() {
@@ -471,7 +497,8 @@
 
 			console.log(" getOrderIndentDetailPo fun ")
 			// this po 
-			var indentNumber = document.getElementById("orderIndentNumberPo"+idIndex).value;
+			var indentNumber = document.getElementById("orderIndentNumberPo"
+					+ idIndex).value;
 			console.log("order indent number is : " + indentNumber)
 
 			$.ajax({
@@ -541,7 +568,7 @@
 
 											});
 
-							$('.orderItemContainerPo'+idIndex).html(options);
+							$('.orderItemContainerPo' + idIndex).html(options);
 
 						},
 						error : function() {
@@ -552,8 +579,9 @@
 
 		function getOrderItemDetailForPo() {
 
-			var itemNumber = document.getElementById("orderItemPo"+idIndex).value;
-			var poNumber = document.getElementById("orderIndentNumberPo"+idIndex).value;
+			var itemNumber = document.getElementById("orderItemPo" + idIndex).value;
+			var poNumber = document.getElementById("orderIndentNumberPo"
+					+ idIndex).value;
 
 			$.ajax({
 				type : "GET",
@@ -563,11 +591,12 @@
 
 					console.log("getOrderItemDetailForPo item description  :"
 							+ data.description)
-					$("#orderItemCode"+idIndex).val(data.item.description)
+					$("#orderItemCode" + idIndex).val(data.item.description)
 					//orderItemCode0
 					//$("#orderItemCode0").val(data.itemCode)
-					$("#orderItemuom"+idIndex).val(data.item.uom.uomCode)
-					$("#qtyOrder"+idIndex).val(data.purchaseOrderItem.qtyOrder)  
+					$("#orderItemuom" + idIndex).val(data.item.uom.uomCode)
+					$("#qtyOrder" + idIndex).val(
+							data.purchaseOrderItem.qtyOrder)
 
 				},
 				error : function() {
@@ -597,22 +626,38 @@
 
 																/*  po number */
 
-																"<td><select class='form-control poContainer" + i+ "  form-control-sm select'  id='orderIndentNumberPo" + i+ "'  name='gateEntryItemDetails["+ i+ "].purchaseOrder' title='indent number' onchange='getOrderIndentDetailPo()' required></select></td>"
+																"<td><select class='form-control poContainer"
+																		+ i
+																		+ "  form-control-sm select'  id='orderIndentNumberPo"
+																		+ i
+																		+ "'  name='gateEntryItemDetails["
+																		+ i
+																		+ "].purchaseOrder' title='indent number' onchange='getOrderIndentDetailPo()' required></select></td>"
 
 																		/*  po date */
 																		+ "<td><input type='date' class='form-control form-control-sm'  id='orderIndentDatePo" + i+ "' title='order date'name='gateEntryItemDetails["+i+"].orderDate' readonly></td>"
 
 																		/*  item code */
-																		+ "<td><select id='orderItemPo"+i+"' class='form-control form-control-sm select orderItemContainerPo"+i+"' required title='item' onchange='getOrderItemDetailForPo()' name='gateEntryItemDetails["+ i+ "].item'><option value=''>Select</option></select></td>"
+																		+ "<td><select id='orderItemPo"
+																		+ i
+																		+ "' class='form-control form-control-sm select orderItemContainerPo"
+																		+ i
+																		+ "' required title='item' onchange='getOrderItemDetailForPo()' name='gateEntryItemDetails["
+																		+ i
+																		+ "].item'><option value=''>Select</option></select></td>"
 
-																		/* item description  */ 
+																		/* item description  */
 																		+ "<td><input type='text'class='form-control form-control-sm'id='orderItemCode"+i+"' title='item description'name='gateEntryItemDetails["+i+"].itemDescription'readonly></td>"
 
 																		/*  pending qty */
 																		+ "<td><input type='number' title='pending qty'class='form-control form-control-sm'name='gateEntryItemDetails["+i+"].pendingQty'></td>"
 
 																		/*  qty */
-																		+ "<td><input type='number' id='qtyOrder"+i+"' class='form-control form-control-sm' title='net qty'name='gateEntryItemDetails["+i+"].netQty' onchange=''(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)''  step='0.25' value='0.00'></td>"
+																		+ "<td><input type='number' id='qtyOrder"
+																		+ i
+																		+ "' class='form-control form-control-sm' title='net qty'name='gateEntryItemDetails["
+																		+ i
+																		+ "].netQty' onchange=''(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)''  step='0.25' value='0.00'></td>"
 
 																		/*  uom*/
 																		+ "<td><input type='text'class='form-control form-control-sm'id='orderItemuom"+i+"' title='status'name='gateEntryItemDetails["+i+"].uom'></td>"
@@ -664,11 +709,8 @@
 			}
 
 		});
-		
-		
+
 		//getOrderItemList
-		
-		
 	</script>
 	<!--   <section class="content">
         
