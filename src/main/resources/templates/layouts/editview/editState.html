@@ -54,22 +54,37 @@
 			<section class="content-wrapper">
 				<div class="row">
 					<!-- left column -->
-					<div class="col-md-12">
-						<div class="col-md-3"></div>
+
+					<!-- form start -->
+					<form id="stateForm" role="form" th:action="@{/state/update/}"
+						method="POST" th:object="${state}">
+
+						<div class="col-md-12">
+
+							<div class="box-header with-border text-right">
+								<button type="submit" id="submit" class="btn btn-primary btn-sm">
+									<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+								</button>
+								<button type="button" class="btn btn-danger btn-sm"
+									onclick="history.back()">
+									<i class="fa fa-step-backward"></i> Go Back
+								</button>
+							</div>
+
+							<div class="col-md-3"></div>
 
 
-						<div class="col-md-6" style="margin-top: 20px;">
+							<div class="col-md-6" style="margin-top: 20px;">
 
-							<div class="box box-primary">
+								<div class="box box-primary">
 
-								<input type="hidden" id="mess" name="mess" th:value="${message}">
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
 
-								<div class="box-header with-border">
-									<h3 class="box-title">State Master</h3>
-								</div>
-								<!-- form start -->
-								<form id="stateForm" role="form" th:action="@{/state/update/}"
-									method="POST" th:object="${state}">
+									<div class="box-header with-border">
+										<h3 class="box-title">State Master</h3>
+									</div>
+
 									<div class="box-body">
 
 
@@ -116,22 +131,16 @@
 
 									</div>
 
-									<div class="box-footer" style="margin: 10px">
-										<input type="submit" value="Apply Changes"
-											class="btn btn-primary" /> <input type="button"
-											value="Go back!" class="btn btn-danger"
-											onclick="history.back()">
-									</div>
 
 
-
-								</form>
+								</div>
 							</div>
+
+
+							<div class="col-md-3"></div>
 						</div>
 
-
-						<div class="col-md-3"></div>
-					</div>
+					</form>
 
 				</div>
 			</section>

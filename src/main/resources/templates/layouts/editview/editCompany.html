@@ -39,8 +39,6 @@
 	color: red;
 	font-size: 11px;
 }
-
-
 </style>
 
 </head>
@@ -55,24 +53,52 @@
 
 				<section class="content-wrapper">
 
+					<!-- form start -->
+					<form id="companyDetail" class="wizard wizard-primary" role="form"
+						th:action="@{/companydetail/}" th:object="${company}"
+						method="POST">
 
-					<div class="row">
-						<!-- left column -->
+						<div class="row">
+							<!-- left column -->
 
 
 
 
-						<div class="col-md-12" style="margin-top: 20px;">
+							<div class="col-md-12" style="margin-top: 20px;">
 
-							<div class="box box-primary">
-								<input type="hidden" id="mess" name="mess" th:value="${message}">
-								<div class="box-header with-border">
-									<h3 class="box-title">Company Details</h3>
-								</div>
-								<!-- form start -->
-								<form id="companyDetail" class="wizard wizard-primary"
-									role="form" th:action="@{/companydetail/}"
-									th:object="${company}" method="POST">
+
+
+								<div class="box box-primary">
+
+
+
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
+									<div class="box-header with-border">
+										<h3 class="box-title">Company Details</h3>
+
+
+									</div>
+
+									<div class="box-header with-border text-right">
+
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+										</button>
+
+
+
+										<button type="button" class="btn btn-danger btn-sm"
+											onclick="history.back()">
+											<i class="fa fa-step-backward"></i> Go Back
+										</button>
+
+
+
+
+									</div>
+
 									<div class="box-body">
 
 										<div class="container-fluid">
@@ -140,26 +166,29 @@
 
 																	<div class="form-group col-md-4">
 																		<label>Director Name</label> <input type="text"
-																			class="form-control textOnly capitalize" 
+																			class="form-control textOnly capitalize"
 																			th:field="*{dirName}" placeholder="Director Name"
 																			title="director name" />
 																	</div>
 
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">PF Number</label> <input
-																			type="text" class="form-control" pattern="[a-zA-Z0-9-]+"
-																			placeholder="Pf Number" th:field="*{pfNumber}"
-																			title="pf number" onkeypress="return alpha(event)">
+																			type="text" class="form-control"
+																			pattern="[a-zA-Z0-9-]+" placeholder="Pf Number"
+																			th:field="*{pfNumber}" title="pf number"
+																			onkeypress="return alpha(event)">
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Parent Code</label> <input
-																			type="text" class="form-control uppercase" title="parent code"
-																			placeholder="Parent Code" th:field="*{parentCode}" maxlength='2' >
+																			type="text" class="form-control uppercase"
+																			title="parent code" placeholder="Parent Code"
+																			th:field="*{parentCode}" maxlength='2'>
 																	</div>
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Calculate ESI</label> <select
-																			class="form-control" th:field="*{calculateEsi}" id="calculateEsi"
-																			title="calculate esi" required onchange='selectCalculateEsi()' >
+																			class="form-control" th:field="*{calculateEsi}"
+																			id="calculateEsi" title="calculate esi" required
+																			onchange='selectCalculateEsi()'>
 
 																			<option value="Y">Yes</option>
 																			<option value="N">No</option>
@@ -169,8 +198,9 @@
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">ESI Number</label><span style='color:red' >*</span> <input
-																			type="text" class="form-control" title="esi number"
+																		<label for="inputPassword4">ESI Number</label><span
+																			style='color: red'>*</span> <input type="text"
+																			class="form-control" title="esi number"
 																			id="esiNumber" placeholder="Esi Number"
 																			onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
 																			th:field="*{esiNo}" required>
@@ -244,7 +274,8 @@
 
 																		<div>
 
-																			<label class="col-md-2 control-label">Address-1<span style='color:red' >*</span></label>
+																			<label class="col-md-2 control-label">Address-1<span
+																				style='color: red'>*</span></label>
 
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
@@ -317,9 +348,9 @@
 																					th:field="*{cPin}" id="pin1" name="pin1"
 																					title="pin" placeholder="Pin Code" maxlength="6"
 																					onkeyup="pin1Validation()"
-																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
-																					class="error" id="pin1Error" style='display: none'>Pin
-																					Should be 6 digit</span>
+																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+																				<span class="error" id="pin1Error"
+																					style='display: none'>Pin Should be 6 digit</span>
 																			</div>
 																		</div>
 
@@ -410,12 +441,7 @@
 
 													<!-- ADD -->
 
-													<div class="box-footer">
-														<button type="submit" class="btn btn-primary" id="submit">Apply Changes </button>
 
-													<input type="button" value="Go back!"
-															class="btn btn-danger" onclick="history.back()">
-													</div>
 												</div>
 												<!-- end company detail tab -->
 
@@ -462,10 +488,10 @@
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Designation</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control textOnly uppercase" id="designation"
-																	name="designation" placeholder="Designation"
-																	th:field="*{rDesig}" title="This field is required"
-																	required>
+																	class="form-control textOnly uppercase"
+																	id="designation" name="designation"
+																	placeholder="Designation" th:field="*{rDesig}"
+																	title="This field is required" required>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Flat Number</label> <input
@@ -521,9 +547,9 @@
 																<label for="inputAddress">Pin</label> <input
 																	type="number" class="form-control" id="pin2"
 																	name="pin2" placeholder="Pin" th:field="*{rPin}"
-																	title="pin" onkeyup="pin2Validation()"maxlength="6"
-																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
-																	class="error" id="pin2Error" style='display: none'>Pin
+																	title="pin" onkeyup="pin2Validation()" maxlength="6"
+																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+																<span class="error" id="pin2Error" style='display: none'>Pin
 																	Should be 6 digit</span>
 															</div>
 															<div class="form-group col-md-4">
@@ -558,22 +584,23 @@
 																<label for="inputAddress">PAN Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="panNumber" name="panNumber"
-																	placeholder="Pan Number" th:field="*{panNumber}" onkeyup="ValidatePAN()"
-																	title="This field is required" required><span id="lblPANCard" class="error" style="display:none ">Invalid PAN
-														Number</span>
+																	placeholder="Pan Number" th:field="*{panNumber}"
+																	onkeyup="ValidatePAN()" title="This field is required"
+																	required><span id="lblPANCard" class="error"
+																	style="display: none">Invalid PAN Number</span>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="gstNumber" name="gstNumber"
-																	placeholder="Gst Number" th:field="*{tGstNo}" maxlength="15"
-																	title="This field is required" required>
+																	placeholder="Gst Number" th:field="*{tGstNo}"
+																	maxlength="15" title="This field is required" required>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Legal
 																	Number</label> <input type="text" class="form-control"
 																	id="inputPassword4" placeholder="Taxpayer Legal"
-																	title="taxpayer legal number" 
+																	title="taxpayer legal number"
 																	th:field="*{taxPayerLegalName}">
 															</div>
 															<div class="form-group col-md-6">
@@ -782,7 +809,7 @@
 																</tr>
 															</thead>
 															<tbody>
-															<tr th:each="row, stat :${company.siteOffice}">
+																<tr th:each="row, stat :${company.siteOffice}">
 																	<th scope="row">
 
 
@@ -848,24 +875,22 @@
 									</div>
 
 
-
-								</form>
-
-								<!-- <div class="box-footer">
+									<!-- <div class="box-footer">
 									<a th:href="@{/companydetail/list}">view company list</a>
 								</div> -->
-								<!-- end form -->
+									<!-- end form -->
+								</div>
+
+
+
 							</div>
 
 
 
+
+
 						</div>
-
-
-
-
-
-					</div>
+					</form>
 				</section>
 			</div>
 		</div>
