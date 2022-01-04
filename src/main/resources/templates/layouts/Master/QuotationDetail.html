@@ -49,22 +49,47 @@
 
 				<section class="content-wrapper">
 
+					<!-- form start -->
+					<form role="form" th:action="@{/quotationdetail/}"
+						th:object="${quotation}" method="POST">
 
-					<div class="row">
-						<!-- left column -->
+						<div class="row">
+							<!-- left column -->
 
 
 
 
-						<div class="col-md-12" style="margin-top: 20px;">
+							<div class="col-md-12" style="margin-top: 20px;">
 
-							<div class="box box-primary">
-								<div class="box-header with-border">
-									<h3 class="box-title">Quotation Details</h3>
-								</div>
-								<!-- form start -->
-								<form role="form" th:action="@{/quotationdetail/}"
-									th:object="${quotation}" method="POST">
+
+
+
+								<div class="box box-primary">
+									<div class="box-header with-border">
+										<h3 class="box-title">Quotation Details</h3>
+
+										<div class="box-header with-border text-right">
+
+											<button type="submit" id="submit"
+												class="btn btn-primary btn-sm">
+												<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+											</button>
+											<button type="reset" value="reset"
+												class="btn btn-secondary btn-sm">
+												<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+											</button>
+
+											<a th:href="@{/quotationdetail/list}"
+												class="btn btn-success btn-sm"> <i class="fa fa-list"
+												aria-hidden="true"></i> View All
+											</a>
+
+
+										</div>
+
+									</div>
+
+
 									<div class="box-body">
 
 										<div class="container-fluid">
@@ -313,10 +338,10 @@
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Negotiable Cost</th>
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Qty  <span
+																			style="width: 90px;">Qty <span
 																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center"
-																			style="width: 120px;">Total INR Value </th>
+																			style="width: 120px;">Total INR Value</th>
 
 
 
@@ -374,23 +399,24 @@
 																			id="uomCode0" title=""></td>
 
 																		<td><input type="text" id="itemRate0"
-																			class="form-control form-control-sm numbersOnly" required
-																			name="quotationItem[0].rate" title=""
+																			class="form-control form-control-sm numbersOnly"
+																			required name="quotationItem[0].rate" title=""
 																			onkeyup="totalInrValueCal()"></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm numbersOnly" required
-																			title=""></td>
+																			class="form-control form-control-sm numbersOnly"
+																			required title=""></td>
 
 
 																		<td><input type="text"
-																			class="form-control form-control-sm numbersOnly" required
-																			id="itemQty0" name="quotationItem[0].qtItemQty"
+																			class="form-control form-control-sm numbersOnly"
+																			required id="itemQty0"
+																			name="quotationItem[0].qtItemQty"
 																			onkeyup="totalInrValueCal()" title=""></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm numbersOnly" required
-																			name="quotationItem[0].totalValue"
+																			class="form-control form-control-sm numbersOnly"
+																			required name="quotationItem[0].totalValue"
 																			id="totalInrValue0" title=""></td>
 
 
@@ -595,29 +621,25 @@
 
 
 											</div>
-
-											<div class="box-footer">
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</div>
-								</form>
-
-
-								<div class="box-footer">
-									<div style="width: parent; text-align-last: right; margin: 8px">
-										<a th:href="@{/quotationdetail/list}">View All Quotation
-											Detail</a>
+										</div>
 									</div>
 
+
+
+
+
+
+									<div class="box-footer"></div>
+									<!-- end form -->
 								</div>
-								<!-- end form -->
 							</div>
+
+
+
+
+
 						</div>
-
-
-
-
-
-					</div>
+					</form>
 				</section>
 			</div>
 		</div>

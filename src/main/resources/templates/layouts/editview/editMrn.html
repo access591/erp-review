@@ -66,7 +66,7 @@ iframe {
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
 							<li><a href="#">MRN</a></li>
-							<li class="active">Master</li>
+							<li class="active">edit page</li>
 						</ol>
 					</section>
 
@@ -74,32 +74,47 @@ iframe {
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/mrn/}" th:object="${mrn}"
+							method="POST">
+
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
+								<div class="row">
+									<!-- left column -->
+									<div class="col-md-12">
 
 
 
-									<div class="col-md-12 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
+										<div class="col-md-12 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
 
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
 
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form role="form" th:action="@{/mrn/}" th:object="${mrn}"
-												method="POST">
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+												</div>
+
+												<div class="box-header with-border text-right">
+													<button type="submit" id="submit"
+														class="btn btn-primary btn-sm">
+														<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply
+														Changes
+													</button>
+													<button type="button" class="btn btn-danger btn-sm"
+														onclick="history.back()">
+														<i class="fa fa-step-backward"></i> Go Back
+													</button>
+												</div>
+												<!-- /.box-header -->
+
 
 												<div class="box">
 													<h5 class="box-title">Material Receipt Master</h5>
@@ -352,7 +367,6 @@ iframe {
 																			class="form-control indentContainer form-control-sm select"
 																			id="orderIndentNumberPo"
 																			th:field="*{mrnDetails[__${stat.index}__].matServType}"
-																			
 																			title="indent number">
 
 																				<option value="M">Material</option>
@@ -363,13 +377,14 @@ iframe {
 																		<!-- item code -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="itemCode0"
-																			title="order date"  readonly></td>
+																			title="order date" readonly></td>
 
 																		<!-- item name -->
 																		<td><select type="text"
 																			class="form-control  form-control-sm select itemContainer0"
-																				th:field="*{mrnDetails[__${stat.index}__].item}"
-																			id="item0" title="item name" onchange="getItemInfo()" readonly>
+																			th:field="*{mrnDetails[__${stat.index}__].item}"
+																			id="item0" title="item name" onchange="getItemInfo()"
+																			readonly>
 																				<option value="">Select</option>
 																				<option th:each="item :  ${itemList}"
 																					th:text="${item.description}"
@@ -381,8 +396,8 @@ iframe {
 																		<!-- Account Name -->
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
-																			id="orderIndentNumberPo" 
-																				th:field="*{mrnDetails[__${stat.index}__].store}"
+																			id="orderIndentNumberPo"
+																			th:field="*{mrnDetails[__${stat.index}__].store}"
 																			title="account name">
 																				<option value="">Select</option>
 																				<option th:each="store :  ${storeList}"
@@ -394,7 +409,6 @@ iframe {
 
 																		<!-- UOM -->
 																		<td><input type="text" title="uom" id="uom0"
-																		
 																			class="form-control form-control-sm" readonly></td>
 
 																		<!-- po qty   -->
@@ -406,14 +420,14 @@ iframe {
 																		<!-- inr qty -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="invQty0"
-																				th:field="*{mrnDetails[__${stat.index}__].itemInv}"
+																			th:field="*{mrnDetails[__${stat.index}__].itemInv}"
 																			title="inv qty" readonly></td>
 
 																		<!-- rec qty  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="recQty0"
-																				th:field="*{mrnDetails[__${stat.index}__].itemRec}"
-																			title="rec qty" ></td>
+																			th:field="*{mrnDetails[__${stat.index}__].itemRec}"
+																			title="rec qty"></td>
 
 
 																		<!-- po rate curr -->
@@ -425,36 +439,34 @@ iframe {
 																		<!-- po rate  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="poRate0"
-																				th:field="*{mrnDetails[__${stat.index}__].itemRate}"
-																			title="po rate" 
-																			readonly></td>
+																			th:field="*{mrnDetails[__${stat.index}__].itemRate}"
+																			title="po rate" readonly></td>
 
 																		<!-- bill rate  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="billRate0"
-																				th:field="*{mrnDetails[__${stat.index}__].itemrateOnBill}"
+																			th:field="*{mrnDetails[__${stat.index}__].itemrateOnBill}"
 																			title="bill rate"></td>
 
 																		<!-- total cost   -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="totalCost0"
 																			step="0.25" value="0.00" title="total cost"
-																				th:field="*{mrnDetails[__${stat.index}__].totalvalue}"></td>
+																			th:field="*{mrnDetails[__${stat.index}__].totalvalue}"></td>
 
 																		<!-- net cost  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="netCost0"
-																				th:field="*{mrnDetails[__${stat.index}__].itemNetVal}"
-																			title="net cost" 
-																			step="0.25" value="0.00" readonly></td>
+																			th:field="*{mrnDetails[__${stat.index}__].itemNetVal}"
+																			title="net cost" step="0.25" value="0.00" readonly></td>
 
 
 																		<!-- total pur cost  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
 																			id="totalPrCost0" title="total pur cost"
-																				th:field="*{mrnDetails[__${stat.index}__].totalPurCost}" step="0.25"
-																			value="0.00" readonly></td>
+																			th:field="*{mrnDetails[__${stat.index}__].totalPurCost}"
+																			step="0.25" value="0.00" readonly></td>
 
 																		<!-- total inr cost  -->
 																		<td><input type="text"
@@ -465,8 +477,8 @@ iframe {
 																		<!-- remarks   -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="remarks0"
-																				th:field="*{mrnDetails[__${stat.index}__].remarks}"
-																			title="remarks" ></td>
+																			th:field="*{mrnDetails[__${stat.index}__].remarks}"
+																			title="remarks"></td>
 
 																		<!-- dol -->
 																		<td><select
@@ -645,28 +657,24 @@ iframe {
 												<!-- end detail details block  -->
 
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Apply Changes "
-														class="btn btn-primary" /> <input type="reset"
-														value="Reset" class="btn btn-danger" />
-												</div>
-											</form>
 
 
+
+
+											</div>
+											<!-- /.box -->
+
 										</div>
-										<!-- /.box -->
-										<div
-											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/mrn/list}">View All MRN</a>
-										</div>
+
+
+
 									</div>
 
-
-
 								</div>
-
 							</div>
-						</div>
+
+						</form>
+
 					</section>
 				</section>
 			</div>
@@ -774,7 +782,7 @@ iframe {
 
 											});
 
-						//	$('.itemContainer' + idIndex).html(options);
+							//	$('.itemContainer' + idIndex).html(options);
 
 						},
 						error : function() {
