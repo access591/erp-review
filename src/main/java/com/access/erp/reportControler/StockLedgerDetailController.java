@@ -9,25 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.access.erp.reportCode.StockRegisterReport;
+import com.access.erp.reportCode.StockLedgerDetail;
 
 @Controller
-public class StockRegisterController {
-	
-	
-	@Autowired StockRegisterReport repo;
+public class StockLedgerDetailController {
 
-	@GetMapping("/stockregisterreport")
-	public String getStockRegisterReport(HttpServletRequest req ,HttpServletResponse res) throws IOException {
-		
-		repo.createStockRegisterReport(res, req);
+	@Autowired StockLedgerDetail repo;
+	@GetMapping("/stockLedger")
+	public String getStockLedgerReport(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		repo.createStockLedgerReport(res,req);
 		return null;
 		
-		
-		
 	}
-	
-	
-	
 	
 }

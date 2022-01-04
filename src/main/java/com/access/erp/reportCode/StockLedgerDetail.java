@@ -1,8 +1,10 @@
 package com.access.erp.reportCode;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +23,17 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 @Component
-public class StockRegisterReport {
-
-	public void createStockRegisterReport(HttpServletResponse response,HttpServletRequest request) throws IOException {
-		
-		String reportFileName = "stockRegisterReport";
+public class StockLedgerDetail {
 	
+	
+	public void createStockLedgerReport(HttpServletResponse response,HttpServletRequest request) throws IOException {
 		
+		
+		//List<> dummyData = new ArrayList<>();
+		
+		
+		
+		String reportFileName = "StockLedgerDetail"; // report name
 
 		String sourceFileName = request.getSession().getServletContext()
 				.getRealPath("resources/" + reportFileName + ".jrxml");
@@ -39,11 +45,11 @@ public class StockRegisterReport {
 			sourceFileName = request.getSession().getServletContext()
 					.getRealPath("/resources/" + reportFileName + ".jasper");
 
-	//		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(list);
+			//JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(dummyData);
 			Map<String, Object> parameters = new HashMap<>();
 
-		//	parameters.put("itemStock", beanColDataSource);
-			parameters.put("newDate",new Date());
+			//parameters.put("stockLedger", beanColDataSource);
+		//	parameters.put("newDate",new Date());
 
 			JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(sourceFileName);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
@@ -67,8 +73,13 @@ public class StockRegisterReport {
 		}
 
 	}
+
+		
+		
 		
 	}
 	
 	
+	
+
 
