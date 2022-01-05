@@ -17,17 +17,23 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 @Component
-public class StockRegisterReport {
+public class stockLedgerSummaryreport {
 
-	public void createStockRegisterReport(HttpServletResponse response,HttpServletRequest request) throws IOException {
-		
-		String reportFileName = "stockRegisterReport";
 	
+	
+	public void createStockLedgerReport(HttpServletResponse response,HttpServletRequest request) throws IOException{
 		
+		
+		
+		String reportFileName = "StockLedgerDetail";
+
+		
+		
+		
+
 
 		String sourceFileName = request.getSession().getServletContext()
 				.getRealPath("resources/" + reportFileName + ".jrxml");
@@ -65,10 +71,5 @@ public class StockRegisterReport {
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
-
 	}
-		
-	}
-	
-	
-
+}

@@ -17,17 +17,24 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 
-@Component
-public class StockRegisterReport {
 
-	public void createStockRegisterReport(HttpServletResponse response,HttpServletRequest request) throws IOException {
+@Component
+public class stockItemWiseReport {
+	
+	
+	
+	public void createStockItemWiseReport(HttpServletResponse response,HttpServletRequest request) throws IOException {
 		
-		String reportFileName = "stockRegisterReport";
 	
 		
+		String reportFileName ="stockItemWise";
+
+		
+		
+		
+
 
 		String sourceFileName = request.getSession().getServletContext()
 				.getRealPath("resources/" + reportFileName + ".jrxml");
@@ -43,7 +50,7 @@ public class StockRegisterReport {
 			Map<String, Object> parameters = new HashMap<>();
 
 		//	parameters.put("itemStock", beanColDataSource);
-			parameters.put("newDate",new Date());
+			//parameters.put("newDate",new Date());
 
 			JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(sourceFileName);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
@@ -65,10 +72,8 @@ public class StockRegisterReport {
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
-
-	}
+		
 		
 	}
-	
-	
 
+}

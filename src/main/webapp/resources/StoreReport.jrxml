@@ -60,7 +60,7 @@
 	<detail>
 		<band height="220" splitType="Stretch">
 			<componentElement>
-				<reportElement x="60" y="0" width="530" height="200" uuid="47567add-3a8d-4fe6-a641-698b52bd6834">
+				<reportElement x="60" y="0" width="400" height="200" uuid="47567add-3a8d-4fe6-a641-698b52bd6834">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
