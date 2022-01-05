@@ -50,9 +50,9 @@
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
+							<li><a href="#">User Master</a></li>
+							<li class="active">Edit User </li>
 						</ol>
 					</section>
 
@@ -68,6 +68,19 @@
 							<div class="row">
 								<!-- left column -->
 								<div class="col-md-12">
+
+									<div class="box-header with-border text-right">
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+										</button>
+										<button type="button" class="btn btn-danger btn-sm"
+											onclick="history.back()">
+											<i class="fa fa-step-backward"></i> Go Back
+										</button>
+									</div>
+
+
 									<div class="col-md-2"></div>
 
 
@@ -80,8 +93,9 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form id="userMasterForm" role="form" th:action="@{/user/update/}"
-												method="POST" th:object="${user}">
+											<form id="userMasterForm" role="form"
+												th:action="@{/user/update/}" method="POST"
+												th:object="${user}">
 												<div class="box-body">
 
 													<div class="form-group col-md-12">
@@ -115,7 +129,7 @@
 														<label>User Password</label><span style="color: red">*</span>
 														<input type="password" class="form-control"
 															placeholder="User Password"
-															title="This field is required"  th:field="*{userPassword}"
+															title="This field is required" th:field="*{userPassword}"
 															required>
 													</div>
 
@@ -124,19 +138,16 @@
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="active" checked style="margin-left: 5px" >Active <input
-														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
+														value="Y" name="active" checked style="margin-left: 5px">Active
+														<input type="radio" value="N" name="active"
+														style="margin-left: 5px">In-Active
 													</label>
 
 
 												</div>
 												<!-- /.box-body -->
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Apply Changes" class="btn btn-primary" />
-													<input type="button" value="Go back!" class="btn btn-danger"
-														onclick="history.back()">
-												</div>
+												
 
 
 											</form>

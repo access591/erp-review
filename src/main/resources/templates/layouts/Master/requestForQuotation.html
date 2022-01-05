@@ -156,19 +156,16 @@
 
 														<input id="_cr" name="_cr" type="hidden" value="1">
 
+														<div class="col-sm-12" style="text-align: right">
 
+															<a id="add_row_in" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_in' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
 
-														<div class="table-responsive">
-
-															<div class="col-sm-12" style="text-align: right">
-
-																<a id="add_row_in" class="fa fa-plus" aria-hidden="true"
-																	style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
-																<a id='delete_row_in' class="fa fa-trash"
-																	style="font-size: 24px; color: #399490fc"
-																	aria-hidden="true"></a>
-															</div>
-
+														<div class="table-responsive" style="margin-top: 40px">
 
 															<table id="indentTable" aria-describedby="example"
 																class="table table-striped display" style="width: 100%">
@@ -275,19 +272,19 @@
 													<h5>Supplier Info</h5>
 													<div class="box-body">
 
+														<div class="col-sm-12" style="text-align: right">
+
+															<a id="add_row_sup" class="fa fa-plus" aria-hidden="true"
+																style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
+															<a id='delete_row_sup' class="fa fa-trash"
+																style="font-size: 24px; color: #399490fc"
+																aria-hidden="true"></a>
+														</div>
+
+														<div class="table-responsive" style="margin-top: 40px">
 
 
-														<div class="table-responsive">
 
-															<div class="col-sm-12" style="text-align: right">
-
-																<a id="add_row_sup" class="fa fa-plus"
-																	aria-hidden="true"
-																	style="font-size: 24px; color: #001080"></a>&nbsp;&nbsp;&nbsp;
-																<a id='delete_row_sup' class="fa fa-trash"
-																	style="font-size: 24px; color: #399490fc"
-																	aria-hidden="true"></a>
-															</div>
 															<table id="supplierTable" aria-describedby="example"
 																class="table table-striped display" style="width: 100%">
 																<thead>
@@ -420,11 +417,11 @@
 
 
 
-												
+
 
 											</div>
 											<!-- /.box -->
-											
+
 										</div>
 
 
@@ -504,10 +501,10 @@
 																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].itemSpec'required title=''></td>"
 
 																		/*  term and condition  */
-																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].termCondition'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].termCondition'required style='width: 170px' title=''></td>"
 
 																		/*  remarks */
-																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].remarks'required title=''></td>"
+																		+ "<td><input type='text'class='form-control form-control-sm'name='listRFQuotation[" + idIndex1 + "].remarks'required style='width: 170px' title=''></td>"
 
 														);
 												$('#indentTable').append(
@@ -573,7 +570,7 @@
 																		+ idIndex2
 																		+ "' class='form-control form-control-sm select supplierContainer"
 																		+ idIndex2
-																		+ "' required title='supplier code' onchange='supplierInfo()'  name='listRFQuotationSupply["
+																		+ "' required style='width: 190px' title='supplier code' onchange='supplierInfo()'  name='listRFQuotationSupply["
 																		+ idIndex2
 																		+ "].suppCode'></select></td>'"
 

@@ -209,7 +209,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Purchase Through</label> <select
 																class="form-control" id="purchaseThrough"
-																title="urgency" required
+																title="urgency" required th:field="*{purchaseThrogh}"
 																onchange="againstPurchaseThrough()">
 																<option value="Q" selected>Quotation</option>
 																<option value="I">Indent</option>
@@ -461,6 +461,7 @@
 
 																		<!--  total item cost -->
 																		<td><input type="number"
+																			name="listPurchaseOrderItem[0].totalValue"
 																			class="form-control form-control-sm" id="totalCost0"
 																			title="total item cost" step='0.01' value='0.00'
 																			placeholder='0.00' style="text-align: right" readonly></td>
@@ -468,9 +469,10 @@
 
 																		<!-- total cost inr  -->
 																		<td><input type="number"
+																			name="listPurchaseOrderItem[0].totalValueInr"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalCostInr0" title="total item cost(inr)"
-																			step='0.01' style="text-align: right" readonly></td>
+																			step='0.01' value='0.00' placeholder='0.00' style="text-align: right" readonly></td>
 
 																		<!--  dol -->
 																		<td><select class="form-control" title="dol"

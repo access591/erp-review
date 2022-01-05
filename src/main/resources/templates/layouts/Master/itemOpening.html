@@ -272,7 +272,7 @@
 			document.getElementById("itemCode").value = itemCode;
 			$.ajax({
 				type : "GET",
-				url : "/itemopening/itemdetail/" + itemCode,
+				url : "itemdetail/" + itemCode,
 
 				success : function(data) {
 					//$("#resultarea").text(data);
