@@ -48,8 +48,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini"
-	onload="againstPurchaseThrough()">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -204,7 +203,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Purchase Through</label> <select
 																class="form-control" id="purchaseThrough"
-																title="urgency" required
+																title="urgency" required th:field="*{purchaseThrogh}"
 																onchange="againstPurchaseThrough()">
 																<option value="Q" selected>Quotation</option>
 																<option value="I">Indent</option>
@@ -1424,6 +1423,13 @@
 								}
 							});
 						});
+		
+		
+		window.addEventListener("load", myInit, true); function myInit(){ 
+			openPoFun()
+			againstPurchaseThrough()
+			supplierInfo()
+		}; 
 	</script>
 
 

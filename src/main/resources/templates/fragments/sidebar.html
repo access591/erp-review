@@ -107,6 +107,10 @@
 									Category</a></li>
 							<li th:if="${#request.isUserInRole('ITEM') or #request.isUserInRole('ADMIN')}"><a th:href="@{/item/}"><i class="fa fa-circle-o"></i>
 									Item</a></li>
+									
+							<li th:if="${#request.isUserInRole('ITEMOPENING') or #request.isUserInRole('ADMIN')}"><a th:href="@{/itemopening/}"><i
+							class="fa fa-circle-o"></i> Item-Opening</a></li>
+							
 							<li th:if="${#request.isUserInRole('UOM(UNITOFMEASUREMENT)') or #request.isUserInRole('ADMIN')}"><a th:href="@{/uom/}"><i class="fa fa-circle-o"></i>
 									UOM(Unit of Measurement)</a></li>
 							<li th:if="${#request.isUserInRole('SERVICECATEGORY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/servicecategory/}"><i
@@ -196,8 +200,7 @@
 				<ul class="treeview-menu">
 
 
-					<li th:if="${#request.isUserInRole('ITEMOPENING') or #request.isUserInRole('ADMIN')}"><a th:href="@{/itemopening/}"><i
-							class="fa fa-circle-o"></i> Item-Opening</a></li>
+					cxz
 					<li th:if="${#request.isUserInRole('GATEENTRY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/gateentry/}"><i class="fa fa-circle-o"></i>
 							Gate Entry</a></li>
 					

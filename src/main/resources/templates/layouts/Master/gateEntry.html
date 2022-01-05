@@ -84,9 +84,8 @@
 									<i class="fa fa-refresh" aria-hidden="true"></i> Reset
 								</button>
 
-								<a th:href="@{/gateentry/list}"
-									class="btn btn-success btn-sm"> <i class="fa fa-list"
-									aria-hidden="true"></i> View All
+								<a th:href="@{/gateentry/list}" class="btn btn-success btn-sm">
+									<i class="fa fa-list" aria-hidden="true"></i> View All
 								</a>
 
 
@@ -165,8 +164,8 @@
 															<label class="form-label">Supplier Name</label> <label
 																style="color: red">*</label> <select
 																class="form-control" id="supplierName"
-																onchange="selectSupplier()"
-																title="supplier code" th:field="*{partyMaster}">
+																onchange="selectSupplier()" title="supplier code"
+																th:field="*{partyMaster}">
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
 																	th:text="${party.partyName}"
@@ -180,7 +179,8 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Supplier Code</label> <input
 																type="text" class="form-control" id="supplierCode"
-																placeholder="Supplier Name" title="supplier name" readonly>
+																placeholder="Supplier Name" title="supplier name"
+																readonly>
 														</div>
 
 
@@ -360,12 +360,14 @@
 
 																		<td><input type="number" title="pending qty"
 																			class="form-control form-control-sm"
-																			name="gateEntryItemDetails[0].pendingQty"></td>
+																			id="pendingQty0"
+																			name="gateEntryItemDetails[0].pendingQty" readonly></td>
 
 																		<!-- qty  -->
 
 																		<td><input type="number" id="qtyOrder0"
-																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this);"
+																			onkeyup = "onChangeQty()"
 																			class="form-control form-control-sm" title="net qty"
 																			name="gateEntryItemDetails[0].netQty" step="0.25"
 																			value="0.00"></td>
@@ -443,11 +445,10 @@
 
 
 	<script>
-	
-	function selectSupplier(){
-		var supplierCode = document.getElementById("supplierName").value;
-		document.getElementById("supplierCode").value = supplierCode;
-	}
+		function selectSupplier() {
+			var supplierCode = document.getElementById("supplierName").value;
+			document.getElementById("supplierCode").value = supplierCode;
+		}
 		$(document).ready(function() {
 
 			document.getElementById('gateEntryDate').valueAsDate = new Date();
@@ -577,6 +578,8 @@
 					});
 		}
 
+		var qty = 0;
+		
 		function getOrderItemDetailForPo() {
 
 			var itemNumber = document.getElementById("orderItemPo" + idIndex).value;
@@ -591,18 +594,37 @@
 
 					console.log("getOrderItemDetailForPo item description  :"
 							+ data.description)
+					$("#pendingQty" + idIndex).val(0.00)
+					
 					$("#orderItemCode" + idIndex).val(data.item.description)
 					//orderItemCode0
 					//$("#orderItemCode0").val(data.itemCode)
 					$("#orderItemuom" + idIndex).val(data.item.uom.uomCode)
 					$("#qtyOrder" + idIndex).val(
 							data.purchaseOrderItem.qtyOrder)
+							
+					qty = data.purchaseOrderItem.qtyOrder;
+					
 
 				},
 				error : function() {
 					console.log("Error");
 				}
 			});
+
+		}
+
+		function onChangeQty() {
+
+			console.log("onchange method : ")
+			var pendingQty = document.getElementById("pendingQty" + idIndex).value;
+			
+			console.log("pending qty : " + pendingQty)
+			var qtyOrder = document.getElementById("qtyOrder" + idIndex).value;
+			console.log("qty order : " + pendingQty)
+			
+			document.getElementById("pendingQty" + idIndex).value = qty
+					- qtyOrder;
 
 		}
 	</script>
@@ -650,14 +672,14 @@
 																		+ "<td><input type='text'class='form-control form-control-sm'id='orderItemCode"+i+"' title='item description'name='gateEntryItemDetails["+i+"].itemDescription'readonly></td>"
 
 																		/*  pending qty */
-																		+ "<td><input type='number' title='pending qty'class='form-control form-control-sm'name='gateEntryItemDetails["+i+"].pendingQty'></td>"
+																		+ "<td><input type='number' title='pending qty'class='form-control form-control-sm'name='gateEntryItemDetails["+i+"].pendingQty' id='pendingQty"+i+"' readonly></td>"
 
 																		/*  qty */
 																		+ "<td><input type='number' id='qtyOrder"
 																		+ i
 																		+ "' class='form-control form-control-sm' title='net qty'name='gateEntryItemDetails["
 																		+ i
-																		+ "].netQty' onchange=''(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)''  step='0.25' value='0.00'></td>"
+																		+ "].netQty' onchange=''(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)''  step='0.25' value='0.00' onkeyup = 'onChangeQty()'></td>"
 
 																		/*  uom*/
 																		+ "<td><input type='text'class='form-control form-control-sm'id='orderItemuom"+i+"' title='status'name='gateEntryItemDetails["+i+"].uom'></td>"

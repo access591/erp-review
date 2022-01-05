@@ -67,7 +67,7 @@
 															<th scope="col">#</th>
 															<th scope="col">Gate-Entry Code</th>
 															<th scope="col">Gate-Entry Date</th>
-															<th scope="col">Gate-Entry Type</th>
+															
 
 															<th scope="col">Action</th>
 
@@ -77,9 +77,9 @@
 														<tr th:each="gate,iter  : ${gateEntryList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${gate.gateSrNo}">Garrett Winters</td>
-															<td th:text="${gate.gateEntryDate}">Garrett
+															<td th:text="${#dates.format(gate.gateEntryDate, 'dd-MMM-yyyy')}">Garrett
 																Winters</td>
-															<td th:text="${gate.entryType}">Garrett Winters</td>
+															
 															
 
 

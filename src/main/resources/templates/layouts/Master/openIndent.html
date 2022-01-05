@@ -307,7 +307,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="indQty0" min="18" title="ind qty" required
 																			name="opeIndentDetail[0].indQty"
-																			style="text-align: right" onkeyup="indentQtyValue()"></td>
+																			style="text-align: right" onkeyup="indentQtyValue()" onkeypress='return isNumberKey(event)'></td>
 
 
 																		<!-- approved indent qty -->
@@ -361,7 +361,7 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="itemRate0" required title="item rate"
 																			name="opeIndentDetail[0].itemRate"
-																			style="text-align: right" onkeyup="indentItemRate()"></td>
+																			style="text-align: right" onkeyup="indentItemRate()" onkeypress='return isNumberKey(event)'></td>
 
 
 																		<!-- units  -->
@@ -465,11 +465,11 @@
 
 
 
-												
+
 
 											</div>
 											<!-- /.box -->
-											
+
 
 
 
@@ -523,18 +523,18 @@
 																		+ "].indItemCode'required onchange='selectItem()'style='width:250px'></select></td>"
 
 																		/*  ind qty */
-																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='indQty"
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField' id='indQty'"+idIndex+"'"
+																		
+																		+ "required name='opeIndentDetail["
 																		+ idIndex
-																		+ "' min='18' title='Age from'required name='opeIndentDetail["
-																		+ idIndex
-																		+ "].indQty' style='text-align: right'  onkeyup='indentQtyValue()'>"
+																		+ "].indQty' style='text-align: right'  onkeyup='indentQtyValue()' step='.01' onkeypress='return isNumberKey(event)' oninput='roundTextBoxes()' placeholder='0.00' ></td>"
 
 																		/* approved qty  */
 																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty' style='text-align: right'  readonly></td>"
 
 																		/*  qty in stock  */
 
-																		+ "<td><input type='text' class='form-control form-control-sm' id='qtyInStock"+idIndex+"' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' style='text-align: right' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='qtyInStock"+idIndex+"' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' style='text-align: right' readonly></td>"
 
 																		/*  qty to be procured */
 																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='qtyProcured"+idIndex+"' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' style='text-align: right'  readonly></td>"
@@ -548,7 +548,7 @@
 																		+ idIndex
 																		+ "' title='Technical Qualification' name='opeIndentDetail["
 																		+ idIndex
-																		+ "].itemRate' onkeyup='indentItemRate()' style='text-align: right' ></td>"
+																		+ "].itemRate' onkeyup='indentItemRate()' step='.01' style='text-align: right' oninput='roundTextBoxes()' onkeypress='return isNumberKey(event)'></td>"
 
 																		/* units  */
 																		+ "<td><input type='text' class='form-control form-control-sm' id='uomCode"+idIndex+"' readonly></td>" //units 
@@ -734,6 +734,20 @@
 			});
 
 		}
+		
+		
+		
+		 function isNumberKey(evt)
+	       {
+	          var charCode = (evt.which) ? evt.which : evt.keyCode;
+	          if (charCode != 46 && charCode > 31 
+	            && (charCode < 48 || charCode > 57))
+	             return false;
+
+	          return true;
+	       }
+		 
+		 
 	</script>
 
 
@@ -744,6 +758,12 @@
 				$(this).val(parseFloat($(this).val()).toFixed(2));
 			});
 		});
+		
+		function roundTextBoxes() {
+			$(".floatNumberField").change(function() {
+				$(this).val(parseFloat($(this).val()).toFixed(2));
+			});
+		}
 	</script>
 
 

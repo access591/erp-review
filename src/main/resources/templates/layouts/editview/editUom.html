@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -27,9 +27,38 @@
 			<div th:replace="fragments/header :: header">...</div>
 			<div th:replace="fragments/sidebar :: sidebar">...</div>
 			<section class="content-wrapper">
+
+
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<!-- <h4>
+							Sub-Module Master
+							<small>it all starts here</small>
+						</h4> -->
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Master </a></li>
+						<li><a href="#">Store</a></li>
+						<li class="active">Edit UOM</li>
+
+					</ol>
+				</section>
+
+
 				<div class="row">
 					<!-- left column -->
 					<div class="col-md-12">
+
+						<div class="box-header with-border text-right">
+							<button type="submit" id="submit" class="btn btn-primary btn-sm">
+								<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+							</button>
+							<button type="button" class="btn btn-danger btn-sm"
+								onclick="history.back()">
+								<i class="fa fa-step-backward"></i> Go Back
+							</button>
+						</div>
+
+
 						<div class="col-md-3"></div>
 
 
@@ -74,12 +103,7 @@
 
 									</div>
 
-									<div class="box-footer">
-										<input type="submit" value="Apply Changes"
-											class="btn btn-primary" /> <input type="button"
-											value="Go back!" class="btn btn-danger"
-											onclick="history.back()">
-									</div>
+									
 
 
 								</form>
