@@ -24,7 +24,7 @@ public class stockItemWiseController {
 	
 	
 	
-	@GetMapping("/view")
+	@GetMapping("/Stockview")
 	
 	public String itemWise(Model model) {
 	
@@ -39,12 +39,11 @@ public class stockItemWiseController {
 		System.out.println("hstock controller");
 		System.out.println("name : " + request.getParameter("category"));
 		System.out.println("name : " + request.getParameter("fromDate"));
-		System.out.println("name : " + request.getParameter("To Date"));
+		System.out.println("name : " + request.getParameter("toDate"));
 		System.out.println("name : " + request.getParameter("Item"));
 		
 	
-		String parameter = request.getParameter("fromDate");
-		//Date date = in.parse(parameter);
+
 		
 		return "";
 				
