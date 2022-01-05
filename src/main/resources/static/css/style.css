@@ -53,6 +53,15 @@
  .uppercase {
 	text-transform: uppercase;
 }
+
+.content-wrapper, .right-side{
+	background-image: url('https://images.outlookindia.com/public/uploads/articles/2018/4/25/kashmir_police_571_855.jpg'); 
+	
+	opacity:0.3;
+
+	background-size:1200px 800px;
+	  background-repeat: no-repeat;
+}
   
   
 
