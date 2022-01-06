@@ -375,7 +375,7 @@ iframe {
 																			title="indent number">
 
 																				<option value="M">Material</option>
-																				<option value="S">Supplier</option>
+																				<option value="S">Service</option>
 
 
 																		</select></td>
@@ -411,61 +411,61 @@ iframe {
 
 																		<!-- po qty   -->
 																		<td><input type="number" id="poQty0"
-																			class="form-control form-control-sm" title="po qty"
-																			readonly></td>
+																			class="form-control form-control-sm text-right" title="po qty"
+																			readonly  ></td>
 
 
 																		<!-- inr qty -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="invQty0"
+																			class="form-control form-control-sm text-right" id="invQty0"
 																			title="inv qty" name="mrnDetails[0].itemInv" readonly></td>
 
 																		<!-- rec qty  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="recQty0"
-																			title="rec qty" name="mrnDetails[0].itemRec"></td>
+																			class="form-control form-control-sm text-right" id="recQty0"
+																			title="rec qty"  name="mrnDetails[0].itemRec" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 
 																		<!-- po rate curr -->
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" id="poRateCur0"
+																			class="form-control form-control-sm " id="poRateCur0"
 																			title="po rate curr" readonly></td>
 
 																		<!-- po rate  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="poRate0"
+																			class="form-control form-control-sm text-right" id="poRate0"
 																			title="po rate" name="mrnDetails[0].itemRate"
 																			readonly></td>
 
 																		<!-- bill rate  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="billRate0"
-																			title="bill rate" name="mrnDetails[0].itemrateOnBill"></td>
+																			class="form-control form-control-sm text-right" id="billRate0"
+																			title="bill rate" name="mrnDetails[0].itemrateOnBill" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- total cost   -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="totalCost0"
-																			step="0.25" value="0.00" title="total cost"
-																			name="mrnDetails[0].totalvalue"></td>
+																			class="form-control form-control-sm text-right" id="totalCost0"
+																			value="0.00" title="total cost"
+																			name="mrnDetails[0].totalvalue" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- net cost  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="netCost0"
+																			class="form-control form-control-sm text-right" id="netCost0"
 																			title="net cost" name="mrnDetails[0].itemNetVal"
 																			step="0.25" value="0.00" readonly></td>
 
 
 																		<!-- total pur cost  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm"
+																			class="form-control form-control-sm text-right"
 																			id="totalPrCost0" title="total pur cost"
 																			name="mrnDetails[0].totalPurCost" step="0.25"
 																			value="0.00" readonly></td>
 
 																		<!-- total inr cost  -->
 																		<td><input type="text"
-																			class="form-control form-control-sm"
+																			class="form-control form-control-sm text-right"
 																			id="totalInrCost0" title="total inr cost" step="0.25"
 																			value="0.00" name="mrnDetail[0].poNetVal" readonly></td>
 
@@ -566,52 +566,52 @@ iframe {
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="freight0"
 																			title="order date" name="mrnDetails[0].freight"
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- cgst in percent  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="cgstInPer0"
 																			title="item name" name="mrnDetails[0].cgst"
 																			onkeyup="calulationOfCgst()"
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- cgst in value  -->
 																		<td><input type="number" title="uom"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="cgstInValue0" step='0.01'
+																			id="cgstInValue0" 
 																			name="mrnDetails[0].cgstValue" readonly
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- sgst in percent  -->
 																		<td><input type="number" id="sgstInPer0"
 																			class="form-control form-control-sm" title="po qty"
 																			name="mrnDetails[0].sgst"
 																			onkeyup="calulationOfSgst()"
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 
 																		<!-- sgst in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="sgstInValue0" title="inv qty" step='0.01'
+																			id="sgstInValue0" title="inv qty"
 																			name="mrnDetails[0].sgstValue" readonly
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- igst in percent  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="igstInPer0"
 																			title="rec qty" name="mrnDetails[0].igst"
 																			onkeyup="calulationOfIgst()"
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 
 																		<!-- igst in value  -->
 
 																		<td><input type="number"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="igstInValue0" title="po rate curr" step='0.01'
+																			id="igstInValue0" title="po rate curr"
 																			name="mrnDetails[0].igstValue" readonly
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- discount in percent  -->
 																		<td><input type="number"
@@ -619,14 +619,14 @@ iframe {
 																			id="descountInPer0" title="po rate"
 																			name="mrnDetails[0].discPer"
 																			onkeyup="calulationOfDiscount()"
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 																		<!-- discount  in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			id="descountInValue0" title="po rate" step='0.01'
+																			id="descountInValue0" title="po rate"
 																			name="mrnDetails[0].discValue" readonly
-																			style="text-align: right" value="0"></td>
+																			style="text-align: right" value="0" step="0.25" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"></td>
 
 
 
@@ -922,40 +922,40 @@ iframe {
 																		+ "<td><input type='text' title='uom' class='form-control form-control-sm' id='uom"+j+"' readonly></td>"
 
 																		/* po qty   */
-																		+ "<td><input type='number' class='form-control form-control-sm' title='po qty' id='poQty"+j+"' step='0.25'readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' title='po qty' id='poQty"+j+"' step='0.25'readonly></td>"
 
 																		/*  int qty  */
-																		+ "<td><input type='number' class='form-control form-control-sm' id='invQty"+j+"'  title='inv qty' name='mrnDetails["+j+"].itemInv' step='0.25' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='invQty"+j+"'  title='inv qty' name='mrnDetails["+j+"].itemInv' step='0.25' readonly></td>"
 
 																		/* rec qty   */
-																		+ "<td><input type='number' class='form-control form-control-sm'  id='recQty"+j+"''  title='rec qty' name='mrnDetails["+j+"].itemRec'step='0.25' ></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right'  id='recQty"+j+"''  title='rec qty' name='mrnDetails["+j+"].itemRec'step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' ></td>"
 
 																		/* po rate curr   */
 																		+ "<td><input type='text' class='form-control form-control-sm' id='poRateCur"+j+"' title='po rate curr' step='0.25' readonly></td>"
 
 																		/*  po rate  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='poRate"+j+"'  title='po rate' name='mrnDetails["+j+"].itemRate' step='0.25' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='poRate"+j+"'  title='po rate' name='mrnDetails["+j+"].itemRate' step='0.25' readonly></td>"
 
 																		/*  bill rate  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='billRate"+j+"' title='bill rate'name='mrnDetails["+j+"].itemrateOnBill' step='0.25' ></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='billRate"+j+"' title='bill rate'name='mrnDetails["+j+"].itemrateOnBill' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' ></td>"
 
 																		/* total cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='totalCost"+j+" '  title='total cost' name='mrnDetails["+j+"].totalvalue' step='0.25' value='0.00'></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='totalCost"+j+" '  title='total cost' name='mrnDetails["+j+"].totalvalue' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' value='0.00'></td>"
 
 																		/*  net cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='netCost"+j+"'  title='net cost' name='mrnDetails["+j+"].itemNetVal' step='0.25' value='0.00'readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='netCost"+j+"'  title='net cost' name='mrnDetails["+j+"].itemNetVal' step='0.25' value='0.00'readonly></td>"
 
 																		/*  total per cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm' id='totalPerCost'"+j+" title='total pur cost' name='mrnDetails["+j+"].totalPurCost' step='0.25' value='0.00' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='totalPerCost'"+j+" title='total pur cost' name='mrnDetails["+j+"].totalPurCost' step='0.25' value='0.00' readonly></td>"
 
 																		/*  total inr cost  */
 
-																		+ "<td><input type='text' class='form-control form-control-sm' id='totalInrCost"+j+"' title='total inr cost'step='0.25' value='0.00' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm text-right' id='totalInrCost"+j+"' title='total inr cost'step='0.25' value='0.00' readonly></td>"
 
 																		/*  remarks  */
 
@@ -1008,47 +1008,47 @@ iframe {
 														.html(
 
 																/* freight  */
-																"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date' name='mrnDetails[" +i+"].freight'style='text-align: right' value='0'></td>'"
+																"<td><input type='number'class='form-control form-control-sm' id='freight" +i+" 'title='order date' name='mrnDetails[" +i+"].freight'style='text-align: right' value='0' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>'"
 
 																		/*  cgst  */
 																		+ "<td><input type='text'class='form-control form-control-sm' id='cgstInPer"
 																		+ i
 																		+ "' title='item name'name='listPurchaseOrderItem["
 																		+ i
-																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right' value='0'></td>"
+																		+ "].cgst'onkeyup='calulationOfCgst()'' step='0.01'style='text-align: right' value='0' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>"
 
 																		/*   cgst value */
-																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='mrnDetails[" +i+"].cgstValue' step='0.01' readonly style='text-align: right'value='0'></td>"
+																		+ "<td><input type='number' title='uom'class='form-control form-control-sm'id='cgstInValue" +i+"' name='mrnDetails[" +i+"].cgstValue' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' readonly style='text-align: right'value='0'></td>"
 
 																		/*  sgst  */
 																		+ "<td><input type='number' id='sgstInPer"
 																		+ i
 																		+ "' class='form-control form-control-sm' title='po qty'name='mrnDetails["
 																		+ i
-																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.01'style='text-align: right'value='0'></td>"
+																		+ "].sgst'onkeyup='calulationOfSgst()''step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'style='text-align: right'value='0'></td>"
 
 																		/* sgst value */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='mrnDetails[" +i+"].sgstValue'step='0.01' readonly style='text-align: right'value='0'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='sgstInValue" +i+"'  title='inv qty'name='mrnDetails[" +i+"].sgstValue'step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' readonly style='text-align: right'value='0'></td>"
 
 																		/* igst  */
 																		+ "<td><input type='number'class='form-control form-control-sm' id='igstInPer"
 																		+ i
 																		+ "' title='rec qty' name='mrnDetails["
 																		+ i
-																		+ "].igst'onkeyup='calulationOfIgst()'step='0.01'' style='text-align: right'value='0'></td>"
+																		+ "].igst'onkeyup='calulationOfIgst()'step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' style='text-align: right'value='0'></td>"
 
 																		/*  igst value  */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='mrnDetails[" +i+"].igstValue'step='0.01' readonly style='text-align: right'value='0'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='igstInValue" +i+"' title='po rate curr'name='mrnDetails[" +i+"].igstValue'step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' readonly style='text-align: right'value='0'></td>"
 
 																		/* discount  */
 																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInPer"
 																		+ i
 																		+ "' title='po rate'name='mrnDetails["
 																		+ i
-																		+ "].discPer'onkeyup='calulationOfDiscount()''step='0.01' style='text-align: right'value='0'></td>"
+																		+ "].discPer'onkeyup='calulationOfDiscount()' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' style='text-align: right'value='0'></td>"
 
 																		/*  discount value */
-																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='mrnDetails[" +i+"].discValue'step='0.01' readonly style='text-align: right'value='0'></td>"
+																		+ "<td><input type='number'class='form-control form-control-sm'id='descountInValue" +i+"' title='po rate'name='mrnDetails[" +i+"].discValue'step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' readonly style='text-align: right'value='0'></td>"
 
 														);
 												$('#example1').append(

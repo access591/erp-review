@@ -52,8 +52,8 @@
 			<div class="wrapper">
 
 				<section class="content-wrapper">
-				
-				<!-- Content Header (Page header) -->
+
+					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
 							Company Master
@@ -65,8 +65,8 @@
 							<li class="active">Edit Company</li>
 						</ol>
 					</section>
-					
-					
+
+
 
 					<!-- form start -->
 					<form id="companyDetail" class="wizard wizard-primary" role="form"
@@ -97,6 +97,8 @@
 
 									<div class="box-header with-border text-right">
 
+
+
 										<button type="submit" id="submit"
 											class="btn btn-primary btn-sm">
 											<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
@@ -108,7 +110,16 @@
 											onclick="history.back()">
 											<i class="fa fa-step-backward"></i> Go Back
 										</button>
-
+										
+										<a th:href="@{/companypdf}" target="_blank"
+											class="btn btn-success btn-sm"> <i
+											class="fa fa-file-pdf-o" style='font-size: 20px'></i>Generate
+											Pdf File
+										</a> <a type="button" class="btn btn-success btn-sm"
+											th:href="@{/companyexcel}" target="_blank"
+											onclick="history.back()"> <i class="fa fa-file-excel-o"
+											style='font-size: 20px'></i> Excel
+										</a>
 
 
 
