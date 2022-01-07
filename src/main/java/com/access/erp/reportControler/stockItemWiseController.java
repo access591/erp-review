@@ -37,10 +37,10 @@ public class stockItemWiseController {
 		
 		
 		System.out.println("hstock controller");
-		System.out.println("name : " + request.getParameter("category"));
-		System.out.println("name : " + request.getParameter("fromDate"));
-		System.out.println("name : " + request.getParameter("toDate"));
-		System.out.println("name : " + request.getParameter("Item"));
+		System.out.println("Category : " + request.getParameter("category"));
+		System.out.println("From Date : " + request.getParameter("fromDate"));
+		System.out.println("To Date: " + request.getParameter("toDate"));
+		System.out.println("Item Name: " + request.getParameter("Item"));
 		
 	
 

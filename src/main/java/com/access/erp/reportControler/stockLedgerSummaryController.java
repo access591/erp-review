@@ -33,11 +33,11 @@ public class stockLedgerSummaryController {
 	@PostMapping("/summary")
 	public String addledgerSummary(HttpServletRequest request) {
 		
-	System.out.println("name :  " +	request.getParameter("fromDate"));
-	System.out.println("name :  " +	request.getParameter("toDate"));
-	System.out.println("name :  " +	request.getParameter("DesFormat"));
+	System.out.println("Date11 :  " +	request.getParameter("fromDate"));
+	System.out.println("Date22 :  " +	request.getParameter("toDate"));
+	System.out.println("Desformat :  " +	request.getParameter("des"));
 
-	return"";
+	return"view";
 	}
 	
 	
@@ -47,7 +47,7 @@ public class stockLedgerSummaryController {
 	
 	
 	
-	@GetMapping("/stockledgersumery")
+	@GetMapping("/stockledgersummary")
 	public String getStockLedgerSummaryReport(HttpServletRequest req,HttpServletResponse res) throws IOException {
 		
 		repo.createStockLedgerReport(res,req);
