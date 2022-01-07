@@ -54,14 +54,18 @@
 	text-transform: uppercase;
 }
 
-.content-wrapper, .right-side{
-	background-image: url('https://images.outlookindia.com/public/uploads/articles/2018/4/25/kashmir_police_571_855.jpg'); 
-	
-	opacity:0.3;
 
+/*.content-wrapper, .right-side{	background-image: url('https://ommcom.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/03/11214145/nopic.jpg'); 
+	
+	
+max-width:80%;
+ max-height: 50%;
+   padding-top: 80px;
+  padding-right: 20px;
+  
+ 
 	background-size:1200px 800px;
 	  background-repeat: no-repeat;
 }
-  
-  
-
+  */
+ 

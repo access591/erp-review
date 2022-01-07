@@ -34,9 +34,11 @@ public class StockLedgerDetailController {
 		
 		
 		
-		System.out.println("name : " + request.getParameter("fromDate"));
-		System.out.println("name : " + request.getParameter("toDate"));
-		System.out.println("name : " + request.getParameter("format"));
+		System.out.println("fromDate  : " + request.getParameter("fromDate"));
+		System.out.println("Todate  : " + request.getParameter("toDate"));
+		System.out.println("report type  : " + request.getParameter("desRecord"));
+		//System.out.println("name : " + request.getParameter("category"));
+		//System.out.println(request.getParameter("format"));
 
 		
 		
