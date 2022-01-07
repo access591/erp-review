@@ -30,7 +30,7 @@ public class companyInfoReportController {
 	@Autowired companyInfoReport  companyInfoRepo;
 	@Autowired CompanyRepo companyRepo;
 	
-	@GetMapping("/report1")
+	@GetMapping("/companypdf")
 	public String getCompanyReport(HttpServletRequest req,HttpServletResponse res)  throws IOException {
 		
 		
@@ -46,7 +46,7 @@ public class companyInfoReportController {
 	
 	
 	
-	@GetMapping("/companyExcelsheet")
+	@GetMapping("/companyexcel")
 	public ResponseEntity<InputStreamResource> createExcelsheet(HttpServletRequest req, HttpServletResponse re) {
 
 		List<Company> companyList = companyRepo.findAll();

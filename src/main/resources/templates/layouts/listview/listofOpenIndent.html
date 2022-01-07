@@ -64,7 +64,7 @@
 														<tr th:each="indent,iter  : ${openIndentList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${indent.indentNumber}">Garrett Winters</td>
-															<td th:text="${indent.indentDate}">Garrett Winters</td>
+															<td th:text="${#indent.indentDate(sprint.releaseDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
 
 
 

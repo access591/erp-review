@@ -27,7 +27,7 @@ public class UserRightReportController {
 	@Autowired UserRightRepo userRightRepo;
 	
 	
-	@GetMapping("/report")
+	@GetMapping("/rightsreport")
 public String getUserReport(HttpServletRequest req,HttpServletResponse res) throws IOException {
 		
 	System.out.println("hello");
