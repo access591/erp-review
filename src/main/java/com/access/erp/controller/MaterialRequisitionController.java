@@ -97,7 +97,7 @@ public class MaterialRequisitionController {
 		if (listMaterialRequisition != null) {
 			model.addAttribute("listMaterialRequisition", listMaterialRequisition);
 		}
-		return "layouts/listview/listofMaterialRequisition";
+		return "layouts/listview/listofmaterialrequisition";
 	}
 
 	@GetMapping("/edit/{id}")

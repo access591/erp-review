@@ -45,6 +45,8 @@ public class MRN {
 	@JoinColumn(name="GATE_ENTRY_NO")
 	public GateEntry gateEntryNo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="GATE_ENTRY_DATE")
 	public Date gateEntryDate;
 	
@@ -65,9 +67,13 @@ public class MRN {
 	@JoinColumn(name="CURRENCY_CODE")
 	public CurrencyMaster currency;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="BILL_DATE")
 	public Date billDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RECIP_DATE")
 	public Date reciepDate;
 	

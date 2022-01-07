@@ -58,7 +58,7 @@
 														<tr th:each="rfq,iter  : ${rfqList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${rfq.rfqNo}">Garrett Winters</td>
-															<td th:text="${rfq.rfqDate}">Garrett Winters</td>
+															<td th:text="${#dates.format(rfq.rfqDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
 															<td th:text="${rfq.rfqType}">Garrett Winters</td>
 
 

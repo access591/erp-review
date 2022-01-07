@@ -413,19 +413,19 @@ iframe {
 
 																		<!-- po qty   -->
 																		<td><input type="number" id="poQty0"
-																			class="form-control form-control-sm" title="po qty"
+																			class="form-control form-control-sm text-right" title="po qty"
 																			readonly></td>
 
 
 																		<!-- inr qty -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="invQty0"
+																			class="form-control form-control-sm text-right" id="invQty0"
 																			th:field="*{mrnDetails[__${stat.index}__].itemInv}"
 																			title="inv qty" readonly></td>
 
 																		<!-- rec qty  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="recQty0"
+																			class="form-control form-control-sm text-right" id="recQty0"
 																			th:field="*{mrnDetails[__${stat.index}__].itemRec}"
 																			title="rec qty"></td>
 
@@ -433,37 +433,37 @@ iframe {
 																		<!-- po rate curr -->
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" id="poRateCur0"
+																			class="form-control form-control-sm text-right" id="poRateCur0"
 																			title="po rate curr" readonly></td>
 
 																		<!-- po rate  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="poRate0"
+																			class="form-control form-control-sm text-right" id="poRate0"
 																			th:field="*{mrnDetails[__${stat.index}__].itemRate}"
 																			title="po rate" readonly></td>
 
 																		<!-- bill rate  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="billRate0"
+																			class="form-control form-control-sm text-right" id="billRate0"
 																			th:field="*{mrnDetails[__${stat.index}__].itemrateOnBill}"
 																			title="bill rate"></td>
 
 																		<!-- total cost   -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="totalCost0"
+																			class="form-control form-control-sm text-right" id="totalCost0"
 																			step="0.25" value="0.00" title="total cost"
 																			th:field="*{mrnDetails[__${stat.index}__].totalvalue}"></td>
 
 																		<!-- net cost  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm" id="netCost0"
+																			class="form-control form-control-sm text-right" id="netCost0"
 																			th:field="*{mrnDetails[__${stat.index}__].itemNetVal}"
 																			title="net cost" step="0.25" value="0.00" readonly></td>
 
 
 																		<!-- total pur cost  -->
 																		<td><input type="number"
-																			class="form-control form-control-sm"
+																			class="form-control form-control-sm text-right"
 																			id="totalPrCost0" title="total pur cost"
 																			th:field="*{mrnDetails[__${stat.index}__].totalPurCost}"
 																			step="0.25" value="0.00" readonly></td>

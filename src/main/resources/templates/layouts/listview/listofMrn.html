@@ -76,7 +76,7 @@
 														<tr th:each="mrn,iter  : ${mrnList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${mrn.mrnNo}">Garrett Winters</td>
-															<td th:text="${mrn.mrnDate}">Garrett
+															<td th:text="${#dates.format(mrn.mrnDate, 'dd-MMM-yyyy')}">Garrett
 																Winters</td>
 
 

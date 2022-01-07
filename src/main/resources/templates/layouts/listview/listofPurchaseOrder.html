@@ -61,12 +61,12 @@
 														<tr th:each="po,iter  : ${listPurchaseOrder}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${po.poNumber}">Garrett Winters</td>
-															<td th:text="${po.poDate}">Garrett Winters</td>
+															<td th:text="${#po.poDate(po.poDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
 															
 														
 														
-															<td th:text="${po.supplyDate}">Garrett Winters</td>
-															<td th:text="${po.deliveryDate}">Garrett Winters</td>
+															<td th:text="${#po.poDate(po.supplyDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
+															<td th:text="${#po.poDate(po.deliveryDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
 															
 															
 

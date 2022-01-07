@@ -61,7 +61,7 @@
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
 							<li><a href="#">Material Requisition</a></li>
-							<li class="active">Add Page</li>
+							<li class="active">Edit Page</li>
 
 						</ol>
 					</section>
@@ -88,21 +88,20 @@
 
 											<button type="submit" id="submit"
 												class="btn btn-primary btn-sm">
-												<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
-											</button>
-											<button type="reset" value="reset"
-												class="btn btn-secondary btn-sm">
-												<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+												<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
 											</button>
 
-											<a th:href="@{/materialrequisition/list}" class="btn btn-success btn-sm">
-												<i class="fa fa-list" aria-hidden="true"></i> View All
-											</a>
+
+
+											<button type="button" class="btn btn-danger btn-sm"
+												onclick="history.back()">
+												<i class="fa fa-step-backward"></i> Go Back
+											</button>
+
 
 
 
 										</div>
-
 
 										<div class="col-md-12 shadow bg-white rounded"
 											style="margin-top: 20px;">
@@ -255,12 +254,15 @@
 																		<th scope="col" class="text-center">Qty <br>in
 																			Stock
 																		</th>
-																		<th scope="col" class="text-center">Qty <br>Required<span style="color:red">*</span>
+																		<th scope="col" class="text-center">Qty <br>Required<span
+																			style="color: red">*</span>
 																		</th>
 																		<th scope="col" class="text-center">Approved <br>Required
 																			Qty
 																		</th>
-																		<th scope="col" class="text-center">Required Date <span style="color:red">*</span></th>
+																		<th scope="col" class="text-center">Required Date
+																			<span style="color: red">*</span>
+																		</th>
 
 
 
@@ -311,17 +313,15 @@
 																			class="form-control form-control-sm text-right"
 																			title="net qty"
 																			name="materialRequisitionDetails[0].netQty"
-																			step="0.25"
-																			onkeypress="return isNumberKey(event)" 
+																			step="0.25" onkeypress="return isNumberKey(event)"
 																			onkeyup="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			style="width: 100px;" required></td>
 
 																		<!-- approved required qty  -->
 																		<td><input type="text"
-																			class="form-control form-control-sm text-right"
+																			class="form-control form-control-sm"
 																			id="technicalQualification" title="srNoClaimUnder"
-																			step="0.25"
-																			onkeypress="return isNumberKey(event)" 
+																			step="0.25" onkeypress="return isNumberKey(event)"
 																			onkeyup="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			name="materialRequisitionDetails[0].srNoClaimUnder"></td>
 
@@ -329,7 +329,8 @@
 																		<td><input type="date"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="" style="width: 150px"
-																			name="materialRequisitionDetails[0].srNoSendForRep" required></td>
+																			name="materialRequisitionDetails[0].srNoSendForRep"
+																			required></td>
 
 
 																	</tr>
