@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.access.erp.model.master.Category;
 import com.access.erp.model.master.Item;
@@ -33,6 +34,8 @@ public class ItemController {
 	@Autowired CategoryService categoryService;
 	@Autowired CategoryRepo categoryRepo;
 	@Autowired GlobalParameter globalParameter;
+	
+	
 	
 	
 	@GetMapping("/")
@@ -98,6 +101,15 @@ public class ItemController {
 	public String deleteItem(@PathVariable("id") String itemCode,Model model) {
 		itemService.deleteItem(itemCode);
 		return "redirect:/item/list";
+	}
+	
+	
+	//AJAX 
+	
+	@ResponseBody
+	@GetMapping("listofunit")
+	public List<UOM> getListOfUom(){
+		return uomService.getAllUOM();
 	}
 
 }

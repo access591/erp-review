@@ -69,31 +69,31 @@
 
 							<div class="col-md-12" style="margin-top: 20px;">
 
-								
+
 
 
 								<div class="box box-primary">
-								
-								<div class="box-header with-border text-right">
 
-									<button type="submit" id="submit"
-										class="btn btn-primary btn-sm">
-										<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
-									</button>
-									<button type="reset" value="reset"
-										class="btn btn-secondary btn-sm">
-										<i class="fa fa-refresh" aria-hidden="true"></i> Reset
-									</button>
+									<div class="box-header with-border text-right">
 
-									<a th:href="@{/item/list}" class="btn btn-success btn-sm">
-										<i class="fa fa-list" aria-hidden="true"></i> View All
-									</a>
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+										</button>
+										<button type="reset" value="reset"
+											class="btn btn-secondary btn-sm">
+											<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+										</button>
+
+										<a th:href="@{/item/list}" class="btn btn-success btn-sm">
+											<i class="fa fa-list" aria-hidden="true"></i> View All
+										</a>
 
 
 
-								</div>
-								
-								
+									</div>
+
+
 									<input type="hidden" id="mess" name="mess"
 										th:value="${message}">
 									<div class="box-header with-border">
@@ -126,76 +126,80 @@
 
 													<div class="box">
 
+
+
 														<h5>Item Details</h5>
+														<div class="box-body">
 
-														<div class="row">
-															<div class="col-md-8">
 
-																<div class="form-group col-md-4">
-																	<label for="#">Item Code</label> <input type="text"
-																		class="form-control form-control-sm" title="item code"
-																		placeholder="Item Code" th:field="*{itemCode}"
-																		readonly>
-																</div>
-																<div class="form-group col-md-8">
-																	<label for="inputPassword4">Description</label> <span
-																		style="color: red">*</span> <input type="text"
-																		title="This field is required"
-																		class="form-control form-control-sm"
-																		placeholder="Decription" required
-																		th:field="*{description}">
-																</div>
+															<div class="row">
+																<div class="col-md-8">
 
-																<div class="form-group col-md-4">
-																	<label for="inputEmail4">UOM Code</label> <input
-																		type="email" title="uom code" id="uomCode"
-																		class="form-control form-control-sm"
-																		placeholder="Uom Code" readonly>
-																</div>
-																<div class="form-group col-md-4">
-																	<label class="form-label">UOM Name</label> <label
-																		style="color: red">*</label> <select
-																		class="form-control" title="This field is required"
-																		th:field="*{uom}" id="uomName"
-																		onchange="getUomNameInfo()" required>
-																		<option value="">Select</option>
-																		<option th:each="uom :  ${listUom}"
-																			th:text="${uom.unit}" th:value=" ${uom.uomCode}">
-																		</option>
-																	</select>
-																</div>
+																	<div class="form-group col-md-4">
+																		<label for="#">Item Code</label> <input type="text"
+																			class="form-control form-control-sm"
+																			title="item code" placeholder="Item Code"
+																			th:field="*{itemCode}" readonly>
+																	</div>
+																	<div class="form-group col-md-8">
+																		<label for="inputPassword4">Description</label> <span
+																			style="color: red">*</span> <input type="text"
+																			title="This field is required"
+																			class="form-control form-control-sm"
+																			placeholder="Decription" required
+																			th:field="*{description}">
+																	</div>
 
-																<div class="form-group col-md-4">
-																	<label class="form-label">Store Info</label> <label
-																		style="color: red">*</label> <select
-																		class="form-control" title="This field is required"
-																		th:field="*{storeInfo}" required>
-																		<option value="">Select</option>
-																		<!--<option th:each="store :  ${listStore}"
+																	<div class="form-group col-md-4">
+																		<label for="inputEmail4">UOM Code</label> <input
+																			type="email" title="uom code" id="uomCode"
+																			class="form-control form-control-sm"
+																			placeholder="Uom Code" readonly>
+																	</div>
+																	<div class="form-group col-md-4">
+																		<label class="form-label">UOM Name</label> <label
+																			style="color: red">*</label> <select
+																			class="form-control" title="This field is required"
+																			th:field="*{uom}" id="uomName"
+																			onchange="getUomNameInfo()" required>
+																			<option value="">Select</option>
+																			<option th:each="uom :  ${listUom}"
+																				th:text="${uom.unit}" th:value=" ${uom.uomCode}">
+																			</option>
+																		</select>
+																	</div>
+
+																	<div class="form-group col-md-4">
+																		<label class="form-label">Store Info</label> <label
+																			style="color: red">*</label> <select
+																			class="form-control" title="This field is required"
+																			th:field="*{storeInfo}" required>
+																			<option value="">Select</option>
+																			<!--<option th:each="store :  ${listStore}"
 																			th:text="${store.storeCode}"
 																			th:value=" ${store.storeCode}">
 																		</option>-->
-																		<option value="c">Capax</option>
-																		<option value="n">Non-Capax</option>
-																	</select>
+																			<option value="c">Capax</option>
+																			<option value="n">Non-Capax</option>
+																		</select>
+																	</div>
+
 																</div>
 
+																<div class="col-md-4">
+																	<img alt="" src="/img/contact.png"
+																		style="border-radius: 50%; width: 100px;">
+																</div>
 															</div>
 
-															<div class="col-md-4">
-																<img alt="" src="/img/contact.png"
-																	style="border-radius: 50%; width: 100px;">
-															</div>
-														</div>
-
-														<div class="form-group col-md-3">
+															<!-- <div class="form-group col-md-3">
 															<label for="inputEmail4">Work Center Code</label> <input
 																type="text" class="form-control form-control-sm"
 																placeholder="Work Center Code" title="work center code"
 																th:field="*{workCenterCode}">
-														</div>
+														</div> -->
 
-														<div class="form-group col-md-3">
+															<!-- <div class="form-group col-md-3">
 															<label class="form-label">Work Center Name</label> <select
 																class="form-control" title="work center Name" required>
 																<option value="">Select</option>
@@ -203,75 +207,97 @@
 																<option value="2">demo-2</option>
 
 															</select>
+														</div> -->
+
+															<div class="form-group col-md-3">
+																<label class="form-label">Issueable</label> <select
+																	class="form-control" title="issueable"
+																	th:field="*{itemIssue}">
+																	<option value="">Select</option>
+																	<option value="Y">Yes</option>
+																	<option value="N">No</option>
+
+																</select>
+															</div>
+
+
+															<div class="form-group col-md-3">
+																<label for="inputEmail4">Tariff Item</label> <input
+																	type="number" class="form-control form-control-sm"
+																	title="tariff item" placeholder="Tariff Item"
+																	th:field="*{tariffItem}">
+															</div>
+
+															<div class="form-group col-md-3">
+																<label class="form-label">GST</label> <select
+																	class="form-control" title="gst"
+																	th:field="*{excisable}">
+																	<option value="">Select</option>
+																	<option value="G">GST</option>
+																	<option value="N">NON-GST</option>
+
+																</select>
+															</div>
+
+															<div class="form-group col-md-3">
+																<label class="form-label">Inspection Required</label><span
+																	style="color: red">*</span> <select
+																	class="form-control" title="dol" th:field="*{dol}"
+																	required>
+																	<option value="">Select</option>
+																	<option value="Y">Yes</option>
+																	<option value="N">No</option>
+
+																</select>
+															</div>
+
+
+															<div class="form-group col-md-3">
+																<label class="form-label">Category</label><span
+																	style="color: red">*</span> <select
+																	class="form-control" title="category"
+																	th:field="*{category}" required>
+																	<option value="">Select Category</option>
+
+																	<option th:each="category :  ${listCategory}"
+																		th:text="${category.description}"
+																		th:value=" ${category.categCode}"></option>
+																</select>
+															</div>
+
+															<div class="form-group col-md-3">
+																<label class="form-label">Sub-Category</label><span
+																	style="color: red">*</span> <select
+																	class="form-control" title="category" required>
+																	<option value="">Select Sub-Category</option>
+
+																	<option th:each="category :  ${listCategory}"
+																		th:text="${category.description}"
+																		th:value=" ${category.categCode}"></option>
+																</select>
+															</div>
+
+															<div class="form-group col-md-3">
+																<label class="form-label">Critical Item</label> <select
+																	class="form-control" title="critical item"
+																	th:field="*{criticalItem}">
+																	<option value="">Select</option>
+																	<option value="Y">Yes</option>
+																	<option value="N">No</option>
+
+																</select>
+															</div>
+
+
+
+
+
+
 														</div>
-
-														<div class="form-group col-md-3">
-															<label class="form-label">Issueable</label> <select
-																class="form-control" title="issueable"
-																th:field="*{itemIssue}">
-																<option value="">Select</option>
-																<option value="Y">Yes</option>
-																<option value="N">No</option>
-
-															</select>
-														</div>
-
-
-														<div class="form-group col-md-3">
-															<label for="inputEmail4">Tariff Item</label> <input
-																type="number" class="form-control form-control-sm"
-																title="tariff item" placeholder="Tariff Item"
-																th:field="*{tariffItem}">
-														</div>
-
-														<div class="form-group col-md-3">
-															<label class="form-label">GST</label> <select
-																class="form-control" title="gst" th:field="*{excisable}">
-																<option value="">Select</option>
-																<option value="G">GST</option>
-																<option value="N">NON-GST</option>
-
-															</select>
-														</div>
-
-														<div class="form-group col-md-3">
-															<label class="form-label">Inspection Required</label><span
-																style="color: red">*</span> <select class="form-control"
-																title="dol" th:field="*{dol}" required>
-																<option value="">Select</option>
-																<option value="Y">Yes</option>
-																<option value="N">No</option>
-
-															</select>
-														</div>
-
-
-														<div class="form-group col-md-3">
-															<label class="form-label">Category</label><span
-																style="color: red">*</span> <select class="form-control"
-																title="category" th:field="*{category}" required>
-																<option value="">Select Category</option>
-
-																<option th:each="category :  ${listCategory}"
-																	th:text="${category.description}"
-																	th:value=" ${category.categCode}"></option>
-															</select>
-														</div>
-
-														<div class="form-group col-md-3">
-															<label class="form-label">Critical Item</label> <select
-																class="form-control" title="critical item"
-																th:field="*{criticalItem}">
-																<option value="">Select</option>
-																<option value="Y">Yes</option>
-																<option value="N">No</option>
-
-															</select>
-														</div>
-
 
 
 														<div class="form-group" style="margin-left: 14px;">
+
 
 															<input class="form-check-input p-10" type="checkbox"
 																value="Y" name="bulkIssYn" th:checked="*{bulkIssYn}">
@@ -287,12 +313,6 @@
 																Item</label>
 
 														</div>
-
-
-
-
-
-
 													</div>
 
 													<p></p>
@@ -546,7 +566,7 @@
 																	<th scope="col">Packing Name</th>
 																	<th scope="col">Unit Name</th>
 																	<th scope="col">Qty</th>
-																	<th scope="col">BarCode</th>
+
 
 
 
@@ -597,13 +617,13 @@
 																				style="text-align: right;">
 																		</fieldset>
 																	</td>
-																	<td>
+																	<!-- <td>
 																		<fieldset>
 																			<input type="text" class="form-control"
 																				placeholder="Bar-Code" title="bar code"
 																				name="packingDetails[0].barCode">
 																		</fieldset>
-																	</td>
+																	</td> -->
 
 																</tr>
 
@@ -662,9 +682,8 @@
 														.html(
 																"<th scope='row'><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingCode'></fieldset></th>"
 																		+ "<td><fieldset><input type='text' class='form-control'placeholder='' name='insuranceDetail[" + idIndex + "].packingName'></fieldset></td>"
-																		+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].unitName'></fieldset></td>"
-																		+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].qty'></fieldset></td>"
-																		+ "<td><fieldset><input type='text' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].barCode'></fieldset></td>");
+																		+ "<td><fieldset><select class='form-control unitContainer"+idIndex+"' title='uom Name'style='width: 180px;'name='insuranceDetail[" + idIndex + "].unitName'></select></fieldset></td>"
+																		+ "<td><fieldset><input type='number' class='form-control' placeholder=''name='insuranceDetail[" + idIndex + "].qty'></fieldset></td>");
 
 												$('#example').append(
 														'<tr id="addr'
@@ -672,6 +691,8 @@
 																+ '"></tr>');
 
 												i++;
+
+												getListOfUnit();
 
 											});
 
@@ -728,6 +749,42 @@
 		function selectStore() {
 			var storeCode = document.getElementById("storeName").value;
 			document.getElementById("storeCode").value = storeCode;
+		}
+
+		function getListOfUnit() {
+
+			$
+					.ajax({
+						type : "GET",
+						url : "listofunit/",
+
+						success : function(data) {
+							console.log("list of unit : "
+									+ JSON.stringify(data))
+
+							var options = '<option value=""><strong>Select</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.unit)
+												options += '<option value="' + value.uomCode + '">'
+														+ value.unit
+														+ '</option>';
+
+											});
+
+							$('.unitContainer'+idIndex).html(options);
+							//$("#supplierState").val(data.supplierState)
+							//$("#uomCode").val(data.uom.uomCode);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+
 		}
 	</script>
 
