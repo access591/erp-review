@@ -350,13 +350,21 @@ public class Company {
 	 * @Column(name = "FSSAI_CODE", length = 50) private String fssaiCode;
 	 */
 
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Fetch(value = FetchMode.SELECT)
-	private List<InsuranceDetail> insuranceDetail;
+	/*
+	 * @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch =
+	 * FetchType.LAZY)
+	 * 
+	 * @Fetch(value = FetchMode.SELECT) private List<InsuranceDetail>
+	 * insuranceDetail;
+	 */
 
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Fetch(value = FetchMode.SELECT)
-	private List<SiteOffice> siteOffice;
+	
+	/*
+	 * @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch =
+	 * FetchType.LAZY)
+	 * 
+	 * @Fetch(value = FetchMode.SELECT) private List<SiteOffice> siteOffice;
+	 */
 
 	public Company() {
 		super();
@@ -999,21 +1007,6 @@ public class Company {
 	}
 
 
-	public List<InsuranceDetail> getInsuranceDetail() {
-		return insuranceDetail;
-	}
-
-	public void setInsuranceDetail(List<InsuranceDetail> insuranceDetail) {
-		this.insuranceDetail = insuranceDetail;
-	}
-
-	public List<SiteOffice> getSiteOffice() {
-		return siteOffice;
-	}
-
-	public void setSiteOffice(List<SiteOffice> siteOffice) {
-		this.siteOffice = siteOffice;
-	}
 
 	public String getType() {
 		return type;

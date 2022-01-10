@@ -32,7 +32,7 @@
 
 <script
 	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-	
+
 <script src="https://kit.fontawesome.com/8b41a163ea.js"></script>
 
 
@@ -76,13 +76,22 @@
 										<h3 class="box-title">Company Details</h3>
 									</div>
 
-									<div class="box-header with-border text-right"> 
+									<div class="box-header with-border text-right">
 
-										<button type="submit" id="submit" class="btn btn-primary btn-sm"> <i class="fa fa-hdd-o" aria-hidden="true"></i> Submit</button>
-										<button type="reset" value="reset" class="btn btn-secondary btn-sm"> <i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
-										
-										<a th:href="@{/companydetail/list}" class="btn btn-success btn-sm"> <i class="fa fa-list" aria-hidden="true"></i> View All</a>
-										
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+										</button>
+										<button type="reset" value="reset"
+											class="btn btn-secondary btn-sm">
+											<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+										</button>
+
+										<a th:href="@{/companydetail/list}"
+											class="btn btn-success btn-sm"> <i class="fa fa-list"
+											aria-hidden="true"></i> View All
+										</a>
+
 
 
 									</div>
@@ -96,16 +105,16 @@
 											<ul class="nav nav-pills">
 												<li class="active"><a data-toggle="tab"
 													href="#companydetail">Company Detail</a></li>
-												<li><a data-toggle="tab" href="#tdsinfo">TDS
-														Information</a></li>
+												<!-- <li><a data-toggle="tab" href="#tdsinfo">TDS
+														Information</a></li> -->
 												<li><a data-toggle="tab" href="#taxreg">Tax
-														Registration No</a></li>
-												<li><a data-toggle="tab" href="#importdetail">Import
-														Detail</a></li>
-												<li><a data-toggle="tab" href="#insurancedetail">Insurance
-														Detail</a></li>
-												<li><a data-toggle="tab" href="#siteoffices">Site
-														Offices</a></li>
+														Registration</a></li>
+												<!-- <li><a data-toggle="tab" href="#importdetail">Import
+														Detail</a></li> -->
+												<!-- <li><a data-toggle="tab" href="#insurancedetail">Insurance
+														Detail</a></li> -->
+												<!-- <li><a data-toggle="tab" href="#siteoffices">Site
+														Offices</a></li> -->
 
 
 											</ul>
@@ -168,55 +177,64 @@
 																			th:field="*{pfNumber}" title="pf number"
 																			onkeypress="return alpha(event)">
 																	</div>
-																	<div class="form-group col-md-4">
+
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Parent Code</label> <input
 																			type="text" class="form-control uppercase"
 																			title="parent code" placeholder="Parent Code"
 																			th:field="*{parentCode}" maxlength='2'>
-																	</div>
+																	</div> -->
+
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Calculate ESI</label> <select
 																			class="form-control" th:field="*{calculateEsi}"
 																			id="calculateEsi" title="calculate esi" required
 																			onchange='selectCalculateEsi()'>
 
-																			<option value="Y">Yes</option>
 																			<option value="N">No</option>
+																			<option value="Y">Yes</option>
+
 
 																		</select>
 
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">ESI Number</label><span
-																			style='color: red'>*</span> <input type="text"
-																			class="form-control" title="esi number"
+																		<label for="inputPassword4">ESI Number</label><input
+																			type="text" class="form-control" title="esi number"
 																			id="esiNumber" placeholder="Esi Number"
 																			onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
-																			th:field="*{esiNo}" required>
+																			th:field="*{esiNo}">
 																	</div>
 
-																	<div class="form-group col-md-4">
+																	<!-- import data  -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputAddress">Import Data</label> <input
 																			type="text" class="form-control" title="import data"
 																			id="inputAddress" placeholder="Import Data">
-																	</div>
+																	</div> -->
 
-																	<div class="form-group col-md-4">
+																	<!-- tax account sale   -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Tax Account(Sale)</label>
 																		<input type="text" class="form-control"
 																			id="inputPassword4" placeholder="Tax" title="tax"
 																			th:field="*{acountTaxSale}">
-																	</div>
-																	<div class="form-group col-md-4">
+																	</div> -->
+
+																	<!-- account tax purchase  -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Tax
 																			Account(Purchase)</label> <input type="text"
 																			class="form-control" id="inputPassword4" title="tax"
 																			placeholder="Tax Account"
 																			th:field="*{accountTaxPurchase}">
-																	</div>
+																	</div> -->
 
-																	<div class="form-group col-md-4">
+
+
+																	<!-- deduction from employee  -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Ddn Form Emp(y/n)</label>
 																		<select class="form-control" id=""
 																			title="Deduction From Employee" required
@@ -226,13 +244,14 @@
 																			<option value="no" selected>No</option>
 
 																		</select>
-																	</div>
+																	</div> -->
 
 
 
 
 																</div>
 															</div>
+
 															<div class="col-md-2"
 																style="text-align: center; height: 50px; width: 50px;">
 																<img alt="" src="/img/contact.png"
@@ -254,6 +273,7 @@
 														<div class="col-md-12">
 
 															<div class="box">
+
 																<!--<div class="box-header with-border">
 																	<h3 class="box-title">Horizontal Form</h3>
 																</div>-->
@@ -361,7 +381,7 @@
 																			<label for="" class="col-md-2 control-label">WebSite</label>
 																			<div class="col-md-4">
 
-																				<input type="url" class="form-control" id=""
+																				<input type="text" class="form-control" id=""
 																					placeholder="Website" title="website"
 																					th:field="*{cWebsite}">
 																			</div>
@@ -431,14 +451,16 @@
 
 													<!-- ADD -->
 
-													
+
 												</div>
 												<!-- end company detail tab -->
 
 
 
 												<!-- tds information detail -->
-												<div id="tdsinfo" class="tab-pane fade">
+
+
+												<!-- <div id="tdsinfo" class="tab-pane fade">
 
 													<p></p>
 													<div class="box">
@@ -560,7 +582,10 @@
 														</div>
 													</div>
 
-												</div>
+												</div> -->
+
+
+
 												<!--end tds information detail -->
 
 
@@ -595,7 +620,7 @@
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Trade
-																	Number</label> <input type="password" class="form-control"
+																	Number</label> <input type="text" class="form-control"
 																	id="inputPassword4" placeholder="Taxpayer Trade Number"
 																	title="taxpayer trade number"
 																	th:field="*{taxPayerTradeName}">
@@ -616,7 +641,7 @@
 												<!--end tax registration detail -->
 
 												<!-- import detail -->
-												<div id="importdetail" class="tab-pane fade">
+												<!-- <div id="importdetail" class="tab-pane fade">
 													<p></p>
 													<div class="row box">
 
@@ -675,10 +700,12 @@
 													</div>
 
 
-												</div>
+												</div> -->
 												<!--end import detail tab -->
 
 												<!-- insurance detail -->
+
+												<!-- 
 												<div id="insurancedetail" class="tab-pane fade">
 													<p></p>
 													<div class="box">
@@ -768,11 +795,17 @@
 
 													</div>
 
-												</div>
+												</div> -->
+
+
 												<!--end insurance detail -->
 
+
+
 												<!-- site offices detail -->
-												<div id="siteoffices" class="tab-pane fade">
+
+
+												<!-- <div id="siteoffices" class="tab-pane fade">
 
 													<div class="box">
 														<h5>Site Offices</h5>
@@ -847,7 +880,9 @@
 
 
 
-												</div>
+												</div> -->
+
+
 												<!--end site offices detail -->
 
 
@@ -867,8 +902,7 @@
 
 
 
-									<div class="box-footer">
-																			</div>
+									<div class="box-footer"></div>
 									<!-- end form -->
 								</div>
 
