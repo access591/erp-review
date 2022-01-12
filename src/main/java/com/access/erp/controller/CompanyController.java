@@ -53,16 +53,16 @@ public class CompanyController {
 	@PostMapping("/")
 	public String addCompany(@ModelAttribute("company") Company company, RedirectAttributes redirectAttributes) {
 
-		//System.out.println("city code 1: " + company.getcCity().getCityCode());
-		//System.out.println("city code 2: " + company.getrCity().getCityCode());
+		// System.out.println("city code 1: " + company.getcCity().getCityCode());
+		// System.out.println("city code 2: " + company.getrCity().getCityCode());
 
 		boolean exists = companyRepo.existsById(company.getCompCode());
 		if (!exists) {
-			
+
 			companyService.addCompany(company);
 			redirectAttributes.addFlashAttribute("message", "Company  has been saved successfully! ");
 			redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-			
+
 		} else {
 
 			redirectAttributes.addFlashAttribute("message", "Company Code Allready exists! Please try another One !!");
@@ -90,15 +90,29 @@ public class CompanyController {
 
 		List<State> listState = stateService.getAllState();
 		model.addAttribute("listState", listState);
-		
+
 		List<City> listCity = cityService.getAllCity();
 		model.addAttribute("listCity", listCity);
 
 		Company company = companyService.editCompany(compCode);
 		model.addAttribute("company", company);
 
-		//System.out.println("company child info : " + company.getInsuranceDetail().get(0).getCustCode());
+		// System.out.println("company child info : " +
+		// company.getInsuranceDetail().get(0).getCustCode());
 		return "layouts/editview/editCompany";
+	}
+
+	@PostMapping("/update")
+	public String updateCompany(@ModelAttribute("company") Company company, RedirectAttributes redirectAttributes) {
+
+		// System.out.println("city code 1: " + company.getcCity().getCityCode());
+		// System.out.println("city code 2: " + company.getrCity().getCityCode());
+
+		companyService.addCompany(company);
+		redirectAttributes.addFlashAttribute("message", "Company  has been updated successfully! ");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
+		return "redirect:/companydetail/";
 	}
 
 	@GetMapping("/delete/{id}")

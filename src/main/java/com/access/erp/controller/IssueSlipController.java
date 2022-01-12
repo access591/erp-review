@@ -111,7 +111,7 @@ public class IssueSlipController {
 		if (listIssueSlip != null) {
 			model.addAttribute("listIssueSlip", listIssueSlip);
 		}
-		return "layouts/listview/listofIssueSlip";
+		return "layouts/listview/listofissueSlip";
 	}
 
 	@GetMapping("/edit/{id}")
@@ -119,10 +119,22 @@ public class IssueSlipController {
 
 		//System.out.println("company code is : " + compCode);
 
+		List<Employee> employeeList = employeeService.getAllEmployee();
+		model.addAttribute("employeeList", employeeList);
 		
+		List<Department> departmentList = departmentService.getAllDepartment();
+		model.addAttribute("departmentList", departmentList);
+		
+		List<MaterialRequisitionMaster> requisitionMaster = requisitionService.getAllMaterialRequisitionMaster();
+		model.addAttribute("requisitionMaster", requisitionMaster);
+		
+		List<Store> storeList = storeService.getAllStore();
+		model.addAttribute("storeList", storeList);
 
 		IssueSlip IssueSlip = issueSlipService.editIssueSlip(issueSlipCode).get();
-		model.addAttribute("IssueSlip", IssueSlip);
+		model.addAttribute("issueSlip", IssueSlip);
+		
+		//Item itemList = 
 
 		//System.out.println("company child info : " + company.getInsuranceDetail().get(0).getCustCode());
 		return "layouts/editview/editIssueSlip";

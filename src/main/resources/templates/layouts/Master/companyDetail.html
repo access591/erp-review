@@ -173,9 +173,8 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">PF Number</label> <input
 																			type="text" class="form-control"
-																			pattern="[a-zA-Z0-9-]+" placeholder="Pf Number"
-																			th:field="*{pfNumber}" title="pf number"
-																			onkeypress="return alpha(event)">
+																			placeholder="Pf Number" maxlength="20"
+																			th:field="*{pfNumber}" title="pf number">
 																	</div>
 
 																	<!-- <div class="form-group col-md-4">
@@ -202,7 +201,7 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">ESI Number</label><input
 																			type="text" class="form-control" title="esi number"
-																			id="esiNumber" placeholder="Esi Number"
+																			id="esiNumber" placeholder="Esi Number" maxlength='10'
 																			onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
 																			th:field="*{esiNo}">
 																	</div>
