@@ -59,7 +59,10 @@
 															<td th:text="${iter.index}+1">1</td>
 															<td th:text="${company.compCode}">Garrett Winters</td>
 															<td th:text="${company.compName}">Garrett Winters</td>
-															<td th:text="${company.compType}">Garrett Winters</td>
+															
+															
+															<td th:if="${company.compType=='D'}">Dependent</td>
+															<td th:if="${company.compType=='I'}">Independent</td>
 
 
 

@@ -32,12 +32,16 @@ public class CompanyServiceImpl implements CompanyService {
 			company.setCompCode(maxCode);
 		}
 
-		for (InsuranceDetail insurance : company.getInsuranceDetail()) {
-			insurance.setCompany(company);
-		}
-		for (SiteOffice siteOffice : company.getSiteOffice()) {
-			siteOffice.setCompany(company);
-		}
+		/*
+		 * for (InsuranceDetail insurance : company.getInsuranceDetail()) {
+		 * insurance.setCompany(company); }
+		 */
+		
+		
+		/*
+		 * for (SiteOffice siteOffice : company.getSiteOffice()) {
+		 * siteOffice.setCompany(company); }
+		 */
 
 		
 		companyRepo.save(company);

@@ -83,9 +83,9 @@
 											</div>
 											<!-- /.box-header -->
 											<!-- form start -->
-											<form id="serviceCategoryForm" role="form"
-												th:action="@{/servicecategory/}" method="POST"
-												th:object="${serviceCategory}">
+											<form id="subCategoryForm" role="form"
+												th:action="@{/subcategory/}" method="POST"
+												th:object="${subCategory}">
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
@@ -111,12 +111,12 @@
 													
 													
 													<div class="form-group col-md-12">
-														<label class="form-label">Category Type</label> <label
+														<label class="form-label">Category Description</label> <label
 															style="color: red">*</label> <select class="form-control"
-															id="" title="This field is required" th:field="*{categoryType}" required>
+															id="" title="This field is required" th:field="*{subCategory}" required>
 
-															<option value="S">Sales</option>
-															<option value="J">Journal</option>
+															<option value="S">Type-I</option>
+															<option value="J">Type II</option>
 
 														</select>
 													</div>
@@ -148,7 +148,7 @@
 										<!-- /.box -->
 										<div
 											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/servicecategory/list}">View Sub
+											<a th:href="@{/subcategory/list}">View Sub
 												Category List</a>
 										</div>
 									</div>
@@ -170,7 +170,7 @@
 
 	<script>
 
-				$("#serviceCategoryForm").validate({
+				$("#subCategoryForm").validate({
 					ignoreTitle: true
 				});
 

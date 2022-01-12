@@ -33,14 +33,15 @@
 <script
 	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
+<script src="https://kit.fontawesome.com/8b41a163ea.js"></script>
+
+
 
 <style>
 .error {
 	color: red;
 	font-size: 11px;
 }
-
-
 </style>
 
 </head>
@@ -61,18 +62,42 @@
 
 
 
+						<!-- form start -->
+						<form id="companyDetail" class="wizard wizard-primary" role="form"
+							th:action="@{/companydetail/}" th:object="${company}"
+							method="POST">
 
-						<div class="col-md-12" style="margin-top: 20px;">
+							<div class="col-md-12" style="margin-top: 20px;">
 
-							<div class="box box-primary">
-								<input type="hidden" id="mess" name="mess" th:value="${message}">
-								<div class="box-header with-border">
-									<h3 class="box-title">Company Details</h3>
-								</div>
-								<!-- form start -->
-								<form id="companyDetail" class="wizard wizard-primary"
-									role="form" th:action="@{/companydetail/}"
-									th:object="${company}" method="POST">
+								<div class="box box-primary">
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
+									<div class="box-header with-border">
+										<h3 class="box-title">Company Details</h3>
+									</div>
+
+									<div class="box-header with-border text-right">
+
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+										</button>
+										<button type="reset" value="reset"
+											class="btn btn-secondary btn-sm">
+											<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+										</button>
+
+										<a th:href="@{/companydetail/list}"
+											class="btn btn-success btn-sm"> <i class="fa fa-list"
+											aria-hidden="true"></i> View All
+										</a>
+
+
+
+									</div>
+
+
+
 									<div class="box-body">
 
 										<div class="container-fluid">
@@ -80,16 +105,16 @@
 											<ul class="nav nav-pills">
 												<li class="active"><a data-toggle="tab"
 													href="#companydetail">Company Detail</a></li>
-												<li><a data-toggle="tab" href="#tdsinfo">TDS
-														Information</a></li>
+												<!-- <li><a data-toggle="tab" href="#tdsinfo">TDS
+														Information</a></li> -->
 												<li><a data-toggle="tab" href="#taxreg">Tax
-														Registration No</a></li>
-												<li><a data-toggle="tab" href="#importdetail">Import
-														Detail</a></li>
-												<li><a data-toggle="tab" href="#insurancedetail">Insurance
-														Detail</a></li>
-												<li><a data-toggle="tab" href="#siteoffices">Site
-														Offices</a></li>
+														Registration</a></li>
+												<!-- <li><a data-toggle="tab" href="#importdetail">Import
+														Detail</a></li> -->
+												<!-- <li><a data-toggle="tab" href="#insurancedetail">Insurance
+														Detail</a></li> -->
+												<!-- <li><a data-toggle="tab" href="#siteoffices">Site
+														Offices</a></li> -->
 
 
 											</ul>
@@ -140,63 +165,75 @@
 
 																	<div class="form-group col-md-4">
 																		<label>Director Name</label> <input type="text"
-																			class="form-control textOnly capitalize" 
+																			class="form-control textOnly capitalize"
 																			th:field="*{dirName}" placeholder="Director Name"
 																			title="director name" />
 																	</div>
 
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">PF Number</label> <input
-																			type="text" class="form-control" pattern="[a-zA-Z0-9-]+"
-																			placeholder="Pf Number" th:field="*{pfNumber}"
-																			title="pf number" onkeypress="return alpha(event)">
+																			type="text" class="form-control"
+																			placeholder="Pf Number" maxlength="20"
+																			th:field="*{pfNumber}" title="pf number">
 																	</div>
-																	<div class="form-group col-md-4">
+
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Parent Code</label> <input
-																			type="text" class="form-control uppercase" title="parent code"
-																			placeholder="Parent Code"  th:field="*{parentCode}" maxlength='2' >
-																	</div>
+																			type="text" class="form-control uppercase"
+																			title="parent code" placeholder="Parent Code"
+																			th:field="*{parentCode}" maxlength='2'>
+																	</div> -->
+
 																	<div class="form-group col-md-4">
 																		<label for="inputEmail4">Calculate ESI</label> <select
-																			class="form-control" th:field="*{calculateEsi}" id="calculateEsi"
-																			title="calculate esi" required onchange='selectCalculateEsi()' >
+																			class="form-control" th:field="*{calculateEsi}"
+																			id="calculateEsi" title="calculate esi" required
+																			onchange='selectCalculateEsi()'>
 
-																			<option value="Y">Yes</option>
 																			<option value="N">No</option>
+																			<option value="Y">Yes</option>
+
 
 																		</select>
 
 																	</div>
 
 																	<div class="form-group col-md-4">
-																		<label for="inputPassword4">ESI Number</label><span style='color:red' >*</span> <input
+																		<label for="inputPassword4">ESI Number</label><input
 																			type="text" class="form-control" title="esi number"
-																			id="esiNumber" placeholder="Esi Number"
+																			id="esiNumber" placeholder="Esi Number" maxlength='10'
 																			onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
-																			th:field="*{esiNo}" required>
+																			th:field="*{esiNo}">
 																	</div>
 
-																	<div class="form-group col-md-4">
+																	<!-- import data  -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputAddress">Import Data</label> <input
 																			type="text" class="form-control" title="import data"
 																			id="inputAddress" placeholder="Import Data">
-																	</div>
+																	</div> -->
 
-																	<div class="form-group col-md-4">
+																	<!-- tax account sale   -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Tax Account(Sale)</label>
 																		<input type="text" class="form-control"
 																			id="inputPassword4" placeholder="Tax" title="tax"
 																			th:field="*{acountTaxSale}">
-																	</div>
-																	<div class="form-group col-md-4">
+																	</div> -->
+
+																	<!-- account tax purchase  -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Tax
 																			Account(Purchase)</label> <input type="text"
 																			class="form-control" id="inputPassword4" title="tax"
 																			placeholder="Tax Account"
 																			th:field="*{accountTaxPurchase}">
-																	</div>
+																	</div> -->
 
-																	<div class="form-group col-md-4">
+
+
+																	<!-- deduction from employee  -->
+																	<!-- <div class="form-group col-md-4">
 																		<label for="inputPassword4">Ddn Form Emp(y/n)</label>
 																		<select class="form-control" id=""
 																			title="Deduction From Employee" required
@@ -206,13 +243,14 @@
 																			<option value="no" selected>No</option>
 
 																		</select>
-																	</div>
+																	</div> -->
 
 
 
 
 																</div>
 															</div>
+
 															<div class="col-md-2"
 																style="text-align: center; height: 50px; width: 50px;">
 																<img alt="" src="/img/contact.png"
@@ -234,6 +272,7 @@
 														<div class="col-md-12">
 
 															<div class="box">
+
 																<!--<div class="box-header with-border">
 																	<h3 class="box-title">Horizontal Form</h3>
 																</div>-->
@@ -244,7 +283,8 @@
 
 																		<div>
 
-																			<label class="col-md-2 control-label">Address-1<span style='color:red' >*</span></label>
+																			<label class="col-md-2 control-label">Address-1<span
+																				style='color: red'>*</span></label>
 
 																			<div class="col-md-4">
 																				<input type="text" class="form-control"
@@ -317,9 +357,9 @@
 																					th:field="*{cPin}" id="pin1" name="pin1"
 																					title="pin" placeholder="Pin Code" maxlength="6"
 																					onkeyup="pin1Validation()"
-																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
-																					class="error" id="pin1Error" style='display: none'>Pin
-																					Should be 6 digit</span>
+																					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+																				<span class="error" id="pin1Error"
+																					style='display: none'>Pin Should be 6 digit</span>
 																			</div>
 																		</div>
 
@@ -340,7 +380,7 @@
 																			<label for="" class="col-md-2 control-label">WebSite</label>
 																			<div class="col-md-4">
 
-																				<input type="url" class="form-control" id=""
+																				<input type="text" class="form-control" id=""
 																					placeholder="Website" title="website"
 																					th:field="*{cWebsite}">
 																			</div>
@@ -410,19 +450,16 @@
 
 													<!-- ADD -->
 
-													<div class="box-footer">
-														<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 
-														<button type="reset" class="btn btn-danger" value="Reset">
-															&nbsp;Reset</button>
-													</div>
 												</div>
 												<!-- end company detail tab -->
 
 
 
 												<!-- tds information detail -->
-												<div id="tdsinfo" class="tab-pane fade">
+
+
+												<!-- <div id="tdsinfo" class="tab-pane fade">
 
 													<p></p>
 													<div class="box">
@@ -462,10 +499,10 @@
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Designation</label><span
 																	style="color: red">*</span> <input type="text"
-																	class="form-control textOnly uppercase" id="designation"
-																	name="designation" placeholder="Designation"
-																	th:field="*{rDesig}" title="This field is required"
-																	required>
+																	class="form-control textOnly uppercase"
+																	id="designation" name="designation"
+																	placeholder="Designation" th:field="*{rDesig}"
+																	title="This field is required" required>
 															</div>
 															<div class="form-group col-md-4">
 																<label for="inputAddress">Flat Number</label> <input
@@ -521,9 +558,9 @@
 																<label for="inputAddress">Pin</label> <input
 																	type="number" class="form-control" id="pin2"
 																	name="pin2" placeholder="Pin" th:field="*{rPin}"
-																	title="pin" onkeyup="pin2Validation()"maxlength="6"
-																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span
-																	class="error" id="pin2Error" style='display: none'>Pin
+																	title="pin" onkeyup="pin2Validation()" maxlength="6"
+																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+																<span class="error" id="pin2Error" style='display: none'>Pin
 																	Should be 6 digit</span>
 															</div>
 															<div class="form-group col-md-4">
@@ -544,7 +581,10 @@
 														</div>
 													</div>
 
-												</div>
+												</div> -->
+
+
+
 												<!--end tds information detail -->
 
 
@@ -558,27 +598,28 @@
 																<label for="inputAddress">PAN Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="panNumber" name="panNumber"
-																	placeholder="Pan Number" th:field="*{panNumber}" onkeyup="ValidatePAN()"
-																	title="This field is required" required><span id="lblPANCard" class="error" style="display:none ">Invalid PAN
-														Number</span>
+																	placeholder="Pan Number" th:field="*{panNumber}"
+																	onkeyup="ValidatePAN()" title="This field is required"
+																	required><span id="lblPANCard" class="error"
+																	style="display: none">Invalid PAN Number</span>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputEmail4">GST Number</label><span
 																	style="color: red">*</span> <input type="text"
 																	class="form-control" id="gstNumber" name="gstNumber"
-																	placeholder="Gst Number" th:field="*{tGstNo}" maxlength="15"
-																	title="This field is required" required>
+																	placeholder="Gst Number" th:field="*{tGstNo}"
+																	maxlength="15" title="This field is required" required>
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Legal
 																	Number</label> <input type="text" class="form-control"
 																	id="inputPassword4" placeholder="Taxpayer Legal"
-																	title="taxpayer legal number" 
+																	title="taxpayer legal number"
 																	th:field="*{taxPayerLegalName}">
 															</div>
 															<div class="form-group col-md-6">
 																<label for="inputPassword4">Taxpayer Trade
-																	Number</label> <input type="password" class="form-control"
+																	Number</label> <input type="text" class="form-control"
 																	id="inputPassword4" placeholder="Taxpayer Trade Number"
 																	title="taxpayer trade number"
 																	th:field="*{taxPayerTradeName}">
@@ -599,7 +640,7 @@
 												<!--end tax registration detail -->
 
 												<!-- import detail -->
-												<div id="importdetail" class="tab-pane fade">
+												<!-- <div id="importdetail" class="tab-pane fade">
 													<p></p>
 													<div class="row box">
 
@@ -658,10 +699,12 @@
 													</div>
 
 
-												</div>
+												</div> -->
 												<!--end import detail tab -->
 
 												<!-- insurance detail -->
+
+												<!-- 
 												<div id="insurancedetail" class="tab-pane fade">
 													<p></p>
 													<div class="box">
@@ -696,15 +739,15 @@
 																	<th scope="row">
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="Company Code" id="insCompanyCode0" readonly
-																				title="company code">
+																				placeholder="Company Code" id="insCompanyCode0"
+																				readonly title="company code">
 																		</fieldset>
 																	</th>
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="Company name" id="insCompanyName0" readonly
-																				title="company name">
+																				placeholder="Company name" id="insCompanyName0"
+																				readonly title="company name">
 																		</fieldset>
 																	</td>
 																	<td>
@@ -731,7 +774,7 @@
 																	<td>
 																		<fieldset>
 																			<input type="text" class="form-control"
-																				placeholder="Description -1"   title="description"
+																				placeholder="Description -1" title="description"
 																				name="insuranceDetail[0].desc1">
 																		</fieldset>
 																	</td>
@@ -751,11 +794,17 @@
 
 													</div>
 
-												</div>
+												</div> -->
+
+
 												<!--end insurance detail -->
 
+
+
 												<!-- site offices detail -->
-												<div id="siteoffices" class="tab-pane fade">
+
+
+												<!-- <div id="siteoffices" class="tab-pane fade">
 
 													<div class="box">
 														<h5>Site Offices</h5>
@@ -814,7 +863,8 @@
 																	<td>
 																		<fieldset>
 																			<input type="number" class="form-control"
-																				placeholder="Approved Budget" title="approval budget"
+																				placeholder="Approved Budget"
+																				title="approval budget"
 																				name="siteOffice[0].approvedBudget" value="0">
 																		</fieldset>
 																	</td>
@@ -829,7 +879,9 @@
 
 
 
-												</div>
+												</div> -->
+
+
 												<!--end site offices detail -->
 
 
@@ -847,19 +899,17 @@
 
 
 
-								</form>
 
-								<div class="box-footer">
-									<a th:href="@{/companydetail/list}">view company list</a>
+
+									<div class="box-footer"></div>
+									<!-- end form -->
 								</div>
-								<!-- end form -->
+
+
+
 							</div>
 
-
-
-						</div>
-
-
+						</form>
 
 
 

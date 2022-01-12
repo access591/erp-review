@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -65,22 +66,37 @@
 			<div class="wrapper">
 
 				<section class="content-wrapper">
-					<div class="row">
-						<!-- left column -->
+
+					<!-- form start -->
+					<form id="itemMasterForm" role="form" th:action="@{/party/}"
+						th:object="${partyMaster}" method="post">
+
+						<div class="row">
+							<!-- left column -->
 
 
 
 
-						<div class="col-md-12" style="margin-top: 20px;">
+							<div class="col-md-12" style="margin-top: 20px;">
 
-							<div class="box box-primary">
-								<input type="hidden" id="mess" name="mess" th:value="${message}">
-								<div class="box-header with-border">
-									<h3 class="box-title">Party Master</h3>
-								</div>
-								<!-- form start -->
-								<form id="itemMasterForm" role="form" th:action="@{/party/}"
-									th:object="${partyMaster}" method="post">
+								<div class="box box-primary">
+									<input type="hidden" id="mess" name="mess"
+										th:value="${message}">
+									<div class="box-header with-border">
+										<h3 class="box-title">Party Master</h3>
+									</div>
+
+									<div class="box-header with-border text-right">
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+										</button>
+										<button type="button" class="btn btn-danger btn-sm"
+											onclick="history.back()">
+											<i class="fa fa-step-backward"></i> Go Back
+										</button>
+									</div>
+
 
 									<div class="box-body">
 
@@ -128,7 +144,7 @@
 																<label for="inputPassword4">Type</label><span
 																	style="color: red">*</span> <select
 																	class="form-control" title="type"
-																	th:field="*{partType}" required>
+																	th:field="*{custType}" required>
 																	<option value="">Select</option>
 																	<option value="S">Supplier</option>
 																	<option value="C">Customer</option>
@@ -638,7 +654,7 @@
 																		<fieldset>
 																			<select class="form-control form-control-sm select"
 																				id="departmentDropdown" title="city"
-																				name="listPartyBilling[0].billingCityCode" >
+																				name="listPartyBilling[0].billingCityCode">
 																				<option value="">Select</option>
 																				<option th:each="city :  ${listCity}"
 																					th:text="${city.cityName}"
@@ -671,8 +687,7 @@
 																		<fieldset>
 																			<select class="form-control form-control-sm select"
 																				title="Country Name"
-																				name="listPartyBilling[0].billingCountryCode"
-																				>
+																				name="listPartyBilling[0].billingCountryCode">
 																				<option value="">Select</option>
 																				<option th:each="country :  ${listCountry}"
 																					th:text="${country.countryName}"
@@ -764,7 +779,7 @@
 																			<fieldset>
 																				<select class="form-control form-control-sm select"
 																					id="departmentDropdown" title="city"
-																					name="listPartyConsignee[0].city" >
+																					name="listPartyConsignee[0].city">
 																					<option value="">Select</option>
 																					<option th:each="city :  ${listCity}"
 																						th:text="${city.cityName}"
@@ -776,7 +791,7 @@
 																			<fieldset>
 																				<select class="form-control form-control-sm select"
 																					id="departmentDropdown" title="country"
-																					name="listPartyConsignee[0].country" >
+																					name="listPartyConsignee[0].country">
 																					<option value="">Select</option>
 																					<option th:each="country :  ${listCountry}"
 																						th:text="${country.countryName}"
@@ -804,10 +819,7 @@
 
 													</div>
 
-													<div class="box-footer">
-														<button type="submit" class="btn btn-primary">Apply Changes </button>
-														<input type="reset" value="Reset" class="btn btn-danger" />
-													</div>
+
 												</div>
 												<!--end packing detail -->
 
@@ -820,21 +832,21 @@
 											</div>
 										</div>
 									</div>
-								</form>
-								<div style="width: parent; text-align-last: right; margin: 8px">
-									<a th:href="@{/party/list}">View All Party</a>
+
+
+
 								</div>
 
+								<!-- end box primary  -->
 							</div>
 
-							<!-- end box primary  -->
+							<!-- end left column -->
+
+
+
 						</div>
 
-						<!-- end left column -->
-
-
-
-					</div>
+					</form>
 				</section>
 			</div>
 		</div>

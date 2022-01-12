@@ -76,7 +76,7 @@
 														<tr th:each="inspection,iter  : ${listInspection}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${inspection.inspNo}">Garrett Winters</td>
-															<td th:text="${inspection.inspDate}">Garrett
+															<td th:text="${#inspection.inspDate(sprint.releaseDate, 'dd-MMM-yyyy')}">Garrett
 																Winters</td>
 
 

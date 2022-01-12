@@ -442,6 +442,42 @@ public class PurchaseOrderController {
 		return listRfQuotationItem;
 
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("/edit/supplierDetail/{id}")
+	public SupplierMaster getSupplierInfoEdit(@PathVariable(value = "id") String id, Model model) {
+
+		SupplierMaster supplier = supplierRepo.findBySupplierId(Long.parseLong(id));
+		System.out.println("supplier detail : " + supplier.getSupplierState());
+		return supplier;
+
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/edit/supplierInfo/{id}")
+	public PartyStateCity getPartyMasterAgainstQuotationEdit(@PathVariable(value = "id") String partyId) {
+
+		// QuotationDetail quotation =
+		PartyMaster partyMaster = partyMasterService.editPartyMaster(partyId).get();
+		State state = null;
+		City city = null;
+		if(partyMaster.getStateCode()!=null || partyMaster.getStateCode()!="") {
+			state = stateService.editState(partyMaster.getStateCode()).get();
+		}
+		
+		if(partyMaster.getCityCode()!=null|| partyMaster.getCityCode()!="") {
+			city = cityService.editCity(partyMaster.getCityCode()).get();
+		}
+		
+		PartyStateCity partyStateCity = new PartyStateCity();
+		partyStateCity.setPartyMaster(partyMaster);
+		partyStateCity.setState(state);
+		partyStateCity.setCity(city);
+		
+		return partyStateCity;
+	}
 
 	
 	

@@ -59,9 +59,10 @@
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i>
+									Warehouse</a></li>
+							<li><a href="#">Gate Entry</a></li>
+							<li class="active">Add page</li>
 						</ol>
 					</section>
 
@@ -69,32 +70,50 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+
+						<!-- form start -->
+						<form role="form" th:action="@{/gateentry/}"
+							th:object="${gateEntry}" method="POST">
+
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
+								<div class="row">
+									<!-- left column -->
+									<div class="col-md-12">
 
 
 
-									<div class="col-md-12 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
+										<div class="col-md-12 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
 
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
 
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form role="form" th:action="@{/gateentry/}"
-												th:object="${gateEntry}" method="POST">
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+
+													<div class="box-header with-border text-right">
+														<button type="submit" id="submit"
+															class="btn btn-primary btn-sm">
+															<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply
+															Changes
+														</button>
+														<button type="button" class="btn btn-danger btn-sm"
+															onclick="history.back()">
+															<i class="fa fa-step-backward"></i> Go Back
+														</button>
+													</div>
+
+
+												</div>
+												<!-- /.box-header -->
+
 
 												<div class="box">
 													<h5 class="box-title">Gate Entry</h5>
@@ -136,15 +155,11 @@
 															</select>
 														</div>
 
-
-
-
-
 														<div class="form-group col-md-4">
-															<label class="form-label">Supplier Code</label> <label
+															<label class="form-label">Supplier Name</label> <label
 																style="color: red">*</label> <select
-																class="form-control" id="" title="supplier code"
-																th:field="*{partyMaster}">
+																class="form-control" id="supplierName"
+																title="supplier code" th:field="*{partyMaster}">
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
 																	th:text="${party.partyName}"
@@ -153,14 +168,6 @@
 
 															</select>
 														</div>
-
-
-														<div class="form-group col-md-4">
-															<label for="inputPassword4">Supplier Name</label> <input
-																type="text" class="form-control"
-																placeholder="Supplier Name" title="supplier name">
-														</div>
-
 
 
 													</div>
@@ -189,7 +196,7 @@
 
 
 
-														<div class="form-group col-md-4">
+														<!-- <div class="form-group col-md-4">
 															<label for="inputAddress">Transporter Code</label><label
 																style="color: red">*</label> <select
 																class="form-control" id="" title="entry type"
@@ -197,7 +204,8 @@
 
 
 															</select>
-														</div>
+														</div> -->
+
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Transporter Name</label> <input
 																type="text" class="form-control"
@@ -306,22 +314,28 @@
 																			id="orderIndentDatePo0" title="order date"
 																			th:field="*{gateEntryItemDetails[__${stat.index}__].orderDate}"></td>
 
-																		<!-- item code  -->
+																		<!-- item Code  -->
+
+																		<td><input type="text"
+																			class="form-control form-control-sm"
+																			id="orderItemCode0" title="item description"
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].item}"></td>
+
+
+
+																		<!-- item description  -->
 
 																		<td><select id="orderItemPo"
 																			class="form-control form-control-sm select orderItemContainerPo"
 																			required title="item"
 																			onchange="getOrderItemDetailForPo()"
-																			th:field="*{gateEntryItemDetails[__${stat.index}__].itemCode.item}">
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].item}">
 																				<option value="">Select</option>
+																				<option th:each="item :  ${itemList}"
+																					th:text="${item.description}"
+																					th:value=" ${item.itemCode}"></option>
+
 																		</select></td>
-
-																		<!-- item description  -->
-
-																		<td><input type="text"
-																			class="form-control form-control-sm"
-																			id="orderItemCode0" title="item description"
-																			th:field="*{gateEntryItemDetails[__${stat.index}__].itemDescription}"></td>
 
 																		<!-- pending qty  -->
 
@@ -345,12 +359,14 @@
 																		<!-- incoming part sr no  -->
 
 																		<td><input type="text"
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].incomingSrNo}"
 																			class="form-control form-control-sm" id="" title=""></td>
 
 
 																		<!-- claim part   -->
 
 																		<td><input type="text"
+																			th:field="*{gateEntryItemDetails[__${stat.index}__].claimSrNo}"
 																			class="form-control form-control-sm"
 																			id="technicalQualification" title=""></td>
 
@@ -379,28 +395,28 @@
 
 
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Apply Changes " class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
-											</form>
 
 
-										</div>
-										<!-- /.box -->
-										<div
+
+
+											</div>
+											<!-- /.box -->
+											<!-- <div
 											style="width: parent; text-align-last: right; margin: 8px">
 											<a th:href="@{/gateentry/list}">View All Gate-Entry</a>
 										</div>
+ -->
+										</div>
+
+
+
 									</div>
-
-
 
 								</div>
 
 							</div>
 
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -411,6 +427,48 @@
 
 
 	<script>
+		function getOrderItemList() {
+
+			//Get Item lIst in purchase order item detail using po number (FK)
+
+			var poNumber = document.getElementById("").value;
+			console.log("get Item List Function is : " + poNumber)
+
+			$
+					.ajax({
+						type : "GET",
+						url : "itemList/" + poNumber,
+
+						success : function(data) {
+							console.log("Item Info behalf of Indent Number  : "
+									+ data)
+
+							var options = '<option value=""><strong>Select Item</strong></option>';
+							$(data)
+									.each(
+											function(index, value) {
+
+												console.log("item info : "
+														+ value.item.itemCode)
+												console
+														.log("item info : "
+																+ value.item.description)
+
+												options += '<option value="' + value.item.itemCode + '">'
+														+ value.item.description
+														+ '</option>';
+
+											});
+
+							$('.orderItemContainerPo' + idIndex).html(options);
+
+						},
+						error : function() {
+							console.log("Error");
+						}
+					});
+		}
+
 		$(document).ready(function() {
 
 			document.getElementById('gateEntryDate').valueAsDate = new Date();

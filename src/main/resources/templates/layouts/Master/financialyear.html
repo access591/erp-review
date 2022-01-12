@@ -57,9 +57,10 @@
 
 
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i>Software
+									Admin</a></li>
+							<li><a href="#">Financial year</a></li>
+							<li class="active">Add page</li>
 						</ol>
 					</section>
 
@@ -67,33 +68,54 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/financialyear/}" method="POST"
+							th:object="${financialYear}">
+
+
+							<div class="box-header with-border text-right">
+
+								<button type="submit" id="submit" class="btn btn-primary btn-sm">
+									<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+								</button>
+								<button type="reset" value="reset"
+									class="btn btn-secondary btn-sm">
+									<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+								</button>
+
+								<a th:href="@{/financialyear/list}"
+									class="btn btn-success btn-sm"> <i class="fa fa-list"
+									aria-hidden="true"></i> View All
+								</a>
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
-									<div class="col-md-2"></div>
+							</div>
+
+							<!-- Default box -->
+							<div class="box">
 
 
-									<div class="col-md-8 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
 
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
+								<div class="row">
+									<!-- left column -->
+									<div class="col-md-12">
+										<div class="col-md-2"></div>
 
 
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form role="form" th:action="@{/financialyear/}"
-												method="POST" th:object="${financialYear}">
+										<div class="col-md-8 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
+
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
+
+
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+												</div>
+												<!-- /.box-header -->
 
 
 
@@ -110,23 +132,24 @@
 													<div class="form-group col-md-12">
 														<label for="inputPassword4">From (Date)</label><span
 															style="color: red">*</span> <input type="date"
-															class="form-control"
-															placeholder='From Date' title="This field is required"
-															th:field="*{fromDate}" required />
+															class="form-control" placeholder='From Date'
+															title="This field is required" th:field="*{fromDate}"
+															required />
 													</div>
 													<div class="form-group col-md-12">
 														<label for="inputEmail4">To (Date)</label><span
 															style="color: red">*</span> <input type="date"
-															class="form-control"
-															placeholder='To Date' title="This field is required"
-															th:field="*{toDate}" required />
+															class="form-control" placeholder='To Date'
+															title="This field is required" th:field="*{toDate}"
+															required />
 													</div>
 
 
 
 													<label class="checkbox-inline"> <input type="radio"
-														value="Y" name="active" checked style="margin-left: 5px" >Active <input
-														type="radio" value="N" name="active"  style="margin-left: 5px">In-Active
+														value="Y" name="active" checked style="margin-left: 5px">Active
+														<input type="radio" value="N" name="active"
+														style="margin-left: 5px">In-Active
 													</label>
 
 
@@ -145,31 +168,25 @@
 												</div>
 												<!-- /.box-body -->
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
 
 
-											</form>
 
+
+
+
+											</div>
+											<!-- /.box -->
 
 										</div>
-										<!-- /.box -->
-										<div
-											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/financialyear/list}">View All Financial
-												Year</a>
-										</div>
+
+
+										<div class="col-md-2"></div>
 									</div>
 
-
-									<div class="col-md-2"></div>
 								</div>
 
 							</div>
-
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -182,26 +199,23 @@
 
 
 	<script>
-				$(document).ready(function () {
+		$(document).ready(function() {
 
-					var message = document.getElementById('mess').value
-					if (message != null && message !== "") {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
 
-						swal(message, "", "success", {
-							button: "OK",
-							hideClass: {
-								popup: 'animate__animated animate__fadeOutUp'
-							},
-						});
-					} else {
-						console.log("ajax request : " + message);
-					}
-
+				swal(message, "", "success", {
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
+					},
 				});
+			} else {
+				console.log("ajax request : " + message);
+			}
 
-
-				
-			</script>
+		});
+	</script>
 	<!--   <section class="content">
         
         </section>-->
