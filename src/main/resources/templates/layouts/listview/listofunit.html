@@ -2,22 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>EBS</title>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<link rel="stylesheet" href="../../css/bootstrap.min.css"
-	th:href="@{/css/bootstrap.min.css}">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="../../css/AdminLTE.min.css"
-	th:href="@{/css/AdminLTE.min.css}">
-<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
-	th:href="@{/css/skins/_all-skins.min.css}">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>EBS</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
 
 
 </head>
@@ -55,12 +48,12 @@
 															<th scope="col">#</th>
 															<th scope="col">Unit Code</th>
 															<th scope="col">Unit Description</th>
-														
-														
-													
+
+
+
 															<th scope="col">Address</th>
-													
-															
+
+
 														</tr>
 													</thead>
 													<tbody>
@@ -68,24 +61,31 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${unit.unitCode}">Garrett Winters</td>
 															<td th:text="${unit.unitDesc}">Garrett Winters</td>
-														
-														
-														
+
+
+
 															<td th:text="${unit.addr}">Garrett
 																Winters</td>
-														
 
-															
 
-<!--
+
+
+
 															<td><span> <a
-																	th:href="@{/unit/edit/{id}(id=${unit.unitCode})}"><em
-																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
-																	<a th:href="@{/city/delete/{id}(id=${city.cityCode})}">
+																		th:href="@{/unit/edit/{id}(id=${unit.unitCode})}"><em
+																			class="fa fa-edit" style="color: blue;">
+																			Edit</em></a></span>
+																<span>
+
+
+
+																	<a
+																		th:href="@{/unit/delete/{id}(id=${unit.unitCode})}">
 																		<em class="fa fa-times" style="color: red">
 																			Remove</em>
-																</a>-->
-															</span></td>
+																	</a>
+																</span>
+															</td>
 														</tr>
 
 
@@ -118,12 +118,9 @@
 	<!--   <section class="content">
         
         </section>-->
-	<script src="../../js/jQuery-2.1.4.min.js"
-		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-	<script src="../../js/bootstrap.min.js"
-		th:src="@{/js/bootstrap.min.js}"></script>
-	<script src="../../js/fastclick.min.js"
-		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
 	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
 	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
