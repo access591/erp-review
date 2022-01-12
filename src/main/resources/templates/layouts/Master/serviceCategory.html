@@ -50,7 +50,7 @@
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
-							Service Category Master
+							Sub Category Master
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
@@ -89,22 +89,22 @@
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
-														<label>Category Code</label><span style="color: red">*</span>
+														<label>Sub-Category Code</label><span style="color: red">*</span>
 														<input type="text" class="form-control" title="category code"
 															placeholder="Category Code" th:field="*{categoryCode}">
 													</div>
 
 
 													<div class="form-group col-md-6">
-														<label for="inputPassword4">Description</label><span
+														<label for="inputPassword4">Sub Category Description</label><span
 															style="color: red">*</span> <input type="text"
 															class="form-control" placeholder="Description"
 															th:field="*{description}" title="This field is required"
 															required>
 													</div>
-<!-- 
-													<div class="form-group col-md-6">
-														<label>Account Code</label> <input type="text"
+ 
+													<!--<div class="form-group col-md-6">
+														<label></label> <input type="text"
 															class="form-control" placeholder="Account Code"
 															title="account code" th:field="*{accountCode}">
 													</div> -->
@@ -148,7 +148,7 @@
 										<!-- /.box -->
 										<div
 											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/servicecategory/list}">View Service
+											<a th:href="@{/servicecategory/list}">View Sub
 												Category List</a>
 										</div>
 									</div>
