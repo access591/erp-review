@@ -149,7 +149,7 @@
 												<div class="form-group col-md-4">
 													<label class="form-label">Employee Name</label> <label
 														style="color: red">*</label> <select class="form-control"
-														title="employee code" id="employee" required
+														title="employee name" id="employee" required
 														onchange="indentGetEmployee()" th:field="*{employee}">
 														<option value="">Select Employee</option>
 														<option th:each="employee :  ${employeeList}"
@@ -160,7 +160,7 @@
 
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Department Name</label> <select
-														class="form-control" title="employee code"
+														class="form-control" title="department name"
 														id="departmentcode" required th:field="*{deptCode}"
 														readonly>
 														<option value="">Select Department</option>
@@ -256,8 +256,7 @@
 																			Stock)</th>
 																		<th scope="col" class="text-center">Qty to be
 																			Procured</th>
-																		<th scope="col" class="text-center">Pipeline Qty<span
-																			style="color: red">*</span>
+																		<th scope="col" class="text-center">Pipeline Qty
 																		</th>
 
 
@@ -283,7 +282,7 @@
 																	<tr id="addr0">
 
 																		<td><input type="text" id="indItemDescription0"
-																			title="item description"
+																			title="item code"
 																			class="form-control form-control-sm" readonly></td>
 
 
@@ -291,7 +290,7 @@
 																		<!-- item description -->
 																		<td><select
 																			class="select form-control form-control-sm itemContainer0"
-																			id="indItemCode0" title="item code"
+																			id="indItemCode0" title="item description"
 																			name="opeIndentDetail[0].indItemCode"
 																			onchange="selectItem()" required style="width: 250px">
 																				<option value="">Select Item</option>
@@ -329,7 +328,7 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="qtyProcured0" title="qty"
+																			id="qtyProcured0" title="qty to procured"
 																			name="opeIndentDetail[0].qtyProcured"
 																			style="text-align: right" readonly></td>
 
@@ -366,14 +365,14 @@
 
 																		<!-- units  -->
 																		<td><input type="text" id="uomCode0"
-																			class="form-control form-control-sm" title=""
+																			class="form-control form-control-sm" title="units"
 																			required readonly></td>
 
 
 																		<!-- total value inr-total value  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="totalValueInr0" title="Salary"
+																			id="totalValueInr0" title="total value"
 																			style="text-align: right; background-color: #fafab9;"
 																			readonly></td>
 
@@ -389,7 +388,7 @@
 																		<!-- requisition date -->
 																		<td><input type="date"
 																			class="form-control form-control-sm" id="salaryTo"
-																			style="width: 145px"
+																			style="width: 145px" title="requisition date"
 																			name="opeIndentDetail[0].indReqDate" required></td>
 
 
@@ -452,7 +451,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Approved By</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Approved By" title="purchase status"
+																	placeholder="Approved By" title="approved by"
 																	readonly>
 															</div>
 
@@ -523,11 +522,9 @@
 																		+ "].indItemCode'required onchange='selectItem()'style='width:250px'></select></td>"
 
 																		/*  ind qty */
-																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField' id='indQty'"+idIndex+"'"
+																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField' id='indQty"+idIndex+"'"
 																		
-																		+ "required name='opeIndentDetail["
-																		+ idIndex
-																		+ "].indQty' style='text-align: right'  onkeyup='indentQtyValue()' step='.01' onkeypress='return isNumberKey(event)' oninput='roundTextBoxes()' placeholder='0.00' ></td>"
+																		+ "required name='opeIndentDetail["+idIndex+"].indQty' style='text-align: right'  onkeyup='indentQtyValue()' step='.01' onkeypress='return isNumberKey(event)' oninput='roundTextBoxes()' placeholder='0.00' ></td>"
 
 																		/* approved qty  */
 																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty' style='text-align: right'  readonly></td>"
