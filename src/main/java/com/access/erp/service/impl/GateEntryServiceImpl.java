@@ -74,4 +74,10 @@ public class GateEntryServiceImpl implements GateEntryService{
 		
 	}
 
+	@Override
+	public List<GateEntry> findAllNotInMrn() {
+		
+		return this.gateEntryRepo.findAllNotInMrn();
+	}
+
 }

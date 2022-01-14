@@ -124,10 +124,15 @@
 											<div class="box-body">
 
 												<div class="form-group col-md-4">
-													<label for="inputEmail4">Indent Number</label> <input
-														type="text" class="form-control" id="inputEmail4"
-														title="indent number" placeholder="Indent Number"
-														th:field="*{indentNumber}" readonly>
+
+													
+														
+													
+													<label for="inputEmail4">Indent
+														Number</label> <input type="text" class="form-control"
+														id="inputEmail4" title="indent number"
+														placeholder="Indent Number" th:field="*{indentNumber}"
+														readonly>
 												</div>
 												<div class="form-group col-md-4">
 													<label for="inputPassword4">Indent Date</label><label
@@ -161,8 +166,7 @@
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Department Name</label> <select
 														class="form-control" title="department name"
-														id="departmentcode" th:field="*{deptCode}"
-														readonly>
+														id="departmentcode" th:field="*{deptCode}" readonly>
 														<option value="">Select Department</option>
 														<option th:each="department :  ${departmentList}"
 															th:text="${department.deptName}"
@@ -306,7 +310,8 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="indQty0" min="18" title="ind qty"
 																			name="opeIndentDetail[0].indQty"
-																			style="text-align: right" onkeyup="indentQtyValue()" onkeypress='return isNumberKey(event)'></td>
+																			style="text-align: right" onkeyup="indentQtyValue()"
+																			onkeypress='return isNumberKey(event)'></td>
 
 
 																		<!-- approved indent qty -->
@@ -360,13 +365,14 @@
 																			class="form-control form-control-sm floatNumberField"
 																			id="itemRate0" required title="item rate"
 																			name="opeIndentDetail[0].itemRate"
-																			style="text-align: right" onkeyup="indentItemRate()" onkeypress='return isNumberKey(event)'></td>
+																			style="text-align: right" onkeyup="indentItemRate()"
+																			onkeypress='return isNumberKey(event)'></td>
 
 
 																		<!-- units  -->
 																		<td><input type="text" id="uomCode0"
 																			class="form-control form-control-sm" title="units"
-																			 readonly></td>
+																			readonly></td>
 
 
 																		<!-- total value inr-total value  -->
@@ -403,24 +409,24 @@
 
 
 																	</tr>
-																	<tr id='addr1'/>
-																	
+																	<tr id='addr1' />
+
 																	<tr>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	
-																	<td><input type="text"
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+
+																		<td><input type="text"
 																			class="form-control form-control-sm" id="salaryTo"
 																			title="requisition date"></td>
-																	<td><input type="text"
+																		<td><input type="text"
 																			class="form-control form-control-sm" id="salaryTo"
 																			title="requisition date"></td>
 																	</tr>
@@ -472,8 +478,7 @@
 															<div class="form-group col-md-4">
 																<label for="inputPassword4">Approved By</label> <input
 																	type="text" class="form-control" id="inputPassword4"
-																	placeholder="Approved By" title="approved by"
-																	readonly>
+																	placeholder="Approved By" title="approved by" readonly>
 															</div>
 
 														</div>
@@ -782,6 +787,7 @@
 				$(this).val(parseFloat($(this).val()).toFixed(2));
 			});
 		}
+		
 	</script>
 
 

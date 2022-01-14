@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.access.erp.model.GateEntry;
 import com.access.erp.model.MRN;
 import com.access.erp.model.MRNDetail;
 import com.access.erp.repo.MRMRepo;
@@ -63,5 +64,7 @@ public class MrmServiceImpl implements MRMService {
 	public void deleteMrm(String mrmCode) {
 		this.mrmRepo.deleteById(mrmCode);
 	}
+
+	
 
 }

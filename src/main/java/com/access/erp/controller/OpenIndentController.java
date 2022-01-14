@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.ItemOpening;
 import com.access.erp.model.OpenIndent;
@@ -60,7 +61,7 @@ public class OpenIndentController {
 	}
 
 	@PostMapping("/")
-	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent) {
+	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent,RedirectAttributes redirectAttributes) {
 
 		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		
@@ -69,18 +70,24 @@ public class OpenIndentController {
 		openIndent.setUser(globalParameter.getGlobaluser());
 		
 		openIndentService.addOpenIndent(openIndent);
+		
+		redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
 		return "redirect:/openindent/";
 	}
 	
 	@PostMapping("/update")
-	public String updateOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent) {
+	public String updateOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent,RedirectAttributes redirectAttributes) {
 
 		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		
 		System.out.println("open indent  : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		
 		openIndentService.updateOpenIndent(openIndent);
+		
+		redirectAttributes.addFlashAttribute("message", "Record  has been updated successfully! ");
+		   redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
 
 		return "redirect:/openindent/";
 	}
@@ -145,8 +152,11 @@ public class OpenIndentController {
 	
 
 	@GetMapping("/delete/{id}")
-	public String deleteOpenIndent(@PathVariable("id") String openIndent, Model model) {
+	public String deleteOpenIndent(@PathVariable("id") String openIndent, Model model,RedirectAttributes redirectAttributes) {
 		openIndentService.deleteOpenIndent(openIndent);
+		
+		redirectAttributes.addFlashAttribute("message", "Record  has been deleted successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
 		return "redirect:/openindent/list";
 	}
 

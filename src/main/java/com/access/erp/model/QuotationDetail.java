@@ -36,6 +36,7 @@ public class QuotationDetail {
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RECEIVED_ON")
 	private Date receivedOn;
 	
@@ -52,6 +53,7 @@ public class QuotationDetail {
 	private String indentNu;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="INDENT_DATE")
 	private Date indentDate;
 	
@@ -177,6 +179,7 @@ public class QuotationDetail {
 	private String rfqNo;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="RFQ_DATE")
 	private Date rfqDate;
 	

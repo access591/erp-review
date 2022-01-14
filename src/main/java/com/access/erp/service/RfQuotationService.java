@@ -11,4 +11,7 @@ public interface RfQuotationService {
 	public List<RfQuotation> getAllRfQuotation();
 	public Optional<RfQuotation> editRfQuotation(String rfCode);
 	public void deleteRfQuotation(String rfCode);
+	
+	public void updateRfQuotation(RfQuotation rfQuotation);
+	public List<RfQuotation> findAllByOrderByRfqNoDsc();
 }

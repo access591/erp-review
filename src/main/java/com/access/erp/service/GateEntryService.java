@@ -13,5 +13,8 @@ public interface GateEntryService {
 	public void deleteGateEntry(String gateEntryCode);
 	
 	
+	public List<GateEntry> findAllNotInMrn();
+	
+	
 
 }

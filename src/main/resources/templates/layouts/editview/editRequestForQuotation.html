@@ -20,6 +20,16 @@
 	th:href="@{/css/skins/_all-skins.min.css}">
 <script type="text/javascript" th:src="@{/JS/myjs.js}"></script>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+
 
 <style>
 .form-control-sm {
@@ -66,12 +76,13 @@
 					<section class="content">
 
 						<!-- form start -->
-						<form role="form" th:action="@{/requestquotation/}" method="POST"
-							th:object="${rFQuotation}">
+						<form role="form" th:action="@{/requestquotation/update}"
+							method="POST" th:object="${rFQuotation}">
 
 							<!-- Default box -->
 							<div class="box">
 
+								<input type="hidden" id="mess" name="mess" th:value="${message}">
 
 
 								<div class="row">
@@ -161,22 +172,28 @@
 																	<tr id="addr0"
 																		th:each="row, stat :${rFQuotation.listRFQuotation}">
 
+																		
+
 
 																		<td><select
 																			class="select form-control form-control-sm"
-																			id="indentNumber" title="Location" required
-																			onchange="getIndentList()"
+																			th:id="'indentNumber' + ${stat.index}"
+																			title="Location" required onchange="getIndentList()"
 																			th:field="*{listRFQuotation[__${stat.index}__].openIndent}">
 																				<option value=" ">Select Indent Number</option>
 																				<option th:each="indent :  ${aprovedOpenIndentList}"
 																					th:text="${indent.indentNumber}"
 																					th:value=" ${indent.indentNumber}"></option>
 
-																		</select></td>
+																		</select>
+																		<input type="hidden"
+																			id="length1"
+																			th:value="${#lists.size(rFQuotation.listRFQuotation)}">
+																		</td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
-																			title="indent date"
-																			class="form-control form-control-sm" id="indentDate"
+																			title="indent date" th:id="'indentDate' + ${stat.index}"
+																			class="form-control form-control-sm"
 																			th:field="*{listRFQuotation[__${stat.index}__].indentDate}"
 																			readonly></td>
 
@@ -214,17 +231,17 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			th:field="*{listRFQuotation[__${stat.index}__].itemSpec}"
-																			required title=""></td>
+																			title=""></td>
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			th:field="*{listRFQuotation[__${stat.index}__].termCondition}"
-																			required title=""></td>
+																			title=""></td>
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			th:field="*{listRFQuotation[__${stat.index}__].remarks}"
-																			required title=""></td>
+																			title=""></td>
 
 
 
@@ -387,6 +404,59 @@
 			<!--   <section class="content">
         
         </section>-->
+
+
+			<script>
+				window.addEventListener("load", myInit, true);
+				function myInit() {
+					selectRequestForQuotation()
+				}
+				$(document).ready(function() {
+					var message = document.getElementById('mess').value
+					if (message != null && message !== "") {
+
+						swal(message, "", "success", {
+							button : "OK",
+							hideClass : {
+								popup : 'animate__animated animate__fadeOutUp'
+							},
+						});
+					} else {
+						console.log("ajax request : " + message);
+					}
+
+				});
+
+				function selectRequestForQuotation() {
+
+					console.log("select request for Quotation ")
+					var qType = document.getElementById("rfqType").value;
+					var length = document.getElementById("length1").value;
+					console.log("length value is : " + length);
+
+					if (qType == "W") {
+
+						for (let i = 0; i < length; i++) {
+							
+							$("#indentNumber"+i).attr('disabled', 'disabled');
+							$("#indentDate" + i).attr('disabled',
+									'disabled');
+						}
+
+						//getIndentListWithoutIndentType()
+
+					} else {
+						for (let i = 0; i < length; i++) {
+							
+							$("#indentNumber" + i)
+									.removeAttr('disabled');
+							$("#indentDate" + i).removeAttr('disabled');
+						}
+
+					}
+				}
+				
+			</script>
 			<script src="../../js/jQuery-2.1.4.min.js"
 				th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 			<script src="../../js/bootstrap.min.js"
