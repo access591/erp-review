@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.OpenIndent;
 import com.access.erp.model.OpenIndentDetail;
@@ -72,7 +73,7 @@ public class RfQuotationController {
 	@GetMapping("/")
 	public String requestQuotation(Model model) {
 
-		List<OpenIndent> aprovedOpenIndentList = openIndentService.approvedOpenIndent();
+		List<OpenIndent> aprovedOpenIndentList = openIndentService.findIndentNotInRfq();
 		model.addAttribute("aprovedOpenIndentList", aprovedOpenIndentList);
 
 		model.addAttribute("rFQuotation", new RfQuotation());
@@ -95,7 +96,7 @@ public class RfQuotationController {
 	}
 
 	@PostMapping("/")
-	public String addrFQuotation(@ModelAttribute("rFQuotation") RfQuotation rfQuotation) {
+	public String addrFQuotation(@ModelAttribute("rFQuotation") RfQuotation rfQuotation,RedirectAttributes redirectAttributes) {
 
 		System.out.println(" add rf Quotation method ");
 		rfQuotation.setcCode(globalParameter.getGlobalCompany());
@@ -103,13 +104,32 @@ public class RfQuotationController {
 		rfQuotation.setuCode(globalParameter.getGlobaluser());
 		
 		rfQuotationService.addRfQuotation(rfQuotation);
+		
+		redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 		return "redirect:/requestquotation/";
 	}
+	
+	
+	@PostMapping("/update")
+	public String updateRFQuotation(@ModelAttribute("rFQuotation") RfQuotation rfQuotation,RedirectAttributes redirectAttributes) {
+
+		System.out.println(" update rf Quotation method ");
+		
+		
+		rfQuotationService.updateRfQuotation(rfQuotation);
+		
+		redirectAttributes.addFlashAttribute("message", "Record  has been updated successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+		return "redirect:/requestquotation/";
+	}
+	
+	
 
 	@GetMapping("/list")
 	public String viewRequestQuotation(Model model) {
 
-		List<RfQuotation> rfqList = rfQuotationService.getAllRfQuotation();
+		List<RfQuotation> rfqList = rfQuotationService.findAllByOrderByRfqNoDsc();
 
 		if (rfqList != null) {
 			model.addAttribute("rfqList", rfqList);
@@ -145,8 +165,11 @@ public class RfQuotationController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String deleteRequestQuotation(@PathVariable("id") String rfqCode, Model model) {
+	public String deleteRequestQuotation(@PathVariable("id") String rfqCode, Model model,RedirectAttributes redirectAttributes) {
 		rfQuotationService.deleteRfQuotation(rfqCode);
+		
+		redirectAttributes.addFlashAttribute("message", "Record  has been Deleted successfully!");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 		return "redirect:/requestquotation/list";
 	}
 

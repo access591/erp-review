@@ -133,9 +133,9 @@
 																		<select class="form-control"
 																			title="nature of purchase" required id=""
 																			th:field="*{capitalYn}">
-																			<option value="">Select</option>
-																			<option value="C">Capital</option>
-																			<option value="N">Non-Capital</option>
+																			<option value="N">Non-Capax</option>
+																			<option value="C">Capax</option>
+																			
 																		</select>
 																	</div>
 
@@ -179,7 +179,7 @@
 
 														<div class="box">
 															<div class="box-body">
-																<div class="form-group col-md-4">
+																<div class="form-group col-md-3">
 																	<label class="form-label ">Supplier </label> <label
 																		style="color: red">*</label> <select
 																		class="form-control suppContainer"
@@ -192,13 +192,13 @@
 																	</select>
 																</div>
 
-																<div class="form-group col-md-4">
+																<div class="form-group col-md-3">
 																	<label for="inputPassword4">Supplier Name</label> <input
 																		type="text" class="form-control"
 																		placeholder="quotation date" id="supplierName"
 																		th:field="*{tempSupName}" readonly>
 																</div>
-																<div class="form-group col-md-4">
+																<div class="form-group col-md-3">
 																	<label for="inputPassword4">SupplierState</label> <select
 																		class="form-control" required id="supplierState"
 																		title="supplier State" th:field="*{supCityCode}"
@@ -212,13 +212,13 @@
 																	</select>
 																</div>
 
-																<div class="form-group col-md-4">
+																<!-- <div class="form-group col-md-4">
 																	<label for="inputAddress">Form Code</label> <input
 																		type="text" class="form-control" id="fromCode"
 																		placeholder="received on" th:field="*{fromCode}"
 																		readonly>
-																</div>
-																<div class="form-group col-md-4">
+																</div> -->
+																<div class="form-group col-md-3">
 																	<label for="inputAddress">Supplier City</label> <select
 																		class="form-control" required id="supplierCity"
 																		title="supplier State" th:field="*{supCountry}"
@@ -231,13 +231,13 @@
 
 																	</select>
 																</div>
-																<div class="form-group col-md-4">
+																<!-- <div class="form-group col-md-4">
 																	<label for="inputAddress">Form Type</label> <input
 																		type="text" class="form-control" id="fromType"
 																		placeholder="from type" th:field="*{fromType}"
 																		readonly>
-																	<!-- th:field="*{quotType}" -->
-																</div>
+																	th:field="*{quotType}"
+																</div> -->
 															</div>
 															<!-- /.box-body -->
 
@@ -262,9 +262,9 @@
 
 																<div class="form-group col-md-6">
 																	<label for="inputPassword4">Conversion Value</label> <input
-																		type="text" class="form-control" id="currencyValue"
-																		placeholder="currency value"
-																		th:field="*{conversionValue}">
+																		type="text" class="form-control" id="conversionValue"
+																		placeholder="conversion value" value='1'
+																		th:field="*{conversionValue}" autocomplete="off">
 																</div>
 
 
@@ -399,23 +399,23 @@
 																			id="uomCode0" title=""></td>
 
 																		<td><input type="text" id="itemRate0"
-																			class="form-control form-control-sm numbersOnly"
-																			required name="quotationItem[0].rate" title=""
+																			class="form-control form-control-sm numbersOnly text-right"
+																			required name="quotationItem[0].rate" title="this field is required "
 																			onkeyup="totalInrValueCal()"></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm numbersOnly"
+																			class="form-control form-control-sm numbersOnly text-right"
 																			required title=""></td>
 
 
 																		<td><input type="text"
-																			class="form-control form-control-sm numbersOnly"
+																			class="form-control form-control-sm numbersOnly text-right"
 																			required id="itemQty0"
 																			name="quotationItem[0].qtItemQty"
-																			onkeyup="totalInrValueCal()" title=""></td>
+																			onkeyup="totalInrValueCal()" title="this field is required"></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm numbersOnly"
+																			class="form-control form-control-sm numbersOnly text-right"
 																			required name="quotationItem[0].totalValue"
 																			id="totalInrValue0" title=""></td>
 
@@ -450,14 +450,14 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Trade
 																		Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			onkeyup="totalDiscountInPercentFun()"
 																			id="totalDiscountInPercent"
 																			placeholder="Total Discount(%)"
 																			name="quotationItem[0].discountValue">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="totalDiscountInValue"
 																			placeholder="Total Discount" readonly>
 																	</div>
@@ -470,13 +470,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			onkeyup="discountInPercentFun()"
 																			id="discountInPercent" placeholder="Discount(%)"
 																			name="quotationItem[0].discount">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="discountInValue" placeholder="Discount" readonly>
 																	</div>
 																</div>
@@ -489,7 +489,7 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="packing"
+																		<input type="number" class="form-control text-right" id="packing"
 																			placeholder="Packing" name="quotationItem[0].packing">
 																	</div>
 
@@ -501,9 +501,9 @@
 															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3" class="col-md-2 control-label">Freight</label>
+																	<label for="inputEmail3" class="col-md-2 control-label ">Freight</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="freight"
+																		<input type="number" class="form-control text-right text-right" id="freight"
 																			placeholder="Freight" name="quotationItem[0].freight">
 																	</div>
 
@@ -516,13 +516,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">SGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="sgstInPercent" placeholder="Sgst(%)"
 																			onkeyup="sgstInPercentFun()"
 																			name="quotationItem[0].sgst">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="sgstInValue" placeholder="Sgst"
 																			name="quotationItem[0].sgstValue" readonly>
 																	</div>
@@ -534,13 +534,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">CGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="cgstInPercent" placeholder="Cgst(%)"
 																			onkeyup="cgstInPercentFun()"
 																			name="quotationItem[0].cgst">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="cgstInValue" placeholder="Cgst"
 																			name="quotationItem[0].cgstValue" readonly>
 																	</div>
@@ -552,13 +552,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">IGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="igstInPercent" placeholder="Igst(%)"
 																			onkeyup="igstInPercentFun()"
 																			name="quotationItem[0].igst">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="igstInValue" placeholder="Igst"
 																			name="quotationItem[0].igstValue" readonly>
 																	</div>
@@ -584,7 +584,7 @@
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value </label> <input
-																				type="text" class="form-control" id="totalRs"
+																				type="text" class="form-control text-right" id="totalRs"
 																				placeholder="Total Value">
 																		</div>
 																	</div>
@@ -592,7 +592,7 @@
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value (INR)</label> <input
-																				type="text" class="form-control" id="totalCount"
+																				type="text" class="form-control text-right" id="totalCount"
 																				placeholder="Total Value (INR)">
 																		</div>
 																	</div>
@@ -650,6 +650,9 @@
 
 
 	<script>
+	
+	document.getElementById("conversionValue").value=1;
+	
 		function getIndentDetailByIndentNumber() {
 
 			var indentNumber = document.getElementById("indentNumber0").value;
@@ -730,9 +733,9 @@
 
 					$("#itemDescriptin").val(data.description)
 					$("#uomCode0").val(data.uom.uomCode);
-					$("#itemRate0").val(data.itemRate);
+					//$("#itemRate0").val(data.itemRate);
 
-					$("#itemQty0").val('0');
+					//$("#itemQty0").val('0');
 
 				},
 				error : function() {

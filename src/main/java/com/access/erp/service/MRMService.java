@@ -4,6 +4,7 @@ package com.access.erp.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.access.erp.model.GateEntry;
 import com.access.erp.model.MRN;
 
 public interface MRMService {
@@ -15,5 +16,7 @@ public interface MRMService {
 	public Optional<MRN> editMrm(String mrmCode);
 
 	public void deleteMrm(String mrmCode);
+	
+	
 
 }

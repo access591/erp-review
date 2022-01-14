@@ -23,6 +23,8 @@ public interface OpenIndentService {
 	
 	public List<OpenIndent> approvedOpenIndent();
 	
+	public List<OpenIndent> findIndentNotInRfq();
+	
 	
 	//public void updateOpenIndent(OpenIndent openIndent)
 

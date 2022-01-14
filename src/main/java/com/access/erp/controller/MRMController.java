@@ -62,7 +62,7 @@ public class MRMController {
 	@GetMapping("/")
 	public String mrmPage(Model model) {
 
-		List<GateEntry> gateEntryList = gateEntryService.getAllGateEntry();
+		List<GateEntry> gateEntryList = gateEntryService.findAllNotInMrn();
 		model.addAttribute("gateEntryList", gateEntryList);
 
 		List<SupplierMaster> supplierList = new ArrayList<>();

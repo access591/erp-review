@@ -3,6 +3,9 @@ package com.access.erp.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,7 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 
 	@Autowired RFQuotationRepo rfQuotationRepo;
 	@Autowired SeqMainRepo seqMainRepo;
+	@Autowired SessionFactory sessionFactory; 
 	
 	@Override
 	public void addRfQuotation(RfQuotation rfQuotation) {
@@ -51,9 +55,11 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 			
 			System.out.println(" rfq suply detail ");
 			rqQSuply.setRfQuotation(rfQuotation);
-			
+			//rqQSuply.setOpenIndent(rfQuotation.getListRFQuotation().get);
 			
 		}
+		
+		//for(int i=0;i<)
 		rfQuotationRepo.save(rfQuotation);
 	}
 
@@ -74,6 +80,36 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 		
 		rfQuotationRepo.deleteById(rfCode);
 		
+	}
+
+	@Override
+	public void updateRfQuotation(RfQuotation rfQuotation) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			RfQuotation rfq = session.find(RfQuotation.class,rfQuotation.getRfqNo());
+			rfq.getListRFQuotation().clear();
+			rfq.getListRFQuotationSupply().clear();
+			rfq.getListRFQuotation().addAll(rfQuotation.getListRFQuotation());
+			rfq.getListRFQuotationSupply().addAll(rfQuotation.getListRFQuotationSupply());
+			session.merge(rfQuotation);
+			tx.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}finally {
+			session.close();
+		}
+		
+	}
+
+	@Override
+	public List<RfQuotation> findAllByOrderByRfqNoDsc() {
+		
+		return this.rfQuotationRepo.findAllByOrderByRfqNoDesc();
 	}
 
 }
