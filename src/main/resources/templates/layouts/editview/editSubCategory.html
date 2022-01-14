@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>EBS</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
+	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div>
+			<div th:replace="fragments/header :: header">...</div>
+			<div th:replace="fragments/sidebar :: sidebar">...</div>
+
+			<div class="wrapper">
+
+				<section class="content-wrapper">
+
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<h4>
+							Sub Category Master
+							<!--<small>it all starts here</small>-->
+						</h4>
+						<ol class="breadcrumb">
+							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+							<li><a href="#">Examples</a></li>
+							<li class="active">Blank page</li>
+						</ol>
+					</section>
+
+
+					<!-- Main content -->
+					<section class="content">
+
+						<!-- Default box -->
+						<div class="box">
+
+
+
+							<div class="row">
+								<!-- left column -->
+								<div class="col-md-12">
+									<div class="col-md-2"></div>
+
+
+									<div class="col-md-8">
+										<!-- general form elements -->
+										<div class="box box-primary ">
+											<div class="box-header with-border">
+												<!--<h3 class="box-title">Category Master</h3>-->
+											</div>
+											<!-- /.box-header -->
+											<!-- form start -->
+											<form role="form" th:action="@{/subcategory/update/}" method="POST"
+												th:object="${subCategory}">
+												<div class="box-body">
+
+													<div class="form-group col-md-6">
+														<label>Sub-Category Code</label><span
+															style="color: red">*</span>
+														<input type="text" class="form-control" title="category code"
+															placeholder="Category Code" th:field="*{subCategoryCode}">
+													</div>
+
+
+													<div class="form-group col-md-6">
+														<label for="inputPassword4">Sub Category
+															Description</label><span style="color: red">*</span> <input
+															type="text" class="form-control" placeholder="Description"
+															th:field="*{subCategoryDesc}" title="This field is required"
+															required>
+													</div>
+
+
+													<!-- 	<div class="form-group col-md-6">
+														<label>Account Code</label> <input type="text"
+															class="form-control" placeholder="Account Code"
+															title="account code" th:field="*{accountCode}">
+													</div> -->
+													<div class="form-group col-md-12">
+														<label class="form-label">Category Description</label> <label
+															style="color: red">*</label> <select class="form-control"
+															id="" title="This field is required" th:field="*{category}"
+															required>
+															<option th:each="category :  ${categoryList}"
+																th:text="${category.description}"
+																th:value=" ${category.categCode}">
+															</option>
+
+														</select>
+													</div>
+
+
+
+
+
+
+													<label class="checkbox-inline"> <input type="radio" value="Y"
+															name="active" checked style="margin-left: 5px">Active <input
+															type="radio" value="N" name="active"
+															style="margin-left: 5px">In-Active
+													</label>
+
+
+												</div>
+												<!-- /.box-body -->
+
+												<div class="box-footer" style="margin: 10px">
+													<input type="submit" value="Apply Changes"
+														class="btn btn-primary" />
+													<input type="button" value="Go back!" class="btn btn-danger"
+														onclick="history.back()">
+												</div>
+
+
+											</form>
+
+
+										</div>
+										<!-- /.box -->
+										<div style="width: parent; text-align-last: right; margin: 8px">
+											<a th:href="@{/subcategory/list}">View SubCategory List</a>
+										</div>
+									</div>
+
+
+									<div class="col-md-2"></div>
+								</div>
+
+							</div>
+
+						</div>
+					</section>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+	   <section class="content">
+	<script>
+
+		$(document).ready(function () {
+			var message = document.getElementById('mess').value
+			if (message != null && message !== "") {
+
+				swal(message, "", "success", {
+					button: "OK",
+					hideClass: {
+						popup: 'animate__animated animate__fadeOutUp'
+					},
+				});
+			} else {
+				console.log("ajax request : " + message);
+			}
+
+		});
+	</script>
+
+
+        
+        </section>
+	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+</body>
+
+</html>
