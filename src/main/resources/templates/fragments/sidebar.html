@@ -105,6 +105,9 @@
 									Store</a></li>
 							<li th:if="${#request.isUserInRole('CATEGORY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/category/}"><i class="fa fa-circle-o"></i>
 									Category</a></li>
+							<li th:if="${#request.isUserInRole('SUBCATEGORY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/subcategory/}"><i class="fa fa-circle-o"></i>
+									Sub-Category</a></li>
+									
 							<li th:if="${#request.isUserInRole('ITEM') or #request.isUserInRole('ADMIN')}"><a th:href="@{/item/}"><i class="fa fa-circle-o"></i>
 									Item</a></li>
 									
@@ -120,6 +123,9 @@
 									
 							<li th:if="${#request.isUserInRole('PARTYMASTER') or #request.isUserInRole('ADMIN')}"><a th:href="@{/party/}"><i class="fa fa-circle-o"></i>
 									Party Master</a></li>
+							
+							<li th:if="${#request.isUserInRole('UNIT') or #request.isUserInRole('ADMIN')}"><a th:href="@{/unit/}"><i class="fa fa-circle-o"></i>
+									Unit Master</a></li>
 
 
 

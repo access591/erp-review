@@ -196,7 +196,7 @@ public class QuotationItem {
 	
 	//5.2
 	@Column(name = "SGST", columnDefinition = "FLOAT(5,2)",nullable = true)
-	private int sgst;
+	private double sgst;
 	
 	//14.2
 	@Column(name = "SGST_VALUE", columnDefinition = "FLOAT(5,2)",nullable = true)
@@ -753,13 +753,17 @@ public class QuotationItem {
 
 
 
-	public int getSgst() {
+	
+
+
+
+	public double getSgst() {
 		return sgst;
 	}
 
 
 
-	public void setSgst(int sgst) {
+	public void setSgst(double sgst) {
 		this.sgst = sgst;
 	}
 

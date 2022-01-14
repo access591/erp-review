@@ -135,7 +135,7 @@
 																			th:field="*{capitalYn}">
 																			<option value="N">Non-Capax</option>
 																			<option value="C">Capax</option>
-																			
+
 																		</select>
 																	</div>
 
@@ -350,6 +350,7 @@
 																<tbody>
 																	<tr id="addr0">
 
+																		<!-- indent number  -->
 
 																		<td><select
 																			class="select form-control form-control-sm indentContainer0 "
@@ -363,6 +364,8 @@
 
 																		</select></td>
 
+																		<!-- indent date  -->
+
 																		<td><input type="date" style="font-size: 0.95rem"
 																			title="indent date"
 																			class="form-control form-control-sm"
@@ -370,16 +373,20 @@
 																			readonly></td>
 
 
+																		<!--  EMployee code  -->
 
 																		<td><input type="text" title="employee name"
 																			name="quotationItem[0].employee"
 																			class="form-control form-control-sm" id="empCode0"
 																			readonly></td>
 
+																		<!-- employee name  -->
+
 																		<td><input type="text" title="uom"
 																			class="form-control form-control-sm" id="empName0"
 																			readonly></td>
 
+																		<!-- item code  -->
 
 																		<td><select
 																			class="select form-control form-control-sm itemContainer"
@@ -391,30 +398,47 @@
 
 																		</select></td>
 
+																		<!-- description  -->
+
 																		<td><input type="text" id="itemDescriptin"
 																			class="form-control form-control-sm" readonly></td>
+
+																		<!-- uom  -->
 
 																		<td><input type="text"
 																			class="form-control form-control-sm" readonly
 																			id="uomCode0" title=""></td>
 
+																		<!-- rate  -->
+
 																		<td><input type="text" id="itemRate0"
 																			class="form-control form-control-sm numbersOnly text-right"
-																			required name="quotationItem[0].rate" title="this field is required "
+																			required name="quotationItem[0].rate"
+																			title="this field is required " min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			onkeyup="totalInrValueCal()"></td>
 
-																		<td><input type="text"
+																		<!-- negotiable cost  -->
+
+																		<td><input type="text" min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			class="form-control form-control-sm numbersOnly text-right"
 																			required title=""></td>
 
+																		<!-- qty  -->
 
 																		<td><input type="text"
 																			class="form-control form-control-sm numbersOnly text-right"
-																			required id="itemQty0"
+																			required id="itemQty0" min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			name="quotationItem[0].qtItemQty"
-																			onkeyup="totalInrValueCal()" title="this field is required"></td>
+																			onkeyup="totalInrValueCal()"
+																			title="this field is required"></td>
 
-																		<td><input type="text"
+																		<!-- total inr value -->
+
+																		<td><input type="text" min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			class="form-control form-control-sm numbersOnly text-right"
 																			required name="quotationItem[0].totalValue"
 																			id="totalInrValue0" title=""></td>
@@ -454,7 +478,8 @@
 																			onkeyup="totalDiscountInPercentFun()"
 																			id="totalDiscountInPercent"
 																			placeholder="Total Discount(%)"
-																			name="quotationItem[0].discountValue">
+																			name="quotationItem[0].discountValue"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
@@ -473,7 +498,8 @@
 																		<input type="number" class="form-control text-right"
 																			onkeyup="discountInPercentFun()"
 																			id="discountInPercent" placeholder="Discount(%)"
-																			name="quotationItem[0].discount">
+																			name="quotationItem[0].discount"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
@@ -489,8 +515,10 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control text-right" id="packing"
-																			placeholder="Packing" name="quotationItem[0].packing">
+																		<input type="number" class="form-control text-right"
+																			id="packing" placeholder="Packing"
+																			name="quotationItem[0].packing"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 
 																</div>
@@ -501,10 +529,14 @@
 															<div class="form-group row">
 
 																<div class="form-group m-5">
-																	<label for="inputEmail3" class="col-md-2 control-label ">Freight</label>
+																	<label for="inputEmail3"
+																		class="col-md-2 control-label ">Freight</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control text-right text-right" id="freight"
-																			placeholder="Freight" name="quotationItem[0].freight">
+																		<input type="number"
+																			class="form-control text-right text-right"
+																			id="freight" placeholder="Freight"
+																			name="quotationItem[0].freight"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 
 																</div>
@@ -519,7 +551,8 @@
 																		<input type="number" class="form-control text-right"
 																			id="sgstInPercent" placeholder="Sgst(%)"
 																			onkeyup="sgstInPercentFun()"
-																			name="quotationItem[0].sgst">
+																			name="quotationItem[0].sgst"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
@@ -537,7 +570,8 @@
 																		<input type="number" class="form-control text-right"
 																			id="cgstInPercent" placeholder="Cgst(%)"
 																			onkeyup="cgstInPercentFun()"
-																			name="quotationItem[0].cgst">
+																			name="quotationItem[0].cgst"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
@@ -555,7 +589,8 @@
 																		<input type="number" class="form-control text-right"
 																			id="igstInPercent" placeholder="Igst(%)"
 																			onkeyup="igstInPercentFun()"
-																			name="quotationItem[0].igst">
+																			name="quotationItem[0].igst"min="0" step="0.25"
+																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
@@ -584,16 +619,16 @@
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value </label> <input
-																				type="text" class="form-control text-right" id="totalRs"
-																				placeholder="Total Value">
+																				type="text" class="form-control text-right"
+																				id="totalRs" placeholder="Total Value">
 																		</div>
 																	</div>
 
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value (INR)</label> <input
-																				type="text" class="form-control text-right" id="totalCount"
-																				placeholder="Total Value (INR)">
+																				type="text" class="form-control text-right"
+																				id="totalCount" placeholder="Total Value (INR)">
 																		</div>
 																	</div>
 
@@ -650,9 +685,8 @@
 
 
 	<script>
-	
-	document.getElementById("conversionValue").value=1;
-	
+		document.getElementById("conversionValue").value = 1;
+
 		function getIndentDetailByIndentNumber() {
 
 			var indentNumber = document.getElementById("indentNumber0").value;
