@@ -17,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.Item;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -118,8 +119,7 @@ public class PurchaseOrderItem {
 	@Column(name = "D_ADDRESS",length=150)
 	private String dAddress;
 
-	@Column(name = "TOTAL_VALUE",length=12)
-	private int totalValue;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "EMPLOYEE_CODE")
@@ -285,6 +285,12 @@ public class PurchaseOrderItem {
 	//@Type(type = "big_decimal")
 	//private double similarity;
 	
+	@Column(name = "TOTAL_VALUE", columnDefinition = "FLOAT(14,3)",nullable = true)
+	private double totalValue;
+	
+	@Column(name = "TOTAL_VALUE_INR", columnDefinition = "FLOAT(14,3)",nullable = true)
+	private double totalValueInr;
+	
 	
 	@Column(name = "CGST_VALUE",precision=15, scale=3,nullable = true)
 	//@Type(type = "big_decimal")
@@ -313,7 +319,7 @@ public class PurchaseOrderItem {
 	
 	 @ManyToOne(optional = false)
 	 @JoinColumn(name="PO_NO")
-	 @JsonIgnore
+	 @JsonBackReference
 	private PurchaseOrder purchaseOrder;
 
 	public PurchaseOrderItem() {
@@ -535,13 +541,31 @@ public class PurchaseOrderItem {
 		this.dAddress = dAddress;
 	}
 
-	public int getTotalValue() {
+	
+
+	public double getTotalValue() {
 		return totalValue;
 	}
 
-	public void setTotalValue(int totalValue) {
+
+
+	public void setTotalValue(double totalValue) {
 		this.totalValue = totalValue;
 	}
+
+
+
+	public double getTotalValueInr() {
+		return totalValueInr;
+	}
+
+
+
+	public void setTotalValueInr(double totalValueInr) {
+		this.totalValueInr = totalValueInr;
+	}
+
+
 
 	public Employee getEmployee() {
 		return employee;

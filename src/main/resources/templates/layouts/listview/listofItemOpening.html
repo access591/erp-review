@@ -81,7 +81,7 @@
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${item.itemCode}">Garrett Winters</td>
 															
-															<td th:text="${item.openingDate}">Garrett
+															<td th:text="${#dates.format(item.openingDate, 'dd-MMM-yyyy')}">Garrett
 																Winters</td>
 															<td th:text="${item.openingStock}">Garrett
 																Winters</td>

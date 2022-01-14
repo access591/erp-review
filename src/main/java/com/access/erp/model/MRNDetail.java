@@ -12,9 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.Store;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -98,8 +101,10 @@ public class MRNDetail {
 	@Column(name="SURCHARGE",length = 8)
 	private int surcharge;
 	
-	@Column(name="FREIGHT",length = 15)
-	private int freight;
+	
+	
+	@Column(name = "FREIGHT", columnDefinition = "FLOAT(14,3)",nullable = true)
+	private double freight;
 	
 	@Column(name="OCTROI",length = 15)
 	private int octroi;
@@ -161,12 +166,15 @@ public class MRNDetail {
 	@Column(name="PO_NO",length = 15)
 	private String poNo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="PO_DATE") //m or s 
 	private Date poDate;
 	
 	@ManyToOne
 	@JoinColumn(name="GATE_ENTRY_NO")
 	public GateEntry gateEntryNo;
+	
 	
 	@Column(name="GATE_ENTRY_DATE")
 	private Date gateEntryDate;
@@ -618,11 +626,13 @@ public class MRNDetail {
 		this.surcharge = surcharge;
 	}
 
-	public int getFreight() {
+	
+
+	public double getFreight() {
 		return freight;
 	}
 
-	public void setFreight(int freight) {
+	public void setFreight(double freight) {
 		this.freight = freight;
 	}
 

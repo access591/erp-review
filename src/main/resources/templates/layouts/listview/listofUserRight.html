@@ -45,6 +45,22 @@
 									<div class="box-header with-border">
 										<h3 class="box-title">List of User</h3>
 									</div>
+
+
+									<div class="box-header with-border text-right">
+										<a type="submit" id="submit"
+											th:href="@{/rightsreport}" target="_blank"
+											class="btn btn-link btn-sm">
+											<i class="fa fa-file-pdf-o"  style='font-size:20px'></i>Generate Pdf File
+										</a>
+										<a type="button" class="btn btn-link btn-sm"
+											th:href="@{/userRightExcelsheet}" target="_blank"
+											onclick="history.back()">
+											<i class="fa fa-file-excel-o" style='font-size:20px'></i> Excel
+										</a>
+									</div>
+
+
 									<!-- form start -->
 									<form role="form">
 										<div class="box-body">
@@ -56,7 +72,7 @@
 
 															<th scope="col">User Name</th>
 															<th scope="col">Employee</th>
-															
+
 															<th scope="col">Rights</th>
 
 															<th scope="col">Status</th>
@@ -75,11 +91,13 @@
 															<td th:text="${user.prgCode.programName}">Garrett
 																Winters</td>
 
-															<td  th:if="${user.active=='Y'}"><span class="badge bg-success">Active</span></td>
-															
-															<td  th:if="${user.active=='N'}"><span class="badge bg-success">Inactive</span></td>
-															
-															
+															<td th:if="${user.active=='Y'}"><span
+																class="badge bg-success">Active</span></td>
+
+															<td th:if="${user.active=='N'}"><span
+																class="badge bg-success">Inactive</span></td>
+
+
 
 															<td><span> <a
 																	th:href="@{/userrights/edit/{id}(id=${user.id})}"><em

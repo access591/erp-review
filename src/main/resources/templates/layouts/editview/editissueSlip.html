@@ -61,7 +61,7 @@
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i>WhareHouse</a></li>
 							<li><a href="#">Issue Slip</a></li>
-							<li class="active">Add Issue</li>
+							<li class="active">Add Page</li>
 
 						</ol>
 					</section>
@@ -215,7 +215,6 @@
 																<option value="S">Issue to Store</option>
 
 
-
 															</select>
 														</div>
 														<div class="form-group col-md-4">
@@ -297,28 +296,23 @@
 																	<tr>
 
 																		<th scope="col" class="text-center"
-																			style="width: 90px;">Store Description <label
-																			style="color: red">*</label></th>
+																			style="width: 90px;">Store Description <label style="color:red">*</label></th>
 
-
+																		
 
 
 
 																		<th scope="col" class="text-center">Item code</th>
 
-																		<th scope="col" class="text-center">Item
-																			Description</th>
+																		<th scope="col" class="text-center">Item Description</th>
 
 
 																		<th scope="col" class="text-center">UOM</th>
-																		<th scope="col" class="text-center">Qty Required
-																			<span style="color: red">*</span>
-																		</th>
+																		<th scope="col" class="text-center">Qty Required <span style="color:red">*</span></th>
 
 																		<th scope="col" class="text-center">Qty Iss</th>
 
-																		<th scope="col" class="text-center">Qty. Iss
-																			Conversion</th>
+																		<th scope="col" class="text-center">Qty. Iss Conversion</th>
 
 																		<th scope="col" class="text-center">Qty. In Stock</th>
 
@@ -332,13 +326,15 @@
 																</thead>
 
 																<tbody>
-																	<tr id="addr0">
+
+																	<tr th:each="row, stat :${issueSlip.issueSlipDetails}">
 
 																		<!-- store description  -->
 
 																		<td><select
 																			class="form-control indentContainer form-control-sm select"
-																			id="storeNAme0" name="issueSlipDetails[0].store"
+																			id="storeNAme0"
+																			th:field="*{issueSlipDetails[__${stat.index}__].store}"
 																			title="item" required>
 																				<option value="">Select</option>
 																				<option th:each="store :  ${storeList}"
@@ -356,9 +352,9 @@
 
 																		<td><select
 																			class="form-control itemContainer0 form-control-sm select"
-																			id="itemCode0" name="issueSlipDetails[0].item"
-																			style="width: 180px;" title="item"
-																			onchange='getItemInfo()' required>
+																			id="itemCode0" style='width: 180px'
+																			th:field="*{issueSlipDetails[__${stat.index}__].item}"
+																			title="item" onchange='getItemInfo()' required>
 																				<option value="">Select</option>
 
 																		</select></td>
@@ -366,12 +362,14 @@
 																		<!-- UOM -->
 																		<td><input type="text" id="uom0"
 																			class="form-control form-control-sm" title="net qty"
-																			name="issueSlipDetails[0].uom" readonly></td>
+																			th:field="*{issueSlipDetails[__${stat.index}__].uom}"
+																			readonly></td>
 
 																		<!-- Qty Required  -->
 																		<td><input type="number" id="qtyRequired0"
 																			class="form-control form-control-sm text-right"
-																			title="net qty" name="issueSlipDetails[0].qtyReq"
+																			title="net qty"
+																			th:field="*{issueSlipDetails[__${stat.index}__].qtyReq}"
 																			step="0.25"
 																			onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'
 																			value='0.00' readonly></td>
@@ -381,7 +379,8 @@
 																			class="form-control form-control-sm text-right"
 																			id="qtyIssue0" step="0.25" title="srNoClaimUnder"
 																			onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'
-																			name="issueSlipDetails[0].qtyIssue" value='0.00'></td>
+																			th:field="*{issueSlipDetails[__${stat.index}__].qtyIssue}"
+																			value='0.00'></td>
 
 																		<!-- qty Issue Conversion  -->
 																		<td><input type="text"
@@ -389,7 +388,8 @@
 																			id="issueConversion0" title="" step="0.25"
 																			style="width: 150px"
 																			onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'
-																			name="issueSlipDetails[0].qtyIssueConv" readonly></td>
+																			th:field="*{issueSlipDetails[__${stat.index}__].qtyIssueConv}"
+																			readonly></td>
 
 																		<!-- qty in stock  -->
 
@@ -406,7 +406,8 @@
 																			class="form-control form-control-sm text-right"
 																			value='0.00' id="issueRate0" title=""
 																			style="width: 150px"
-																			name="issueSlipDetails[0].issueRate" step="0.25"
+																			th:field="*{issueSlipDetails[__${stat.index}__].issueRate}"
+																			step="0.25"
 																			onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)'></td>
 
 
@@ -415,7 +416,7 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="" style="width: 150px"
-																			name="issueSlipDetails[0].lotNo"></td>
+																			th:field="*{issueSlipDetails[__${stat.index}__].lotNo}"></td>
 
 
 																	</tr>
@@ -529,7 +530,7 @@
 
 											});
 
-							$('.itemContainer'+idIndex).html(options);
+							$('.itemContainer' + idIndex).html(options);
 						},
 						error : function() {
 							console.log("Error");
@@ -540,9 +541,9 @@
 
 		function getItemInfo() {
 
-			var itemCode = document.getElementById("itemCode"+idIndex).value;
+			var itemCode = document.getElementById("itemCode" + idIndex).value;
 			var reqNum = document.getElementById("reqNum").value;
-			document.getElementById("item"+idIndex).value = itemCode;
+			document.getElementById("item" + idIndex).value = itemCode;
 			$.ajax({
 				type : "GET",
 				url : "iteminfo/againstreq/" + reqNum + "/" + itemCode,
@@ -552,13 +553,19 @@
 					console.log("response data : " + JSON.stringify(data));
 					//materialRequisitionDetail
 
-					console.log("uom required : " + data.materialRequisitionDetail.item.uom.uomCode)
-					console.log("qty required : " + data.materialRequisitionDetail.qtyRequired)
-					
-					console.log("qty in stock : " + data.itemOpening.currentStock)
-					$("#uom"+idIndex).val(data.materialRequisitionDetail.item.uom.uomCode);
-					$("#qtyRequired"+idIndex).val(data.materialRequisitionDetail.qtyRequired)
-					$("#qtyInStock"+idIndex).val(data.itemOpening.currentStock)
+					console.log("uom required : "
+							+ data.materialRequisitionDetail.item.uom.uomCode)
+					console.log("qty required : "
+							+ data.materialRequisitionDetail.qtyRequired)
+
+					console.log("qty in stock : "
+							+ data.itemOpening.currentStock)
+					$("#uom" + idIndex).val(
+							data.materialRequisitionDetail.item.uom.uomCode);
+					$("#qtyRequired" + idIndex).val(
+							data.materialRequisitionDetail.qtyRequired)
+					$("#qtyInStock" + idIndex).val(
+							data.itemOpening.currentStock)
 
 				},
 				error : function() {
@@ -567,11 +574,8 @@
 			});
 
 		}
-		
-		
-		function getStoreList(){
-			
-			
+
+		function getStoreList() {
 
 			$
 					.ajax({
@@ -603,13 +607,13 @@
 
 											});
 
-							$('.storeContainer'+idIndex).html(options);
+							$('.storeContainer' + idIndex).html(options);
 						},
 						error : function() {
 							console.log("Error");
 						}
 					});
-			
+
 		}
 
 		function selectEmployee() {
@@ -695,82 +699,11 @@
 	</script>
 
 
-	<script>
-	
-	var idIndex=0;
-		$(document)
-				.ready(
-						function() {
-							console.log("ready!");
 
-							var j = 1;
-
-							$('#add_row')
-									.click(
-											function() {
-
-												console
-														.log("add clickk function")
-												idIndex++;
-												$('#addr' + j)
-														.html(
-																<!-- store description  -->
-																"<td><select class='form-control storeContainer"+j+" form-control-sm select'  id='storeNAme"+j+"' name='issueSlipDetails["+j+"].store' title='item' required>option value=''>Select</option><option th:each='store :  ${storeList}'  th:text='${store.description}' th:value=' ${store.storeCode}'></option></select></td>"
-
-																
-
-																		<!-- item code -->
-																		+ "<td><input type='text' class='form-control form-control-sm' id='item"+j+"' title='description' readonly></td>" // Item Code
-
-																		<!-- item description  -->
-																		+ "<td><select class='form-control itemContainer"+j+" form-control-sm select'id='itemCode"+j+"' name='issueSlipDetails["+j+"].item'title='item' onchange='getItemInfo()' style='width: 180px' required><option value=''>Select</option></select></td>"
-
-																		<!-- UOM -->
-																		+ "<td><input type='text' id='uom"+j+"' class='form-control form-control-sm' title='net qty' name='issueSlipDetails["+j+"].uom' readonly></td>"
-
-																		<!-- Qty Required  -->
-																		+ "<td><input type='number' id='qtyRequired"+j+"' class='form-control form-control-sm text-right' title='net qty' name='issueSlipDetails["+j+"].qtyReq' step='0.25' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' readonly></td>" // Item Code
-
-																		<!-- Qty Issue   -->
-																		+ "<td><input type='number' class='form-control form-control-sm text-right' iid='qtyIssue"+j+"' step='0.25' title='srNoClaimUnder' name='issueSlipDetails["+j+"].qtyIssue'onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' value='0.00' ></td>" // Item Code
-
-																		<!-- qty Issue Conversion  -->
-																		+ "<td><input type='text' class='form-control form-control-sm' id='issueConversion"+j+"' title='' step='0.25' style='width: 150px' name='issueSlipDetails["+j+"].qtyIssueConv' readonly></td>" // Item Code
-
-																		<!-- qty in stock  -->
-																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='qtyInStock"+j+"' title='' step='0.25' style='width: 150px' value='0.00' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' readonly></td>" // Item Code
-
-																		<!-- issue rate  -->
-																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='issueRate"+j+"' title='' style='width: 150px' name='issueSlipDetails["+j+"].issueRate' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' value='0.00'></td>" // Item Code
-
-																		<!-- lot No. -->
-																		+ "<td><input type='text' class='form-control form-control-sm' id='orderItemuom' title='' style='width: 150px' name='issueSlipDetails["+j+"].lotNo' this.value = parseFloat(this.value).toFixed(2);></td>" // Item Code
-
-														);
-												$('#example').append(
-														'<tr id="adr' + (j + 1)
-																+ '"></tr>');
-
-												getStoreList()
-												getItemListAgainstReq()
-												//listOfSupplierInfo()
-
-												j++;
-
-											});
-
-							$("#delete_row").click(function() {
-								if (j > 1) {
-									$("#adr" + (j - 1)).html('');
-
-									idIndex--;
-									j--;
-
-								}
-							});
-						});
-	</script>
-	
+	<!--   <section class="content">
+        
+        
+        </section>-->
 
 	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/myjs.js}"></script>
 

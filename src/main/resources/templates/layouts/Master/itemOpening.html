@@ -61,9 +61,9 @@
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
+							<li><a href="#">Item</a></li>
+							<li class="active">Add page</li>
 						</ol>
 					</section>
 
@@ -71,46 +71,70 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+
+						<!-- form start -->
+						<form id="itemOpeningForm" role="form"
+							th:action="@{/itemopening/}" method="POST"
+							th:object="${itemOpening}">
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-12">
-									<div class="col-md-2"></div>
+								<div class="row">
 
 
-									<div class="col-md-8 shadow bg-white rounded"
-										style="margin-top: 20px;">
-										<!-- general form elements -->
-										<div class="box box-primary">
-											<input type="hidden" id="mess" name="mess"
-												th:value="${message}">
-											<div class="box-header with-border">
-												<!--<h3 class="box-title">Category Master</h3>-->
-											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form id="itemOpeningForm" role="form"
-												th:action="@{/itemopening/}" method="POST"
-												th:object="${itemOpening}">
+									<!-- left column -->
+									<div class="col-md-12">
+
+										<div class="box-header with-border text-right">
+
+											<button type="submit" id="submit"
+												class="btn btn-primary btn-sm">
+												<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+											</button>
+											<button type="reset" value="reset"
+												class="btn btn-secondary btn-sm">
+												<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+											</button>
+
+											<a th:href="@{/itemopening/list}"
+												class="btn btn-success btn-sm"> <i class="fa fa-list"
+												aria-hidden="true"></i> View All
+											</a>
+
+
+
+										</div>
+
+										<div class="col-md-2"></div>
+
+
+										<div class="col-md-8 shadow bg-white rounded"
+											style="margin-top: 20px;">
+											<!-- general form elements -->
+											<div class="box box-primary">
+												<input type="hidden" id="mess" name="mess"
+													th:value="${message}">
+												<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
+												</div>
+												<!-- /.box-header -->
+
 												<div class="box-body">
 
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Item Code</label> <input
 															type="text" class="form-control" id="itemCode"
-															placeholder="Item Code" title="item code"
-															readonly>
+															placeholder="Item Code" title="item code" readonly>
 													</div>
 
 													<div class="form-group col-md-6">
 														<label for="inputEmail4">Item Description</label><span
 															style="color: red">*</span> <select class="form-control"
-															id="itemDescription" th:field="*{itemCode}" onchange='getItemDetail()'
-															title="item code" required>
+															id="itemDescription" th:field="*{itemCode}"
+															onchange='getItemDetail()' title="item code" required>
 															<option value="">Select</option>
 															<option th:each="item :  ${listItem}"
 																th:text="${item.description}"
@@ -174,30 +198,26 @@
 												</div>
 												<!-- /.box-body -->
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
+												
 
 
-											</form>
 
 
+
+											</div>
+											<!-- /.box -->
+											
 										</div>
-										<!-- /.box -->
-										<div
-											style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/itemopening/list}">View All Item-Opening</a>
-										</div>
+
+
+										<div class="col-md-2"></div>
 									</div>
 
-
-									<div class="col-md-2"></div>
 								</div>
 
 							</div>
 
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -248,11 +268,11 @@
 		function getItemDetail() {
 
 			var itemCode = document.getElementById("itemDescription").value;
-			
+
 			document.getElementById("itemCode").value = itemCode;
 			$.ajax({
 				type : "GET",
-				url : "/itemopening/itemdetail/" + itemCode,
+				url : "itemdetail/" + itemCode,
 
 				success : function(data) {
 					//$("#resultarea").text(data);

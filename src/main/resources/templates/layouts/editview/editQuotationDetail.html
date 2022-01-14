@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -47,21 +47,34 @@
 				<section class="content-wrapper">
 
 
-					<div class="row">
-						<!-- left column -->
+					<!-- form start -->
+					<form role="form" th:action="@{/quotationdetail/}"
+						th:object="${quotation}" method="POST">
+
+						<div class="row">
+							<!-- left column -->
 
 
 
 
-						<div class="col-md-12" style="margin-top: 20px;">
+							<div class="col-md-12" style="margin-top: 20px;">
 
-							<div class="box box-primary">
-								<div class="box-header with-border">
-									<h3 class="box-title">Quotation Details</h3>
-								</div>
-								<!-- form start -->
-								<form role="form" th:action="@{/quotationdetail/}"
-									th:object="${quotation}" method="POST">
+								<div class="box box-primary">
+									<div class="box-header with-border">
+										<h3 class="box-title">Quotation Details</h3>
+									</div>
+
+									<div class="box-header with-border text-right">
+										<button type="submit" id="submit"
+											class="btn btn-primary btn-sm">
+											<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+										</button>
+										<button type="button" class="btn btn-danger btn-sm"
+											onclick="history.back()">
+											<i class="fa fa-step-backward"></i> Go Back
+										</button>
+									</div>
+
 									<div class="box-body">
 
 										<div class="container-fluid">
@@ -102,11 +115,12 @@
 																	<div class="form-group col-md-4">
 																		<label for="inputPassword4">Nature of Purchase</label>
 																		//capitalYn <select class="form-control"
-																			 title="nature of purchase"
-																			required id="" th:field="*{capitalYn}">
+																			title="nature of purchase" required id=""
+																			th:field="*{capitalYn}">
 																			<option value="">Select</option>
 																			<option value="C">Capital</option>
-																			<option value="N">Non-Capital</option>	</select>
+																			<option value="N">Non-Capital</option>
+																		</select>
 																	</div>
 
 																	<div class="form-group col-md-4">
@@ -200,7 +214,8 @@
 																<div class="form-group col-md-4">
 																	<label for="inputAddress">Form Type</label> <input
 																		type="text" class="form-control" id="inputAddress"
-																		placeholder="from type">    <!-- th:field="*{quotType}" -->
+																		placeholder="from type">
+																	<!-- th:field="*{quotType}" -->
 																</div>
 															</div>
 															<!-- /.box-body -->
@@ -216,9 +231,9 @@
 																		class="form-control" onchange="changeCurrency()"
 																		title="currency Name" required id="currencyCode"
 																		th:field="*{currencyCode}">
-																		<option value="">Select </option>
+																		<option value="">Select</option>
 																		<option value="I">INR</option>
-																		<option value="U">USD </option>
+																		<option value="U">USD</option>
 																		<!-- <option th:each="currency :  ${listCurrencyMaster}"
 																			th:text="${currency.currencyCode}"
 																			th:value=" ${currency.currencyValue}"></option> -->
@@ -260,8 +275,7 @@
 																<div class="form-group col-md-4">
 																	<label for="inputEmail4">Term and Condition</label> <input
 																		type="text" class="form-control" id="inputEmail4"
-																		placeholder="delivery period"
-																		>
+																		placeholder="delivery period">
 																</div>
 
 
@@ -287,7 +301,7 @@
 																			style="width: 90px;">Indent Number</th>
 																		<th scope="col" class="text-center"
 																			style="width: 130px;">Indent Date</th>
-																		
+
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Employee</th>
 																		<th scope="col" class="text-center"
@@ -310,7 +324,7 @@
 																	</tr>
 																</thead>
 																<tbody>
-																<tr id="addr0"
+																	<tr id="addr0"
 																		th:each="row, stat :${quotation.quotationItem}">
 
 
@@ -350,7 +364,7 @@
 
 
 
-																<!-- 		<td><select
+																		<!-- 		<td><select
 																			class="select form-control form-control-sm itemContainer"
 																			id="item" title="item" required
 																			th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
@@ -359,10 +373,11 @@
 
 
 																		</select></td> -->
-																		
-																			<td><input type="text" id="item" title="item"  th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
+
+																		<td><input type="text" id="item" title="item"
+																			th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
 																			class="form-control form-control-sm" required></td>
-																		
+
 
 																		<td><input type="text" id="itemDescriptin"
 																			class="form-control form-control-sm" required></td>
@@ -421,12 +436,16 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Trade
 																		Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" onkeyup="totalDiscountInPercentFun()"
-																			id="totalDiscountInPercent" placeholder="Total Discount(%)" th:field="*{quotationItem[0].discountValue}">
+																		<input type="number" class="form-control"
+																			onkeyup="totalDiscountInPercentFun()"
+																			id="totalDiscountInPercent"
+																			placeholder="Total Discount(%)"
+																			th:field="*{quotationItem[0].discountValue}">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
-																			id="totalDiscountInValue" placeholder="Total Discount">
+																			id="totalDiscountInValue"
+																			placeholder="Total Discount">
 																	</div>
 																</div>
 															</div>
@@ -437,8 +456,10 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" onkeyup="discountInPercentFun()"
-																			id="discountInPercent" placeholder="Discount(%)"  th:field="*{quotationItem[0].discount}">
+																		<input type="number" class="form-control"
+																			onkeyup="discountInPercentFun()"
+																			id="discountInPercent" placeholder="Discount(%)"
+																			th:field="*{quotationItem[0].discount}">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control"
@@ -447,7 +468,7 @@
 																</div>
 															</div>
 
-														
+
 
 															<div class="form-group row">
 
@@ -455,7 +476,8 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="packing"
-																			placeholder="Packing" th:field="*{quotationItem[0].packing}">
+																			placeholder="Packing"
+																			th:field="*{quotationItem[0].packing}">
 																	</div>
 
 																</div>
@@ -469,7 +491,8 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Freight</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control" id="freight"
-																			placeholder="Freight"  th:field="*{quotationItem[0].freight}">
+																			placeholder="Freight"
+																			th:field="*{quotationItem[0].freight}">
 																	</div>
 
 																</div>
@@ -481,12 +504,15 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">SGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="sgstInPercent"
-																			placeholder="Sgst(%)" onkeyup="sgstInPercentFun()"  th:field="*{quotationItem[0].sgst}">
+																		<input type="number" class="form-control"
+																			id="sgstInPercent" placeholder="Sgst(%)"
+																			onkeyup="sgstInPercentFun()"
+																			th:field="*{quotationItem[0].sgst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="sgstInValue"
-																			placeholder="Sgst"  th:field="*{quotationItem[0].sgstValue}">
+																		<input type="number" class="form-control"
+																			id="sgstInValue" placeholder="Sgst"
+																			th:field="*{quotationItem[0].sgstValue}">
 																	</div>
 																</div>
 															</div>
@@ -496,12 +522,15 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">CGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="cgstInPercent"
-																			placeholder="Cgst(%)" onkeyup="cgstInPercentFun()" th:field="*{quotationItem[0].cgst}">
+																		<input type="number" class="form-control"
+																			id="cgstInPercent" placeholder="Cgst(%)"
+																			onkeyup="cgstInPercentFun()"
+																			th:field="*{quotationItem[0].cgst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="cgstInValue"
-																			placeholder="Cgst" th:field="*{quotationItem[0].cgstValue}">
+																		<input type="number" class="form-control"
+																			id="cgstInValue" placeholder="Cgst"
+																			th:field="*{quotationItem[0].cgstValue}">
 																	</div>
 																</div>
 															</div>
@@ -511,12 +540,15 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">IGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="igstInPercent"
-																			placeholder="Igst(%)" onkeyup="igstInPercentFun()"  th:field="*{quotationItem[0].igst}" >
+																		<input type="number" class="form-control"
+																			id="igstInPercent" placeholder="Igst(%)"
+																			onkeyup="igstInPercentFun()"
+																			th:field="*{quotationItem[0].igst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="igstInValue"
-																			placeholder="Igst"  th:field="*{quotationItem[0].igstValue}">
+																		<input type="number" class="form-control"
+																			id="igstInValue" placeholder="Igst"
+																			th:field="*{quotationItem[0].igstValue}">
 																	</div>
 																</div>
 															</div>
@@ -544,12 +576,12 @@
 																				placeholder="Total Value">
 																		</div>
 																	</div>
-																	
+
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value (INR)</label> <input
 																				type="text" class="form-control" id="totalCount"
-																				placeholder="Total Value (INR)" >
+																				placeholder="Total Value (INR)">
 																		</div>
 																	</div>
 
@@ -578,30 +610,24 @@
 
 											</div>
 
-											<div class="box-footer">
-												<button type="submit" class="btn btn-primary">Apply Changes </button>
-													<input type="button" value="Go back!"
-														class="btn btn-danger" onclick="history.back()">
-											</div>
-								</form>
-
-
-								<div class="box-footer">
-									<div style="width: parent; text-align-last: right; margin: 8px">
-										<a th:href="@{/quotationdetail/list}">View All Quotation
-											Detail</a>
+											<div class="box-footer"></div>
+										</div>
 									</div>
 
+
+
+									<div class="box-footer"></div>
+									<!-- end form -->
 								</div>
-								<!-- end form -->
 							</div>
+
+
+
+
+
 						</div>
 
-
-
-
-
-					</div>
+					</form>
 				</section>
 			</div>
 		</div>
@@ -655,10 +681,12 @@
 									.each(
 											function(index, value) {
 
-												console.log("item info : party code /supplier "
-														+ value.partyCode)
-												console.log("item info : party name"
-														+ value.partyName)
+												console
+														.log("item info : party code /supplier "
+																+ value.partyCode)
+												console
+														.log("item info : party name"
+																+ value.partyName)
 
 												options += '<option value="' + value.partyCode + '">'
 														+ value.partyName
@@ -749,34 +777,31 @@
 			totalInrValue = itemRate * itemQty;
 
 			document.getElementById("totalInrValue0").value = totalInrValue;
-			
+
 			calculationOfTotalValue();
 
 		}
-		
-		
-		
-		window.addEventListener("load", myInit, true); 
-		function myInit(){ 
+
+		window.addEventListener("load", myInit, true);
+		function myInit() {
 			changeRequestForQuotation();
 			//getIndentDetailByIndentNumber();
-			
+
 			//supplierInfo1()
 			//changeItem();
-			
-		}; 
-		
-		
+
+		};
+
 		function changeItem() {
 
 			var itemCode = document.getElementById("item").value;
 			console.log("ItemCode is : " + itemCode)
 
 			$.ajax({
-				type: "GET",
-				url: "itemInfo/" + itemCode,
+				type : "GET",
+				url : "itemInfo/" + itemCode,
 
-				success: function(data) {
+				success : function(data) {
 					console.log("Item Info behalf of Indent Number  : " + data)
 
 					$("#itemDescriptin").val(data.description)
@@ -785,18 +810,13 @@
 
 					$("#itemQty0").val('0');
 
-
-
-
-
-				}, error: function() {
+				},
+				error : function() {
 					console.log("Error");
 				}
 			});
 
 		}
-		
-		
 	</script>
 	<!--   <section class="content">
         

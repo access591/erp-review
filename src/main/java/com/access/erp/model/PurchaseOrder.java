@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "PURCHASE_ORDER")
@@ -364,7 +365,19 @@ public class PurchaseOrder {
 
 	@Column(name = "INSP_REMARKS", length = 50)
 	private String inspRemarks;
-
+	
+	@Column(name = "PURCHASE_THROUGH", length = 2)
+	private String purchaseThrogh;
+	
+	
+	
+	//potype for purchase throu 
+	// material type 
+ // detail mat_Serv_type char 
+	// detail - total 
+	//master - total value 
+	
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "TIME_BASE_DT")
 	private Date timeBaseDt;
@@ -428,6 +441,7 @@ public class PurchaseOrder {
 
 	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	// @Fetch(value = FetchMode.SUBSELECT)
+	@JsonManagedReference
 	private List<PurchaseOrderItem> listPurchaseOrderItem = new ArrayList<>();
 
 	public PurchaseOrder() {
@@ -453,6 +467,16 @@ public class PurchaseOrder {
 
 	public String getCancStatus() {
 		return cancStatus;
+	}
+	
+	
+
+	public String getPurchaseThrogh() {
+		return purchaseThrogh;
+	}
+
+	public void setPurchaseThrogh(String purchaseThrogh) {
+		this.purchaseThrogh = purchaseThrogh;
 	}
 
 	public void setCancStatus(String cancStatus) {

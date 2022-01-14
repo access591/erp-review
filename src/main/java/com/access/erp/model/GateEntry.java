@@ -50,6 +50,8 @@ public class GateEntry {
 	@Column(name = "GR_NUMBER", length = 25)
 	private String grNumber;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "GR_DATE")
 	private Date grDate;
 

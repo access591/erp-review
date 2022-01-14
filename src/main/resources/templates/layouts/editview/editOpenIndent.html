@@ -44,14 +44,15 @@
 	font-size: 12px;
 }
 
-.yelow-bg{
+.yelow-bg {
 	background: #fafab9;
 }
 </style>
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" onload="selectItem()">
+<body class="hold-transition skin-blue sidebar-mini"
+	onload="selectItem()">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -78,32 +79,47 @@
 					<!-- Main content -->
 					<section class="content">
 
-						<!-- Default box -->
-						<div class="box">
+						<!-- form start -->
+						<form role="form" th:action="@{/openindent/}" method="POST"
+							th:object="${openIndent}">
+
+
+							<!-- Default box -->
+							<div class="box">
 
 
 
-							<div class="row">
-								<!-- left column -->
+								<div class="row">
+									<!-- left column -->
 
-								<div class="col-md-12 shadow bg-white rounded"
-									style="margin-top: 20px;">
-									<!-- general form elements -->
-									<div class="box box-primary">
-										<input type="hidden" id="mess" name="mess"
-											th:value="${message}">
- 
-										<div class="box-header with-border">
+									<div class="col-md-12 shadow bg-white rounded"
+										style="margin-top: 20px;">
+										<!-- general form elements -->
+										<div class="box box-primary">
+											<input type="hidden" id="mess" name="mess"
+												th:value="${message}">
 
-											<h6 class="box-title">Indent Detail</h6>
-										</div>
-										<!-- /.box-header -->
+											<div class="box-header with-border">
+
+												<h6 class="box-title">Indent Detail</h6>
+											</div>
+
+											<div class="box-header with-border text-right">
+												<button type="submit" id="submit"
+													class="btn btn-primary btn-sm">
+													<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply
+													Changes
+												</button>
+												<button type="button" class="btn btn-danger btn-sm"
+													onclick="history.back()">
+													<i class="fa fa-step-backward"></i> Go Back
+												</button>
+											</div>
+											<!-- /.box-header -->
 
 
 
-										<!-- form start -->
-										<form role="form" th:action="@{/openindent/}" method="POST"
-											th:object="${openIndent}">
+
 											<div class="box-body">
 
 												<div class="form-group col-md-4">
@@ -116,7 +132,7 @@
 													<label for="inputPassword4">Indent Date</label> <input
 														type="date" class="form-control" id="indentDate"
 														placeholder="Indent Date" title="indent date"
-														th:field="*{indentDate}" readonly>
+														th:field="*{indentDate}">
 												</div>
 
 
@@ -237,7 +253,8 @@
 
 
 																		<th scope="col" class="text-center">Currency Code</th>
-																		<th scope="col" class="text-center">Item Rate<span style="color: red">*</span></th>
+																		<th scope="col" class="text-center">Item Rate<span
+																			style="color: red">*</span></th>
 																		<th scope="col" class="text-center">Units</th>
 																		<th scope="col" class="text-center">Total value</th>
 																		<th scope="col" class="text-center">Total
@@ -263,8 +280,9 @@
 
 																		<td><input type="hidden"
 																			th:field="*{opeIndentDetail[__${stat.index}__].id}" />
-																		
-																			<input type="text" id="indItemDescription" th:id="'indItemDescription' + ${stat.index}"
+
+																			<input type="text" id="indItemDescription"
+																			th:id="'indItemDescription' + ${stat.index}"
 																			title="item description"
 																			class="form-control form-control-sm" readonly></td>
 
@@ -272,7 +290,8 @@
 																		<!-- item description -->
 																		<td><select
 																			class="select form-control form-control-sm itemContainer0"
-																			th:id="'indItemCode'+${stat.index} " title="item code"
+																			th:id="'indItemCode'+${stat.index} "
+																			title="item code"
 																			th:field="*{opeIndentDetail[__${stat.index}__].indItemCode}"
 																			onchange="selectItem()" required style="width: 250px">
 																				<option value="">Select Item</option>
@@ -357,14 +376,15 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm" title=""
 																			th:id="'uomCode'+${stat.index}" required></td>
-																			
-																			
+
+
 																		<!-- total value inr-total value  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField yelow-bg"
 																			id="totalValueInr0" title="Salary"
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
-																			style="text-align: right; background-color:#fafab9; "  readonly></td>
+																			style="text-align: right; background-color: #fafab9;"
+																			readonly></td>
 
 
 
@@ -372,9 +392,10 @@
 																		<!--total value - inr -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="totalValue0" required title="total value" 
+																			id="totalValue0" required title="total value"
 																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
-																			style="text-align: right; background-color:#fafab9; "  readonly></td>
+																			style="text-align: right; background-color: #fafab9;"
+																			readonly></td>
 
 																		<!-- requisition date -->
 																		<td><input type="date"
@@ -428,63 +449,70 @@
 												<div class="box-body">
 
 													<div class="form-row">
-															<div th:if="${openIndent.approvalStatus=='N'}" class="form-group col-md-4">
-														<!--  approvalStatus --> 
+														<div th:if="${openIndent.approvalStatus=='N'}"
+															class="form-group col-md-4">
+															<!--  approvalStatus -->
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
 																value="Pending" readonly>
-														
+
 														</div>
-														
-														<div th:if="${openIndent.approvalStatus=='Y'}"  class="form-group col-md-4">
-														<!--  approvalStatus --> 
+
+														<div th:if="${openIndent.approvalStatus=='Y'}"
+															class="form-group col-md-4">
+															<!--  approvalStatus -->
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
 																value="Approved" readonly>
 														</div>
-														
-														<div th:unless="${openIndent.approvalStatus!='Y' || openIndent.approvalStatus!='N' }"  class="form-group col-md-4">
-														<!--  approvalStatus --> 
+
+														<div
+															th:unless="${openIndent.approvalStatus!='Y' || openIndent.approvalStatus!='N' }"
+															class="form-group col-md-4">
+															<!--  approvalStatus -->
 															<label for="inputEmail4">Approval Status</label> <input
 																type="text" class="form-control" id="inputEmail4"
 																placeholder="Approval Status" title="approval status"
 																readonly>
 														</div>
-														
-														
-														
+
+
+
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Date of Approval</label> <input
 																type="date" class="form-control" id="inputPassword4"
 																placeholder="Date of Approval" title="date of approval"
 																th:field="*{approvalDate1}" readonly>
 														</div>
-														
-														
-														<div th:if="${openIndent.authEmpCode != null}"class="form-group col-md-4">
+
+
+														<div th:if="${openIndent.authEmpCode != null}"
+															class="form-group col-md-4">
 															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
 																placeholder="Approved By" title="purchase status"
 																th:field="*{authEmpCode.empName}" readonly>
 														</div>
-														
-														
-														<div th:if="${openIndent.authEmpCode == null}"class="form-group col-md-4">
+
+
+														<div th:if="${openIndent.authEmpCode == null}"
+															class="form-group col-md-4">
 															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
 																placeholder="Approved By" title="purchase status"
 																readonly>
 														</div>
-														
-														<div th:if="${openIndent.authEmpCode == '  '}"class="form-group col-md-4">
+
+														<div th:if="${openIndent.authEmpCode == '  '}"
+															class="form-group col-md-4">
 															<label for="inputPassword4">Approved By</label> <input
 																type="text" class="form-control" id="inputPassword4"
 																placeholder="Approved By" title="purchase status"
 																readonly>
 														</div>
-														
+
 
 													</div>
 
@@ -495,30 +523,24 @@
 
 
 
-											<div class="box-footer" style="margin: 10px">
-												<input type="submit" value="Apply Changes " class="btn btn-primary" />
-												<input type="button" value="Go back!" class="btn btn-danger"
-													onclick="history.back()">
-											</div>
 
 
-										</form>
-
-
-									</div>
-									<!-- /.box -->
-									<!-- <div style="width: parent; text-align-last: right; margin: 8px">
+										</div>
+										<!-- /.box -->
+										<!-- <div style="width: parent; text-align-last: right; margin: 8px">
 										<a th:href="@{/openindent/list}">View all Records</a>
 									</div> -->
 
 
 
 
+									</div>
+									<!--end left column-->
 								</div>
-								<!--end left column-->
+
 							</div>
 
-						</div>
+						</form>
 					</section>
 				</section>
 			</div>
@@ -537,7 +559,6 @@
 		document.getElementById('indentDate').valueAsDate = new Date();
 
 		var idIndex = 0;
-		
 	</script>
 
 
@@ -582,23 +603,20 @@
 
 
 	<script>
-	
 		var idIndex = 0;
-		
+
 		function selectItem() {
 
 			console.log("id index value is : " + idIndex)
-			
+
 			var length = document.getElementById("length").value;
 			console.log("length is : " + length)
 
 			console.log("Item code : " + itemCode);
 
 			//document.getElementById("indItemDescription" + idIndex).value = itemCode
-			
-			
 
-			for(let i=0;i<length;i++){
+			for (let i = 0; i < length; i++) {
 
 				idIndex = i;
 				var itemCode = document.getElementById("indItemCode" + i).value;
@@ -610,28 +628,20 @@
 
 					success : function(data) {
 
-						
-					
-
 						console.log("response data : " + data);
 						console.log("in loop : " + i)
 
-					
-						
-					/* 	$("#indItemDescription" + i).val(
-								data.item.itemCode); */
-						
-						$("#uomCode" + i).val(
-								data.item.uom.uomCode);
-						
-					
+						/* 	$("#indItemDescription" + i).val(
+									data.item.itemCode); */
+
+						$("#uomCode" + i).val(data.item.uom.uomCode);
 
 					},
 					error : function() {
 						console.log("Error");
 					}
 				});
-				
+
 			}
 
 		}
@@ -643,7 +653,7 @@
 
 			document.getElementById("qtyProcured" + idIndex).value = indQty;
 			document.getElementById("approvedQty" + idIndex).value = indQty;
-			
+
 			floatNumberField()
 		}
 
@@ -657,7 +667,7 @@
 
 			document.getElementById("totalValueInr" + idIndex).value = total;
 			document.getElementById("totalValue" + idIndex).value = total;
-			
+
 			floatNumberField()
 		}
 
@@ -689,7 +699,7 @@
 			});
 
 		}
-		
+
 		$(document).ready(function() {
 			$(".floatNumberField").change(function() {
 				$(this).val(parseFloat($(this).val()).toFixed(2));
