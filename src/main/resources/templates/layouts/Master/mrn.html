@@ -712,7 +712,13 @@ iframe {
 									data.gateEntry.gateEntryDate)
 
 							$("#gst").val(data.poGst)
-							$("#currency").val(data.currency)
+							console.log("currency is : " + data.currency)
+							if(data.currency==='U'){
+								$("#currency").val("U")
+							}else{
+								$("#currency").val("I")
+							}
+							
 							$("#conversionValue").val(data.conversionValue)
 
 							$(data)
@@ -844,7 +850,10 @@ iframe {
 
 			var result = recQty * poRate;
 			console.log("result value is : " + result)
+			document.getElementById("totalCost"+idIndex).value = result;
+			document.getElementById("netCost"+idIndex).value = result;
 			document.getElementById("totalInrCost" + idIndex).value = result;
+			document.getElementById("totalPrCost" + idIndex).value = result;
 
 		}
 	</script>
@@ -943,7 +952,7 @@ iframe {
 
 																		/* total cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='totalCost"+j+" '  title='total cost' name='mrnDetails["+j+"].totalvalue' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' value='0.00'></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='totalCost"+j+"'  title='total cost' name='mrnDetails["+j+"].totalvalue' step='0.25' onchange='(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)' value='0.00'></td>"
 
 																		/*  net cost  */
 
@@ -951,7 +960,7 @@ iframe {
 
 																		/*  total per cost  */
 
-																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='totalPerCost'"+j+" title='total pur cost' name='mrnDetails["+j+"].totalPurCost' step='0.25' value='0.00' readonly></td>"
+																		+ "<td><input type='number' class='form-control form-control-sm text-right' id='totalPrCost"+j+"' title='total pur cost' name='mrnDetails["+j+"].totalPurCost' step='0.25' value='0.00' readonly></td>"
 
 																		/*  total inr cost  */
 

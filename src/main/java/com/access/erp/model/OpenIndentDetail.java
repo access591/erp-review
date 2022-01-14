@@ -53,6 +53,17 @@ public class OpenIndentDetail {
 	@Column(name = "TOTAL_VALUE", length = 16)
 	private String totalValue;
 	
+	@Column(name = "TOTAL_VALUE_INR", length = 16)
+	private String totalValueInr;
+	
+	public String getTotalValueInr() {
+		return totalValueInr;
+	}
+
+	public void setTotalValueInr(String totalValueInr) {
+		this.totalValueInr = totalValueInr;
+	}
+
 	@Column(name = "CURRENCY_CODE", length = 6)
 	private String currencyCode;
 	

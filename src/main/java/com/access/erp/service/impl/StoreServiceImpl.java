@@ -48,4 +48,10 @@ public class StoreServiceImpl implements StoreService {
 		storeRepo.deleteById(storeCode);		
 	}
 
+	@Override
+	public List<Store> findByActive() {
+		// TODO Auto-generated method stub
+		return this.storeRepo.findByActive("Y");
+	}
+
 }

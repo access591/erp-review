@@ -80,7 +80,7 @@ public class MRMController {
 		model.addAttribute("currencyList", currencyList);
 		
 
-		List<Store> storeList = storeService.getAllStore();
+		List<Store> storeList = storeService.findByActive();
 		model.addAttribute("storeList", storeList);
 
 		model.addAttribute("mrn", new MRN());

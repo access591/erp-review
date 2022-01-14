@@ -1,4 +1,4 @@
-                                package com.access.erp.model.master;
+package com.access.erp.model.master;
 
 import java.util.List;
 import java.util.Set;

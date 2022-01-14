@@ -161,7 +161,7 @@
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Department Name</label> <select
 														class="form-control" title="department name"
-														id="departmentcode" required th:field="*{deptCode}"
+														id="departmentcode" th:field="*{deptCode}"
 														readonly>
 														<option value="">Select Department</option>
 														<option th:each="department :  ${departmentList}"
@@ -174,7 +174,7 @@
 												<div class="form-group col-md-4">
 													<label class="form-label">Urgency</label> <select
 														class="form-control" id="" title="urgency"
-														th:field="*{urgency}" required>
+														th:field="*{urgency}">
 														<option value="N" selected>Normal</option>
 														<option value="M">Most Urgent</option>
 
@@ -197,7 +197,7 @@
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Indent Type</label> <select
 														class="form-control" id="" title="indent type"
-														th:field="*{indentsStatus}" required>
+														th:field="*{indentsStatus}">
 
 														<option value="G" selected>General</option>
 
@@ -304,7 +304,7 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="indQty0" min="18" title="ind qty" required
+																			id="indQty0" min="18" title="ind qty"
 																			name="opeIndentDetail[0].indQty"
 																			style="text-align: right" onkeyup="indentQtyValue()" onkeypress='return isNumberKey(event)'></td>
 
@@ -313,7 +313,7 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="approvedQty0" title="approvaed qty" required
+																			id="approvedQty0" title="approvaed qty"
 																			name="opeIndentDetail[0].approvedQty"
 																			style="text-align: right" readonly></td>
 
@@ -335,7 +335,7 @@
 																		<!-- pipeline indent qty  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="pipelineIndQty0" title="pipline" required
+																			id="pipelineIndQty0" title="pipline"
 																			name="opeIndentDetail[0].pipelineQty"
 																			style="text-align: right" readonly></td>
 
@@ -347,7 +347,7 @@
 
 																		<td><select class="form-control form-control-sm"
 																			title="currency code" id="indCurrencyCode0"
-																			name="opeIndentDetail[0].currencyCode" required>
+																			name="opeIndentDetail[0].currencyCode">
 
 																				<option value="I">INR</option>
 																				<option value="U">USD</option>
@@ -366,13 +366,14 @@
 																		<!-- units  -->
 																		<td><input type="text" id="uomCode0"
 																			class="form-control form-control-sm" title="units"
-																			required readonly></td>
+																			 readonly></td>
 
 
 																		<!-- total value inr-total value  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="totalValueInr0" title="total value"
+																			name="opeIndentDetail[0].totalValue"
 																			style="text-align: right; background-color: #fafab9;"
 																			readonly></td>
 
@@ -380,7 +381,7 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalValue0" required title="total value"
-																			name="opeIndentDetail[0].totalValue"
+																			name="opeIndentDetail[0].totalValueInr"
 																			style="text-align: right; background-color: #fafab9;"
 																			readonly></td>
 
@@ -397,12 +398,32 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="indPurpose0"
-																			required title="ind purpose"
+																			title="ind purpose"
 																			name="opeIndentDetail[0].indPurpose"></td>
 
 
 																	</tr>
-																	<tr id='addr1' />
+																	<tr id='addr1'/>
+																	
+																	<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	
+																	<td><input type="text"
+																			class="form-control form-control-sm" id="salaryTo"
+																			title="requisition date"></td>
+																	<td><input type="text"
+																			class="form-control form-control-sm" id="salaryTo"
+																			title="requisition date"></td>
+																	</tr>
 
 																</tbody>
 
@@ -511,7 +532,7 @@
 												$('#addr' + i)
 														.html(
 
-																"<td><input type='text' readonly id='indItemDescription"+idIndex+"' title=''class='form-control form-control-sm'required></td>"
+																"<td><input type='text' readonly id='indItemDescription"+idIndex+"' title=''class='form-control form-control-sm'></td>"
 
 																		+ "<td><select class='select form-control form-control-sm itemContainer"
 																		+ idIndex
@@ -524,14 +545,14 @@
 																		/*  ind qty */
 																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField' id='indQty"+idIndex+"'"
 																		
-																		+ "required name='opeIndentDetail["+idIndex+"].indQty' style='text-align: right'  onkeyup='indentQtyValue()' step='.01' onkeypress='return isNumberKey(event)' oninput='roundTextBoxes()' placeholder='0.00' ></td>"
+																		+ " name='opeIndentDetail["+idIndex+"].indQty' style='text-align: right'  onkeyup='indentQtyValue()' step='.01' onkeypress='return isNumberKey(event)' oninput='roundTextBoxes()' placeholder='0.00' ></td>"
 
 																		/* approved qty  */
 																		+ "<td><input type='text' class='form-control form-control-sm' id='approvedQty"+idIndex+"' name='opeIndentDetail[" + idIndex + "].approvedQty' style='text-align: right'  readonly></td>"
 
 																		/*  qty in stock  */
 
-																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='qtyInStock"+idIndex+"' title='' required name='opeIndentDetail[" + idIndex + "].qtyInStock' style='text-align: right' readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='qtyInStock"+idIndex+"' title=''  name='opeIndentDetail[" + idIndex + "].qtyInStock' style='text-align: right' readonly></td>"
 
 																		/*  qty to be procured */
 																		+ "<td><input type='text'class='form-control form-control-sm floatNumberField'id='qtyProcured"+idIndex+"' title=''name='opeIndentDetail[" + idIndex + "].qtyProcured' style='text-align: right'  readonly></td>"
@@ -539,7 +560,7 @@
 																		/* pipeline qty  */
 																		+ "<td><input type='text'class='form-control form-control-sm' id='pipelineIndQty"+idIndex+"' title=''  name='opeIndentDetail[" + idIndex + "].pipelineQty' style='text-align: right' readonly></td>"
 																		/* currency code  */
-																		+ "<td><select class='form-control form-control-sm' title='currency code id='indCurrencyCode0' name='opeIndentDetail[" + idIndex + "].currencyCode' required><option value='I'>INR</option><option value='U'>USD</option></select></td>" //currency code 
+																		+ "<td><select class='form-control form-control-sm' title='currency code id='indCurrencyCode0' name='opeIndentDetail[" + idIndex + "].currencyCode' ><option value='I'>INR</option><option value='U'>USD</option></select></td>" //currency code 
 																		/*  item rate */
 																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='itemRate"
 																		+ idIndex
@@ -551,13 +572,13 @@
 																		+ "<td><input type='text' class='form-control form-control-sm' id='uomCode"+idIndex+"' readonly></td>" //units 
 
 																		/*  total value  */
-																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"' required  style='text-align: right; background-color:#fafab9; '  readonly></td>"
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValueInr"+idIndex+"'   style='text-align: right; background-color:#fafab9; ' name='opeIndentDetail[" + idIndex + "].totalValue'  readonly></td>"
 																		/*  total value inr */
-																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"'  name='opeIndentDetail[" + idIndex + "].totalValue' style='text-align: right; background-color:#fafab9; '  readonly></td>" //total value int
+																		+ "<td><input type='text' class='form-control form-control-sm floatNumberField' id='totalValue"+idIndex+"'  name='opeIndentDetail[" + idIndex + "].totalValueInr' style='text-align: right; background-color:#fafab9; '  readonly></td>" //total value int
 																		/*  requisition date */
 																		+ "<td><input type='date' class='form-control form-control-sm' id='salaryTo' style='width: 150px' name='opeIndentDetail[" + idIndex + "].indReqDate' required></td>"
 																		/* indent purpose  */
-																		+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' required name='opeIndentDetail[" + idIndex + "].indPurpose'></td>");
+																		+ "<td><input type='text' class='form-control form-control-sm' id='indPurpose0' name='opeIndentDetail[" + idIndex + "].indPurpose'></td>");
 
 												$('#example').append(
 														'<tr id="addr'

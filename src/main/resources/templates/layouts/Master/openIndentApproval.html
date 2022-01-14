@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>EBS</title>
@@ -71,7 +71,7 @@
 														<tr th:each="indent,iter  : ${openIndentList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${indent.indentNumber}">Garrett Winters</td>
-															<td th:text="${indent.indentDate}">Garrett Winters</td>
+															<td th:text="${#dates.format(indent.indentDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
 								
 
 
@@ -164,9 +164,9 @@
 											</div>
 										</div>
 
-										<div class="box-footer">
+										<!-- <div class="box-footer">
 											<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
-										</div>
+										</div> -->
 
 									</form>
 								</div>
