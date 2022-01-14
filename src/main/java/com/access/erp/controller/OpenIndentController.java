@@ -78,7 +78,7 @@ public class OpenIndentController {
 
 		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		
-		System.out.println("open indent  : ");
+		System.out.println("open indent  : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
 		
 		openIndentService.updateOpenIndent(openIndent);
 
@@ -225,6 +225,15 @@ public class OpenIndentController {
 	
 	
 	// Ajax for edit mode 
+	
+	
+	@ResponseBody
+	@GetMapping("/edit/employeeinfo/{empCode}")
+	public Employee getEmployeInfoEdit(@PathVariable("empCode") String empCode){
+		
+		Employee employee = employeeService.editEmployee(empCode).get();
+		return employee;
+	}
 	
 	@ResponseBody
 	@GetMapping("/edit/itemdetail/{id}")

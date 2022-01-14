@@ -51,8 +51,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini"
-	onload="selectItem()">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<div>
 			<div th:replace="fragments/header :: header">...</div>
@@ -156,11 +155,18 @@
 															th:value=" ${employee.empCode}"></option>
 													</select>
 												</div>
-
+												
+												<!-- <div class="form-group col-md-4">
+													<label for="inputPassword4">Department Name</label> <input
+														type="date" class="form-control" id="indentDate"
+														placeholder="Department Name" title="department name"
+														th:field="*{indentDate}">
+												</div>
+ -->
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Department Name</label> <select
 														class="form-control" title="employee code" id="employee"
-														required th:field="*{deptCode}">
+														th:field="*{deptCode}" readonly>
 														<option value="">Select Department</option>
 														<option th:each="department :  ${departmentList}"
 															th:text="${department.deptName}"
@@ -172,7 +178,7 @@
 												<div class="form-group col-md-4">
 													<label class="form-label">Urgency</label> <select
 														class="form-control" id="" title="urgency"
-														th:field="*{urgency}" required>
+														th:field="*{urgency}">
 														<option value="N" selected>Normal</option>
 														<option value="M">Most Urgent</option>
 
@@ -195,7 +201,7 @@
 												<div class="form-group col-md-4">
 													<label for="inputAddress">Indent Type</label> <select
 														class="form-control" id="" title="indent type"
-														th:field="*{indentsStatus}" required>
+														th:field="*{indentsStatus}">
 
 														<option value="G" selected>General</option>
 
@@ -311,7 +317,7 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="approvedQty0" title="approvaed qty" required
+																			id="approvedQty0" title="approvaed qty" 
 																			th:field="*{opeIndentDetail[__${stat.index}__].approvedQty}"
 																			style="text-align: right" readonly></td>
 
@@ -337,7 +343,7 @@
 																		<!-- pipeline indent qty  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="pipelineIndQty0" title="pipline" required
+																			id="pipelineIndQty0" title="pipline" 
 																			th:field="*{opeIndentDetail[__${stat.index}__].pipelineQty}"
 																			style="text-align: right" readonly></td>
 
@@ -348,7 +354,7 @@
 																		<td><select class="form-control form-control-sm"
 																			title="currency code" id="indCurrencyCode0"
 																			th:field="*{opeIndentDetail[__${stat.index}__].currencyCode}"
-																			required>
+																			>
 
 																				<option value="I">INR</option>
 																				<option value="U">USD</option>
@@ -363,7 +369,7 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="itemRate0" required title="item rate"
+																			id="itemRate0"  title="item rate"
 																			th:field="*{opeIndentDetail[__${stat.index}__].itemRate}"
 																			style="text-align: right" onkeyup="indentItemRate()"></td>
 
@@ -375,7 +381,7 @@
 																		<!-- units  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" title=""
-																			th:id="'uomCode'+${stat.index}" required></td>
+																			th:id="'uomCode'+${stat.index}" ></td>
 
 
 																		<!-- total value inr-total value  -->
@@ -392,8 +398,8 @@
 																		<!--total value - inr -->
 																		<td><input type="text"
 																			class="form-control form-control-sm floatNumberField"
-																			id="totalValue0" required title="total value"
-																			th:field="*{opeIndentDetail[__${stat.index}__].totalValue}"
+																			id="totalValue0"  title="total value"
+																			th:field="*{opeIndentDetail[__${stat.index}__].totalValueInr}"
 																			style="text-align: right; background-color: #fafab9;"
 																			readonly></td>
 
@@ -410,7 +416,7 @@
 
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="indPurpose0"
-																			required title="ind purpose"
+																			title="ind purpose"
 																			th:field="*{opeIndentDetail[__${stat.index}__].indPurpose}"></td>
 
 
@@ -559,6 +565,13 @@
 		document.getElementById('indentDate').valueAsDate = new Date();
 
 		var idIndex = 0;
+		
+		window.addEventListener("load", myInit, true); 
+		function myInit(){
+			selectItem();
+			indentGetEmployee();
+		};
+		
 	</script>
 
 
@@ -687,6 +700,32 @@
 			}
 
 		});
+
+		function indentGetEmployee() {
+
+			console.log("select..");
+
+			var empCode = document.getElementById("employee").value;
+			console.log("emp code : " + empCode);
+
+			$.ajax({
+				type : "GET",
+				url : "employeeinfo/" + empCode,
+
+				success : function(data) {
+					//$("#resultarea").text(data);
+					console.log("response data : " + data);
+					console.log("department : " + data.department.deptName);
+					$("#employeename").val(data.empName);
+					$("#departmentcode").val(data.department.deptCode)
+					//$("#departmentname").val(data.department.deptName)
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
+
+		}
 	</script>
 
 

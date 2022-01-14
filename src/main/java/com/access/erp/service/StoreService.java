@@ -12,4 +12,6 @@ public interface StoreService {
 	public Optional<Store> editStore(String storeCode);
 	public void deleteStore(String storeCode);
 	
+	public List<Store> findByActive();
+	
 }

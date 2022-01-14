@@ -87,10 +87,10 @@
 									<div class="col-md-12">
 
 										<div class="box-header with-border text-right">
-											<button type="submit" id="submit"
+											<!-- <button type="submit" id="submit"
 												class="btn btn-primary btn-sm">
 												<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
-											</button>
+											</button> -->
 											<button type="button" class="btn btn-danger btn-sm"
 												onclick="history.back()">
 												<i class="fa fa-step-backward"></i> Go Back
@@ -266,8 +266,12 @@
 				success : function(data) {
 					//$("#resultarea").text(data);
 					console.log("response data : " + data);
-					//$("#itemDescription").val(data.description);
-					$("#itemType").val(data.itemType)
+					if(data.storeInfo==="C"){
+						$("#itemType").val("Capex")
+					}
+					if(data.storeInfo==="N"){
+						$("#itemType").val("Non-Capex")
+					}
 					$("#category").val(data.category.categCode)
 					$("#itemUom").val(data.uom.uomCode)
 				},
