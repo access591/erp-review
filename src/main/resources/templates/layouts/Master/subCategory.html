@@ -49,9 +49,9 @@
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
-							<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-							<li><a href="#">Examples</a></li>
-							<li class="active">Blank page</li>
+							<li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
+							<li><a href="#">StoreMaster</a></li>
+							<li class="active">UnitMaster</li>
 						</ol>
 					</section>
 
@@ -64,6 +64,40 @@
 
 
 
+											<!-- /.box-header -->
+											<!-- form start -->
+											<form id="subCategoryForm" role="form" th:action="@{/subcategory/}"
+												method="POST" th:object="${subCategory}">
+												
+												
+													<div class="box">
+
+								<div class="box-header with-border text-right">
+
+									<button type="submit" id="submit"
+										class="btn btn-primary btn-sm">
+										<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
+									</button>
+									<button type="reset" value="reset"
+										class="btn btn-secondary btn-sm">
+										<i class="fa fa-refresh" aria-hidden="true"></i> Reset
+									</button>
+
+									<a th:href="@{/subcategory/list}"
+										class="btn btn-success btn-sm"> <i class="fa fa-list"
+										aria-hidden="true"></i> View All
+									</a>
+
+
+
+								</div>
+
+												
+												
+												
+												
+												
+												
 							<div class="row">
 								<!-- left column -->
 								<div class="col-md-12">
@@ -79,10 +113,7 @@
 											<div class="box-header with-border">
 												<!--<h3 class="box-title">Category Master</h3>-->
 											</div>
-											<!-- /.box-header -->
-											<!-- form start -->
-											<form id="subCategoryForm" role="form" th:action="@{/subcategory/}"
-												method="POST" th:object="${subCategory}">
+												
 												<div class="box-body">
 
 													<div class="form-group col-md-6">
@@ -137,21 +168,12 @@
 												</div>
 												<!-- /.box-body -->
 
-												<div class="box-footer" style="margin: 10px">
-													<input type="submit" value="Submit" class="btn btn-primary" />
-													<input type="reset" value="Reset" class="btn btn-danger" />
-												</div>
-
-
 											</form>
 
 
 										</div>
 										<!-- /.box -->
-										<div style="width: parent; text-align-last: right; margin: 8px">
-											<a th:href="@{/subcategory/list}">View Sub
-												Category List</a>
-										</div>
+										
 									</div>
 
 

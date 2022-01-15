@@ -26,12 +26,12 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					UnitMaster <small>it all starts here</small>
+					UnitMaster <small></small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a th:href="@{/home}"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Examples</a></li>
-					<li class="active">Blank page</li>
+					<li><a th:href="@{/home}"><i class="fa fa-dashboard"></i> Master</a></li>
+					<li><a href="#">Store Master</a></li>
+					<li class="active">Edit </li>
 				</ol>
 			</section>
 
@@ -63,6 +63,31 @@
 									<!-- form start -->
 									<form id="categoryForm" role="form" method="POST" th:action="@{/unit/update}"
 										th:object="${unit}">
+										
+										
+										
+										
+											<div class="col-md-12">
+
+										<div class="box-header with-border text-right">
+
+											<button type="submit" id="submit"
+												class="btn btn-primary btn-sm">
+												<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply Changes
+											</button>
+
+
+
+											<button type="button" class="btn btn-danger btn-sm"
+												onclick="history.back()">
+												<i class="fa fa-step-backward"></i> Go Back
+											</button>
+
+
+
+
+										</div>
+
 										<div class="box-body">
 
 											<div class="form-group col-md-6">
@@ -87,11 +112,6 @@
 
 										</div>
 										<!-- /.box-body -->
-
-										<div class="box-footer" style="margin: 4px">
-											<input type="submit" value="Submit" class="btn btn-primary" />
-											<input type="button" value="Go Back" onclick="history.back()"class="btn btn-danger" />
-										</div>
 
 										
 
