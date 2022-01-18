@@ -56,7 +56,8 @@
 															<th scope="col">Indent Number</th>
 															<th scope="col">Indent Date</th>
 
-															<th scope="col">Action</th>
+															<th scope="col" class="text-center">Action</th>
+															<th scope="col" class="text-center">Query</th>
 
 														</tr>
 													</thead>
@@ -73,13 +74,22 @@
 
 															<!-- <td><span class="badge bg-success">Active</span></td> -->
 
-															<td><span th:if="${indent.approvalStatus=='N'}">
+															<td class="text-center"><span th:if="${indent.approvalStatus=='N'}">
 																	<a
 																	th:href="@{/openindent/edit/{id}(id=${indent.indentNumber})}"><em
 																		class="fa fa-edit" style="color: blue;"> Edit</em></a>
-															</span> <span th:if="${indent.approvalStatus=='Y'}"> <a
+															</span> 
+															
+															<span th:if="${indent.approvalStatus=='Y'} or ${indent.approvalStatus=='C'}"> <a class="btn disabled"
 																	th:href="@{/openindent/view/{id}(id=${indent.indentNumber})}"><em
-																		class="fa fa-edit" style="color: #6699ff;"> View</em></a></span> <span>
+																		class="fa fa-edit" style="color: #6699ff;"> Edit</em></a></span> </td>
+															
+															<td>
+																<span> <a th:href="@{/openindent/view/{id}(id=${indent.indentNumber})}"><em
+																		class="fa fa-edit" style="color: #6699ff;"> View</em></a></span>
+															</td>
+															
+															<td><span>
 
 
 																	<a
