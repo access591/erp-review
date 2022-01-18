@@ -2,21 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
-		rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
 
 
 </head>
@@ -75,23 +85,20 @@
 
 
 															<td th:if="${subCategory.active=='Y'}"><span
-																	class="badge bg-success">Active</span></td>
+																class="badge bg-success">Active</span></td>
 
 															<td th:if="${subCategory.active=='N'}"><span
-																	class="badge bg-success">
-																	In Active</span></td>
+																class="badge bg-success"> In Active</span></td>
 
 
 
 															<td><span> <a
-																		th:href="@{/subcategory/edit/{id}(id=${subCategory.subCategoryCode})}"><em
-																			class="fa fa-edit" style="color: blue;">
-																			Edit</em></a></span> <span>
+																	th:href="@{/subcategory/edit/{id}(id=${subCategory.subCategoryCode})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
 																	<a
-																		th:href="@{/subcategory/delete/{id}(id=${subCategory.subCategoryCode})}"><em
-																			class="fa fa-times" style="color: red">
-																			Remove</em></a>
-																</span></td>
+																	th:href="@{/subcategory/delete/{id}(id=${subCategory.subCategoryCode})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a>
+															</span></td>
 														</tr>
 
 
@@ -106,6 +113,7 @@
 												<input type="button" value="Go back!" class="btn btn-link"
 													onclick="history.back()">
 											</div>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -123,15 +131,14 @@
 
 
 	<script>
-
-		$(document).ready(function () {
+		$(document).ready(function() {
 			var message = document.getElementById('mess').value
 			if (message != null && message !== "") {
 
 				swal(message, "", "success", {
-					button: "OK",
-					hideClass: {
-						popup: 'animate__animated animate__fadeOutUp'
+					button : "OK",
+					hideClass : {
+						popup : 'animate__animated animate__fadeOutUp'
 					},
 				});
 			} else {
@@ -143,9 +150,12 @@
 
 
 
-	<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-	<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-	<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
 	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
 	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 

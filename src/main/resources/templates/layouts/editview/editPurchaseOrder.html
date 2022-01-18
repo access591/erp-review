@@ -160,6 +160,15 @@
 															</div>
 
 														</div>
+
+														<div class="form-row">
+															<label class="form-label" for="customFile">Upload
+																Document</label> <input type="file" name="poFile"
+																class="form-control" id="customFile" />
+																
+															<p><img th:src="@{/upload/{image}(image=*{docFile})}"> </p>
+
+														</div>
 													</div>
 													<!-- /.box-body -->
 
@@ -1423,13 +1432,13 @@
 								}
 							});
 						});
-		
-		
-		window.addEventListener("load", myInit, true); function myInit(){ 
+
+		window.addEventListener("load", myInit, true);
+		function myInit() {
 			openPoFun()
 			againstPurchaseThrough()
 			supplierInfo()
-		}; 
+		};
 	</script>
 
 

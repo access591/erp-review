@@ -23,7 +23,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 	@Override
 	public void addPurchaseOrder(PurchaseOrder purchaseOrder) {
 		
-		if (purchaseOrder.getPoNumber() == "" || purchaseOrder.getPoNumber() == null) {
+		System.out.println("purchase order service impl : " + purchaseOrder.getPoNumber());
+		if (purchaseOrder.getPoNumber().isEmpty() || purchaseOrder.getPoNumber() == "" || purchaseOrder.getPoNumber() == null) {
 			System.out.println("po code is : "+ purchaseOrder.getPoNumber() );
 			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("PUR", "20-21", "EB");
 			purchaseOrder.setPoNumber("EB"+maxCode);
