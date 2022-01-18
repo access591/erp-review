@@ -14,4 +14,6 @@ public interface RfQuotationService {
 	
 	public void updateRfQuotation(RfQuotation rfQuotation);
 	public List<RfQuotation> findAllByOrderByRfqNoDsc();
+	
+	public List<RfQuotation> findAllRfqNotINQuotaion();
 }

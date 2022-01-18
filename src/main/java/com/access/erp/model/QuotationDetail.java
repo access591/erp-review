@@ -18,239 +18,244 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-@Table(name="QUOTATION") // MASTER
+@Table(name = "QUOTATION") // MASTER
 public class QuotationDetail {
 
-	
 	@Id
-	@Column(name="QUOT_NO",length = 15)
+	@Column(name = "QUOT_NO", length = 15)
 	private String quotNo;
-	
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name="QUOT_DATE")
+	@Column(name = "QUOT_DATE")
 	private Date quotDate;
-	
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name="RECEIVED_ON")
+	@Column(name = "RECEIVED_ON")
 	private Date receivedOn;
-	
+
 	// employee code fk
-	@Column(name="EMPLOYEE_CODE",length = 30)
+	@Column(name = "EMPLOYEE_CODE", length = 30)
 	private String employee;
-	
-	
-	
-	@Column(name="WORKER_CODE",length = 10)
+
+	@Column(name = "WORKER_CODE", length = 10)
 	private String workerCode;
-	
-	@Column(name="INDENR_NO",length = 15)
+
+	@Column(name = "INDENR_NO", length = 15)
 	private String indentNu;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name="INDENT_DATE")
+	@Column(name = "INDENT_DATE")
 	private Date indentDate;
-	
-	
-	@Column(name="QUOT_SUB",length =100)
+
+	@Column(name = "QUOT_SUB", length = 100)
 	private String quotSub;
-	
-	//fk party master 
-	@Column(name="SUPP_CODE",length = 30)
+
+	// fk party master
+	@Column(name = "SUPP_CODE", length = 30)
 	private String suplierCode;
-	
-	//5,2
-	@Column(name="EXCISE",length = 10)
+
+	// 5,2
+	@Column(name = "EXCISE", length = 10)
 	private int excise;
-	
-	//5,2
-	@Column(name="SALES_TAX",length = 10)
+
+	// 5,2
+	@Column(name = "SALES_TAX", length = 10)
 	private int salesTax;
-	
-	//5,2
-	@Column(name="CST",length = 30)
+
+	// 5,2
+	@Column(name = "CST", length = 30)
 	private int cst;
-	
-	//5,2
-	@Column(name="TRADE_DISCOUNT",length = 30)
+
+	// 5,2
+	@Column(name = "TRADE_DISCOUNT", length = 30)
 	private int tradeDiscount;
-	
-	//14,2
-	@Column(name="FREIGHT",length = 30)
+
+	// 14,2
+	@Column(name = "FREIGHT", length = 30)
 	private int freight;
-	
-	//14,2
-	@Column(name="PACKING",length = 30)
+
+	// 14,2
+	@Column(name = "PACKING", length = 30)
 	private int packing;
-	
-	//14,2
-	@Column(name="OCTROI",length = 30)
+
+	// 14,2
+	@Column(name = "OCTROI", length = 30)
 	private String octRoi;
-	
-	
-	@Column(name="DELIVERY_PERIOD",length = 15)
+
+	@Column(name = "DELIVERY_PERIOD", length = 15)
 	private String deliveryPeriod;
-	
-	@Column(name="CONDITION_1",length = 500)
+
+	@Column(name = "CONDITION_1", length = 500)
 	private String conditions1;
-	
-	@Column(name="CONDITION_2",length = 500)
+
+	@Column(name = "CONDITION_2", length = 500)
 	private String conditions2;
-	
-	@Column(name="CONDITION_3",length = 500)
+
+	@Column(name = "CONDITION_3", length = 500)
 	private String conditions3;
-	
-	@Column(name="CONDITION_4",length = 500)
+
+	@Column(name = "CONDITION_4", length = 500)
 	private String conditions4;
-	
-	@Column(name="DEL_MODE",length = 15)
+
+	@Column(name = "DEL_MODE", length = 15)
 	private String delMode;
-	
-	//fk
-	@Column(name="CCODE",length = 30,updatable = false,insertable = true)
+
+	// fk
+	@Column(name = "CCODE", length = 30, updatable = false, insertable = true)
 	private String cCode;
-	
-	
-	//fk
-	@Column(name="FYCODE",length = 30,updatable = false,insertable = true)
+
+	// fk
+	@Column(name = "FYCODE", length = 30, updatable = false, insertable = true)
 	private String fyCode;
-	
-	//fk
-	@Column(name="UCODE",length = 30,updatable = false,insertable = true)
+
+	// fk
+	@Column(name = "UCODE", length = 30, updatable = false, insertable = true)
 	private String uCode;
-	
-	@Column(name="UDATE")
+
+	@Column(name = "UDATE")
 	private Date uDate;
-	
-	@Column(name="CESS",length = 30)
+
+	@Column(name = "CESS", length = 30)
 	private int cess;
-	
-	
-	///fk master 
-	@Column(name="ITEM_CODE",length = 30)
+
+	/// fk master
+	@Column(name = "ITEM_CODE", length = 30)
 	private String itemCode;
-	
-	@Column(name="CURRENCY_CODE",length = 10)
+
+	@Column(name = "CURRENCY_CODE", length = 10)
 	private String currencyCode;
-	
-	
-	//14,2
-	@Column(name="CONVERSION_VALUE",length = 30)
+
+	// 14,2
+	@Column(name = "CONVERSION_VALUE", length = 30)
 	private String conversionValue;
-	
-	@Column(name="CAPITAL_YN",length = 2)
+
+	@Column(name = "CAPITAL_YN", length = 2)
 	private String capitalYn;
-	
-	@Column(name="TEMP_SUPP_NAME",length = 30)
+
+	@Column(name = "TEMP_SUPP_NAME", length = 30)
 	private String tempSupName;
-	
-	@Column(name="SUPP_ADD1",length = 30)
+
+	@Column(name = "SUPP_ADD1", length = 30)
 	private String supAdd1;
-	
-	@Column(name="TEMP_SUPP_ADD2",length = 30)
+
+	@Column(name = "TEMP_SUPP_ADD2", length = 30)
 	private String temSupAdd2;
-	
-	//fk
-	@Column(name="SUPP_CITY_CODE",length = 30)
+
+	// fk
+	@Column(name = "SUPP_CITY_CODE", length = 30)
 	private String supCityCode;
-	
-	//fk
-	@Column(name="SUPP_COUNTRY",length = 30)
+
+	// fk
+	@Column(name = "SUPP_COUNTRY", length = 30)
 	private String supCountry;
-	
-	@Column(name="FROM_CODE",length = 8)
+
+	@Column(name = "FROM_CODE", length = 8)
 	private String fromCode;
-	
-	@Column(name="FROM_TYPE",length = 8)
+
+	@Column(name = "FROM_TYPE", length = 8)
 	private String fromType;
-	
-	@Column(name="QUOT_TYPE",length = 2)
+
+	@Column(name = "QUOT_TYPE", length = 2)
 	private String quotType;
-	
-	
-	//fk
-	@Column(name="RFQ_NO",length = 30)
+
+	// fk
+	@Column(name = "RFQ_NO", length = 30)
 	private String rfqNo;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name="RFQ_DATE")
+	@Column(name = "RFQ_DATE")
 	private Date rfqDate;
-	
-	@Column(name="APPROVAL_STATUS1",length = 5)
+
+	@Column(name = "APPROVAL_STATUS1", length = 5)
 	private String approvalStatus1 = "N";
-	
-	@Column(name="APPROVAL_STATUS2",length = 5)
+
+	@Column(name = "APPROVAL_STATUS2", length = 5)
 	private String approvalStatus2;
-	
-	@Column(name="APPROVAL_STATUS3",length = 5)
+
+	@Column(name = "APPROVAL_STATUS3", length = 5)
 	private String approvalStatus3;
-	
-	@Column(name="APPROVAL_STATUS4",length = 5)
+
+	@Column(name = "APPROVAL_STATUS4", length = 5)
 	private String approvalStatus4;
-	
-	@Column(name="APPROVAL_DATE1")
+
+	@Column(name = "APPROVAL_DATE1")
 	private Date approvalDate1;
-	
-	@Column(name="APPROVAL_DATE2")
+
+	@Column(name = "APPROVAL_DATE2")
 	private Date approvalDate2;
-	
-	@Column(name="APPROVAL_DATE3")
+
+	@Column(name = "APPROVAL_DATE3")
 	private Date approvalDate3;
-	
-	@Column(name="APPROVAL_DATE4")
+
+	@Column(name = "APPROVAL_DATE4")
 	private Date approvalDate4;
-	
-	@Column(name="APPROVED_BY1",length = 10)
+
+	@Column(name = "APPROVED_BY1", length = 10)
 	private String approvedBy1;
-	
-	@Column(name="APPROVED_BY2",length = 10)
+
+	@Column(name = "APPROVED_BY2", length = 10)
 	private String approvedBy2;
-	
-	@Column(name="APPROVED_BY3",length = 10)
+
+	@Column(name = "APPROVED_BY3", length = 10)
 	private String approvedBy3;
-	
-	@Column(name="APPROVED_BY4",length = 10)
+
+	@Column(name = "APPROVED_BY4", length = 10)
 	private String approvedBy4;
-	
-	@Column(name="REMARKS1",length = 500)
+
+	@Column(name = "REMARKS1", length = 500)
 	private String remarks1;
-	
-	@Column(name="REMARKS2",length = 500)
+
+	@Column(name = "REMARKS2", length = 500)
 	private String remarks2;
-	
-	@Column(name="REMARKS3",length = 500)
+
+	@Column(name = "REMARKS3", length = 500)
 	private String remarks3;
-	
-	@Column(name="REMARKS4",length = 500)
+
+	@Column(name = "REMARKS4", length = 500)
 	private String remarks4;
-	
-	
-	//discount 
-	@Column(name="DISCOUNT",length = 20)
+
+	// discount
+	@Column(name = "DISCOUNT", length = 20)
 	private String discount;
-	
-	
-	
-	
-	
-	
-	@OneToMany(mappedBy = "quotationDetail", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+
+	@Column(name = "TOTAL_VALUE", length = 30)
+	private String totalValue;
+
+	@Column(name = "TOTAL_VALUE_INR", length = 30)
+	private String totalValueInr;
+
+	@OneToMany(mappedBy = "quotationDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<QuotationItem> quotationItem;
 	
 	
+	public String getTotalValue() {
+		return totalValue;
+	}
+
+	public void setTotalValue(String totalValue) {
+		this.totalValue = totalValue;
+	}
+
+	public String getTotalValueInr() {
+		return totalValueInr;
+	}
+
+	public void setTotalValueInr(String totalValueInr) {
+		this.totalValueInr = totalValueInr;
+	}
+
+	
 
 	public QuotationDetail() {
 		super();
-		
+
 	}
 
 	public String getDiscount() {
@@ -573,8 +578,6 @@ public class QuotationDetail {
 		this.quotType = quotType;
 	}
 
-	
-
 	public String getRfqNo() {
 		return rfqNo;
 	}
@@ -726,15 +729,5 @@ public class QuotationDetail {
 	public void setQuotationItem(List<QuotationItem> quotationItem) {
 		this.quotationItem = quotationItem;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

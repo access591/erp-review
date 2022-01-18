@@ -112,4 +112,10 @@ public class RfQuotationServiceImpl implements RfQuotationService{
 		return this.rfQuotationRepo.findAllByOrderByRfqNoDesc();
 	}
 
+	@Override
+	public List<RfQuotation> findAllRfqNotINQuotaion() {
+		
+		return this.rfQuotationRepo.findAllRfqNotINQuotaion();
+	}
+
 }
