@@ -79,7 +79,7 @@
 
 						<!-- form start -->
 						<form role="form" th:action="@{/purchaseorder/}"
-							th:object="${purchaseOrder}" method="POST">
+							th:object="${purchaseOrder}" method="POST"  enctype="multipart/form-data">
 
 
 							<!-- Default box -->
@@ -165,6 +165,13 @@
 																</select>
 															</div>
 
+														</div>
+
+														<div class="form-row">
+															<label class="form-label" for="customFile">Upload
+																Document</label> <input type="file" name="poFile"
+																class="form-control" id="customFile" />
+															
 														</div>
 													</div>
 													<!-- /.box-body -->
@@ -320,7 +327,7 @@
 														<div class="form-group col-md-6">
 															<label for="inputPassword4">Remarks</label>
 															<textarea type="text" class="form-control"
-																id="inputPassword4" placeholder="gst"
+																id="inputPassword4" placeholder="remarks"
 																th:field="*{remarks}"></textarea>
 														</div>
 
@@ -472,7 +479,8 @@
 																			name="listPurchaseOrderItem[0].totalValueInr"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalCostInr0" title="total item cost(inr)"
-																			step='0.01' value='0.00' placeholder='0.00' style="text-align: right" readonly></td>
+																			step='0.01' value='0.00' placeholder='0.00'
+																			style="text-align: right" readonly></td>
 
 																		<!--  dol -->
 																		<td><select class="form-control" title="dol"
@@ -674,11 +682,11 @@
 												</div>
 												<!--end final div-->
 
-												
+
 
 											</div>
 											<!-- /.box -->
-											
+
 										</div>
 
 
@@ -1473,6 +1481,8 @@
 								}
 							});
 						});
+
+		
 	</script>
 
 
