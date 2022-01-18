@@ -45,12 +45,12 @@
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
-							Purchase Return
+							Rejection Issue
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i> warehouse</a></li>
-							<li><a href="#">Purchase Return</a></li>
+							<li><a href="#">Rejection Issue</a></li>
 							<li class="active">Add</li>
 						</ol>
 					</section>
@@ -62,8 +62,8 @@
 						<!-- Default box -->
 						<div class="box">
 <!-- form start -->
-											<form role="form" th:action="@{/purchasereturn/}"
-							th:object="${purchaseReturn}" method="POST">
+											<form role="form" 
+							 method="POST">
 
 												<div class="box-header with-border text-right">
 
@@ -104,24 +104,24 @@
 
 
 												<div class="box">
-													<h5 class="box-title">Purchase Return Master</h5>
+													<h5 class="box-title">Rejection Issue</h5>
 													<div class="box-body">
 
 
 														<div class="form-group col-md-4">
-															<label for="inputEmail4">Purchase Return No.</label> <input
+															<label for="inputEmail4">IssueNo.</label> <input
 																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No"th:field="*{purchasePrNo}" readonly>
+																placeholder="Gate Sr No">
 														</div>
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Purchase Return Date</label>
-															<input type="date" class="form-control" id="gateEntryDate" th:field="*{prDate}">
+															<label for="inputPassword4">Issue Date</label>
+															<input type="date" class="form-control" id="gateEntryDate" >
 														</div>
 
 
 
 														<div class="form-group col-md-4">
-															<label for="inputAddress">MRN No.</label> <select
+															<label for="inputAddress">Requisition no.</label> <select
 																class="form-control" id="" title="entry type">
 																<option value="p">Purchased Item</option>
 																<option value="re">Returned Item</option>
@@ -133,7 +133,7 @@
 
 
 														<div class="form-group col-md-4">
-															<label class="form-label">MRN Date.</label> <select
+															<label class="form-label">Requisition Date</label> <select
 																class="form-control" id="" title="gst type">
 																
 															</select>
@@ -141,12 +141,25 @@
 
 
 
+														<div class="form-group col-md-4">
+															<label for="inputEmail4">MRN No.</label> <input
+																type="text" class="form-control" id="inputEmail4"
+																placeholder="MRN No">
+														</div>
 
 
 														<div class="form-group col-md-4">
-															<label class="form-label">Supplier code</label> <label
+															<label class="form-label">MRN Date</label> <select
+																class="form-control" id="" title="Mrn">
+																
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label class="form-label">Purchase Return</label> <label
 																style="color: red">*</label> <select
-																class="form-control" id="" title="supplier code">
+																class="form-control" id="" title="Purchase Return">
 
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
@@ -159,8 +172,8 @@
 
 
 														<div class="form-group col-md-4">
-															<label for="inputPassword4">Issue No.</label> <input
-																type="text" class="form-control"
+															<label for="inputPassword4">Date</label> <input
+																type="date" class="form-control"
 																placeholder="Supplier Name" title="supplier name">
 														</div>
 
@@ -189,7 +202,7 @@
 										<!--detail box-->
 										<div class="box">
 
-											<h5>Purchase Return Details</h5>
+											<h5>Issue Item  Details</h5>
 											<div class="box-body">
 
 
@@ -216,22 +229,18 @@
 
 
 																<th scope="col" class="text-center"
-																	style="width: 90px;">Date</th>
+																	style="width: 90px;">Sr.No</th>
 																<th scope="col" class="text-center"
 																	style="width: 90px;">Item Code<span
 																		style="color: red">*</span></th>
 																<th scope="col" class="text-center"
-																	style="width: 90px;">Item Name</th>
+																	style="width: 90px;">Item Description</th>
 																<th scope="col" class="text-center"
 																	style="width: 10px;">UOM</th>
 																<th scope="col" class="text-center"
-																	style="width: 120px;">Bill Rate</th>
+																	style="width: 120px;">Qty. Issue</th>
 																<th scope="col" class="text-center"
-																	style="width: 90px;">Received Qty</th>
-																<th scope="col" class="text-center"
-																	style="width: 90px;">Return Qty.</th>
-
-
+																	style="width: 120px;">Issue Rate</th>
 
 															</tr>
 														</thead>
@@ -246,7 +255,7 @@
 																</select></td>
 																<!-- po date  -->
 
-																<td><input type="date"
+																<td><input type="text"
 																		class="form-control form-control-sm"
 																		id="orderIndentDatePo0" title="order date"
 																		name="gateEntryItemDetails[0].orderDate"
@@ -537,9 +546,7 @@
 										/* item description  */
 										+ "<td><input type='text'class='form-control form-control-sm'id='orderItemCode" + i + "' title='item description'name='gateEntryItemDetails[" + i + "].itemDescription'readonly></td>"
 
-										/*  pending qty */
-										+ "<td><input type='number' title='pending qty'class='form-control form-control-sm'name='gateEntryItemDetails[" + i + "].pendingQty'></td>"
-
+										
 										/*  qty */
 										+ "<td><input type='number' id='qtyOrder" + i + "' class='form-control form-control-sm' title='net qty'name='gateEntryItemDetails[" + i + "].netQty' onchange=''(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)''  step='0.25' value='0.00'></td>"
 
