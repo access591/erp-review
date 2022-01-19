@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile; 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.OpenIndent;
@@ -41,7 +43,6 @@ import com.access.erp.repo.QuotationDetailRepo;
 import com.access.erp.repo.RFQuotationRepo;
 import com.access.erp.repo.SupplierRepo;
 import com.access.erp.service.CityService;
-import com.access.erp.service.FilesStorageService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentService;
 import com.access.erp.service.PartyMasterService;
@@ -84,9 +85,6 @@ public class PurchaseOrderController {
 	@Autowired
 	GlobalParameter globalParameter;
 
-	@Autowired
-	FilesStorageService storageService;
-
 	private static final String UPLOAD_DIRECTORY = "/img/uploads";
 
 	@GetMapping("/")
@@ -113,8 +111,7 @@ public class PurchaseOrderController {
 
 	@PostMapping("/")
 	public String addPurchaseOrder(@ModelAttribute("purchaseOrder") PurchaseOrder po,
-			@RequestParam("poFile")MultipartFile file, HttpSession session,
-			RedirectAttributes attributes) {
+			@RequestParam("poFile") MultipartFile file, HttpSession session, RedirectAttributes attributes) {
 
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
@@ -128,7 +125,7 @@ public class PurchaseOrderController {
 		if (file.isEmpty()) {
 
 			po.setDocFile("default");
-			// attributes.addFlashAttribute("message", "Please select a file to upload.");
+			// attributes.addFlashAttribute("message","Please select a file to upload."); //
 			// return "redirect:/";
 		} else {
 			try {
@@ -142,7 +139,9 @@ public class PurchaseOrderController {
 				bout.flush();
 				bout.close();
 
-			} catch (Exception e) {
+			}
+
+			catch (Exception e) {
 				System.out.println(e);
 			}
 
@@ -152,6 +151,76 @@ public class PurchaseOrderController {
 		return "redirect:/purchaseorder/";
 
 	}
+
+	@PostMapping("/update")
+	public String updatePurchaseOrder(@ModelAttribute("purchaseOrder") PurchaseOrder po,
+			@RequestParam("poFile") MultipartFile file, HttpSession session, RedirectAttributes attributes) {
+
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		System.out.println("path is : " + path);
+		String filename = file.getOriginalFilename();
+
+		if (!po.getDocFile().equals(file.getOriginalFilename())) {
+			System.out.println(" not equal..");
+			if (po.getDocFile().isEmpty() && !file.getOriginalFilename().isEmpty()) {
+				// add new file
+				try {
+					byte barr[] = file.getBytes();
+
+					BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+					bout.write(barr);
+
+					po.setDocFile(filename);
+
+					bout.flush();
+					bout.close();
+
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+			} else if (!po.getDocFile().isEmpty() && !file.getOriginalFilename().isEmpty()) {
+				// update document
+				// remove old one
+
+				try {
+					byte barr[] = file.getBytes();
+
+					BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+					bout.write(barr);
+
+					po.setDocFile(filename);
+
+					bout.flush();
+					bout.close();
+
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+			}
+		} else {
+			System.out.println("equal..");
+		}
+		
+		purchaseOrderService.updatePurchaseOrder(po);
+		return "redirect:/purchaseorder/";
+
+	}
+
+	/*
+	 * @GetMapping("/downloadfile") public void downloadFile(@PathVariable("")String
+	 * filename, HttpServletResponse response,HttpSession session){
+	 * 
+	 * 
+	 * response.setContentType("application/octet-stream"); String headerKey =
+	 * "Content-Disposition"; String headerValue = "attachment; filename = " +
+	 * filename); response.setHeader(headerKey, headerValue); ServletOutputStream
+	 * outputStream = response.getOutputStream();
+	 * 
+	 * outputStream.write(student.getContent()); outputStream.close();
+	 * 
+	 * }
+	 */
 
 	@GetMapping("/list")
 	public String listPurchaseOrder(Model model) {
@@ -177,6 +246,12 @@ public class PurchaseOrderController {
 
 		List<State> stateList = stateService.getAllState();
 		model.addAttribute("stateList", stateList);
+
+		List<OpenIndent> listOpenIndent = openIndentService.getAllOpenIndent();
+		model.addAttribute("listOpenIndent", listOpenIndent);
+
+		List<Item> listItem = itemService.getAllItem();
+		model.addAttribute("listItem", listItem);
 
 		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poCode).get();
 
@@ -507,6 +582,23 @@ public class PurchaseOrderController {
 		partyStateCity.setCity(city);
 
 		return partyStateCity;
+	}
+
+	@ResponseBody
+	@GetMapping("/edit/indent/indentdetail/")
+	public List<String> getIndentDetailByPurchaseEditThroughIndent() {
+
+		List<OpenIndent> listOpenIndent = openIndentService.getAllOpenIndent();
+
+		List<String> indentList = new ArrayList<>();
+
+		for (OpenIndent indent : listOpenIndent) {
+
+			indentList.add(indent.getIndentNumber());
+			// System.out.println("item spec : " + rfquotationItem.getItemSpec());
+		}
+
+		return indentList;
 	}
 
 	/// Ajax for view mode

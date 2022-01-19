@@ -10,13 +10,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import com.access.erp.model.master.Company;
-import com.access.erp.service.FilesStorageService;
 
 @SpringBootApplication
 public class ErpSolutionApplication implements CommandLineRunner{
 
-	@Resource
-	FilesStorageService storageService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ErpSolutionApplication.class, args);

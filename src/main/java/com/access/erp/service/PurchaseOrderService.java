@@ -15,5 +15,7 @@ public interface PurchaseOrderService {
 	public void purchaseOrderApproval(String poNumber, String approvalStatus);
 	
 	public List<PurchaseOrder> getApprovedPurchaseorder();
+	
+	public void updatePurchaseOrder(PurchaseOrder purchaseOrder);
 
 }

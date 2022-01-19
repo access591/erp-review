@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.access.erp.model.master.Employee;
 import com.access.erp.model.master.Item;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -50,6 +52,7 @@ public class PurchaseOrderItem {
 	private String itemRate;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "RATE_EFFECTIVE_DATE")
 	private Date rateEffectiveDate;
 	
@@ -121,8 +124,8 @@ public class PurchaseOrderItem {
 
 	
 
-	@ManyToOne
-	@JoinColumn(name = "EMPLOYEE_CODE")
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "EMPLOYEE_CODE",nullable = true)
 	private Employee employee;
 
 	@Column(name = "SRHRCESS",length = 10)
@@ -317,7 +320,7 @@ public class PurchaseOrderItem {
 	@Column(name = "DOL",length = 2)
 	private String dol;
 	
-	 @ManyToOne(optional = false)
+	 @ManyToOne(fetch= FetchType.LAZY)
 	 @JoinColumn(name="PO_NO")
 	 @JsonBackReference
 	private PurchaseOrder purchaseOrder;
