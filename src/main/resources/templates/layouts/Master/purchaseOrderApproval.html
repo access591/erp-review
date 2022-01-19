@@ -2,15 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 
 </head>
@@ -48,9 +55,7 @@
 															<th scope="col">#</th>
 															<th scope="col">PO Number</th>
 															<th scope="col">PO Date</th>
-															<th scope="col">Po Type</th>
-														
-															<th scope="col">Delivery Date</th>
+															
 
 
 															<th scope="col">Approval Status</th>
@@ -66,11 +71,8 @@
 														<tr th:each="po,iter  : ${listPurchaseOrder}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${po.poNumber}">Garrett Winters</td>
-															<td th:text="${po.poDate}">Garrett Winters</td>
-															<td th:text="${po.poType}">Good Guys</td>
+															<td th:text="${#dates.format(po.poDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
 															
-														
-															<td th:text="${po.deliveryDate}">Good Guys</td>
 
 
 
@@ -80,8 +82,7 @@
 																	<a class="btn btn-primary dropdown-toggle" href="#"
 																		role="button" id="dropdownMenuLink"
 																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false"> Pending
-																	</a>
+																		aria-expanded="false"> Pending </a>
 
 																	<div class="dropdown-menu"
 																		aria-labelledby="dropdownMenuLink">
@@ -100,8 +101,7 @@
 																	<a class="btn btn-primary dropdown-toggle" href="#"
 																		role="button" id="dropdownMenuLink"
 																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false"> Approved
-																	</a>
+																		aria-expanded="false"> Approved </a>
 
 																	<div class="dropdown-menu"
 																		aria-labelledby="dropdownMenuLink">
@@ -120,8 +120,7 @@
 																	<a class="btn btn-primary dropdown-toggle" href="#"
 																		role="button" id="dropdownMenuLink"
 																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false"> Cancelled
-																	</a>
+																		aria-expanded="false"> Cancelled </a>
 
 																	<div class="dropdown-menu"
 																		aria-labelledby="dropdownMenuLink">
@@ -154,7 +153,7 @@
 
 
 															<td><span> <a
-																		th:href="@{/purchaseorder/view/{id}(id=${po.poNumber})}">view</a></span>
+																	th:href="@{/purchaseorder/view/{id}(id=${po.poNumber})}">view</a></span>
 															</td>
 
 
@@ -167,8 +166,8 @@
 										</div>
 
 										<div class="box-footer">
-											<input type="submit" value="Back" onclick='window.history.back();'
-												class="btn btn-link" />
+											<input type="submit" value="Back"
+												onclick='window.history.back();' class="btn btn-link" />
 										</div>
 
 									</form>
@@ -182,16 +181,21 @@
 					</div>
 				</section>
 			</div>
+		</div>
+	</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 </body>
 

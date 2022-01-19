@@ -1,10 +1,14 @@
 package com.access.erp.service.impl;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 
 	@Autowired PurchaseOrderRepo purchaseOrderRepo;
 	@Autowired SeqMainRepo seqMainRepo;
+	@Autowired SessionFactory sessionFactory;
 	
 	@Override
 	public void addPurchaseOrder(PurchaseOrder purchaseOrder) {
@@ -72,11 +77,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 			System.out.println("approval status is : N");
 			purchaseOrder.setCancelDate(new Date());
 		}
-	
 		
 		purchaseOrder.setApprovalStatus(approvalStatus);
-		
-		
 		addPurchaseOrder(purchaseOrder); 
 		
 	}
@@ -85,9 +87,28 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 	public List<PurchaseOrder> getApprovedPurchaseorder() {
 		
 		String approvalStatus = "Y";
-		
-		
 		return purchaseOrderRepo.findByApprovalStatus("Y");
+	}
+
+	@Override
+	public void updatePurchaseOrder(PurchaseOrder purchaseOrder) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			PurchaseOrder po = session.find(PurchaseOrder.class,purchaseOrder.getPoNumber());
+			po.getListPurchaseOrderItem().clear();
+			po.getListPurchaseOrderItem().addAll(purchaseOrder.getListPurchaseOrderItem());
+			session.merge(purchaseOrder);
+			tx.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
 	}
 
 }
