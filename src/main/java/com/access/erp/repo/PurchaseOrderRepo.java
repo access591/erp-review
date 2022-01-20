@@ -11,6 +11,7 @@ import com.access.erp.model.PurchaseOrder;
 @Repository
 public interface PurchaseOrderRepo extends JpaRepository<PurchaseOrder, String>{
 	
+	List<PurchaseOrder> findAllByOrderByPoNumberDesc();
 	List<PurchaseOrder> findByApprovalStatus(String approvalStatus);
 
 }

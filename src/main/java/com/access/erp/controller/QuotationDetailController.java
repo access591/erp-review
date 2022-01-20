@@ -139,7 +139,7 @@ public class QuotationDetailController {
 	@GetMapping("/list")
 	public String viewQuotationList(Model model) {
 
-		List<QuotationDetail> quotationList = quotationService.getAllQuotationDetail();
+		List<QuotationDetail> quotationList = quotationService.findAllOrderBy();
 
 		if (quotationList != null) {
 			model.addAttribute("quotationList", quotationList);

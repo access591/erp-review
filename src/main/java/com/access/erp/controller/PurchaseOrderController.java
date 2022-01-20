@@ -225,7 +225,7 @@ public class PurchaseOrderController {
 	@GetMapping("/list")
 	public String listPurchaseOrder(Model model) {
 
-		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getAllPurchaseOrder();
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.findAllOrderBy();
 
 		if (listPurchaseOrder != null) {
 			model.addAttribute("listPurchaseOrder", listPurchaseOrder);
@@ -277,6 +277,12 @@ public class PurchaseOrderController {
 		List<State> stateList = stateService.getAllState();
 		model.addAttribute("stateList", stateList);
 
+		List<OpenIndent> listOpenIndent = openIndentService.getAllOpenIndent();
+		model.addAttribute("listOpenIndent", listOpenIndent);
+
+		List<Item> listItem = itemService.getAllItem();
+		model.addAttribute("listItem", listItem);
+
 		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poCode).get();
 
 		// System.out.println("get item list : " +
@@ -284,7 +290,7 @@ public class PurchaseOrderController {
 
 		model.addAttribute("purchaseOrder", po);
 
-		return "layouts/editview/editPurchaseOrder";
+		return "layouts/view/viewPurchaseOrder";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -647,6 +653,31 @@ public class PurchaseOrderController {
 
 		return listRfQuotationItem;
 
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/view/supplierInfo/{id}")
+	public PartyStateCity getPartyMasterAgainstQuotationView(@PathVariable(value = "id") String partyId) {
+
+		// QuotationDetail quotation =
+		PartyMaster partyMaster = partyMasterService.editPartyMaster(partyId).get();
+		State state = null;
+		City city = null;
+		if (partyMaster.getStateCode() != null || partyMaster.getStateCode() != "") {
+			state = stateService.editState(partyMaster.getStateCode()).get();
+		}
+
+		if (partyMaster.getCityCode() != null || partyMaster.getCityCode() != "") {
+			city = cityService.editCity(partyMaster.getCityCode()).get();
+		}
+
+		PartyStateCity partyStateCity = new PartyStateCity();
+		partyStateCity.setPartyMaster(partyMaster);
+		partyStateCity.setState(state);
+		partyStateCity.setCity(city);
+
+		return partyStateCity;
 	}
 
 }

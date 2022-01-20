@@ -52,7 +52,7 @@ public class GateEntryController {
 		//strin nam = req.getpara("name")
 		model.addAttribute("gateEntry", new GateEntry());
 		
-		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder("Y");
 		model.addAttribute("listPO", listPurchaseOrder);
 		
 		
@@ -122,7 +122,7 @@ public class GateEntryController {
 		List<Item> itemList = itemService.getAllItem();
 		model.addAttribute("itemList", itemList);
 
-		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder("y");
 		model.addAttribute("listPO", listPurchaseOrder);
 
 		return "layouts/editview/editGateEntry";
@@ -210,7 +210,7 @@ public class GateEntryController {
 	public List<PurchaseOrder> getApprovedPo() {
 		
 		
-		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder();
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder("y");
 		
 		return  listPurchaseOrder;
 		

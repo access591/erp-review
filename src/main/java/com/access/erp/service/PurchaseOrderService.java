@@ -14,8 +14,12 @@ public interface PurchaseOrderService {
 	
 	public void purchaseOrderApproval(String poNumber, String approvalStatus);
 	
-	public List<PurchaseOrder> getApprovedPurchaseorder();
+	public List<PurchaseOrder> getApprovedPurchaseorder(String status);
 	
 	public void updatePurchaseOrder(PurchaseOrder purchaseOrder);
+	
+	public List<PurchaseOrder> findAllOrderBy();
+	
+	
 
 }

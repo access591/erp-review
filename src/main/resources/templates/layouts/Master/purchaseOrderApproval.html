@@ -20,6 +20,57 @@
 	th:href="@{/css/skins/_all-skins.min.css}">
 
 
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+	background-color: #4b7df2;
+	color: white;
+	padding: 8px;
+	font-size: 12px;
+	border: none;
+	cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 100px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+</style>
+
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -49,16 +100,16 @@
 									<form role="form">
 										<div class="box-body">
 											<div class="table-responsive-sm">
-												<table class="table table-striped" style="width: 80%">
+												<table class="table table-striped" style="width: 100%">
 													<thead>
 														<tr>
 															<th scope="col">#</th>
 															<th scope="col">PO Number</th>
 															<th scope="col">PO Date</th>
-															
 
 
-															<th scope="col">Approval Status</th>
+
+															<th scope="col" class="text-center">Approval Status</th>
 
 
 
@@ -71,52 +122,49 @@
 														<tr th:each="po,iter  : ${listPurchaseOrder}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${po.poNumber}">Garrett Winters</td>
-															<td th:text="${#dates.format(po.poDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
-															
+															<td th:text="${#dates.format(po.poDate, 'dd-MMM-yyyy')}">Garrett
+																Winters</td>
+
 
 
 
 															<td class="text-center"
 																th:if="${po.approvalStatus == 'P'}">
-																<div class="dropdown show">
-																	<a class="btn btn-primary dropdown-toggle" href="#"
-																		role="button" id="dropdownMenuLink"
-																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false"> Pending </a>
 
-																	<div class="dropdown-menu"
-																		aria-labelledby="dropdownMenuLink">
+																<div class="dropdown">
+																	<button class="dropbtn">&nbsp&nbspPending&nbsp&nbsp</button>
+																	<div class="dropdown-content">
 																		<a class="dropdown-item"
 																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'Y'})}">Approved</a>
 																		<a class="dropdown-item"
 																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'N'})}">Cancel</a>
-
 																	</div>
 																</div>
+
+
+
+
+
 															</td>
 
 															<td class="text-center"
 																th:if="${po.approvalStatus == 'Y'}">
-																<div class="dropdown show">
-																	<a class="btn btn-primary dropdown-toggle" href="#"
-																		role="button" id="dropdownMenuLink"
-																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false"> Approved </a>
 
-																	<div class="dropdown-menu"
-																		aria-labelledby="dropdownMenuLink">
+
+																<div class="dropdown">
+																	<button class="dropbtn">&nbspApproved&nbsp</button>
+																	<div class="dropdown-content">
 																		<a class="dropdown-item"
 																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'Y'})}">Approved</a>
 																		<a class="dropdown-item"
 																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'N'})}">Cancel</a>
-
 																	</div>
 																</div>
 															</td>
 
 															<td class="text-center"
 																th:if="${po.approvalStatus == 'N'}">
-																<div class="dropdown show">
+																<!-- <div class="dropdown show">
 																	<a class="btn btn-primary dropdown-toggle" href="#"
 																		role="button" id="dropdownMenuLink"
 																		data-toggle="dropdown" aria-haspopup="true"
@@ -130,7 +178,20 @@
 																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'N'})}">Cancel</a>
 
 																	</div>
+																</div> -->
+
+
+
+																<div class="dropdown">
+																	<button class="dropbtn">Cancelled</button>
+																	<div class="dropdown-content">
+																		<a class="dropdown-item"
+																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'Y'})}">Approved</a>
+																		<a class="dropdown-item"
+																			th:href="@{/poapproval/approve/{id}/{status}/(id=${po.poNumber},status=${'N'})}">Cancel</a>
+																	</div>
 																</div>
+
 															</td>
 
 															<!--<td class="text-center"
@@ -188,6 +249,8 @@
 	<!--   <section class="content">
         
         </section>-->
+
+
 	<script src="../../js/jQuery-2.1.4.min.js"
 		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
 	<script src="../../js/bootstrap.min.js"

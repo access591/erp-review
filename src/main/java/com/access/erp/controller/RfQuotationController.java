@@ -29,6 +29,7 @@ import com.access.erp.repo.OpenIndentDetailRepo;
 import com.access.erp.repo.OpenIndentRepo;
 import com.access.erp.repo.SupplierRepo;
 import com.access.erp.service.CityService;
+import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentDetailService;
 import com.access.erp.service.OpenIndentService;
 import com.access.erp.service.PartyMasterService;
@@ -69,6 +70,7 @@ public class RfQuotationController {
 	@Autowired
 	OpenIndentDetailRepo openIndentDetailRepo;
 	@Autowired GlobalParameter globalParameter;
+	@Autowired ItemService itemService;
 
 	@GetMapping("/")
 	public String requestQuotation(Model model) {
@@ -159,6 +161,11 @@ public class RfQuotationController {
 
 		List<State> listStates = stateService.getAllState();
 		model.addAttribute("listStates", listStates);
+		
+		List<Item> listItem = itemService.getAllItem();
+		model.addAttribute("listItem", listItem);
+		
+		
 
 		// model.addAttribute("rFQuotation", rFQuotation);
 		return "layouts/editview/editRequestForQuotation";
@@ -272,7 +279,7 @@ public class RfQuotationController {
 	public List<OpenIndent> indentInfo() {
 
 		System.out.println("indent info handler ");
-		List<OpenIndent> aprovedOpenIndentList = openIndentService.approvedOpenIndent();
+		List<OpenIndent> aprovedOpenIndentList = openIndentService.findIndentNotInRfq();
 		return aprovedOpenIndentList;
 
 	}

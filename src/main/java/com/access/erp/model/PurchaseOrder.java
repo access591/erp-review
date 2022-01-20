@@ -449,7 +449,7 @@ public class PurchaseOrder {
 	@Column(name = "APPROVAL_SOURCE", length = 30)
 	private String approvalSource;
 
-	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval=true)
 	@JsonManagedReference
 	private List<PurchaseOrderItem> listPurchaseOrderItem = new ArrayList<>();
 

@@ -14,6 +14,7 @@ import com.access.erp.model.master.Item;
 @Repository
 public interface PurchaseOrderItemRepo extends JpaRepository<PurchaseOrderItem, Long>{
 	
+	
 	public List<PurchaseOrderItem> findByPurchaseOrder(PurchaseOrder po);
 	
 	public PurchaseOrderItem findByItemAndPurchaseOrder(Item item,PurchaseOrder purchaseOrder);

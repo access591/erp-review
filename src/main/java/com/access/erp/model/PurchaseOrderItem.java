@@ -320,9 +320,9 @@ public class PurchaseOrderItem {
 	@Column(name = "DOL",length = 2)
 	private String dol;
 	
-	 @ManyToOne(fetch= FetchType.LAZY)
-	 @JoinColumn(name="PO_NO")
-	 @JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="PO_NO")
+	@JsonBackReference
 	private PurchaseOrder purchaseOrder;
 
 	public PurchaseOrderItem() {
