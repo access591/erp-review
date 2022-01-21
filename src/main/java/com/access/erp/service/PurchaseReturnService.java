@@ -11,6 +11,8 @@ public void addPurchaseReturn(PurchaseReturn purchaseReturn);
 public List<PurchaseReturn>getAllPurchaseReturn();
 public Optional<PurchaseReturn>	editPurchaseReturn(String purchasePrNo);
 public void deletePurchaseReturn(String purchasePrNo);
+public void updatePurchaseReturn(PurchaseReturn purchaseReturn);
+
 	
 	
 	
