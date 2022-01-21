@@ -12,7 +12,8 @@ import com.access.erp.model.QuotationDetail;
 public interface QuotationDetailRepo extends JpaRepository<QuotationDetail, String>{
 	
 	// only approvalStatus1 == "Y"
-	public List<QuotationDetail> findByApprovalStatus1(@Param("approvalStatus1") String approvalStatus1);
+	public List<QuotationDetail> findAllByOrderByQuotNoDesc();
+	public List<QuotationDetail> findByApprovalStatus1(String approvalStatus1);
 
 	
 	

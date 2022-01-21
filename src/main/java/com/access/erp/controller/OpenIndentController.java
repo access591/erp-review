@@ -97,7 +97,7 @@ public class OpenIndentController {
 	@GetMapping("/list")
 	public String viewOpenIndentList(Model model) {
 
-		List<OpenIndent> openIndentList = openIndentService.getAllOpenIndent();
+		List<OpenIndent> openIndentList = openIndentService.findAllOrderBy();
 
 		if (openIndentList != null) {
 			model.addAttribute("openIndentList", openIndentList);

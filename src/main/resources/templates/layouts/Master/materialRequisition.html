@@ -515,31 +515,31 @@
 												//idIndex2++;
 												$('#adr' + j)
 														.html(
-																<!--item code   -->
+																
 																
 																"<td><input type='text' class='form-control form-control-sm' id='itemCode"+j+"' title='item description' readonly></td>"
 
-																<!-- Description  -->
+																
 																
 																		+ "<td><select id='itemName"+j+"' class='form-control form-control-sm select itemContainer"+j+"' required title='item' onchange='selectItem()'name='materialRequisitionDetails["+j+"].item'><option value=''>Select</option><option th:each='item :  ${itemList} th:text='${item.description}'th:value=' ${item.itemCode}'></option></select>'</td>"
 
-																		<!--  uom  -->
+																		
 																		+"<td><input type='text' class='control form-control-sm' id='uom"+j+"' style='width: 90px;' title='uom' name='materialRequisitionDetails["+j+"].uom' readonly> <td>"
 
-																		<!-- qty in stock  -->
+																		
 																		+ "<td><input type='number' title='qty' class='form-control form-control-sm' style='width: 100px;' id='qty"+j+"' name='materialRequisitionDetails["+j+"].qty' step='0.25' readonly> </td>"
 
-																		<!--  qty required  -->
+																		
 																		+ "<td><input type='number'class='form-control form-control-sm' title='net qty' name='materialRequisitionDetails["+j+"].netQty' style='width: 100px;'></td>" 
 
 																		
-																		<!-- approved required qty  -->
+																		
 																		+ "<td><input type='text' class='form-control form-control-sm' id='technicalQualification' title='srNoClaimUnder'name='materialRequisitionDetails["+j+"].srNoClaimUnder'></td>" 
 
 																		
 
 																		
-																		<!-- required date  -->
+																		
 																		+ "<td><input type='date' class='form-control form-control-sm' id='orderItemuom' title='' style='width: 150px'name='materialRequisitionDetails["+j+"].srNoSendForRep'></td>" 
 
 																	);

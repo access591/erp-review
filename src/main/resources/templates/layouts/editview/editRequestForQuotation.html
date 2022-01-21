@@ -172,7 +172,7 @@
 																	<tr id="addr0"
 																		th:each="row, stat :${rFQuotation.listRFQuotation}">
 
-																		
+
 
 
 																		<td><select
@@ -185,34 +185,37 @@
 																					th:text="${indent.indentNumber}"
 																					th:value=" ${indent.indentNumber}"></option>
 
-																		</select>
-																		<input type="hidden"
-																			id="length1"
+																		</select> <input type="hidden" id="length1"
 																			th:value="${#lists.size(rFQuotation.listRFQuotation)}">
 																		</td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
-																			title="indent date" th:id="'indentDate' + ${stat.index}"
+																			title="indent date"
+																			th:id="'indentDate' + ${stat.index}"
 																			class="form-control form-control-sm"
 																			th:field="*{listRFQuotation[__${stat.index}__].indentDate}"
 																			readonly></td>
 
 
 
-																		<!--<td><select class="form-control form-control-sm select itemContainer"
-												onchange="getItemDetail()" title="Location" id="item"
-												th:field="*{listRFQuotation[__${stat.index}__].item}"
-												 required>
-												<option value=" ">Select Item Name</option>
+																		<td><select
+																			class="form-control form-control-sm select itemContainer"
+																			onchange="getItemDetail()" title="Location" id="item"
+																			th:field="*{listRFQuotation[__${stat.index}__].item}"
+																			required>
+																				<option value=" ">Select Item Name</option>
+																				<option th:each="item : ${listItem}"
+																					th:text="${item.description}" th:value="${item.itemCode}"></option>
+																				
+		
+																		</select></td>
 
-											</select></td>
--->
 
-																		<td><input type="text" style="font-size: 0.95rem"
+																		<!-- <td><input type="text" style="font-size: 0.95rem"
 																			title="indent date"
 																			class="form-control form-control-sm" id="indentDate"
 																			th:field="*{listRFQuotation[__${stat.index}__].item}"
-																			required></td>
+																			required></td> -->
 
 																		<td><input type="text" title="uom"
 																			class="form-control form-control-sm" id="uom"
@@ -437,25 +440,22 @@
 					if (qType == "W") {
 
 						for (let i = 0; i < length; i++) {
-							
-							$("#indentNumber"+i).attr('disabled', 'disabled');
-							$("#indentDate" + i).attr('disabled',
-									'disabled');
+
+							$("#indentNumber" + i).attr('disabled', 'disabled');
+							$("#indentDate" + i).attr('disabled', 'disabled');
 						}
 
 						//getIndentListWithoutIndentType()
 
 					} else {
 						for (let i = 0; i < length; i++) {
-							
-							$("#indentNumber" + i)
-									.removeAttr('disabled');
+
+							$("#indentNumber" + i).removeAttr('disabled');
 							$("#indentDate" + i).removeAttr('disabled');
 						}
 
 					}
 				}
-				
 			</script>
 			<script src="../../js/jQuery-2.1.4.min.js"
 				th:src="@{/js/jQuery-2.1.4.min.js}"></script>

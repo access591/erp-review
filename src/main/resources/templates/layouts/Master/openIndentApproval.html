@@ -19,6 +19,55 @@
 <link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
 	th:href="@{/css/skins/_all-skins.min.css}">
 
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+	background-color: #4b7df2;
+	color: white;
+	padding: 8px;
+	font-size: 12px;
+	border: none;
+	cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 100px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+</style>
 
 </head>
 
@@ -55,7 +104,7 @@
 															<th scope="col">#</th>
 															<th scope="col">Indent Number</th>
 															<th scope="col">Indent Date</th>
-															
+
 
 
 															<th scope="col" class="text-center">Approval Status</th>
@@ -71,45 +120,31 @@
 														<tr th:each="indent,iter  : ${openIndentList}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${indent.indentNumber}">Garrett Winters</td>
-															<td th:text="${#dates.format(indent.indentDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
-								
+															<td
+																th:text="${#dates.format(indent.indentDate, 'dd-MMM-yyyy')}">Garrett
+																Winters</td>
+
 
 
 															<td class="text-center"
 																th:if="${indent.approvalStatus1 == 'N'}">
-																<div class="dropdown show">
-																	<a class="btn btn-primary dropdown-toggle" href="#"
-																		role="button" id="dropdownMenuLink"
-																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false">Pending</a>
-
-																	<div class="dropdown-menu"
-																		aria-labelledby="dropdownMenuLink">
+																<div class="dropdown">
+																	<button class="dropbtn">&nbsp&nbspPending&nbsp&nbsp</button>
+																	<div class="dropdown-content">
 																		<a class="dropdown-item"
 																			th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'Y'},level=${'1'})}">Approved</a>
 																		<a class="dropdown-item"
 																			th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'C'},level=${'1'})}">Cancel</a>
-
+																		
 																	</div>
 																</div>
 															</td>
-															
+
 															<td class="text-center"
 																th:if="${indent.approvalStatus1 == 'C'}">
-																<div class="dropdown show">
-																	<a class="btn btn-primary dropdown-toggle" href="#"
-																		role="button" id="dropdownMenuLink"
-																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false">Rejected</a>
-
-																	<!-- <div class="dropdown-menu"
-																		aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item"
-																			th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'Y'},level=${'1'})}">Approved</a>
-																		<a class="dropdown-item"
-																			th:href="@{/openindent/approve/{id}/{status}/{level}/(id=${indent.indentNumber},status=${'N'},level=${'1'})}">Cancel</a>
-
-																	</div> -->
+																<div class="dropdown">
+																	<button class="dropbtn">Cancelled</button>
+																	<div class="dropdown-content"></div>
 																</div>
 															</td>
 
@@ -132,7 +167,7 @@
 																</div>
 															</td> -->
 
-														<!-- 	<td class="text-center"
+															<!-- 	<td class="text-center"
 																th:if="${indent.approvalStatus1 == 'Y' and indent.approvalStatus2 == 'Y' and indent.approvalStatus3 == 'N'}">
 																<div class="dropdown show">
 																	<a class="btn btn-primary dropdown-toggle" href="#"
@@ -153,14 +188,9 @@
  -->
 															<td class="text-center"
 																th:if="${indent.approvalStatus1 == 'Y'}">
-																<div class="dropdown show">
-																	<a class="btn btn-primary dropdown-toggle" href="#"
-																		role="button" id="dropdownMenuLink"
-																		data-toggle="dropdown" aria-haspopup="true"
-																		aria-expanded="false">Approved
-																	</a>
-
-
+																<div class="dropdown">
+																	<button class="dropbtn">&nbspApproved&nbsp</button>
+																	<div class="dropdown-content"></div>
 																</div>
 															</td>
 

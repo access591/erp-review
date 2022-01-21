@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head xmlns:th="http://www.thymeleaf.org">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EBS</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="../../css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-	<link rel="stylesheet" href="../../css/skins/_all-skins.min.css" th:href="@{/css/skins/_all-skins.min.css}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>EBS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="../../css/AdminLTE.min.css"
+	th:href="@{/css/AdminLTE.min.css}">
+<link rel="stylesheet" href="../../css/skins/_all-skins.min.css"
+	th:href="@{/css/skins/_all-skins.min.css}">
 
 
 </head>
@@ -49,8 +56,8 @@
 															<th scope="col">PO Number</th>
 															<th scope="col">PO Date</th>
 															<!--<th scope="col">Purchase Through</th>-->
-														
-														
+
+
 															<th scope="col">Supply Date</th>
 															<th scope="col">Delivery Date</th>
 															<th scope="col">Action</th>
@@ -61,20 +68,27 @@
 														<tr th:each="po,iter  : ${listPurchaseOrder}">
 															<td th:text="${iter.index}">1</td>
 															<td th:text="${po.poNumber}">Garrett Winters</td>
-															<td th:text="${#po.poDate(po.poDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
-															
-														
-														
-															<td th:text="${#po.poDate(po.supplyDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
-															<td th:text="${#po.poDate(po.deliveryDate, 'dd-MMM-yyyy')}">Garrett Winters</td>
-															
-															
+															<td th:text="${#dates.format(po.poDate, 'dd-MMM-yyyy')}">Garrett
+																Winters</td>
+
+
+
+															<td
+																th:text="${#dates.format(po.supplyDate, 'dd-MMM-yyyy')}">Garrett
+																Winters</td>
+															<td
+																th:text="${#dates.format(po.deliveryDate, 'dd-MMM-yyyy')}">Garrett
+																Winters</td>
+
+
 
 															<td><span> <a
-																		th:href="@{/purchaseorder/edit/{id}(id=${po.poNumber})}"><em class="fa fa-edit" style="color: blue;"> Edit</em></a></span>
-																<span> <a
-																		th:href="@{/purchaseorder/delete/{id}(id=${po.poNumber})}"><em class="fa fa-times" style="color: red"> Remove</em></a></a></span>
-															</td>
+																	th:href="@{/purchaseorder/edit/{id}(id=${po.poNumber})}"><em
+																		class="fa fa-edit" style="color: blue;"> Edit</em></a></span> <span>
+																	<a
+																	th:href="@{/purchaseorder/delete/{id}(id=${po.poNumber})}"><em
+																		class="fa fa-times" style="color: red"> Remove</em></a></a>
+															</span></td>
 														</tr>
 
 
@@ -86,7 +100,8 @@
 										</div>
 
 										<div class="box-footer">
-											<input type="button" value="Go back!" class="btn btn-link" onclick="history.back()">
+											<input type="button" value="Go back!" class="btn btn-link"
+												onclick="history.back()">
 										</div>
 
 									</form>
@@ -100,16 +115,21 @@
 					</div>
 				</section>
 			</div>
+		</div>
+	</div>
 
-			<div th:replace="fragments/footer :: footer">...</div>
-			<!--   <section class="content">
+	<div th:replace="fragments/footer :: footer">...</div>
+	<!--   <section class="content">
         
         </section>-->
-			<script src="../../js/jQuery-2.1.4.min.js" th:src="@{/js/jQuery-2.1.4.min.js}"></script>
-			<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-			<script src="../../js/fastclick.min.js" th:src="@{/js/fastclick.min.js}"></script>
-			<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
-			<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
+	<script src="../../js/jQuery-2.1.4.min.js"
+		th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+	<script src="../../js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../../js/fastclick.min.js"
+		th:src="@{/js/fastclick.min.js}"></script>
+	<script src="../../js/app.min.js" th:src="@{/js/app.min.js}"></script>
+	<script src="../../js/demo.js" th:src="@{/js/demo.js}"></script>
 
 </body>
 

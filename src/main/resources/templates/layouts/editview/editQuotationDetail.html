@@ -162,7 +162,7 @@
 
 														<div class="box">
 															<div class="box-body">
-																<div class="form-group col-md-4">
+																<div class="form-group col-md-3">
 																	<label class="form-label ">Supplier </label> <label
 																		style="color: red">*</label> <select
 																		class="form-control suppContainer"
@@ -175,13 +175,13 @@
 																	</select>
 																</div>
 
-																<div class="form-group col-md-4">
+																<div class="form-group col-md-3">
 																	<label for="inputPassword4">Supplier Name</label> <input
 																		type="text" class="form-control"
 																		placeholder="quotation date" id="supplierName"
 																		th:field="*{tempSupName}">
 																</div>
-																<div class="form-group col-md-4">
+																<div class="form-group col-md-3">
 																	<label for="inputPassword4">SupplierState</label> <select
 																		class="form-control" required id="supplierState"
 																		title="supplier State" th:field="*{supCityCode}">
@@ -194,12 +194,8 @@
 																	</select>
 																</div>
 
-																<div class="form-group col-md-4">
-																	<label for="inputAddress">Form Code</label> <input
-																		type="text" class="form-control" id="inputAddress"
-																		placeholder="received on" th:field="*{fromCode}">
-																</div>
-																<div class="form-group col-md-4">
+																
+																<div class="form-group col-md-3">
 																	<label for="inputAddress">Supplier City</label> <select
 																		class="form-control" required id="supplierCity"
 																		title="supplier State" th:field="*{supCountry}">
@@ -211,12 +207,7 @@
 
 																	</select>
 																</div>
-																<div class="form-group col-md-4">
-																	<label for="inputAddress">Form Type</label> <input
-																		type="text" class="form-control" id="inputAddress"
-																		placeholder="from type">
-																	<!-- th:field="*{quotType}" -->
-																</div>
+																
 															</div>
 															<!-- /.box-body -->
 
@@ -312,8 +303,8 @@
 																			style="width: 10px;">UOM</th>
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Rate</th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Negotiable Cost</th>
+																		<!-- <th scope="col" class="text-center"
+																			style="width: 90px;">Negotiable Cost</th> -->
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Qty</th>
 																		<th scope="col" class="text-center"
@@ -328,7 +319,7 @@
 																		th:each="row, stat :${quotation.quotationItem}">
 
 
-																		<td><select
+																		<!-- <td><select
 																			class="select form-control form-control-sm"
 																			id="indentNumber" title="Location" required
 																			onchange="getIndentDetailByIndentNumber()"
@@ -336,21 +327,31 @@
 																				<option value=" ">Select Indent Number</option>
 																				<option th:each="indent :  ${listIndentInRfq}"
 																					th:text="${indent.indentNumber}"
-																					th:value=" ${indent.indentNumber}"></option>
+																					th:value="${indent.indentNumber}"></option>
 
-																		</select></td>
+																		</select></td> -->
+																		
+																			<td><input type="text" style="font-size: 0.95rem"
+																			title="indent"
+																			th:field="*{quotationItem[__${stat.index}__].indentNum}"
+																			class="form-control form-control-sm"
+																			th:id="'indentNumber' + ${stat.index}" readonly>
+																			
+																			<input type="hidden" id="length" th:value="${#lists.size(quotation.quotationItem)}">
+																			</td>
 
 																		<td><input type="date" style="font-size: 0.95rem"
 																			title="indent date"
 																			class="form-control form-control-sm"
 																			th:field="*{quotationItem[__${stat.index}__].indentDate}"
-																			id="indentDate" required></td>
+																			th:id="'indentDate' + ${stat.index}" required></td>
 
 
 
 																		<td><select
 																			class="select form-control form-control-sm"
 																			title="employee name" required
+																			th:id="'employee' + ${stat.index}"
 																			th:field="*{quotationItem[__${stat.index}__].employee}">
 																				<option value=" ">Select</option>
 																				<option th:each="employee :  ${employeeList}"
@@ -374,35 +375,38 @@
 
 																		</select></td> -->
 
-																		<td><input type="text" id="item" title="item"
+																		<td><input type="text" th:id="'item' + ${stat.index}" title="item"
 																			th:field="*{quotationItem[__${stat.index}__].qtItemCode}"
-																			class="form-control form-control-sm" required></td>
+																			class="form-control form-control-sm" readonly></td>
 
 
-																		<td><input type="text" id="itemDescriptin"
-																			class="form-control form-control-sm" required></td>
-
-																		<td><input type="text"
-																			class="form-control form-control-sm" required
-																			id="uomCode" title=""></td>
+																		<td><input type="text" th:id="'itemDescriptin' + ${stat.index}" 
+																			class="form-control form-control-sm" readonly></td>
 
 																		<td><input type="text"
 																			class="form-control form-control-sm" required
+																			th:id="'uomCode' + ${stat.index}" title="" readonly></td>
+
+																		<td><input type="text"
+																			th:id="'rate' + ${stat.index}"
+																			class="form-control form-control-sm text-right" required
 																			th:field="*{quotationItem[__${stat.index}__].rate}"
 																			title=""></td>
 
-																		<td><input type="text"
-																			class="form-control form-control-sm" required
-																			title=""></td>
+																		<!-- <td><input type="text"
+																			class="form-control form-control-sm text-right" required
+																			title=""></td> -->
 
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" required
+																			th:id="'itemQty' + ${stat.index}"
+																			class="form-control form-control-sm text-right" required
 																			th:field="*{quotationItem[__${stat.index}__].qtItemQty}"
 																			title=""></td>
 
 																		<td><input type="text"
-																			class="form-control form-control-sm" required
+																			th:id="'totalValue' + ${stat.index}"
+																			class="form-control form-control-sm text-right" required
 																			th:field="*{quotationItem[__${stat.index}__].totalValue}"
 																			title=""></td>
 
@@ -436,14 +440,14 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Trade
 																		Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			onkeyup="totalDiscountInPercentFun()"
 																			id="totalDiscountInPercent"
 																			placeholder="Total Discount(%)"
 																			th:field="*{quotationItem[0].discountValue}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="totalDiscountInValue"
 																			placeholder="Total Discount">
 																	</div>
@@ -456,13 +460,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Discount</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			onkeyup="discountInPercentFun()"
 																			id="discountInPercent" placeholder="Discount(%)"
 																			th:field="*{quotationItem[0].discount}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="discountInValue" placeholder="Discount">
 																	</div>
 																</div>
@@ -475,7 +479,7 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="packing"
+																		<input type="number" class="form-control text-right" id="packing"
 																			placeholder="Packing"
 																			th:field="*{quotationItem[0].packing}">
 																	</div>
@@ -490,7 +494,7 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">Freight</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control" id="freight"
+																		<input type="number" class="form-control text-right" id="freight"
 																			placeholder="Freight"
 																			th:field="*{quotationItem[0].freight}">
 																	</div>
@@ -504,13 +508,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">SGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="sgstInPercent" placeholder="Sgst(%)"
 																			onkeyup="sgstInPercentFun()"
 																			th:field="*{quotationItem[0].sgst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="sgstInValue" placeholder="Sgst"
 																			th:field="*{quotationItem[0].sgstValue}">
 																	</div>
@@ -522,13 +526,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">CGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="cgstInPercent" placeholder="Cgst(%)"
 																			onkeyup="cgstInPercentFun()"
 																			th:field="*{quotationItem[0].cgst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="cgstInValue" placeholder="Cgst"
 																			th:field="*{quotationItem[0].cgstValue}">
 																	</div>
@@ -540,13 +544,13 @@
 																<div class="form-group m-5">
 																	<label for="inputEmail3" class="col-md-2 control-label">IGST(%)</label>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="igstInPercent" placeholder="Igst(%)"
 																			onkeyup="igstInPercentFun()"
 																			th:field="*{quotationItem[0].igst}">
 																	</div>
 																	<div class="col-md-4">
-																		<input type="number" class="form-control"
+																		<input type="number" class="form-control text-right"
 																			id="igstInValue" placeholder="Igst"
 																			th:field="*{quotationItem[0].igstValue}">
 																	</div>
@@ -572,16 +576,16 @@
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value </label> <input
-																				type="text" class="form-control" id="totalRs"
-																				placeholder="Total Value">
+																				type="text" class="form-control text-right" id="totalRs"
+																				placeholder="Total Value" th:field="*{totalValue}">
 																		</div>
 																	</div>
 
 																	<div class="row ">
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value (INR)</label> <input
-																				type="text" class="form-control" id="totalCount"
-																				placeholder="Total Value (INR)">
+																				type="text" class="form-control text-right" id="totalCount"
+																				placeholder="Total Value (INR)" th:field="*{totalValueInr}">
 																		</div>
 																	</div>
 
@@ -638,6 +642,20 @@
 
 
 	<script>
+	
+	window.addEventListener("load", myInit, true);
+	function myInit() {
+		
+		changeItemInQuotationDetail()
+		//changeRequestForQuotation();
+		//getIndentDetailByIndentNumber();
+
+		//supplierInfo1()
+		//changeItem();
+
+	};
+	
+	
 		function changeRequestForQuotation() {
 
 			console.log("get Item function calling");
@@ -782,15 +800,37 @@
 
 		}
 
-		window.addEventListener("load", myInit, true);
-		function myInit() {
-			changeRequestForQuotation();
-			//getIndentDetailByIndentNumber();
+		
+		function changeItemInQuotationDetail() {
 
-			//supplierInfo1()
-			//changeItem();
+			var length = document.getElementById("length").value;
+			for(let i=0;i<length;i++){
+				
+				var itemCode = document.getElementById("item"+i).value;
+				console.log("ItemCode is : " + itemCode)
 
-		};
+				$.ajax({
+					type : "GET",
+					url : "itemInfo/" + itemCode,
+
+					success : function(data) {
+						console.log("Item Info behalf of Indent Number  : " + data)
+
+						$("#itemDescriptin"+i).val(data.description)
+						$("#uomCode"+i).val(data.uom.uomCode);
+						
+						//$("#itemRate0").val(data.itemRate);
+						//$("#itemQty0").val('0');
+
+					},
+					error : function() {
+						console.log("Error");
+					}
+				});
+			}
+			
+
+		}
 
 		function changeItem() {
 

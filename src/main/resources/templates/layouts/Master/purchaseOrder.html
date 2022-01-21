@@ -79,7 +79,7 @@
 
 						<!-- form start -->
 						<form role="form" th:action="@{/purchaseorder/}"
-							th:object="${purchaseOrder}" method="POST">
+							th:object="${purchaseOrder}" method="POST"  enctype="multipart/form-data">
 
 
 							<!-- Default box -->
@@ -130,13 +130,13 @@
 														<div class="form-row">
 															<div class="form-group col-md-3">
 																<label for="inputEmail4">PO Number</label> <input
-																	type="text" class="form-control" id="inputEmail4"
+																	type="text" title="po number" class="form-control" id="inputEmail4"
 																	placeholder="po number" th:field="*{poNumber}" readonly>
 															</div>
 															<div class="form-group col-md-3">
 																<label for="inputPassword4">PO Date</label><label
 																	style="color: red">*</label> <input type="date"
-																	class="form-control" placeholder="po date" id="poDate"
+																	class="form-control" title="po date" placeholder="po date" id="poDate"
 																	th:field="*{poDate}">
 															</div>
 
@@ -166,6 +166,13 @@
 															</div>
 
 														</div>
+
+														<div class="form-row">
+															<label class="form-label" for="customFile">Upload
+																Document</label> <input type="file" name="poFile"
+																class="form-control" title="upload" id="customFile" />
+															
+														</div>
 													</div>
 													<!-- /.box-body -->
 
@@ -179,7 +186,7 @@
 													<div class="box-body">
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Nature of Purchase</label><select
-																class="form-control" id="" title="urgency"
+																class="form-control" id="" title="nature of purchase"
 																th:field="*{natureOfPur}" required>
 
 																<option value="C">Capital</option>
@@ -188,7 +195,7 @@
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Open PO</label> <select
-																class="form-control" id="openPo" title="urgency"
+																class="form-control" id="openPo" title="open po"
 																th:field="*{openPo}" required onchange="openPoFun()">
 																<option value="N">No</option>
 																<option value="Y" selected>Yes</option>
@@ -197,7 +204,7 @@
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">PO Type</label> <select
-																class="form-control" id="" title="urgency"
+																class="form-control" id="" title="po type"
 																th:field="*{poType}" required>
 
 																<option value="Ir" selected>Inter State</option>
@@ -209,7 +216,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Purchase Through</label> <select
 																class="form-control" id="purchaseThrough"
-																title="urgency" required th:field="*{purchaseThrogh}"
+																title="purchase through" required th:field="*{purchaseThrogh}"
 																onchange="againstPurchaseThrough()">
 																<option value="Q" selected>Quotation</option>
 																<option value="I">Indent</option>
@@ -218,7 +225,7 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Quotation Number</label> <select
-																class="form-control" id="quotationNumber" title=""
+																class="form-control" id="quotationNumber" title="quotation number"
 																onchange="quotationNumberInfo()"
 																th:field="*{quotationDetail}" required>
 																<option value="">Select</option>
@@ -231,7 +238,7 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Date</label> <input type="date"
-																class="form-control" id="quotationDate"
+																class="form-control" id="quotationDate"title="date"
 																placeholder="cancelbutton status"
 																th:field="*{quotationDate}" readonly>
 														</div>
@@ -248,7 +255,7 @@
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">Supplier</label> <select
 																id="supplierId" class="form-control" required
-																title="supplier code" onchange="supplierInfo()"
+																title="supplier" onchange="supplierInfo()"
 																th:field="*{supplier}">
 																<option value=" ">Select</option>
 																<option th:each="party :  ${listParty}"
@@ -301,12 +308,14 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Delivery Date</label> <input
 																type="date" class="form-control" id="deliveryDate"
+																title="delivery date"
 																placeholder="po date" th:field="*{deliveryDate}">
 														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Conversion Value</label> <input
 																type="number" class="form-control" value="42"
+																title="conversion value"
 																placeholder="Conversion Value"
 																th:field="*{conversionValue}">
 														</div>
@@ -314,13 +323,15 @@
 														<div class="form-group col-md-6">
 															<label for="inputAddress">Invoice Address</label> <input
 																type="text" class="form-control" id="inputAddress"
+																title="invoice address"
 																placeholder="Invoce Address">
 														</div>
 
 														<div class="form-group col-md-6">
 															<label for="inputPassword4">Remarks</label>
 															<textarea type="text" class="form-control"
-																id="inputPassword4" placeholder="gst"
+																title="remarks"
+																id="inputPassword4" placeholder="remarks"
 																th:field="*{remarks}"></textarea>
 														</div>
 
@@ -472,7 +483,8 @@
 																			name="listPurchaseOrderItem[0].totalValueInr"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalCostInr0" title="total item cost(inr)"
-																			step='0.01' value='0.00' placeholder='0.00' style="text-align: right" readonly></td>
+																			step='0.01' value='0.00' placeholder='0.00'
+																			style="text-align: right" readonly></td>
 
 																		<!--  dol -->
 																		<td><select class="form-control" title="dol"
@@ -565,20 +577,20 @@
 																		<!-- freight  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="freight0"
-																			title="order date"
+																			title="freight"
 																			name="listPurchaseOrderItem[0].freight"
 																			style="text-align: right" value="0"></td>
 
 																		<!-- cgst in percent  -->
 																		<td><input type="text"
 																			class="form-control form-control-sm" id="cgstInPer0"
-																			title="item name"
+																			title="cgst"
 																			name="listPurchaseOrderItem[0].cgst"
 																			onkeyup="calulationOfCgst()"
 																			style="text-align: right" value="0"></td>
 
 																		<!-- cgst in value  -->
-																		<td><input type="number" title="uom"
+																		<td><input type="number" title="cgst value"
 																			class="form-control form-control-sm setTwoNumberDecimal"
 																			id="cgstInValue0" step='0.01'
 																			name="listPurchaseOrderItem[0].cgstValue" readonly
@@ -586,7 +598,7 @@
 
 																		<!-- sgst in percent  -->
 																		<td><input type="number" id="sgstInPer0"
-																			class="form-control form-control-sm" title="po qty"
+																			class="form-control form-control-sm" title="sgst"
 																			name="listPurchaseOrderItem[0].sgst"
 																			onkeyup="calulationOfSgst()"
 																			style="text-align: right" value="0"></td>
@@ -595,14 +607,14 @@
 																		<!-- sgst in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="sgstInValue0" title="inv qty" step='0.01'
+																			id="sgstInValue0" title="sgst value" step='0.01'
 																			name="listPurchaseOrderItem[0].sgstValue" readonly
 																			style="text-align: right" value="0"></td>
 
 																		<!-- igst in percent  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="igstInPer0"
-																			title="rec qty" name="listPurchaseOrderItem[0].igst"
+																			title="igst" name="listPurchaseOrderItem[0].igst"
 																			onkeyup="calulationOfIgst()"
 																			style="text-align: right" value="0"></td>
 
@@ -611,14 +623,14 @@
 
 																		<td><input type="number"
 																			class="form-control form-control-sm setTwoNumberDecimal"
-																			id="igstInValue0" title="po rate curr" step='0.01'
+																			id="igstInValue0" title="igst value" step='0.01'
 																			name="listPurchaseOrderItem[0].igstValue" readonly
 																			style="text-align: right" value="0"></td>
 
 																		<!-- discount in percent  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			id="descountInPer0" title="po rate"
+																			id="descountInPer0" title="discount"
 																			name="listPurchaseOrderItem[0].discPer"
 																			onkeyup="calulationOfDiscount()"
 																			style="text-align: right" value="0"></td>
@@ -626,7 +638,7 @@
 																		<!-- discount  in value  -->
 																		<td><input type="number"
 																			class="form-control form-control-sm"
-																			id="descountInValue0" title="po rate" step='0.01'
+																			id="descountInValue0" title="discount value" step='0.01'
 																			name="listPurchaseOrderItem[0].discValue" readonly
 																			style="text-align: right" value="0"></td>
 
@@ -659,13 +671,13 @@
 															<label for="inputEmail4">Total Cost(Excluding
 																tax)</label> <input type="number" class="form-control"
 																id="totalValueEx" placeholder="supplier"
-																th:field="*{totalValue}" style="text-align: right"
+																th:field="*{totalValue}" title="total cost" style="text-align: right"
 																value="0">
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Total Cost(Including
 																tax)</label> <input type="number" class="form-control"
-																id="totalValueIn" placeholder="supplier state"
+																id="totalValueIn" title="total cost" placeholder="supplier state"
 																style="text-align: right" value="0">
 														</div>
 
@@ -674,11 +686,11 @@
 												</div>
 												<!--end final div-->
 
-												
+
 
 											</div>
 											<!-- /.box -->
-											
+
 										</div>
 
 
@@ -1473,6 +1485,8 @@
 								}
 							});
 						});
+
+		
 	</script>
 
 

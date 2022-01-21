@@ -31,6 +31,7 @@ public class RejectionIssue {
 	@Column(name = "ISSUE_NO", length = 15)
 	private String IssNo;
 
+
 	@Column(name = "ISS_DT")
 	private Date date;
 
@@ -126,5 +127,6 @@ public class RejectionIssue {
 	private List<RejectionIssueDetail> listRejectionIssueDetail = new ArrayList<>();
 	
 	
+
 
 }

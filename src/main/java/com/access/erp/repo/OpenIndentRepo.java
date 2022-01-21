@@ -15,6 +15,8 @@ public interface OpenIndentRepo extends JpaRepository<OpenIndent, String>{
 	
 	public OpenIndent findByIndentNumber(String indentNumber);
 	
+	public List<OpenIndent> findAllByOrderByIndentNumberDesc();
+	
 	public List<OpenIndent> findByApprovalStatus(String approvalStatus);
 	
 	@Query(value="select o from OpenIndent o where o.approvalStatus=?1 and o.indentNumber not in (select r.openIndent from RfQuotationItem r )")
