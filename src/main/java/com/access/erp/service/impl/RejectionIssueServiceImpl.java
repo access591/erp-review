@@ -6,37 +6,54 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.access.erp.model.PurchaseReturnDetail;
 import com.access.erp.model.RejectionIssue;
 import com.access.erp.repo.RejectionIssueRepo;
+import com.access.erp.repo.SeqMainRepo;
 import com.access.erp.service.RejectionIssueService;
 @Service
 public class RejectionIssueServiceImpl implements RejectionIssueService {
 
-	
+	@Autowired SeqMainRepo seqMainRepo;
 	@Autowired RejectionIssueRepo rejectionIssuerepo;
 	
 	
 	@Override
 	public void addRejectionIssue(RejectionIssue rejectionissue) {
-		// TODO Auto-generated method stub
+		if (rejectionissue.getIssNo() == "" | (rejectionissue.getIssNo() == null)) {
+			System.out.println("purchase return  code is : " + rejectionissue.getIssNo());
+
+			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("RISS", "20-21", "EB");
+
+			System.out.println("max code is : " + maxCode);
+			rejectionissue.setIssNo(maxCode);
+		}
+
+		
+		
+
+		rejectionIssuerepo.save(rejectionissue);
+
+	
 		
 	}
 
 	@Override
 	public List<RejectionIssue> getAllRejectionIssue() {
 		// TODO Auto-generated method stub
-		return null;
+		return rejectionIssuerepo.findAll();
 	}
 
 	@Override
 	public Optional<RejectionIssue> editRejectionIssue(String IssueNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return rejectionIssuerepo.findById(IssueNo);
 	}
 
 	@Override
 	public void deleteRejectionIssue(String IssueNo) {
 		// TODO Auto-generated method stub
+		rejectionIssuerepo.deleteById(IssueNo);
 		
 	}
 
