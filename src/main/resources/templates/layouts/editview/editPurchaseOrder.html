@@ -77,8 +77,8 @@
 					<section class="content">
 
 						<!-- form start -->
-						<form role="form" th:action="@{/purchaseorder/}"
-							th:object="${purchaseOrder}" method="POST">
+						<form role="form" th:action="@{/purchaseorder/update}"
+							th:object="${purchaseOrder}" method="POST" enctype="multipart/form-data">
 
 							<!-- Default box -->
 							<div class="box">
@@ -158,6 +158,26 @@
 
 																</select>
 															</div>
+
+														</div>
+
+
+														<div class="row">
+
+															<input type="hidden" th:field="*{docFile}">
+															<div class="col-md-12">
+																<label class="form-label" for="customFile">Upload
+																	Document</label> <input type="file" name="poFile"
+																	class="form-control" id="customFile" /> <a
+																	th:href="@{'/img/uploads/' + ${purchaseOrder.docFile}}"
+																	target="_blank">view file</a>
+															</div>
+
+
+
+
+
+
 
 														</div>
 													</div>
@@ -405,10 +425,14 @@
 																		<td><select
 																			class="form-control indentContainer0 form-control-sm select"
 																			id="indentNumberPo0"
-																			th:field="*{listPurchaseOrderItem[__${stat.index}__].openIndent}"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].openIndent.indentNumber}"
 																			title="indent number" onchange='getIndentDetailPo()'
 																			required>
 																				<option value="">Select Indent</option>
+																				<option
+																					th:each="indent :  ${listOpenIndent}"
+																					th:text="${indent.indentNumber}"
+																					th:value=" ${indent.indentNumber}"></option>
 
 																		</select></td>
 
@@ -425,6 +449,11 @@
 																			required title="item" onchange="getItemInfoInPo()"
 																			th:field="*{listPurchaseOrderItem[__${stat.index}__].item}">
 																				<option value="">Select</option>
+																				<option
+																					th:each="item :  ${listItem}"
+																					th:text="${item.description}"
+																					th:value=" ${item.itemCode}"></option>
+																					
 																		</select></td>
 
 
@@ -460,6 +489,7 @@
 																		<td><input type="number"
 																			class="form-control form-control-sm" id="totalCost0"
 																			title="total item cost" step='0.01' value='0.00'
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].totalValue}"
 																			placeholder='0.00' style="text-align: right" readonly></td>
 
 
@@ -467,6 +497,7 @@
 																		<td><input type="number"
 																			class="form-control form-control-sm floatNumberField"
 																			id="totalCostInr0" title="total item cost(inr)"
+																			th:field="*{listPurchaseOrderItem[__${stat.index}__].totalValueInr}"
 																			step='0.01' style="text-align: right" readonly></td>
 
 																		<!--  remarks -->
@@ -805,7 +836,7 @@
 
 				//call api in case of purchase through is indent
 
-				indentDetailInCaseOfIndent();
+				//indentDetailInCaseOfIndent();
 
 			}
 
@@ -1423,13 +1454,13 @@
 								}
 							});
 						});
-		
-		
-		window.addEventListener("load", myInit, true); function myInit(){ 
+
+		window.addEventListener("load", myInit, true);
+		function myInit() {
 			openPoFun()
 			againstPurchaseThrough()
 			supplierInfo()
-		}; 
+		};
 	</script>
 
 

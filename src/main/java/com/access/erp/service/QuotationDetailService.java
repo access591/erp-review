@@ -16,5 +16,7 @@ public interface QuotationDetailService {
 	public List<OpenIndent> getIndentInRFQ();
 	
 	public void approvalForQuotationDetail(String quotNum , String status);
+	
+	public List<QuotationDetail> findAllOrderBy();
 
 }

@@ -335,8 +335,8 @@
 																		<th scope="col" class="text-center"
 																			style="width: 120px;">Rate <span
 																			style="color: red">*</span></th>
-																		<th scope="col" class="text-center"
-																			style="width: 90px;">Negotiable Cost</th>
+																		<!-- <th scope="col" class="text-center"
+																			style="width: 90px;">Negotiable Cost</th> -->
 																		<th scope="col" class="text-center"
 																			style="width: 90px;">Qty <span
 																			style="color: red">*</span></th>
@@ -420,11 +420,11 @@
 
 																		<!-- negotiable cost  -->
 
-																		<td><input type="text" min="0" step="0.25"
+																		<!-- <td><input type="text" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			class="form-control form-control-sm numbersOnly text-right"
 																			required title=""></td>
-
+ -->
 																		<!-- qty  -->
 
 																		<td><input type="text"
@@ -475,16 +475,17 @@
 																		Discount</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			onkeyup="totalDiscountInPercentFun()"
+																			value="0" onkeyup="totalDiscountInPercentFun()"
 																			id="totalDiscountInPercent"
 																			placeholder="Total Discount(%)"
-																			name="quotationItem[0].discountValue"min="0" step="0.25"
+																			name="quotationItem[0].discountValue" min="0"
+																			step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
 																			id="totalDiscountInValue"
-																			placeholder="Total Discount" readonly>
+																			placeholder="Total Discount" value="0" readonly>
 																	</div>
 																</div>
 															</div>
@@ -496,14 +497,15 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Discount</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			onkeyup="discountInPercentFun()"
+																			onkeyup="discountInPercentFun()" value="0"
 																			id="discountInPercent" placeholder="Discount(%)"
-																			name="quotationItem[0].discount"min="0" step="0.25"
+																			name="quotationItem[0].discount" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			id="discountInValue" placeholder="Discount" readonly>
+																			value="0" id="discountInValue" placeholder="Discount"
+																			readonly>
 																	</div>
 																</div>
 															</div>
@@ -516,8 +518,8 @@
 																	<label for="inputEmail3" class="col-md-2 control-label">Packing</label>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			id="packing" placeholder="Packing"
-																			name="quotationItem[0].packing"min="0" step="0.25"
+																			id="packing" placeholder="Packing" value="0"
+																			name="quotationItem[0].packing" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 
@@ -534,8 +536,8 @@
 																	<div class="col-md-4">
 																		<input type="number"
 																			class="form-control text-right text-right"
-																			id="freight" placeholder="Freight"
-																			name="quotationItem[0].freight"min="0" step="0.25"
+																			id="freight" placeholder="Freight" value="0"
+																			name="quotationItem[0].freight" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 
@@ -550,13 +552,13 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
 																			id="sgstInPercent" placeholder="Sgst(%)"
-																			onkeyup="sgstInPercentFun()"
-																			name="quotationItem[0].sgst"min="0" step="0.25"
+																			onkeyup="sgstInPercentFun()" value="0"
+																			name="quotationItem[0].sgst" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			id="sgstInValue" placeholder="Sgst"
+																			id="sgstInValue" placeholder="Sgst" value="0"
 																			name="quotationItem[0].sgstValue" readonly>
 																	</div>
 																</div>
@@ -569,13 +571,13 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
 																			id="cgstInPercent" placeholder="Cgst(%)"
-																			onkeyup="cgstInPercentFun()"
-																			name="quotationItem[0].cgst"min="0" step="0.25"
+																			onkeyup="cgstInPercentFun()"value="0"
+																			name="quotationItem[0].cgst" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			id="cgstInValue" placeholder="Cgst"
+																			id="cgstInValue" placeholder="Cgst"value="0"
 																			name="quotationItem[0].cgstValue" readonly>
 																	</div>
 																</div>
@@ -588,13 +590,13 @@
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
 																			id="igstInPercent" placeholder="Igst(%)"
-																			onkeyup="igstInPercentFun()"
-																			name="quotationItem[0].igst"min="0" step="0.25"
+																			onkeyup="igstInPercentFun()"value="0"
+																			name="quotationItem[0].igst" min="0" step="0.25"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)">
 																	</div>
 																	<div class="col-md-4">
 																		<input type="number" class="form-control text-right"
-																			id="igstInValue" placeholder="Igst"
+																			id="igstInValue" placeholder="Igst"value="0"
 																			name="quotationItem[0].igstValue" readonly>
 																	</div>
 																</div>
@@ -620,7 +622,7 @@
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value </label> <input
 																				type="text" class="form-control text-right"
-																				id="totalRs" placeholder="Total Value">
+																				id="totalRs" placeholder="Total Value" th:field="*{totalValue}">
 																		</div>
 																	</div>
 
@@ -628,6 +630,7 @@
 																		<div class="form-group col-md-6">
 																			<label for="inputEmail4">Total Value (INR)</label> <input
 																				type="text" class="form-control text-right"
+																				th:field="*{totalValueInr}"
 																				id="totalCount" placeholder="Total Value (INR)">
 																		</div>
 																	</div>

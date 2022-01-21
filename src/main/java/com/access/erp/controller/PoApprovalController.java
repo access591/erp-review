@@ -21,8 +21,10 @@ public class PoApprovalController {
 	@GetMapping("/")
 	public String poApprovalPage(Model model) {
 		
-		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getAllPurchaseOrder();
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getApprovedPurchaseorder("P");
 		model.addAttribute("listPurchaseOrder", listPurchaseOrder);
+		
+		
 		
 		
 		return "layouts/Master/purchaseOrderApproval";

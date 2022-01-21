@@ -1,8 +1,14 @@
 package com.access.erp.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +18,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.access.erp.model.OpenIndent;
 import com.access.erp.model.OpenIndentDetail;
@@ -21,7 +31,6 @@ import com.access.erp.model.QuotationDetail;
 import com.access.erp.model.RfQuotation;
 import com.access.erp.model.RfQuotationItem;
 import com.access.erp.model.master.City;
-import com.access.erp.model.master.Company;
 import com.access.erp.model.master.CurrencyMaster;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.PartyMaster;
@@ -38,7 +47,6 @@ import com.access.erp.service.ItemService;
 import com.access.erp.service.OpenIndentService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
-import com.access.erp.service.RfQuotationService;
 import com.access.erp.service.StateService;
 import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.ItemOpenIndentDetail;
@@ -66,12 +74,18 @@ public class PurchaseOrderController {
 	PartyMasterService partyMasterService;
 	@Autowired
 	StateService stateService;
-	@Autowired OpenIndentRepo openIndentRepo;
-	@Autowired ItemService itemService;
-	@Autowired OpenIndentDetailRepo openIndentDetailRepo;
-	@Autowired CityService cityService;
-	@Autowired GlobalParameter globalParameter;
-	
+	@Autowired
+	OpenIndentRepo openIndentRepo;
+	@Autowired
+	ItemService itemService;
+	@Autowired
+	OpenIndentDetailRepo openIndentDetailRepo;
+	@Autowired
+	CityService cityService;
+	@Autowired
+	GlobalParameter globalParameter;
+
+	private static final String UPLOAD_DIRECTORY = "/img/uploads";
 
 	@GetMapping("/")
 	public String purchaseOrder(Model model) {
@@ -96,22 +110,122 @@ public class PurchaseOrderController {
 	}
 
 	@PostMapping("/")
-	public String addPurchaseOrder(@ModelAttribute("purchaseOrder") PurchaseOrder po) {
+	public String addPurchaseOrder(@ModelAttribute("purchaseOrder") PurchaseOrder po,
+			@RequestParam("poFile") MultipartFile file, HttpSession session, RedirectAttributes attributes) {
 
-		
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		System.out.println("path is : " + path);
+		String filename = file.getOriginalFilename();
+
 		po.setcCode(globalParameter.getGlobalCompany());
 		po.setuCode(globalParameter.getGlobaluser());
 		po.setFyCode(globalParameter.getGlobalFinanceYear());
-		
+
+		if (file.isEmpty()) {
+
+			po.setDocFile("default");
+			// attributes.addFlashAttribute("message","Please select a file to upload."); //
+			// return "redirect:/";
+		} else {
+			try {
+				byte barr[] = file.getBytes();
+
+				BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+				bout.write(barr);
+
+				po.setDocFile(filename);
+
+				bout.flush();
+				bout.close();
+
+			}
+
+			catch (Exception e) {
+				System.out.println(e);
+			}
+
+		}
+
 		purchaseOrderService.addPurchaseOrder(po);
 		return "redirect:/purchaseorder/";
 
 	}
 
+	@PostMapping("/update")
+	public String updatePurchaseOrder(@ModelAttribute("purchaseOrder") PurchaseOrder po,
+			@RequestParam("poFile") MultipartFile file, HttpSession session, RedirectAttributes attributes) {
+
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		System.out.println("path is : " + path);
+		String filename = file.getOriginalFilename();
+
+		if (!po.getDocFile().equals(file.getOriginalFilename())) {
+			System.out.println(" not equal..");
+			if (po.getDocFile().isEmpty() && !file.getOriginalFilename().isEmpty()) {
+				// add new file
+				try {
+					byte barr[] = file.getBytes();
+
+					BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+					bout.write(barr);
+
+					po.setDocFile(filename);
+
+					bout.flush();
+					bout.close();
+
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+			} else if (!po.getDocFile().isEmpty() && !file.getOriginalFilename().isEmpty()) {
+				// update document
+				// remove old one
+
+				try {
+					byte barr[] = file.getBytes();
+
+					BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+					bout.write(barr);
+
+					po.setDocFile(filename);
+
+					bout.flush();
+					bout.close();
+
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+			}
+		} else {
+			System.out.println("equal..");
+		}
+		
+		purchaseOrderService.updatePurchaseOrder(po);
+		return "redirect:/purchaseorder/";
+
+	}
+
+	/*
+	 * @GetMapping("/downloadfile") public void downloadFile(@PathVariable("")String
+	 * filename, HttpServletResponse response,HttpSession session){
+	 * 
+	 * 
+	 * response.setContentType("application/octet-stream"); String headerKey =
+	 * "Content-Disposition"; String headerValue = "attachment; filename = " +
+	 * filename); response.setHeader(headerKey, headerValue); ServletOutputStream
+	 * outputStream = response.getOutputStream();
+	 * 
+	 * outputStream.write(student.getContent()); outputStream.close();
+	 * 
+	 * }
+	 */
+
 	@GetMapping("/list")
 	public String listPurchaseOrder(Model model) {
 
-		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.getAllPurchaseOrder();
+		List<PurchaseOrder> listPurchaseOrder = purchaseOrderService.findAllOrderBy();
 
 		if (listPurchaseOrder != null) {
 			model.addAttribute("listPurchaseOrder", listPurchaseOrder);
@@ -126,13 +240,18 @@ public class PurchaseOrderController {
 
 		List<QuotationDetail> lsitQuotationDetail = quotationDetailRepo.findAll();
 		model.addAttribute("lsitQuotationDetail", lsitQuotationDetail);
-		
+
 		List<PartyMaster> partyMasterList = partyMasterService.getAllpartyMaster();
 		model.addAttribute("listParty", partyMasterList);
-		
+
 		List<State> stateList = stateService.getAllState();
 		model.addAttribute("stateList", stateList);
 
+		List<OpenIndent> listOpenIndent = openIndentService.getAllOpenIndent();
+		model.addAttribute("listOpenIndent", listOpenIndent);
+
+		List<Item> listItem = itemService.getAllItem();
+		model.addAttribute("listItem", listItem);
 
 		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poCode).get();
 
@@ -143,8 +262,7 @@ public class PurchaseOrderController {
 
 		return "layouts/editview/editPurchaseOrder";
 	}
-	
-	
+
 	@GetMapping("/view/{id}")
 	public String viewPurchaseOrder(@PathVariable("id") String poCode, Model model) {
 
@@ -152,13 +270,18 @@ public class PurchaseOrderController {
 
 		List<QuotationDetail> lsitQuotationDetail = quotationDetailRepo.findAll();
 		model.addAttribute("lsitQuotationDetail", lsitQuotationDetail);
-		
+
 		List<PartyMaster> partyMasterList = partyMasterService.getAllpartyMaster();
 		model.addAttribute("listParty", partyMasterList);
-		
+
 		List<State> stateList = stateService.getAllState();
 		model.addAttribute("stateList", stateList);
 
+		List<OpenIndent> listOpenIndent = openIndentService.getAllOpenIndent();
+		model.addAttribute("listOpenIndent", listOpenIndent);
+
+		List<Item> listItem = itemService.getAllItem();
+		model.addAttribute("listItem", listItem);
 
 		PurchaseOrder po = purchaseOrderService.editPurchaseOrder(poCode).get();
 
@@ -167,9 +290,8 @@ public class PurchaseOrderController {
 
 		model.addAttribute("purchaseOrder", po);
 
-		return "layouts/editview/editPurchaseOrder";
+		return "layouts/view/viewPurchaseOrder";
 	}
-	
 
 	@GetMapping("/delete/{id}")
 	public String deletePurchaseOrder(@PathVariable("id") String purchaseOrderCode, Model model) {
@@ -241,7 +363,7 @@ public class PurchaseOrderController {
 	}
 
 	// detail of indent
-	
+
 	@ResponseBody
 	@GetMapping("/indentdetail/{id}")
 	public OpenIndent getIndentDetail(@PathVariable(value = "id") String indentNum, Model model) {
@@ -251,10 +373,9 @@ public class PurchaseOrderController {
 		return openIndent;
 
 	}
-	
-	
-	// list of item against indent number 
-	
+
+	// list of item against indent number
+
 	@ResponseBody
 	@GetMapping("/itemList/{indentNumber}")
 	public List<Item> ItemInfoByIndentNumber(@PathVariable(value = "indentNumber") String indentNumber, Model model) {
@@ -283,10 +404,9 @@ public class PurchaseOrderController {
 		return listItem;
 
 	}
-	
-	
-	// item list for in case of without indent and without quotation 
-	
+
+	// item list for in case of without indent and without quotation
+
 	@ResponseBody
 	@GetMapping("/itemList")
 	public List<Item> itemList() {
@@ -298,50 +418,47 @@ public class PurchaseOrderController {
 		return itemList;
 
 	}
-	
-	
-	
-	
+
 	// item info which is in open indent detail table...
-	
+
 	@ResponseBody
 	@GetMapping("/itemInfo/{itemCode}/{indentCode}")
-	public ItemOpenIndentDetail ItemInfoByItemCode(@PathVariable(value = "itemCode") String itemCode,@PathVariable(value = "indentCode") String indentCode, Model model) {
+	public ItemOpenIndentDetail ItemInfoByItemCode(@PathVariable(value = "itemCode") String itemCode,
+			@PathVariable(value = "indentCode") String indentCode, Model model) {
 
 		System.out.println("item  iinfo : " + itemCode);
 		System.out.println("indent   iinfo : " + indentCode);
-		
+
 		OpenIndent openIndent = openIndentService.editOpenIndent(indentCode).get();
 
-		//OpenIndentDetail findByIndItemCodeAndOpenIndent(String indentItemCode,OpenIndent openIndent);
+		// OpenIndentDetail findByIndItemCodeAndOpenIndent(String
+		// indentItemCode,OpenIndent openIndent);
 		OpenIndentDetail openIndentDetail = openIndentDetailRepo.findByIndItemCodeAndOpenIndent(itemCode, openIndent);
-		
+
 		Item item = itemService.editItem(itemCode).get();
-		
+
 		ItemOpenIndentDetail itemOpenIndentDetail = new ItemOpenIndentDetail();
-		
+
 		itemOpenIndentDetail.setItem(item);
 		itemOpenIndentDetail.setOpenIndentDetail(openIndentDetail);
-		
-		
+
 		return itemOpenIndentDetail;
 
 	}
-	
+
 	// in case of po == 'YES'
-	
+
 	@ResponseBody
 	@GetMapping("/itemInfo/{id}")
 	public Item itemInfo(@PathVariable("id") String itemCode) {
-		
-		Item item =  itemService.editItem(itemCode).get();
-		
+
+		Item item = itemService.editItem(itemCode).get();
+
 		System.out.println("item rate against item : " + item.getItemRate());
 		System.out.println("item dol from master : " + item.getDol());
 		return item;
 
 	}
-	
 
 	// working
 	// Against indent through
@@ -364,8 +481,8 @@ public class PurchaseOrderController {
 	}
 
 	// get sipplier list/ party against quotation which is approved
-	
-	//get supplier info by id 
+
+	// get supplier info by id
 
 	@ResponseBody
 	@GetMapping("/supplierInfo/{id}")
@@ -375,26 +492,24 @@ public class PurchaseOrderController {
 		PartyMaster partyMaster = partyMasterService.editPartyMaster(partyId).get();
 		State state = null;
 		City city = null;
-		if(partyMaster.getStateCode()!=null || partyMaster.getStateCode()!="") {
+		if (partyMaster.getStateCode() != null || partyMaster.getStateCode() != "") {
 			state = stateService.editState(partyMaster.getStateCode()).get();
 		}
-		
-		if(partyMaster.getCityCode()!=null|| partyMaster.getCityCode()!="") {
+
+		if (partyMaster.getCityCode() != null || partyMaster.getCityCode() != "") {
 			city = cityService.editCity(partyMaster.getCityCode()).get();
 		}
-		
+
 		PartyStateCity partyStateCity = new PartyStateCity();
 		partyStateCity.setPartyMaster(partyMaster);
 		partyStateCity.setState(state);
 		partyStateCity.setCity(city);
-		
+
 		return partyStateCity;
 	}
-	
-	
-	
-	// Ajax for edit mode 
-	
+
+	// Ajax for edit mode
+
 	@ResponseBody
 	@GetMapping("/edit/quotationDetail/{id}")
 	public QuotationPartyState getQuotationInfoEdit(@PathVariable(value = "id") String quotId, Model model) {
@@ -414,9 +529,7 @@ public class PurchaseOrderController {
 		return quotationPartyState;
 
 	}
-	
-	
-	
+
 	@ResponseBody
 	@GetMapping("/edit/indentlist/{id}")
 	public List<String> getIndentListEdit(@PathVariable(value = "id") String quotationId, Model model) {
@@ -442,8 +555,7 @@ public class PurchaseOrderController {
 		return listRfQuotationItem;
 
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("/edit/supplierDetail/{id}")
 	public SupplierMaster getSupplierInfoEdit(@PathVariable(value = "id") String id, Model model) {
@@ -453,8 +565,7 @@ public class PurchaseOrderController {
 		return supplier;
 
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("/edit/supplierInfo/{id}")
 	public PartyStateCity getPartyMasterAgainstQuotationEdit(@PathVariable(value = "id") String partyId) {
@@ -463,28 +574,41 @@ public class PurchaseOrderController {
 		PartyMaster partyMaster = partyMasterService.editPartyMaster(partyId).get();
 		State state = null;
 		City city = null;
-		if(partyMaster.getStateCode()!=null || partyMaster.getStateCode()!="") {
+		if (partyMaster.getStateCode() != null || partyMaster.getStateCode() != "") {
 			state = stateService.editState(partyMaster.getStateCode()).get();
 		}
-		
-		if(partyMaster.getCityCode()!=null|| partyMaster.getCityCode()!="") {
+
+		if (partyMaster.getCityCode() != null || partyMaster.getCityCode() != "") {
 			city = cityService.editCity(partyMaster.getCityCode()).get();
 		}
-		
+
 		PartyStateCity partyStateCity = new PartyStateCity();
 		partyStateCity.setPartyMaster(partyMaster);
 		partyStateCity.setState(state);
 		partyStateCity.setCity(city);
-		
+
 		return partyStateCity;
 	}
 
-	
-	
-	/// Ajax for view mode 
-	
-	
-	
+	@ResponseBody
+	@GetMapping("/edit/indent/indentdetail/")
+	public List<String> getIndentDetailByPurchaseEditThroughIndent() {
+
+		List<OpenIndent> listOpenIndent = openIndentService.getAllOpenIndent();
+
+		List<String> indentList = new ArrayList<>();
+
+		for (OpenIndent indent : listOpenIndent) {
+
+			indentList.add(indent.getIndentNumber());
+			// System.out.println("item spec : " + rfquotationItem.getItemSpec());
+		}
+
+		return indentList;
+	}
+
+	/// Ajax for view mode
+
 	@ResponseBody
 	@GetMapping("/view/quotationDetail/{id}")
 	public QuotationPartyState getQuotationInfoView(@PathVariable(value = "id") String quotId, Model model) {
@@ -504,9 +628,7 @@ public class PurchaseOrderController {
 		return quotationPartyState;
 
 	}
-	
-	
-	
+
 	@ResponseBody
 	@GetMapping("/view/indentlist/{id}")
 	public List<String> getIndentListView(@PathVariable(value = "id") String quotationId, Model model) {
@@ -532,6 +654,30 @@ public class PurchaseOrderController {
 		return listRfQuotationItem;
 
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("/view/supplierInfo/{id}")
+	public PartyStateCity getPartyMasterAgainstQuotationView(@PathVariable(value = "id") String partyId) {
 
+		// QuotationDetail quotation =
+		PartyMaster partyMaster = partyMasterService.editPartyMaster(partyId).get();
+		State state = null;
+		City city = null;
+		if (partyMaster.getStateCode() != null || partyMaster.getStateCode() != "") {
+			state = stateService.editState(partyMaster.getStateCode()).get();
+		}
+
+		if (partyMaster.getCityCode() != null || partyMaster.getCityCode() != "") {
+			city = cityService.editCity(partyMaster.getCityCode()).get();
+		}
+
+		PartyStateCity partyStateCity = new PartyStateCity();
+		partyStateCity.setPartyMaster(partyMaster);
+		partyStateCity.setState(state);
+		partyStateCity.setCity(city);
+
+		return partyStateCity;
+	}
 
 }

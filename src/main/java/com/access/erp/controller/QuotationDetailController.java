@@ -86,7 +86,7 @@ public class QuotationDetailController {
 		List<State> listStates = stateService.getAllState();
 		model.addAttribute("listStates", listStates);
 
-		List<RfQuotation> listRfQuotation = rfQuotationService.getAllRfQuotation();
+		List<RfQuotation> listRfQuotation = rfQuotationService.findAllRfqNotINQuotaion();
 		model.addAttribute("listRfQuotation", listRfQuotation);
 
 		List<SupplierMaster> listSupplierMaster = supplierRepo.findAll();
@@ -139,7 +139,7 @@ public class QuotationDetailController {
 	@GetMapping("/list")
 	public String viewQuotationList(Model model) {
 
-		List<QuotationDetail> quotationList = quotationService.getAllQuotationDetail();
+		List<QuotationDetail> quotationList = quotationService.findAllOrderBy();
 
 		if (quotationList != null) {
 			model.addAttribute("quotationList", quotationList);
@@ -165,6 +165,7 @@ public class QuotationDetailController {
 		// get indent number which is in RFQ (Child Of RFQ)
 		List<OpenIndent> listIndentInRfq = quotationService.getIndentInRFQ();
 		model.addAttribute("listIndentInRfq", listIndentInRfq);
+		
 		
 		
 		List<Employee> employeeList = employeeService.getAllEmployee();

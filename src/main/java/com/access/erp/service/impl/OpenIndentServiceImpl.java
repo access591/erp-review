@@ -219,4 +219,10 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 		return this.openIndentRepo.findIndentNotInRfq("Y");
 	}
 
+	@Override
+	public List<OpenIndent> findAllOrderBy() {
+		
+		return this.openIndentRepo.findAllByOrderByIndentNumberDesc();
+	}
+
 }

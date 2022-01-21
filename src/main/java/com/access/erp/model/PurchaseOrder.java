@@ -10,10 +10,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -46,10 +49,15 @@ public class PurchaseOrder {
 
 	// @ManyToOne
 	// @JoinColumn(name = "QUOT_NO")
-	@Column(name = "QUOT_NO", length = 40)
-	private String quotationDetail;
+	//@Column(name = "QUOT_NO", length = 40)
+	//private String quotationDetail;
+	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "QUOT_NO",nullable = true)
+	private QuotationDetail quotationDetail;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "QUOT_DATE")
 	private Date quotationDate;
 
@@ -63,10 +71,12 @@ public class PurchaseOrder {
 	private String currency;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "SUPPLY_DATE")
 	private Date supplyDate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DELIVERY_DATE")
 	private Date deliveryDate;
 	
@@ -439,8 +449,7 @@ public class PurchaseOrder {
 	@Column(name = "APPROVAL_SOURCE", length = 30)
 	private String approvalSource;
 
-	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	// @Fetch(value = FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval=true)
 	@JsonManagedReference
 	private List<PurchaseOrderItem> listPurchaseOrderItem = new ArrayList<>();
 
@@ -507,11 +516,13 @@ public class PurchaseOrder {
 		this.poType = poType;
 	}
 
-	public String getQuotationDetail() {
+	
+
+	public QuotationDetail getQuotationDetail() {
 		return quotationDetail;
 	}
 
-	public void setQuotationDetail(String quotationDetail) {
+	public void setQuotationDetail(QuotationDetail quotationDetail) {
 		this.quotationDetail = quotationDetail;
 	}
 

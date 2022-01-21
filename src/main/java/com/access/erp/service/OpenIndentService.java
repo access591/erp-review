@@ -25,6 +25,8 @@ public interface OpenIndentService {
 	
 	public List<OpenIndent> findIndentNotInRfq();
 	
+	public List<OpenIndent> findAllOrderBy();
+	
 	
 	//public void updateOpenIndent(OpenIndent openIndent)
 

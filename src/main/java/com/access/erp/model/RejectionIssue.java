@@ -30,6 +30,7 @@ public class RejectionIssue {
 	@Column(name = "ISSUE_NO", length = 15)
 	private String IssNo;
 
+
 	@Column(name = "ISS_DT")
 	private Date issueDate;
 
@@ -429,5 +430,6 @@ public class RejectionIssue {
 	}
 	
 	
+
 
 }

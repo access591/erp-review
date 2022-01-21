@@ -84,7 +84,7 @@ public class QuotationItem {
 	@Column(name="CST",length=10)
 	private double cst;
 	
-	@Column(name="TRADE_DISCOUNT",length=10)
+	@Column(name="TRADE_DISCOUNT",columnDefinition = "FLOAT(14,2)",nullable = true)
 	private double tradeDiscount;
 	
 	//5.2
@@ -199,7 +199,7 @@ public class QuotationItem {
 	private double sgst;
 	
 	//14.2
-	@Column(name = "SGST_VALUE", columnDefinition = "FLOAT(5,2)",nullable = true)
+	@Column(name = "SGST_VALUE", columnDefinition = "FLOAT(14,2)",nullable = true)
 	private double sgstValue;
 	
 	//5.2

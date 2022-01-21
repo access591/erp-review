@@ -119,4 +119,9 @@ public class QuotationDetailServiceImpl implements QuotationDetailService {
 
 	}
 
+	@Override
+	public List<QuotationDetail> findAllOrderBy() {
+		return this.quotationRepo.findAllByOrderByQuotNoDesc();
+	}
+
 }
