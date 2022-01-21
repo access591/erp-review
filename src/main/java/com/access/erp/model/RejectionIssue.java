@@ -54,7 +54,7 @@ public class RejectionIssue {
 	private Company company;
 
 	@ManyToOne
-	@Column(name = "FYCODE")
+	@JoinColumn(name = "FYCODE")
 	private FinancialYear financialyear;
 
 	@Column(name = "UPDATE_BY", length = 50)

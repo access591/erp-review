@@ -51,7 +51,7 @@
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i> warehouse</a></li>
 							<li><a href="#">Purchase Return</a></li>
-							<li class="active">Add</li>
+							<li class="active">editPage</li>
 						</ol>
 					</section>
 
@@ -62,25 +62,26 @@
 						<!-- Default box -->
 						<div class="box">
 							<!-- form start -->
-							<form role="form" th:action="@{/purchasereturn/}" th:object="${purchaseReturn}"
+							<form role="form" th:action="@{/purchasereturn/update}" th:object="${purchaseReturn}"
 								method="POST">
 
-								<div class="box-header with-border text-right">
+								<div class="box-header with-border">
+													<!--<h3 class="box-title">Category Master</h3>-->
 
-									<button type="submit" id="submit" class="btn btn-primary btn-sm">
-										<i class="fa fa-hdd-o" aria-hidden="true"></i> Submit
-									</button>
-									<button type="reset" value="reset" class="btn btn-secondary btn-sm">
-										<i class="fa fa-refresh" aria-hidden="true"></i> Reset
-									</button>
+													<div class="box-header with-border text-right">
+														<button type="submit" id="submit"
+															class="btn btn-primary btn-sm">
+															<i class="fa fa-hdd-o" aria-hidden="true"></i> Apply
+															Changes
+														</button>
+														<button type="button" class="btn btn-danger btn-sm"
+															onclick="history.back()">
+															<i class="fa fa-step-backward"></i> Go Back
+														</button>
+													</div>
 
-									<a th:href="@{/purchasereturn/list}" class="btn btn-success btn-sm">
-										<i class="fa fa-list" aria-hidden="true"></i> View All
-									</a>
 
-
-
-								</div>
+												</div>
 
 
 
@@ -250,13 +251,20 @@
 
 															<tbody>
 																<tr id="addr0">
+																<tr id="addr0"
+																		th:each="row, stat :${purchaseReturn.listPurchaseReturnDetail}">
+
 
 
 																	<!-- item description  -->
 
 																	<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="orderItemCode0" title="item description"
+																			id="orderItemCode0" 
+																			
+																			title="item description"
+																			
+													
 																			readonly>
 																	</td>
 																	<!-- item code  -->
@@ -264,8 +272,9 @@
 																	<td><select id="orderItemPo0"
 																			class="form-control form-control-sm select orderItemContainerPo0"
 																			title="item"
-																			onchange="getOrderItemDetailForPo()"
-																			name="listPurchaseReturnDetail[0].item">
+																			th:field="*{listPurchaseReturnDetail[__${stat.index}__].item}"
+																			onchange="getOrderItemDetailForPo()">
+																		
 																			<option value="">Select</option>
 																			<option th:each="item :  ${listitem}"
 																	th:text="${item.description}"
@@ -279,12 +288,14 @@
 
 																	<td><input type="text"
 																			class="form-control form-control-sm"
-																			id="orderItemuom0" title="status"></td>
+																			id="orderItemuom0" title="status"
+																			th:field="*{listPurchaseReturnDetail[__${stat.index}__].item}"></td>
 
 
 																	<!--  bill rate  -->
 
 																	<td><input type="number" title="pending qty"
+																	th:field="*{listPurchaseReturnDetail[__${stat.index}__].rate}"
 																			class="form-control form-control-sm"
 																			name="listPurchaseReturnDetail[0].rate">
 																	</td>
@@ -295,6 +306,7 @@
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			class="form-control form-control-sm"
 																			title="net qty"
+																			th:field="*{listPurchaseReturnDetail[__${stat.index}__].recQty}"
 																			name="listPurchaseReturnDetail[0].recQty"
 																			step="0.25" value="0.00"></td>
 
@@ -304,6 +316,7 @@
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			class="form-control form-control-sm"
 																			title="net qty"
+																			th:field="*{listPurchaseReturnDetail[__${stat.index}__].rtQty}"
 																			name="listPurchaseReturnDetail[0].rtQty"
 																			step="0.25" value="0.00"></td>
 
