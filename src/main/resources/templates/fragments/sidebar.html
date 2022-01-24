@@ -226,6 +226,10 @@
 							
 					<li th:if="${#request.isUserInRole('MATERIALISSUESLIP') or #request.isUserInRole('ADMIN')}"><a th:href="@{/issueslip/}"><i class="fa fa-circle-o"></i>
 							Material Issue Slip</a></li>
+				    <li th:if="${#request.isUserInRole('PURCHASERETURN') or #request.isUserInRole('ADMIN')}"><a th:href="@{/purchasereturn/}"><i class="fa fa-circle-o"></i>
+							Purchase Return</a></li>
+					<li th:if="${#request.isUserInRole('REJECTIONISSUE') or #request.isUserInRole('ADMIN')}"><a th:href="@{/rejectionissue/}"><i class="fa fa-circle-o"></i>
+							Rejection Issue</a></li>	
 				</ul></li>
 
 
