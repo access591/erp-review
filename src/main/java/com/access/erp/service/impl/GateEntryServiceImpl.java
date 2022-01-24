@@ -49,9 +49,12 @@ public class GateEntryServiceImpl implements GateEntryService{
 		gateEntry.setMyUser(globalParameter.getMyUser());
 		
 		
-		for(GateEntryItemDetail gateEntryItemDetail : gateEntry.getGateEntryItemDetails()) {
-			gateEntryItemDetail.setGateEntry(gateEntry);
-		}
+		/*
+		 * for(GateEntryItemDetail gateEntryItemDetail :
+		 * gateEntry.getGateEntryItemDetails()) {
+		 * gateEntryItemDetail.setGateEntry(gateEntry); }
+		 */
+		
 		gateEntryRepo.save(gateEntry);
 		
 	}
@@ -77,6 +80,7 @@ public class GateEntryServiceImpl implements GateEntryService{
 	@Override
 	public List<GateEntry> findAllNotInMrn() {
 		
+	
 		return this.gateEntryRepo.findAllNotInMrn();
 	}
 

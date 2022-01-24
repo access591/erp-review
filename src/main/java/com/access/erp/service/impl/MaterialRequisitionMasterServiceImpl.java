@@ -30,7 +30,9 @@ public class MaterialRequisitionMasterServiceImpl implements MaterialRequisition
 		
 		//category.getCategCode() == "" || category.getCategCode() == null
 		
-		if(materialRequisitionMaster.getRequisitionNo() == "" || materialRequisitionMaster.getRequisitionNo() == null) {
+		if(materialRequisitionMaster.getRequisitionNo().isEmpty() || materialRequisitionMaster.getRequisitionNo() == "" || materialRequisitionMaster.getRequisitionNo() == null) {
+			
+			
 			
 			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("REQ", "20-21", "EB");
 			materialRequisitionMaster.setRequisitionNo("EB-"+maxCode);

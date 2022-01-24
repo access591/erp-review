@@ -72,7 +72,7 @@
 
 						<!-- form start -->
 						<form role="form" th:action="@{/materialrequisition/}"
-							th:object="${materialRequisition}" method="POST">
+							th:object="${materialRequisition}" enctype="multipart/form-data" method="POST">
 
 
 							<!-- Default box -->
@@ -211,7 +211,24 @@
 															</select>
 														</div>
 
+														<div class="row">
 
+															<input type="hidden" th:field="*{docFile}">
+															<div class="col-md-12">
+																<label class="form-label" for="customFile">Upload
+																	Document</label> <input type="file" name="poFile"
+																	class="form-control" id="customFile" /> <a
+																	th:href="@{'/img/requisition/uploads/' + ${materialRequisition.docFile}}"
+																	target="_blank">view file</a>
+															</div>
+
+
+
+
+
+
+
+														</div>
 													</div>
 													<!-- /.box-body -->
 

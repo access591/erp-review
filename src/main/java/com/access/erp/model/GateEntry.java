@@ -70,8 +70,27 @@ public class GateEntry {
 	private String orderNo;
 
 	@Column(name = "TIME_IN")
-	private Date timeIn;
+	private String timeIn;
+	
+	@Column(name = "TIME_OUT")
+	private String timeOut;
 
+	@Column(name = "VOUCHER_NUMBER", length = 100)
+	private String voucherNumber;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "VOUCHER_DATE")
+	private Date voucherDate;
+	
+	@Column(name = "TYPEOF_VEHICLE", length = 2)
+	private String vehicleType;
+	
+	@Column(name = "FROM", length = 200)
+	private String from;
+	
+	@Column(name = "PHONE_NUMBER", length = 20)
+	private String phoneNumber;
 	
 
 	@Column(name = "BILL_NUMBER", length = 20)
@@ -174,9 +193,13 @@ public class GateEntry {
 	private int barCode;
 
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "gateEntry", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	List<GateEntryItemDetail> gateEntryItemDetails = new ArrayList<>();
+	/*
+	 * @JsonManagedReference
+	 * 
+	 * @OneToMany(mappedBy = "gateEntry", cascade = CascadeType.ALL, fetch =
+	 * FetchType.LAZY) List<GateEntryItemDetail> gateEntryItemDetails = new
+	 * ArrayList<>();
+	 */
 
 	public GateEntry() {
 		super();
@@ -207,15 +230,65 @@ public class GateEntry {
 		this.orderNo = orderNo;
 	}
 
-	public Date getTimeIn() {
+	
+
+
+
+	public String getTimeIn() {
 		return timeIn;
 	}
 
-	public void setTimeIn(Date timeIn) {
+	public void setTimeIn(String timeIn) {
 		this.timeIn = timeIn;
 	}
 
+	public String getTimeOut() {
+		return timeOut;
+	}
 
+	public void setTimeOut(String timeOut) {
+		this.timeOut = timeOut;
+	}
+
+	public String getVoucherNumber() {
+		return voucherNumber;
+	}
+
+	public void setVoucherNumber(String voucherNumber) {
+		this.voucherNumber = voucherNumber;
+	}
+
+	public Date getVoucherDate() {
+		return voucherDate;
+	}
+
+	public void setVoucherDate(Date voucherDate) {
+		this.voucherDate = voucherDate;
+	}
+
+	public String getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 	public PartyMaster getPartyMaster() {
 		return partyMaster;
@@ -515,12 +588,6 @@ public class GateEntry {
 		this.barCode = barCode;
 	}
 
-	public List<GateEntryItemDetail> getGateEntryItemDetails() {
-		return gateEntryItemDetails;
-	}
-
-	public void setGateEntryItemDetails(List<GateEntryItemDetail> gateEntryItemDetails) {
-		this.gateEntryItemDetails = gateEntryItemDetails;
-	}
+	
 
 }

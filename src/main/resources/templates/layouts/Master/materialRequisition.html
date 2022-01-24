@@ -72,7 +72,7 @@
 
 						<!-- form start -->
 						<form role="form" th:action="@{/materialrequisition/}"
-							th:object="${materialRequisition}" method="POST">
+							th:object="${materialRequisition}" enctype="multipart/form-data" method="POST">
 
 
 							<!-- Default box -->
@@ -95,8 +95,9 @@
 												<i class="fa fa-refresh" aria-hidden="true"></i> Reset
 											</button>
 
-											<a th:href="@{/materialrequisition/list}" class="btn btn-success btn-sm">
-												<i class="fa fa-list" aria-hidden="true"></i> View All
+											<a th:href="@{/materialrequisition/list}"
+												class="btn btn-success btn-sm"> <i class="fa fa-list"
+												aria-hidden="true"></i> View All
 											</a>
 
 
@@ -213,7 +214,18 @@
 														</div>
 
 
+
+
+
 													</div>
+
+													<div class="form-row">
+														<label class="form-label" for="customFile">Upload
+															Document</label> <input type="file" name="requisitionFile"
+															class="form-control" title="upload" id="customFile" />
+
+													</div>
+
 													<!-- /.box-body -->
 
 												</div>
@@ -255,12 +267,15 @@
 																		<th scope="col" class="text-center">Qty <br>in
 																			Stock
 																		</th>
-																		<th scope="col" class="text-center">Qty <br>Required<span style="color:red">*</span>
+																		<th scope="col" class="text-center">Qty <br>Required<span
+																			style="color: red">*</span>
 																		</th>
 																		<th scope="col" class="text-center">Approved <br>Required
 																			Qty
 																		</th>
-																		<th scope="col" class="text-center">Required Date <span style="color:red">*</span></th>
+																		<th scope="col" class="text-center">Required Date
+																			<span style="color: red">*</span>
+																		</th>
 
 
 
@@ -311,8 +326,7 @@
 																			class="form-control form-control-sm text-right"
 																			title="net qty"
 																			name="materialRequisitionDetails[0].netQty"
-																			step="0.25"
-																			onkeypress="return isNumberKey(event)" 
+																			step="0.25" onkeypress="return isNumberKey(event)"
 																			onkeyup="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			style="width: 100px;" required></td>
 
@@ -320,8 +334,7 @@
 																		<td><input type="text"
 																			class="form-control form-control-sm text-right"
 																			id="technicalQualification" title="srNoClaimUnder"
-																			step="0.25"
-																			onkeypress="return isNumberKey(event)" 
+																			step="0.25" onkeypress="return isNumberKey(event)"
 																			onkeyup="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"
 																			name="materialRequisitionDetails[0].srNoClaimUnder"></td>
 
@@ -329,7 +342,8 @@
 																		<td><input type="date"
 																			class="form-control form-control-sm"
 																			id="orderItemuom" title="" style="width: 150px"
-																			name="materialRequisitionDetails[0].srNoSendForRep" required></td>
+																			name="materialRequisitionDetails[0].srNoSendForRep"
+																			required></td>
 
 
 																	</tr>

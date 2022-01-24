@@ -198,6 +198,32 @@
 													<h5 class="box-title">Other Detail</h5>
 													<div class="box-body">
 
+														<div class="form-group col-md-4">
+															<label for="inputAddress">Type of Vehicle</label> <select
+																class="form-control" id="" title="vehicle type" th:field="*{vehicleType}">
+																<option value="t">Truck</option>
+
+
+															</select>
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label class="form-label">Vehicle No.</label> <label
+																style="color: red">*</label> <input type="text"
+																class="form-control" placeholder="Vehicle No."
+																title="vehicle no." th:field="*{vehicleNumber}">
+														</div>
+
+
+														<div class="form-group col-md-4">
+															<label for="inputAddress">From</label>
+															<textarea class="form-control" placeholder="From"
+																title="from" th:field="*{from}"></textarea>
+
+
+
+														</div>
 
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">G.R.Number</label> <input
@@ -221,24 +247,15 @@
 															</select>
 														</div> -->
 
+
+
+
 														<div class="form-group col-md-4">
-															<label for="inputAddress">Transporter Name</label> <input
+															<label for="inputPassword4">Phone Number</label> <input
 																type="text" class="form-control"
-																placeholder="Transporter Name" title="transporter name"
-																th:field="*{trCode}">
-
-
-
+																placeholder="Phone Number" title="remarks"th:field="*{phoneNumber}">
 														</div>
 
-
-
-														<div class="form-group col-md-4">
-															<label class="form-label">Vehicle No.</label> <label
-																style="color: red">*</label> <input type="text"
-																class="form-control" placeholder="Vehicle No."
-																title="vehicle no." th:field="*{vehicleNumber}">
-														</div>
 
 
 														<div class="form-group col-md-4">
@@ -258,13 +275,57 @@
 												<!-- end box-2 -->
 
 
+												<!-- box 2 -->
 
+												<div class="box">
+													<h5 class="box-title">Detail</h5>
+													<div class="box-body">
+
+
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Time In</label> <input
+																type="time" class="form-control" placeholder="Time In"
+																title="time in" th:field="*{timeIn}">
+														</div>
+
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Time Out</label> <input
+																type="time" class="form-control" placeholder="Time Out"
+																title="time out" th:field="*{timeOut}">
+														</div>
+
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Voucher Number</label> <input
+																type="text" class="form-control"th:field="*{voucherNumber}"
+																placeholder="Voucher Number" title="voucher number" readonly>
+														</div>
+
+
+														<div class="form-group col-md-3">
+															<label for="inputPassword4">Voucher Date</label> <input
+																th:field="*{voucherDate}"
+																type="date" class="form-control" title="voucher date" readonly>
+														</div>
+
+													</div>
+
+													<div class="form-row">
+														<label class="form-label" for="customFile">Upload
+															Document</label> <input type="file" name="requisitionFile"
+															class="form-control" title="upload" id="customFile" />
+
+													</div>
+													
+													<!-- /.box-body -->
+
+												</div>
+												<!--end box-1-->
 
 
 
 
 												<!--detail box-->
-												<div class="box">
+												<!-- <div class="box">
 
 													<h5>Item Details</h5>
 													<div class="box-body">
@@ -318,7 +379,7 @@
 																<tbody>
 																	<tr id="addr0">
 
-																		<!--   po number  -->
+																		  po number 
 
 																		<td><select
 																			class="form-control poContainer0 form-control-sm select"
@@ -331,14 +392,14 @@
 																					th:text="${po.poNumber}" th:value=" ${po.poNumber}"></option>
 
 																		</select></td>
-																		<!-- po date  -->
+																		po date 
 
 																		<td><input type="date"
 																			class="form-control form-control-sm"
 																			id="orderIndentDatePo0" title="order date"
 																			name="gateEntryItemDetails[0].orderDate" readonly></td>
 
-																		<!-- item code  -->
+																		item code 
 
 																		<td><select id="orderItemPo0"
 																			class="form-control form-control-sm select orderItemContainerPo0"
@@ -348,7 +409,7 @@
 																				<option value="">Select</option>
 																		</select></td>
 
-																		<!-- item description  -->
+																		item description 
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
@@ -356,30 +417,29 @@
 																			name="gateEntryItemDetails[0].itemDescription"
 																			readonly></td>
 
-																		<!-- pending qty  -->
+																		pending qty 
 
 																		<td><input type="number" title="pending qty"
-																			class="form-control form-control-sm"
-																			id="pendingQty0"
+																			class="form-control form-control-sm" id="pendingQty0"
 																			name="gateEntryItemDetails[0].pendingQty" readonly></td>
 
-																		<!-- qty  -->
+																		qty 
 
 																		<td><input type="number" id="qtyOrder0"
 																			onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this);"
-																			onkeyup = "onChangeQty()"
+																			onkeyup="onChangeQty()"
 																			class="form-control form-control-sm" title="net qty"
 																			name="gateEntryItemDetails[0].netQty" step="0.25"
 																			value="0.00"></td>
 
-																		<!-- uom  -->
+																		uom 
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
 																			id="orderItemuom0" title="status"
 																			name="gateEntryItemDetails[0].uom"></td>
 
-																		<!-- incoming part sr no  -->
+																		incoming part sr no 
 
 																		<td><input type="text"
 																			class="form-control form-control-sm"
@@ -387,7 +447,7 @@
 																			title=""></td>
 
 
-																		<!-- claim part   -->
+																		claim part  
 
 																		<td><input type="text"
 																			name="gateEntryItemdetail[0].claimSrNo"
@@ -409,7 +469,7 @@
 														<input type="hidden" id="hidden_field"
 															th:value="${length}" />
 													</div>
-												</div>
+												</div> -->
 
 
 												<!--end detail box-->
@@ -579,7 +639,7 @@
 		}
 
 		var qty = 0;
-		
+
 		function getOrderItemDetailForPo() {
 
 			var itemNumber = document.getElementById("orderItemPo" + idIndex).value;
@@ -595,16 +655,15 @@
 					console.log("getOrderItemDetailForPo item description  :"
 							+ data.description)
 					$("#pendingQty" + idIndex).val(0.00)
-					
+
 					$("#orderItemCode" + idIndex).val(data.item.description)
 					//orderItemCode0
 					//$("#orderItemCode0").val(data.itemCode)
 					$("#orderItemuom" + idIndex).val(data.item.uom.uomCode)
 					$("#qtyOrder" + idIndex).val(
 							data.purchaseOrderItem.qtyOrder)
-							
+
 					qty = data.purchaseOrderItem.qtyOrder;
-					
 
 				},
 				error : function() {
@@ -618,11 +677,11 @@
 
 			console.log("onchange method : ")
 			var pendingQty = document.getElementById("pendingQty" + idIndex).value;
-			
+
 			console.log("pending qty : " + pendingQty)
 			var qtyOrder = document.getElementById("qtyOrder" + idIndex).value;
 			console.log("qty order : " + pendingQty)
-			
+
 			document.getElementById("pendingQty" + idIndex).value = qty
 					- qtyOrder;
 
