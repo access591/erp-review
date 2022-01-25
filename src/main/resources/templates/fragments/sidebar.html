@@ -230,6 +230,9 @@
 							Purchase Return</a></li>
 					<li th:if="${#request.isUserInRole('REJECTIONISSUE') or #request.isUserInRole('ADMIN')}"><a th:href="@{/rejectionissue/}"><i class="fa fa-circle-o"></i>
 							Rejection Issue</a></li>	
+					<li th:if="${#request.isUserInRole('ITEMRETURNNOTE') or #request.isUserInRole('ADMIN')}"><a th:href="@{/itemreturnnote/}"><i class="fa fa-circle-o"></i>
+							Item return Note</a></li>	
+							
 				</ul></li>
 
 
