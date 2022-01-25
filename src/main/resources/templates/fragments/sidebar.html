@@ -208,9 +208,11 @@
 				<ul class="treeview-menu">
 
 
-					cxz
+					
 					<li th:if="${#request.isUserInRole('GATEENTRY') or #request.isUserInRole('ADMIN')}"><a th:href="@{/gateentry/}"><i class="fa fa-circle-o"></i>
-							Gate Entry</a></li>
+							Gate Entry(In)</a></li>
+					<li th:if="${#request.isUserInRole('GATEOUT') or #request.isUserInRole('ADMIN')}"><a th:href="@{/gateout/}"><i class="fa fa-circle-o"></i>
+							Gate Out</a></li>
 					
 					<li th:if="${#request.isUserInRole('GATEPASS') or #request.isUserInRole('ADMIN')}"><a th:href="@{/gatepass/}"><i class="fa fa-circle-o"></i>
 							Gate Pass</a></li>

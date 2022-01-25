@@ -36,10 +36,12 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 	SessionFactory sessionFactory;
 
 	@Override
-	public void addOpenIndent(OpenIndent openIndent) {
+	public OpenIndent addOpenIndent(OpenIndent openIndent) {
 
 		// System.out.println("testing open indent detail : Id =>" +
 		// openIndent.getOpeIndentDetail().get(0).getId());
+		
+		OpenIndent indent = null;
 
 		if (openIndent.getIndentNumber() == "" || openIndent.getIndentNumber() == null) {
 			System.out.println("country code is : " + openIndent.getIndentNumber());
@@ -49,7 +51,7 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 			
 			openIndent.setIndentNumber("EB-"+maxCode);
 
-			for (OpenIndentDetail indent : openIndent.getOpeIndentDetail()) {
+			for (OpenIndentDetail ind : openIndent.getOpeIndentDetail()) {
 				// openIndent.getOpeIndentDetail().add(indent);
 
 //				String maxCode1 = seqMainRepo.findByTranType("IDT");
@@ -57,11 +59,11 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 
 				//System.out.println("indent item code : " + indent.getItem().getItemCode());
 				//indent.setItem(indent.getItem());
-				indent.setOpenIndent(openIndent);
+				ind.setOpenIndent(openIndent);
 				//indentDetailRepo.save(indent);
 			}
 
-			openIndentRepo.save(openIndent);
+			indent =  openIndentRepo.save(openIndent);
 
 		} else {
 
@@ -83,10 +85,11 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 					open.getOpeIndentDetail().add(indentDetail);
 				}
 
-				session.merge(openIndent);
+				indent = (OpenIndent) session.merge(openIndent);
 				tx.commit();
 
 				// query.getResultList();
+				System.out.println("indent updated");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -95,6 +98,7 @@ public class OpenIndentServiceImpl implements OpenIndentService {
 			}
 
 		}
+		return indent;
 
 	}
 

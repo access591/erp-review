@@ -55,9 +55,9 @@
 															<th scope="col">#</th>
 															<th scope="col">Quotation Number</th>
 															<th scope="col">Quotation Date</th>
-															<th scope="col">Employee</th>
-															<th scope="col">RFQ Date</th>
+															
 															<th scope="col">Supplier Name</th>
+															<th scope="col">Action</th>
 
 														</tr>
 													</thead>
@@ -68,8 +68,9 @@
 															<td
 																th:text="${#dates.format(quotation.quotDate, 'dd-MMM-yyyy')}">Garrett
 																Winters</td>
-															<td th:text="${quotation.employee}">Garrett Winters</td>
-															<td th:text="${quotation.suplierCode}">Garrett
+															
+															
+															<td th:text="${quotation.party.partyName}">Garrett
 																Winters</td>
 
 

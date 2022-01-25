@@ -36,7 +36,7 @@ public class GateEntryServiceImpl implements GateEntryService{
 	@Override
 	public void addGateEntry(GateEntry gateEntry) {
 		
-		if(gateEntry.getGateSrNo() == null || gateEntry.getGateSrNo()=="") {
+		if(gateEntry.getGateSrNo().isEmpty() || gateEntry.getGateSrNo() == null || gateEntry.getGateSrNo()=="") {
 			String maxCode = seqMainRepo.findByTranTypeAndFyCodeAndCCode("GEN", "20-21", "EB");
 			gateEntry.setGateSrNo("EB"+ maxCode);
 		}

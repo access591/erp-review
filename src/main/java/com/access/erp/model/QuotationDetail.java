@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,6 +17,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.access.erp.model.master.PartyMaster;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -55,8 +58,13 @@ public class QuotationDetail {
 	private String quotSub;
 
 	// fk party master
-	@Column(name = "SUPP_CODE", length = 30)
-	private String suplierCode;
+	@ManyToOne
+	@JoinColumn(name="SUPP_CODE")
+	private PartyMaster party;
+	
+	/*
+	 * @Column(name = "SUPP_CODE", length = 30) private String suplierCode;
+	 */
 
 	// 5,2
 	@Column(name = "EXCISE", length = 10)
@@ -338,12 +346,14 @@ public class QuotationDetail {
 		this.quotSub = quotSub;
 	}
 
-	public String getSuplierCode() {
-		return suplierCode;
+	
+
+	public PartyMaster getParty() {
+		return party;
 	}
 
-	public void setSuplierCode(String suplierCode) {
-		this.suplierCode = suplierCode;
+	public void setParty(PartyMaster party) {
+		this.party = party;
 	}
 
 	public int getExcise() {

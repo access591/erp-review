@@ -86,7 +86,7 @@ public class GateEntry {
 	@Column(name = "TYPEOF_VEHICLE", length = 2)
 	private String vehicleType;
 	
-	@Column(name = "FROM", length = 200)
+	@Column(name = "FROMMM", length = 200)
 	private String from;
 	
 	@Column(name = "PHONE_NUMBER", length = 20)
@@ -185,6 +185,9 @@ public class GateEntry {
 
 	@Column(name = "WARRANTY_NO", length = 20)
 	private String warrantyNo;
+	
+	@Column(name = "DOC_FILE", length = 200)
+	private String docFile;
 
 	@Column(name = "WARRANTY_DATE")
 	private String warrantyDate;
@@ -586,6 +589,14 @@ public class GateEntry {
 
 	public void setBarCode(int barCode) {
 		this.barCode = barCode;
+	}
+
+	public String getDocFile() {
+		return docFile;
+	}
+
+	public void setDocFile(String docFile) {
+		this.docFile = docFile;
 	}
 
 	

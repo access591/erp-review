@@ -62,7 +62,11 @@ public class loginContoller {
 		
 		List<Company> companyList = new ArrayList<>();
 		for(FinancialActiveYear fy : fyYearList) {
-			companyList.add(fy.getCompany());
+			
+			if(!companyList.contains(fy.getCompany())) {
+				companyList.add(fy.getCompany());
+			}
+			
 		}
 		
 		
