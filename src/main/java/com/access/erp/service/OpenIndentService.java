@@ -8,7 +8,7 @@ import com.access.erp.model.OpenIndent;
 
 public interface OpenIndentService {
 
-	public void addOpenIndent(OpenIndent openIndent);
+	public OpenIndent addOpenIndent(OpenIndent openIndent);
 
 	public List<OpenIndent> getAllOpenIndent();
 

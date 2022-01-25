@@ -52,7 +52,7 @@
 													<th scope="col" class="text-center">Supplier Name</th>
 													<th scope="col" class="text-center">Item Code</th>
 													<th scope="col" class="text-center">Item Quantity</th>
-													<th scope="col" class="text-center">Total Value(INR)</th>
+													
 													<th scope="col" class="text-center">Approval Status</th>
 													<th scope="col" class="text-center">View</th>
 
@@ -63,7 +63,7 @@
 												<tr th:each="quotation : ${listQuotationDetail}">
 													<td><label th:text="${quotation.quotNo}"></label></td>
 
-													<td><label th:text="${quotation.quotDate}"></label></td>
+													<td><label th:text="${#dates.format(quotation.quotDate, 'dd-MMM-yyyy')}"></label></td>
 
 													<td><label th:text="${quotation.quotType}"></label></td>
 
@@ -72,14 +72,14 @@
 
 													<td><label th:text="${quotation.indentDate}"></label>
 													</td>
-													<td><label th:text="${quotation.suplierCode}"></label></td>
+													<td><label th:text="${quotation.party.partyName}"></label></td>
 
 													<td><label th:text="${quotation.itemCode}"></label></td>
 
-													<td><label>value</label></td>
+													
 
-													<td><label th:text="${quotation.approvalStatus1}">testing</label>
-													</td>
+													
+													
 
 
 

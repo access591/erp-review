@@ -38,6 +38,10 @@
 	width: 130px;
 	font-size: 10px;
 }
+
+input[readonly] {
+	background-color: #dddddd;
+}
 </style>
 
 </head>
@@ -55,13 +59,13 @@
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
 						<h4>
-							Gate Entry
+							Gate Out
 							<!--<small>it all starts here</small>-->
 						</h4>
 						<ol class="breadcrumb">
 							<li><a href="#"><i class="fa fa-dashboard"></i>Warehouse</a></li>
-							<li><a href="#">Gate Entry</a></li>
-							<li class="active">Add page</li>
+							<li><a href="#">Gate Out</a></li>
+							<li class="active">page</li>
 						</ol>
 					</section>
 
@@ -70,8 +74,9 @@
 					<section class="content">
 
 						<!-- form start -->
-						<form role="form" th:action="@{/gateentry/}"
-							th:object="${gateEntry}" method="POST" enctype="multipart/form-data">
+						<form role="form" th:action="@{/gateout/}"
+							th:object="${gateEntry}" method="POST"
+							enctype="multipart/form-data">
 
 
 							<div class="box-header with-border text-right">
@@ -122,22 +127,31 @@
 
 
 														<div class="form-group col-md-4">
-															<label for="inputEmail4">Gate Sr No</label> <input
-																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No" th:field="*{gateSrNo}" readonly>
+															<label for="inputAddress">Gate Entry</label> <select
+																class="form-control" id="gateEntryNumber"
+																title="entry type" th:field="*{gateSrNo}"
+																onchange="gateEntryInfo()">
+																<option value="">Select</option>
+																<option th:each="gateEntry : ${listGateEntry}"
+																	th:text="${gateEntry.gateSrNo}"
+																	th:value="${gateEntry.gateSrNo}"></option>
+
+															</select>
 														</div>
+
+
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Gate Entry Date</label> <input
 																type="date" class="form-control" id="gateEntryDate"
-																th:field="*{gateEntryDate}">
+																th:field="*{gateEntryDate}" readonly>
 														</div>
 
 
 
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Entry Type</label> <select
-																class="form-control" id="" title="entry type"
-																th:field="*{entryType}">
+																class="form-control" id="entryType" title="entry type"
+																th:field="*{entryType}" readonly>
 																<option value="p">Purchased Item</option>
 																<option value="re">Returned Item</option>
 																<option value="pe">Petty Item</option>
@@ -149,7 +163,8 @@
 
 														<div class="form-group col-md-4">
 															<label class="form-label">GST Type</label> <select
-																class="form-control" id="" title="gst type">
+																class="form-control" id="gstType" title="gst type"
+																readonly>
 																<option value="g" selected>GST</option>
 																<option value="n">Non-GST</option>
 
@@ -165,7 +180,7 @@
 																style="color: red">*</label> <select
 																class="form-control" id="supplierName"
 																onchange="selectSupplier()" title="supplier code"
-																th:field="*{partyMaster}">
+																th:field="*{partyMaster}" readonly>
 																<option value="">Select</option>
 																<option th:each="party :  ${partyMasterList}"
 																	th:text="${party.partyName}"
@@ -200,7 +215,8 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputAddress">Type of Vehicle</label> <select
-																class="form-control" id="" title="vehicle type" th:field="*{vehicleType}">
+																readonly class="form-control" id="vehicleType"
+																title="vehicle type" th:field="*{vehicleType}">
 																<option value="t">Truck</option>
 
 
@@ -211,15 +227,16 @@
 														<div class="form-group col-md-4">
 															<label class="form-label">Vehicle No.</label> <label
 																style="color: red">*</label> <input type="text"
-																class="form-control" placeholder="Vehicle No."
-																title="vehicle no." th:field="*{vehicleNumber}">
+																id="vehicleNo" class="form-control"
+																placeholder="Vehicle No." title="vehicle no."
+																th:field="*{vehicleNumber}" readonly>
 														</div>
 
 
 														<div class="form-group col-md-4">
 															<label for="inputAddress">From</label>
 															<textarea class="form-control" placeholder="From"
-																title="from" th:field="*{from}"></textarea>
+																id="from" title="from" th:field="*{from}" readonly></textarea>
 
 
 
@@ -227,12 +244,13 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputEmail4">G.R.Number</label> <input
-																type="text" class="form-control" id="inputEmail4"
-																placeholder="Gate Sr No" th:field="*{grNumber}">
+																type="text" class="form-control" id="grNumber"
+																placeholder="Gate Sr No" th:field="*{grNumber}" readonly>
 														</div>
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">G.R.Date</label> <input
-																type="date" class="form-control" th:field="*{grDate}">
+																id="grDate" type="date" class="form-control"
+																th:field="*{grDate}" readonly>
 														</div>
 
 
@@ -252,8 +270,9 @@
 
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Phone Number</label> <input
-																type="text" class="form-control"
-																placeholder="Phone Number" title="remarks"th:field="*{phoneNumber}">
+																type="text" class="form-control" readonly
+																id="phoneNumber" placeholder="Phone Number"
+																title="remarks" th:field="*{phoneNumber}">
 														</div>
 
 
@@ -261,7 +280,8 @@
 														<div class="form-group col-md-4">
 															<label for="inputPassword4">Remarks</label> <input
 																type="text" class="form-control" placeholder="Remarks"
-																title="remarks" th:field="*{remarks}">
+																title="remarks" th:field="*{remarks}" id="remarks"
+																readonly>
 														</div>
 
 
@@ -285,26 +305,29 @@
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Time In</label> <input
 																type="time" class="form-control" placeholder="Time In"
-																title="time in" th:field="*{timeIn}">
+																title="time in" th:field="*{timeIn}" id="timeIn"
+																readonly>
 														</div>
 
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Time Out</label> <input
 																type="time" class="form-control" placeholder="Time Out"
-																title="time out" th:field="*{timeOut}">
+																title="time out" id="timeOut" th:field="*{timeOut}">
 														</div>
 
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Voucher Number</label> <input
-																type="text" class="form-control"th:field="*{voucherNumber}"
-																placeholder="Voucher Number" title="voucher number" readonly>
+																type="text" class="form-control"
+																th:field="*{voucherNumber}" placeholder="Voucher Number"
+																id="voucherNum" title="voucher number">
 														</div>
 
 
 														<div class="form-group col-md-3">
 															<label for="inputPassword4">Voucher Date</label> <input
-																th:field="*{voucherDate}"
-																type="date" class="form-control" title="voucher date" readonly>
+																th:field="*{voucherDate}" type="date"
+																class="form-control" id="voucheDate"
+																title="voucher date">
 														</div>
 
 													</div>
@@ -315,7 +338,7 @@
 															class="form-control" title="upload" id="customFile" />
 
 													</div>
-													
+
 													<!-- /.box-body -->
 
 												</div>
@@ -505,6 +528,11 @@
 
 
 	<script>
+		var today = new Date();
+		var time = today.getHours() + ":" + today.getMinutes() + ":"
+				+ today.getSeconds();
+		document.getElementById("timeOut").value = time;
+
 		function selectSupplier() {
 			var supplierCode = document.getElementById("supplierName").value;
 			document.getElementById("supplierCode").value = supplierCode;
@@ -552,6 +580,40 @@
 							console.log("Error");
 						}
 					});
+		}
+
+		function gateEntryInfo() {
+
+			var gateEntry = document.getElementById("gateEntryNumber").value;
+
+			console.log("gate entry info")
+			$.ajax({
+				type : "GET",
+				url : "gateOutInfo/" + gateEntry,
+
+				success : function(data) {
+					console.log("list of get approved po  : " + data)
+					$("#gateEntryDate").val(data.gateEntryDate);
+					$("#entryType").val(data.entryType);
+					// $("#gstType").val(data.);
+					console.log("supplier name is : "
+							+ data.partyMaster.partyName)
+					$("#supplierName").val(data.partyMaster.partyCode);
+					$("#supplierCode").val(data.partyMaster.partyCode);
+					$("#vehicleType").val(data.vehicleType);
+					$("#vehicleNo").val(data.vehicleNumber);
+					$("#from").val(data.from);
+					$("#grNumber").val(data.grNumber);
+					$("#grDate").val(data.grDate);
+					$("#phoneNumber").val(data.phoneNumber);
+					$("#remarks").val(data.remarks);
+					$("#timeIn").val(data.timeIn);
+
+				},
+				error : function() {
+					console.log("Error");
+				}
+			});
 		}
 
 		function getOrderIndentDetailPo() {

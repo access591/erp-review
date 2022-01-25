@@ -1,11 +1,13 @@
 package com.access.erp.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,23 +15,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.access.erp.helper.FileService;
 import com.access.erp.model.GateEntry;
-import com.access.erp.model.ItemOpening;
 import com.access.erp.model.PurchaseOrder;
 import com.access.erp.model.PurchaseOrderItem;
-import com.access.erp.model.master.Company;
 import com.access.erp.model.master.Item;
 import com.access.erp.model.master.PartyMaster;
 import com.access.erp.repo.PurchaseOrderItemRepo;
-import com.access.erp.repo.PurchaseOrderRepo;
 import com.access.erp.service.GateEntryService;
 import com.access.erp.service.ItemService;
 import com.access.erp.service.PartyMasterService;
 import com.access.erp.service.PurchaseOrderService;
-import com.access.erp.singleton.GlobalParameter;
 import com.access.erp.utility.PurchaseOrderItem_Item;
 
 @Controller
@@ -48,6 +49,8 @@ public class GateEntryController {
 
 	@Autowired
 	PartyMasterService partyMasterService;
+	
+	private static String UPLOADED_FOLDER = "F://temp//";
 
 	@GetMapping("/")
 	public String gateEntryPage(Model model) {
@@ -64,24 +67,30 @@ public class GateEntryController {
 	}
 
 	@PostMapping("/")
-	public String addGateEntry(@ModelAttribute("gateEntry") GateEntry gateEntry,
+	public String addGateEntry(@RequestParam("file") MultipartFile file,@ModelAttribute("gateEntry") GateEntry gateEntry,
 			RedirectAttributes redirectAttributes) {
 
-		// boolean exists = companyRepo.existsById(company.getCompCode());
-		/*
-		 * if (!exists) {
-		 * 
-		 * companyService.addCompany(company);
-		 * redirectAttributes.addFlashAttribute("message",
-		 * "Company  has been saved successfully! ");
-		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-		 * 
-		 * } else {
-		 * 
-		 * redirectAttributes.addFlashAttribute("message",
-		 * "Company Code Allready exists! Please try another One !!");
-		 * redirectAttributes.addFlashAttribute("alertClass", "alert-success"); }
-		 */
+		if (file.isEmpty()) {
+			gateEntry.setDocFile("default");
+		}
+
+		try {
+
+            // Get the file and save it somewhere
+			File saveFileFolder = new ClassPathResource("static/").getFile();
+
+			System.out.println("save file folder : " + saveFileFolder);
+			String uploadDir = saveFileFolder.getAbsolutePath();
+
+			System.out.println("upload dir : " + uploadDir);
+
+			FileService.saveFile(uploadDir, file.getOriginalFilename(), file);
+
+            gateEntry.setDocFile(file.getOriginalFilename());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 		gateEntryService.addGateEntry(gateEntry);
 
@@ -128,7 +137,7 @@ public class GateEntryController {
 		redirectAttributes.addFlashAttribute("message", "Gate Entry  has been deleted successfully!");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
-		return "redirect:/itemopening/list";
+		return "redirect:/gateentry/list";
 	}
 
 	@ResponseBody

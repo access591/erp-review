@@ -32,67 +32,72 @@ import com.access.erp.utility.Item_itemOpening;
 @RequestMapping("/openindent")
 public class OpenIndentController {
 
-	@Autowired OpenIndentService openIndentService;
-	@Autowired EmployeeService employeeService;
-	@Autowired ItemService itemService;
-	@Autowired DepartmentService departmentService;
-	@Autowired ItemOpeningService itemOpeningService;
-	@Autowired OpenIndentRepo openIndentRepo;
-	
-	@Autowired GlobalParameter globalParameter;
-	
+	@Autowired
+	OpenIndentService openIndentService;
+	@Autowired
+	EmployeeService employeeService;
+	@Autowired
+	ItemService itemService;
+	@Autowired
+	DepartmentService departmentService;
+	@Autowired
+	ItemOpeningService itemOpeningService;
+	@Autowired
+	OpenIndentRepo openIndentRepo;
+
+	@Autowired
+	GlobalParameter globalParameter;
 
 	@GetMapping("/")
 	public String openIndent(Model model) {
-		
+
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		System.out.println("employee list size : " + employeeList.size());
 		model.addAttribute("employeeList", employeeList);
-		
+
 		model.addAttribute("openIndent", new OpenIndent());
-		
+
 		List<Item> itemList = itemService.getAllItem();
 		model.addAttribute("itemList", itemList);
-		
+
 		List<Department> listDepartment = departmentService.getAllDepartment();
 		model.addAttribute("departmentList", listDepartment);
-		
-		return "layouts/Master/openIndent"; //layouts/Master/openindent
+
+		return "layouts/Master/openIndent"; // layouts/Master/openindent
 	}
 
 	@PostMapping("/")
-	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent,RedirectAttributes redirectAttributes) {
+	public String addOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent,
+			RedirectAttributes redirectAttributes) {
 
-		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
-		
+		// System.out.println(" testing : " +
+		// openIndent.getOpeIndentDetail().get(0).getTotalValue());
+
 		openIndent.setCompany(globalParameter.getGlobalCompany());
 		openIndent.setFyCode(globalParameter.getGlobalFinanceYear());
 		openIndent.setUser(globalParameter.getGlobaluser());
-		
-		openIndentService.addOpenIndent(openIndent);
-		
-		redirectAttributes.addFlashAttribute("message", "Record  has been saved successfully!");
+
+		OpenIndent indent = openIndentService.addOpenIndent(openIndent);
+
+		redirectAttributes.addFlashAttribute("message",
+				"Indent Number " + indent.getIndentNumber() + " has been generated...");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
 		return "redirect:/openindent/";
 	}
-	
-	@PostMapping("/update")
-	public String updateOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent,RedirectAttributes redirectAttributes) {
 
-		//System.out.println(" testing : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
-		
-		System.out.println("open indent  : " + openIndent.getOpeIndentDetail().get(0).getTotalValue());
-		
-		openIndentService.updateOpenIndent(openIndent);
-		
-		redirectAttributes.addFlashAttribute("message", "Record  has been updated successfully! ");
-		   redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
+	@PostMapping("/update")
+	public String updateOpenIndent(@ModelAttribute("openIndent") OpenIndent openIndent,
+			RedirectAttributes redirectAttributes) {
+
+		OpenIndent indent = openIndentService.addOpenIndent(openIndent);
+
+		redirectAttributes.addFlashAttribute("message",
+				"Indent Number " + indent.getIndentNumber() + " has been updated...");
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
 		return "redirect:/openindent/";
 	}
-	
-	
 
 	@GetMapping("/list")
 	public String viewOpenIndentList(Model model) {
@@ -112,21 +117,21 @@ public class OpenIndentController {
 		OpenIndent openIndent = openIndentService.editOpenIndent(indentCode).get();
 
 		model.addAttribute("openIndent", openIndent);
-		
+
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		model.addAttribute("employeeList", employeeList);
-		
+
 		List<Department> listDepartment = departmentService.getAllDepartment();
 		model.addAttribute("departmentList", listDepartment);
-		
+
 		List<Item> itemList = itemService.getAllItem();
 		model.addAttribute("itemList", itemList);
-		
+
 		model.addAttribute("length", openIndent.getOpeIndentDetail().size());
 
 		return "layouts/editview/editOpenIndent";
 	}
-	
+
 	@GetMapping("/view/{id}")
 	public String viewOpenIndent(@PathVariable("id") String indentCode, Model model) {
 
@@ -134,29 +139,28 @@ public class OpenIndentController {
 		OpenIndent openIndent = openIndentService.editOpenIndent(indentCode).get();
 
 		model.addAttribute("openIndent", openIndent);
-		
+
 		List<Employee> employeeList = employeeService.getAllEmployee();
 		model.addAttribute("employeeList", employeeList);
-		
+
 		List<Department> listDepartment = departmentService.getAllDepartment();
 		model.addAttribute("departmentList", listDepartment);
-		
+
 		List<Item> itemList = itemService.getAllItem();
 		model.addAttribute("itemList", itemList);
-		
+
 		model.addAttribute("length", openIndent.getOpeIndentDetail().size());
 
 		return "layouts/view/viewOpenIndent";
 	}
 
-	
-
 	@GetMapping("/delete/{id}")
-	public String deleteOpenIndent(@PathVariable("id") String openIndent, Model model,RedirectAttributes redirectAttributes) {
+	public String deleteOpenIndent(@PathVariable("id") String openIndent, Model model,
+			RedirectAttributes redirectAttributes) {
 		openIndentService.deleteOpenIndent(openIndent);
-		
+
 		redirectAttributes.addFlashAttribute("message", "Record  has been deleted successfully!");
-		redirectAttributes.addFlashAttribute("alertClass", "alert-success"); 
+		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 		return "redirect:/openindent/list";
 	}
 
@@ -171,122 +175,111 @@ public class OpenIndentController {
 
 		return "layouts/Master/openIndentApproval";
 	}
-	
-	
-	
-	//APROVAL OPEN INDENT 
-	
+
+	// APROVAL OPEN INDENT
+
 	@GetMapping("/approve/{id}/{status}/{level}")
-	public String aprroveOpenIndent(@PathVariable("id") String indentNumber,@PathVariable("level") String level
-			,@PathVariable("status") String approvalStatus) {
-		
-		
+	public String aprroveOpenIndent(@PathVariable("id") String indentNumber, @PathVariable("level") String level,
+			@PathVariable("status") String approvalStatus) {
+
 		System.out.println(" approve id : " + indentNumber);
 		System.out.println(" approve level : " + level);
 		System.out.println(" approve status : " + approvalStatus);
-		
-		
+
 		openIndentService.approval(indentNumber, approvalStatus, level);
-		
+
 		return "redirect:/openindent/approve";
 	}
-	
-	
-	//for record against item code 
-	
+
+	// for record against item code
+
 	@ResponseBody
 	@GetMapping("itemdetail/{id}")
 	public Item_itemOpening itemDetail(@PathVariable("id") String itemCode) {
-		
+
 		Item_itemOpening itemItemOpening = new Item_itemOpening();
-		
+
 		Item item = itemService.editItem(itemCode).get();
-		
+
 		ItemOpening itemOpening = null;
 		try {
 			itemOpening = itemOpeningService.editItemOpening(itemCode).get();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		itemItemOpening.setItem(item);
 		itemItemOpening.setItemOpening(itemOpening);
 		return itemItemOpening;
 	}
-	
-	
-	//for item drop down 
-	
+
+	// for item drop down
+
 	@ResponseBody
 	@GetMapping("iteminfo")
-	public List<Item> itemListInfo(){
-		
+	public List<Item> itemListInfo() {
+
 		return itemService.getAllItem();
 	}
-	
+
 	@ResponseBody
 	@GetMapping("employeeinfo/{empCode}")
-	public Employee getEmployeInfo(@PathVariable("empCode") String empCode){
-		
+	public Employee getEmployeInfo(@PathVariable("empCode") String empCode) {
+
 		Employee employee = employeeService.editEmployee(empCode).get();
 		return employee;
 	}
-	
-	
-	
-	// Ajax for edit mode 
-	
-	
+
+	// Ajax for edit mode
+
 	@ResponseBody
 	@GetMapping("/edit/employeeinfo/{empCode}")
-	public Employee getEmployeInfoEdit(@PathVariable("empCode") String empCode){
-		
+	public Employee getEmployeInfoEdit(@PathVariable("empCode") String empCode) {
+
 		Employee employee = employeeService.editEmployee(empCode).get();
 		return employee;
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/edit/itemdetail/{id}")
 	public Item_itemOpening itemDetailEdit(@PathVariable("id") String itemCode) {
-		
+
 		Item_itemOpening itemItemOpening = new Item_itemOpening();
-		
+
 		Item item = itemService.editItem(itemCode).get();
-		
+
 		ItemOpening itemOpening = null;
 		try {
 			itemOpening = itemOpeningService.editItemOpening(itemCode).get();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		itemItemOpening.setItem(item);
 		itemItemOpening.setItemOpening(itemOpening);
 		return itemItemOpening;
 	}
-	
-	
-	//Ajax for view mode 
-	
+
+	// Ajax for view mode
+
 	@ResponseBody
 	@GetMapping("/view/itemdetail/{id}")
 	public Item_itemOpening itemDetailView(@PathVariable("id") String itemCode) {
-		
+
 		Item_itemOpening itemItemOpening = new Item_itemOpening();
-		
+
 		Item item = itemService.editItem(itemCode).get();
-		
+
 		ItemOpening itemOpening = null;
 		try {
 			itemOpening = itemOpeningService.editItemOpening(itemCode).get();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		itemItemOpening.setItem(item);
 		itemItemOpening.setItemOpening(itemOpening);
 		return itemItemOpening;
 	}
-	
 
 }
